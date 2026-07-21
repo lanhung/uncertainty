@@ -1,9 +1,9 @@
 # ADR-0002：高保真 BBN ODE 计算瓶颈与执行策略
 
-- **状态**：Accepted
+- **状态**：Accepted，资源拓扑于 2026-07-21 修订
 - **日期**：2026-07-21
 - **适用范围**：Track A、Track B-PA、Track B-CS、Track B-ML、AutoDL/HPC 资源计划
-- **关联规范**：`/AGENTS.md`、`docs/agents/EXECUTION.md`、`docs/agents/COMPUTE_VALIDATION.md`
+- **关联规范**：`/AGENTS.md`、`/AGENTS-ops.md`、`docs/agents/EXECUTION.md`、`docs/agents/COMPUTE_VALIDATION.md`
 
 ## 1. 决策摘要
 
@@ -14,6 +14,8 @@
 1. **它不是天然以 GPU 深度学习训练为主的项目**。传统 PArthENoPE、AlterBBN、PRyMordial/PRIMAT 类高保真计算通常首先受 CPU、FP64、ODE/网络积分、进程并行、内存和 I/O 限制；LINX/JAX 路线是否适合 GPU 必须由实测决定。
 2. **单次求解不一定极端昂贵，完整科学任务才昂贵**。真正的成本来自 `solver calls × 参数点 × nuisance draws × solver/network baselines × 数据组合 × posterior/SBC repeats` 的乘法效应。
 3. **不得把“计算密集”误解为需要盲目生成百万到亿级训练样本**。新版路线采用 Fisher 预筛选、低维敏感方向、函数型头部反应、主动学习、多保真建模和 direct-solver 验证来减少高保真调用。
+
+控制与计算资源必须解耦：轻量 Vultr 只作为多项目共享控制宿主机；本项目的 solver 与训练/验证能力通常在 AutoDL 按需开启，任务完成并持久化后关闭。
 
 ## 2. 不变的科学任务
 
@@ -71,7 +73,7 @@
 - 4 条或更多 MCMC 链；
 - 已有模型的回归与画图。
 
-判断：**中等计算量，不是极端 ODE 计算项目**。主要问题可能是链收敛、内存、工程复现和多 seed，而不是训练大模型。
+判断：**中等计算量，不是极端 ODE 计算项目**。主要问题可能是链收敛、内存、工程复现和多 seed，而不是训练大模型。可在单台按需 AutoDL 上完成大部分任务，控制状态持续保存在 Vultr。
 
 ### R1：Fisher、solver matrix 与 Pilot
 
@@ -83,7 +85,7 @@
 - Pilot-1k / Pilot-10k；
 - 初始 active learning。
 
-判断：**明显的高保真 ODE/反应网络工作负载，但可通过多进程和任务分片稳妥完成**。此阶段禁止预先购买大规模 GPU 集群。
+判断：**明显的高保真 ODE/反应网络工作负载，但可通过 AutoDL CPU-rich 实例、多进程和任务分片稳妥完成**。此阶段禁止预先购买大规模 GPU 集群。`sim` 节点按任务开启；必要时并行开启 `train` 节点。
 
 ### R2：Nature-tier flagship campaign
 
@@ -98,7 +100,7 @@
 - OOD challenge、direct recovery、外部复现；
 - 核实验 value-of-information 与 GW forecast。
 
-判断：**仍然是计算密集型项目**。昂贵部分不是单个神经网络，而是高保真 solver 数据、反复统计推断和严格验证的总成本。
+判断：**仍然是计算密集型项目**。昂贵部分不是单个神经网络，而是高保真 solver 数据、反复统计推断和严格验证的总成本。此时可以临时扩展多个 AutoDL/HPC worker，但不能把临时峰值写成常驻配置。
 
 ## 5. 成本模型
 
@@ -118,6 +120,7 @@ C_total = C_solver_generation
         + C_multi_solver_robustness
         + C_failed_runs_and_retries
         + C_storage_and_transfer
+        + C_shared_control_overhead
 ```
 
 必须报告：
@@ -126,21 +129,35 @@ C_total = C_solver_generation
 - CPU-core-hours per accepted label；
 - FP32/FP64 差异；
 - solver failure/retry rate；
-- GPU-hours 与 CPU-core-hours分开；
+- GPU-hours 与 CPU-core-hours 分开；
+- 每种 AutoDL 实例的实际开机时间与费用；
 - 数据生成成本是否被 emulator 加速比隐藏；
-- complete-posterior wall time 和 ESS/hour，而不只报告 forward latency。
+- complete-posterior wall time 和 ESS/hour，而不只报告 forward latency；
+- Vultr 控制成本作为多项目共享 overhead 单列。
 
 ## 6. 资源决策
 
-当前默认：
+### 6.1 共享控制宿主机
 
-- `uq-sim-01`：CPU-rich，负责 solver/Fisher/数据生成；
-- `uq-train-01`：1 × RTX 4090，负责 emulator/flow/active-learning surrogate；
-- `uq-verify-01`：按需 1 × RTX 4090，JAX/LINX FP64 或 NUTS 受限时按 benchmark 改用 A100。
+- 一台轻量 Vultr 常开，运行多个项目的 Codex 和隔离控制服务；
+- 本项目实例为 `research-ops-uncertainty.service`，默认端口 8787；
+- ledger 位于 `/var/lib/research-ops/uncertainty`；
+- 控制宿主机不承担 production solver、训练或大型 MCMC。
 
-即：**2 台常驻、2 张卡；第 3 台按需；稳妥并发 3 台、3 张卡。**
+### 6.2 按需 AutoDL worker
 
-只有 `FISHER-GATE >= G1` 且 Pilot 证明高保真调用确实是瓶颈时，才临时扩展到 4–6 个独立单卡/CPU-rich 节点。当前不采用 8 卡 DDP 节点作为默认方案。
+- `uncertainty-sim-autodl-*`：CPU/RAM/FP64 优先，负责 solver/Fisher/数据生成；
+- `uncertainty-train-autodl-*`：通常 1 × RTX 4090，负责 emulator/flow/active-learning surrogate、MCMC/SBC；
+- `uncertainty-verify-autodl-*`：仅在独立验证窗口开启，JAX/LINX FP64 或 NUTS 受限时按 benchmark 改用 A100。
+
+即：
+
+- 空闲时 AutoDL worker 可以为 0；
+- 常规活跃时通常开启 1–2 台 AutoDL；
+- 独立验证时临时增加第 3 台；
+- 预算受限或早期任务可在 1 台 AutoDL 上串行切换 sim/train 角色，但不能据此声称独立验证。
+
+只有 `FISHER-GATE >= G1` 且 Pilot 证明高保真调用确实是瓶颈时，才临时扩展到 4–6 个独立 AutoDL/HPC worker。当前不采用 8 卡 DDP 节点作为默认方案。
 
 ## 7. 何时说明“emulator 值得做”
 
@@ -155,18 +172,20 @@ C_total = C_solver_generation
 
 ## 8. 停止条件
 
-出现以下任一情况，应停止扩大计算：
+出现以下任一情况，应停止扩大计算或关闭不必要的 AutoDL worker：
 
 - Fisher Gate 为 G0；
 - Pilot learning curve 已饱和；
 - 完整 rate marginalization 对目标参数影响稳定小于 `0.1 sigma` 且区间变化小于 `5%`；
 - direct solver 已足够快，emulator 不产生端到端收益；
 - 方法增益只来自降低精度或漏掉尾部/OOD 区域；
-- 新发现不跨 solver、数据或 prior 稳健。
+- 新发现不跨 solver、数据或 prior 稳健；
+- worker 空闲但仍持续计费；
+- checkpoint/manifest 尚未安全持久化时禁止释放实例，但持久化完成后不得无理由长期占用。
 
 ## 9. 本 ADR 对“做的事情是否变化”的回答
 
 - **物理问题没有变**：仍然求解并传播 BBN 反应网络的不确定度，最终约束早期宇宙与 SGWB。
 - **高保真计算核心没有变**：仍需大量 ODE/反应网络求解作为真值和验证。
 - **实验策略发生了重要变化**：从百维盲目暴力采样，转为预筛选、降维、函数型头部不确定度、主动学习、多保真和严格校准。
-- **硬件判断更精确**：这是 CPU/FP64/solver-call 与统计验证密集型项目，不等同于需要大量 GPU 训练；GPU 数量必须随 Gate 和实测扩展。
+- **硬件判断更精确**：这是 CPU/FP64/solver-call 与统计验证密集型项目，不等同于需要大量 GPU 训练；计算节点通常在 AutoDL 按需租用，Vultr 只承担共享控制面。
