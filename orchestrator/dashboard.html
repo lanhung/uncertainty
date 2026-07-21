@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>research-ops telemetry</title>
+<style>
+:root{
+  --bg:#071018;--panel:#0b1721;--panel2:#0f1e2a;--edge:#203343;
+  --ink:#d9e7ee;--dim:#8ba2af;--faint:#5f7785;--signal:#e7a33e;
+  --run:#e7a33e;--done:#55c7a4;--fail:#ef6b69;--stale:#d6a14f;
+  --blocked:#7f9cff;--pending:#5f7785;--shadow:rgba(0,0,0,.35);
+  --mono:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace;
+  --sans:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);min-height:100%}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.18;
+  background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(255,255,255,.012) 1px,transparent 1px);
+  background-size:26px 26px}
+a{color:#9cc8dd;text-decoration:none}a:hover{text-decoration:underline}
+header{position:sticky;top:0;z-index:5;background:rgba(7,16,24,.94);backdrop-filter:blur(9px);
+  border-bottom:1px solid var(--edge);box-shadow:0 8px 28px var(--shadow)}
+.top{display:grid;grid-template-columns:minmax(260px,1fr) auto auto;gap:24px;align-items:center;
+  padding:20px 28px 14px;max-width:1440px;margin:auto}
+.eyebrow{font:11px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--signal)}
+.project{font-size:22px;font-weight:760;letter-spacing:-.025em;margin-top:3px}
+.sub{font:11px var(--mono);color:var(--faint);margin-top:5px}
+.overall{display:flex;align-items:center;gap:14px}.overall .num{font:600 34px var(--mono);color:var(--done)}
+.overall .label{font-size:11px;color:var(--dim);max-width:185px;line-height:1.35}
+.connection{text-align:right;font:11px var(--mono);color:var(--dim)}
+.connection b{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--done);margin-right:6px}
+.connection.off b{background:var(--fail)}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;padding:0 28px 14px;max-width:1440px;margin:auto}
+.chip{appearance:none;background:transparent;color:var(--dim);border:1px solid var(--edge);border-radius:3px;
+  padding:5px 10px;font:11px var(--mono);cursor:pointer}.chip:hover,.chip.active{color:var(--ink);border-color:var(--signal)}
+.chip .dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:7px;vertical-align:1px}
+.dot.running{background:var(--run)}.dot.done{background:var(--done)}.dot.failed{background:var(--fail)}
+.dot.stale{background:var(--stale)}.dot.blocked{background:var(--blocked)}.dot.pending{background:var(--pending)}
+main{max-width:1440px;margin:auto;padding:6px 28px 72px}.error{display:none;margin:20px 0;padding:12px 14px;
+  border:1px solid #5e2b2b;background:#251418;color:#ffaaa6;font:12px var(--mono)}
+.phase{margin-top:28px}.phase-head{display:flex;align-items:baseline;gap:14px;padding-bottom:9px;border-bottom:1px solid var(--edge)}
+.phase-id{font:12px var(--mono);letter-spacing:.15em;color:var(--signal)}.phase-pct{margin-left:auto;font:12px var(--mono);color:var(--faint)}
+.task{display:grid;grid-template-columns:minmax(0,1fr) 235px;column-gap:22px;row-gap:7px;
+  padding:15px 3px;border-bottom:1px solid rgba(32,51,67,.55)}
+.task:hover{background:linear-gradient(90deg,rgba(15,30,42,.55),transparent)}
+.task-main{min-width:0}.task-title-line{display:flex;gap:10px;align-items:center;min-width:0}
+.task-id{font:12px var(--mono);color:var(--dim);flex:none}.task-title{font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pill{font:10px var(--mono);text-transform:uppercase;letter-spacing:.09em;border:1px solid;border-radius:3px;padding:2px 7px;flex:none}
+.pill.running{color:var(--run)}.pill.done{color:var(--done)}.pill.failed{color:var(--fail)}.pill.stale{color:var(--stale)}
+.pill.blocked{color:var(--blocked)}.pill.pending{color:var(--pending)}.pill.cancelled{color:var(--faint)}
+.rail{height:7px;margin-top:8px;background:#07131d;border:1px solid var(--edge);border-radius:3px;overflow:hidden;position:relative}
+.fill{height:100%;transition:width .55s ease}.fill.running{background:linear-gradient(90deg,#a7621d,var(--run))}.fill.done{background:var(--done)}
+.fill.failed{background:var(--fail)}.fill.stale{background:var(--stale)}.fill.blocked{background:var(--blocked)}.fill.pending{background:var(--pending)}
+.rail.live::after{content:"";position:absolute;top:0;bottom:0;width:48px;background:linear-gradient(90deg,transparent,rgba(255,200,112,.52),transparent);
+  animation:scan 2s linear infinite}@keyframes scan{from{left:-50px}to{left:100%}}
+.task-meta{font:11px var(--mono);color:var(--dim);text-align:right;display:flex;flex-direction:column;gap:4px;align-items:flex-end}
+.task-meta .big{font-size:16px;color:var(--ink)}.eta.measured{color:var(--done)}.eta.rough{color:var(--stale)}
+.details{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:7px}.metric,.dep,.ready{font:10.5px var(--mono);padding:2px 7px;border:1px solid var(--edge);border-radius:3px;color:var(--dim)}
+.metric b{color:var(--done);font-weight:500}.ready{color:var(--done);border-color:#285144}.dep{color:var(--faint)}
+.note{grid-column:1/-1;font-size:12px;color:var(--faint);font-style:italic;overflow-wrap:anywhere}.artifacts{grid-column:1/-1;display:flex;gap:12px;flex-wrap:wrap}
+.artifacts a{font:11px var(--mono)}.empty{padding:55px 3px;color:var(--faint);font-style:italic}
+@media(max-width:760px){.top{grid-template-columns:1fr}.overall,.connection{justify-self:start;text-align:left}.task{grid-template-columns:1fr}.task-meta{align-items:flex-start;text-align:left}.task-title{white-space:normal}}
+@media(prefers-reduced-motion:reduce){.rail.live::after{display:none}.fill{transition:none}}
+</style>
+</head>
+<body>
+<header>
+  <div class="top">
+    <div><div class="eyebrow">BBN research telemetry</div><div class="project" id="project">connecting…</div><div class="sub" id="revision"></div></div>
+    <div class="overall"><div class="num" id="overall">—</div><div class="label">effort-weighted execution progress; not scientific confidence</div></div>
+    <div class="connection" id="connection"><b></b><span>initializing</span><div id="clock"></div></div>
+  </div>
+  <div class="toolbar" id="toolbar"></div>
+</header>
+<main><div class="error" id="error"></div><div id="board"></div></main>
+<script>
+const STATUS_ORDER=["running","stale","blocked","failed","pending","done","cancelled"];
+const PHASE_ORDER=Array.from({length:10},(_,i)=>`P${i}`);
+let activeFilter="all";
+let lastSnapshot=null;
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const pct=v=>`${Math.round(100*(Number(v)||0))}%`;
+const num=v=>v==null?"?":String(Math.round(Number(v)*100)/100);
+function safeHref(value){try{const u=new URL(value,location.href);return ["http:","https:"].includes(u.protocol)?u.href:"#"}catch{return "#"}}
+function relSeconds(seconds){if(seconds==null)return "—";if(seconds<60)return `${Math.round(seconds)}s`;if(seconds<3600)return `${Math.round(seconds/60)}m`;return `${(seconds/3600).toFixed(1)}h`}
+function relEta(value){if(!value)return "—";const ms=new Date(value)-new Date();if(!Number.isFinite(ms))return "—";if(ms<0)return "overdue";const min=Math.floor(ms/60000);if(min<60)return `${min}m`;const h=Math.floor(min/60);if(h<48)return `${h}h ${min%60}m`;return `${Math.floor(h/24)}d ${h%24}h`}
+async function fetchState(){try{const r=await fetch("/api/state",{cache:"no-store"});if(r.ok)return {data:await r.json(),mode:"live"}}catch{}const r=await fetch("./tasks.json",{cache:"no-store"});if(!r.ok)throw new Error(`HTTP ${r.status}`);return {data:await r.json(),mode:"static"}}
+function toolbar(snapshot){const counts=snapshot.status_counts||{};const buttons=[`<button class="chip ${activeFilter==='all'?'active':''}" data-filter="all">all <b>${(snapshot.tasks||[]).length}</b></button>`];for(const status of STATUS_ORDER){if(!counts[status])continue;buttons.push(`<button class="chip ${activeFilter===status?'active':''}" data-filter="${esc(status)}"><span class="dot ${esc(status)}"></span>${esc(status)} <b>${counts[status]}</b></button>`)}document.getElementById("toolbar").innerHTML=buttons.join("");document.querySelectorAll("[data-filter]").forEach(button=>button.onclick=()=>{activeFilter=button.dataset.filter;render(lastSnapshot)})}
+function row(t){const status=t.status||"pending";const links=(t.artifact_links||[]).map(a=>`<a target="_blank" rel="noopener" href="${esc(safeHref(a.url))}">${esc(a.label)}</a>`).join("");const metrics=Object.entries(t.metrics||{}).map(([k,v])=>`<span class="metric">${esc(k)} <b>${esc(num(v))}</b></span>`).join("");const blocked=(t.blocked_by||[]).length?`<span class="dep">blocked by ${esc(t.blocked_by.join(", "))}</span>`:(t.depends_on||[]).length?`<span class="dep">⇠ ${esc(t.depends_on.join(", "))}</span>`:"";const ready=t.ready?`<span class="ready">ready</span>`:"";const total=t.total!=null?`${num(t.current)}/${num(t.total)} ${esc(t.unit||"")}`:(status==="done"?"done":"—");const eta=t.eta?`<div class="eta ${t.eta_kind==='measured'?'measured':'rough'}">eta ${t.eta_kind==='measured'?'measured':'rough'} · ${relEta(t.eta)}</div>`:"";return `<article class="task" data-status="${esc(status)}"><div class="task-main"><div class="task-title-line"><span class="task-id">${esc(t.id)}</span><span class="task-title">${esc(t.title||"")}</span><span class="pill ${esc(status)}">${esc(status)}</span></div><div class="rail ${status==='running'?'live':''}"><div class="fill ${esc(status)}" style="width:${Math.max(0,Math.min(100,100*(t.progress||0)))}%"></div></div><div class="details">${metrics}${blocked}${ready}</div></div><div class="task-meta"><div class="big">${pct(t.progress)}</div><div>${total}</div>${eta}${t.owner?`<div>@ ${esc(t.owner)} · attempt ${esc(t.attempt||0)}</div>`:""}${["running","stale"].includes(status)?`<div>heartbeat ${relSeconds(t.heartbeat_age_s)}</div>`:""}</div>${t.message?`<div class="note">${esc(t.message)}</div>`:""}${links?`<div class="artifacts">${links}</div>`:""}</article>`}
+function render(snapshot){if(!snapshot)return;lastSnapshot=snapshot;document.getElementById("project").textContent=snapshot.project||"project";document.title=`${snapshot.project||'project'} · research ops`;document.getElementById("overall").textContent=pct(snapshot.overall_progress);document.getElementById("revision").textContent=`revision ${snapshot.revision??0} · code ${snapshot.code_branch||'main'} · status ${snapshot.status_branch||'local'}`;document.getElementById("clock").textContent=`snapshot ${new Date(snapshot.generated_at).toLocaleString()}`;toolbar(snapshot);const phases={};for(const task of snapshot.tasks||[]){if(activeFilter!=="all"&&task.status!==activeFilter)continue;(phases[task.phase||"misc"]??=[]).push(task)}const order=Object.keys(phases).sort((a,b)=>{const ia=PHASE_ORDER.indexOf(a),ib=PHASE_ORDER.indexOf(b);return (ia<0?99:ia)-(ib<0?99:ib)||a.localeCompare(b)});document.getElementById("board").innerHTML=order.length?order.map(phase=>`<section class="phase"><div class="phase-head"><span class="phase-id">${esc(phase)}</span><span class="phase-pct">${pct(snapshot.phases?.[phase]?.progress||0)}</span></div>${phases[phase].map(row).join("")}</section>`).join(""):`<div class="empty">No tasks match this filter. Run <code>taskctl reconcile</code> after editing the plan.</div>`}
+async function tick(){const conn=document.getElementById("connection"),err=document.getElementById("error");try{const result=await fetchState();render(result.data);conn.classList.remove("off");conn.querySelector("span").textContent=result.mode==="live"?"live control plane":"Git snapshot";err.style.display="none"}catch(error){conn.classList.add("off");conn.querySelector("span").textContent="telemetry unavailable";err.textContent=`cannot load task state: ${error.message}`;err.style.display="block"}}
+tick();setInterval(tick,4000);
+</script>
+</body>
+</html>
