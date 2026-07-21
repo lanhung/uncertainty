@@ -1,0 +1,88 @@
+name: one-time-agents-topology
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/one-time-agents-topology.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Correct canonical shared-control topology
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('AGENTS.md')
+          text = path.read_text(encoding='utf-8')
+          text = text.replace('> 版本：**0.2.1**', '> 版本：**0.2.2**', 1)
+          text = text.replace('> 本版替代：v0.2.0', '> 本版替代：v0.2.1', 1)
+          text = text.replace('## v0.2.1 变更摘要', '## v0.2.2 变更摘要', 1)
+          text = text.replace(
+              'v0.2.1 完整保留 v0.2.0 的科学战略，并将其接入可长期运行的集群控制面；v0.2.x 系列完成以下修订：',
+              'v0.2.2 完整保留 v0.2.1 的科学战略与任务 ledger，并澄清物理部署为“共享轻量 Vultr 控制宿主机 + 两台跨项目弹性 AutoDL worker”；v0.2.x 系列完成以下修订：',
+              1,
+          )
+          text = text.replace(
+              '11. 新增外部任务 ledger、三节点控制面、长任务 heartbeat/checkpoint、独立 `ops-status` 快照分支和 dashboard；任何长任务不得只存在于 Codex/SSH 会话中。',
+              '11. 新增外部任务 ledger、项目隔离控制实例、长任务 heartbeat/checkpoint、独立 `ops-status` 快照分支和 dashboard；任何长任务不得只存在于 Codex/SSH 会话中。\n12. 明确一台 Vultr 可同时承载多个项目的 Codex/control instance；两台 AutoDL 是按量、跨项目共享的弹性物理 worker，`solver/train/verify` 仅是任务时逻辑角色，并由 host-level resource lease 防止冲突。',
+              1,
+          )
+          old = '''### 6.1 状态源与服务器角色
+
+- `plan/plan.yaml` 是 desired state；status server 的 SQLite ledger 是 observed state。
+- `uq-control-01` 是唯一 ledger writer；worker、Codex 和人类只能经 `taskctl`/heartbeat API 更新状态。
+- 推荐三节点为 `uq-control-01`、`uq-sim-01`、`uq-train-01`/`uq-verify-01`；三节点不等于三张高端 GPU。
+- 自动状态快照只进入独立 `ops-status` 分支，禁止高频状态提交污染 `main`。'''
+          new = '''### 6.1 状态源、共享控制宿主机与弹性 worker
+
+- `plan/plan.yaml` 是 desired state；本项目 status server 的 SQLite ledger 是 observed state。
+- 共享 Vultr 上的 `research-ops-uncertainty.service` 是本项目唯一 ledger writer；其他项目必须使用各自独立的 service、port、token、state directory 和 status clone。
+- Vultr 是轻量、常开、多项目共享控制宿主机，可运行多个隔离的 Codex 进程；不承担本项目 production solver、训练、SBC 或大型 MCMC。
+- 两台 AutoDL 是按量计费、可关机、可被其他项目复用的弹性物理 worker；`solver`、`train`、`verify` 是 task-attempt 逻辑角色，不永久绑定机器。
+- 任一 AutoDL 任务除进入本项目 ledger 外，还必须获得 host-level `gpu0`、`cpu-heavy` 或 `io-heavy` resource lease，并显式加载 uncertainty 项目环境。
+- worker、Codex 和人类只能经 `taskctl`/heartbeat API 更新本项目状态；自动快照只进入独立 `ops-status` 分支，禁止高频污染 `main`。'''
+          if old not in text:
+              raise SystemExit('expected AGENTS section 6.1 block not found')
+          text = text.replace(old, new, 1)
+          text = text.replace(
+              '4. [`AGENTS-ops.md`](AGENTS-ops.md)：Vultr/AutoDL/HPC 控制面、任务 ledger、heartbeat、checkpoint、detached 运行、状态快照与密钥安全。',
+              '4. [`AGENTS-ops.md`](AGENTS-ops.md)：共享 Vultr、多项目隔离 control instance、跨项目弹性 AutoDL/HPC worker、resource lease、任务 ledger、heartbeat、checkpoint、detached 运行、状态快照与密钥安全。',
+              1,
+          )
+          text = text.replace(
+              '- 架构决策：[`docs/decisions/ADR-0003-research-ops-control-plane.md`](docs/decisions/ADR-0003-research-ops-control-plane.md)。',
+              '- ledger/heartbeat 决策：[`docs/decisions/ADR-0003-research-ops-control-plane.md`](docs/decisions/ADR-0003-research-ops-control-plane.md)；\n- 共享 Vultr 与弹性 AutoDL 决策：[`docs/decisions/ADR-0004-shared-control-elastic-autodl.md`](docs/decisions/ADR-0004-shared-control-elastic-autodl.md)。',
+              1,
+          )
+          path.write_text(text, encoding='utf-8')
+
+          docmap = Path('docs/agents/README.md')
+          value = docmap.read_text(encoding='utf-8').replace(
+              '# AGENTS v0.2.1 文档地图与维护规则',
+              '# AGENTS v0.2.2 文档地图与维护规则',
+              1,
+          )
+          docmap.write_text(value, encoding='utf-8')
+          PY
+      - name: Validate and remove one-time workflow
+        run: |
+          python orchestrator/reconcile.py plan/plan.yaml
+          git rm .github/workflows/one-time-agents-topology.yml
+      - name: Commit correction
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add AGENTS.md docs/agents/README.md
+          git commit -m 'docs: align root AGENTS with shared elastic topology'
+          git push origin HEAD:main
