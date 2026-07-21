@@ -16,6 +16,9 @@ logs/
 *.pid
 .research-ops.env
 
+# Generated local delivery artifacts
+dist/
+
 # Secrets and local overrides
 .env
 .env.*
