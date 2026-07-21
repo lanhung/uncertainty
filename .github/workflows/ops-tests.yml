@@ -1,0 +1,55 @@
+name: ops-tests
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'orchestrator/**'
+      - 'taskctl/**'
+      - 'worker/**'
+      - 'scripts/bootstrap_*.sh'
+      - 'scripts/ops_demo_job.py'
+      - 'tests/ops/**'
+      - 'plan/plan.yaml'
+      - 'project.config.yaml'
+      - 'requirements-ops.txt'
+      - 'Makefile'
+      - '.github/workflows/ops-tests.yml'
+  pull_request:
+    paths:
+      - 'orchestrator/**'
+      - 'taskctl/**'
+      - 'worker/**'
+      - 'scripts/bootstrap_*.sh'
+      - 'scripts/ops_demo_job.py'
+      - 'tests/ops/**'
+      - 'plan/plan.yaml'
+      - 'project.config.yaml'
+      - 'requirements-ops.txt'
+      - 'Makefile'
+      - '.github/workflows/ops-tests.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+          cache-dependency-path: requirements-ops.txt
+      - name: Install operations dependencies
+        run: python -m pip install --upgrade pip && python -m pip install -r requirements-ops.txt
+      - name: Validate Python and shell entry points
+        run: |
+          python -m py_compile orchestrator/*.py taskctl/*.py worker/*.py scripts/ops_demo_job.py
+          bash -n scripts/bootstrap_vultr.sh scripts/bootstrap_worker.sh scripts/bootstrap_autodl.sh
+      - name: Validate task DAG
+        run: python orchestrator/reconcile.py plan/plan.yaml
+      - name: Run operations tests
+        run: PYTHONPATH=. python -W error::ResourceWarning -m unittest discover -s tests/ops -v
