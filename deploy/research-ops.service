@@ -1,0 +1,23 @@
+[Unit]
+Description=Uncertainty research operations control plane
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/uncertainty
+EnvironmentFile=/etc/research-ops.env
+Environment=PYTHONUNBUFFERED=1
+ExecStartPre=/root/uncertainty/.ops-venv/bin/python /root/uncertainty/orchestrator/reconcile.py /root/uncertainty/plan/plan.yaml
+ExecStart=/root/uncertainty/.ops-venv/bin/python /root/uncertainty/orchestrator/status_server.py
+Restart=always
+RestartSec=5
+TimeoutStopSec=35
+KillSignal=SIGTERM
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+
+[Install]
+WantedBy=multi-user.target

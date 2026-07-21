@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+.ops-venv/
+
+# Research operations runtime state
+state/state.db*
+state/outbox/
+state/checkpoints/
+state/runs/
+logs/
+*.pid
+.research-ops.env
+
+# Secrets and local overrides
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store

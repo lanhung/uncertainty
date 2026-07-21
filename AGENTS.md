@@ -1,13 +1,13 @@
 # AGENTS.md — `lanhung/uncertainty` 科研执行总章程
 
-> 版本：**0.2.0**  
+> 版本：**0.2.1**  
 > 状态：**Track A = ACTIVE；Track B = NOT FROZEN；Nature-tier Gate = CLOSED**  
 > 基准日期：2026-07-21  
 > 文献事实冻结日期：2026-07-21；冻结后出现的新工作必须进入月度竞争审计  
 > 项目代号：**BBNet-UQ / Uncertainty-aware Big-Bang Nucleosynthesis Inference**  
 > 主仓库：`https://github.com/lanhung/uncertainty`  
 > 默认分支：`main`  
-> 本版替代：v0.1.0
+> 本版替代：v0.2.0
 
 本文件是项目的人类成员、科研代理、代码代理、统计代理、计算代理和论文代理必须共同遵守的最高级执行规范。任何实现、实验、图表、结论、新闻式表述和投稿决策，都必须能够追溯到任务编号、预注册文件、数据版本、配置哈希、代码提交、solver 版本和验证签字。
 
@@ -15,9 +15,9 @@
 
 ---
 
-## v0.2.0 变更摘要
+## v0.2.1 变更摘要
 
-相对于 v0.1.0，本版完成以下战略修订：
+v0.2.1 完整保留 v0.2.0 的科学战略，并将其接入可长期运行的集群控制面；v0.2.x 系列完成以下修订：
 
 1. 将 PRyMordial、PRIMAT、LINX、ABCMB+LINX、2026 BBN sensitivity atlas 和函数型核反应率工作提升为强制竞争基线，而不是参考文献中的附带提及。
 2. 在任何 Pilot-10k 或大规模模型训练之前增加 **Fisher/线性传播预筛选关卡**。
@@ -29,6 +29,7 @@
 8. 将 Nature Astronomy、Nature Machine Intelligence、Nature Computational Science、Nature Communications 分成四种不同的论文路线与验收门槛。
 9. 将 AutoDL 计划改为“CPU 数据工厂 + 单卡训练 + 按需验证/A100”，区分科学所需 GPU 与平台附带 GPU。
 10. 新增外部复现、月度竞争审计、claim-evidence matrix、编辑预询问材料和独立红队签字。
+11. 新增外部任务 ledger、三节点控制面、长任务 heartbeat/checkpoint、独立 `ops-status` 快照分支和 dashboard；任何长任务不得只存在于 Codex/SSH 会话中。
 
 ---
 
@@ -925,19 +926,55 @@ docs/literature/NOVELTY_CLEARANCE_v1.md
 
 ## 5. 规范性分卷与读取顺序
 
-为避免根级 `AGENTS.md` 超长导致代码代理遗漏关键条款，v0.2.0 将执行细节拆成三个**同等强制、不可选择性忽略**的规范性分卷：
+为避免根级 `AGENTS.md` 超长导致代码代理遗漏关键条款，项目将执行细节拆成三个科研分卷和一个**同等强制、不可选择性忽略**的运行规范：
 
 1. [`docs/agents/EXECUTION.md`](docs/agents/EXECUTION.md)：角色、科研治理、Phase 0–9、Gate、任务与交付物；
 2. [`docs/agents/COMPUTE_VALIDATION.md`](docs/agents/COMPUTE_VALIDATION.md)：AutoDL/CPU/GPU、存储、成本、统计与物理验收阈值；
 3. [`docs/agents/PUBLICATION.md`](docs/agents/PUBLICATION.md)：论文路线、Milestone、首个 14 天、年度节奏、禁令、发布检查和文献清单。
+4. [`AGENTS-ops.md`](AGENTS-ops.md)：Vultr/AutoDL/HPC 控制面、任务 ledger、heartbeat、checkpoint、detached 运行、状态快照与密钥安全。
 
 执行规则：
 
-- 根级 `AGENTS.md` 与上述三个分卷共同构成项目 v0.2.0 的完整执行章程；
+- 根级 `AGENTS.md` 与上述四份规范共同构成项目 v0.2.1 的完整执行章程；
 - 修改 solver、数据、训练、推断或论文主张前，必须读取与任务相关的分卷；跨范围任务必须读取全部分卷；
 - 根文件定义科学使命、创新边界、预注册和模型合同；分卷定义实现、验证、资源和投稿合同；
 - 若条款冲突，以根级 `AGENTS.md` 为最高优先级，并立即提交 ADR 修复冲突；
 - 任何代理不得以“未读取分卷”为理由绕过 Gate、预注册、独立验证或算力上限；
 - monolithic 冻结副本仅用于审阅和归档，不替代仓库中的根文件与分卷。
+
+---
+
+## 6. 运行控制面与长任务强制规则
+
+### 6.1 状态源与服务器角色
+
+- `plan/plan.yaml` 是 desired state；status server 的 SQLite ledger 是 observed state。
+- `uq-control-01` 是唯一 ledger writer；worker、Codex 和人类只能经 `taskctl`/heartbeat API 更新状态。
+- 推荐三节点为 `uq-control-01`、`uq-sim-01`、`uq-train-01`/`uq-verify-01`；三节点不等于三张高端 GPU。
+- 自动状态快照只进入独立 `ops-status` 分支，禁止高频状态提交污染 `main`。
+
+### 6.2 长任务合同
+
+预计超过 60 秒的任务必须 detached、checkpointed 且由 `worker/run_with_heartbeat.py` 包装；子程序必须输出绝对进度 `PROGRESS i/N`，关键科学诊断使用 `METRIC key=value`。不得以 Codex session、SSH 前台进程或未登记 tmux 窗口作为唯一状态来源。
+
+每个长任务必须满足：
+
+- task ID 已存在于 plan；
+- 默认依赖全部完成；
+- 输出目录、checkpoint、manifest 和日志位置已确定；
+- worker 断网时 heartbeat 可缓存，恢复后补发；
+- 新 attempt 的 `run_id` 可以拒绝旧 worker 的迟到事件；
+- 失败、block、stale 和 done 必须在 dashboard 上诚实区分；
+- dashboard 百分比只代表执行进度，不代表科学置信度或 Nature 投稿概率。
+
+### 6.3 启动与运维入口
+
+- 控制面：`scripts/bootstrap_vultr.sh`；
+- 通用 worker：`scripts/bootstrap_worker.sh`；
+- AutoDL worker：`scripts/bootstrap_autodl.sh`；
+- 集群 runbook：[`docs/ops/CLUSTER_RUNBOOK.md`](docs/ops/CLUSTER_RUNBOOK.md)；
+- 架构决策：[`docs/decisions/ADR-0003-research-ops-control-plane.md`](docs/decisions/ADR-0003-research-ops-control-plane.md)。
+
+任何代理在启动生产任务前必须读取 `AGENTS-ops.md`，运行 `taskctl health`、`taskctl show` 和 plan validation，并确认没有越过 Fisher Gate、数据冻结或资源上限。
 
 ---
