@@ -57,6 +57,10 @@ SSH_DIR="${HOME}/.ssh"
 SSH_CONFIG="${SSH_DIR}/config"
 WORKER_CONFIG="${SSH_DIR}/research-workers.conf"
 INCLUDE_LINE="Include ${WORKER_CONFIG}"
+WORKER_PREFIXES=(AUTODL1 AUTODL2)
+if [ -n "${AUTODL3_ALIAS:-}${AUTODL3_HOST:-}${AUTODL3_PORT:-}${AUTODL3_USER:-}" ]; then
+  WORKER_PREFIXES+=(AUTODL3)
+fi
 
 for command_name in ssh ssh-keygen ssh-copy-id awk grep install; do
   command -v "$command_name" >/dev/null 2>&1 || {
@@ -114,7 +118,7 @@ create_key_for() {
 write_worker_config() {
   : > "$WORKER_CONFIG"
   local prefix
-  for prefix in AUTODL1 AUTODL2; do
+  for prefix in "${WORKER_PREFIXES[@]}"; do
     local alias_var="${prefix}_ALIAS"
     local host_var="${prefix}_HOST"
     local port_var="${prefix}_PORT"
@@ -218,34 +222,38 @@ PY
   fi
 }
 
-for prefix in AUTODL1 AUTODL2; do
+for prefix in "${WORKER_PREFIXES[@]}"; do
   required_for_node "$prefix"
   create_key_for "$prefix"
 done
 write_worker_config
 
 if [ "$INSTALL_KEYS" = "1" ]; then
-  install_key_for AUTODL1
-  install_key_for AUTODL2
+  for prefix in "${WORKER_PREFIXES[@]}"; do
+    install_key_for "$prefix"
+  done
 else
+  echo "SSH aliases and node-specific key pairs are ready."
+  echo
+  echo "Review public keys:"
+  for prefix in "${WORKER_PREFIXES[@]}"; do
+    alias_var="${prefix}_ALIAS"
+    echo "  cat $(key_path_for "${!alias_var}").pub"
+  done
   cat <<EOF
-SSH aliases and node-specific key pairs are ready.
-
-Review public keys:
-  cat $(key_path_for "$AUTODL1_ALIAS").pub
-  cat $(key_path_for "$AUTODL2_ALIAS").pub
-
 Install them interactively after checking host fingerprints:
   bash scripts/setup_control_autodl_ssh.sh --inventory ${INVENTORY} --install
 EOF
 fi
 
-cat <<EOF
-
-SSH configuration: ${WORKER_CONFIG}
-Test commands:
-  ssh ${AUTODL1_ALIAS} hostname
-  ssh ${AUTODL2_ALIAS} hostname
+echo
+echo "SSH configuration: ${WORKER_CONFIG}"
+echo "Test commands:"
+for prefix in "${WORKER_PREFIXES[@]}"; do
+  alias_var="${prefix}_ALIAS"
+  echo "  ssh ${!alias_var} hostname"
+done
+cat <<'EOF'
 
 No worker-to-worker key is created. AutoDL nodes should not gain lateral SSH
 access to each other or a private key that can log back into the Vultr host.

@@ -7,10 +7,10 @@ updated_at: 2026-07-21
 
 tasks:
   # ----------------------------------------------------------------------
-  # P0 — control plane, three-host cluster, repository and preregistration
+  # P0 — shared control host, elastic worker pool, repository and preregistration
   # ----------------------------------------------------------------------
   - id: P0-control-plane
-    title: "Deploy authenticated research-ops service on uq-control-01"
+    title: "Deploy project-isolated research-ops service on the shared Vultr host"
     phase: P0
     weight: 1
     unit: checks
@@ -24,7 +24,7 @@ tasks:
     total: 3
 
   - id: P0-worker-bootstrap
-    title: "Bootstrap uq-sim-01 and uq-train-01/uq-verify-01"
+    title: "Bootstrap two shared AutoDL nodes as elastic workers"
     phase: P0
     weight: 1
     unit: workers

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import os
 import platform
 import shutil
@@ -13,6 +14,64 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
+
+
+def read_text(path: str) -> str | None:
+    try:
+        return Path(path).read_text(encoding="utf-8").strip()
+    except (OSError, UnicodeError):
+        return None
+
+
+def cpu_limits() -> dict[str, Any]:
+    host_count = os.cpu_count()
+    try:
+        affinity_count = len(os.sched_getaffinity(0))
+    except (AttributeError, OSError):
+        affinity_count = host_count
+
+    quota_cpus: float | None = None
+    cpu_max = read_text("/sys/fs/cgroup/cpu.max")
+    if cpu_max:
+        quota, _, period = cpu_max.partition(" ")
+        if quota != "max" and period:
+            try:
+                quota_cpus = int(quota) / int(period)
+            except (ValueError, ZeroDivisionError):
+                pass
+    else:
+        quota = read_text("/sys/fs/cgroup/cpu/cpu.cfs_quota_us")
+        period = read_text("/sys/fs/cgroup/cpu/cpu.cfs_period_us")
+        try:
+            if quota is not None and period is not None and int(quota) > 0:
+                quota_cpus = int(quota) / int(period)
+        except (ValueError, ZeroDivisionError):
+            pass
+
+    candidates = [count for count in (host_count, affinity_count) if count]
+    if quota_cpus is not None:
+        candidates.append(max(1, math.ceil(quota_cpus)))
+    effective_count = min(candidates) if candidates else None
+    return {
+        "host_logical_cpu_count": host_count,
+        "affinity_cpu_count": affinity_count,
+        "quota_cpu_count": quota_cpus,
+        "effective_logical_cpu_count": effective_count,
+    }
+
+
+def memory_limit_bytes() -> int | None:
+    value = read_text("/sys/fs/cgroup/memory.max")
+    if value is None:
+        value = read_text("/sys/fs/cgroup/memory/memory.limit_in_bytes")
+    if value in (None, "max"):
+        return None
+    try:
+        parsed = int(value)
+    except ValueError:
+        return None
+    # cgroup v1 uses a value close to 2**63 when no limit is configured.
+    return None if parsed >= 2**60 else parsed
 
 
 def run(command: list[str]) -> dict[str, Any]:
@@ -82,6 +141,7 @@ def main() -> int:
     parser.add_argument("--region", default=os.environ.get("AUTODL_REGION"))
     args = parser.parse_args()
 
+    limits = cpu_limits()
     payload: dict[str, Any] = {
         "captured_at": datetime.now(timezone.utc).isoformat(),
         "node_name": args.node_name or socket.gethostname(),
@@ -94,7 +154,10 @@ def main() -> int:
             "version": sys.version,
             "executable": sys.executable,
         },
-        "logical_cpu_count": os.cpu_count(),
+        # Keep this scheduling-facing field constrained to the container quota.
+        "logical_cpu_count": limits["effective_logical_cpu_count"],
+        "cpu_limits": limits,
+        "memory_limit_bytes": memory_limit_bytes(),
         "lscpu": run(["lscpu"]),
         "memory": run(["free", "-b"]),
         "nvidia_smi": run(

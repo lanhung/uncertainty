@@ -16,7 +16,7 @@ import sys
 import threading
 from contextlib import asynccontextmanager
 from pathlib import Path, PurePosixPath
-from typing import Any, Literal
+from typing import Any, Literal, Optional, Union
 from urllib.parse import quote, urlparse
 
 import yaml
@@ -82,7 +82,7 @@ store = Store(DB_PATH)
 store.set_meta("project", PROJECT)
 
 
-def check_auth(authorization: str | None) -> None:
+def check_auth(authorization: Optional[str]) -> None:
     if not TOKEN:
         if ALLOW_UNAUTH_WRITES:
             return
@@ -99,7 +99,7 @@ def check_auth(authorization: str | None) -> None:
         raise HTTPException(status_code=401, detail="bad or missing bearer token")
 
 
-MetricValue = float | int | str | bool | None
+MetricValue = Union[float, int, str, bool, None]
 
 
 class Report(BaseModel):
@@ -116,16 +116,16 @@ class Report(BaseModel):
         "note",
         "artifact",
     ]
-    event_id: str | None = Field(default=None, max_length=128)
-    run_id: str | None = Field(default=None, max_length=128)
-    owner: str | None = Field(default=None, max_length=128)
-    current: float | None = None
-    total: float | None = None
-    unit: str | None = Field(default=None, max_length=64)
-    message: str | None = Field(default=None, max_length=2000)
-    reason: str | None = Field(default=None, max_length=2000)
-    metrics: dict[str, MetricValue] | None = None
-    artifact: str | None = Field(default=None, max_length=1000)
+    event_id: Optional[str] = Field(default=None, max_length=128)
+    run_id: Optional[str] = Field(default=None, max_length=128)
+    owner: Optional[str] = Field(default=None, max_length=128)
+    current: Optional[float] = None
+    total: Optional[float] = None
+    unit: Optional[str] = Field(default=None, max_length=64)
+    message: Optional[str] = Field(default=None, max_length=2000)
+    reason: Optional[str] = Field(default=None, max_length=2000)
+    metrics: Optional[dict[str, MetricValue]] = None
+    artifact: Optional[str] = Field(default=None, max_length=1000)
     force: bool = False
 
 
@@ -204,7 +204,7 @@ async def lifespan(_: FastAPI):
             run_reconcile(store, PLAN_PATH)
         except Exception as exc:  # noqa: BLE001
             print(f"[startup] reconcile failed: {exc}", file=sys.stderr)
-    task: asyncio.Task | None = None
+    task: Optional[asyncio.Task] = None
     if SNAPSHOT_EVERY > 0:
         task = asyncio.create_task(_snapshot_loop())
     yield
@@ -251,7 +251,7 @@ def api_summary() -> str:
 
 
 @app.post("/report")
-def report(payload: Report, authorization: str | None = Header(default=None)) -> dict[str, Any]:
+def report(payload: Report, authorization: Optional[str] = Header(default=None)) -> dict[str, Any]:
     check_auth(authorization)
     task = _task_or_404(payload.task_id)
     if not store.claim_event(payload.event_id):
@@ -343,7 +343,7 @@ def report(payload: Report, authorization: str | None = Header(default=None)) ->
 
 @app.post("/reconcile")
 def reconcile_endpoint(
-    authorization: str | None = Header(default=None),
+    authorization: Optional[str] = Header(default=None),
 ) -> dict[str, Any]:
     check_auth(authorization)
     if not PLAN_PATH.exists():
@@ -356,7 +356,7 @@ def reconcile_endpoint(
 
 @app.post("/snapshot")
 def snapshot_endpoint(
-    authorization: str | None = Header(default=None),
+    authorization: Optional[str] = Header(default=None),
 ) -> dict[str, Any]:
     check_auth(authorization)
     return do_snapshot(force=True)
