@@ -1,12 +1,12 @@
 {
   "project": "uncertainty",
-  "generated_at": "2026-07-21T18:11:55+00:00",
-  "revision": 40,
-  "overall_progress": 0.02927927927927928,
+  "generated_at": "2026-07-21T18:14:12+00:00",
+  "revision": 49,
+  "overall_progress": 0.04279279279279279,
   "overall_kind": "effort-weighted plan completion",
   "phases": {
     "P0": {
-      "progress": 0.09027777777777778
+      "progress": 0.13194444444444445
     },
     "P1": {
       "progress": 0.0
@@ -22,8 +22,8 @@
     }
   },
   "status_counts": {
-    "pending": 30,
-    "done": 1,
+    "pending": 29,
+    "done": 2,
     "running": 2
   },
   "tasks": [
@@ -233,7 +233,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 1425.341368675232,
+      "heartbeat_age_s": 1562.3111131191254,
       "ready": false,
       "blocked_by": [],
       "artifact_links": []
@@ -275,29 +275,31 @@
       "id": "P0-ops-e2e",
       "title": "Validate ledger, heartbeat, stale detection and ops-status snapshots",
       "phase": "P0",
-      "status": "pending",
+      "status": "done",
       "weight": 1.0,
       "unit": "checks",
-      "current": 0.0,
+      "current": 4.0,
       "total": 4.0,
-      "owner": null,
+      "owner": "uncertainty-autodl-westb-01-elastic",
       "depends_on": [
         "P0-worker-bootstrap"
       ],
-      "started_at": null,
-      "updated_at": null,
-      "finished_at": null,
+      "started_at": "2026-07-21T18:12:24+00:00",
+      "updated_at": "2026-07-21T18:13:04+00:00",
+      "finished_at": "2026-07-21T18:13:04+00:00",
       "declared_eta": null,
-      "message": "",
+      "message": "METRIC demo_fraction=1.000000",
       "artifacts": [],
-      "metrics": {},
-      "attempt": 0,
-      "run_id": null,
-      "progress": 0.0,
+      "metrics": {
+        "demo_fraction": 1.0
+      },
+      "attempt": 1,
+      "run_id": "57fa65e3-24ba-4559-884f-a652c6c5df0c",
+      "progress": 1.0,
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": null,
+      "heartbeat_age_s": 68.31117677688599,
       "ready": false,
       "blocked_by": [
         "P0-worker-bootstrap"
@@ -367,8 +369,7 @@
       "heartbeat_age_s": null,
       "ready": false,
       "blocked_by": [
-        "P0-solvers-build",
-        "P0-ops-e2e"
+        "P0-solvers-build"
       ],
       "artifact_links": []
     },
@@ -429,7 +430,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 184.3416531085968,
+      "heartbeat_age_s": 321.3114082813263,
       "ready": false,
       "blocked_by": [],
       "artifact_links": []
@@ -461,7 +462,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 183.34175539016724,
+      "heartbeat_age_s": 320.3115038871765,
       "ready": false,
       "blocked_by": [
         "P0-tailnet"

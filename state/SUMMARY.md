@@ -1,10 +1,10 @@
 # uncertainty — live research status
 
-_Generated: 2026-07-21T18:11:55+00:00; revision: 40_
+_Generated: 2026-07-21T18:14:12+00:00; revision: 49_
 
-**Overall plan completion: 3%.** This is effort-weighted execution progress, not scientific confidence.
+**Overall plan completion: 4%.** This is effort-weighted execution progress, not scientific confidence.
 
-Status counts — running: 2, pending: 30, done: 1
+Status counts — running: 2, pending: 29, done: 2
 
 ## Next runnable
 - **P0-LIT-01** — Competitor matrix: LINX, PRyMordial, PRIMAT, PArthENoPE, AlterBBN, ABCMB+LINX
@@ -16,12 +16,12 @@ Status counts — running: 2, pending: 30, done: 1
 - **P0-tailnet** — Join control + two workers to the private tailnet [running]
   - progress: 67% (2/3 hosts); ETA: —
   - owner: uncertainty-autodl-westb-01-elastic; attempt: 1; run_id: —
-  - heartbeat age: 184 s
+  - heartbeat age: 321 s
   - note: uncertainty-autodl-westb-01-elastic joined as elastic role=elastic
 - **P0-worker-bootstrap** — Bootstrap two shared AutoDL nodes as elastic workers [running]
   - progress: 50% (1/2 workers); ETA: —
   - owner: uncertainty-autodl-westb-01-elastic; attempt: 1; run_id: —
-  - heartbeat age: 183 s
+  - heartbeat age: 320 s
   - blocked by: P0-tailnet
   - note: uncertainty-autodl-westb-01-elastic role=elastic; region=westb;cpu=25;ram_gb=92;gpu=NVIDIA GeForce RTX 4090;gpu_mem_mib=49140
 
@@ -43,14 +43,11 @@ Status counts — running: 2, pending: 30, done: 1
 - **P0-env-lock** — Create environment lock, pyproject, CI, pre-commit and make smoke [pending]
   - progress: 0% (0/5 checks); ETA: —
   - blocked by: P0-repo-migrate
-- **P0-ops-e2e** — Validate ledger, heartbeat, stale detection and ops-status snapshots [pending]
-  - progress: 0% (0/4 checks); ETA: —
-  - blocked by: P0-worker-bootstrap
 - **P0-repo-migrate** — Migrate existing scientific code into lanhung/uncertainty and remove local paths [pending]
   - blocked by: P0-code-inventory
 - **P0-reproduce-bbnet** — Reproduce one known BBNet result end-to-end through the monitored pipeline [pending]
   - progress: 0% (0/3 checks); ETA: —
-  - blocked by: P0-solvers-build, P0-ops-e2e
+  - blocked by: P0-solvers-build
 - **P0-solvers-build** — Build project PArthENoPE/AlterBBN plus LINX and PRyMordial reference paths [pending]
   - progress: 0% (0/4 solvers); ETA: —
   - blocked by: P0-env-lock
@@ -117,3 +114,9 @@ Status counts — running: 2, pending: 30, done: 1
   - progress: 100% (5/5 checks); ETA: —
   - owner: vultr; attempt: 1; run_id: —
   - note: project-isolated control service, auth, ledger, local ops-status branch and health check ready; systemd persistence pending sandbox boundary
+- **P0-ops-e2e** — Validate ledger, heartbeat, stale detection and ops-status snapshots [done]
+  - progress: 100% (4/4 checks); ETA: —
+  - owner: uncertainty-autodl-westb-01-elastic; attempt: 1; run_id: 57fa65e3-24ba-4559-884f-a652c6c5df0c
+  - blocked by: P0-worker-bootstrap
+  - metrics: demo_fraction=1.0
+  - note: METRIC demo_fraction=1.000000
