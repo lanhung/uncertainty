@@ -1,4 +1,4 @@
-# AGENTS v0.2.1 文档地图与维护规则
+# AGENTS v0.2.2 文档地图与维护规则
 
 本目录保存 `lanhung/uncertainty` 的科研治理、执行、计算验证、投稿与集群运行规范。
 
@@ -14,13 +14,17 @@
 
 发生冲突时，以根级 `AGENTS.md` 为准。任何分卷都不得自行降低预注册、校准、独立验证、停止条件或资源 Gate。预计超过 60 秒的任务还必须遵守 `AGENTS-ops.md`；不得以未读取运行规范为理由把进度留在 Codex、SSH 或 tmux 会话中。
 
-## 本次对话生成但不进入普通 Git 历史的文件
+## 对话生成文件与公开仓库边界
 
-- `AGENTS.full.v0.2.0.md`：规范文件的单文件审阅快照，属于可再生成产物，不是独立事实来源；
-- `uncertainty_AGENTS_v0.2.0_bundle.zip`：便于传输的压缩包，属于发布/交付产物，不应作为普通源文件重复提交；
-- 会议逐字稿与原始项目 PDF：包含内部讨论和来源材料。由于本仓库为公开仓库，未经项目负责人明确完成隐私、作者授权和公开许可审查，不得上传。
+完整审计见 [`docs/ops/GENERATED_ARTIFACTS_AUDIT.md`](../ops/GENERATED_ARTIFACTS_AUDIT.md)。原则如下：
 
-如需公开单文件快照或 ZIP，应在正式版本冻结后由脚本生成，并作为 GitHub Release/Zenodo 附件发布；仓库只保留生成脚本、版本号和校验和。
+- `AGENTS.full.v0.2.0.md` 和各类交付 ZIP 是可再生成快照，不作为第二套事实来源提交普通 Git 历史；
+- 真实 `hosts.local.env`、个人 SSH config 片段和机器专用 bootstrap wrapper 含活动基础设施端点，只保存在操作者/Vultr 本地；
+- 使用 [`scripts/render_local_topology_bundle.py`](../../scripts/render_local_topology_bundle.py) 从 gitignored inventory 生成本地文件和校验和；
+- 会议逐字稿与原始项目 PDF 属于内部来源材料，未经隐私、作者与许可审查不得上传公开仓库；
+- bearer token、Tailscale auth key、密码和 SSH 私钥在任何情况下都不得进入 Git、issue、prompt、日志或 bundle。
+
+如需公开单文件快照或 ZIP，应在正式版本冻结后从 tagged revision 生成，并作为 GitHub Release/Zenodo 附件发布；仓库保留源文件、生成脚本、版本号和校验和。
 
 ## 修改流程
 
