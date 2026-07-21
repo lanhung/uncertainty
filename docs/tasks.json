@@ -1,12 +1,12 @@
 {
   "project": "uncertainty",
-  "generated_at": "2026-07-21T18:19:12+00:00",
-  "revision": 51,
-  "overall_progress": 0.04279279279279279,
+  "generated_at": "2026-07-21T23:38:30+00:00",
+  "revision": 55,
+  "overall_progress": 0.0563063063063063,
   "overall_kind": "effort-weighted plan completion",
   "phases": {
     "P0": {
-      "progress": 0.13194444444444445
+      "progress": 0.17361111111111108
     },
     "P1": {
       "progress": 0.0
@@ -22,8 +22,8 @@
     }
   },
   "status_counts": {
-    "pending": 29,
-    "done": 2,
+    "pending": 28,
+    "done": 3,
     "blocked": 2
   },
   "tasks": [
@@ -184,30 +184,42 @@
       "id": "P0-code-inventory",
       "title": "Inventory all existing BBNet, MCMC, solver patches, data and model files",
       "phase": "P0",
-      "status": "pending",
+      "status": "done",
       "weight": 1.0,
       "unit": "inventories",
-      "current": 0.0,
+      "current": 1.0,
       "total": 1.0,
-      "owner": null,
+      "owner": "vultr",
       "depends_on": [],
-      "started_at": null,
-      "updated_at": null,
-      "finished_at": null,
+      "started_at": "2026-07-21T23:38:30+00:00",
+      "updated_at": "2026-07-21T23:38:30+00:00",
+      "finished_at": "2026-07-21T23:38:30+00:00",
       "declared_eta": null,
-      "message": "",
-      "artifacts": [],
+      "message": "inspected Git/GitHub, Vultr and registered workers; no legacy scientific migration input was found",
+      "artifacts": [
+        "docs/inventory/EXISTING_SCIENTIFIC_ASSETS_v1.md",
+        "manifests/inventory/existing_scientific_assets_v1.json"
+      ],
       "metrics": {},
-      "attempt": 0,
+      "attempt": 1,
       "run_id": null,
-      "progress": 0.0,
+      "progress": 1.0,
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": null,
-      "ready": true,
+      "heartbeat_age_s": 0.7107863426208496,
+      "ready": false,
       "blocked_by": [],
-      "artifact_links": []
+      "artifact_links": [
+        {
+          "label": "docs/inventory/EXISTING_SCIENTIFIC_ASSETS_v1.md",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/docs/inventory/EXISTING_SCIENTIFIC_ASSETS_v1.md"
+        },
+        {
+          "label": "manifests/inventory/existing_scientific_assets_v1.json",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/manifests/inventory/existing_scientific_assets_v1.json"
+        }
+      ]
     },
     {
       "id": "P0-control-plane",
@@ -233,7 +245,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 1862.1392858028412,
+      "heartbeat_age_s": 21020.710825443268,
       "ready": false,
       "blocked_by": [],
       "artifact_links": []
@@ -299,7 +311,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 368.13941264152527,
+      "heartbeat_age_s": 19526.710908651352,
       "ready": false,
       "blocked_by": [
         "P0-worker-bootstrap"
@@ -333,10 +345,8 @@
       "eta": null,
       "eta_kind": "none",
       "heartbeat_age_s": null,
-      "ready": false,
-      "blocked_by": [
-        "P0-code-inventory"
-      ],
+      "ready": true,
+      "blocked_by": [],
       "artifact_links": []
     },
     {
@@ -430,7 +440,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 1.139577865600586,
+      "heartbeat_age_s": 19159.711043596268,
       "ready": false,
       "blocked_by": [],
       "artifact_links": []
@@ -462,7 +472,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 1.1396126747131348,
+      "heartbeat_age_s": 19159.711079120636,
       "ready": false,
       "blocked_by": [
         "P0-tailnet"

@@ -1,16 +1,16 @@
 # uncertainty — live research status
 
-_Generated: 2026-07-21T18:19:12+00:00; revision: 51_
+_Generated: 2026-07-21T23:38:30+00:00; revision: 55_
 
-**Overall plan completion: 4%.** This is effort-weighted execution progress, not scientific confidence.
+**Overall plan completion: 6%.** This is effort-weighted execution progress, not scientific confidence.
 
-Status counts — blocked: 2, pending: 29, done: 2
+Status counts — blocked: 2, pending: 28, done: 3
 
 ## Next runnable
 - **P0-LIT-01** — Competitor matrix: LINX, PRyMordial, PRIMAT, PArthENoPE, AlterBBN, ABCMB+LINX
 - **P0-NEUTRON-01** — Preregister neutron-lifetime N0-N3 baseline and robustness models
 - **P0-OBS-01** — Preregister primary and stress-test D/H, Y_p, CMB and GW datasets
-- **P0-code-inventory** — Inventory all existing BBNet, MCMC, solver patches, data and model files
+- **P0-repo-migrate** — Migrate existing scientific code into lanhung/uncertainty and remove local paths
 
 ## Blocked / needs a decision
 - **P0-tailnet** — Join control + two workers to the private tailnet [blocked]
@@ -36,13 +36,11 @@ Status counts — blocked: 2, pending: 29, done: 2
 - **P0-benchmark** — Benchmark cold/warm, FP64, batch, CPU, RAM, I/O and failure rates [pending]
   - progress: 0% (0/6 configurations); ETA: —
   - blocked by: P0-solvers-build
-- **P0-code-inventory** — Inventory all existing BBNet, MCMC, solver patches, data and model files [pending]
-  - progress: 0% (0/1 inventories); ETA: —
 - **P0-env-lock** — Create environment lock, pyproject, CI, pre-commit and make smoke [pending]
   - progress: 0% (0/5 checks); ETA: —
   - blocked by: P0-repo-migrate
 - **P0-repo-migrate** — Migrate existing scientific code into lanhung/uncertainty and remove local paths [pending]
-  - blocked by: P0-code-inventory
+  - depends on: P0-code-inventory
 - **P0-reproduce-bbnet** — Reproduce one known BBNet result end-to-end through the monitored pipeline [pending]
   - progress: 0% (0/3 checks); ETA: —
   - blocked by: P0-solvers-build
@@ -108,6 +106,11 @@ Status counts — blocked: 2, pending: 29, done: 2
   - blocked by: P3-pilot-10k
 
 ## Done
+- **P0-code-inventory** — Inventory all existing BBNet, MCMC, solver patches, data and model files [done]
+  - progress: 100% (1/1 inventories); ETA: —
+  - owner: vultr; attempt: 1; run_id: —
+  - note: inspected Git/GitHub, Vultr and registered workers; no legacy scientific migration input was found
+  - artifacts: [docs/inventory/EXISTING_SCIENTIFIC_ASSETS_v1.md](https://github.com/lanhung/uncertainty/blob/main/docs/inventory/EXISTING_SCIENTIFIC_ASSETS_v1.md), [manifests/inventory/existing_scientific_assets_v1.json](https://github.com/lanhung/uncertainty/blob/main/manifests/inventory/existing_scientific_assets_v1.json)
 - **P0-control-plane** — Deploy project-isolated research-ops service on the shared Vultr host [done]
   - progress: 100% (5/5 checks); ETA: —
   - owner: vultr; attempt: 1; run_id: —
