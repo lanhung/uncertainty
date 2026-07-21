@@ -247,7 +247,12 @@ class Heartbeat:
         body.update(extra)
         return body
 
-    def start_reporting(self, *, allow_offline_start: bool = False) -> None:
+    def start_reporting(
+        self,
+        *,
+        allow_offline_start: bool = False,
+        force_start: bool = False,
+    ) -> None:
         self.send(
             {
                 "task_id": self.task_id,
@@ -256,6 +261,7 @@ class Heartbeat:
                 "owner": OWNER,
                 "total": self.total,
                 "unit": self.unit,
+                "force": force_start,
             },
             strict=not allow_offline_start,
         )
@@ -324,6 +330,11 @@ def main() -> None:
         action="store_true",
         help="start even when the control plane is initially unreachable",
     )
+    parser.add_argument(
+        "--force-start",
+        action="store_true",
+        help="start despite incomplete plan dependencies; reserved for approved diagnostics",
+    )
     parser.add_argument("--cwd")
     parser.add_argument(
         "cmd",
@@ -349,7 +360,10 @@ def main() -> None:
     )
     heartbeat.write_run_metadata(command)
     try:
-        heartbeat.start_reporting(allow_offline_start=args.allow_offline_start)
+        heartbeat.start_reporting(
+            allow_offline_start=args.allow_offline_start,
+            force_start=args.force_start,
+        )
     except (PermanentTransportError, TransientTransportError) as exc:
         sys.stderr.write(f"run_with_heartbeat: refusing to start expensive job: {exc}\n")
         raise SystemExit(78) from exc
