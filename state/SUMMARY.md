@@ -1,15 +1,24 @@
 # uncertainty — live research status
 
-_Generated: 2026-07-21T23:38:39+00:00; revision: 56_
+_Generated: 2026-07-21T23:45:18+00:00; revision: 59_
 
 **Overall plan completion: 6%.** This is effort-weighted execution progress, not scientific confidence.
 
-Status counts — blocked: 3, pending: 27, done: 3
+Status counts — running: 3, blocked: 3, pending: 24, done: 3
 
-## Next runnable
-- **P0-LIT-01** — Competitor matrix: LINX, PRyMordial, PRIMAT, PArthENoPE, AlterBBN, ABCMB+LINX
-- **P0-NEUTRON-01** — Preregister neutron-lifetime N0-N3 baseline and robustness models
-- **P0-OBS-01** — Preregister primary and stress-test D/H, Y_p, CMB and GW datasets
+## Live now
+- **P0-LIT-01** — Competitor matrix: LINX, PRyMordial, PRIMAT, PArthENoPE, AlterBBN, ABCMB+LINX [running]
+  - progress: 0% (0/8 baselines); ETA: —
+  - owner: vultr; attempt: 1; run_id: —
+  - heartbeat age: 92 s
+- **P0-NEUTRON-01** — Preregister neutron-lifetime N0-N3 baseline and robustness models [running]
+  - progress: 0% (0/1 decisions); ETA: —
+  - owner: vultr; attempt: 1; run_id: —
+  - heartbeat age: 92 s
+- **P0-OBS-01** — Preregister primary and stress-test D/H, Y_p, CMB and GW datasets [running]
+  - progress: 0% (0/1 decisions); ETA: —
+  - owner: vultr; attempt: 1; run_id: —
+  - heartbeat age: 92 s
 
 ## Blocked / needs a decision
 - **P0-repo-migrate** — Migrate existing scientific code into lanhung/uncertainty and remove local paths [blocked]
@@ -26,12 +35,6 @@ Status counts — blocked: 3, pending: 27, done: 3
   - note: westb ready (1/2); remaining workers lack /root/autodl-fs and are occupied, so policy forbids bootstrap
 
 ## Pending
-- **P0-LIT-01** — Competitor matrix: LINX, PRyMordial, PRIMAT, PArthENoPE, AlterBBN, ABCMB+LINX [pending]
-  - progress: 0% (0/8 baselines); ETA: —
-- **P0-NEUTRON-01** — Preregister neutron-lifetime N0-N3 baseline and robustness models [pending]
-  - progress: 0% (0/1 decisions); ETA: —
-- **P0-OBS-01** — Preregister primary and stress-test D/H, Y_p, CMB and GW datasets [pending]
-  - progress: 0% (0/1 decisions); ETA: —
 - **P0-WHY-NOT-01** — Write why-not-LINX/PRyMordial/PRIMAT and emulator economics memo [pending]
   - progress: 0% (0/1 memos); ETA: —
   - blocked by: P0-LIT-01
