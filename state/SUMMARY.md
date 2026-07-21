@@ -1,18 +1,20 @@
 # uncertainty — live research status
 
-_Generated: 2026-07-21T23:38:30+00:00; revision: 55_
+_Generated: 2026-07-21T23:38:39+00:00; revision: 56_
 
 **Overall plan completion: 6%.** This is effort-weighted execution progress, not scientific confidence.
 
-Status counts — blocked: 2, pending: 28, done: 3
+Status counts — blocked: 3, pending: 27, done: 3
 
 ## Next runnable
 - **P0-LIT-01** — Competitor matrix: LINX, PRyMordial, PRIMAT, PArthENoPE, AlterBBN, ABCMB+LINX
 - **P0-NEUTRON-01** — Preregister neutron-lifetime N0-N3 baseline and robustness models
 - **P0-OBS-01** — Preregister primary and stress-test D/H, Y_p, CMB and GW datasets
-- **P0-repo-migrate** — Migrate existing scientific code into lanhung/uncertainty and remove local paths
 
 ## Blocked / needs a decision
+- **P0-repo-migrate** — Migrate existing scientific code into lanhung/uncertainty and remove local paths [blocked]
+  - depends on: P0-code-inventory
+  - note: inventory found no legacy BBNet/MCMC/solver source; requires an original source path/archive or a separately registered upstream acquisition decision
 - **P0-tailnet** — Join control + two workers to the private tailnet [blocked]
   - progress: 67% (2/3 hosts); ETA: —
   - owner: uncertainty-autodl-westb-01-elastic; attempt: 1; run_id: —
@@ -39,8 +41,6 @@ Status counts — blocked: 2, pending: 28, done: 3
 - **P0-env-lock** — Create environment lock, pyproject, CI, pre-commit and make smoke [pending]
   - progress: 0% (0/5 checks); ETA: —
   - blocked by: P0-repo-migrate
-- **P0-repo-migrate** — Migrate existing scientific code into lanhung/uncertainty and remove local paths [pending]
-  - depends on: P0-code-inventory
 - **P0-reproduce-bbnet** — Reproduce one known BBNet result end-to-end through the monitored pipeline [pending]
   - progress: 0% (0/3 checks); ETA: —
   - blocked by: P0-solvers-build

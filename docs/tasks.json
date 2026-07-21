@@ -1,7 +1,7 @@
 {
   "project": "uncertainty",
-  "generated_at": "2026-07-21T23:38:30+00:00",
-  "revision": 55,
+  "generated_at": "2026-07-21T23:38:39+00:00",
+  "revision": 56,
   "overall_progress": 0.0563063063063063,
   "overall_kind": "effort-weighted plan completion",
   "phases": {
@@ -22,9 +22,9 @@
     }
   },
   "status_counts": {
-    "pending": 28,
+    "pending": 27,
     "done": 3,
-    "blocked": 2
+    "blocked": 3
   },
   "tasks": [
     {
@@ -207,7 +207,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 0.7107863426208496,
+      "heartbeat_age_s": 9.165719985961914,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -245,7 +245,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 21020.710825443268,
+      "heartbeat_age_s": 21029.165763378143,
       "ready": false,
       "blocked_by": [],
       "artifact_links": []
@@ -311,7 +311,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 19526.710908651352,
+      "heartbeat_age_s": 19535.165867567062,
       "ready": false,
       "blocked_by": [
         "P0-worker-bootstrap"
@@ -322,7 +322,7 @@
       "id": "P0-repo-migrate",
       "title": "Migrate existing scientific code into lanhung/uncertainty and remove local paths",
       "phase": "P0",
-      "status": "pending",
+      "status": "blocked",
       "weight": 3.0,
       "unit": "modules",
       "current": 0.0,
@@ -332,10 +332,10 @@
         "P0-code-inventory"
       ],
       "started_at": null,
-      "updated_at": null,
-      "finished_at": null,
+      "updated_at": "2026-07-21T23:38:38+00:00",
+      "finished_at": "2026-07-21T23:38:38+00:00",
       "declared_eta": null,
-      "message": "",
+      "message": "inventory found no legacy BBNet/MCMC/solver source; requires an original source path/archive or a separately registered upstream acquisition decision",
       "artifacts": [],
       "metrics": {},
       "attempt": 0,
@@ -344,8 +344,8 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": null,
-      "ready": true,
+      "heartbeat_age_s": 1.1659090518951416,
+      "ready": false,
       "blocked_by": [],
       "artifact_links": []
     },
@@ -440,7 +440,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 19159.711043596268,
+      "heartbeat_age_s": 19168.16604089737,
       "ready": false,
       "blocked_by": [],
       "artifact_links": []
@@ -472,7 +472,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 19159.711079120636,
+      "heartbeat_age_s": 19168.16611266136,
       "ready": false,
       "blocked_by": [
         "P0-tailnet"
