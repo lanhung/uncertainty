@@ -7,8 +7,7 @@ on:
       - 'orchestrator/**'
       - 'taskctl/**'
       - 'worker/**'
-      - 'scripts/bootstrap_*.sh'
-      - 'scripts/ops_demo_job.py'
+      - 'scripts/**'
       - 'deploy/**'
       - 'tests/ops/**'
       - 'plan/plan.yaml'
@@ -21,8 +20,7 @@ on:
       - 'orchestrator/**'
       - 'taskctl/**'
       - 'worker/**'
-      - 'scripts/bootstrap_*.sh'
-      - 'scripts/ops_demo_job.py'
+      - 'scripts/**'
       - 'deploy/**'
       - 'tests/ops/**'
       - 'plan/plan.yaml'
@@ -49,9 +47,17 @@ jobs:
         run: python -m pip install --upgrade pip && python -m pip install -r requirements-ops.txt
       - name: Validate Python and shell entry points
         run: |
-          python -m py_compile orchestrator/*.py taskctl/*.py worker/*.py scripts/ops_demo_job.py
-          bash -n scripts/bootstrap_vultr.sh scripts/bootstrap_worker.sh scripts/bootstrap_autodl.sh
+          python -m py_compile orchestrator/*.py taskctl/*.py worker/*.py scripts/*.py
+          find scripts -maxdepth 1 -name '*.sh' -print0 | xargs -0 -n1 bash -n
       - name: Validate task DAG
         run: python orchestrator/reconcile.py plan/plan.yaml
+      - name: Validate host-level resource lease wrapper
+        run: |
+          lock_root="$(mktemp -d)"
+          RESEARCH_WORKER_LOCK_ROOT="$lock_root" \
+            bash scripts/with_resource_lease.sh \
+              --resource gpu0 --project ci --task lease-smoke -- \
+              bash -c 'test -f "$RESEARCH_WORKER_LOCK_ROOT/gpu0.json"'
+          test ! -e "$lock_root/gpu0.json"
       - name: Run operations tests
         run: PYTHONPATH=. python -W error::ResourceWarning -m unittest discover -s tests/ops -v
