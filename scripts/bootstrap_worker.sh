@@ -25,9 +25,12 @@ AUTO_SOURCE_WORKER_ENV="${AUTO_SOURCE_WORKER_ENV:-0}"
 RESEARCH_WORKER_LOCK_ROOT="${RESEARCH_WORKER_LOCK_ROOT:-/var/lock/research-workers}"
 
 # A physical worker has one Tailscale identity even when several projects use it.
+# Persistent state may live on reliable storage, but Unix sockets/PIDs belong on
+# a node-local runtime filesystem.
 TAILSCALE_MODE="${TAILSCALE_MODE:-auto}"
 TAILSCALE_HOSTNAME="${TAILSCALE_HOSTNAME:-$(hostname -s)}"
-TAILSCALE_STATE_DIR="${TAILSCALE_STATE_DIR:-${PERSIST_DIR}/tailscale}"
+TAILSCALE_STATE_DIR="${TAILSCALE_STATE_DIR:-${PERSIST_DIR}/tailscale-state}"
+TAILSCALE_RUNTIME_DIR="${TAILSCALE_RUNTIME_DIR:-${PERSIST_DIR}/tailscale-runtime}"
 TAILSCALE_PROXY_PORT="${TAILSCALE_PROXY_PORT:-1055}"
 TAILSCALE_EPHEMERAL="${TAILSCALE_EPHEMERAL:-0}"
 
@@ -89,14 +92,15 @@ if [ "$TAILSCALE_MODE" != "skip" ]; then
       fi
     fi
   else
-    TS_DIR="$TAILSCALE_STATE_DIR"
-    TS_SOCKET="${TS_DIR}/tailscaled.sock"
-    TS_PID_FILE="${TS_DIR}/tailscaled.pid"
-    TS_LOG="${TS_DIR}/tailscaled.log"
-    TS_STATE="${TS_DIR}/tailscaled.state"
+    TS_RUNTIME_DIR="$TAILSCALE_RUNTIME_DIR"
+    TS_STATE_DIR="$TAILSCALE_STATE_DIR"
+    TS_SOCKET="${TS_RUNTIME_DIR}/tailscaled.sock"
+    TS_PID_FILE="${TS_RUNTIME_DIR}/tailscaled.pid"
+    TS_LOG="${TS_RUNTIME_DIR}/tailscaled.log"
+    TS_STATE="${TS_STATE_DIR}/tailscaled.state"
     if [ "$TAILSCALE_EPHEMERAL" = "1" ]; then TS_STATE="mem:"; fi
-    mkdir -p "$TS_DIR"
-    chmod 700 "$TS_DIR"
+    mkdir -p "$TS_RUNTIME_DIR" "$TS_STATE_DIR"
+    chmod 700 "$TS_RUNTIME_DIR" "$TS_STATE_DIR"
 
     existing_pid="$(cat "$TS_PID_FILE" 2>/dev/null || true)"
     if [ -z "$existing_pid" ] || ! kill -0 "$existing_pid" 2>/dev/null || [ ! -S "$TS_SOCKET" ]; then
@@ -212,6 +216,8 @@ Persistent project state/checkpoints: ${PERSIST_DIR}
 Environment file: ${WORKER_ENV_FILE}
 Tailscale host identity: ${TAILSCALE_HOSTNAME}
 Tailscale mode: ${TAILSCALE_MODE}
+Tailscale persistent state: ${TAILSCALE_STATE_DIR}
+Tailscale local runtime: ${TAILSCALE_RUNTIME_DIR}
 Cross-project lock root: ${RESEARCH_WORKER_LOCK_ROOT}
 
 Activate this project explicitly in each shell:
