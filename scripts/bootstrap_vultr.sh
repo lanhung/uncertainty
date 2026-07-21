@@ -164,14 +164,15 @@ for _ in $(seq 1 30); do
 done
 curl -fsS "http://127.0.0.1:${PORT}/healthz" | python3 -m json.tool
 cd "$REPO_DIR"
-python taskctl/taskctl.py reconcile
-python taskctl/taskctl.py start P0-control-plane --total 5 --unit checks --force
-python taskctl/taskctl.py done P0-control-plane \
+OPS_PYTHON="$REPO_DIR/.ops-venv/bin/python"
+"$OPS_PYTHON" taskctl/taskctl.py reconcile
+"$OPS_PYTHON" taskctl/taskctl.py start P0-control-plane --total 5 --unit checks --force
+"$OPS_PYTHON" taskctl/taskctl.py done P0-control-plane \
   --message "project-isolated control service, auth, ledger, status branch and health check ready"
-python taskctl/taskctl.py start P0-tailnet --total 3 --unit hosts --force
-python taskctl/taskctl.py progress P0-tailnet --current 1 --total 3 \
+"$OPS_PYTHON" taskctl/taskctl.py start P0-tailnet --total 3 --unit hosts --force
+"$OPS_PYTHON" taskctl/taskctl.py progress P0-tailnet --current 1 --total 3 \
   --message "$(hostname -s) hosts the ${PROJECT_SLUG} control instance"
-python taskctl/taskctl.py snapshot || true
+"$OPS_PYTHON" taskctl/taskctl.py snapshot || true
 
 cat <<EOF
 

@@ -66,6 +66,8 @@ class TopologyContractTests(unittest.TestCase):
         self.assertIn("TAILSCALE_STATE_DIR", script)
         self.assertIn("TAILSCALE_RUNTIME_DIR", script)
         self.assertIn("RESEARCH_OPS_PROJECT", script)
+        self.assertIn('PYTHON_BIN="${PYTHON_BIN:-python3}"', script)
+        self.assertNotIn("\npython taskctl/taskctl.py", script)
 
     def test_shared_worker_has_resource_lease_and_key_setup_tools(self) -> None:
         lease = (ROOT / "scripts" / "with_resource_lease.sh").read_text(

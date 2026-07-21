@@ -23,6 +23,7 @@ PERSIST_DIR="${PERSIST_DIR:-/var/lib/research-ops-worker/${PROJECT_SLUG}}"
 WORKER_ENV_FILE="${WORKER_ENV_FILE:-${HOME}/.research-ops-${PROJECT_SLUG}.env}"
 AUTO_SOURCE_WORKER_ENV="${AUTO_SOURCE_WORKER_ENV:-0}"
 RESEARCH_WORKER_LOCK_ROOT="${RESEARCH_WORKER_LOCK_ROOT:-/var/lock/research-workers}"
+PYTHON_BIN="${PYTHON_BIN:-python3}"
 
 # A physical worker has one Tailscale identity even when several projects use it.
 # Persistent state may live on reliable storage, but Unix sockets/PIDs belong on
@@ -193,14 +194,14 @@ source "$WORKER_ENV_FILE"
 
 log "Verify the ${PROJECT_SLUG} control-plane link"
 cd "$REPO_DIR"
-python taskctl/taskctl.py health
-python taskctl/taskctl.py show
+"$PYTHON_BIN" taskctl/taskctl.py health
+"$PYTHON_BIN" taskctl/taskctl.py show
 if [ -n "$WORKER_INDEX" ]; then
-  python taskctl/taskctl.py progress P0-tailnet \
+  "$PYTHON_BIN" taskctl/taskctl.py progress P0-tailnet \
     --current "$((WORKER_INDEX + 1))" --total 3 \
     --message "${WORKER_NAME} joined as elastic role=${WORKER_ROLE}"
-  python taskctl/taskctl.py start P0-worker-bootstrap --total 2 --unit workers --force || true
-  python taskctl/taskctl.py progress P0-worker-bootstrap \
+  "$PYTHON_BIN" taskctl/taskctl.py start P0-worker-bootstrap --total 2 --unit workers --force || true
+  "$PYTHON_BIN" taskctl/taskctl.py progress P0-worker-bootstrap \
     --current "$WORKER_INDEX" --total 2 \
     --message "${WORKER_NAME} role=${WORKER_ROLE}; ${WORKER_CAPABILITIES:-capabilities-not-recorded}"
 fi
