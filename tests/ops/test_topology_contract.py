@@ -79,6 +79,7 @@ class TopologyContractTests(unittest.TestCase):
         self.assertIn("one key pair per worker", ssh_setup)
         self.assertIn("WORKER_PREFIXES=(AUTODL1 AUTODL2)", ssh_setup)
         self.assertIn("WORKER_PREFIXES+=(AUTODL3)", ssh_setup)
+        self.assertIn("SSH_CONTROL_PATH_DIR", ssh_setup)
         self.assertIn("StrictHostKeyChecking yes", ssh_setup)
         self.assertIn("ForwardAgent no", ssh_setup)
 

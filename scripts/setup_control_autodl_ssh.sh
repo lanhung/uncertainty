@@ -57,6 +57,7 @@ SSH_DIR="${HOME}/.ssh"
 SSH_CONFIG="${SSH_DIR}/config"
 WORKER_CONFIG="${SSH_DIR}/research-workers.conf"
 INCLUDE_LINE="Include ${WORKER_CONFIG}"
+CONTROL_PATH_DIR="${SSH_CONTROL_PATH_DIR:-${SSH_DIR}}"
 WORKER_PREFIXES=(AUTODL1 AUTODL2)
 if [ -n "${AUTODL3_ALIAS:-}${AUTODL3_HOST:-}${AUTODL3_PORT:-}${AUTODL3_USER:-}" ]; then
   WORKER_PREFIXES+=(AUTODL3)
@@ -69,7 +70,7 @@ for command_name in ssh ssh-keygen ssh-copy-id awk grep install; do
   }
 done
 
-install -d -m 700 "$SSH_DIR" "$KEY_DIR"
+install -d -m 700 "$SSH_DIR" "$KEY_DIR" "$CONTROL_PATH_DIR"
 touch "$SSH_CONFIG" "$WORKER_CONFIG" "${SSH_DIR}/known_hosts"
 chmod 600 "$SSH_CONFIG" "$WORKER_CONFIG" "${SSH_DIR}/known_hosts"
 
@@ -147,7 +148,7 @@ Host ${alias_name}
   ConnectTimeout 20
   ControlMaster auto
   ControlPersist 10m
-  ControlPath ${SSH_DIR}/cm-%C
+  ControlPath ${CONTROL_PATH_DIR}/cm-%C
   Compression yes
 
 EOF

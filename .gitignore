@@ -15,6 +15,7 @@ state/runs/
 logs/
 *.pid
 .research-ops.env
+.ops-host/
 
 # Generated local delivery artifacts
 dist/
