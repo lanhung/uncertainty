@@ -3,8 +3,9 @@ project: uncertainty
 repo_dir: /root/uncertainty
 plan_path: plan/plan.yaml
 
-# Runtime SQLite and local heartbeats stay outside Git.
-state_dir: /var/lib/research-ops
+# The Vultr host can run multiple projects. Every project therefore owns a
+# separate SQLite directory, systemd service, token, port and status clone.
+state_dir: /var/lib/research-ops/uncertainty
 
 # Status snapshots are committed to a dedicated clone/branch so main is not
 # polluted every few minutes and Codex can edit code without pull/rebase races.
