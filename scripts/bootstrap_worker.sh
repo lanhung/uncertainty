@@ -38,7 +38,7 @@ fi
 log "Install minimal worker dependencies"
 $SUDO apt-get update -y
 $SUDO apt-get install -y python3 git curl ca-certificates
-mkdir -p "$PERSIST_DIR" "$REPO_DIR/logs" "$(dirname "$WORKER_ENV_FILE")"
+mkdir -p "$PERSIST_DIR" "$(dirname "$WORKER_ENV_FILE")"
 chmod 700 "$PERSIST_DIR" "$(dirname "$WORKER_ENV_FILE")"
 
 PROXY_EXPORTS=""
@@ -103,7 +103,14 @@ if [ "$TAILSCALE_MODE" != "skip" ]; then
         tailscale --socket="$TS_SOCKET" up --hostname="$WORKER_NAME"
       fi
     fi
-    PROXY_EXPORTS="export HTTP_PROXY=\"http://127.0.0.1:${TAILSCALE_PROXY_PORT}\"\nexport HTTPS_PROXY=\"http://127.0.0.1:${TAILSCALE_PROXY_PORT}\"\nexport http_proxy=\"http://127.0.0.1:${TAILSCALE_PROXY_PORT}\"\nexport https_proxy=\"http://127.0.0.1:${TAILSCALE_PROXY_PORT}\"\nexport ALL_PROXY=\"socks5h://127.0.0.1:${TAILSCALE_PROXY_PORT}\""
+    PROXY_EXPORTS="$(cat <<EOF
+export HTTP_PROXY=\"http://127.0.0.1:${TAILSCALE_PROXY_PORT}\"
+export HTTPS_PROXY=\"http://127.0.0.1:${TAILSCALE_PROXY_PORT}\"
+export http_proxy=\"http://127.0.0.1:${TAILSCALE_PROXY_PORT}\"
+export https_proxy=\"http://127.0.0.1:${TAILSCALE_PROXY_PORT}\"
+export ALL_PROXY=\"socks5h://127.0.0.1:${TAILSCALE_PROXY_PORT}\"
+EOF
+)"
   fi
 fi
 
@@ -113,11 +120,15 @@ fi
 
 log "Clone or refresh the ${PROJECT_SLUG} repository"
 if [ ! -d "$REPO_DIR/.git" ]; then
+  if [ -e "$REPO_DIR" ] && [ -n "$(find "$REPO_DIR" -mindepth 1 -maxdepth 1 -print -quit 2>/dev/null)" ]; then
+    die "$REPO_DIR exists and is not an empty Git repository"
+  fi
   git clone "$REPO_URL" "$REPO_DIR"
 else
   git -C "$REPO_DIR" fetch --all --prune
   git -C "$REPO_DIR" pull --ff-only
 fi
+mkdir -p "$REPO_DIR/logs"
 
 TOKEN="${RESEARCH_OPS_TOKEN:-}"
 if [ -z "$TOKEN" ] && [ -f "$WORKER_ENV_FILE" ]; then
