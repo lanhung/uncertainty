@@ -65,10 +65,11 @@ status clone: /root/uncertainty-status
 - 默认使用：
 
 ```text
-/root/autodl-tmp/projects/uncertainty/        # 本地高 I/O、可重建 repo/scratch
-/root/autodl-fs/projects/uncertainty/         # 该地区持久 checkpoint/manifest/artifact
-/root/autodl-fs/_research-host/tailscale/     # 物理节点唯一 Tailscale 状态
-/var/lock/research-workers/                   # 跨项目资源 lease
+/root/autodl-tmp/projects/uncertainty/                    # 本地高 I/O、可重建 repo/scratch
+/root/autodl-fs/projects/uncertainty/                     # 该地区持久 checkpoint/manifest/artifact
+/root/autodl-fs/_research-host/<physical-node>/tailscale/ # 物理节点持久 Tailscale identity
+/root/autodl-tmp/_research-host/<physical-node>/tailscale/# 物理节点本地 socket/PID/log
+/var/lock/research-workers/                               # 跨项目资源 lease
 ```
 
 - AutoDL project env 必须显式加载：
@@ -104,7 +105,8 @@ Vultr -> GitHub                           repo-scoped credential
 
 - Vultr 是一台 Tailscale device，各项目用不同 TCP port 隔离。
 - 每台 AutoDL 只有一个 host-level Tailscale identity；项目 bootstrap 必须复用同一 daemon/socket/state。
-- 无 `/dev/net/tun` 时允许 userspace networking；状态保存在 `/root/autodl-fs/_research-host/tailscale`。
+- 无 `/dev/net/tun` 时允许 userspace networking；identity/state 在 `/root/autodl-fs/_research-host/<physical-node>/tailscale`，socket/PID/log 在 `/root/autodl-tmp/_research-host/<physical-node>/tailscale`。
+- Unix socket 不得放在跨实例共享的网络文件系统根目录，也不得让同地区两台物理节点复用同一路径。
 - tagged/pre-authorized auth key 可用于服务器自动注册；是否 ephemeral 由节点生命周期决定。
 - `TAILSCALE_AUTHKEY` 只能短时存在于内存或 mode `0600` 文件，不得进入 Git、issue、prompt、截图或 shell history。
 
