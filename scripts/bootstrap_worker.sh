@@ -130,11 +130,11 @@ if [ "$TAILSCALE_MODE" != "skip" ]; then
       fi
     fi
     PROXY_EXPORTS="$(cat <<EOF
-export HTTP_PROXY=\"http://127.0.0.1:${TAILSCALE_PROXY_PORT}\"
-export HTTPS_PROXY=\"http://127.0.0.1:${TAILSCALE_PROXY_PORT}\"
-export http_proxy=\"http://127.0.0.1:${TAILSCALE_PROXY_PORT}\"
-export https_proxy=\"http://127.0.0.1:${TAILSCALE_PROXY_PORT}\"
-export ALL_PROXY=\"socks5h://127.0.0.1:${TAILSCALE_PROXY_PORT}\"
+export HTTP_PROXY="http://127.0.0.1:${TAILSCALE_PROXY_PORT}"
+export HTTPS_PROXY="http://127.0.0.1:${TAILSCALE_PROXY_PORT}"
+export http_proxy="http://127.0.0.1:${TAILSCALE_PROXY_PORT}"
+export https_proxy="http://127.0.0.1:${TAILSCALE_PROXY_PORT}"
+export ALL_PROXY="socks5h://127.0.0.1:${TAILSCALE_PROXY_PORT}"
 EOF
 )"
   fi

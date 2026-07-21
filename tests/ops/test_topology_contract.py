@@ -48,6 +48,8 @@ class TopologyContractTests(unittest.TestCase):
             "/root/autodl-tmp/_research-host/${AUTODL_NODE_NAME}", script
         )
         self.assertIn('AUTO_SOURCE_WORKER_ENV="${AUTO_SOURCE_WORKER_ENV:-0}"', script)
+        self.assertIn("/sys/fs/cgroup/cpu.max", script)
+        self.assertIn("/sys/fs/cgroup/memory.max", script)
         self.assertIn("bootstrap_worker.sh", script)
 
     def test_service_file_is_rendered_per_project(self) -> None:
@@ -68,6 +70,7 @@ class TopologyContractTests(unittest.TestCase):
         self.assertIn("RESEARCH_OPS_PROJECT", script)
         self.assertIn('PYTHON_BIN="${PYTHON_BIN:-python3}"', script)
         self.assertNotIn("\npython taskctl/taskctl.py", script)
+        self.assertNotIn('HTTP_PROXY=\\"', script)
 
     def test_shared_worker_has_resource_lease_and_key_setup_tools(self) -> None:
         lease = (ROOT / "scripts" / "with_resource_lease.sh").read_text(

@@ -42,7 +42,25 @@ export RESEARCH_WORKER_LOCK_ROOT="${RESEARCH_WORKER_LOCK_ROOT:-/var/lock/researc
 
 if [ -z "${WORKER_CAPABILITIES:-}" ]; then
   CPU_COUNT="$(nproc 2>/dev/null || echo unknown)"
+  if [ -r /sys/fs/cgroup/cpu.max ]; then
+    read -r CPU_QUOTA CPU_PERIOD < /sys/fs/cgroup/cpu.max
+    if [ "$CPU_QUOTA" != "max" ] && [ "$CPU_PERIOD" -gt 0 ] 2>/dev/null; then
+      CGROUP_CPUS="$(((CPU_QUOTA + CPU_PERIOD - 1) / CPU_PERIOD))"
+      if [ "$CPU_COUNT" = unknown ] || [ "$CGROUP_CPUS" -lt "$CPU_COUNT" ]; then
+        CPU_COUNT="$CGROUP_CPUS"
+      fi
+    fi
+  fi
   MEMORY_GB="$(awk '/MemTotal/ {printf "%.0f", $2/1024/1024}' /proc/meminfo 2>/dev/null || echo unknown)"
+  if [ -r /sys/fs/cgroup/memory.max ]; then
+    CGROUP_MEMORY_BYTES="$(cat /sys/fs/cgroup/memory.max)"
+    if [ "$CGROUP_MEMORY_BYTES" != "max" ]; then
+      CGROUP_MEMORY_GB="$(((CGROUP_MEMORY_BYTES + 1073741823) / 1073741824))"
+      if [ "$MEMORY_GB" = unknown ] || [ "$CGROUP_MEMORY_GB" -lt "$MEMORY_GB" ]; then
+        MEMORY_GB="$CGROUP_MEMORY_GB"
+      fi
+    fi
+  fi
   GPU_NAME="$(nvidia-smi --query-gpu=name --format=csv,noheader 2>/dev/null | head -1 || true)"
   GPU_MEMORY="$(nvidia-smi --query-gpu=memory.total --format=csv,noheader,nounits 2>/dev/null | head -1 || true)"
   export WORKER_CAPABILITIES="region=${AUTODL_REGION};cpu=${CPU_COUNT};ram_gb=${MEMORY_GB};gpu=${GPU_NAME:-unknown};gpu_mem_mib=${GPU_MEMORY:-unknown}"
