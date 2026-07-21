@@ -1,6 +1,6 @@
 {
   "project": "uncertainty",
-  "generated_at": "2026-07-21T23:48:20+00:00",
+  "generated_at": "2026-07-21T23:51:22+00:00",
   "revision": 59,
   "overall_progress": 0.0563063063063063,
   "overall_kind": "effort-weighted plan completion",
@@ -52,7 +52,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 273.588862657547,
+      "heartbeat_age_s": 455.7697823047638,
       "ready": false,
       "blocked_by": [],
       "artifact_links": []
@@ -81,7 +81,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 273.58894205093384,
+      "heartbeat_age_s": 455.7698836326599,
       "ready": false,
       "blocked_by": [],
       "artifact_links": []
@@ -110,7 +110,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 273.58899092674255,
+      "heartbeat_age_s": 455.7699439525604,
       "ready": false,
       "blocked_by": [],
       "artifact_links": []
@@ -208,7 +208,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 590.5891165733337,
+      "heartbeat_age_s": 772.770124912262,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -246,7 +246,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 21610.589192152023,
+      "heartbeat_age_s": 21792.77015900612,
       "ready": false,
       "blocked_by": [],
       "artifact_links": []
@@ -312,7 +312,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 20116.589280843735,
+      "heartbeat_age_s": 20298.770240306854,
       "ready": false,
       "blocked_by": [
         "P0-worker-bootstrap"
@@ -345,7 +345,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 582.5893311500549,
+      "heartbeat_age_s": 764.7702872753143,
       "ready": false,
       "blocked_by": [],
       "artifact_links": []
@@ -441,7 +441,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 19749.589446544647,
+      "heartbeat_age_s": 19931.77038884163,
       "ready": false,
       "blocked_by": [],
       "artifact_links": []
@@ -473,7 +473,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 19749.58947944641,
+      "heartbeat_age_s": 19931.770424842834,
       "ready": false,
       "blocked_by": [
         "P0-tailnet"
