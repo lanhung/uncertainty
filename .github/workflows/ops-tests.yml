@@ -60,4 +60,22 @@ jobs:
               bash -c 'test -f "$RESEARCH_WORKER_LOCK_ROOT/gpu0.json"'
           test ! -e "$lock_root/gpu0.json"
       - name: Run operations tests
-        run: PYTHONPATH=. python -W error::ResourceWarning -m unittest discover -s tests/ops -v
+        id: unit_tests
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          PYTHONPATH=. python -W error::ResourceWarning \
+            -m unittest discover -s tests/ops -v 2>&1 | tee unit-test-output.log
+      - name: Upload unit-test diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ops-unit-test-output
+          path: unit-test-output.log
+          if-no-files-found: error
+          retention-days: 7
+      - name: Enforce unit-test result
+        if: steps.unit_tests.outcome != 'success'
+        run: |
+          echo 'Operations unit tests failed; inspect ops-unit-test-output artifact.' >&2
+          exit 1
