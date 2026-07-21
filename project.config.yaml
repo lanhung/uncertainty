@@ -1,0 +1,18 @@
+# research-ops project configuration.
+project: uncertainty
+repo_dir: /root/uncertainty
+plan_path: plan/plan.yaml
+
+# Runtime SQLite and local heartbeats stay outside Git.
+state_dir: /var/lib/research-ops
+
+# Status snapshots are committed to a dedicated clone/branch so main is not
+# polluted every few minutes and Codex can edit code without pull/rebase races.
+snapshot_repo_dir: /root/uncertainty-status
+status_branch: ops-status
+snapshot_every_s: 180
+stale_after_s: 900
+
+repo_web_url: https://github.com/lanhung/uncertainty
+code_branch: main
+pages_url: https://lanhung.github.io/uncertainty/
