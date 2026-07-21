@@ -1,6 +1,6 @@
 # uncertainty — live research status
 
-_Generated: 2026-07-21T18:08:54+00:00; revision: 40_
+_Generated: 2026-07-21T18:11:55+00:00; revision: 40_
 
 **Overall plan completion: 3%.** This is effort-weighted execution progress, not scientific confidence.
 
@@ -16,12 +16,12 @@ Status counts — running: 2, pending: 30, done: 1
 - **P0-tailnet** — Join control + two workers to the private tailnet [running]
   - progress: 67% (2/3 hosts); ETA: —
   - owner: uncertainty-autodl-westb-01-elastic; attempt: 1; run_id: —
-  - heartbeat age: 4 s
+  - heartbeat age: 184 s
   - note: uncertainty-autodl-westb-01-elastic joined as elastic role=elastic
 - **P0-worker-bootstrap** — Bootstrap two shared AutoDL nodes as elastic workers [running]
   - progress: 50% (1/2 workers); ETA: —
   - owner: uncertainty-autodl-westb-01-elastic; attempt: 1; run_id: —
-  - heartbeat age: 3 s
+  - heartbeat age: 183 s
   - blocked by: P0-tailnet
   - note: uncertainty-autodl-westb-01-elastic role=elastic; region=westb;cpu=25;ram_gb=92;gpu=NVIDIA GeForce RTX 4090;gpu_mem_mib=49140
 
