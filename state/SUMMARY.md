@@ -1,6 +1,6 @@
 # uncertainty — live research status
 
-_Generated: 2026-07-21T23:51:22+00:00; revision: 59_
+_Generated: 2026-07-21T23:54:24+00:00; revision: 59_
 
 **Overall plan completion: 6%.** This is effort-weighted execution progress, not scientific confidence.
 
@@ -10,15 +10,15 @@ Status counts — running: 3, blocked: 3, pending: 24, done: 3
 - **P0-LIT-01** — Competitor matrix: LINX, PRyMordial, PRIMAT, PArthENoPE, AlterBBN, ABCMB+LINX [running]
   - progress: 0% (0/8 baselines); ETA: —
   - owner: vultr; attempt: 1; run_id: —
-  - heartbeat age: 456 s
+  - heartbeat age: 638 s
 - **P0-NEUTRON-01** — Preregister neutron-lifetime N0-N3 baseline and robustness models [running]
   - progress: 0% (0/1 decisions); ETA: —
   - owner: vultr; attempt: 1; run_id: —
-  - heartbeat age: 456 s
+  - heartbeat age: 638 s
 - **P0-OBS-01** — Preregister primary and stress-test D/H, Y_p, CMB and GW datasets [running]
   - progress: 0% (0/1 decisions); ETA: —
   - owner: vultr; attempt: 1; run_id: —
-  - heartbeat age: 456 s
+  - heartbeat age: 638 s
 
 ## Blocked / needs a decision
 - **P0-repo-migrate** — Migrate existing scientific code into lanhung/uncertainty and remove local paths [blocked]
