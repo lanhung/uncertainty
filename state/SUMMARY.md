@@ -1,10 +1,10 @@
 # uncertainty — live research status
 
-_Generated: 2026-07-21T18:02:54+00:00; revision: 37_
+_Generated: 2026-07-21T18:05:54+00:00; revision: 37_
 
 **Overall plan completion: 2%.** This is effort-weighted execution progress, not scientific confidence.
 
-Status counts — running: 1, pending: 31, done: 1
+Status counts — stale: 1, pending: 31, done: 1
 
 ## Next runnable
 - **P0-LIT-01** — Competitor matrix: LINX, PRyMordial, PRIMAT, PArthENoPE, AlterBBN, ABCMB+LINX
@@ -13,10 +13,10 @@ Status counts — running: 1, pending: 31, done: 1
 - **P0-code-inventory** — Inventory all existing BBNet, MCMC, solver patches, data and model files
 
 ## Live now
-- **P0-tailnet** — Join control + two workers to the private tailnet [running]
+- **P0-tailnet** — Join control + two workers to the private tailnet [stale]
   - progress: 33% (1/3 hosts); ETA: —
   - owner: vultr; attempt: 1; run_id: —
-  - heartbeat age: 884 s
+  - heartbeat age: 1064 s
   - note: research-control joined tailnet at 100.73.25.118 in userspace mode
 
 ## Pending

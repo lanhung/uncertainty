@@ -1,6 +1,6 @@
 {
   "project": "uncertainty",
-  "generated_at": "2026-07-21T18:02:54+00:00",
+  "generated_at": "2026-07-21T18:05:54+00:00",
   "revision": 37,
   "overall_progress": 0.018018018018018018,
   "overall_kind": "effort-weighted plan completion",
@@ -24,7 +24,7 @@
   "status_counts": {
     "pending": 31,
     "done": 1,
-    "running": 1
+    "stale": 1
   },
   "tasks": [
     {
@@ -233,7 +233,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 884.0145773887634,
+      "heartbeat_age_s": 1064.2749633789062,
       "ready": false,
       "blocked_by": [],
       "artifact_links": []
@@ -409,7 +409,7 @@
       "id": "P0-tailnet",
       "title": "Join control + two workers to the private tailnet",
       "phase": "P0",
-      "status": "running",
+      "status": "stale",
       "weight": 1.0,
       "unit": "hosts",
       "current": 1.0,
@@ -429,7 +429,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 884.0149464607239,
+      "heartbeat_age_s": 1064.2778267860413,
       "ready": false,
       "blocked_by": [],
       "artifact_links": []
