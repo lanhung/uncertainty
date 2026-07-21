@@ -1,6 +1,6 @@
 # uncertainty — live research status
 
-_Generated: 2026-07-21T17:50:52+00:00; revision: 37_
+_Generated: 2026-07-21T17:53:52+00:00; revision: 37_
 
 **Overall plan completion: 2%.** This is effort-weighted execution progress, not scientific confidence.
 
@@ -16,7 +16,7 @@ Status counts — running: 1, pending: 31, done: 1
 - **P0-tailnet** — Join control + two workers to the private tailnet [running]
   - progress: 33% (1/3 hosts); ETA: —
   - owner: vultr; attempt: 1; run_id: —
-  - heartbeat age: 162 s
+  - heartbeat age: 343 s
   - note: research-control joined tailnet at 100.73.25.118 in userspace mode
 
 ## Pending
