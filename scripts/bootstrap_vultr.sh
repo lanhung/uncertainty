@@ -43,7 +43,7 @@ if ! command -v tailscale >/dev/null 2>&1; then
 fi
 if ! tailscale ip -4 >/dev/null 2>&1; then
   if [ -n "${TAILSCALE_AUTHKEY:-}" ]; then
-    $SUDO tailscale up --authkey="$TAILSCALE_AUTHKEY" --hostname="$TAILSCALE_HOSTNAME"
+    $SUDO tailscale up --auth-key="$TAILSCALE_AUTHKEY" --hostname="$TAILSCALE_HOSTNAME"
   else
     echo "Tailscale needs authentication; follow the login URL below."
     $SUDO tailscale up --hostname="$TAILSCALE_HOSTNAME"
@@ -53,10 +53,11 @@ TAILNET_IP="$(tailscale ip -4 | head -1)"
 [ -n "$TAILNET_IP" ] || die "no Tailscale IPv4 address available"
 echo "shared control-host tailnet IP: $TAILNET_IP"
 
-if command -v ss >/dev/null 2>&1 && \
-   ss -H -ltn "sport = :${PORT}" 2>/dev/null | grep -q . && \
-   ! $SUDO systemctl is-active --quiet "${SERVICE_NAME}.service"; then
-  die "port ${PORT} is already in use; assign a unique RESEARCH_OPS_PORT for ${PROJECT_SLUG}"
+if command -v ss >/dev/null 2>&1; then
+  if ss -H -ltn 2>/dev/null | awk '{print $4}' | grep -Eq "(^|:|\\])${PORT}$" && \
+     ! $SUDO systemctl is-active --quiet "${SERVICE_NAME}.service"; then
+    die "port ${PORT} is already in use; assign a unique RESEARCH_OPS_PORT for ${PROJECT_SLUG}"
+  fi
 fi
 
 log "Clone or refresh the ${PROJECT_SLUG} scientific repository"
