@@ -1,6 +1,6 @@
 {
   "project": "uncertainty",
-  "generated_at": "2026-07-21T18:18:15+00:00",
+  "generated_at": "2026-07-21T18:18:52+00:00",
   "revision": 49,
   "overall_progress": 0.04279279279279279,
   "overall_kind": "effort-weighted plan completion",
@@ -233,7 +233,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 1805.333399772644,
+      "heartbeat_age_s": 1842.5768234729767,
       "ready": false,
       "blocked_by": [],
       "artifact_links": []
@@ -299,7 +299,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 311.33354210853577,
+      "heartbeat_age_s": 348.57689595222473,
       "ready": false,
       "blocked_by": [
         "P0-worker-bootstrap"
@@ -430,7 +430,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 564.3338553905487,
+      "heartbeat_age_s": 601.5770280361176,
       "ready": false,
       "blocked_by": [],
       "artifact_links": []
@@ -462,7 +462,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 563.3339371681213,
+      "heartbeat_age_s": 600.5771398544312,
       "ready": false,
       "blocked_by": [
         "P0-tailnet"
