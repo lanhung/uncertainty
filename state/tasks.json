@@ -1,7 +1,7 @@
 {
   "project": "uncertainty",
-  "generated_at": "2026-07-21T18:18:52+00:00",
-  "revision": 49,
+  "generated_at": "2026-07-21T18:19:12+00:00",
+  "revision": 51,
   "overall_progress": 0.04279279279279279,
   "overall_kind": "effort-weighted plan completion",
   "phases": {
@@ -24,7 +24,7 @@
   "status_counts": {
     "pending": 29,
     "done": 2,
-    "running": 2
+    "blocked": 2
   },
   "tasks": [
     {
@@ -233,7 +233,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 1842.5768234729767,
+      "heartbeat_age_s": 1862.1392858028412,
       "ready": false,
       "blocked_by": [],
       "artifact_links": []
@@ -299,7 +299,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 348.57689595222473,
+      "heartbeat_age_s": 368.13941264152527,
       "ready": false,
       "blocked_by": [
         "P0-worker-bootstrap"
@@ -410,7 +410,7 @@
       "id": "P0-tailnet",
       "title": "Join control + two workers to the private tailnet",
       "phase": "P0",
-      "status": "running",
+      "status": "blocked",
       "weight": 1.0,
       "unit": "hosts",
       "current": 2.0,
@@ -418,10 +418,10 @@
       "owner": "uncertainty-autodl-westb-01-elastic",
       "depends_on": [],
       "started_at": "2026-07-21T17:48:10+00:00",
-      "updated_at": "2026-07-21T18:08:51+00:00",
-      "finished_at": null,
+      "updated_at": "2026-07-21T18:19:11+00:00",
+      "finished_at": "2026-07-21T18:19:11+00:00",
       "declared_eta": null,
-      "message": "uncertainty-autodl-westb-01-elastic joined as elastic role=elastic",
+      "message": "control and westb joined (2/3); second eligible worker awaits persistent storage and an idle window",
       "artifacts": [],
       "metrics": {},
       "attempt": 1,
@@ -430,7 +430,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 601.5770280361176,
+      "heartbeat_age_s": 1.139577865600586,
       "ready": false,
       "blocked_by": [],
       "artifact_links": []
@@ -439,7 +439,7 @@
       "id": "P0-worker-bootstrap",
       "title": "Bootstrap two shared AutoDL nodes as elastic workers",
       "phase": "P0",
-      "status": "running",
+      "status": "blocked",
       "weight": 1.0,
       "unit": "workers",
       "current": 1.0,
@@ -450,10 +450,10 @@
         "P0-tailnet"
       ],
       "started_at": "2026-07-21T18:08:52+00:00",
-      "updated_at": "2026-07-21T18:08:52+00:00",
-      "finished_at": null,
+      "updated_at": "2026-07-21T18:19:11+00:00",
+      "finished_at": "2026-07-21T18:19:11+00:00",
       "declared_eta": null,
-      "message": "uncertainty-autodl-westb-01-elastic role=elastic; region=westb;cpu=25;ram_gb=92;gpu=NVIDIA GeForce RTX 4090;gpu_mem_mib=49140",
+      "message": "westb ready (1/2); remaining workers lack /root/autodl-fs and are occupied, so policy forbids bootstrap",
       "artifacts": [],
       "metrics": {},
       "attempt": 1,
@@ -462,7 +462,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 600.5771398544312,
+      "heartbeat_age_s": 1.1396126747131348,
       "ready": false,
       "blocked_by": [
         "P0-tailnet"
