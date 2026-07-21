@@ -1,10 +1,10 @@
 # uncertainty — live research status
 
-_Generated: 2026-07-21T18:05:54+00:00; revision: 37_
+_Generated: 2026-07-21T18:08:54+00:00; revision: 40_
 
-**Overall plan completion: 2%.** This is effort-weighted execution progress, not scientific confidence.
+**Overall plan completion: 3%.** This is effort-weighted execution progress, not scientific confidence.
 
-Status counts — stale: 1, pending: 31, done: 1
+Status counts — running: 2, pending: 30, done: 1
 
 ## Next runnable
 - **P0-LIT-01** — Competitor matrix: LINX, PRyMordial, PRIMAT, PArthENoPE, AlterBBN, ABCMB+LINX
@@ -13,11 +13,17 @@ Status counts — stale: 1, pending: 31, done: 1
 - **P0-code-inventory** — Inventory all existing BBNet, MCMC, solver patches, data and model files
 
 ## Live now
-- **P0-tailnet** — Join control + two workers to the private tailnet [stale]
-  - progress: 33% (1/3 hosts); ETA: —
-  - owner: vultr; attempt: 1; run_id: —
-  - heartbeat age: 1064 s
-  - note: research-control joined tailnet at 100.73.25.118 in userspace mode
+- **P0-tailnet** — Join control + two workers to the private tailnet [running]
+  - progress: 67% (2/3 hosts); ETA: —
+  - owner: uncertainty-autodl-westb-01-elastic; attempt: 1; run_id: —
+  - heartbeat age: 4 s
+  - note: uncertainty-autodl-westb-01-elastic joined as elastic role=elastic
+- **P0-worker-bootstrap** — Bootstrap two shared AutoDL nodes as elastic workers [running]
+  - progress: 50% (1/2 workers); ETA: —
+  - owner: uncertainty-autodl-westb-01-elastic; attempt: 1; run_id: —
+  - heartbeat age: 3 s
+  - blocked by: P0-tailnet
+  - note: uncertainty-autodl-westb-01-elastic role=elastic; region=westb;cpu=25;ram_gb=92;gpu=NVIDIA GeForce RTX 4090;gpu_mem_mib=49140
 
 ## Pending
 - **P0-LIT-01** — Competitor matrix: LINX, PRyMordial, PRIMAT, PArthENoPE, AlterBBN, ABCMB+LINX [pending]
@@ -48,9 +54,6 @@ Status counts — stale: 1, pending: 31, done: 1
 - **P0-solvers-build** — Build project PArthENoPE/AlterBBN plus LINX and PRyMordial reference paths [pending]
   - progress: 0% (0/4 solvers); ETA: —
   - blocked by: P0-env-lock
-- **P0-worker-bootstrap** — Bootstrap two shared AutoDL nodes as elastic workers [pending]
-  - progress: 0% (0/2 workers); ETA: —
-  - blocked by: P0-tailnet
 - **P1-hardsoft-posterior** — EXP-A01 hard/soft comparison in the full 10-D physical posterior [pending]
   - progress: 0% (0/16 chains); ETA: —
   - blocked by: P1-mcmc-refactor
