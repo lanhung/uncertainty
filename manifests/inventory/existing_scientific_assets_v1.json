@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "task_id": "P0-code-inventory",
+  "captured_at": "2026-07-21T23:36:33Z",
+  "repository_commit": "634abdf9271606c3173fb7823125d785c2c749cc",
+  "scopes": [
+    "lanhung/uncertainty all visible branches and tags",
+    "registered Vultr workspace and bounded /root filename search",
+    "three registered AutoDL workers with bounded filename search",
+    "repositories visible to the authenticated lanhung GitHub account"
+  ],
+  "counts": {
+    "bbnet_source": 0,
+    "project_parthenope_patches": 0,
+    "project_alterbbn_patches": 0,
+    "reference_solver_checkouts": 0,
+    "bbn_mcmc_implementations": 0,
+    "bbn_dataset_manifests": 0,
+    "bbn_model_manifests": 0
+  },
+  "operations_assets_present": true,
+  "migration_input_available": false,
+  "limitations": [
+    "Paths and repositories not visible to the current credentials were not inspected.",
+    "Filename search cannot identify deliberately renamed or encrypted assets.",
+    "Unrelated project contents were not inventoried."
+  ],
+  "report": "docs/inventory/EXISTING_SCIENTIFIC_ASSETS_v1.md"
+}
