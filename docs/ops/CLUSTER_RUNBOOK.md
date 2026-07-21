@@ -1,29 +1,35 @@
-# Shared Vultr + AutoDL research-ops runbook
+# Shared Vultr control host + elastic AutoDL worker-pool runbook
 
 ## 1. Purpose
 
 This runbook brings up the operational control plane before scientific
-production. The first success criterion is not a new BBN result; it is a closed
-loop in which a detached AutoDL test job survives SSH logout, reports measured
-progress, becomes stale when heartbeats stop, resumes from a persistent
-checkpoint and publishes a durable GitHub snapshot.
+production. The first success criterion is not a new BBN result. It is a closed
+loop in which:
 
-## 2. Deployment model
+- a shared, lightweight Vultr host runs several project-isolated Codex/control
+  instances;
+- either of two AutoDL machines can be assigned to this project only while work
+  is queued;
+- a detached job survives SSH logout;
+- progress and measured ETA reach the uncertainty ledger;
+- checkpoint state survives AutoDL shutdown;
+- another project cannot silently take the same GPU or saturate the same CPU;
+- no secret or large dataset is routed through the wrong control plane.
 
-This project uses one lightweight, always-on control **host** and two elastic
-compute roles:
+## 2. Correct deployment model
 
-| Location | Instance/role | Lifecycle | Selection priority |
-|---|---|---|---|
-| shared Vultr | `research-ops-uncertainty` + one or more Codex processes | always on | reliability, low cost, stable disk/network |
-| AutoDL | `uncertainty-sim-autodl-*` | start when solver/Fisher work is queued | vCPU, RAM, FP64 behavior, local SSD, price |
-| AutoDL | `uncertainty-train-autodl-*` / `verify-*` | start when training/SBC/validation is queued | GPU/RAM/FP64 fit, price |
+### 2.1 Physical machines
 
-The Vultr machine can manage several unrelated projects. It is therefore not
-named or configured as a project-exclusive compute node. Each project receives
-an isolated control-plane instance on that host.
+| Physical location | Lifecycle | Responsibility |
+|---|---|---|
+| shared Vultr | lightweight, always on | several Codex sessions, one isolated status/ledger instance per project, GitHub operations |
+| AutoDL worker A | on demand, shared across projects | solver, training or validation according to current lease |
+| AutoDL worker B | on demand, shared across projects | solver, training or validation according to current lease |
 
-For this repository the default isolation is:
+The two AutoDL machines are not permanently named `sim` and `train`. Those are
+logical roles selected at task launch time.
+
+### 2.2 Uncertainty control-instance isolation
 
 ```text
 project slug: uncertainty
@@ -34,76 +40,246 @@ state dir:    /var/lib/research-ops/uncertainty
 status clone: /root/uncertainty-status
 ```
 
-A second project must use another slug and port, for example 8788. It must not
-reuse the uncertainty token, SQLite directory, service or status clone.
+A second project on the same Vultr host must use a different repo, port, token,
+service, state directory and status clone. Never globally export one project's
+token for all Codex shells.
 
-The AutoDL workers are disposable. Their important state belongs under
-`/root/autodl-fs/uncertainty`; `/root/autodl-tmp/uncertainty` is scratch.
+### 2.3 AutoDL project and host namespaces
 
-## 3. Preconditions
+```text
+/root/autodl-tmp/projects/uncertainty/repo
+    fast, local, replaceable checkout and scratch
 
-### Shared Vultr host
+/root/autodl-fs/projects/uncertainty/
+    region-local persistent checkpoint, outbox, manifest and artifact state
+
+/root/autodl-fs/_research-host/tailscale/
+    one physical-node Tailscale identity shared by all projects
+
+/var/lock/research-workers/
+    node-level cross-project leases such as gpu0 and cpu-heavy
+```
+
+## 3. Network and trust model
+
+Use two separate channels:
+
+1. **Management channel**: Vultr logs into the AutoDL forwarded SSH endpoints.
+2. **Telemetry channel**: AutoDL connects outward to the Vultr Tailscale address
+   and uncertainty API port 8787.
+
+Do not expose dashboard port 8787 directly on the Vultr public interface.
+
+Recommended SSH trust:
+
+```text
+operator laptop -> Vultr                  personal key
+Vultr -> AutoDL A                         key A
+Vultr -> AutoDL B                         key B
+AutoDL -> Vultr                           no reverse SSH private key
+AutoDL A <-> AutoDL B                     no lateral SSH trust
+AutoDL -> public GitHub repository        HTTPS read-only clone
+Vultr -> GitHub                           repository-scoped credential
+```
+
+Never use SSH agent forwarding, copy the Vultr private key to AutoDL, or set
+`StrictHostKeyChecking=no`.
+
+## 4. Preconditions
+
+### 4.1 Shared Vultr host
 
 - Ubuntu/Debian with root or sudo;
 - stable disk and outbound HTTPS/SSH;
-- GitHub write-capable SSH access for `lanhung/uncertainty`;
-- one Tailscale device for the host;
+- GitHub write-capable, preferably repository-scoped SSH credential;
+- one Tailscale device for the physical host;
 - one free TCP port per managed project;
-- server clock synchronized with NTP;
-- no public firewall exposure of project dashboard ports unless deliberately
-  protected by another authenticated reverse proxy.
+- NTP-synchronized clock;
+- dashboard ports blocked from the public internet.
 
-Verify repository access:
+### 4.2 AutoDL workers
 
-```bash
-ssh -T git@github.com
-git ls-remote git@github.com:lanhung/uncertainty.git HEAD
-```
-
-### AutoDL workers
-
-- access to `/root/autodl-fs` persistent storage;
+- access to `/root/autodl-fs` and `/root/autodl-tmp`;
 - outbound HTTPS;
-- the uncertainty control token;
-- the shared Vultr Tailscale IP;
-- preferably an ephemeral, tagged and pre-authorized Tailscale auth key;
-- enough local scratch space for the assigned workload.
+- provider SSH endpoint and port;
+- uncertainty research-ops token;
+- control host's Tailscale IP;
+- Tailscale authentication or an already-running host-level Tailscale daemon;
+- enough free node-level resources after checking other projects.
 
-Workers only need read access to the public repository, so HTTPS clone is the
-default.
+The AutoDL workers only need read access to this public repository, so HTTPS
+clone is the default. Code changes and GitHub pushes should normally happen on
+Vultr, not from workers.
 
-## 4. Shared Vultr control-host procedure
+## 5. Operator laptop to Vultr key-based login
 
-### 4.1 Clone the project
+Generate a dedicated personal key on the operator machine:
 
 ```bash
-git clone git@github.com:lanhung/uncertainty.git /root/uncertainty
-cd /root/uncertainty
+ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519_research_vultr \
+  -C 'operator->research-vultr'
+ssh-copy-id -i ~/.ssh/id_ed25519_research_vultr.pub root@<VULTR_PUBLIC_IP>
 ```
 
-### 4.2 Allocate the uncertainty instance
+Add a local alias:
 
-Port 8787 is the default. Confirm it is not already allocated to another project.
+```sshconfig
+Host vultr-research
+  HostName <VULTR_PUBLIC_IP>
+  User root
+  IdentityFile ~/.ssh/id_ed25519_research_vultr
+  IdentitiesOnly yes
+  ForwardAgent no
+  ServerAliveInterval 30
+  ServerAliveCountMax 6
+```
+
+Verify key login in a second terminal before disabling password authentication.
+If hardening SSH, use `PermitRootLogin prohibit-password` or migrate to a sudo
+user; never lock out the only tested management path.
+
+## 6. Shared Vultr to AutoDL key-based login
+
+### 6.1 Create the local inventory
+
+On the Vultr uncertainty checkout:
 
 ```bash
+cd /root/uncertainty
+cp deploy/hosts.local.env.example deploy/hosts.local.env
+chmod 600 deploy/hosts.local.env
+$EDITOR deploy/hosts.local.env
+```
+
+This local file contains the current provider endpoints, forwarded ports, stable
+node names and regions. It is gitignored because endpoints are operational
+inventory and can change when instances are rebuilt.
+
+### 6.2 Generate node-specific keys and aliases
+
+```bash
+bash scripts/setup_control_autodl_ssh.sh \
+  --inventory deploy/hosts.local.env
+```
+
+The script creates one private key per AutoDL instance under:
+
+```text
+/root/.ssh/research-workers/
+```
+
+It writes SSH aliases to:
+
+```text
+/root/.ssh/research-workers.conf
+```
+
+### 6.3 Verify host keys, then install public keys
+
+Before accepting a host key, compare its fingerprint with the AutoDL instance:
+
+On AutoDL through the provider console or an already-trusted login:
+
+```bash
+ssh-keygen -lf /etc/ssh/ssh_host_ed25519_key.pub
+```
+
+On Vultr:
+
+```bash
+ssh-keyscan -p <PORT> <HOST> 2>/dev/null | ssh-keygen -lf -
+```
+
+Only after the fingerprints agree:
+
+```bash
+bash scripts/setup_control_autodl_ssh.sh \
+  --inventory deploy/hosts.local.env --install
+```
+
+The installed public key is restricted from agent, X11 and TCP forwarding. The
+shell itself remains available for commands, tmux, rsync of small files and
+incident diagnosis.
+
+Test:
+
+```bash
+ssh <AUTODL_ALIAS_A> hostname
+ssh <AUTODL_ALIAS_B> hostname
+```
+
+If an AutoDL instance is rebuilt and the host key legitimately changes:
+
+```bash
+ssh-keygen -R '[<HOST>]:<PORT>'
+```
+
+Then repeat fingerprint verification. Do not suppress the warning globally.
+
+## 7. GitHub credential isolation on shared Vultr
+
+A repository-scoped deploy key avoids reusing one personal GitHub key for every
+Codex-managed project.
+
+Generate on Vultr:
+
+```bash
+ssh-keygen -t ed25519 -N '' \
+  -f /root/.ssh/id_ed25519_github_uncertainty \
+  -C 'uncertainty-control->github'
+cat /root/.ssh/id_ed25519_github_uncertainty.pub
+```
+
+Add the public key under repository Settings → Deploy keys. The uncertainty
+control plane needs write access because it pushes the `ops-status` branch.
+
+Use a host alias in `/root/.ssh/config`:
+
+```sshconfig
+Host github-uncertainty
+  HostName github.com
+  User git
+  IdentityFile /root/.ssh/id_ed25519_github_uncertainty
+  IdentitiesOnly yes
+  ForwardAgent no
+```
+
+Clone using:
+
+```bash
+git clone git@github-uncertainty:lanhung/uncertainty.git /root/uncertainty
+```
+
+When bootstrapping, pass the same alias explicitly:
+
+```bash
+REPO_URL=git@github-uncertainty:lanhung/uncertainty.git \
 RESEARCH_OPS_PROJECT=uncertainty \
 RESEARCH_OPS_PORT=8787 \
-TAILSCALE_HOSTNAME=research-control-01 \
+bash scripts/bootstrap_vultr.sh
+```
+
+## 8. Bring up the uncertainty control instance
+
+```bash
+cd /root/uncertainty
+RESEARCH_OPS_PROJECT=uncertainty \
+RESEARCH_OPS_PORT=8787 \
+TAILSCALE_HOSTNAME=research-control \
 bash scripts/bootstrap_vultr.sh
 ```
 
 The script performs:
 
-1. shared host dependencies and Tailscale setup;
-2. project repository and isolated Python environment;
-3. creation/clone of the `ops-status` branch in
-   `/root/uncertainty-status`;
-4. generation of `/etc/research-ops/uncertainty.env` with mode `0600`;
-5. creation of `/var/lib/research-ops/uncertainty`;
-6. installation of `research-ops-uncertainty.service`;
-7. health check, plan reconciliation and initial task updates.
+1. shared host dependency and Tailscale setup;
+2. project-isolated virtual environment;
+3. creation/clone of `ops-status` in `/root/uncertainty-status`;
+4. mode-0600 `/etc/research-ops/uncertainty.env`;
+5. `/var/lib/research-ops/uncertainty` state directory;
+6. `research-ops-uncertainty.service` installation;
+7. health check, plan reconciliation and initial status.
 
-### 4.3 Inspect only this project instance
+Inspect:
 
 ```bash
 systemctl status research-ops-uncertainty --no-pager
@@ -112,26 +288,18 @@ set -a; source /etc/research-ops/uncertainty.env; set +a
 cd /root/uncertainty
 python taskctl/taskctl.py health
 python taskctl/taskctl.py show
-```
-
-Record the host's Tailscale IPv4:
-
-```bash
 tailscale ip -4
 ```
 
-The private dashboard is:
+Private dashboard:
 
 ```text
-http://<shared-vultr-tailnet-ip>:8787/
+http://<CONTROL_TAILNET_IP>:8787/
 ```
 
-Securely retrieve the token from `/etc/research-ops/uncertainty.env`. Do not
-paste it into a command argument, chat log, issue, screenshot or Git history.
+## 9. Multiple Codex projects on Vultr
 
-### 4.4 Multiple Codex projects on the same host
-
-Use separate repository checkouts and separate Codex sessions, for example:
+Use one checkout and one tmux session per project:
 
 ```bash
 tmux new -s codex-uncertainty
@@ -139,182 +307,267 @@ cd /root/uncertainty
 codex
 ```
 
-Another project uses another checkout and another tmux/session. Codex processes
-may share the host, but must load the correct project's `AGENTS.md`, endpoint,
-port and token before changing state. Never globally export one project's token
-for all shells.
-
-## 5. AutoDL solver worker
-
-Create an AutoDL machine when solver/Fisher/data-generation work is ready. Pick
-it by vCPU, RAM, FP64 behavior, SSD and price; the attached GPU may be incidental.
+A different project uses a different checkout/session/port/env. Before a Codex
+process changes task state, it must explicitly load this project's environment:
 
 ```bash
-git clone https://github.com/lanhung/uncertainty.git /root/uncertainty
-cd /root/uncertainty
+set -a
+source /etc/research-ops/uncertainty.env
+set +a
 ```
 
-For non-interactive Tailscale provisioning, load an ephemeral auth key without
-putting it in shell history:
+Do not place that source line in the shared host's global `.bashrc`.
+
+## 10. Bootstrap either AutoDL node for uncertainty
+
+### 10.1 Connect from Vultr
 
 ```bash
-read -r -s -p 'Tailscale ephemeral auth key: ' TAILSCALE_AUTHKEY; echo
+ssh <AUTODL_ALIAS>
+```
+
+A physical node can be used by other projects. First inspect it:
+
+```bash
+nvidia-smi
+uptime
+free -h
+df -h / /root/autodl-tmp /root/autodl-fs
+ps -eo pid,ppid,%cpu,%mem,etime,args --sort=-%cpu | head -40
+```
+
+If uncertainty is already cloned:
+
+```bash
+cd /root/autodl-tmp/projects/uncertainty/repo
+git pull --ff-only
+bash scripts/autodl_node_status.sh
+```
+
+Otherwise:
+
+```bash
+mkdir -p /root/autodl-tmp/projects/uncertainty
+git clone https://github.com/lanhung/uncertainty.git \
+  /root/autodl-tmp/projects/uncertainty/repo
+cd /root/autodl-tmp/projects/uncertainty/repo
+```
+
+### 10.2 Tailscale authentication
+
+The physical AutoDL node has one host-level Tailscale identity, shared by every
+project. If it is not yet authenticated, either follow the interactive login URL
+or load an auth key without shell-history exposure:
+
+```bash
+read -r -s -p 'Tailscale auth key: ' TAILSCALE_AUTHKEY; echo
 export TAILSCALE_AUTHKEY
 ```
 
-Bootstrap:
+A tagged, pre-authorized key is suitable for a server. Use an ephemeral key only
+when the node identity is intentionally disposable; the default script retains
+host-level state under `/root/autodl-fs/_research-host/tailscale`.
+
+### 10.3 Bootstrap the project namespace
 
 ```bash
-CONTROL_TAILNET_IP=<CONTROL_IP> \
+CONTROL_TAILNET_IP=<CONTROL_TAILNET_IP> \
 RESEARCH_OPS_PORT=8787 \
-WORKER_NAME=uncertainty-sim-autodl-01 \
-WORKER_ROLE=solver \
-WORKER_INDEX=1 \
+AUTODL_NODE_NAME=<STABLE_PHYSICAL_NODE_NAME> \
+AUTODL_REGION=<REGION> \
+WORKER_ROLE=elastic \
+WORKER_INDEX=<1_OR_2> \
 bash scripts/bootstrap_autodl.sh
+
+unset TAILSCALE_AUTHKEY
 ```
 
-The script prompts separately for the uncertainty research-ops token and writes:
+The role is deliberately `elastic`. When a real task launches, record whether
+this attempt is solver, train or verify work.
+
+The bootstrap writes:
 
 ```text
-/root/autodl-fs/uncertainty/ops/research-ops.env
-/root/autodl-fs/uncertainty/checkpoints/
-/root/autodl-fs/uncertainty/outbox/
-/root/autodl-fs/uncertainty/runs/
-/root/autodl-fs/uncertainty/artifacts/
+/root/autodl-fs/projects/uncertainty/ops/research-ops.env
+/root/autodl-fs/projects/uncertainty/checkpoints/
+/root/autodl-fs/projects/uncertainty/outbox/
+/root/autodl-fs/projects/uncertainty/runs/
+/root/autodl-fs/projects/uncertainty/artifacts/
+/root/autodl-fs/projects/uncertainty/manifests/
 ```
 
-Verify:
+It does not append the env file to global `.bashrc` on a shared worker.
+
+Activate explicitly:
 
 ```bash
-source /root/autodl-fs/uncertainty/ops/research-ops.env
-cd /root/uncertainty
+source /root/autodl-fs/projects/uncertainty/ops/research-ops.env
+cd /root/autodl-tmp/projects/uncertainty/repo
 python taskctl/taskctl.py health
 python taskctl/taskctl.py show
 ```
 
-## 6. AutoDL training/verification worker
+## 11. Capture the real AutoDL hardware before planning work
 
-Create a second AutoDL machine only when its task queue justifies concurrent
-training, MCMC/SBC or independent verification. A 4090-class card is the default
-starting point; A100 is used only after measured FP64/JAX/NUTS or memory evidence.
-
-```bash
-git clone https://github.com/lanhung/uncertainty.git /root/uncertainty
-cd /root/uncertainty
-
-CONTROL_TAILNET_IP=<CONTROL_IP> \
-RESEARCH_OPS_PORT=8787 \
-WORKER_NAME=uncertainty-train-autodl-01 \
-WORKER_ROLE=train-verify \
-WORKER_INDEX=2 \
-bash scripts/bootstrap_autodl.sh
-```
-
-The two AutoDL roles may be resized or replaced independently. Early, low-load
-work may run serially on one AutoDL instance; confirmatory independence must not
-be claimed when the same environment, model state or unchecked artifact is reused.
-
-## 7. Tailscale behavior on AutoDL
-
-`scripts/bootstrap_worker.sh` supports:
-
-```text
-TAILSCALE_MODE=auto       # default
-TAILSCALE_MODE=kernel     # normal /dev/net/tun device
-TAILSCALE_MODE=userspace  # container fallback using local HTTP/SOCKS proxy
-TAILSCALE_MODE=skip       # only with an explicitly protected endpoint
-```
-
-In `auto`, the script uses kernel networking when an operational Tailscale
-socket is available and otherwise starts userspace networking. Userspace state
-and logs remain under the AutoDL persistent project directory, while the node
-identity is intended to be ephemeral.
-
-Use a tagged ephemeral auth key for short-lived workers. Never commit or persist
-the auth key in the repository. The project bearer token and Tailscale auth key
-are different secrets.
-
-## 8. End-to-end telemetry acceptance test
-
-Run on either AutoDL worker:
+The advertised image and GPU-memory amount do not replace a benchmark. On each
+node:
 
 ```bash
-source /root/autodl-fs/uncertainty/ops/research-ops.env
-cd /root/uncertainty
+source /root/autodl-fs/projects/uncertainty/ops/research-ops.env
+cd /root/autodl-tmp/projects/uncertainty/repo
+
+bash scripts/autodl_node_status.sh
+python scripts/capture_worker_inventory.py \
+  --node-name <STABLE_PHYSICAL_NODE_NAME> \
+  --region <REGION> \
+  --output /root/autodl-fs/projects/uncertainty/artifacts/worker-inventory.json
+```
+
+Record:
+
+- actual GPU name, UUID, memory and driver;
+- PyTorch/CUDA compatibility;
+- 25-vCPU topology rather than only the count;
+- available RAM and local/persistent disk space;
+- cold/warm solver runtime and FP64 behavior;
+- interference from other projects.
+
+Do not modify the base Python environment globally. Scientific dependencies
+belong in a project-specific locked environment.
+
+## 12. Cross-project resource lease
+
+Before an exclusive workload, acquire a host-level lease.
+
+### GPU task
+
+```bash
+source /root/autodl-fs/projects/uncertainty/ops/research-ops.env
+cd /root/autodl-tmp/projects/uncertainty/repo
 mkdir -p logs
-nohup python worker/run_with_heartbeat.py \
-  --task P0-ops-e2e --total 4 --unit checks --resume \
-  -- python -u scripts/ops_demo_job.py --steps 4 --sleep 10 \
+
+nohup scripts/with_resource_lease.sh \
+  --resource gpu0 --project uncertainty --task <TASK_ID> -- \
+  python worker/run_with_heartbeat.py \
+    --task <TASK_ID> --total <N> --unit <UNIT> --resume -- \
+    <ACTUAL_COMMAND> \
+  > logs/<TASK_ID>.log 2>&1 &
+```
+
+### CPU-heavy solver task
+
+```bash
+nohup scripts/with_resource_lease.sh \
+  --resource cpu-heavy --project uncertainty --task <TASK_ID> -- \
+  env OMP_NUM_THREADS=22 MKL_NUM_THREADS=22 \
+  python worker/run_with_heartbeat.py \
+    --task <TASK_ID> --total <N> --unit points --resume -- \
+    <ACTUAL_SOLVER_COMMAND> \
+  > logs/<TASK_ID>.log 2>&1 &
+```
+
+Exit code 75 means another project owns the resource. Do not delete its lock.
+Investigate the metadata under `/var/lock/research-workers/*.json`.
+
+Default policy:
+
+- one project at a time on `gpu0`;
+- one CPU-saturating project at a time under `cpu-heavy`;
+- leave several vCPUs for the operating system, heartbeat and I/O;
+- only share the GPU after an explicit profiling decision.
+
+## 13. End-to-end telemetry acceptance test
+
+On either AutoDL node:
+
+```bash
+source /root/autodl-fs/projects/uncertainty/ops/research-ops.env
+cd /root/autodl-tmp/projects/uncertainty/repo
+mkdir -p logs
+
+nohup scripts/with_resource_lease.sh \
+  --resource cpu-heavy --project uncertainty --task P0-ops-e2e -- \
+  python worker/run_with_heartbeat.py \
+    --task P0-ops-e2e --total 4 --unit checks --resume -- \
+    python -u scripts/ops_demo_job.py --steps 4 --sleep 10 \
   > logs/P0-ops-e2e.log 2>&1 &
 ```
 
 Acceptance checks:
 
-1. task becomes `running` and shows the AutoDL worker owner;
-2. progress advances from `PROGRESS` output;
-3. ETA is labelled `measured`, not invented;
-4. task becomes `done` and the metric is visible;
-5. `taskctl snapshot` produces a commit on `ops-status`;
+1. the task becomes `running` and reports the selected physical worker;
+2. progress advances from absolute `PROGRESS` output;
+3. ETA is labelled `measured`, never fabricated;
+4. the task becomes `done` and the metric is visible;
+5. `taskctl snapshot` creates an `ops-status` commit;
 6. closing SSH does not stop the job;
-7. shutting down the AutoDL instance after completion does not remove ledger state;
-8. a resumable test can restore from `/root/autodl-fs/uncertainty`.
+7. the lease metadata disappears after completion;
+8. a resumable test restores from the project persistent directory;
+9. stopping the AutoDL instance does not remove Vultr ledger state.
 
-For stale detection, run a longer demo, terminate the wrapper process and wait
-past `stale_after_s`; never run this test on a scientific production task.
+Use only a demo task for stale testing.
 
-## 9. AutoDL shutdown checklist
+## 14. Storage and cross-region transfer
 
-Before stopping or releasing either AutoDL machine:
+AutoDL file storage is shared among instances **in the same region**. Workers in
+different regions must be treated as separate persistent stores.
+
+Use:
+
+- GitHub: code, small configs, ADRs, manifests and checksums;
+- `/root/autodl-fs/projects/uncertainty`: durable state local to that region;
+- `/root/autodl-tmp/projects/uncertainty`: high-I/O cache and replaceable data;
+- approved S3/OSS/R2/B2/rclone data layer: large immutable cross-region shards;
+- Vultr: ledger, small reports and recovery indices only.
+
+Do not create AutoDL-to-AutoDL SSH trust merely to transfer files. Do not route
+large solver datasets through Vultr. Each cross-region object must have a
+checksum, immutable name, manifest, solver/config hash and origin region.
+
+## 15. Shutdown checklist for a shared AutoDL physical node
+
+A project can finish while another project still uses the machine. Therefore the
+shutdown decision is node-level.
+
+For uncertainty:
 
 ```bash
-source /root/autodl-fs/uncertainty/ops/research-ops.env
-cd /root/uncertainty
+source /root/autodl-fs/projects/uncertainty/ops/research-ops.env
+cd /root/autodl-tmp/projects/uncertainty/repo
 python taskctl/taskctl.py show
+bash scripts/autodl_node_status.sh
 sync
 ```
 
-Then confirm:
+Confirm:
 
-- no task is falsely left `running`;
-- each incomplete task has a tested checkpoint and a recorded resume command;
-- logs needed for diagnosis are copied to persistent storage;
-- manifests and checksums exist for completed shards;
-- irreplaceable files do not exist only under `/root/autodl-tmp`;
-- dashboard messages do not expose secrets or private absolute paths.
+- no uncertainty task is falsely `running`;
+- every incomplete uncertainty task has a tested checkpoint and resume command;
+- required logs, manifests and checksums are persistent;
+- no irreplaceable file exists only under `/root/autodl-tmp`;
+- `/var/lock/research-workers` has no lease for **any** project;
+- `nvidia-smi` and process inspection show no other project's active work;
+- the AutoDL provider console confirms no collaborator expects the instance.
 
-Only then shut down the AutoDL instance. The Vultr control service remains online.
+Only then shut down or release the physical instance.
 
-## 10. GitHub Pages
-
-Configure repository Settings → Pages:
-
-```text
-Source branch: ops-status
-Folder: /docs
-```
-
-The public page contains generated task titles, messages, metrics and artifact
-links. Before enabling it, confirm those fields contain no secrets, private
-paths, unpublished sensitive results or collaboration-only information. The
-live Tailscale URL remains the authoritative control view.
-
-## 11. Starting scientific execution
+## 16. Starting scientific execution
 
 Do not jump directly to Pilot-10k. Follow the board order:
 
 1. migrate and reproduce existing code;
 2. competitor matrix and data/neutron preregistration;
-3. solver build and benchmark;
+3. solver build and real hardware benchmark;
 4. Track A MCMC corrections in parallel;
 5. unified rate/solver adapter;
 6. 64-point Jacobian/Fisher gate;
 7. only under G1/G2/G3, Pilot-1k and then Pilot-10k.
 
 A worker command must use a task ID already present in `plan/plan.yaml`. The
-server rejects unknown tasks and incomplete dependencies before launching the
-expensive child command.
+server rejects unknown tasks and unmet dependencies before launching expensive
+work.
 
-## 12. Recovery
+## 17. Recovery
 
 ### Uncertainty control service down
 
@@ -323,28 +576,42 @@ systemctl restart research-ops-uncertainty
 journalctl -u research-ops-uncertainty -n 200 --no-pager
 ```
 
-SQLite state is in `/var/lib/research-ops/uncertainty`. Restore only this
-project's directory before replacing its service. Other project instances on the
-same Vultr host must not be stopped or overwritten.
+Restore only `/var/lib/research-ops/uncertainty`; do not stop or overwrite other
+project services on the shared Vultr host.
 
-### AutoDL worker reclaimed or disconnected
+### AutoDL worker rebuilt or endpoint changed
 
-- dashboard changes `running` to derived `stale` after the configured interval;
-- inspect persistent log/checkpoint/outbox directories;
-- create or restart a suitable AutoDL worker;
-- run the same task with `--resume`;
-- the new `run_id` supersedes delayed heartbeats from the old attempt.
+1. verify the new provider instance and SSH host fingerprint;
+2. remove only the stale `[host]:port` known-host entry;
+3. reinstall that node's public key;
+4. clone/rebuild the uncertainty scratch checkout;
+5. re-bootstrap using the same stable logical node name or a documented new one;
+6. resume from persistent/object-storage checkpoint with a new `run_id`.
+
+### Tailscale userspace daemon down
+
+Inspect:
+
+```text
+/root/autodl-fs/_research-host/tailscale/tailscaled.log
+/root/autodl-fs/_research-host/tailscale/tailscaled.pid
+/root/autodl-fs/_research-host/tailscale/tailscaled.sock
+```
+
+Restart through `scripts/bootstrap_autodl.sh`; do not launch one daemon per
+project on the same physical node.
 
 ### Snapshot push failure
 
-The live ledger continues to operate. Inspect `/root/uncertainty-status`, the
-control host's GitHub SSH credentials and the project-specific systemd journal;
-never force-push over unexplained remote changes.
+The live ledger remains authoritative. Inspect `/root/uncertainty-status`, the
+repo-scoped GitHub credential and `research-ops-uncertainty` journal. Never
+force-push over unexplained remote changes.
 
-### Project token compromise
+### Token compromise
 
-1. stop `research-ops-uncertainty.service`, not every research service;
-2. generate a new token in `/etc/research-ops/uncertainty.env`;
-3. update the uncertainty env file on each active AutoDL worker;
-4. restart this project service and workers;
-5. review this project's logs and ledger for unauthorized events.
+1. stop only `research-ops-uncertainty.service`;
+2. rotate the token in `/etc/research-ops/uncertainty.env`;
+3. replace the uncertainty env file on active AutoDL workers;
+4. restart the uncertainty service;
+5. review this project's ledger and logs;
+6. do not rotate unrelated project tokens unless separately affected.

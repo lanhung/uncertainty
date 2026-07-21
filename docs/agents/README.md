@@ -10,7 +10,7 @@
 2. [`EXECUTION.md`](EXECUTION.md)：角色 A00–A12、Phase 0–9、预注册、Fisher Gate、solver/rate matrix 与 Nature Route Gate；
 3. [`COMPUTE_VALIDATION.md`](COMPUTE_VALIDATION.md)：共享 Vultr 控制宿主机、按需 AutoDL/CPU/GPU 资源、成本账本、统计校准、物理验证与独立复现标准；
 4. [`PUBLICATION.md`](PUBLICATION.md)：Nature Astronomy、Nature Computational Science、Nature Machine Intelligence、Nature Communications 路线，里程碑、首个 14 天和发布检查；
-5. [`/AGENTS-ops.md`](../../AGENTS-ops.md)：多项目 Vultr 控制宿主机、AutoDL/HPC worker、任务 ledger、heartbeat、checkpoint、detached 运行、状态快照和密钥安全。
+5. [`/AGENTS-ops.md`](../../AGENTS-ops.md)：多项目 Vultr 控制宿主机、跨项目共享 AutoDL/HPC worker、任务 ledger、heartbeat、checkpoint、detached 运行、资源 lease、状态快照和密钥安全。
 
 发生冲突时，以根级 `AGENTS.md` 为准。任何分卷都不得自行降低预注册、校准、独立验证、停止条件或资源 Gate。预计超过 60 秒的任务还必须遵守 `AGENTS-ops.md`；不得以未读取运行规范为理由把进度留在 Codex、SSH 或 tmux 会话中。
 
@@ -36,5 +36,6 @@
 ## 当前重要决策
 
 - [`ADR-0002-ode-compute-model.md`](../decisions/ADR-0002-ode-compute-model.md)：解释为什么项目的高保真核心仍是大量 BBN ODE/反应网络求解，以及为什么执行上不应采用盲目的百维暴力采样；
-- [`ADR-0003-research-ops-control-plane.md`](../decisions/ADR-0003-research-ops-control-plane.md)：规定共享 Vultr 上的项目隔离控制实例、弹性 AutoDL worker、独立 `ops-status` 分支与长任务 heartbeat/checkpoint 协议；
-- [`../ops/CLUSTER_RUNBOOK.md`](../ops/CLUSTER_RUNBOOK.md)：共享控制宿主机与两个按需 AutoDL 角色的部署、验收、关机、恢复和科学任务启动顺序。
+- [`ADR-0003-research-ops-control-plane.md`](../decisions/ADR-0003-research-ops-control-plane.md)：规定项目 ledger、独立 `ops-status` 分支与长任务 heartbeat/checkpoint 协议；
+- [`ADR-0004-shared-control-elastic-autodl.md`](../decisions/ADR-0004-shared-control-elastic-autodl.md)：规定一台共享轻量 Vultr 控制宿主机、两台跨项目弹性 AutoDL 物理 worker、host-level Tailscale、node-specific SSH key、显式项目环境和跨项目资源 lease；
+- [`../ops/CLUSTER_RUNBOOK.md`](../ops/CLUSTER_RUNBOOK.md)：共享控制宿主机与两个弹性 AutoDL 节点的部署、SSH、验收、关机、恢复和科学任务启动顺序。
