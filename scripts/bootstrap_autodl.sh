@@ -9,7 +9,22 @@ export REPO_URL="${REPO_URL:-https://github.com/lanhung/uncertainty.git}"
 
 AUTODL_NODE_NAME="${AUTODL_NODE_NAME:-$(hostname -s)}"
 AUTODL_REGION="${AUTODL_REGION:-unknown}"
-HOST_STATE_ROOT="${AUTODL_HOST_STATE_ROOT:-/root/autodl-fs/_research-host}"
+[[ "$AUTODL_NODE_NAME" =~ ^[A-Za-z0-9][A-Za-z0-9_.-]{0,63}$ ]] || {
+  echo "ERROR: AUTODL_NODE_NAME must use only letters, digits, dot, underscore or hyphen" >&2
+  exit 1
+}
+
+[ -d /root/autodl-fs ] || {
+  echo "ERROR: /root/autodl-fs is not mounted. Initialize AutoDL file storage in this region and restart the instance." >&2
+  exit 1
+}
+[ -d /root/autodl-tmp ] || {
+  echo "ERROR: /root/autodl-tmp is unavailable. Attach/initialize the AutoDL local data disk before bootstrap." >&2
+  exit 1
+}
+
+HOST_PERSIST_ROOT="${AUTODL_HOST_STATE_ROOT:-/root/autodl-fs/_research-host/${AUTODL_NODE_NAME}}"
+HOST_RUNTIME_ROOT="${AUTODL_HOST_RUNTIME_ROOT:-/root/autodl-tmp/_research-host/${AUTODL_NODE_NAME}}"
 PERSIST_ROOT="${AUTODL_PERSIST_ROOT:-/root/autodl-fs/projects/${RESEARCH_OPS_PROJECT}}"
 SCRATCH_ROOT="${AUTODL_SCRATCH_ROOT:-/root/autodl-tmp/projects/${RESEARCH_OPS_PROJECT}}"
 
@@ -18,7 +33,8 @@ export PERSIST_DIR="${PERSIST_DIR:-${PERSIST_ROOT}}"
 export WORKER_ENV_FILE="${WORKER_ENV_FILE:-${PERSIST_ROOT}/ops/research-ops.env}"
 export TAILSCALE_MODE="${TAILSCALE_MODE:-auto}"
 export TAILSCALE_HOSTNAME="${TAILSCALE_HOSTNAME:-${AUTODL_NODE_NAME}}"
-export TAILSCALE_STATE_DIR="${TAILSCALE_STATE_DIR:-${HOST_STATE_ROOT}/tailscale}"
+export TAILSCALE_STATE_DIR="${TAILSCALE_STATE_DIR:-${HOST_PERSIST_ROOT}/tailscale}"
+export TAILSCALE_RUNTIME_DIR="${TAILSCALE_RUNTIME_DIR:-${HOST_RUNTIME_ROOT}/tailscale}"
 export TAILSCALE_PROXY_PORT="${TAILSCALE_PROXY_PORT:-1055}"
 export TAILSCALE_EPHEMERAL="${TAILSCALE_EPHEMERAL:-0}"
 export AUTO_SOURCE_WORKER_ENV="${AUTO_SOURCE_WORKER_ENV:-0}"
@@ -46,7 +62,8 @@ esac
 export WORKER_NAME="${WORKER_NAME:-$DEFAULT_WORKER_NAME}"
 
 mkdir -p \
-  "${HOST_STATE_ROOT}/tailscale" \
+  "${TAILSCALE_STATE_DIR}" \
+  "${TAILSCALE_RUNTIME_DIR}" \
   "${PERSIST_ROOT}/ops" \
   "${PERSIST_ROOT}/checkpoints" \
   "${PERSIST_ROOT}/outbox" \
@@ -55,7 +72,12 @@ mkdir -p \
   "${PERSIST_ROOT}/manifests" \
   "${SCRATCH_ROOT}" \
   "${RESEARCH_WORKER_LOCK_ROOT}"
-chmod 700 "${HOST_STATE_ROOT}" "${PERSIST_ROOT}" "${PERSIST_ROOT}/ops" "${RESEARCH_WORKER_LOCK_ROOT}" 2>/dev/null || true
+chmod 700 \
+  "${HOST_PERSIST_ROOT}" \
+  "${HOST_RUNTIME_ROOT}" \
+  "${PERSIST_ROOT}" \
+  "${PERSIST_ROOT}/ops" \
+  "${RESEARCH_WORKER_LOCK_ROOT}" 2>/dev/null || true
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 exec bash "$SCRIPT_DIR/bootstrap_worker.sh"
