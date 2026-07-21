@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# Bootstrap a project-scoped AutoDL/HPC/VM worker.
+# Bootstrap one project namespace on an AutoDL/HPC/VM worker that may also serve
+# other projects. Tailscale is host-scoped; telemetry/checkpoints are project-scoped.
 set -Eeuo pipefail
 umask 077
 
@@ -15,12 +16,21 @@ CONTROL_TAILNET_IP="${CONTROL_TAILNET_IP:-${VULTR_TAILNET_IP:-}}"
 CONTROL_PORT="${RESEARCH_OPS_PORT:-8787}"
 CONTROL_ENDPOINT="${RESEARCH_OPS_ENDPOINT:-}"
 WORKER_NAME="${WORKER_NAME:-${PROJECT_SLUG}-$(hostname -s)}"
-WORKER_ROLE="${WORKER_ROLE:-worker}"
+WORKER_ROLE="${WORKER_ROLE:-elastic}"
+WORKER_CAPABILITIES="${WORKER_CAPABILITIES:-}"
 WORKER_INDEX="${WORKER_INDEX:-}"
 PERSIST_DIR="${PERSIST_DIR:-/var/lib/research-ops-worker/${PROJECT_SLUG}}"
 WORKER_ENV_FILE="${WORKER_ENV_FILE:-${HOME}/.research-ops-${PROJECT_SLUG}.env}"
+AUTO_SOURCE_WORKER_ENV="${AUTO_SOURCE_WORKER_ENV:-0}"
+RESEARCH_WORKER_LOCK_ROOT="${RESEARCH_WORKER_LOCK_ROOT:-/var/lock/research-workers}"
+
+# A physical worker has one Tailscale identity even when several projects use it.
 TAILSCALE_MODE="${TAILSCALE_MODE:-auto}"
+TAILSCALE_HOSTNAME="${TAILSCALE_HOSTNAME:-$(hostname -s)}"
+TAILSCALE_STATE_DIR="${TAILSCALE_STATE_DIR:-${PERSIST_DIR}/tailscale}"
 TAILSCALE_PROXY_PORT="${TAILSCALE_PROXY_PORT:-1055}"
+TAILSCALE_EPHEMERAL="${TAILSCALE_EPHEMERAL:-0}"
+
 SUDO=""
 if [ "$(id -u)" -ne 0 ]; then SUDO="sudo"; fi
 
@@ -31,19 +41,25 @@ case "$TAILSCALE_MODE" in
   auto|kernel|userspace|skip) ;;
   *) die "TAILSCALE_MODE must be auto, kernel, userspace or skip" ;;
 esac
+case "$AUTO_SOURCE_WORKER_ENV" in 0|1) ;; *) die "AUTO_SOURCE_WORKER_ENV must be 0 or 1" ;; esac
+case "$TAILSCALE_EPHEMERAL" in 0|1) ;; *) die "TAILSCALE_EPHEMERAL must be 0 or 1" ;; esac
 if [ -z "$CONTROL_ENDPOINT" ] && [ -z "$CONTROL_TAILNET_IP" ]; then
   die "set CONTROL_TAILNET_IP or an explicit RESEARCH_OPS_ENDPOINT"
 fi
 
-log "Install minimal worker dependencies"
+log "Install minimal shared-worker dependencies"
 $SUDO apt-get update -y
-$SUDO apt-get install -y python3 git curl ca-certificates
-mkdir -p "$PERSIST_DIR" "$(dirname "$WORKER_ENV_FILE")"
-chmod 700 "$PERSIST_DIR" "$(dirname "$WORKER_ENV_FILE")"
+$SUDO apt-get install -y python3 git curl ca-certificates util-linux
+mkdir -p \
+  "$PERSIST_DIR" \
+  "$(dirname "$WORKER_ENV_FILE")" \
+  "$(dirname "$REPO_DIR")" \
+  "$RESEARCH_WORKER_LOCK_ROOT"
+chmod 700 "$PERSIST_DIR" "$(dirname "$WORKER_ENV_FILE")" "$RESEARCH_WORKER_LOCK_ROOT" 2>/dev/null || true
 
 PROXY_EXPORTS=""
 if [ "$TAILSCALE_MODE" != "skip" ]; then
-  log "Install Tailscale for the ephemeral/replaceable worker"
+  log "Install or reuse the host-scoped Tailscale connection"
   if ! command -v tailscale >/dev/null 2>&1; then
     curl -fsSL https://tailscale.com/install.sh | sh
   fi
@@ -66,23 +82,28 @@ if [ "$TAILSCALE_MODE" != "skip" ]; then
   if [ "$TAILSCALE_MODE" = "kernel" ]; then
     if ! tailscale ip -4 >/dev/null 2>&1; then
       if [ -n "${TAILSCALE_AUTHKEY:-}" ]; then
-        $SUDO tailscale up --auth-key="$TAILSCALE_AUTHKEY" --hostname="$WORKER_NAME"
+        $SUDO tailscale up --auth-key="$TAILSCALE_AUTHKEY" --hostname="$TAILSCALE_HOSTNAME"
       else
         echo "Tailscale needs authentication; follow the login URL below."
-        $SUDO tailscale up --hostname="$WORKER_NAME"
+        $SUDO tailscale up --hostname="$TAILSCALE_HOSTNAME"
       fi
     fi
   else
-    TS_DIR="${PERSIST_DIR}/tailscale"
+    TS_DIR="$TAILSCALE_STATE_DIR"
     TS_SOCKET="${TS_DIR}/tailscaled.sock"
     TS_PID_FILE="${TS_DIR}/tailscaled.pid"
     TS_LOG="${TS_DIR}/tailscaled.log"
+    TS_STATE="${TS_DIR}/tailscaled.state"
+    if [ "$TAILSCALE_EPHEMERAL" = "1" ]; then TS_STATE="mem:"; fi
     mkdir -p "$TS_DIR"
-    if [ ! -f "$TS_PID_FILE" ] || ! kill -0 "$(cat "$TS_PID_FILE" 2>/dev/null || true)" 2>/dev/null; then
+    chmod 700 "$TS_DIR"
+
+    existing_pid="$(cat "$TS_PID_FILE" 2>/dev/null || true)"
+    if [ -z "$existing_pid" ] || ! kill -0 "$existing_pid" 2>/dev/null || [ ! -S "$TS_SOCKET" ]; then
       rm -f "$TS_SOCKET" "$TS_PID_FILE"
       nohup tailscaled \
         --tun=userspace-networking \
-        --state=mem: \
+        --state="$TS_STATE" \
         --socket="$TS_SOCKET" \
         --socks5-server="127.0.0.1:${TAILSCALE_PROXY_PORT}" \
         --outbound-http-proxy-listen="127.0.0.1:${TAILSCALE_PROXY_PORT}" \
@@ -97,10 +118,10 @@ if [ "$TAILSCALE_MODE" != "skip" ]; then
     if ! tailscale --socket="$TS_SOCKET" ip -4 >/dev/null 2>&1; then
       if [ -n "${TAILSCALE_AUTHKEY:-}" ]; then
         tailscale --socket="$TS_SOCKET" up \
-          --auth-key="$TAILSCALE_AUTHKEY" --hostname="$WORKER_NAME"
+          --auth-key="$TAILSCALE_AUTHKEY" --hostname="$TAILSCALE_HOSTNAME"
       else
         echo "Tailscale userspace mode needs authentication; follow the login URL below."
-        tailscale --socket="$TS_SOCKET" up --hostname="$WORKER_NAME"
+        tailscale --socket="$TS_SOCKET" up --hostname="$TAILSCALE_HOSTNAME"
       fi
     fi
     PROXY_EXPORTS="$(cat <<EOF
@@ -118,7 +139,7 @@ if [ -z "$CONTROL_ENDPOINT" ]; then
   CONTROL_ENDPOINT="http://${CONTROL_TAILNET_IP}:${CONTROL_PORT}"
 fi
 
-log "Clone or refresh the ${PROJECT_SLUG} repository"
+log "Clone or refresh the ${PROJECT_SLUG} repository namespace"
 if [ ! -d "$REPO_DIR/.git" ]; then
   if [ -e "$REPO_DIR" ] && [ -n "$(find "$REPO_DIR" -mindepth 1 -maxdepth 1 -print -quit 2>/dev/null)" ]; then
     die "$REPO_DIR exists and is not an empty Git repository"
@@ -140,21 +161,29 @@ if [ -z "$TOKEN" ]; then
 fi
 [ -n "$TOKEN" ] || die "empty token"
 
-log "Persist project-scoped worker telemetry settings"
+log "Persist only this project's telemetry and checkpoint settings"
 cat > "$WORKER_ENV_FILE" <<EOF
 export RESEARCH_OPS_PROJECT="${PROJECT_SLUG}"
 export RESEARCH_OPS_ENDPOINT="${CONTROL_ENDPOINT}"
 export RESEARCH_OPS_TOKEN="${TOKEN}"
 export RESEARCH_OPS_OWNER="${WORKER_NAME}"
+export RESEARCH_OPS_WORKER_ROLE="${WORKER_ROLE}"
+export RESEARCH_OPS_WORKER_CAPABILITIES="${WORKER_CAPABILITIES}"
 export RESEARCH_OPS_STATE_DIR="${PERSIST_DIR}"
 export RESEARCH_OPS_OUTBOX="${PERSIST_DIR}/outbox"
 export RESEARCH_OPS_CHECKPOINT_DIR="${PERSIST_DIR}/checkpoints"
 export RESEARCH_OPS_RUN_DIR="${PERSIST_DIR}/runs"
+export RESEARCH_WORKER_LOCK_ROOT="${RESEARCH_WORKER_LOCK_ROOT}"
 ${PROXY_EXPORTS}
 EOF
 chmod 600 "$WORKER_ENV_FILE"
-SOURCE_LINE="source ${WORKER_ENV_FILE}"
-grep -qF "$SOURCE_LINE" "$HOME/.bashrc" 2>/dev/null || echo "$SOURCE_LINE" >> "$HOME/.bashrc"
+
+# Shared workers must not globally source every project's token. Explicit source
+# is the default; AUTO_SOURCE_WORKER_ENV=1 is reserved for a dedicated worker.
+if [ "$AUTO_SOURCE_WORKER_ENV" = "1" ]; then
+  SOURCE_LINE="source ${WORKER_ENV_FILE}"
+  grep -qF "$SOURCE_LINE" "$HOME/.bashrc" 2>/dev/null || echo "$SOURCE_LINE" >> "$HOME/.bashrc"
+fi
 # shellcheck disable=SC1090
 source "$WORKER_ENV_FILE"
 
@@ -165,27 +194,29 @@ python taskctl/taskctl.py show
 if [ -n "$WORKER_INDEX" ]; then
   python taskctl/taskctl.py progress P0-tailnet \
     --current "$((WORKER_INDEX + 1))" --total 3 \
-    --message "${WORKER_NAME} joined from ${WORKER_ROLE}" --metric "role=${WORKER_ROLE}"
+    --message "${WORKER_NAME} joined as elastic role=${WORKER_ROLE}"
   python taskctl/taskctl.py start P0-worker-bootstrap --total 2 --unit workers --force || true
   python taskctl/taskctl.py progress P0-worker-bootstrap \
     --current "$WORKER_INDEX" --total 2 \
-    --message "${WORKER_NAME} (${WORKER_ROLE}) bootstrapped"
+    --message "${WORKER_NAME} role=${WORKER_ROLE}; ${WORKER_CAPABILITIES:-capabilities-not-recorded}"
 fi
 
 cat <<EOF
 
-Worker ready: ${WORKER_NAME} (${WORKER_ROLE})
-Project:      ${PROJECT_SLUG}
-Repository:   ${REPO_DIR}
-Control API:  ${CONTROL_ENDPOINT}
-Persistent telemetry/checkpoints: ${PERSIST_DIR}
+Worker project namespace ready: ${WORKER_NAME}
+Project:       ${PROJECT_SLUG}
+Logical role:  ${WORKER_ROLE} (may change between tasks)
+Repository:    ${REPO_DIR}
+Control API:   ${CONTROL_ENDPOINT}
+Persistent project state/checkpoints: ${PERSIST_DIR}
 Environment file: ${WORKER_ENV_FILE}
+Tailscale host identity: ${TAILSCALE_HOSTNAME}
 Tailscale mode: ${TAILSCALE_MODE}
+Cross-project lock root: ${RESEARCH_WORKER_LOCK_ROOT}
 
-Example detached task:
-  cd ${REPO_DIR}
-  nohup python worker/run_with_heartbeat.py \
-    --task P0-ops-e2e --total 4 --unit checks --resume \
-    -- python -u scripts/ops_demo_job.py --steps 4 \
-    > logs/P0-ops-e2e.log 2>&1 &
+Activate this project explicitly in each shell:
+  source ${WORKER_ENV_FILE}
+
+Do not add every project env file to .bashrc on a shared AutoDL instance.
+Use scripts/with_resource_lease.sh before exclusive GPU or CPU-heavy work.
 EOF
