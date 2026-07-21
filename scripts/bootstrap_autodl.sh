@@ -8,7 +8,7 @@ export REPO_URL="${REPO_URL:-https://github.com/lanhung/uncertainty.git}"
 export REPO_DIR="${REPO_DIR:-/root/${RESEARCH_OPS_PROJECT}}"
 
 PERSIST_ROOT="${AUTODL_PERSIST_ROOT:-/root/autodl-fs/${RESEARCH_OPS_PROJECT}}"
-export PERSIST_DIR="${PERSIST_DIR:-${PERSIST_ROOT}/ops}"
+export PERSIST_DIR="${PERSIST_DIR:-${PERSIST_ROOT}}"
 export WORKER_ENV_FILE="${WORKER_ENV_FILE:-${PERSIST_ROOT}/ops/research-ops.env}"
 export TAILSCALE_MODE="${TAILSCALE_MODE:-auto}"
 
@@ -28,9 +28,11 @@ export WORKER_NAME="${WORKER_NAME:-$DEFAULT_WORKER_NAME}"
 mkdir -p \
   "${PERSIST_ROOT}/ops" \
   "${PERSIST_ROOT}/checkpoints" \
+  "${PERSIST_ROOT}/outbox" \
+  "${PERSIST_ROOT}/runs" \
   "${PERSIST_ROOT}/artifacts" \
   "/root/autodl-tmp/${RESEARCH_OPS_PROJECT}"
-chmod 700 "${PERSIST_ROOT}/ops"
+chmod 700 "${PERSIST_ROOT}" "${PERSIST_ROOT}/ops"
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 exec bash "$SCRIPT_DIR/bootstrap_worker.sh"
