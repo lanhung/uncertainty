@@ -236,6 +236,8 @@ def run_w0_linx(
     failures = 0
     scalar_durations: list[float] = []
     maximum_absolute_repeat_drift = 0.0
+    maximum_absolute_repeat_drift_by_abundance = {key: 0.0 for key in reference}
+    batch_reference: dict[str, float] | None = None
     scalar_repetitions = repetitions if 1 in batch_sizes else 0
     for repetition in range(scalar_repetitions):
         started = time.perf_counter()
@@ -248,6 +250,11 @@ def run_w0_linx(
                 maximum_absolute_repeat_drift,
                 *(abs(values[key] - reference[key]) for key in reference),
             )
+            for key in reference:
+                maximum_absolute_repeat_drift_by_abundance[key] = max(
+                    maximum_absolute_repeat_drift_by_abundance[key],
+                    abs(values[key] - reference[key]),
+                )
             successful_points = 1
         except Exception as exc:  # pragma: no cover - exercised on worker failures
             failures += 1
@@ -316,10 +323,17 @@ def run_w0_linx(
                     )
                 for row in matrix:
                     values = linx_abundances(row.tolist(), reference["Neff"])
+                    if batch_reference is None:
+                        batch_reference = values
                     maximum_absolute_repeat_drift = max(
                         maximum_absolute_repeat_drift,
                         *(abs(values[key] - reference[key]) for key in reference),
                     )
+                    for key in reference:
+                        maximum_absolute_repeat_drift_by_abundance[key] = max(
+                            maximum_absolute_repeat_drift_by_abundance[key],
+                            abs(values[key] - reference[key]),
+                        )
                 successful_points = native_batch_size
             except Exception as exc:  # pragma: no cover - exercised on worker failures
                 failures += 1
@@ -354,6 +368,7 @@ def run_w0_linx(
         timings[f"warm_batch_{native_batch_size}"] = summarize(batch_durations)
     summary = {
         "abundances": reference,
+        "batch_reference_abundances": batch_reference,
         "batch_compile_and_first_solve_seconds": batch_compile_seconds,
         "cold_import_seconds": import_seconds,
         "cold_solve_seconds": cold_seconds,
@@ -366,7 +381,11 @@ def run_w0_linx(
         "jax_x64": bool(jax.config.x64_enabled),
         "load_provenance": load_provenance,
         "maximum_absolute_repeat_drift": maximum_absolute_repeat_drift,
+        "maximum_absolute_repeat_drift_by_abundance": (maximum_absolute_repeat_drift_by_abundance),
         "network": "key_PRIMAT_2023",
+        "numerical_consistency_status": (
+            "exact_repeat" if maximum_absolute_repeat_drift == 0.0 else "batch_discrepancy_open"
+        ),
         "timings_seconds": timings,
     }
     measured_seconds = (
