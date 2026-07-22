@@ -1,0 +1,219 @@
+schema_version: 1
+contract_id: WEAK-PRIOR-v1
+task_id: UQ0-WEAK-PRIOR
+decision_date_utc: "2026-07-23"
+status: implementation_contract_frozen_scientific_signoff_pending
+scientific_readiness: not_ready
+production_use: prohibited_pending_signoff_and_numerical_regression
+
+canonical_variables:
+  tau_n_seconds:
+    physical_quantity: free_neutron_lifetime
+    units: s
+    registry: configs/physics/neutron_lifetime_v1.yaml
+    primary_scenario: N0
+    mandatory_robustness_scenarios: [N1, N2, N3]
+    ordinary_thermonuclear_rate: false
+  weak_theory_normalization:
+    physical_quantity: residual_n_to_p_weak_theory_normalization
+    canonical_name: w_weak_norm
+    units: dimensionless
+    status: fixed_not_sampled_no_reviewed_prior_registered
+    fiducial: 1.0
+    ordinary_thermonuclear_rate: false
+    interpretation: >-
+      A future nuisance for residual weak-theory normalization or correction
+      uncertainty after conditioning on tau_n. It is not an alias for tau_n,
+      tau_n_fac, 1/tau_n, a solver weak-rate flag or an interpolation grid.
+    activation_requirements:
+      - reviewed_weak_theory_covariance_or_likelihood
+      - explicit_orthogonalization_against_tau_n
+      - A00_scientific_signoff
+      - independent_weak_physics_signoff
+
+sampling_contract:
+  active_R0_continuous_weak_nuisances: [tau_n_seconds]
+  inactive_R0_weak_nuisances: [w_weak_norm]
+  tau_n_draw_owner: project_adapter
+  solver_native_tau_n_sampling: disabled
+  weak_theory_normalization_sampling: disabled
+  invariant: >-
+    Each draw supplies exactly one canonical tau_n_seconds value. The adapter
+    performs exactly one registered conversion and the solver applies exactly
+    one lifetime-dependent weak-rate normalization.
+
+solver_mappings:
+  LINX:
+    baseline_id: W0-LINX
+    repository: https://github.com/cgiovanetti/LINX
+    revision: ec2e9d2ca455e8204137e884da29f5dd13a638fa
+    network_scope: key_PRIMAT_2023_or_other_explicitly_registered_network
+    native_parameter: tau_n_fac
+    native_units: dimensionless
+    canonical_to_native:
+      kind: ratio_to_frozen_reference
+      formula: tau_n_fac_equals_tau_n_seconds_divided_by_reference_tau_n_seconds
+      reference_tau_n_seconds: 879.4
+    native_effect: >-
+      Dimensionless n-to-p and p-to-n rate tables are each divided once by
+      const.tau_n * tau_n_fac inside NuclearRates.__call__.
+    required_fixed_controls:
+      me: linx.const.me
+    weak_theory_normalization_mapping:
+      status: unsupported_and_inactive
+      rule: do_not_prescale_weak_rate_tables
+    adapter_rules:
+      - Pass tau_n variation only through tau_n_fac.
+      - Do not pre-scale nTOp_frwrd_vec or nTOp_bkwrd_vec by tau_n.
+      - Keep me at linx.const.me because varying me adds an implicit lifetime factor.
+      - Do not sample the upstream const.sigma_tau_n prior.
+    source_audit_status: complete
+    numerical_regression_status: pending_UQ0_NUISANCE_ADAPTER
+    source_evidence:
+      - path: linx/const.py
+        git_blob: 39d1a7541f6faf5fd456fd12ca1b38e1fc25e2d2
+        sha256: a1e8d891928e97137a3b96e7990719eea96b15d3533b211e19f5519371fe4429
+        line_span: 61-63
+        evidence: frozen_reference_tau_n_is_879_4_seconds
+      - path: linx/abundances.py
+        git_blob: 5f96d1a618c3d4658c12b9647817781ebfca76fb
+        sha256: 536c25626e1e6ada4d515c32893b35a2ea22f93b0f6e758f68bd89dbecd01987
+        line_span: 153-155,221-223,302-311
+        evidence: tau_n_fac_interface_and_me_dependent_multiplier
+      - path: linx/nuclear.py
+        git_blob: f311f5a069ebedf1dfe00e424cb4058d699dacd5
+        sha256: b969043f545cfeddf41d4c3c9c376f9dfb12a52ba67cd2472f0f324f2ee126b8
+        line_span: 155-203
+        evidence: both_weak_rate_directions_divided_once_by_const_tau_n_times_tau_n_fac
+
+  PRyMordial:
+    baseline_id: W1-PRYM
+    repository: https://github.com/vallima/PRyMordial
+    revision: 725d8a8db3ad5ea2630580d825c9d0d69ed76533
+    network_scope: small_12_reaction_primat_like
+    native_parameter: tau_n
+    native_units: solver_second
+    canonical_to_native:
+      kind: direct_seconds_times_solver_unit
+      formula: tau_n_equals_tau_n_seconds_times_PRyM_init_second
+    native_effect: >-
+      With tau_n_flag true, PRyMordial computes NormWeakRates = 1/(Fn*tau_n)
+      and multiplies each raw n-to-p and p-to-n rate by that normalization.
+    required_fixed_controls:
+      tau_n_flag: true
+      compute_nTOp_flag: true
+      NP_nTOp_flag: false
+    weak_theory_normalization_mapping:
+      status: unsupported_and_inactive
+      rule: >-
+        tau_n_flag selects either lifetime normalization or the alternative
+        GF/Vud/gA absolute normalization; those branches are model choices,
+        not two simultaneous nuisances.
+    adapter_rules:
+      - Set tau_n before constructing PRyMclass.
+      - Recompute or reload raw weak rates through the registered solver path.
+      - Keep tau_n_flag true for NEUTRON-v1 scenarios.
+      - Do not modify NormWeakRates independently after setting tau_n.
+      - Do not enable NP_nTOp while w_weak_norm is inactive.
+    source_audit_status: complete
+    numerical_regression_status: pending_UQ0_NUISANCE_ADAPTER
+    source_evidence:
+      - path: PRyM/PRyM_init.py
+        git_blob: 3186476e6bd62d29cbf8c143f4b305f08e7754cd
+        sha256: 7b52cdd4cf7a7c39082d6cdf4a2e4f3b67458dc20d6ff9f07c2b488ef1819e2f
+        line_span: 84-96,135-143
+        evidence: lifetime_normalization_flag_and_native_tau_n_default
+      - path: PRyM/PRyM_main.py
+        git_blob: b407438ad056ef3a45b1c650b2d7da5dc620fa91
+        sha256: 98f0724f27ace2927d38c3eec615def05bfbfd9c1c9cc09cfa91470417b3451f
+        line_span: 306-342,467-570
+        evidence: mutually_exclusive_normalization_branches_and_single_rate_multiplication
+
+  PRIMAT:
+    baseline_id: W2-PRIMAT
+    repository: https://github.com/CyrilPitrou/primat
+    revision: 21ff8f39fa18e3937e9fdf386cfa982361bfdfce
+    network_scope: small
+    native_parameter: tau_n
+    native_units: s
+    canonical_to_native:
+      kind: direct_seconds
+      formula: tau_n_equals_tau_n_seconds
+    native_effect: >-
+      With tau_n_normalization true, raw cached weak rates are in units of
+      1/tau_n and are multiplied once by NormWeakRates = 1/tau_n. The raw
+      cache is tau_n-independent.
+    required_fixed_controls:
+      tau_n_normalization: true
+      std_tau_n: 0.0
+      native_mc: false
+    weak_theory_normalization_mapping:
+      status: unsupported_and_inactive
+      rule: >-
+        tau_n_normalization false selects a GF/Vud/gA absolute-normalization
+        branch where tau_n does not control the weak-rate normalization.
+    adapter_rules:
+      - Pass explicit tau_n to each deterministic run_bbn call.
+      - Set std_tau_n to zero whenever a solver instance can invoke native MC.
+      - Do not combine project-level tau_n draws with primat.mc_uncertainty tau_n draws.
+      - Keep tau_n_normalization true for NEUTRON-v1 scenarios.
+      - Do not independently rescale Background.NormWeakRates.
+      - The explicit decay-era 1/tau_n term acts after the thermal BBN eras and is not a second simultaneous weak-rate normalization.
+    source_audit_status: complete
+    numerical_regression_status: pending_UQ0_NUISANCE_ADAPTER
+    source_evidence:
+      - path: primat/config.py
+        git_blob: e519e877eb7b44065bd4509b0f6a800622f6bc68
+        sha256: ec3f905975f98d90f976456e2d2827b93e933ba92b9fef16d5f6445421fd2ce2
+        line_span: 164-173
+        evidence: tau_n_normalization_tau_n_and_native_mc_width
+      - path: primat/background.py
+        git_blob: 8b2b28fe66c6a866c5268b172be47059f7f94b88
+        sha256: 72e833045f4c4158c5de0e4411c99913879f1af083822ad085ee4e1a4b05792c
+        line_span: 1066-1120,1310-1353
+        evidence: raw_rate_units_and_exactly_one_normalization_factor
+      - path: primat/main.py
+        git_blob: 13f6c97975eaf4303dfbbdf1372fc981de991649
+        sha256: 5d0a3d5fb68759bfb3346ac07a8d28da3078bc0595db2a4b4d2e71f10f1c5779
+        line_span: 838-887
+        evidence: native_mc_draws_tau_n_and_rescales_NormWeakRates
+      - path: primat/nuclear_network.py
+        git_blob: eb06c89978765d07c68d5678d76a62e5a8d046de
+        sha256: df922a711fc60b5bfd23783d8bacdf3b716803d2eace62f0cb10e8206b874fea
+        line_span: 737-765,836-855
+        evidence: decay_era_uses_disjoint_post_BBN_one_over_tau_n_term
+
+double_counting_guards:
+  forbidden_combinations:
+    - id: D1
+      condition: tau_n_project_draw_and_solver_native_tau_n_draw
+      reason: same_neutron_lifetime_uncertainty_sampled_twice
+    - id: D2
+      condition: tau_n_adapter_mapping_and_manual_weak_rate_prescaling
+      reason: same_lifetime_normalization_applied_twice
+    - id: D3
+      condition: tau_n_and_w_weak_norm_without_reviewed_orthogonalization
+      reason: residual_weak_theory_prior_may_include_lifetime_information
+    - id: D4
+      condition: tau_n_scenario_with_absolute_weak_normalization_branch
+      reason: tau_n_is_ignored_by_that_branch_and_scenario_semantics_are_broken
+  required_manifest_fields:
+    - canonical_tau_n_seconds
+    - neutron_scenario_id
+    - tau_n_draw_owner
+    - solver_native_tau_parameter
+    - solver_native_tau_value
+    - weak_normalization_branch
+    - weak_theory_normalization_status
+    - solver_revision
+    - weak_contract_sha256
+
+validation_state:
+  source_semantics_audited: true
+  N0_N3_registry_consistency_validated: true
+  canonical_mapping_unit_tests: required
+  numerical_central_and_symmetric_regression: pending_UQ0_NUISANCE_ADAPTER
+  A00_scientific_signoff: pending
+  independent_weak_physics_signoff: pending
+  ready_for_UQ0_adapter_implementation: true
+  ready_for_production_labels: false

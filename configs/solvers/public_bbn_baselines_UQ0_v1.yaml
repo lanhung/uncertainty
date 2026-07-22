@@ -1,0 +1,65 @@
+schema_version: 1
+registry_id: PUBLIC-BBN-BASELINES-UQ0-v1
+task_id: UQ0-PUBLIC-SOLVER-BASELINES
+frozen_at_utc: "2026-07-23"
+status: accepted_for_uq0_public_forward_baseline
+accepted_path_count: 3
+
+acceptance_contract:
+  minimum_paths: 3
+  required_primary_outputs: [Y_p, D_over_H]
+  required_evidence:
+    - pinned_public_source_revision
+    - license
+    - pinned_environment
+    - float64_standard_fiducial_execution
+    - structured_failure_ledger
+    - runtime
+    - source_and_config_hashes
+  scope: >-
+    Acceptance establishes executable standard-BBN forward paths for UQ0. It
+    does not accept nuclear-rate nuisance mappings, gradients, posterior
+    fidelity, parameter-region accuracy, or cross-solver agreement.
+
+paths:
+  - path_id: UQ0-S6-LINX-key-PRIMAT-2023-v1
+    matrix_id: S6
+    solver: LINX
+    card: configs/solvers/cards/UQ0-S6-LINX-key-PRIMAT-2023-v1.yaml
+    uq0_accepted: true
+  - path_id: UQ0-S4-PRyMordial-small-PRIMAT-like-v1
+    matrix_id: S4
+    solver: PRyMordial
+    card: configs/solvers/cards/UQ0-S4-PRyMordial-small-PRIMAT-like-v1.yaml
+    uq0_accepted: true
+  - path_id: UQ0-S8-PRIMAT-small-C-v1
+    matrix_id: S8
+    solver: PRIMAT
+    card: configs/solvers/cards/UQ0-S8-PRIMAT-small-C-v1.yaml
+    uq0_accepted: true
+
+shared_contracts:
+  historical_standard_point:
+    path: configs/physics/parameter_schema_standard_bbn_v1.yaml
+    sha256: 61dc9c3ec1fdc9eb455f9ed64ad604a49d801e2b7de361db8db74a883b8c3c9e
+    parameters:
+      omega_b_h2: 0.02237
+      delta_neff: 0.0
+      tau_n_seconds: 878.3
+  output_conventions:
+    Y_p:
+      definition: helium-4 mass fraction at BBN output
+      unit: dimensionless
+    D_over_H:
+      definition: deuterium-to-hydrogen number ratio
+      unit: dimensionless_number_ratio
+  failure_policy: >-
+    Non-finite or exceptional solver output must be rejected and written to a
+    JSON-lines failure ledger; an empty ledger means zero observed failures,
+    not that failures were discarded.
+
+prohibitions:
+  - Do not count the paused W0-W3 standard challenge as a UQ scientific gate.
+  - Do not treat shared or similarly named rate tables as independent nuclear-data evidence.
+  - Do not use the LINX path for gradients or HMC until the separate non-finite gradient failure is resolved.
+  - Do not call any of these paths production-ready before the R0 nuisance adapter and plus/minus regressions pass.
