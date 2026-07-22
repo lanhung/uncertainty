@@ -1,23 +1,24 @@
-# Declarative desired state after the four-abundance JCAP manuscript review.
+# Declarative desired state for the BBN nuclear-rate uncertainty program.
 # Runtime progress, metrics and artifacts are preserved across reconciliation.
-# Conditional Pilot/Nature tasks are intentionally absent until UQ1-GATE-REPORT.
-plan_version: 2
+# Manuscript/SGWB/lithium-no-go tasks are intentionally outside this project.
+# Pilot, full-network and Nature-tier tasks are absent until UQ2-GATE-REPORT.
+plan_version: 3
 project: uncertainty
 updated_at: 2026-07-23
 
 tasks:
   # ----------------------------------------------------------------------
-  # EXEC — completed or essential operations; excluded from science gate
+  # EXEC — retained operations/evidence; excluded from the science gate
   # ----------------------------------------------------------------------
   - id: EXEC-WHY-RUNTIME
-    title: "Complete W0-W3 registered standard-fiducial runtime slices"
+    title: "Complete registered direct-solver standard-fiducial runtime slices"
     phase: EXEC
     weight: 1
     unit: slices
     total: 4
 
   - id: EXEC-ABCMB-CONVERGENCE
-    title: "Execute the frozen ABCMB bundled-LINX convergence V2 cases"
+    title: "Retain completed ABCMB bundled-LINX numerical convergence evidence"
     phase: EXEC
     weight: 1
     unit: cases
@@ -38,7 +39,7 @@ tasks:
     total: 1
 
   # ----------------------------------------------------------------------
-  # P0 — retained completed foundations
+  # P0 — retained foundations and direct-first evidence
   # ----------------------------------------------------------------------
   - id: P0-control-plane
     title: "Deploy the project-isolated research-ops control instance"
@@ -55,14 +56,14 @@ tasks:
     total: 4
 
   - id: P0-code-inventory
-    title: "Audit all located public and private BBNet/SageNet/scientific assets"
+    title: "Audit located solver, rate-table, model and inference assets"
     phase: P0
     weight: 1
     unit: inventories
     total: 1
 
   - id: P0-repo-migrate
-    title: "Import and audit the public BBNet/SageNet source lineages"
+    title: "Import and audit reusable public solver/model source lineages"
     phase: P0
     weight: 2
     unit: source_lineages
@@ -78,166 +79,166 @@ tasks:
     depends_on: [P0-repo-migrate]
 
   - id: P0-LIT-01
-    title: "Freeze the competitor and novelty matrix"
+    title: "Freeze the BBN-UQ competitor and novelty matrix"
     phase: P0
     weight: 2
     unit: baselines
     total: 8
 
+  - id: P0-WHY-NOT-01
+    title: "Complete direct-solver necessity and emulator-economics memo for the UQ workload"
+    phase: P0
+    weight: 2
+    unit: memos
+    total: 1
+    depends_on: [P0-LIT-01]
+
   - id: P0-OBS-01
-    title: "Freeze the future UQ observation registry OBS-v1"
+    title: "Freeze the cosmological inference observation registry OBS-v1"
     phase: P0
     weight: 2
     unit: decisions
     total: 1
 
   - id: P0-NEUTRON-01
-    title: "Freeze neutron-lifetime N0-N3 scenarios"
+    title: "Freeze neutron-lifetime N0-N3 scenarios and weak double-counting rules"
     phase: P0
     weight: 1
     unit: decisions
     total: 1
 
   # ----------------------------------------------------------------------
-  # M0 — immediate JCAP manuscript, release and clean reproduction
+  # UQ0 — self-contained solver and nuisance interface
   # ----------------------------------------------------------------------
-  - id: M0-MANUSCRIPT-REGISTER
-    title: "Register the four-abundance stiff-phase manuscript claims, tables and figures"
-    phase: M0
-    weight: 2
-    unit: dossiers
-    total: 1
-
-  - id: M0-PHYSICS-CONTRACT
-    title: "Freeze kappa10, stiff H(T), SGWB DeltaNeff and reheating parameter semantics"
-    phase: M0
-    weight: 3
-    unit: contracts
-    total: 1
-    depends_on: [M0-MANUSCRIPT-REGISTER]
-
-  - id: M0-DATA-STRATA
-    title: "Separate MANUSCRIPT-OBS-v1 from the future UQ OBS-v1 analysis"
-    phase: M0
-    weight: 2
-    unit: strata
-    total: 2
-    depends_on: [M0-MANUSCRIPT-REGISTER]
-
-  - id: M0-ASSET-HANDOFF
-    title: "Collect BBNet+ weights, scalers, generators, modified solvers, chains and scans"
-    phase: M0
-    weight: 5
-    unit: asset_families
-    total: 12
-    depends_on: [M0-MANUSCRIPT-REGISTER]
-
-  - id: M0-BBNPLUS-PUBLIC-RELEASE
-    title: "Publish or accurately document the four-abundance BBNet+ release and solver assets"
-    phase: M0
-    weight: 4
-    unit: release_components
-    total: 6
-    depends_on: [M0-ASSET-HANDOFF, M0-PHYSICS-CONTRACT]
-
-  - id: M0-REPRO-EMULATOR
-    title: "Reproduce four-abundance accuracy, Schramm slices, timing and SGWB integration"
-    phase: M0
-    weight: 4
-    unit: checks
-    total: 4
-    depends_on: [M0-ASSET-HANDOFF, M0-PHYSICS-CONTRACT]
-
-  - id: M0-REPRO-INFERENCE
-    title: "Reproduce one main posterior, partial likelihood and deterministic no-go diagnostic"
-    phase: M0
-    weight: 5
-    unit: checks
-    total: 5
-    depends_on: [M0-REPRO-EMULATOR, M0-DATA-STRATA]
-
-  - id: M0-SUBMISSION-AUDIT
-    title: "Audit citations, placeholders, convergence, availability statements and result lineage"
-    phase: M0
-    weight: 3
-    unit: audit_sections
-    total: 6
-    depends_on: [M0-BBNPLUS-PUBLIC-RELEASE, M0-REPRO-INFERENCE]
-
-  - id: M0-JCAP-FREEZE
-    title: "Freeze the JCAP submission, tagged software release and Zenodo deposition"
-    phase: M0
-    weight: 2
-    unit: signoffs
-    total: 3
-    depends_on: [M0-SUBMISSION-AUDIT]
-
-  # ----------------------------------------------------------------------
-  # UQ0 — self-contained, decision-focused precheck for the sequel
-  # ----------------------------------------------------------------------
-  - id: UQ0-QUESTION-FREEZE
-    title: "Freeze the nuclear-UQ test of the stiff-phase lithium no-go"
+  - id: UQ0-SCOPE-FREEZE
+    title: "Freeze the BBN nuclear-rate uncertainty question and model ladder"
     phase: UQ0
     weight: 2
     unit: decisions
     total: 1
-    depends_on: [M0-PHYSICS-CONTRACT, M0-DATA-STRATA]
 
-  - id: UQ0-SELF-CONTAINED-SOLVER
-    title: "Establish recovered or clean-room direct four-abundance stiff solver paths"
+  - id: UQ0-PUBLIC-SOLVER-BASELINES
+    title: "Establish at least three pinned self-contained direct BBN solver paths"
     phase: UQ0
     weight: 4
     unit: paths
-    total: 2
-    depends_on: [M0-PHYSICS-CONTRACT, P0-env-lock]
+    total: 3
+    depends_on: [UQ0-SCOPE-FREEZE, P0-env-lock]
 
-  - id: UQ0-CORE6-RATE-REGISTRY
-    title: "Register scalar priors for three deuterium and three lithium-flow reactions"
+  - id: UQ0-R0-RATE-PRIOR
+    title: "Register numerical priors and mappings for the three R0 deuterium rates"
     phase: UQ0
     weight: 4
     unit: reactions
-    total: 6
-    depends_on: [UQ0-QUESTION-FREEZE, UQ0-SELF-CONTAINED-SOLVER]
+    total: 3
+    depends_on: [UQ0-SCOPE-FREEZE, UQ0-PUBLIC-SOLVER-BASELINES]
 
-  - id: UQ0-SCALAR-SMOKE-16
-    title: "Run a 16-point scalar-rate response smoke for the lithium no-go endpoints"
+  - id: UQ0-WEAK-PRIOR
+    title: "Register neutron-lifetime and weak-rate nuisance handling without double counting"
+    phase: UQ0
+    weight: 2
+    unit: contracts
+    total: 1
+    depends_on: [UQ0-SCOPE-FREEZE, P0-NEUTRON-01]
+
+  - id: UQ0-NUISANCE-ADAPTER
+    title: "Implement simulate(theta,z,tau_n,solver,network,precision) for three direct paths"
+    phase: UQ0
+    weight: 5
+    unit: paths
+    total: 3
+    depends_on: [UQ0-PUBLIC-SOLVER-BASELINES, UQ0-R0-RATE-PRIOR, UQ0-WEAK-PRIOR]
+
+  - id: UQ0-PLUSMINUS-REGRESSION
+    title: "Validate central and symmetric rate perturbations with units and structured failures"
     phase: UQ0
     weight: 3
-    unit: points
-    total: 16
-    depends_on: [UQ0-CORE6-RATE-REGISTRY]
+    unit: checks
+    total: 9
+    depends_on: [UQ0-NUISANCE-ADAPTER]
 
   # ----------------------------------------------------------------------
-  # UQ1 — formal gate; active plan stops here until a decision is signed
+  # UQ1 — direct Monte Carlo theoretical bands
   # ----------------------------------------------------------------------
-  - id: UQ1-DIRECT-ECONOMICS
-    title: "Project direct-versus-emulator cost for the manuscript and UQ workloads"
+  - id: UQ1-FIDUCIAL-MC-1K
+    title: "Generate 1,000 direct nuisance draws at the frozen standard-BBN point"
     phase: UQ1
+    weight: 5
+    unit: draws
+    total: 1000
+    depends_on: [UQ0-PLUSMINUS-REGRESSION]
+
+  - id: UQ1-MC-CONVERGENCE
+    title: "Evaluate abundance-band convergence at cumulative nuisance sample counts"
+    phase: UQ1
+    weight: 3
+    unit: checkpoints
+    total: 5
+    depends_on: [UQ1-FIDUCIAL-MC-1K]
+
+  - id: UQ1-SCHRAMM-BANDS
+    title: "Produce solver-grounded central, 68% and 95% theoretical abundance bands"
+    phase: UQ1
+    weight: 4
+    unit: outputs
+    total: 4
+    depends_on: [UQ1-FIDUCIAL-MC-1K, UQ1-MC-CONVERGENCE]
+
+  - id: UQ1-POSTHOC-SIGMA-AUDIT
+    title: "Compare direct abundance distributions with the constant post-hoc theoretical covariance"
+    phase: UQ1
+    weight: 3
+    unit: diagnostics
+    total: 4
+    depends_on: [UQ1-SCHRAMM-BANDS]
+
+  # ----------------------------------------------------------------------
+  # UQ2 — theta dependence and formal production gate
+  # ----------------------------------------------------------------------
+  - id: UQ2-COVARIANCE-SMOKE-16
+    title: "Measure covariance drift, correlations and finite-difference responses at 16 points"
+    phase: UQ2
+    weight: 4
+    unit: points
+    total: 16
+    depends_on: [UQ1-SCHRAMM-BANDS, UQ1-POSTHOC-SIGMA-AUDIT, P0-OBS-01]
+
+  - id: UQ2-POINT-MANIFEST-64
+    title: "Freeze the 64-point standard/posterior/boundary response manifest before execution"
+    phase: UQ2
+    weight: 2
+    unit: manifests
+    total: 1
+    depends_on: [UQ2-COVARIANCE-SMOKE-16]
+
+  - id: UQ2-FISHER64
+    title: "Execute the 64-point nuclear/weak/solver response and Fisher gate"
+    phase: UQ2
+    weight: 5
+    unit: points
+    total: 64
+    depends_on: [UQ2-POINT-MANIFEST-64]
+
+  - id: UQ2-DIRECT-ECONOMICS
+    title: "Project direct Monte Carlo, joint marginalization and SBC workload costs"
+    phase: UQ2
     weight: 2
     unit: workloads
     total: 4
-    depends_on: [M0-REPRO-INFERENCE, UQ0-SELF-CONTAINED-SOLVER]
+    depends_on: [UQ1-FIDUCIAL-MC-1K, P0-WHY-NOT-01]
 
-  - id: UQ1-FISHER64
-    title: "Execute the frozen 64-point scalar nuclear/weak/backend Fisher gate"
-    phase: UQ1
-    weight: 4
-    unit: points
-    total: 64
-    depends_on: [UQ0-SCALAR-SMOKE-16]
-
-  - id: UQ1-GATE-REPORT
-    title: "Issue G0/G1/G2/G3 for no-go robustness and authorize or stop the sequel"
-    phase: UQ1
-    weight: 2
+  - id: UQ2-GATE-REPORT
+    title: "Issue G0/G1/G2/G3 and authorize or stop learned-model production"
+    phase: UQ2
+    weight: 3
     unit: signoffs
     total: 3
-    depends_on: [UQ1-FISHER64, UQ1-DIRECT-ECONOMICS]
+    depends_on: [UQ2-FISHER64, UQ2-DIRECT-ECONOMICS]
 
-  - id: UQ1-NEXT-PLAN
-    title: "Reconcile a conditional Pilot plan only after the signed Gate decision"
-    phase: UQ1
+  - id: UQ2-NEXT-PLAN
+    title: "Add conditional emulator/full-network tasks only after the signed Gate decision"
+    phase: UQ2
     weight: 1
     unit: plans
     total: 1
-    depends_on: [UQ1-GATE-REPORT]
+    depends_on: [UQ2-GATE-REPORT]
