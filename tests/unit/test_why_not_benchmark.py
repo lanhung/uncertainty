@@ -71,6 +71,9 @@ def test_direct_benchmark_entrypoint_declares_required_artifacts() -> None:
     assert "matrix = np.moveaxis(matrix, 0, -1)" in source
     assert "matrix = matrix.reshape((-1, 8))" in source
     assert "unexpected LINX batch size" in source
+    assert "batch_reference_abundances" in source
+    assert "maximum_absolute_repeat_drift_by_abundance" in source
+    assert "batch_discrepancy_open" in source
 
 
 def test_yaml_loader_records_in_process_parser(tmp_path: Path) -> None:
