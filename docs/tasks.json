@@ -1,6 +1,6 @@
 {
   "project": "uncertainty",
-  "generated_at": "2026-07-22T19:34:47+00:00",
+  "generated_at": "2026-07-22T19:37:50+00:00",
   "revision": 275,
   "overall_progress": 0.21171171171171171,
   "overall_kind": "effort-weighted scientific program gate completion",
@@ -61,7 +61,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 20148.35022187233,
+      "heartbeat_age_s": 20331.404889583588,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -101,7 +101,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 135.35028505325317,
+      "heartbeat_age_s": 318.4050486087799,
       "ready": true,
       "blocked_by": [],
       "artifact_links": [
@@ -137,7 +137,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 135.35035228729248,
+      "heartbeat_age_s": 318.4051179885864,
       "ready": true,
       "blocked_by": [],
       "artifact_links": [
@@ -173,7 +173,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 135.35041093826294,
+      "heartbeat_age_s": 318.40519523620605,
       "ready": true,
       "blocked_by": [],
       "artifact_links": [
@@ -209,7 +209,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 135.35045075416565,
+      "heartbeat_age_s": 318.4052610397339,
       "ready": true,
       "blocked_by": [],
       "artifact_links": [
@@ -249,7 +249,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 22491.350491046906,
+      "heartbeat_age_s": 22674.405322790146,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -305,7 +305,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 39310.350543022156,
+      "heartbeat_age_s": 39493.405390262604,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -358,7 +358,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 70580.3505821228,
+      "heartbeat_age_s": 70763.40544462204,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -400,7 +400,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 70581.35065722466,
+      "heartbeat_age_s": 70764.40553545952,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -502,7 +502,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 20147.350788354874,
+      "heartbeat_age_s": 20330.405729532242,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -799,7 +799,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 61637.350991249084,
+      "heartbeat_age_s": 61820.40605711937,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -849,7 +849,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 92797.3510787487,
+      "heartbeat_age_s": 92980.40610909462,
       "ready": false,
       "blocked_by": [],
       "artifact_links": []
@@ -890,7 +890,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 51988.351165771484,
+      "heartbeat_age_s": 52171.40618276596,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -962,7 +962,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 19995.351259231567,
+      "heartbeat_age_s": 20178.406257152557,
       "ready": false,
       "blocked_by": [
         "P0-worker-bootstrap"
@@ -1005,7 +1005,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 62457.351330041885,
+      "heartbeat_age_s": 62640.4063103199,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -1059,7 +1059,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 31401.351420640945,
+      "heartbeat_age_s": 31584.406371355057,
       "ready": false,
       "blocked_by": [
         "P0-solvers-build"
@@ -1114,7 +1114,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 49189.35150027275,
+      "heartbeat_age_s": 49372.406457185745,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -1160,7 +1160,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 59488.35160827637,
+      "heartbeat_age_s": 59671.40653681755,
       "ready": false,
       "blocked_by": [],
       "artifact_links": []
@@ -1194,7 +1194,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 38460.351695775986,
+      "heartbeat_age_s": 38643.40663409233,
       "ready": false,
       "blocked_by": [
         "P0-tailnet"
@@ -1401,7 +1401,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 49190.35208559036,
+      "heartbeat_age_s": 49373.406952381134,
       "ready": false,
       "blocked_by": [
         "P2-unified-adapter"
@@ -1441,7 +1441,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 42656.35217690468,
+      "heartbeat_age_s": 42839.407064437866,
       "ready": false,
       "blocked_by": [
         "P2-rate-registry"
@@ -1482,7 +1482,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 42656.35229229927,
+      "heartbeat_age_s": 42839.407148361206,
       "ready": false,
       "blocked_by": [
         "P2-solver-matrix"
@@ -1526,7 +1526,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 49189.35236740112,
+      "heartbeat_age_s": 49372.4072163105,
       "ready": false,
       "blocked_by": [
         "P0-solvers-build"
@@ -1642,7 +1642,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 39119.35253787041,
+      "heartbeat_age_s": 39302.407358407974,
       "ready": false,
       "blocked_by": [
         "P2.5-fisher-propagation",
@@ -1705,7 +1705,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 49190.35257720947,
+      "heartbeat_age_s": 49373.407413482666,
       "ready": false,
       "blocked_by": [
         "P2-unified-adapter"
