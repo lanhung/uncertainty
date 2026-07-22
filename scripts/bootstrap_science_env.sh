@@ -48,7 +48,10 @@ UV_TOOL_ROOT="${PERSIST_ROOT}/tools/uv-${UV_VERSION}"
 UV_BIN="${UV_TOOL_ROOT}/bin/uv"
 if [[ ! -x "$UV_BIN" ]]; then
   BOOTSTRAP_PYTHON=""
-  for candidate in python3 /root/miniconda3/bin/python /usr/bin/python3; do
+  # AutoDL's system Python may omit ensurepip/python3-venv. Prefer the
+  # image-provided Miniconda interpreter only for this project-local uv
+  # bootstrap; the scientific environment itself still uses pinned CPython.
+  for candidate in /root/miniconda3/bin/python python3 /usr/bin/python3; do
     if command -v "$candidate" >/dev/null 2>&1; then
       BOOTSTRAP_PYTHON="$(command -v "$candidate")"
       break
