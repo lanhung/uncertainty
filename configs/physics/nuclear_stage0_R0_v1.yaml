@@ -56,7 +56,7 @@ reactions:
     role: deuterium_destruction_and_He3_feed
     prior_parameter: z_dp_gamma_he3
     ETR25_table: 6
-    ETR25_rate_type: Bayesian_rate_adopted_with_registered_modifications
+    ETR25_rate_type: pending_exact_ETR25_source_classification
     source_capture: pending
     central_curve: pending_ETR25_median
     temperature_grid: pending_ETR25_capture
@@ -85,7 +85,7 @@ reactions:
     role: deuterium_destruction_and_He3_feed
     prior_parameter: z_dd_n_he3
     ETR25_table: 7
-    ETR25_rate_type: Bayesian_rate_adopted_with_registered_modifications
+    ETR25_rate_type: pending_exact_ETR25_source_classification
     source_capture: pending
     central_curve: pending_ETR25_median
     temperature_grid: pending_ETR25_capture
@@ -113,7 +113,7 @@ reactions:
     role: deuterium_destruction_and_tritium_feed
     prior_parameter: z_dd_p_t
     ETR25_table: 8
-    ETR25_rate_type: Bayesian_rate_adopted_with_registered_modifications
+    ETR25_rate_type: pending_exact_ETR25_source_classification
     source_capture: pending
     central_curve: pending_ETR25_median
     temperature_grid: pending_ETR25_capture
