@@ -1,0 +1,124 @@
+schema_version: 1
+registry_id: BBN-UQ-HISTORICAL-FOUNDATIONS-v1
+status: frozen_historical_inventory_claims_not_cleared
+review_date_utc: "2026-07-23"
+governing_note: docs/literature/HISTORICAL_FOUNDATIONS_BBN_UQ.md
+
+sources:
+  Krauss_Romanelli_1990:
+    title: Big Bang nucleosynthesis: Predictions and uncertainties
+    journal: Astrophysical_Journal_358_47_59
+    doi: "10.1086/168962"
+    contribution:
+      - Monte_Carlo_BBN_uncertainty
+      - confidence_levels_for_standard_BBN_predictions
+    claim_blocked: first_BBN_Monte_Carlo_uncertainty
+
+  Nollett_Burles_2000:
+    title: Estimating reaction rates and uncertainties for primordial nucleosynthesis
+    arxiv: astro-ph/0001440
+    journal: Physical_Review_D_61_123505
+    doi: "10.1103/PhysRevD.61.123505"
+    contribution:
+      - direct_incorporation_of_published_experimental_nuclear_inputs
+      - Monte_Carlo_abundance_uncertainty
+      - transparent_update_with_new_data
+      - nuclear_measurement_priority
+    reported_result: previous_error_estimates_too_large_by_up_to_factor_3
+    claim_blocked:
+      - first_direct_experimental_nuclear_input_propagation_in_BBN
+      - first_measurement_priority_from_BBN_uncertainty
+
+  Burles_Nollett_Turner_2001:
+    contribution:
+      - precision_BBN_predictions
+      - baryon_density_inference_with_improved_nuclear_uncertainty
+    representative_journals:
+      - Physical_Review_D_63_063512
+      - Astrophysical_Journal_Letters_552_L1
+    claim_blocked: first_cosmological_inference_using_propagated_BBN_nuclear_uncertainty
+
+  Cyburt_2004:
+    title: Primordial nucleosynthesis for the new cosmology: Determining uncertainties and examining concordance
+    arxiv: astro-ph/0401091
+    journal: Physical_Review_D_70_023505
+    doi: "10.1103/PhysRevD.70.023505"
+    contribution:
+      - cross_section_data_models
+      - correlations_among_data
+      - explicit_cross_dataset_systematic_errors
+      - BBN_CMB_concordance
+    claim_blocked:
+      - first_correlated_cross_section_uncertainty_treatment
+      - first_experiment_normalization_systematics_in_BBN
+
+  Serpico_et_al_2004:
+    title: Nuclear Reaction Network for Primordial Nucleosynthesis
+    arxiv: astro-ph/0408076
+    journal: JCAP_12_2004_010
+    doi: "10.1088/1475-7516/2004/12/010"
+    contribution:
+      - detailed_standard_BBN_network
+      - weak_and_nuclear_rate_uncertainties
+      - light_nuclide_yield_uncertainty
+    claim_blocked: first_detailed_standard_BBN_rate_uncertainty_inventory
+
+  Coc_Uzan_Vangioni_2014:
+    title: Standard big bang nucleosynthesis and primordial CNO Abundances after Planck
+    arxiv: "1403.6694"
+    contribution:
+      - extended_network_Monte_Carlo
+      - confidence_limits_for_rare_nuclides_and_CNO
+      - yield_rate_correlations
+    claim_blocked:
+      - first_large_network_BBN_Monte_Carlo
+      - first_yield_rate_correlation_analysis
+
+  Longland_rate_MC_2010:
+    contribution:
+      - statistically_defined_rate_distributions
+      - low_median_high_rate_percentiles
+      - lognormal_approximations
+    representative_doi: "10.1063/1.3455927"
+    claim_blocked: first_statistical_thermonuclear_rate_PDF
+
+  STARLIB_2013:
+    title: STARLIB: A next-generation reaction-rate library for nuclear astrophysics
+    journal: Astrophysical_Journal_Supplement_Series_207_18
+    doi: "10.1088/0067-0049/207/1/18"
+    contribution:
+      - tabulated_rate_probability_distributions
+      - lognormal_rate_factor_representation
+      - Monte_Carlo_nucleosynthesis_inputs
+    claim_blocked:
+      - first_rate_PDF_library
+      - first_lognormal_rate_factor_library
+
+  Iliadis_Coc_2020:
+    title: Thermonuclear reaction rates and primordial nucleosynthesis
+    arxiv: "2008.12200"
+    journal: Astrophysical_Journal_901_127
+    contribution:
+      - BBN_Monte_Carlo
+      - abundance_rate_mutual_information
+      - genetic_search_for_simultaneous_rate_changes
+    claim_blocked:
+      - first_abundance_rate_mutual_information
+      - first_multi_rate_nuclear_lithium_search
+
+project_delta_after_historical_review:
+  not_individually_novel:
+    - direct_nuclear_data_Monte_Carlo
+    - coherent_rate_evaluation_from_shared_nuclear_inputs
+    - abundance_confidence_bands
+    - correlated_cross_section_systematics
+    - lognormal_rate_PDFs
+    - sensitivity_and_mutual_information
+    - propagation_to_cosmological_parameters
+  candidate_intersection:
+    - current_ETR25_or_original_posterior_products
+    - calibrated_joint_abundance_distribution_across_theta
+    - fixed_Cth_validity_or_failure_map
+    - matched_solver_rate_weak_network_factorization
+    - modern_posterior_calibration_and_direct_fallback
+    - end_to_end_comparison_with_direct_and_marginal_SBI_baselines
