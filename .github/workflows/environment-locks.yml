@@ -8,7 +8,10 @@ on:
       - 'uv.lock'
       - 'environments/**'
       - 'scripts/bootstrap_science_env.sh'
+      - 'scripts/bootstrap_why_not_env.sh'
       - 'scripts/science_environment_smoke.py'
+      - 'scripts/why_not_environment_smoke.py'
+      - 'tests/unit/**'
       - '.pre-commit-config.yaml'
       - '.github/workflows/environment-locks.yml'
   pull_request:
@@ -17,7 +20,10 @@ on:
       - 'uv.lock'
       - 'environments/**'
       - 'scripts/bootstrap_science_env.sh'
+      - 'scripts/bootstrap_why_not_env.sh'
       - 'scripts/science_environment_smoke.py'
+      - 'scripts/why_not_environment_smoke.py'
+      - 'tests/unit/**'
       - '.pre-commit-config.yaml'
       - '.github/workflows/environment-locks.yml'
 
@@ -41,11 +47,21 @@ jobs:
       - name: Run repository tests
         run: uv run python -m pytest -q
       - name: Check new Python entry points
-        run: uv run ruff check scripts/science_environment_smoke.py tests/unit
+        run: >-
+          uv run ruff check
+          scripts/science_environment_smoke.py
+          scripts/why_not_environment_smoke.py
+          tests/unit
       - name: Check formatting
-        run: uv run ruff format --check scripts/science_environment_smoke.py tests/unit
+        run: >-
+          uv run ruff format --check
+          scripts/science_environment_smoke.py
+          scripts/why_not_environment_smoke.py
+          tests/unit
       - name: Check shell bootstrap syntax
-        run: bash -n scripts/bootstrap_science_env.sh
+        run: |
+          bash -n scripts/bootstrap_science_env.sh
+          bash -n scripts/bootstrap_why_not_env.sh
 
   solver-cpu-smoke:
     runs-on: ubuntu-24.04

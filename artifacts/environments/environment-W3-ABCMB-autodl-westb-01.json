@@ -1,0 +1,31 @@
+{
+  "baseline": "W3-ABCMB",
+  "fp64": {
+    "dtype": "float64",
+    "solution": [
+      0.09090909090909091,
+      0.6363636363636364
+    ]
+  },
+  "host": {
+    "hostname": "autodl-container-9qk6ggtwem-6244361c",
+    "machine": "x86_64",
+    "platform": "Linux-5.15.0-78-generic-x86_64-with-glibc2.35"
+  },
+  "lock_sha256": "38ca8a96022b50ddaabf95a820d60142db71758fc7080be2c7599c822c21ebdd",
+  "python": "3.11.15",
+  "schema_version": 1,
+  "scientific_use": "environment_acceptance_only_not_a_benchmark",
+  "source": {
+    "name": "ABCMB",
+    "revision": "5eabbab4ed7e53f264e16024743d1ba517845c37"
+  },
+  "source_result": {
+    "ABCMB": "0.3.1",
+    "bundled_linx_network": "key_PRIMAT_2023",
+    "jax": "0.8.1",
+    "jax_x64": true,
+    "reaction_count": 12
+  },
+  "status": "source_smoke_passed"
+}

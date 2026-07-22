@@ -19,7 +19,7 @@ baselines:
       fast_equinox: 0.11.10
       interpax: 0.3.1
       interpax_install: no_deps_required_by_upstream
-    environment_status: dedicated_lock_declared_pending_worker_smoke
+    environment_status: worker_source_smoke_passed
     environment: environments/linx-v0.1.2/uv.lock
     environment_sha256: 98c8f6de35dfdf7147857a3c28153b10f3ad7d424cb9faeea15de75cacd27556
     sidecar_requirements: environments/linx-v0.1.2/interpax-sidecar.txt
@@ -39,7 +39,7 @@ baselines:
       declared_required: [numpy, scipy]
       declared_recommended: [numba, numdifftools, vegas]
       declared_optional: [julia, diffeqpy]
-    environment_status: solver_cpu_candidate_requires_smoke
+    environment_status: worker_source_smoke_passed
 
   W2-PRIMAT:
     repository: https://github.com/CyrilPitrou/primat
@@ -51,7 +51,7 @@ baselines:
       pyproject_sha256: 0937b27c4585949cddb7d95823eef75ec88ff46bf584e951fe49fde4a0083eec
       requires_python: ">=3.10"
       core: [numpy, scipy]
-    environment_status: solver_cpu_candidate_requires_source_install_smoke
+    environment_status: worker_source_smoke_passed
 
   W3-ABCMB:
     repository: https://github.com/TonyZhou729/ABCMB
@@ -65,7 +65,7 @@ baselines:
       equinox: 0.13.2
       optimistix: 0.0.11
       bundled_linx_tree: 59b3ab7b3ada7d7ff6484920e0e29291cf4a084e
-    environment_status: dedicated_lock_declared_pending_worker_smoke
+    environment_status: worker_source_smoke_passed
     environment: environments/abcmb-v0.3.1/uv.lock
     environment_sha256: 38ca8a96022b50ddaabf95a820d60142db71758fc7080be2c7599c822c21ebdd
     resolved_diffrax: 0.7.1
