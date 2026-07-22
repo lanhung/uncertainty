@@ -42,7 +42,8 @@ execution:
 scenarios:
   - id: standard_fiducial
     parameter_source: configs/physics/parameter_schema.yaml
-    availability: pending_parameter_schema
+    parameter_set: standard_bbn_fiducial
+    availability: available_standard_bbn_subset
   - id: standard_rate_minus_one
     rate_q: -1
     availability: pending_rate_registry
