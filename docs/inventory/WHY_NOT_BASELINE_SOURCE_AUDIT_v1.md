@@ -1,6 +1,6 @@
 # WHY-NOT baseline source audit v1
 
-Status: exact sources acquired; executable source smokes passed on westb
+Status: exact sources acquired; direct forward smokes executed on westb
 
 Captured: 2026-07-22
 
@@ -11,7 +11,9 @@ Task: `P0-WHY-NOT-01` / `P0-env-lock`
 The four mandatory sources were cloned into a fresh temporary directory by
 `scripts/fetch_why_not_baselines.sh`. Every checkout resolved to the commit
 frozen in `configs/benchmarks/why_not_existing_solvers_v1.yaml`; submodules were
-initialized recursively. No scientific runtime measurement was performed.
+initialized recursively. Environment smokes were followed by direct upstream
+forward executions for LINX and PRyMordial; these single-run observations are
+not the registered repeated benchmark.
 
 | Baseline | Exact source | License | Environment finding |
 |---|---|---|---|
@@ -57,8 +59,19 @@ The ABCMB bundled LINX tree has Git tree
 `59b3ab7b3ada7d7ff6484920e0e29291cf4a084e`. It must be compared against
 W0-LINX; shared naming does not establish source or numerical equivalence.
 
+## Direct execution consequence
+
+LINX's upstream standard-BBN forward script completed and agreed with its
+embedded PRIMAT references below the script's 0.3% threshold. Its gradient
+check, however, produced one `NaN` component and is rejected even though the
+upstream process returned exit code zero. PRyMordial's small and large Python
+network paths both completed with finite abundances. Exact values, timings and
+raw logs are recorded in `docs/inventory/DIRECT_SOLVER_EXECUTION_v1.md` and
+`artifacts/solver-build/DIRECT_SOLVER_SMOKE_v1.json`.
+
 ## Scientific boundary
 
-Source acquisition and dependency inspection do not answer the WHY-NOT
-questions. `P0-WHY-NOT-01` remains incomplete until the registered timings,
-gradient checks, posterior recovery and workload projections exist.
+Source acquisition, dependency inspection and one-off upstream runs do not
+answer the WHY-NOT questions. `P0-WHY-NOT-01` remains incomplete until the
+registered repeated timings, accepted gradient checks, posterior recovery and
+workload projections exist.
