@@ -1,0 +1,45 @@
+schema_version: 1
+adapter_id: ABCMB-LINX-RUNTIME-ADAPTER-v1
+status: frozen_before_registered_runtime_execution
+decision_date_utc: "2026-07-22"
+task_id: P0-WHY-NOT-01
+common_protocol: configs/benchmarks/why_not_existing_solvers_v1.yaml
+baseline: W3-ABCMB
+source_revision: 5eabbab4ed7e53f264e16024743d1ba517845c37
+bundled_linx_tree: 59b3ab7b3ada7d7ff6484920e0e29291cf4a084e
+
+component_scope: abcmb_bundled_linx_bbn_only
+execution_backend: jax_cpu
+precision: float64
+network: key_PRIMAT_2023
+native_batch_api: jax_jit_vmap
+
+background_numerics:
+  rtol: 1.0e-8
+  atol: 1.0e-10
+  max_steps: 512
+
+abundance_numerics:
+  rtol: 1.0e-6
+  atol: 1.0e-9
+  sampling_nTOp: 150
+  max_steps: 4096
+
+input_mapping:
+  omega_b_h2:
+    field: eta_fac
+    rule: omega_b_h2_divided_by_bundled_linx_Omegabh2
+  delta_neff:
+    field: Delt_Neff_init
+  tau_n_seconds:
+    field: tau_n_fac
+    rule: tau_n_seconds_divided_by_bundled_linx_tau_n
+
+comparison_contract:
+  required_reference: W0-LINX
+  rule: bundled_linx_is_a_distinct_frozen_tree_and_must_not_be_treated_as_W0
+
+scientific_boundary:
+  - This adapter authorizes only the registered standard-fiducial BBN component runtime slice.
+  - It does not measure the full ABCMB CMB pipeline, Fisher matrix, HMC/NUTS, or extension effort.
+  - Gradients, posterior recovery, and joint-likelihood economics remain separate preregistered gates.

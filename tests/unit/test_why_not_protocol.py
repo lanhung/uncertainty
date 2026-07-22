@@ -12,6 +12,7 @@ ADR = ROOT / "docs/decisions/ADR-WHY-NOT-001.md"
 FETCHER = ROOT / "scripts/fetch_why_not_baselines.sh"
 SOURCE_MANIFEST = ROOT / "manifests/software/why_not_baselines_v1.yaml"
 PRYMORDIAL_ADAPTER = ROOT / "configs/benchmarks/prymordial_runtime_adapter_v1.yaml"
+ABCMB_ADAPTER = ROOT / "configs/benchmarks/abcmb_linx_runtime_adapter_v1.yaml"
 
 
 def test_why_not_protocol_has_all_mandatory_competitors_and_stop_rules() -> None:
@@ -36,6 +37,15 @@ def test_why_not_protocol_has_all_mandatory_competitors_and_stop_rules() -> None
     assert prymordial["recompute_weak_rates"] is True
     assert prymordial["recompute_thermal_weak_corrections"] is False
     assert prymordial["native_batch_api"] is False
+
+    abcmb = yaml.safe_load(ABCMB_ADAPTER.read_text(encoding="utf-8"))
+    assert abcmb["baseline"] == "W3-ABCMB"
+    assert abcmb["source_revision"] == data["baselines"]["W3-ABCMB"]["revision"]
+    assert abcmb["bundled_linx_tree"] == data["baselines"]["W3-ABCMB"]["bundled_linx_tree"]
+    assert abcmb["component_scope"] == "abcmb_bundled_linx_bbn_only"
+    assert abcmb["precision"] == "float64"
+    assert abcmb["network"] == "key_PRIMAT_2023"
+    assert abcmb["native_batch_api"] == "jax_jit_vmap"
 
     fetcher = FETCHER.read_text(encoding="utf-8")
     for baseline in data["baselines"].values():

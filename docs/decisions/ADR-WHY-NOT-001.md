@@ -195,6 +195,15 @@ sequential calls because the upstream path has no native batch API. Its input
 and abundance-unit mappings are explicit. This authorizes only the standard-
 fiducial runtime slice; W1 measurements are still pending at this revision.
 
+The W3 pre-execution component contract is frozen separately in
+`configs/benchmarks/abcmb_linx_runtime_adapter_v1.yaml`. It binds the installed
+ABCMB VCS provenance, the repository's bundled LINX tree, FP64 CPU execution,
+the `key_PRIMAT_2023` network, upstream background/abundance numerics, and
+native `jax.jit(jax.vmap)` batching. This first slice measures only ABCMB's
+bundled BBN component and must be compared with W0. It does not answer the full
+ABCMB+LINX question: CMB spectra, Fisher/gradient stability, HMC/NUTS,
+posterior recovery, and extension effort remain pending.
+
 ## Sign-off
 
 - benchmark protocol prepared by Codex, 2026-07-22;
