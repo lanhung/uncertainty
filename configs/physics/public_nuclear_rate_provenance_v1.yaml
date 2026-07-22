@@ -1,0 +1,68 @@
+schema_version: 1
+inventory_id: PUBLIC-NUCLEAR-RATE-PROVENANCE-v1
+status: protocol_frozen_capture_pending
+decision_date_utc: "2026-07-22"
+task_ids: [NUC-01, P2-rate-registry, P0-WHY-NOT-01]
+scientific_boundary: >-
+  This inventory binds public solver-distributed rate tables to exact source
+  commits. It does not establish authoritative nuclear-data provenance,
+  covariance, units, scalar envelopes, functional modes, or a frozen NUC-v1
+  prior. Duplicate bytes across repositories are lineage evidence only.
+
+repositories:
+  LINX:
+    revision: ec2e9d2ca455e8204137e884da29f5dd13a638fa
+    license: MIT
+    collections:
+      key_PRIMAT_2023:
+        - linx/data/nuclear_rates/key_PRIMAT_2023/dpHe3g.txt
+        - linx/data/nuclear_rates/key_PRIMAT_2023/ddHe3n.txt
+        - linx/data/nuclear_rates/key_PRIMAT_2023/ddtp.txt
+      key_recommended:
+        - linx/data/nuclear_rates/key_recommended/dpHe3g.txt
+        - linx/data/nuclear_rates/key_recommended/ddHe3n.txt
+        - linx/data/nuclear_rates/key_recommended/ddtp.txt
+  PRyMordial:
+    revision: 725d8a8db3ad5ea2630580d825c9d0d69ed76533
+    license: GPL-3.0
+    collections:
+      key_nacreii_rates:
+        - PRyMrates/nuclear/key_nacreii_rates/dpHe3g.txt
+        - PRyMrates/nuclear/key_nacreii_rates/ddHe3n.txt
+        - PRyMrates/nuclear/key_nacreii_rates/ddtp.txt
+      key_primat_rates:
+        - PRyMrates/nuclear/key_primat_rates/dpHe3g.txt
+        - PRyMrates/nuclear/key_primat_rates/ddHe3n.txt
+        - PRyMrates/nuclear/key_primat_rates/ddtp.txt
+  PRIMAT:
+    revision: 21ff8f39fa18e3937e9fdf386cfa982361bfdfce
+    license: GPL-3.0-or-later
+    collections:
+      primat:
+        - primat/data/nuclear/tables/d_p__He3_g/d_p__He3_g_primat.txt
+        - primat/data/nuclear/tables/d_d__He3_n/d_d__He3_n_primat.txt
+        - primat/data/nuclear/tables/d_d__t_p/d_d__t_p_primat.txt
+      parthenope3_0:
+        - primat/data/nuclear/tables/d_p__He3_g/d_p__He3_g_parthenope3.0.txt
+        - primat/data/nuclear/tables/d_d__He3_n/d_d__He3_n_parthenope3.0.txt
+        - primat/data/nuclear/tables/d_d__t_p/d_d__t_p_parthenope3.0.txt
+  ABCMB:
+    revision: 5eabbab4ed7e53f264e16024743d1ba517845c37
+    license: MIT
+    collections:
+      bundled_linx_key_PRIMAT_2023:
+        - abcmb/linx/data/nuclear_rates/key_PRIMAT_2023/dpHe3g.txt
+        - abcmb/linx/data/nuclear_rates/key_PRIMAT_2023/ddHe3n.txt
+        - abcmb/linx/data/nuclear_rates/key_PRIMAT_2023/ddtp.txt
+
+reaction_path_tokens:
+  dp_gamma_he3: [dpHe3g, d_p__He3_g]
+  dd_n_he3: [ddHe3n, d_d__He3_n]
+  dd_p_t: [ddtp, d_d__t_p]
+
+acceptance:
+  require_exact_clean_revision: true
+  require_regular_tracked_files: true
+  require_every_reaction_in_every_collection: true
+  require_sha256_and_git_blob: true
+  minimum_total_files: 21
