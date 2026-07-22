@@ -1,43 +1,39 @@
 {
   "project": "uncertainty",
-  "generated_at": "2026-07-22T21:00:15+00:00",
-  "revision": 382,
-  "overall_progress": 0.21171171171171171,
+  "generated_at": "2026-07-22T21:02:10+00:00",
+  "revision": 442,
+  "overall_progress": 0.21212121212121213,
   "overall_kind": "effort-weighted scientific program gate completion",
-  "science_gate_progress": 0.21171171171171171,
-  "execution_progress": 0.6666666666666666,
+  "science_gate_progress": 0.21212121212121213,
+  "execution_progress": 0.75,
   "execution_kind": "effort-weighted current execution milestone completion",
   "phases": {
     "EXEC": {
-      "progress": 0.6666666666666666
+      "progress": 0.75
     },
     "P0": {
-      "progress": 0.6527777777777778
+      "progress": 0.8571428571428571
     },
-    "P1": {
+    "UQ0": {
+      "progress": 0.1
+    },
+    "UQ1": {
       "progress": 0.0
     },
-    "P2": {
-      "progress": 0.0
-    },
-    "P2.5": {
-      "progress": 0.0
-    },
-    "P3": {
+    "UQ2": {
       "progress": 0.0
     }
   },
   "status_counts": {
-    "done": 11,
-    "blocked": 3,
-    "failed": 1,
-    "pending": 22,
-    "stale": 2
+    "done": 12,
+    "cancelled": 27,
+    "pending": 16,
+    "stale": 1
   },
   "tasks": [
     {
       "id": "EXEC-ABCMB-CONVERGENCE",
-      "title": "Execute the frozen ABCMB bundled-LINX convergence V2 cases",
+      "title": "Retain completed ABCMB bundled-LINX numerical convergence evidence",
       "phase": "EXEC",
       "status": "done",
       "weight": 1.0,
@@ -62,7 +58,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 25276.118182182312,
+      "heartbeat_age_s": 25391.5163462162,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -80,7 +76,7 @@
       "id": "EXEC-ABCMB-FULL-AUDIT",
       "title": "Execute frozen ABCMB spectra, gradient, toy-Fisher and synthetic audits",
       "phase": "EXEC",
-      "status": "blocked",
+      "status": "cancelled",
       "weight": 1.0,
       "unit": "components",
       "current": 0.0,
@@ -88,10 +84,10 @@
       "owner": "uncertainty-autodl-westb-01-elastic",
       "depends_on": [],
       "started_at": "2026-07-22T20:55:35+00:00",
-      "updated_at": "2026-07-22T20:55:36+00:00",
-      "finished_at": "2026-07-22T20:55:36+00:00",
+      "updated_at": "2026-07-22T21:01:09+00:00",
+      "finished_at": "2026-07-22T21:01:09+00:00",
       "declared_eta": null,
-      "message": "Spectra component accepted; gradient, toy-Fisher, synthetic recovery and HMC/NUTS remain unavailable under the frozen environment",
+      "message": "removed from desired-state plan",
       "artifacts": [
         "configs/benchmarks/abcmb_full_component_audit_v1.yaml"
       ],
@@ -102,7 +98,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 279.118364572525,
+      "heartbeat_age_s": 61.516451358795166,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -142,7 +138,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 2684.1184866428375,
+      "heartbeat_age_s": 2799.5165116786957,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -164,7 +160,7 @@
       "id": "EXEC-LINX-GRADIENT",
       "title": "Execute frozen LINX standard-neighborhood gradient diagnostics",
       "phase": "EXEC",
-      "status": "failed",
+      "status": "cancelled",
       "weight": 1.0,
       "unit": "groups",
       "current": 4.0,
@@ -172,21 +168,21 @@
       "owner": "autodl-container-9qk6ggtwem-6244361c",
       "depends_on": [],
       "started_at": "2026-07-22T20:55:35+00:00",
-      "updated_at": "2026-07-22T20:55:35+00:00",
-      "finished_at": "2026-07-22T20:55:35+00:00",
+      "updated_at": "2026-07-22T21:01:09+00:00",
+      "finished_at": "2026-07-22T21:01:09+00:00",
       "declared_eta": null,
-      "message": "exit code 2: /root/autodl-fs/projects/uncertainty/artifacts/numerical/LINX-GRADIENT-STABILITY-v1/run-20260722T195438Z",
+      "message": "removed from desired-state plan",
       "artifacts": [
         "configs/benchmarks/linx_gradient_stability_v1.yaml"
       ],
       "metrics": {},
       "attempt": 1,
       "run_id": "25f8e30e-5a58-4147-8574-8957d810f97f",
-      "progress": 1.0,
+      "progress": 0.0,
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 280.1186525821686,
+      "heartbeat_age_s": 61.516563177108765,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -197,10 +193,39 @@
       ]
     },
     {
+      "id": "EXEC-SECOND-WORKER-CAPACITY",
+      "title": "Register a second AutoDL worker only when free from other projects",
+      "phase": "EXEC",
+      "status": "pending",
+      "weight": 1.0,
+      "unit": "workers",
+      "current": 0.0,
+      "total": 1.0,
+      "owner": null,
+      "depends_on": [],
+      "started_at": null,
+      "updated_at": null,
+      "finished_at": null,
+      "declared_eta": null,
+      "message": "",
+      "artifacts": [],
+      "metrics": {},
+      "attempt": 0,
+      "run_id": null,
+      "progress": 0.0,
+      "rate": null,
+      "eta": null,
+      "eta_kind": "none",
+      "heartbeat_age_s": null,
+      "ready": true,
+      "blocked_by": [],
+      "artifact_links": []
+    },
+    {
       "id": "EXEC-STANDARD-CHALLENGE",
       "title": "Execute the W0-W3 frozen standard-BBN challenge grid",
       "phase": "EXEC",
-      "status": "pending",
+      "status": "cancelled",
       "weight": 1.0,
       "unit": "baselines",
       "current": 0.0,
@@ -208,10 +233,10 @@
       "owner": null,
       "depends_on": [],
       "started_at": null,
-      "updated_at": "2026-07-22T19:32:32+00:00",
-      "finished_at": null,
+      "updated_at": "2026-07-22T21:01:09+00:00",
+      "finished_at": "2026-07-22T21:01:09+00:00",
       "declared_eta": null,
-      "message": "PR #60 froze seven standard-BBN reliability points across W0-W3; cross-baseline differences are descriptive pipeline discrepancies only.",
+      "message": "removed from desired-state plan",
       "artifacts": [
         "configs/benchmarks/why_not_standard_challenge_grid_v1.yaml"
       ],
@@ -222,8 +247,8 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 5263.1187443733215,
-      "ready": true,
+      "heartbeat_age_s": 61.5166711807251,
+      "ready": false,
       "blocked_by": [],
       "artifact_links": [
         {
@@ -234,7 +259,7 @@
     },
     {
       "id": "EXEC-WHY-RUNTIME",
-      "title": "Complete W0-W3 registered standard-fiducial runtime slices",
+      "title": "Complete registered direct-solver standard-fiducial runtime slices",
       "phase": "EXEC",
       "status": "done",
       "weight": 1.0,
@@ -262,7 +287,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 27619.11888194084,
+      "heartbeat_age_s": 27734.516726970673,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -290,7 +315,7 @@
     },
     {
       "id": "P0-LIT-01",
-      "title": "Competitor matrix: LINX, PRyMordial, PRIMAT, PArthENoPE, AlterBBN, ABCMB+LINX",
+      "title": "Freeze the BBN-UQ competitor and novelty matrix",
       "phase": "P0",
       "status": "done",
       "weight": 2.0,
@@ -318,7 +343,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 44438.11897397041,
+      "heartbeat_age_s": 44553.51677560806,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -346,7 +371,7 @@
     },
     {
       "id": "P0-NEUTRON-01",
-      "title": "Preregister neutron-lifetime N0-N3 baseline and robustness models",
+      "title": "Freeze neutron-lifetime N0-N3 scenarios and weak double-counting rules",
       "phase": "P0",
       "status": "done",
       "weight": 1.0,
@@ -371,7 +396,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 75708.11905694008,
+      "heartbeat_age_s": 75823.51685118675,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -387,7 +412,7 @@
     },
     {
       "id": "P0-OBS-01",
-      "title": "Preregister primary and stress-test D/H, Y_p, CMB and GW datasets",
+      "title": "Freeze the cosmological inference observation registry OBS-v1",
       "phase": "P0",
       "status": "done",
       "weight": 2.0,
@@ -413,7 +438,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 75709.11913132668,
+      "heartbeat_age_s": 75824.5169081688,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -433,10 +458,10 @@
     },
     {
       "id": "P0-WHY-NOT-01",
-      "title": "Write why-not-LINX/PRyMordial/PRIMAT and emulator economics memo",
+      "title": "Complete direct-solver necessity and emulator-economics memo for the UQ workload",
       "phase": "P0",
       "status": "stale",
-      "weight": 1.0,
+      "weight": 2.0,
       "unit": "memos",
       "current": 0.0,
       "total": 1.0,
@@ -516,7 +541,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 2683.1192951202393,
+      "heartbeat_age_s": 2798.51704454422,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -758,7 +783,7 @@
       "id": "P0-benchmark",
       "title": "Benchmark cold/warm, FP64, batch, CPU, RAM, I/O and failure rates",
       "phase": "P0",
-      "status": "pending",
+      "status": "cancelled",
       "weight": 2.0,
       "unit": "configurations",
       "current": 0.0,
@@ -768,10 +793,10 @@
         "P0-solvers-build"
       ],
       "started_at": null,
-      "updated_at": null,
-      "finished_at": null,
+      "updated_at": "2026-07-22T21:01:09+00:00",
+      "finished_at": "2026-07-22T21:01:09+00:00",
       "declared_eta": null,
-      "message": "",
+      "message": "removed from desired-state plan",
       "artifacts": [],
       "metrics": {},
       "attempt": 0,
@@ -780,7 +805,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": null,
+      "heartbeat_age_s": 61.51723647117615,
       "ready": false,
       "blocked_by": [
         "P0-solvers-build"
@@ -789,7 +814,7 @@
     },
     {
       "id": "P0-code-inventory",
-      "title": "Inventory all existing BBNet, MCMC, solver patches, data and model files",
+      "title": "Audit located solver, rate-table, model and inference assets",
       "phase": "P0",
       "status": "done",
       "weight": 1.0,
@@ -817,7 +842,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 66765.11966919899,
+      "heartbeat_age_s": 66880.51728844643,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -845,7 +870,7 @@
     },
     {
       "id": "P0-control-plane",
-      "title": "Deploy project-isolated research-ops service on the shared Vultr host",
+      "title": "Deploy the project-isolated research-ops control instance",
       "phase": "P0",
       "status": "done",
       "weight": 1.0,
@@ -867,14 +892,14 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 97925.11977148056,
+      "heartbeat_age_s": 98040.51732468605,
       "ready": false,
       "blocked_by": [],
       "artifact_links": []
     },
     {
       "id": "P0-env-lock",
-      "title": "Create environment lock, pyproject, CI, pre-commit and make smoke",
+      "title": "Freeze reproducible control, solver, LINX and ABCMB environments",
       "phase": "P0",
       "status": "done",
       "weight": 2.0,
@@ -908,7 +933,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 57116.11989736557,
+      "heartbeat_age_s": 57231.5173637867,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -952,7 +977,7 @@
     },
     {
       "id": "P0-ops-e2e",
-      "title": "Validate ledger, heartbeat, stale detection and ops-status snapshots",
+      "title": "Validate ledger, heartbeat, stale detection and snapshots on one worker",
       "phase": "P0",
       "status": "done",
       "weight": 1.0,
@@ -960,9 +985,7 @@
       "current": 4.0,
       "total": 4.0,
       "owner": "uncertainty-autodl-westb-01-elastic",
-      "depends_on": [
-        "P0-worker-bootstrap"
-      ],
+      "depends_on": [],
       "started_at": "2026-07-21T18:12:24+00:00",
       "updated_at": "2026-07-22T14:01:32+00:00",
       "finished_at": "2026-07-21T18:13:04+00:00",
@@ -980,11 +1003,9 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 25123.12000656128,
+      "heartbeat_age_s": 25238.517417907715,
       "ready": false,
-      "blocked_by": [
-        "P0-worker-bootstrap"
-      ],
+      "blocked_by": [],
       "artifact_links": [
         {
           "label": "worker/run_with_heartbeat.py",
@@ -994,13 +1015,13 @@
     },
     {
       "id": "P0-repo-migrate",
-      "title": "Migrate existing scientific code into lanhung/uncertainty and remove local paths",
+      "title": "Import and audit reusable public solver/model source lineages",
       "phase": "P0",
       "status": "done",
-      "weight": 3.0,
-      "unit": "modules",
+      "weight": 2.0,
+      "unit": "source_lineages",
       "current": 0.0,
-      "total": null,
+      "total": 2.0,
       "owner": "vultr",
       "depends_on": [
         "P0-code-inventory"
@@ -1023,7 +1044,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 67585.12011003494,
+      "heartbeat_age_s": 67700.5175383091,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -1049,7 +1070,7 @@
       "id": "P0-reproduce-bbnet",
       "title": "Reproduce one known BBNet result end-to-end through the monitored pipeline",
       "phase": "P0",
-      "status": "pending",
+      "status": "cancelled",
       "weight": 3.0,
       "unit": "checks",
       "current": 0.0,
@@ -1060,10 +1081,10 @@
         "P0-ops-e2e"
       ],
       "started_at": null,
-      "updated_at": "2026-07-22T10:51:26+00:00",
-      "finished_at": null,
+      "updated_at": "2026-07-22T21:01:09+00:00",
+      "finished_at": "2026-07-22T21:01:09+00:00",
       "declared_eta": null,
-      "message": "PR #47 merged. Future solver/checkpoint/scaler/data/generator/MCMC handoffs now enter a deterministic checksum and provenance quarantine that never extracts, executes, imports or deserializes content. This prepares safe intake only; reproduction remains 0/3 and no missing asset is treated as supplied.",
+      "message": "removed from desired-state plan",
       "artifacts": [
         "configs/models/bbnet_interface_schema_v1.yaml",
         "scripts/bbnet_schema_adapter.py",
@@ -1077,7 +1098,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 36529.120279073715,
+      "heartbeat_age_s": 61.51759362220764,
       "ready": false,
       "blocked_by": [
         "P0-solvers-build"
@@ -1105,7 +1126,7 @@
       "id": "P0-solvers-build",
       "title": "Build project PArthENoPE/AlterBBN plus LINX and PRyMordial reference paths",
       "phase": "P0",
-      "status": "stale",
+      "status": "cancelled",
       "weight": 3.0,
       "unit": "solvers",
       "current": 2.0,
@@ -1115,10 +1136,10 @@
         "P0-env-lock"
       ],
       "started_at": "2026-07-22T05:09:04+00:00",
-      "updated_at": "2026-07-22T05:54:58+00:00",
-      "finished_at": null,
+      "updated_at": "2026-07-22T21:01:09+00:00",
+      "finished_at": "2026-07-22T21:01:09+00:00",
       "declared_eta": null,
-      "message": "Still 2/4 executable paths. Direct evidence is current at main a795b95; modified PArthENoPE/AlterBBN remain the only missing paths for this task.",
+      "message": "removed from desired-state plan",
       "artifacts": [
         "artifacts/solver-build/DIRECT_SOLVER_SMOKE_v1.json",
         "artifacts/solver-build/linx-test-SBBN-PRIMAT-v1.log",
@@ -1128,11 +1149,11 @@
       "metrics": {},
       "attempt": 1,
       "run_id": null,
-      "progress": 0.5,
+      "progress": 0.0,
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 54317.120411634445,
+      "heartbeat_age_s": 61.517643213272095,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -1158,7 +1179,7 @@
       "id": "P0-tailnet",
       "title": "Join control + two workers to the private tailnet",
       "phase": "P0",
-      "status": "blocked",
+      "status": "cancelled",
       "weight": 1.0,
       "unit": "hosts",
       "current": 2.0,
@@ -1166,19 +1187,19 @@
       "owner": "uncertainty-autodl-westb-01-elastic",
       "depends_on": [],
       "started_at": "2026-07-21T17:48:10+00:00",
-      "updated_at": "2026-07-22T03:03:19+00:00",
-      "finished_at": "2026-07-21T18:19:11+00:00",
+      "updated_at": "2026-07-22T21:01:09+00:00",
+      "finished_at": "2026-07-22T21:01:09+00:00",
       "declared_eta": null,
-      "message": "2026-07-22 recheck: the bjb1 primary endpoint can now reach the Tailscale control/login endpoints through its current academic proxy, but it remains unjoined because the host is actively occupied by another project's GW-YOLO CPU/I/O queues. Westb remains joined only through its existing userspace daemon and still cannot reach the Tailscale control plane through its current proxy. Completion remains 2/3 hosts.",
+      "message": "removed from desired-state plan",
       "artifacts": [],
       "metrics": {},
       "attempt": 1,
       "run_id": null,
-      "progress": 0.6666666666666666,
+      "progress": 0.0,
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 64616.12050485611,
+      "heartbeat_age_s": 61.51768517494202,
       "ready": false,
       "blocked_by": [],
       "artifact_links": []
@@ -1187,7 +1208,7 @@
       "id": "P0-worker-bootstrap",
       "title": "Bootstrap two shared AutoDL nodes as elastic workers",
       "phase": "P0",
-      "status": "blocked",
+      "status": "cancelled",
       "weight": 1.0,
       "unit": "workers",
       "current": 1.0,
@@ -1198,21 +1219,21 @@
         "P0-tailnet"
       ],
       "started_at": "2026-07-21T18:08:52+00:00",
-      "updated_at": "2026-07-22T08:53:47+00:00",
-      "finished_at": "2026-07-21T18:19:11+00:00",
+      "updated_at": "2026-07-22T21:01:09+00:00",
+      "finished_at": "2026-07-22T21:01:09+00:00",
       "declared_eta": null,
-      "message": "PR #43 merged. Public-safe inventory now records the accepted westb resource capture and checksum lineage, task-time role/lease boundaries, and keeps both bjb1 nodes explicitly ineligible while externally occupied. No progress credit was added: worker bootstrap remains 1/2 until an eligible bjb1 node is independently captured and validated.",
+      "message": "removed from desired-state plan",
       "artifacts": [
         "docs/compute/autodl_inventory.md"
       ],
       "metrics": {},
       "attempt": 1,
       "run_id": null,
-      "progress": 0.5,
+      "progress": 0.0,
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 43588.12059235573,
+      "heartbeat_age_s": 61.517762422561646,
       "ready": false,
       "blocked_by": [
         "P0-tailnet"
@@ -1228,7 +1249,7 @@
       "id": "P1-hardsoft-posterior",
       "title": "EXP-A01 hard/soft comparison in the full 10-D physical posterior",
       "phase": "P1",
-      "status": "pending",
+      "status": "cancelled",
       "weight": 4.0,
       "unit": "chains",
       "current": 0.0,
@@ -1238,10 +1259,10 @@
         "P1-mcmc-refactor"
       ],
       "started_at": null,
-      "updated_at": null,
-      "finished_at": null,
+      "updated_at": "2026-07-22T21:01:09+00:00",
+      "finished_at": "2026-07-22T21:01:09+00:00",
       "declared_eta": null,
-      "message": "",
+      "message": "removed from desired-state plan",
       "artifacts": [],
       "metrics": {},
       "attempt": 0,
@@ -1250,7 +1271,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": null,
+      "heartbeat_age_s": 61.51780152320862,
       "ready": false,
       "blocked_by": [
         "P1-mcmc-refactor"
@@ -1261,7 +1282,7 @@
       "id": "P1-kappa-identifiability",
       "title": "EXP-A02 kappa identifiability for consistency relation, free n_t and free T_re",
       "phase": "P1",
-      "status": "pending",
+      "status": "cancelled",
       "weight": 3.0,
       "unit": "runs",
       "current": 0.0,
@@ -1271,10 +1292,10 @@
         "P1-mcmc-refactor"
       ],
       "started_at": null,
-      "updated_at": null,
-      "finished_at": null,
+      "updated_at": "2026-07-22T21:01:09+00:00",
+      "finished_at": "2026-07-22T21:01:09+00:00",
       "declared_eta": null,
-      "message": "",
+      "message": "removed from desired-state plan",
       "artifacts": [],
       "metrics": {},
       "attempt": 0,
@@ -1283,7 +1304,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": null,
+      "heartbeat_age_s": 61.51785206794739,
       "ready": false,
       "blocked_by": [
         "P1-mcmc-refactor"
@@ -1294,7 +1315,7 @@
       "id": "P1-mcmc-refactor",
       "title": "Refactor MCMC to >=4 chains with split-R-hat, ESS, MCSE and resume",
       "phase": "P1",
-      "status": "pending",
+      "status": "cancelled",
       "weight": 3.0,
       "unit": "checks",
       "current": 0.0,
@@ -1304,10 +1325,10 @@
         "P0-reproduce-bbnet"
       ],
       "started_at": null,
-      "updated_at": null,
-      "finished_at": null,
+      "updated_at": "2026-07-22T21:01:09+00:00",
+      "finished_at": "2026-07-22T21:01:09+00:00",
       "declared_eta": null,
-      "message": "",
+      "message": "removed from desired-state plan",
       "artifacts": [],
       "metrics": {},
       "attempt": 0,
@@ -1316,7 +1337,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": null,
+      "heartbeat_age_s": 61.51789903640747,
       "ready": false,
       "blocked_by": [
         "P0-reproduce-bbnet"
@@ -1327,7 +1348,7 @@
       "id": "P1-schramm-slices",
       "title": "Produce preregistered Schramm-style conditional and marginalized slices",
       "phase": "P1",
-      "status": "pending",
+      "status": "cancelled",
       "weight": 2.0,
       "unit": "figures",
       "current": 0.0,
@@ -1337,10 +1358,10 @@
         "P1-kappa-identifiability"
       ],
       "started_at": null,
-      "updated_at": null,
-      "finished_at": null,
+      "updated_at": "2026-07-22T21:01:09+00:00",
+      "finished_at": "2026-07-22T21:01:09+00:00",
       "declared_eta": null,
-      "message": "",
+      "message": "removed from desired-state plan",
       "artifacts": [],
       "metrics": {},
       "attempt": 0,
@@ -1349,7 +1370,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": null,
+      "heartbeat_age_s": 61.51794123649597,
       "ready": false,
       "blocked_by": [
         "P1-kappa-identifiability"
@@ -1360,7 +1381,7 @@
       "id": "P1-trackA-freeze",
       "title": "Freeze Track A claims, tables, figures and reproducibility package",
       "phase": "P1",
-      "status": "pending",
+      "status": "cancelled",
       "weight": 1.0,
       "unit": "signoffs",
       "current": 0.0,
@@ -1371,10 +1392,10 @@
         "P1-schramm-slices"
       ],
       "started_at": null,
-      "updated_at": null,
-      "finished_at": null,
+      "updated_at": "2026-07-22T21:01:09+00:00",
+      "finished_at": "2026-07-22T21:01:09+00:00",
       "declared_eta": null,
-      "message": "",
+      "message": "removed from desired-state plan",
       "artifacts": [],
       "metrics": {},
       "attempt": 0,
@@ -1383,7 +1404,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": null,
+      "heartbeat_age_s": 61.517977237701416,
       "ready": false,
       "blocked_by": [
         "P1-hardsoft-posterior",
@@ -1395,7 +1416,7 @@
       "id": "P2-discrepancy-factorization",
       "title": "Separate engine, rate-library, weak-rate and extension discrepancies",
       "phase": "P2",
-      "status": "pending",
+      "status": "cancelled",
       "weight": 2.0,
       "unit": "factors",
       "current": 0.0,
@@ -1405,10 +1426,10 @@
         "P2-unified-adapter"
       ],
       "started_at": null,
-      "updated_at": "2026-07-22T05:54:57+00:00",
-      "finished_at": null,
+      "updated_at": "2026-07-22T21:01:09+00:00",
+      "finished_at": "2026-07-22T21:01:09+00:00",
       "declared_eta": null,
-      "message": "",
+      "message": "removed from desired-state plan",
       "artifacts": [
         "docs/decisions/ADR-SOLVER-FACTORIAL-v1.md"
       ],
@@ -1419,7 +1440,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 54318.12115192413,
+      "heartbeat_age_s": 61.518011808395386,
       "ready": false,
       "blocked_by": [
         "P2-unified-adapter"
@@ -1435,7 +1456,7 @@
       "id": "P2-functional-rate-basis",
       "title": "Construct 2-3 functional uncertainty modes for the three leading deuterium reactions",
       "phase": "P2",
-      "status": "pending",
+      "status": "cancelled",
       "weight": 3.0,
       "unit": "reactions",
       "current": 0.0,
@@ -1445,10 +1466,10 @@
         "P2-rate-registry"
       ],
       "started_at": null,
-      "updated_at": "2026-07-22T07:43:51+00:00",
-      "finished_at": null,
+      "updated_at": "2026-07-22T21:01:09+00:00",
+      "finished_at": "2026-07-22T21:01:09+00:00",
       "declared_eta": null,
-      "message": "PR #34 merged at main 28addff. The three required functional candidates now have stable IDs and enforced placeholder fields, but progress remains 0/3: no posterior-derived basis, energy grid, eigenvalues, cumulative variance, thermal integration, or cross-validation has been approved.",
+      "message": "removed from desired-state plan",
       "artifacts": [
         "configs/physics/nuclear_prior_NUC-v1.yaml"
       ],
@@ -1459,7 +1480,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 47784.12123179436,
+      "heartbeat_age_s": 61.51804566383362,
       "ready": false,
       "blocked_by": [
         "P2-rate-registry"
@@ -1475,7 +1496,7 @@
       "id": "P2-rate-registry",
       "title": "Reaction-rate registry with central curves, sigma(T), covariance and provenance",
       "phase": "P2",
-      "status": "pending",
+      "status": "cancelled",
       "weight": 3.0,
       "unit": "reactions",
       "current": 0.0,
@@ -1485,10 +1506,10 @@
         "P2-solver-matrix"
       ],
       "started_at": null,
-      "updated_at": "2026-07-22T20:15:31+00:00",
-      "finished_at": null,
+      "updated_at": "2026-07-22T21:01:09+00:00",
+      "finished_at": "2026-07-22T21:01:09+00:00",
       "declared_eta": null,
-      "message": "Captured 21 exact public solver rate-table files across LINX, PRyMordial, PRIMAT and ABCMB at main 1334f1d. Inventory-only provenance: it does not provide authoritative nuclear-data covariance, scalar envelopes or functional modes, so NUC-v1 remains NOT FROZEN and progress is unchanged.",
+      "message": "removed from desired-state plan",
       "artifacts": [
         "configs/physics/nuclear_prior_NUC-v1.yaml",
         "docs/preregistration/NUCLEAR_PRIOR_FREEZE_v1.md",
@@ -1502,7 +1523,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 2684.1213159561157,
+      "heartbeat_age_s": 61.518081188201904,
       "ready": false,
       "blocked_by": [
         "P2-solver-matrix"
@@ -1530,7 +1551,7 @@
       "id": "P2-solver-matrix",
       "title": "Implement initial solver/rate matrix S0, S1, S5 and S6",
       "phase": "P2",
-      "status": "pending",
+      "status": "cancelled",
       "weight": 3.0,
       "unit": "paths",
       "current": 0.0,
@@ -1540,10 +1561,10 @@
         "P0-solvers-build"
       ],
       "started_at": null,
-      "updated_at": "2026-07-22T05:54:58+00:00",
-      "finished_at": null,
+      "updated_at": "2026-07-22T21:01:09+00:00",
+      "finished_at": "2026-07-22T21:01:09+00:00",
       "declared_eta": null,
-      "message": "Matched E/R/W/X/nu factorial protocol merged in PR #20 at main a795b95; execution remains pending P0-solvers-build and missing S0/S1 sources.",
+      "message": "removed from desired-state plan",
       "artifacts": [
         "docs/decisions/ADR-SOLVER-FACTORIAL-v1.md"
       ],
@@ -1554,7 +1575,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 54317.12139081955,
+      "heartbeat_age_s": 61.518115282058716,
       "ready": false,
       "blocked_by": [
         "P0-solvers-build"
@@ -1570,7 +1591,7 @@
       "id": "P2-unified-adapter",
       "title": "Unified simulate(theta, q, a, neutron, solver, network, precision) adapter",
       "phase": "P2",
-      "status": "pending",
+      "status": "cancelled",
       "weight": 3.0,
       "unit": "paths",
       "current": 0.0,
@@ -1581,10 +1602,10 @@
         "P2-rate-registry"
       ],
       "started_at": null,
-      "updated_at": null,
-      "finished_at": null,
+      "updated_at": "2026-07-22T21:01:09+00:00",
+      "finished_at": "2026-07-22T21:01:09+00:00",
       "declared_eta": null,
-      "message": "",
+      "message": "removed from desired-state plan",
       "artifacts": [],
       "metrics": {},
       "attempt": 0,
@@ -1593,7 +1614,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": null,
+      "heartbeat_age_s": 61.51814937591553,
       "ready": false,
       "blocked_by": [
         "P2-solver-matrix",
@@ -1605,7 +1626,7 @@
       "id": "P2.5-fisher-propagation",
       "title": "Propagate rate, shape, solver and observation covariance into approximate posteriors",
       "phase": "P2.5",
-      "status": "pending",
+      "status": "cancelled",
       "weight": 2.0,
       "unit": "scenarios",
       "current": 0.0,
@@ -1616,10 +1637,10 @@
         "P2-discrepancy-factorization"
       ],
       "started_at": null,
-      "updated_at": null,
-      "finished_at": null,
+      "updated_at": "2026-07-22T21:01:09+00:00",
+      "finished_at": "2026-07-22T21:01:09+00:00",
       "declared_eta": null,
-      "message": "",
+      "message": "removed from desired-state plan",
       "artifacts": [],
       "metrics": {},
       "attempt": 0,
@@ -1628,7 +1649,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": null,
+      "heartbeat_age_s": 61.51821565628052,
       "ready": false,
       "blocked_by": [
         "P2.5-jacobians",
@@ -1640,7 +1661,7 @@
       "id": "P2.5-gate-report",
       "title": "Issue G0/G1/G2/G3 Fisher Gate decision and authorize or stop Pilot-10k",
       "phase": "P2.5",
-      "status": "pending",
+      "status": "cancelled",
       "weight": 1.0,
       "unit": "signoffs",
       "current": 0.0,
@@ -1651,10 +1672,10 @@
         "P0-WHY-NOT-01"
       ],
       "started_at": null,
-      "updated_at": "2026-07-22T08:42:48+00:00",
-      "finished_at": null,
+      "updated_at": "2026-07-22T21:01:09+00:00",
+      "finished_at": "2026-07-22T21:01:09+00:00",
       "declared_eta": null,
-      "message": "PR #41 merged at main 82f8e56. Track B now has a single machine-readable preregistration index. Production, unblinding, Pilot-1k, Pilot-10k and Nature-tier authorization remain false; NUC-v1 remains not frozen and the Fisher Gate Report remains explicitly missing. No gate progress or signoff credit was added.",
+      "message": "removed from desired-state plan",
       "artifacts": [
         "docs/decisions/ADR-FISHER-GATE-v1.md",
         "artifacts/gates/FISHER_GATE_REPORT_v1.md",
@@ -1670,7 +1691,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 44247.121663570404,
+      "heartbeat_age_s": 61.518271684646606,
       "ready": false,
       "blocked_by": [
         "P2.5-fisher-propagation",
@@ -1707,7 +1728,7 @@
       "id": "P2.5-jacobians",
       "title": "Compute J_theta, J_q and function-shape proxies at representative points",
       "phase": "P2.5",
-      "status": "pending",
+      "status": "cancelled",
       "weight": 3.0,
       "unit": "points",
       "current": 0.0,
@@ -1719,10 +1740,10 @@
         "P0-NEUTRON-01"
       ],
       "started_at": null,
-      "updated_at": "2026-07-22T05:54:57+00:00",
-      "finished_at": null,
+      "updated_at": "2026-07-22T21:01:09+00:00",
+      "finished_at": "2026-07-22T21:01:09+00:00",
       "declared_eta": null,
-      "message": "",
+      "message": "removed from desired-state plan",
       "artifacts": [
         "docs/decisions/ADR-FISHER-GATE-v1.md"
       ],
@@ -1733,7 +1754,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 54318.12172746658,
+      "heartbeat_age_s": 61.51831412315369,
       "ready": false,
       "blocked_by": [
         "P2-unified-adapter"
@@ -1749,7 +1770,7 @@
       "id": "P3-cross-solver",
       "title": "Cross-solver and cross-rate-library validation including PRIMAT-family rates",
       "phase": "P3",
-      "status": "pending",
+      "status": "cancelled",
       "weight": 3.0,
       "unit": "baselines",
       "current": 0.0,
@@ -1759,10 +1780,10 @@
         "P3-pilot-10k"
       ],
       "started_at": null,
-      "updated_at": null,
-      "finished_at": null,
+      "updated_at": "2026-07-22T21:01:09+00:00",
+      "finished_at": "2026-07-22T21:01:09+00:00",
       "declared_eta": null,
-      "message": "",
+      "message": "removed from desired-state plan",
       "artifacts": [],
       "metrics": {},
       "attempt": 0,
@@ -1771,7 +1792,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": null,
+      "heartbeat_age_s": 61.51835489273071,
       "ready": false,
       "blocked_by": [
         "P3-pilot-10k"
@@ -1782,7 +1803,7 @@
       "id": "P3-nonstandard-reordering",
       "title": "Test rate-rank inversion under stiff and other non-standard expansion histories",
       "phase": "P3",
-      "status": "pending",
+      "status": "cancelled",
       "weight": 4.0,
       "unit": "scenarios",
       "current": 0.0,
@@ -1792,10 +1813,10 @@
         "P3-standard-atlas-regression"
       ],
       "started_at": null,
-      "updated_at": null,
-      "finished_at": null,
+      "updated_at": "2026-07-22T21:01:09+00:00",
+      "finished_at": "2026-07-22T21:01:09+00:00",
       "declared_eta": null,
-      "message": "",
+      "message": "removed from desired-state plan",
       "artifacts": [],
       "metrics": {},
       "attempt": 0,
@@ -1804,7 +1825,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": null,
+      "heartbeat_age_s": 61.518391370773315,
       "ready": false,
       "blocked_by": [
         "P3-standard-atlas-regression"
@@ -1815,7 +1836,7 @@
       "id": "P3-nuclear-voi",
       "title": "Quantify nuclear-experiment value-of-information for early-Universe/GW parameters",
       "phase": "P3",
-      "status": "pending",
+      "status": "cancelled",
       "weight": 3.0,
       "unit": "interventions",
       "current": 0.0,
@@ -1826,10 +1847,10 @@
         "P3-cross-solver"
       ],
       "started_at": null,
-      "updated_at": null,
-      "finished_at": null,
+      "updated_at": "2026-07-22T21:01:09+00:00",
+      "finished_at": "2026-07-22T21:01:09+00:00",
       "declared_eta": null,
-      "message": "",
+      "message": "removed from desired-state plan",
       "artifacts": [],
       "metrics": {},
       "attempt": 0,
@@ -1838,7 +1859,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": null,
+      "heartbeat_age_s": 61.518425941467285,
       "ready": false,
       "blocked_by": [
         "P3-nonstandard-reordering",
@@ -1850,7 +1871,7 @@
       "id": "P3-pilot-10k",
       "title": "Pilot-10k targeted/active-learning dataset; forbidden under G0",
       "phase": "P3",
-      "status": "pending",
+      "status": "cancelled",
       "weight": 3.0,
       "unit": "samples",
       "current": 0.0,
@@ -1860,10 +1881,10 @@
         "P3-pilot-1k"
       ],
       "started_at": null,
-      "updated_at": null,
-      "finished_at": null,
+      "updated_at": "2026-07-22T21:01:09+00:00",
+      "finished_at": "2026-07-22T21:01:09+00:00",
       "declared_eta": null,
-      "message": "",
+      "message": "removed from desired-state plan",
       "artifacts": [],
       "metrics": {},
       "attempt": 0,
@@ -1872,7 +1893,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": null,
+      "heartbeat_age_s": 61.51845979690552,
       "ready": false,
       "blocked_by": [
         "P3-pilot-1k"
@@ -1883,7 +1904,7 @@
       "id": "P3-pilot-1k",
       "title": "Pilot-1k real-solver labels with checksums, failures and throughput ledger",
       "phase": "P3",
-      "status": "pending",
+      "status": "cancelled",
       "weight": 2.0,
       "unit": "samples",
       "current": 0.0,
@@ -1893,10 +1914,10 @@
         "P2.5-gate-report"
       ],
       "started_at": null,
-      "updated_at": null,
-      "finished_at": null,
+      "updated_at": "2026-07-22T21:01:09+00:00",
+      "finished_at": "2026-07-22T21:01:09+00:00",
       "declared_eta": null,
-      "message": "",
+      "message": "removed from desired-state plan",
       "artifacts": [],
       "metrics": {},
       "attempt": 0,
@@ -1905,7 +1926,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": null,
+      "heartbeat_age_s": 61.51849365234375,
       "ready": false,
       "blocked_by": [
         "P2.5-gate-report"
@@ -1916,7 +1937,7 @@
       "id": "P3-standard-atlas-regression",
       "title": "Reproduce known standard-BBN reaction sensitivity ranking as a regression test",
       "phase": "P3",
-      "status": "pending",
+      "status": "cancelled",
       "weight": 2.0,
       "unit": "reactions",
       "current": 0.0,
@@ -1924,6 +1945,41 @@
       "owner": null,
       "depends_on": [
         "P3-pilot-10k"
+      ],
+      "started_at": null,
+      "updated_at": "2026-07-22T21:01:09+00:00",
+      "finished_at": "2026-07-22T21:01:09+00:00",
+      "declared_eta": null,
+      "message": "removed from desired-state plan",
+      "artifacts": [],
+      "metrics": {},
+      "attempt": 0,
+      "run_id": null,
+      "progress": 0.0,
+      "rate": null,
+      "eta": null,
+      "eta_kind": "none",
+      "heartbeat_age_s": 61.518527030944824,
+      "ready": false,
+      "blocked_by": [
+        "P3-pilot-10k"
+      ],
+      "artifact_links": []
+    },
+    {
+      "id": "UQ0-NUISANCE-ADAPTER",
+      "title": "Implement simulate(theta,z,tau_n,solver,network,precision) for three direct paths",
+      "phase": "UQ0",
+      "status": "pending",
+      "weight": 5.0,
+      "unit": "paths",
+      "current": 0.0,
+      "total": 3.0,
+      "owner": null,
+      "depends_on": [
+        "UQ0-PUBLIC-SOLVER-BASELINES",
+        "UQ0-R0-RATE-PRIOR",
+        "UQ0-WEAK-PRIOR"
       ],
       "started_at": null,
       "updated_at": null,
@@ -1941,7 +1997,525 @@
       "heartbeat_age_s": null,
       "ready": false,
       "blocked_by": [
-        "P3-pilot-10k"
+        "UQ0-PUBLIC-SOLVER-BASELINES",
+        "UQ0-R0-RATE-PRIOR",
+        "UQ0-WEAK-PRIOR"
+      ],
+      "artifact_links": []
+    },
+    {
+      "id": "UQ0-PLUSMINUS-REGRESSION",
+      "title": "Validate central and symmetric rate perturbations with units and structured failures",
+      "phase": "UQ0",
+      "status": "pending",
+      "weight": 3.0,
+      "unit": "checks",
+      "current": 0.0,
+      "total": 9.0,
+      "owner": null,
+      "depends_on": [
+        "UQ0-NUISANCE-ADAPTER"
+      ],
+      "started_at": null,
+      "updated_at": null,
+      "finished_at": null,
+      "declared_eta": null,
+      "message": "",
+      "artifacts": [],
+      "metrics": {},
+      "attempt": 0,
+      "run_id": null,
+      "progress": 0.0,
+      "rate": null,
+      "eta": null,
+      "eta_kind": "none",
+      "heartbeat_age_s": null,
+      "ready": false,
+      "blocked_by": [
+        "UQ0-NUISANCE-ADAPTER"
+      ],
+      "artifact_links": []
+    },
+    {
+      "id": "UQ0-PUBLIC-SOLVER-BASELINES",
+      "title": "Establish at least three pinned self-contained direct BBN solver paths",
+      "phase": "UQ0",
+      "status": "pending",
+      "weight": 4.0,
+      "unit": "paths",
+      "current": 0.0,
+      "total": 3.0,
+      "owner": null,
+      "depends_on": [
+        "UQ0-SCOPE-FREEZE",
+        "P0-env-lock"
+      ],
+      "started_at": null,
+      "updated_at": null,
+      "finished_at": null,
+      "declared_eta": null,
+      "message": "",
+      "artifacts": [],
+      "metrics": {},
+      "attempt": 0,
+      "run_id": null,
+      "progress": 0.0,
+      "rate": null,
+      "eta": null,
+      "eta_kind": "none",
+      "heartbeat_age_s": null,
+      "ready": true,
+      "blocked_by": [],
+      "artifact_links": []
+    },
+    {
+      "id": "UQ0-R0-RATE-PRIOR",
+      "title": "Register numerical priors and mappings for the three R0 deuterium rates",
+      "phase": "UQ0",
+      "status": "pending",
+      "weight": 4.0,
+      "unit": "reactions",
+      "current": 0.0,
+      "total": 3.0,
+      "owner": null,
+      "depends_on": [
+        "UQ0-SCOPE-FREEZE",
+        "UQ0-PUBLIC-SOLVER-BASELINES"
+      ],
+      "started_at": null,
+      "updated_at": null,
+      "finished_at": null,
+      "declared_eta": null,
+      "message": "",
+      "artifacts": [],
+      "metrics": {},
+      "attempt": 0,
+      "run_id": null,
+      "progress": 0.0,
+      "rate": null,
+      "eta": null,
+      "eta_kind": "none",
+      "heartbeat_age_s": null,
+      "ready": false,
+      "blocked_by": [
+        "UQ0-PUBLIC-SOLVER-BASELINES"
+      ],
+      "artifact_links": []
+    },
+    {
+      "id": "UQ0-SCOPE-FREEZE",
+      "title": "Freeze the BBN nuclear-rate uncertainty question and model ladder",
+      "phase": "UQ0",
+      "status": "done",
+      "weight": 2.0,
+      "unit": "decisions",
+      "current": 1.0,
+      "total": 1.0,
+      "owner": null,
+      "depends_on": [],
+      "started_at": null,
+      "updated_at": "2026-07-22T21:02:10+00:00",
+      "finished_at": "2026-07-22T21:02:10+00:00",
+      "declared_eta": null,
+      "message": "UQ-only scientific scope and model ladder frozen at main 4321afc; numerical R0 priors, solver mappings and weak contract remain separate downstream tasks.",
+      "artifacts": [
+        "docs/decisions/ADR-0006-uncertainty-core-refocus.md",
+        "docs/science/UNCERTAINTY_SCOPE_v1.md",
+        "configs/physics/parameter_schema.yaml"
+      ],
+      "metrics": {},
+      "attempt": 0,
+      "run_id": null,
+      "progress": 1.0,
+      "rate": null,
+      "eta": null,
+      "eta_kind": "none",
+      "heartbeat_age_s": 0.5187139511108398,
+      "ready": false,
+      "blocked_by": [],
+      "artifact_links": [
+        {
+          "label": "docs/decisions/ADR-0006-uncertainty-core-refocus.md",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/docs/decisions/ADR-0006-uncertainty-core-refocus.md"
+        },
+        {
+          "label": "docs/science/UNCERTAINTY_SCOPE_v1.md",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/docs/science/UNCERTAINTY_SCOPE_v1.md"
+        },
+        {
+          "label": "configs/physics/parameter_schema.yaml",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/configs/physics/parameter_schema.yaml"
+        }
+      ]
+    },
+    {
+      "id": "UQ0-WEAK-PRIOR",
+      "title": "Register neutron-lifetime and weak-rate nuisance handling without double counting",
+      "phase": "UQ0",
+      "status": "pending",
+      "weight": 2.0,
+      "unit": "contracts",
+      "current": 0.0,
+      "total": 1.0,
+      "owner": null,
+      "depends_on": [
+        "UQ0-SCOPE-FREEZE",
+        "P0-NEUTRON-01"
+      ],
+      "started_at": null,
+      "updated_at": null,
+      "finished_at": null,
+      "declared_eta": null,
+      "message": "",
+      "artifacts": [],
+      "metrics": {},
+      "attempt": 0,
+      "run_id": null,
+      "progress": 0.0,
+      "rate": null,
+      "eta": null,
+      "eta_kind": "none",
+      "heartbeat_age_s": null,
+      "ready": true,
+      "blocked_by": [],
+      "artifact_links": []
+    },
+    {
+      "id": "UQ1-FIDUCIAL-MC-1K",
+      "title": "Generate 1,000 direct nuisance draws at the frozen standard-BBN point",
+      "phase": "UQ1",
+      "status": "pending",
+      "weight": 5.0,
+      "unit": "draws",
+      "current": 0.0,
+      "total": 1000.0,
+      "owner": null,
+      "depends_on": [
+        "UQ0-PLUSMINUS-REGRESSION"
+      ],
+      "started_at": null,
+      "updated_at": null,
+      "finished_at": null,
+      "declared_eta": null,
+      "message": "",
+      "artifacts": [],
+      "metrics": {},
+      "attempt": 0,
+      "run_id": null,
+      "progress": 0.0,
+      "rate": null,
+      "eta": null,
+      "eta_kind": "none",
+      "heartbeat_age_s": null,
+      "ready": false,
+      "blocked_by": [
+        "UQ0-PLUSMINUS-REGRESSION"
+      ],
+      "artifact_links": []
+    },
+    {
+      "id": "UQ1-MC-CONVERGENCE",
+      "title": "Evaluate abundance-band convergence at cumulative nuisance sample counts",
+      "phase": "UQ1",
+      "status": "pending",
+      "weight": 3.0,
+      "unit": "checkpoints",
+      "current": 0.0,
+      "total": 5.0,
+      "owner": null,
+      "depends_on": [
+        "UQ1-FIDUCIAL-MC-1K"
+      ],
+      "started_at": null,
+      "updated_at": null,
+      "finished_at": null,
+      "declared_eta": null,
+      "message": "",
+      "artifacts": [],
+      "metrics": {},
+      "attempt": 0,
+      "run_id": null,
+      "progress": 0.0,
+      "rate": null,
+      "eta": null,
+      "eta_kind": "none",
+      "heartbeat_age_s": null,
+      "ready": false,
+      "blocked_by": [
+        "UQ1-FIDUCIAL-MC-1K"
+      ],
+      "artifact_links": []
+    },
+    {
+      "id": "UQ1-POSTHOC-SIGMA-AUDIT",
+      "title": "Compare direct abundance distributions with the constant post-hoc theoretical covariance",
+      "phase": "UQ1",
+      "status": "pending",
+      "weight": 3.0,
+      "unit": "diagnostics",
+      "current": 0.0,
+      "total": 4.0,
+      "owner": null,
+      "depends_on": [
+        "UQ1-SCHRAMM-BANDS"
+      ],
+      "started_at": null,
+      "updated_at": null,
+      "finished_at": null,
+      "declared_eta": null,
+      "message": "",
+      "artifacts": [],
+      "metrics": {},
+      "attempt": 0,
+      "run_id": null,
+      "progress": 0.0,
+      "rate": null,
+      "eta": null,
+      "eta_kind": "none",
+      "heartbeat_age_s": null,
+      "ready": false,
+      "blocked_by": [
+        "UQ1-SCHRAMM-BANDS"
+      ],
+      "artifact_links": []
+    },
+    {
+      "id": "UQ1-SCHRAMM-BANDS",
+      "title": "Produce solver-grounded central, 68% and 95% theoretical abundance bands",
+      "phase": "UQ1",
+      "status": "pending",
+      "weight": 4.0,
+      "unit": "outputs",
+      "current": 0.0,
+      "total": 4.0,
+      "owner": null,
+      "depends_on": [
+        "UQ1-FIDUCIAL-MC-1K",
+        "UQ1-MC-CONVERGENCE"
+      ],
+      "started_at": null,
+      "updated_at": null,
+      "finished_at": null,
+      "declared_eta": null,
+      "message": "",
+      "artifacts": [],
+      "metrics": {},
+      "attempt": 0,
+      "run_id": null,
+      "progress": 0.0,
+      "rate": null,
+      "eta": null,
+      "eta_kind": "none",
+      "heartbeat_age_s": null,
+      "ready": false,
+      "blocked_by": [
+        "UQ1-FIDUCIAL-MC-1K",
+        "UQ1-MC-CONVERGENCE"
+      ],
+      "artifact_links": []
+    },
+    {
+      "id": "UQ2-COVARIANCE-SMOKE-16",
+      "title": "Measure covariance drift, correlations and finite-difference responses at 16 points",
+      "phase": "UQ2",
+      "status": "pending",
+      "weight": 4.0,
+      "unit": "points",
+      "current": 0.0,
+      "total": 16.0,
+      "owner": null,
+      "depends_on": [
+        "UQ1-SCHRAMM-BANDS",
+        "UQ1-POSTHOC-SIGMA-AUDIT",
+        "P0-OBS-01"
+      ],
+      "started_at": null,
+      "updated_at": null,
+      "finished_at": null,
+      "declared_eta": null,
+      "message": "",
+      "artifacts": [],
+      "metrics": {},
+      "attempt": 0,
+      "run_id": null,
+      "progress": 0.0,
+      "rate": null,
+      "eta": null,
+      "eta_kind": "none",
+      "heartbeat_age_s": null,
+      "ready": false,
+      "blocked_by": [
+        "UQ1-SCHRAMM-BANDS",
+        "UQ1-POSTHOC-SIGMA-AUDIT"
+      ],
+      "artifact_links": []
+    },
+    {
+      "id": "UQ2-DIRECT-ECONOMICS",
+      "title": "Project direct Monte Carlo, joint marginalization and SBC workload costs",
+      "phase": "UQ2",
+      "status": "pending",
+      "weight": 2.0,
+      "unit": "workloads",
+      "current": 0.0,
+      "total": 4.0,
+      "owner": null,
+      "depends_on": [
+        "UQ1-FIDUCIAL-MC-1K",
+        "P0-WHY-NOT-01"
+      ],
+      "started_at": null,
+      "updated_at": null,
+      "finished_at": null,
+      "declared_eta": null,
+      "message": "",
+      "artifacts": [],
+      "metrics": {},
+      "attempt": 0,
+      "run_id": null,
+      "progress": 0.0,
+      "rate": null,
+      "eta": null,
+      "eta_kind": "none",
+      "heartbeat_age_s": null,
+      "ready": false,
+      "blocked_by": [
+        "UQ1-FIDUCIAL-MC-1K",
+        "P0-WHY-NOT-01"
+      ],
+      "artifact_links": []
+    },
+    {
+      "id": "UQ2-FISHER64",
+      "title": "Execute the 64-point nuclear/weak/solver response and Fisher gate",
+      "phase": "UQ2",
+      "status": "pending",
+      "weight": 5.0,
+      "unit": "points",
+      "current": 0.0,
+      "total": 64.0,
+      "owner": null,
+      "depends_on": [
+        "UQ2-POINT-MANIFEST-64"
+      ],
+      "started_at": null,
+      "updated_at": null,
+      "finished_at": null,
+      "declared_eta": null,
+      "message": "",
+      "artifacts": [],
+      "metrics": {},
+      "attempt": 0,
+      "run_id": null,
+      "progress": 0.0,
+      "rate": null,
+      "eta": null,
+      "eta_kind": "none",
+      "heartbeat_age_s": null,
+      "ready": false,
+      "blocked_by": [
+        "UQ2-POINT-MANIFEST-64"
+      ],
+      "artifact_links": []
+    },
+    {
+      "id": "UQ2-GATE-REPORT",
+      "title": "Issue G0/G1/G2/G3 and authorize or stop learned-model production",
+      "phase": "UQ2",
+      "status": "pending",
+      "weight": 3.0,
+      "unit": "signoffs",
+      "current": 0.0,
+      "total": 3.0,
+      "owner": null,
+      "depends_on": [
+        "UQ2-FISHER64",
+        "UQ2-DIRECT-ECONOMICS"
+      ],
+      "started_at": null,
+      "updated_at": null,
+      "finished_at": null,
+      "declared_eta": null,
+      "message": "",
+      "artifacts": [],
+      "metrics": {},
+      "attempt": 0,
+      "run_id": null,
+      "progress": 0.0,
+      "rate": null,
+      "eta": null,
+      "eta_kind": "none",
+      "heartbeat_age_s": null,
+      "ready": false,
+      "blocked_by": [
+        "UQ2-FISHER64",
+        "UQ2-DIRECT-ECONOMICS"
+      ],
+      "artifact_links": []
+    },
+    {
+      "id": "UQ2-NEXT-PLAN",
+      "title": "Add conditional emulator/full-network tasks only after the signed Gate decision",
+      "phase": "UQ2",
+      "status": "pending",
+      "weight": 1.0,
+      "unit": "plans",
+      "current": 0.0,
+      "total": 1.0,
+      "owner": null,
+      "depends_on": [
+        "UQ2-GATE-REPORT"
+      ],
+      "started_at": null,
+      "updated_at": null,
+      "finished_at": null,
+      "declared_eta": null,
+      "message": "",
+      "artifacts": [],
+      "metrics": {},
+      "attempt": 0,
+      "run_id": null,
+      "progress": 0.0,
+      "rate": null,
+      "eta": null,
+      "eta_kind": "none",
+      "heartbeat_age_s": null,
+      "ready": false,
+      "blocked_by": [
+        "UQ2-GATE-REPORT"
+      ],
+      "artifact_links": []
+    },
+    {
+      "id": "UQ2-POINT-MANIFEST-64",
+      "title": "Freeze the 64-point standard/posterior/boundary response manifest before execution",
+      "phase": "UQ2",
+      "status": "pending",
+      "weight": 2.0,
+      "unit": "manifests",
+      "current": 0.0,
+      "total": 1.0,
+      "owner": null,
+      "depends_on": [
+        "UQ2-COVARIANCE-SMOKE-16"
+      ],
+      "started_at": null,
+      "updated_at": null,
+      "finished_at": null,
+      "declared_eta": null,
+      "message": "",
+      "artifacts": [],
+      "metrics": {},
+      "attempt": 0,
+      "run_id": null,
+      "progress": 0.0,
+      "rate": null,
+      "eta": null,
+      "eta_kind": "none",
+      "heartbeat_age_s": null,
+      "ready": false,
+      "blocked_by": [
+        "UQ2-COVARIANCE-SMOKE-16"
       ],
       "artifact_links": []
     }
