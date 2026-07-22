@@ -171,3 +171,23 @@ def test_generic_plateau_pair_supports_max_steps_diagnostic() -> None:
 
     assert result["passed"] is True
     assert result["plateaus"]["max_steps_invariance"]["passed"] is True
+
+
+def test_v4_rerun_uses_accepted_max_steps_without_relaxing_thresholds() -> None:
+    root = Path(__file__).resolve().parents[2]
+    config = yaml.safe_load(
+        (root / "configs/benchmarks/linx_convergence_rerun_v4.yaml").read_text()
+    )
+    cases = {case["id"]: case for case in config["cases"]}
+
+    assert config["parent_result"] == "max_steps_invariance_accepted"
+    assert all(case["max_steps"] == 16384 for case in cases.values())
+    assert config["acceptance"]["maximum_scalar_batch_difference_observation_sigma"] == 0.01
+    assert config["acceptance"]["maximum_plateau_difference_observation_sigma"] == 0.001
+    assert config["acceptance"]["plateau_pairs"] == {
+        "tolerance": ["tolerance_3e-8_sampling_2400", "production_candidate"],
+        "weak_rate_sampling": [
+            "sampling_1200_tolerance_1e-8",
+            "production_candidate",
+        ],
+    }
