@@ -1,0 +1,71 @@
+schema_version: 1
+model_id: bbnet_ml4gw_v1
+status: source_audit_only_not_runnable
+task: P0-reproduce-bbnet
+origin:
+  repository: https://github.com/ML4GW/BBNet
+  commit: 9bd5147095f25fd8c6ac7cad30d78c71bcd3ece7
+  paper: https://arxiv.org/abs/2512.15266v1
+license:
+  identifier: MIT
+  file: legacy/bbnet/ml4gw-9bd5147/LICENSE
+
+training_scripts:
+  parthenope:
+    path: legacy/bbnet/ml4gw-9bd5147/train_bbn_parthenope.py
+    inputs: [OmegaBh^2, dn_nu, kappa, tau]
+    outputs: [H2/H, Y_p]
+    fixed_test_size: 3000
+    fixed_validation_size: 3000
+    split_seed_status: global_numpy_seed_only
+    checkpoint_filename: best_model_small_pe_3wos.pth
+    scaler_filename: scalers_small_pe_3wos.pkl
+  alterbbn:
+    path: legacy/bbnet/ml4gw-9bd5147/train_bbn_alterbbn.py
+    inputs: [dd0, dd0_rad, tau, omegabn]
+    outputs: [H2/H, Yp]
+    input_row_limit: 10000
+    fixed_test_size: 1000
+    fixed_validation_size: 1000
+    split_random_state: 42
+    checkpoint_filename: best_model_alter_org85.pth
+    scaler_filename: scalers_alterbbn_org85.pkl
+
+evaluation_scripts:
+  file_named_parthenope:
+    path: legacy/bbnet/ml4gw-9bd5147/mape_for_parthenope.py
+    expected_inputs: [kappa10, DN_eff, tau, omegabn]
+    expected_outputs: [H2/H, Yp]
+    audit_result: inconsistent_with_parthenope_training_schema
+  alterbbn_expert:
+    path: legacy/bbnet/ml4gw-9bd5147/mape_for_alterbbn_exp.py
+    expected_inputs: [kappa10, DN_eff, tau, omegabn]
+    expected_outputs: [H2/H, Yp]
+    audit_result: requires_unregistered_mapping_from_dd0_and_dd0_rad
+
+architecture_defaults:
+  class: ResMLPWithAttn
+  input_dimension: 4
+  output_dimension: 2
+  hidden_dimension: 4096
+  residual_depth: 8
+  dropout: 0.3
+  attention_heads: 8
+
+known_blockers:
+  - No pretrained checkpoint or scaler exists in reachable ML4GW/BBNet history.
+  - No training or validation data exists in the repository.
+  - The modified PArthENoPE and AlterBBN generators are explicitly external.
+  - The PArthENoPE evaluator's feature and target names do not match the PArthENoPE training script.
+  - The AlterBBN evaluator requires kappa10/DN_eff while training consumes dd0/dd0_rad; the mapping is not registered.
+  - Exact Python and dependency versions remain TODOs in the upstream README.
+  - Several output paths and defaults are hard-coded to an upstream developer home directory.
+  - Checkpoint loads use strict=False and must be replaced by a key-complete validation before scientific use.
+
+use_policy:
+  approved_for_scientific_inference: false
+  approved_for_claims: false
+  approved_as_refactor_input: true
+  next_gate: >-
+    obtain attributable data/generator and resolve the train/evaluate schema,
+    dependency, split, and checkpoint-key contracts before reproduction

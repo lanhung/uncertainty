@@ -1,0 +1,145 @@
+schema_version: 1
+manifest_id: ml4gw_upstreams_v1
+captured_at: "2026-07-22"
+scientific_status:
+  approved_for_claims: false
+  bbnet_reproduction_complete: false
+  sagenet_forward_validation_complete: false
+  note: >-
+    This manifest records source and artifact provenance. It does not validate
+    README accuracy claims, scientific correctness, or paper-level performance.
+
+sources:
+  bbnet:
+    repository: https://github.com/ML4GW/BBNet
+    commit: 9bd5147095f25fd8c6ac7cad30d78c71bcd3ece7
+    default_branch: main
+    license: MIT
+    license_path: legacy/bbnet/ml4gw-9bd5147/LICENSE
+    local_snapshot: legacy/bbnet/ml4gw-9bd5147
+    snapshot_status: exact_git_archive
+    files:
+      - path: LICENSE
+        size_bytes: 1062
+        git_blob: ccd848ea8b5c18b789c06a27e5fdbc88901ed5e9
+        sha256: a52a1ebb3c5c59e90d2ee672f6efeedf3c64a72fba897e4e5eff4bb5b3e0417a
+      - path: README.md
+        size_bytes: 13590
+        git_blob: bde5a744e4ccbfb2785b733d4d0889787ffb5667
+        sha256: 23b9ea28c44f82d5d679481b3655b23374d13b0cbf22d1099be1642e21cd1c89
+      - path: mape_for_alterbbn_exp.py
+        size_bytes: 25031
+        git_blob: b2e2fee32d2376b5c3ca6c28ccd616a3ca4c05dd
+        sha256: ea40195bb52cfce7deb7b61bc70ea3db702307af57ec83134b6fc9e194459abe
+      - path: mape_for_parthenope.py
+        size_bytes: 8500
+        git_blob: 3d6b83fb47b8e216cbdeede6fce18df6983c8a12
+        sha256: 568a2d6288ab7162ca2c6f9e977a3d9d99cfda29bae70e8d4ec219c6da8ff883
+      - path: train_bbn_alterbbn.py
+        size_bytes: 18507
+        git_blob: dedfd8040b515f229d0b93590ffa3962008654ea
+        sha256: 05522585f7b845b4cd8cb09afc9086f6ed29dea1476d45ac3e9f72b824d3869b
+      - path: train_bbn_parthenope.py
+        size_bytes: 20863
+        git_blob: 7cc306e5b5fbe472a4df593503359d453dad85c6
+        sha256: 294d4e41e831f57c862cfaa2e4ced3f4bb467f3712b268aeed50b06ef0cc4553
+      - path: weights
+        size_bytes: 1
+        git_blob: 8b137891791fe96927ad78e64b0aad7bded08bdc
+        sha256: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
+    usable_now:
+      - PArthENoPE training and evaluation script source
+      - AlterBBN training and evaluation script source
+      - architecture, preprocessing, split, and expected-column audit
+    absent_from_all_reachable_history:
+      - pretrained BBNet checkpoints
+      - serialized BBNet scalers
+      - training and validation data
+      - modified PArthENoPE source
+      - modified AlterBBN source
+      - MCMC or likelihood driver
+    discrepancies:
+      - >-
+        README describes weights/ as a directory containing pretrained assets,
+        but the pinned tree contains a one-byte regular file named weights.
+      - README contains placeholder environment versions, data URL, and commands.
+      - >-
+        mape_for_parthenope.py expects kappa10/DN_eff/tau/omegabn and H2/H/Yp,
+        while train_bbn_parthenope.py trains on OmegaBh^2/dn_nu/kappa/tau and
+        H2/H/Y_p. It cannot evaluate that training output without an unrecorded
+        schema conversion.
+      - >-
+        AlterBBN training consumes dd0/dd0_rad while evaluation consumes
+        kappa10/DN_eff; the physical mapping is not defined in the repository.
+      - >-
+        Evaluation loads checkpoints with strict=False, which can hide missing
+        or unexpected state-dict keys and is not acceptable for validation.
+
+  sagenet:
+    repository: https://github.com/ML4GW/SageNet
+    commit: ab7face439b5ad47a8551d61e1a3fbdfd2d0ac55
+    default_branch: main
+    license: MIT
+    distribution: fetch_and_verify_not_vendored
+    package: sagenetgw
+    package_version: 0.1.11
+    artifacts:
+      - path: sagenetgw/models/best_gw_model_CosmicNet2.pth
+        size_bytes: 627464
+        sha256: d3f3ca4320229a6e4dcb2ebd0a84f1ef6920e21357c6a93200d1b2e4adfd016c
+        contains: [model_state, x_scaler, y_scaler, param_scaler]
+      - path: sagenetgw/models/best_gw_model_LSTM.pth
+        size_bytes: 6596380
+        sha256: 6c1066ba4b74d283f6d451346aa40a23062ad81feeec0bcbbbace1548a3ab343
+        contains: [model_state, x_scaler, y_scaler, param_scaler]
+      - path: sagenetgw/models/best_gw_model_RNN.pth
+        size_bytes: 1860112
+        sha256: 19f4812cec55f60eca32df73b4a98a4b7477a0b401aadd86bf37e84ad38e6a3b
+        contains: [model_state, x_scaler, y_scaler, param_scaler]
+      - path: sagenetgw/models/best_gw_model_Transformer.pth
+        size_bytes: 6879607
+        sha256: 95d87b483472fd4a73f6de5ba85213358ed138bf75a2d26d8bd1ce4181a6d485
+        contains: [model_state, x_scaler, y_scaler, param_scaler]
+      - path: src/solve_plus.data_test_5400.json
+        size_bytes: 1856906
+        sha256: 67a5414abe577b49a8614740cedd9106d96adfeefd95724235d40559b495c879
+        contains: [5400-point parameter-only legacy SGWB test input corpus]
+        missing_fields: [f, log10OmegaGW, f_interp_60, log10OmegaGW_interp_60]
+    checkpoint_safety:
+      format: pytorch_zip_with_pickle_metadata
+      policy: >-
+        Verify the repository commit and SHA-256 before loading. Treat the files
+        as executable pickle-bearing artifacts; do not use unrestricted
+        torch.load on an unverified copy or in a privileged shared environment.
+    submodules:
+      - path: sagenetgw/stiffGWpy
+        repository: https://github.com/YifangLuo/stiffGWpy
+        commit: d6903d3f2552fc81f7de8f8765e9567766c4361e
+        license: GPL-3.0
+        role: legacy SGWB numerical and Cobaya lineage
+        limitation: >-
+          cobaya/alterbbn.py expects an external ../../../alterbbn_v2.2 tree and
+          an alter_stiff executable; the modified AlterBBN source is not present.
+    non_default_branches:
+      - name: sagenet_dnnu
+        commit: a3af2dae25626c4a5774286c1935b6bc9c59ed81
+        status: documentation_only_incomplete_no_declared_package_or_tests
+      - name: sagenet_dnnu-1
+        commit: 9ef53f39b603ab7a732ca4f5f12d79b2fd53e038
+        status: documentation_only_incomplete_no_declared_package_or_tests
+    usable_now:
+      - legacy SGWB network implementations
+      - four checkpoint/scaler bundles after isolated validation
+      - 5400-sample legacy SGWB parameter input corpus
+      - legacy stiffGW and Cobaya configuration lineage
+    not_established:
+      - checkpoint forward-pass equivalence in the project lock
+      - README speed or accuracy claims
+      - compatibility with current LVK O1-O4a products
+      - BBN solver availability
+      - ground-truth spectra for the bundled 5400 parameter inputs
+      - DNN-UQ branch implementation or results
+
+retrieval:
+  script: scripts/fetch_ml4gw_upstreams.sh
+  preferred_storage: /root/autodl-fs/projects/uncertainty/external

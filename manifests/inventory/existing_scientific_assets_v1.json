@@ -10,14 +10,15 @@
     "repositories visible to the authenticated lanhung GitHub account"
   ],
   "counts": {
-    "bbnet_source": 1,
+    "bbnet_source": 2,
     "project_owned_bbnet_source": 0,
     "project_parthenope_patches": 0,
     "project_alterbbn_patches": 0,
     "reference_solver_checkouts": 0,
     "bbn_mcmc_implementations": 0,
     "bbn_dataset_manifests": 0,
-    "bbn_model_manifests": 0
+    "bbn_model_manifests": 0,
+    "sgwb_checkpoint_bundles": 4
   },
   "operations_assets_present": true,
   "migration_input_available": true,
@@ -31,6 +32,18 @@
       "training_script_commit": "704274c780f91f7e090d478f1a4f03a8ff933df9",
       "manifest": "manifests/models/bbnet_legacy_upstream_v1.yaml",
       "scientific_status": "non-runnable; checkpoints/data incomplete"
+    },
+    {
+      "captured_at": "2026-07-22",
+      "reason": "Operator identified canonical ML4GW BBNet and SageNet repositories",
+      "origins": [
+        "https://github.com/ML4GW/BBNet",
+        "https://github.com/ML4GW/SageNet"
+      ],
+      "bbnet_commit": "9bd5147095f25fd8c6ac7cad30d78c71bcd3ece7",
+      "sagenet_commit": "ab7face439b5ad47a8551d61e1a3fbdfd2d0ac55",
+      "manifest": "manifests/models/ml4gw_upstreams_v1.yaml",
+      "scientific_status": "BBNet scripts available but BBNet artifacts/data/solvers absent; SageNet SGWB artifacts available with isolated forward validation pending"
     }
   ],
   "limitations": [

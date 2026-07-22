@@ -1,6 +1,6 @@
 # Existing scientific assets inventory v1
 
-Status: amended after published-upstream discovery on 2026-07-21
+Status: amended after ML4GW canonical-upstream discovery on 2026-07-22
 
 Task: `P0-code-inventory`
 
@@ -28,13 +28,14 @@ names are deliberately excluded from this document.
 
 | Asset class | Located | Evidence and interpretation |
 |---|---:|---|
-| BBNet source or fork | 1 public upstream | No project-owned copy was found in the original scope. A later paper-reference audit located `Hdiao112/BBNet`; see the amendment below. |
+| BBNet source or fork | 2 public upstream lineages | No project-owned copy was found in the original scope. Later audits located `Hdiao112/BBNet` and the operator-identified canonical `ML4GW/BBNet`; see the amendments below. |
 | Project-specific PArthENoPE patches | 0 | No source tree, patch series, build directory, or solver card was found. |
 | Project-specific AlterBBN patches | 0 | No source tree, patch series, build directory, or solver card was found. |
 | LINX / PRyMordial / PRIMAT checkout | 0 | No existing checkout was found on the registered hosts. These remain external baselines to acquire reproducibly. |
 | Existing BBN MCMC implementation | 0 | No matching project source, chain manifest, or checkpoint was found. |
 | BBN training/validation data | 0 | No dataset manifest, approved solver shard, or checksum registry was found. |
-| BBN trained models | 0 | No model card, checkpoint manifest, or attributable model artifact was found. |
+| BBN trained models | 0 | No attributable BBNet checkpoint was found. SageNet has separate SGWB checkpoints, not BBN abundance checkpoints. |
+| SGWB trained models | 4 public upstream checkpoints | `ML4GW/SageNet` provides CosmicNet2, LSTM, RNN and Transformer checkpoints with embedded scalers plus 5,400 parameter-only test inputs; target spectra and forward validation are pending. |
 | Operations/control-plane code | present | The repository contains the ledger, dashboard, heartbeat wrapper, worker bootstrap, resource lease, and topology documentation. |
 | Westb worker inventory | present | Hardware inventory and the completed operations smoke test exist in project-scoped persistent storage; these are infrastructure artifacts, not scientific assets. |
 
@@ -86,6 +87,27 @@ Machine-readable details are in:
 
 - `manifests/models/bbnet_legacy_upstream_v1.yaml`;
 - `configs/models/bbnet_legacy_v1.yaml`.
+
+## Amendment: operator-identified ML4GW repositories
+
+On 2026-07-22 the operator identified `https://github.com/ML4GW/BBNet` and
+`https://github.com/ML4GW/SageNet` as canonical project repositories. They were
+audited at fixed commits and registered in
+`manifests/models/ml4gw_upstreams_v1.yaml`; the full assessment is in
+`docs/inventory/ML4GW_UPSTREAM_AUDIT_v1.md`.
+
+`ML4GW/BBNet` supplies four MIT-licensed training/evaluation scripts and has
+been imported exactly at commit `9bd5147095f25fd8c6ac7cad30d78c71bcd3ece7`.
+It does not supply the advertised weights: `weights` is a one-byte regular
+file, and no checkpoint, scaler or dataset exists in reachable history.
+
+`ML4GW/SageNet` supplies four real SGWB checkpoint/scaler bundles, model source,
+and a 5,400-sample parameter-input corpus at commit
+`ab7face439b5ad47a8551d61e1a3fbdfd2d0ac55`. The JSON contains parameters but
+not target spectra. Its pinned stiffGWpy submodule is
+GPL-3.0 and still expects an external modified AlterBBN executable. These
+assets advance the legacy SGWB baseline but do not clear the missing BBN solver
+or BBNet data/checkpoint blockers.
 
 ## Reproduction notes
 
