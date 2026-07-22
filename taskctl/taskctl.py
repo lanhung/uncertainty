@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Small stdlib-only CLI for the research operations status server."""
+
 from __future__ import annotations
 
 import argparse
@@ -91,9 +92,11 @@ def show(*, json_output: bool = False) -> None:
     if json_output:
         print(json.dumps(snapshot, indent=2, ensure_ascii=False))
         return
-    overall = 100 * snapshot.get("overall_progress", 0)
+    science = 100 * snapshot.get("science_gate_progress", snapshot.get("overall_progress", 0))
+    execution = 100 * snapshot.get("execution_progress", 0)
     print(
-        f"\n  {snapshot.get('project', '')}  overall {overall:.0f}%  "
+        f"\n  {snapshot.get('project', '')}  science gate {science:.0f}%  "
+        f"execution {execution:.0f}%  "
         f"rev {snapshot.get('revision', 0)}"
     )
     counts = snapshot.get("status_counts", {})
@@ -118,8 +121,7 @@ def show(*, json_output: bool = False) -> None:
         )
         ready = " READY" if task.get("ready") else ""
         print(
-            f"    {task['id']:<28} {task['status']:<9} [{bar}] "
-            f"{percentage:5.1f}%  {counter}{ready}"
+            f"    {task['id']:<28} {task['status']:<9} [{bar}] {percentage:5.1f}%  {counter}{ready}"
         )
         if task.get("owner"):
             print(

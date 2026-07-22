@@ -7,6 +7,16 @@ updated_at: 2026-07-21
 
 tasks:
   # ----------------------------------------------------------------------
+  # EXEC — operational milestones reported separately from science gates
+  # ----------------------------------------------------------------------
+  - id: EXEC-WHY-RUNTIME
+    title: "Complete W0-W3 registered standard-fiducial runtime slices"
+    phase: EXEC
+    weight: 1
+    unit: slices
+    total: 4
+
+  # ----------------------------------------------------------------------
   # P0 — shared control host, elastic worker pool, repository and preregistration
   # ----------------------------------------------------------------------
   - id: P0-control-plane

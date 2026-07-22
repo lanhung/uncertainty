@@ -4,6 +4,7 @@ Only the status server should mutate this store.  Workers and humans interact
 through the HTTP API, which keeps one durable source of truth while still
 allowing concurrent heartbeat requests inside one FastAPI process.
 """
+
 from __future__ import annotations
 
 import json
@@ -20,7 +21,7 @@ VALID_STATUS = {
     "pending",
     "running",
     "blocked",
-    "stale",      # derived on read; normally not persisted
+    "stale",  # derived on read; normally not persisted
     "done",
     "failed",
     "cancelled",
@@ -142,8 +143,7 @@ class Store:
     # ---- meta / revisions -------------------------------------------------
     def _set_meta_locked(self, key: str, value: str) -> None:
         self._conn.execute(
-            "INSERT INTO meta(k,v) VALUES(?,?) "
-            "ON CONFLICT(k) DO UPDATE SET v=excluded.v",
+            "INSERT INTO meta(k,v) VALUES(?,?) ON CONFLICT(k) DO UPDATE SET v=excluded.v",
             (key, value),
         )
 
@@ -154,9 +154,7 @@ class Store:
 
     def get_meta(self, key: str, default: str = "") -> str:
         with self._lock:
-            row = self._conn.execute(
-                "SELECT v FROM meta WHERE k=?", (key,)
-            ).fetchone()
+            row = self._conn.execute("SELECT v FROM meta WHERE k=?", (key,)).fetchone()
             return row["v"] if row else default
 
     def revision(self) -> int:
@@ -166,9 +164,7 @@ class Store:
             return 0
 
     def _bump_revision_locked(self) -> int:
-        row = self._conn.execute(
-            "SELECT v FROM meta WHERE k='revision'"
-        ).fetchone()
+        row = self._conn.execute("SELECT v FROM meta WHERE k='revision'").fetchone()
         current = int(row["v"]) if row and str(row["v"]).isdigit() else 0
         current += 1
         self._set_meta_locked("revision", str(current))
@@ -185,9 +181,7 @@ class Store:
                 "INSERT OR IGNORE INTO events(event_id,ts) VALUES(?,?)",
                 (event_id, now),
             )
-            self._conn.execute(
-                "DELETE FROM events WHERE ts<?", (now - EVENT_RETENTION_S,)
-            )
+            self._conn.execute("DELETE FROM events WHERE ts<?", (now - EVENT_RETENTION_S,))
             self._conn.commit()
             return cur.rowcount == 1
 
@@ -204,19 +198,14 @@ class Store:
 
     def get(self, task_id: str) -> Task | None:
         with self._lock:
-            row = self._conn.execute(
-                "SELECT data FROM tasks WHERE id=?", (task_id,)
-            ).fetchone()
+            row = self._conn.execute("SELECT data FROM tasks WHERE id=?", (task_id,)).fetchone()
             if not row:
                 return None
             return Task(**json.loads(row["data"]))
 
     def all_ids(self) -> list[str]:
         with self._lock:
-            return [
-                row["id"]
-                for row in self._conn.execute("SELECT id FROM tasks ORDER BY id")
-            ]
+            return [row["id"] for row in self._conn.execute("SELECT id FROM tasks ORDER BY id")]
 
     def upsert_static(self, task: Task) -> None:
         with self._lock:
@@ -237,9 +226,7 @@ class Store:
     ) -> Task:
         with self._lock:
             task = self.get(task_id) or Task(id=task_id)
-            if task.status not in ("running", "stale") or (
-                run_id and task.run_id != run_id
-            ):
+            if task.status not in ("running", "stale") or (run_id and task.run_id != run_id):
                 task.attempt += 1
             task.status = "running"
             task.owner = owner or task.owner
@@ -257,9 +244,7 @@ class Store:
 
     def _assert_run_locked(self, task: Task, run_id: str | None) -> None:
         if run_id and task.run_id and run_id != task.run_id:
-            raise ValueError(
-                f"stale run_id for {task.id}: active={task.run_id}, got={run_id}"
-            )
+            raise ValueError(f"stale run_id for {task.id}: active={task.run_id}, got={run_id}")
 
     def progress(
         self,
@@ -295,9 +280,7 @@ class Store:
                 "INSERT INTO samples(task_id,ts,current) VALUES(?,?,?)",
                 (task_id, now, float(current)),
             )
-            self._conn.execute(
-                "DELETE FROM samples WHERE ts<?", (now - SAMPLE_RETENTION_S,)
-            )
+            self._conn.execute("DELETE FROM samples WHERE ts<?", (now - SAMPLE_RETENTION_S,))
             self._conn.commit()
             return task
 
@@ -348,8 +331,7 @@ class Store:
         cutoff = time.time() - RATE_WINDOW_S
         with self._lock:
             rows = self._conn.execute(
-                "SELECT ts,current FROM samples "
-                "WHERE task_id=? AND ts>=? ORDER BY ts",
+                "SELECT ts,current FROM samples WHERE task_id=? AND ts>=? ORDER BY ts",
                 (task_id, cutoff),
             ).fetchall()
         if len(rows) < 2:
@@ -418,14 +400,19 @@ class Store:
 
         status_by_id = {task.id: task.status for task in tasks}
         for task in tasks:
-            task.blocked_by = [
-                dep for dep in task.depends_on if status_by_id.get(dep) != "done"
-            ]
+            task.blocked_by = [dep for dep in task.depends_on if status_by_id.get(dep) != "done"]
             task.ready = task.status == "pending" and not task.blocked_by
 
         active = [task for task in tasks if task.status != "cancelled"]
-        weight_sum = sum(task.weight for task in active) or 1.0
-        overall = sum(task.weight * task.progress for task in active) / weight_sum
+        scientific = [task for task in active if task.phase != "EXEC"]
+        execution = [task for task in active if task.phase == "EXEC"]
+
+        def weighted_progress(selected: list[Task]) -> float:
+            weight_sum = sum(task.weight for task in selected) or 1.0
+            return sum(task.weight * task.progress for task in selected) / weight_sum
+
+        overall = weighted_progress(scientific)
+        execution_progress = weighted_progress(execution) if execution else 0.0
 
         by_phase: dict[str, dict[str, float]] = {}
         for task in active:
@@ -436,9 +423,7 @@ class Store:
             phase["weighted_progress"] += task.weight * task.progress
         phases = {
             key: {
-                "progress": value["weighted_progress"] / value["weight"]
-                if value["weight"]
-                else 0.0
+                "progress": value["weighted_progress"] / value["weight"] if value["weight"] else 0.0
             }
             for key, value in by_phase.items()
         }
@@ -452,7 +437,10 @@ class Store:
             "generated_at": now_iso(),
             "revision": self.revision(),
             "overall_progress": overall,
-            "overall_kind": "effort-weighted plan completion",
+            "overall_kind": "effort-weighted scientific program gate completion",
+            "science_gate_progress": overall,
+            "execution_progress": execution_progress,
+            "execution_kind": "effort-weighted current execution milestone completion",
             "phases": phases,
             "status_counts": counts,
             "tasks": [asdict(task) for task in tasks],
