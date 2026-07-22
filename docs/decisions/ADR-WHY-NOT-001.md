@@ -153,15 +153,19 @@ No result may be entered manually without a corresponding run manifest.
 
 ## Current result
 
-No baseline has yet completed the full registered measurement set. W2 PRIMAT's
-standard-fiducial runtime slice has completed in the locked worker environment:
-30 warm scalar repetitions and 30 sequential 64-point workloads produced no
-structured failures, with a warm scalar median of 0.06387 seconds. The raw
-artifact is registered under
-`artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W2-PRIMAT/`.
+No baseline has yet completed the full registered measurement set. Standard-
+fiducial runtime slices have completed for W2 PRIMAT and W0 LINX in locked
+worker environments. PRIMAT's 30 warm scalar and 30 sequential 64-point
+workloads produced no structured failures, with a warm scalar median of
+0.06387 seconds. LINX's warm scalar median was 0.21572 seconds and its native
+64-point median was 0.85856 seconds, but identical-input scalar versus native-
+batch abundances were not bitwise equal; the maximum absolute `Y_p` difference
+was `3.7244e-6` and remains open pending a tolerance scan. The raw artifacts are
+registered under `artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/`.
 
 Posterior-region, adversarial, extension and matched-posterior measurements
-remain pending. The answer to all four “why not” questions is therefore still
+remain pending. LINX's previously observed non-finite gradient also remains
+rejected. The answer to all four “why not” questions is therefore still
 **undetermined**. This ADR closes protocol discretion, not `P0-WHY-NOT-01`.
 
 ## Sign-off

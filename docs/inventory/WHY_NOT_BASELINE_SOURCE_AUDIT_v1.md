@@ -75,6 +75,12 @@ the frozen standard-BBN point. It contains every observation for 30 scalar and
 `docs/inventory/WHY_NOT_PRIMAT_RUNTIME_v1.md`. This is a runtime slice, not a
 completed baseline or posterior-fidelity result.
 
+W0 LINX has also completed the common standard-fiducial runtime slice. Its
+native `jit(vmap)` path is substantially faster per point than its scalar path,
+but identical inputs produced a small scalar/batch abundance discrepancy. The
+result is registered as open pending a tolerance scan rather than promoted to a
+fidelity pass. See `docs/inventory/WHY_NOT_LINX_RUNTIME_v1.md`.
+
 ## Scientific boundary
 
 Source acquisition, dependency inspection and one-off upstream runs do not

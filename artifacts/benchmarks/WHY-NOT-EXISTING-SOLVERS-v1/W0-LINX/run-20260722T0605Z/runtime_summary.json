@@ -1,0 +1,58 @@
+{
+  "abundances": {
+    "DoH": 2.441653390873764e-05,
+    "He3oH": 1.0366154897239214e-05,
+    "Li7oH": 5.668459382008817e-10,
+    "Neff": 3.0452829238759525,
+    "YPBBN": 0.2467562286491655
+  },
+  "batch_compile_and_first_solve_seconds": 54.77287723124027,
+  "batch_reference_abundances": {
+    "DoH": 2.4416339272135557e-05,
+    "He3oH": 1.0366113812387248e-05,
+    "Li7oH": 5.668402969380163e-10,
+    "Neff": 3.0452829238759525,
+    "YPBBN": 0.24675250423742862
+  },
+  "cold_import_seconds": 1.8536762781441212,
+  "cold_solve_seconds": 31.283000444993377,
+  "input_mapping": {
+    "eta_fac": 0.9977698483496878,
+    "linx_reference_Omegabh2": 0.02242,
+    "linx_reference_tau_n_seconds": 879.4,
+    "tau_n_fac": 0.9987491471457812
+  },
+  "jax_x64": true,
+  "load_provenance": {
+    "jax": "0.4.28",
+    "package": "/autodl-fs/data/projects/uncertainty/external/why-not-v1/LINX/linx/__init__.py"
+  },
+  "maximum_absolute_repeat_drift": 3.72441173687732e-06,
+  "maximum_absolute_repeat_drift_by_abundance": {
+    "DoH": 1.9463660208291628e-10,
+    "He3oH": 4.108485196644481e-11,
+    "Li7oH": 5.641262865428731e-15,
+    "Neff": 0.0,
+    "YPBBN": 3.72441173687732e-06
+  },
+  "network": "key_PRIMAT_2023",
+  "numerical_consistency_status": "batch_discrepancy_open",
+  "timings_seconds": {
+    "warm_batch_1": {
+      "maximum": 0.23778975568711758,
+      "median": 0.2157159587368369,
+      "minimum": 0.17400474473834038,
+      "p95": 0.2334641886875033,
+      "q1": 0.21165403071790934,
+      "q3": 0.22086161747574806
+    },
+    "warm_batch_64": {
+      "maximum": 0.8771289717406034,
+      "median": 0.8585643777623773,
+      "minimum": 0.8403572998940945,
+      "p95": 0.8750569921918213,
+      "q1": 0.8509664637967944,
+      "q3": 0.8640400711447
+    }
+  }
+}
