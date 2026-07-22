@@ -11,6 +11,7 @@ on:
       - 'scripts/bootstrap_why_not_env.sh'
       - 'scripts/science_environment_smoke.py'
       - 'scripts/why_not_environment_smoke.py'
+      - 'scripts/why_not_benchmark.py'
       - 'tests/unit/**'
       - '.pre-commit-config.yaml'
       - '.github/workflows/environment-locks.yml'
@@ -23,6 +24,7 @@ on:
       - 'scripts/bootstrap_why_not_env.sh'
       - 'scripts/science_environment_smoke.py'
       - 'scripts/why_not_environment_smoke.py'
+      - 'scripts/why_not_benchmark.py'
       - 'tests/unit/**'
       - '.pre-commit-config.yaml'
       - '.github/workflows/environment-locks.yml'
@@ -51,12 +53,14 @@ jobs:
           uv run ruff check
           scripts/science_environment_smoke.py
           scripts/why_not_environment_smoke.py
+          scripts/why_not_benchmark.py
           tests/unit
       - name: Check formatting
         run: >-
           uv run ruff format --check
           scripts/science_environment_smoke.py
           scripts/why_not_environment_smoke.py
+          scripts/why_not_benchmark.py
           tests/unit
       - name: Check shell bootstrap syntax
         run: |
