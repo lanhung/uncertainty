@@ -1,0 +1,143 @@
+schema_version: 1
+preregistration_id: TRACK-B-PREREG-v1
+captured_at_utc: "2026-07-22"
+status: draft_not_frozen
+production_authorized: false
+unblinding_authorized: false
+pilot_1k_authorized: false
+pilot_10k_authorized: false
+nature_tier_gate: closed
+
+scope:
+  primary_question: >-
+    Determine whether complete scalar and functional nuclear-rate, neutron,
+    weak-physics, rate-library, numerical-engine, and emulator uncertainty
+    changes preregistered non-standard expansion and SGWB decisions.
+  computational_question: >-
+    Determine whether a calibrated nuisance-aware multi-fidelity method reduces
+    registered high-fidelity calls or end-to-end cost at matched posterior fidelity.
+  model_ladder: [M0, M1, M2, M3, M4, M5, M6, M7]
+  claim_ladder: [C0, C1, C2, C3, C4]
+
+registered_hypotheses:
+  - H1_nonconstant_theory_covariance
+  - H2_nonstandard_sensitivity_reordering_and_nuclear_value
+  - H3_functional_rate_shape_matters
+  - H4_rate_library_and_engine_discrepancy_are_separable
+  - H5_early_universe_decision_changes
+  - H6_emulator_is_necessary
+  - H7_method_generalizes_across_tasks
+
+analysis_contracts:
+  observations:
+    registry: configs/data/abundance_OBS-v1.yaml
+    decision_document: docs/preregistration/OBSERVATION_FREEZE_v1.md
+    decision_status: frozen_pending_signoff_and_likelihood_audit
+    primary_dataset_change_after_unblinding: prohibited
+  neutron_lifetime:
+    registry: configs/physics/neutron_lifetime_v1.yaml
+    decision_document: docs/preregistration/NEUTRON_LIFETIME_FREEZE_v1.md
+    primary_scenario: N0
+    mandatory_robustness: [N1, N2, N3]
+    decision_status: frozen_pending_signoff_and_weak_physics_review
+  nuclear_rates:
+    registry: configs/physics/nuclear_prior_NUC-v1.yaml
+    decision_document: docs/preregistration/NUCLEAR_PRIOR_FREEZE_v1.md
+    decision_status: not_frozen
+    production_use: prohibited
+  physics_parameters:
+    registry: configs/physics/parameter_schema.yaml
+    decision_document: docs/preregistration/PHYSICS_PARAMETER_SCHEMA_v1.md
+    decision_status: standard_bbn_subset_frozen_extension_semantics_pending
+  physical_endpoints:
+    registry: configs/physics/physics_endpoints_v1.yaml
+    decision_document: docs/preregistration/PHYSICS_ENDPOINTS_v1.md
+    decision_status: definitions_prepared_thresholds_partially_pending_signoff
+  solver_factorial:
+    protocol: docs/decisions/ADR-SOLVER-FACTORIAL-v1.md
+    decision_status: protocol_frozen_measurements_pending
+  fisher_gate:
+    protocol: docs/decisions/ADR-FISHER-GATE-v1.md
+    report: artifacts/gates/FISHER_GATE_REPORT_v1.md
+    decision_status: protocol_frozen_report_missing
+  direct_solver_necessity:
+    protocol: configs/benchmarks/why_not_existing_solvers_v1.yaml
+    decision_document: docs/decisions/ADR-WHY-NOT-001.md
+    decision_status: measurements_in_progress_conclusion_undetermined
+  novelty:
+    competitor_matrix: docs/literature/COMPETITOR_MATRIX_v1.md
+    clearance: docs/literature/NOVELTY_CLEARANCE_v1.md
+    claim_evidence_registry: configs/claims/claim_evidence_matrix_v1.yaml
+    decision_status: evidence_mapped_claims_not_cleared
+
+frozen_null_boundaries:
+  maximum_absolute_normalized_median_shift: 0.1
+  credible_interval_ratio: [0.95, 1.05]
+  posterior_topology: unchanged
+  maximum_in_domain_failure_fraction: 0.01
+  hybrid_minimum_high_fidelity_call_reduction: 10
+  hybrid_alternative_minimum_wall_time_reduction: 5
+  direct_first_maximum_calendar_days: 14
+  direct_first_maximum_worker_hours: 672
+
+pending_thresholds:
+  - detector_specific_volume_measure_and_success_threshold
+  - sensitivity_rank_correlation_and_inversion_threshold
+  - nuclear_value_of_information_intervention_and_cost_threshold
+  - authoritative_extension_and_SGWB_parameter_contract
+
+unblinding_rules:
+  allowed_before_unblinding:
+    - solver_regression
+    - synthetic_recovery
+    - Fisher_or_Laplace_prescreen
+    - label_hidden_pipeline_diagnostics
+    - direct_solver_runtime_and_numerical_validation
+  prohibited_before_gate:
+    - Track_B_production_inference
+    - Pilot_1k_or_Pilot_10k_generation
+    - flagship_effect_selection
+    - primary_data_or_prior_change_based_on_effect
+  post_unblinding_changes:
+    registry: docs/preregistration/DEVIATION_LOG.md
+    classifications: [confirmatory, exploratory]
+
+required_freeze_artifacts:
+  - path: docs/literature/COMPETITOR_MATRIX_v1.md
+    state: prepared_signoff_pending
+  - path: docs/literature/NOVELTY_CLEARANCE_v1.md
+    state: draft_claims_not_cleared
+  - path: docs/preregistration/OBSERVATION_FREEZE_v1.md
+    state: decision_frozen_signoff_pending
+  - path: docs/preregistration/NUCLEAR_PRIOR_FREEZE_v1.md
+    state: not_frozen
+  - path: docs/preregistration/PHYSICS_ENDPOINTS_v1.md
+    state: partial_thresholds_and_signoff_pending
+  - path: docs/decisions/ADR-SOLVER-FACTORIAL-v1.md
+    state: protocol_frozen_measurements_pending
+  - path: docs/decisions/ADR-FISHER-GATE-v1.md
+    state: protocol_frozen_report_pending
+  - path: artifacts/gates/FISHER_GATE_REPORT_v1.md
+    state: missing
+
+blocking_tasks:
+  - LIT-02_independent_claim_audit
+  - OBS-01_scientific_signoff_and_LVK_likelihood_audit
+  - NUC-01_numerical_rate_prior_and_signoff
+  - SOL-01_matched_factorial_measurements
+  - FISH-01_jacobians_propagation_and_gate_report
+  - RATE-F01_functional_basis_feasibility
+  - WHY-01_complete_W0_W1_W2_W3_and_economics
+
+freeze_transition_rule: >-
+  A reviewed commit may change status to frozen only after every required
+  artifact exists, all numerical thresholds are registered before unblinding,
+  blocking tasks pass or record their stopping result, and independent signoffs
+  are present. Operational authorization cannot substitute for scientific signoff.
+
+signoffs:
+  A00_scientific_lead: pending
+  A03_nuclear_data: pending
+  A04_observations_preregistration: pending
+  A09_independent_validation: pending
+  A11_literature_competition: pending
