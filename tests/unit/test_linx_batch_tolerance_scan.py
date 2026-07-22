@@ -279,3 +279,10 @@ def test_scan_direct_script_cli_works_outside_repository(tmp_path: Path) -> None
 
     assert completed.returncode == 0, completed.stderr
     assert "--benchmark-config" in completed.stdout
+
+
+def test_scan_emits_case_progress_for_durable_heartbeat() -> None:
+    root = Path(__file__).resolve().parents[2]
+    source = (root / "scripts/linx_batch_tolerance_scan.py").read_text()
+
+    assert 'print(f"PROGRESS {case_number}/{total_cases}", flush=True)' in source

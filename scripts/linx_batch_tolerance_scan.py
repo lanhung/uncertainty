@@ -414,7 +414,8 @@ def main() -> int:
     wall_started = time.perf_counter()
     cpu_started = time.process_time()
     cases: dict[str, dict[str, Any]] = {}
-    for case in scan["cases"]:
+    total_cases = len(scan["cases"])
+    for case_number, case in enumerate(scan["cases"], start=1):
         case_id = case["id"]
         try:
             cases[case_id] = run_case(
@@ -452,6 +453,7 @@ def main() -> int:
                 },
             )
         jax.clear_caches()
+        print(f"PROGRESS {case_number}/{total_cases}", flush=True)
 
     decision = evaluate_scan(cases, scan["acceptance"], sigmas)
     wall_seconds = time.perf_counter() - wall_started
