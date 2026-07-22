@@ -1,6 +1,6 @@
 # Independent pre-asset audit protocols v1
 
-Status: frozen protocols; implementations and measurements pending
+Status: frozen protocols and reviewed harnesses; measurements pending
 
 These protocols cover work that does not require the missing modified solvers,
 legacy BBNet checkpoint/scaler/data/MCMC assets, or independent scientific
