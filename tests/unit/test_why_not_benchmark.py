@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pytest
 
-from scripts.why_not_benchmark import finite_abundances, quantile, summarize
+from scripts.why_not_benchmark import finite_abundances, linx_abundances, quantile, summarize
 
 
 def test_timing_summary_uses_registered_distribution_statistics() -> None:
@@ -32,6 +32,17 @@ def test_nonfinite_solver_output_is_a_structured_failure_boundary() -> None:
         finite_abundances(result)
 
 
+def test_linx_species_are_converted_to_common_abundances() -> None:
+    raw = [1.0e-10, 0.75, 2.0e-5, 1.0e-8, 8.0e-6, 0.062, 1.0e-11, 4.0e-10]
+    result = linx_abundances(raw, 3.044)
+
+    assert result["Neff"] == 3.044
+    assert result["YPBBN"] == 0.248
+    assert result["DoH"] == pytest.approx(2.0e-5 / 0.75)
+    assert result["He3oH"] == pytest.approx((1.0e-8 + 8.0e-6) / 0.75)
+    assert result["Li7oH"] == pytest.approx((1.0e-11 + 4.0e-10) / 0.75)
+
+
 def test_direct_benchmark_entrypoint_declares_required_artifacts() -> None:
     source = (Path(__file__).resolve().parents[2] / "scripts/why_not_benchmark.py").read_text(
         encoding="utf-8"
@@ -49,3 +60,4 @@ def test_direct_benchmark_entrypoint_declares_required_artifacts() -> None:
     assert "sequential_calls_no_native_batch_api" in source
     assert "direct_url.json" in source
     assert "primat._primat_c" in source
+    assert "jax_jit_vmap_native_batch" in source
