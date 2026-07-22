@@ -1,0 +1,228 @@
+{
+  "cases": {
+    "max_steps_16384": {
+      "absolute_scalar_batch_difference": {
+        "DoH": 4.481814623404404e-11,
+        "He3oH": 1.746390249786052e-11,
+        "Li7oH": 1.811314700907809e-15,
+        "Neff": 0.0,
+        "YPBBN": 8.717945618186285e-08
+      },
+      "atol": 1e-11,
+      "batch_abundances": {
+        "DoH": 2.4417188022443864e-05,
+        "He3oH": 1.0365612343385597e-05,
+        "Li7oH": 5.665779345349648e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24665644449712473
+      },
+      "group": "maximum_steps",
+      "max_steps": 16384,
+      "maximum_repeat_drift": 0.0,
+      "maximum_scalar_batch_difference_observation_sigma": 0.00014939382078014678,
+      "maximum_within_batch_spread": 0.0,
+      "normalized_scalar_batch_difference": {
+        "DoH": 0.00014939382078014678,
+        "YPBBN": 6.706112013989451e-05
+      },
+      "rtol": 1e-08,
+      "sampling_nTOp": 2400,
+      "scalar_abundances": {
+        "DoH": 2.4417232840590098e-05,
+        "He3oH": 1.03655948794831e-05,
+        "Li7oH": 5.665797458496657e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24665653167658091
+      },
+      "status": "ok",
+      "timings_seconds": {
+        "cold_batch_compile_and_solve": 58.52885580994189,
+        "cold_scalar_compile_and_solve": 32.879978496581316,
+        "warm_batch": {
+          "maximum": 5.973938837647438,
+          "median": 5.970266621559858,
+          "minimum": 5.900032091885805,
+          "p95": 5.97357161603868,
+          "q1": 5.935149356722832,
+          "q3": 5.972102729603648
+        },
+        "warm_scalar": {
+          "maximum": 2.397875491529703,
+          "median": 2.3739302959293127,
+          "minimum": 2.3411049749702215,
+          "p95": 2.3954809719696644,
+          "q1": 2.357517635449767,
+          "q3": 2.385902893729508
+        }
+      }
+    },
+    "max_steps_32768": {
+      "absolute_scalar_batch_difference": {
+        "DoH": 4.481814623404404e-11,
+        "He3oH": 1.746390249786052e-11,
+        "Li7oH": 1.811314700907809e-15,
+        "Neff": 0.0,
+        "YPBBN": 8.717945618186285e-08
+      },
+      "atol": 1e-11,
+      "batch_abundances": {
+        "DoH": 2.4417188022443864e-05,
+        "He3oH": 1.0365612343385597e-05,
+        "Li7oH": 5.665779345349648e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24665644449712473
+      },
+      "group": "maximum_steps",
+      "max_steps": 32768,
+      "maximum_repeat_drift": 0.0,
+      "maximum_scalar_batch_difference_observation_sigma": 0.00014939382078014678,
+      "maximum_within_batch_spread": 0.0,
+      "normalized_scalar_batch_difference": {
+        "DoH": 0.00014939382078014678,
+        "YPBBN": 6.706112013989451e-05
+      },
+      "rtol": 1e-08,
+      "sampling_nTOp": 2400,
+      "scalar_abundances": {
+        "DoH": 2.4417232840590098e-05,
+        "He3oH": 1.03655948794831e-05,
+        "Li7oH": 5.665797458496657e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24665653167658091
+      },
+      "status": "ok",
+      "timings_seconds": {
+        "cold_batch_compile_and_solve": 59.6028627473861,
+        "cold_scalar_compile_and_solve": 33.04878929629922,
+        "warm_batch": {
+          "maximum": 5.9728592447936535,
+          "median": 5.939823681488633,
+          "minimum": 5.917923966422677,
+          "p95": 5.969555688463151,
+          "q1": 5.928873823955655,
+          "q3": 5.956341463141143
+        },
+        "warm_scalar": {
+          "maximum": 2.4173787962645292,
+          "median": 2.4170072451233864,
+          "minimum": 2.387435134500265,
+          "p95": 2.417341641150415,
+          "q1": 2.4022211898118258,
+          "q3": 2.417193020693958
+        }
+      }
+    },
+    "max_steps_4096_control": {
+      "atol": 1e-11,
+      "error": "EquinoxRuntimeError('Above is the stack outside of JIT. Below is the stack inside of JIT:\\n  File \"/root/autodl-fs/projects/uncertainty/external/why-not-v1/LINX/linx/abundances.py\", line 306, in __call__\\n    sol = diffeqsolve(\\n          ^^^^^^^^^^^^\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/diffrax/_integrate.py\", line 1423, in diffeqsolve\\n    sol = result.error_if(sol, jnp.invert(is_okay(result)))\\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\nequinox.EquinoxRuntimeError: The maximum number of solver steps was reached. Try increasing `max_steps`.\\n\\n-------------------\\n\\nAn error occurred during the runtime of your JAX program.\\n\\n1) Setting the environment variable `EQX_ON_ERROR=breakpoint` is usually the most useful\\nway to debug such errors. This can be interacted with using most of the usual commands\\nfor the Python debugger: `u` and `d` to move up and down frames, the name of a variable\\nto print its value, etc.\\n\\n2) You may also like to try setting `JAX_DISABLE_JIT=1`. This will mean that you can\\n(mostly) inspect the state of your program as if it was normal Python.\\n\\n3) See `https://docs.kidger.site/equinox/api/debug/` for more suggestions.\\n')",
+      "group": "maximum_steps",
+      "max_steps": 4096,
+      "rtol": 1e-08,
+      "sampling_nTOp": 2400,
+      "status": "failed"
+    },
+    "max_steps_8192": {
+      "absolute_scalar_batch_difference": {
+        "DoH": 4.481814623404404e-11,
+        "He3oH": 1.746390249786052e-11,
+        "Li7oH": 1.811314700907809e-15,
+        "Neff": 0.0,
+        "YPBBN": 8.717945618186285e-08
+      },
+      "atol": 1e-11,
+      "batch_abundances": {
+        "DoH": 2.4417188022443864e-05,
+        "He3oH": 1.0365612343385597e-05,
+        "Li7oH": 5.665779345349648e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24665644449712473
+      },
+      "group": "maximum_steps",
+      "max_steps": 8192,
+      "maximum_repeat_drift": 0.0,
+      "maximum_scalar_batch_difference_observation_sigma": 0.00014939382078014678,
+      "maximum_within_batch_spread": 0.0,
+      "normalized_scalar_batch_difference": {
+        "DoH": 0.00014939382078014678,
+        "YPBBN": 6.706112013989451e-05
+      },
+      "rtol": 1e-08,
+      "sampling_nTOp": 2400,
+      "scalar_abundances": {
+        "DoH": 2.4417232840590098e-05,
+        "He3oH": 1.03655948794831e-05,
+        "Li7oH": 5.665797458496657e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24665653167658091
+      },
+      "status": "ok",
+      "timings_seconds": {
+        "cold_batch_compile_and_solve": 57.70333584584296,
+        "cold_scalar_compile_and_solve": 32.921155808493495,
+        "warm_batch": {
+          "maximum": 6.089769572019577,
+          "median": 6.048419771715999,
+          "minimum": 6.036442136391997,
+          "p95": 6.085634591989219,
+          "q1": 6.042430954053998,
+          "q3": 6.069094671867788
+        },
+        "warm_scalar": {
+          "maximum": 2.361650053411722,
+          "median": 2.357085047289729,
+          "minimum": 2.3541913647204638,
+          "p95": 2.3611935527995227,
+          "q1": 2.3556382060050964,
+          "q3": 2.3593675503507257
+        }
+      }
+    }
+  },
+  "cold_import_seconds": 1.778890136629343,
+  "decision": {
+    "all_required_cases_complete": true,
+    "candidate_case_differences_observation_sigma": {
+      "max_steps_16384": 0.00014939382078014678,
+      "max_steps_32768": 0.00014939382078014678
+    },
+    "candidate_scalar_batch_pass": true,
+    "limits_observation_sigma": {
+      "plateau": 0.001,
+      "scalar_batch": 0.01
+    },
+    "missing_or_failed_candidate_cases": [],
+    "numerical_consistency_status": "accepted",
+    "passed": true,
+    "plateaus": {
+      "max_steps_invariance": {
+        "batch_difference_observation_sigma": 0.0,
+        "case_ids": [
+          "max_steps_16384",
+          "max_steps_32768"
+        ],
+        "maximum_difference_observation_sigma": 0.0,
+        "passed": true,
+        "scalar_difference_observation_sigma": 0.0
+      }
+    },
+    "repeat_drift_pass": true,
+    "scientific_scope": "standard_fiducial_scalar_native_batch_consistency_only",
+    "within_batch_spread_pass": true
+  },
+  "input_mapping": {
+    "eta_fac": 0.9977698483496878,
+    "linx_reference_Omegabh2": 0.02242,
+    "linx_reference_tau_n_seconds": 879.4,
+    "tau_n_fac": 0.9987491471457812
+  },
+  "jax_x64": true,
+  "load_provenance": {
+    "jax": "0.4.28",
+    "package": "/autodl-fs/data/projects/uncertainty/external/why-not-v1/LINX/linx/__init__.py"
+  },
+  "observation_sigmas": {
+    "DoH": 3.0000000000000004e-07,
+    "YPBBN": 0.0013
+  },
+  "schema_version": 1
+}

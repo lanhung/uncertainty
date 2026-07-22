@@ -1,0 +1,21 @@
+schema_version: 3
+scan_id: LINX-MAX-STEPS-DIAGNOSTIC-v3
+source_revision: ec2e9d2ca455e8204137e884da29f5dd13a638fa
+registered_runs: 1
+runs:
+  - run: run-20260722T0708Z
+    status: complete_with_expected_control_failure
+    cases_registered: 4
+    cases_completed: 3
+    cases_failed: 1
+    timing_records: 24
+    expected_control_failure: max_steps_4096_control
+    decision:
+      max_steps_invariance_16384_to_32768: accepted
+      scalar_batch_candidate_budget: passed
+      recommended_follow_up_max_steps: 16384
+      broader_tolerance_sampling_convergence: not_yet_accepted
+    scientific_use: standard_fiducial_max_steps_diagnostic_only
+follow_up_required: rerun_tolerance_and_sampling_plateaus_at_max_steps_16384
+gradient_status: rejected_nonfinite_component_from_prior_upstream_smoke
+why_not_conclusion: undetermined
