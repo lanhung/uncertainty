@@ -1,7 +1,7 @@
 {
   "project": "uncertainty",
-  "generated_at": "2026-07-22T13:58:59+00:00",
-  "revision": 255,
+  "generated_at": "2026-07-22T13:59:11+00:00",
+  "revision": 261,
   "overall_progress": 0.21171171171171171,
   "overall_kind": "effort-weighted scientific program gate completion",
   "science_gate_progress": 0.21171171171171171,
@@ -29,8 +29,9 @@
   },
   "status_counts": {
     "done": 10,
-    "stale": 2,
+    "running": 1,
     "pending": 21,
+    "stale": 1,
     "blocked": 2
   },
   "tasks": [
@@ -51,7 +52,8 @@
       "declared_eta": null,
       "message": "Attempt 4 run-20260722T134322Z finished with lease release exit=0: 6/6 cases, 0 failures, V2 frozen narrow numerical-consistency decision accepted. This completes the execution task only.",
       "artifacts": [
-        "artifacts/numerical/ABCMB-LINX-EXTENDED-CONVERGENCE-v2/RESULT_REGISTRY_v2.yaml"
+        "artifacts/numerical/ABCMB-LINX-EXTENDED-CONVERGENCE-v2/RESULT_REGISTRY_v2.yaml",
+        "artifacts/numerical/ABCMB-LINX-EXTENDED-CONVERGENCE-v2/run-20260722T134322Z"
       ],
       "metrics": {},
       "attempt": 4,
@@ -60,13 +62,17 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 0.23422694206237793,
+      "heartbeat_age_s": 12.496545314788818,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
         {
           "label": "artifacts/numerical/ABCMB-LINX-EXTENDED-CONVERGENCE-v2/RESULT_REGISTRY_v2.yaml",
           "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/numerical/ABCMB-LINX-EXTENDED-CONVERGENCE-v2/RESULT_REGISTRY_v2.yaml"
+        },
+        {
+          "label": "artifacts/numerical/ABCMB-LINX-EXTENDED-CONVERGENCE-v2/run-20260722T134322Z",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/numerical/ABCMB-LINX-EXTENDED-CONVERGENCE-v2/run-20260722T134322Z"
         }
       ]
     },
@@ -100,7 +106,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 2343.2343442440033,
+      "heartbeat_age_s": 2355.496657848358,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -156,7 +162,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 19162.234441518784,
+      "heartbeat_age_s": 19174.49671268463,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -209,7 +215,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 50432.23455643654,
+      "heartbeat_age_s": 50444.49676799774,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -251,7 +257,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 50433.234649181366,
+      "heartbeat_age_s": 50445.496837854385,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -273,7 +279,7 @@
       "id": "P0-WHY-NOT-01",
       "title": "Write why-not-LINX/PRyMordial/PRIMAT and emulator economics memo",
       "phase": "P0",
-      "status": "stale",
+      "status": "running",
       "weight": 1.0,
       "unit": "memos",
       "current": 0.0,
@@ -283,10 +289,10 @@
         "P0-LIT-01"
       ],
       "started_at": "2026-07-22T02:49:40+00:00",
-      "updated_at": "2026-07-22T13:29:29+00:00",
+      "updated_at": "2026-07-22T13:59:00+00:00",
       "finished_at": null,
       "declared_eta": null,
-      "message": "PR #54 merged at main 9a1faa0. ABCMB consistency V1 executed all 8/8 frozen cases with zero failures, but tolerance plateau 0.0047691 sigma and weak-rate sampling plateau 0.0274556 sigma both exceed the frozen 0.001 sigma limit. Execution is complete; numerical acceptance is rejected, WHY-NOT remains 0/1, and no science-gate progress is awarded.",
+      "message": "PR #58 merged. ABCMB V2 passed its frozen standard-point bundled-LINX numerical criteria (tolerance plateau 0.000387133 sigma; sampling plateau 0.000771123 sigma; zero drift). Full ABCMB, gradients, Fisher/HMC, posterior, extensions and final WHY-NOT remain incomplete, so progress stays 0/1.",
       "artifacts": [
         "docs/decisions/ADR-WHY-NOT-001.md",
         "configs/benchmarks/why_not_existing_solvers_v1.yaml",
@@ -341,7 +347,10 @@
         "configs/benchmarks/abcmb_linx_batch_consistency_v1.yaml",
         "artifacts/numerical/ABCMB-LINX-BATCH-CONSISTENCY-v1/RESULT_REGISTRY_v1.yaml",
         "artifacts/numerical/ABCMB-LINX-BATCH-CONSISTENCY-v1/run-20260722T113106Z",
-        "docs/inventory/ABCMB_LINX_BATCH_CONSISTENCY_v1.md"
+        "docs/inventory/ABCMB_LINX_BATCH_CONSISTENCY_v1.md",
+        "artifacts/numerical/ABCMB-LINX-EXTENDED-CONVERGENCE-v2/RESULT_REGISTRY_v2.yaml",
+        "artifacts/numerical/ABCMB-LINX-EXTENDED-CONVERGENCE-v2/run-20260722T134322Z",
+        "docs/inventory/ABCMB_LINX_EXTENDED_CONVERGENCE_v2.md"
       ],
       "metrics": {},
       "attempt": 1,
@@ -350,7 +359,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 1770.234792470932,
+      "heartbeat_age_s": 11.496923685073853,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -569,6 +578,18 @@
         {
           "label": "docs/inventory/ABCMB_LINX_BATCH_CONSISTENCY_v1.md",
           "url": "https://github.com/lanhung/uncertainty/blob/main/docs/inventory/ABCMB_LINX_BATCH_CONSISTENCY_v1.md"
+        },
+        {
+          "label": "artifacts/numerical/ABCMB-LINX-EXTENDED-CONVERGENCE-v2/RESULT_REGISTRY_v2.yaml",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/numerical/ABCMB-LINX-EXTENDED-CONVERGENCE-v2/RESULT_REGISTRY_v2.yaml"
+        },
+        {
+          "label": "artifacts/numerical/ABCMB-LINX-EXTENDED-CONVERGENCE-v2/run-20260722T134322Z",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/numerical/ABCMB-LINX-EXTENDED-CONVERGENCE-v2/run-20260722T134322Z"
+        },
+        {
+          "label": "docs/inventory/ABCMB_LINX_EXTENDED_CONVERGENCE_v2.md",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/docs/inventory/ABCMB_LINX_EXTENDED_CONVERGENCE_v2.md"
         }
       ]
     },
@@ -635,7 +656,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 41489.235016822815,
+      "heartbeat_age_s": 41501.49705481529,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -685,7 +706,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 72649.2350871563,
+      "heartbeat_age_s": 72661.49712872505,
       "ready": false,
       "blocked_by": [],
       "artifact_links": []
@@ -726,7 +747,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 31840.235166311264,
+      "heartbeat_age_s": 31852.497176647186,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -796,7 +817,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 71155.23524093628,
+      "heartbeat_age_s": 71167.49721431732,
       "ready": false,
       "blocked_by": [
         "P0-worker-bootstrap"
@@ -834,7 +855,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 42309.235347509384,
+      "heartbeat_age_s": 42321.497250556946,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -888,7 +909,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 11253.235451698303,
+      "heartbeat_age_s": 11265.497289896011,
       "ready": false,
       "blocked_by": [
         "P0-solvers-build"
@@ -943,7 +964,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 29041.235533475876,
+      "heartbeat_age_s": 29053.497328042984,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -989,7 +1010,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 39340.2356338501,
+      "heartbeat_age_s": 39352.49737882614,
       "ready": false,
       "blocked_by": [],
       "artifact_links": []
@@ -1023,7 +1044,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 18312.235716104507,
+      "heartbeat_age_s": 18324.49744296074,
       "ready": false,
       "blocked_by": [
         "P0-tailnet"
@@ -1230,7 +1251,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 29042.236278533936,
+      "heartbeat_age_s": 29054.497799158096,
       "ready": false,
       "blocked_by": [
         "P2-unified-adapter"
@@ -1270,7 +1291,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 22508.236362934113,
+      "heartbeat_age_s": 22520.49790406227,
       "ready": false,
       "blocked_by": [
         "P2-rate-registry"
@@ -1311,7 +1332,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 22508.23650741577,
+      "heartbeat_age_s": 22520.498002290726,
       "ready": false,
       "blocked_by": [
         "P2-solver-matrix"
@@ -1355,7 +1376,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 29041.236579179764,
+      "heartbeat_age_s": 29053.49808359146,
       "ready": false,
       "blocked_by": [
         "P0-solvers-build"
@@ -1471,7 +1492,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 18971.236795186996,
+      "heartbeat_age_s": 18983.498208284378,
       "ready": false,
       "blocked_by": [
         "P2.5-fisher-propagation",
@@ -1534,7 +1555,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 29042.236886262894,
+      "heartbeat_age_s": 29054.49827814102,
       "ready": false,
       "blocked_by": [
         "P2-unified-adapter"
