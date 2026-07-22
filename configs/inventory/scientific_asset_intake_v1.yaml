@@ -1,0 +1,55 @@
+schema_version: 1
+policy_id: SCIENTIFIC-ASSET-INTAKE-v1
+default_status: quarantined_unreviewed
+approved_for_scientific_inference: false
+archive_member_limit: 100000
+forbidden_suffixes: [.key, .pem, .env]
+
+categories:
+  modified_parthenope_source:
+    purpose: project_high_fidelity_solver_source
+    allow_directory: true
+    allowed_suffixes: [.zip, .tar, .tar.gz, .tgz, .tar.bz2, .tar.xz]
+    next_review: source_revision_build_flags_license_and_solver_card
+  modified_alterbbn_source:
+    purpose: project_cross_check_solver_source
+    allow_directory: true
+    allowed_suffixes: [.zip, .tar, .tar.gz, .tgz, .tar.bz2, .tar.xz]
+    next_review: source_revision_build_flags_license_and_solver_card
+  bbnet_checkpoint:
+    purpose: legacy_emulator_weight_recovery
+    allow_directory: false
+    allowed_suffixes: [.pt, .pth, .ckpt]
+    next_review: isolated_weights_only_structure_and_architecture_match
+  bbnet_scaler:
+    purpose: legacy_preprocessing_recovery
+    allow_directory: false
+    allowed_suffixes: [.pkl, .pickle, .joblib, .json, .yaml, .yml, .npz]
+    next_review: isolated_version_matched_scaler_schema_review
+  training_or_validation_data:
+    purpose: legacy_or_authoritative_abundance_labels
+    allow_directory: true
+    allowed_suffixes: [.csv, .parquet, .h5, .hdf5, .npz, .npy, .zip, .tar.gz]
+    next_review: provenance_schema_units_split_deduplication_and_label_solver_audit
+  data_generation_script:
+    purpose: reproducible_solver_label_generation
+    allow_directory: true
+    allowed_suffixes: [.py, .sh, .zip, .tar.gz]
+    next_review: code_review_environment_lock_and_small_solver_regression
+  mcmc_or_likelihood_asset:
+    purpose: legacy_track_a_posterior_recovery
+    allow_directory: true
+    allowed_suffixes: [.py, .yaml, .yml, .json, .ini, .toml, .zip, .tar.gz]
+    next_review: likelihood_data_prior_parameter_and_sampler_contract_audit
+
+required_provenance:
+  - origin
+  - license
+  - relationship_to_project
+
+security_boundaries:
+  - Intake computes hashes and archive metadata only.
+  - Intake never imports source or deserializes pickle, joblib, NumPy, or torch objects.
+  - Intake never extracts archives.
+  - Symlinks and path-traversing archive members are rejected.
+  - Registration never grants scientific acceptance or production authorization.
