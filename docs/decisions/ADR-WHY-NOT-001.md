@@ -214,6 +214,13 @@ both above the frozen `0.001 sigma` threshold. W3 numerical consistency is not
 accepted. An extended convergence protocol is required; the threshold may not
 be relaxed after this result.
 
+That extended protocol is frozen before measurement as
+`ABCMB-LINX-EXTENDED-CONVERGENCE-v2`. It separates tolerance at
+`sampling_nTOp=2400` from weak-rate sampling at `rtol=1e-8`, uses
+`max_steps=16384`, and preserves the V1 `0.01 sigma` scalar/batch and
+`0.001 sigma` plateau limits. Preregistration itself supplies no acceptance or
+WHY-NOT progress credit.
+
 Posterior-region, adversarial, extension and matched-posterior measurements
 remain pending. LINX's previously observed non-finite gradient also remains
 rejected. The answer to all four “why not” questions is therefore still
