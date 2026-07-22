@@ -106,14 +106,16 @@ if [ "$TAILSCALE_MODE" != "skip" ]; then
     existing_pid="$(cat "$TS_PID_FILE" 2>/dev/null || true)"
     if [ -z "$existing_pid" ] || ! kill -0 "$existing_pid" 2>/dev/null || [ ! -S "$TS_SOCKET" ]; then
       rm -f "$TS_SOCKET" "$TS_PID_FILE"
-      # AutoDL images may export a short-lived local acceleration proxy. A
-      # userspace tailscaled must never inherit it: once that proxy exits,
-      # coordination and DERP traffic silently go offline while the local
-      # SOCKS socket remains present.
-      nohup env \
-        -u HTTP_PROXY -u HTTPS_PROXY -u http_proxy -u https_proxy \
-        -u ALL_PROXY -u all_proxy \
-        tailscaled \
+      # AutoDL rewrites /etc/network_turbo when an instance boots. Never keep
+      # an inherited proxy from the previous boot: clear it, then load the
+      # platform's current academic-network proxy when available. Direct
+      # access to the Tailscale control plane is not reliable from AutoDL.
+      unset HTTP_PROXY HTTPS_PROXY http_proxy https_proxy ALL_PROXY all_proxy
+      if [ -r /etc/network_turbo ]; then
+        # shellcheck disable=SC1091
+        source /etc/network_turbo >/dev/null
+      fi
+      nohup tailscaled \
         --tun=userspace-networking \
         --state="$TS_STATE" \
         --socket="$TS_SOCKET" \
