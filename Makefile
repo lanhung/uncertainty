@@ -24,6 +24,8 @@ lock-check:
 	UV_CACHE_DIR=$(UV_CACHE_DIR) UV_PYTHON_INSTALL_DIR=$(UV_PYTHON_INSTALL_DIR) uv lock --check
 	UV_CACHE_DIR=$(UV_CACHE_DIR) UV_PYTHON_INSTALL_DIR=$(UV_PYTHON_INSTALL_DIR) uv lock --project environments/solver-cpu --check
 	UV_CACHE_DIR=$(UV_CACHE_DIR) UV_PYTHON_INSTALL_DIR=$(UV_PYTHON_INSTALL_DIR) uv lock --project environments/train-gpu --check
+	UV_CACHE_DIR=$(UV_CACHE_DIR) UV_PYTHON_INSTALL_DIR=$(UV_PYTHON_INSTALL_DIR) uv lock --project environments/linx-v0.1.2 --check
+	UV_CACHE_DIR=$(UV_CACHE_DIR) UV_PYTHON_INSTALL_DIR=$(UV_PYTHON_INSTALL_DIR) uv lock --project environments/abcmb-v0.3.1 --check
 
 ops-validate:
 	$(PYTHON) orchestrator/reconcile.py plan/plan.yaml

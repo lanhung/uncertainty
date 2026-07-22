@@ -1,0 +1,102 @@
+schema_version: 1
+benchmark_id: WHY-NOT-EXISTING-SOLVERS-v1
+status: protocol_frozen_measurements_pending
+decision_date_utc: "2026-07-22"
+task_id: P0-WHY-NOT-01
+adr: docs/decisions/ADR-WHY-NOT-001.md
+source_fetcher: scripts/fetch_why_not_baselines.sh
+
+baselines:
+  W0-LINX:
+    repository: https://github.com/cgiovanetti/LINX
+    revision: ec2e9d2ca455e8204137e884da29f5dd13a638fa
+    release: v0.1.2
+  W1-PRYM:
+    repository: https://github.com/vallima/PRyMordial
+    revision: 725d8a8db3ad5ea2630580d825c9d0d69ed76533
+  W2-PRIMAT:
+    repository: https://github.com/CyrilPitrou/primat
+    release: v0.3.2
+    revision: 21ff8f39fa18e3937e9fdf386cfa982361bfdfce
+  W3-ABCMB:
+    repository: https://github.com/TonyZhou729/ABCMB
+    revision: 5eabbab4ed7e53f264e16024743d1ba517845c37
+    release: v0.3.1
+    bundled_linx_tree: 59b3ab7b3ada7d7ff6484920e0e29291cf4a084e
+    comparison_baseline: W0-LINX
+
+execution:
+  environment_locks:
+    W0-LINX: environments/linx-v0.1.2/uv.lock
+    W1-PRYM: environments/solver-cpu/uv.lock
+    W2-PRIMAT: environments/solver-cpu/uv.lock
+    W3-ABCMB: environments/abcmb-v0.3.1/uv.lock
+  hardware_inventory_required: true
+  physical_node_record_required: true
+  precision: float64
+  warm_repetitions: 30
+  batch_sizes: [1, 64]
+  cold_start_reported_separately: true
+  control_host_compute_allowed: false
+
+scenarios:
+  - id: standard_fiducial
+    parameter_source: configs/physics/parameter_schema.yaml
+    availability: pending_parameter_schema
+  - id: standard_rate_minus_one
+    rate_q: -1
+    availability: pending_rate_registry
+  - id: standard_rate_zero
+    rate_q: 0
+    availability: pending_rate_registry
+  - id: standard_rate_plus_one
+    rate_q: 1
+    availability: pending_rate_registry
+  - id: nonstandard_registered_point
+    availability: pending_extension_contract
+
+metrics:
+  runtime: [cold_seconds, warm_median_seconds, warm_iqr_seconds, warm_p95_seconds]
+  throughput: [points_per_second, successful_points_per_second]
+  resources: [peak_rss_bytes, cpu_core_hours, gpu_hours, monetary_cost]
+  differentiation: [jacobian_seconds, finite_gradient_fraction, gradient_repeatability]
+  sampling: [ess_per_hour, rhat_max, divergences, posterior_wall_seconds]
+  fidelity:
+    - normalized_median_shift
+    - credible_interval_ratio
+    - posterior_topology_match
+    - exact_binomial_sbc_coverage
+  reliability: [structured_failure_fraction, silent_nonfinite_count]
+  implementation: [extension_person_hours, changed_lines, unsupported_features]
+
+acceptance:
+  maximum_absolute_normalized_median_shift: 0.1
+  credible_interval_ratio: [0.95, 1.05]
+  maximum_in_domain_failure_fraction: 0.01
+  sbc_replicates: 1000
+  sbc_coverage_interval: exact_binomial
+  posterior_topology_must_match: true
+
+decision_rules:
+  direct_first:
+    maximum_workers: 2
+    maximum_calendar_days: 14
+    maximum_worker_hours: 672
+  hybrid_necessity:
+    minimum_high_fidelity_call_reduction: 10
+    alternative_minimum_end_to_end_wall_reduction: 5
+  reject_hybrid_on_fidelity_failure: true
+  primat_reference_retained_regardless_of_throughput: true
+
+required_artifacts:
+  - run_manifest.json
+  - timings.jsonl
+  - failures.jsonl
+  - posterior_metrics.json
+  - resource_report.json
+  - WHY_NOT_EXISTING_SOLVERS_v1.md
+
+current_results:
+  measured_baselines: 0
+  conclusion: undetermined
+  prohibition: Do not claim emulator necessity before registered measurements.

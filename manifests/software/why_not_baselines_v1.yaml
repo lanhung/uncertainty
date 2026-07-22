@@ -1,0 +1,80 @@
+schema_version: 1
+manifest_id: why_not_baselines_v1
+captured_at: "2026-07-22"
+fetcher: scripts/fetch_why_not_baselines.sh
+source_audit: docs/inventory/WHY_NOT_BASELINE_SOURCE_AUDIT_v1.md
+
+baselines:
+  W0-LINX:
+    repository: https://github.com/cgiovanetti/LINX
+    revision: ec2e9d2ca455e8204137e884da29f5dd13a638fa
+    license: MIT
+    license_sha256: 8f1ee40b1b13d0c5710438ae9db3bfde4f61582c75cfa744ddf90439a5a35f92
+    dependency_evidence:
+      requirements_sha256: 4eb3eabf389ce31d41168df60f6db479927bff59901aa4ddd75f7afca91b4c3c
+      requirements_fast_sha256: 953622e65fd3013166e02ebd264a470101aa523b415c178842db58b7057390e7
+      fast_jax: 0.4.28
+      fast_jaxlib: 0.4.28
+      fast_diffrax: 0.6.0
+      fast_equinox: 0.11.10
+      interpax: 0.3.1
+      interpax_install: no_deps_required_by_upstream
+    environment_status: dedicated_lock_declared_pending_worker_smoke
+    environment: environments/linx-v0.1.2/uv.lock
+    environment_sha256: 98c8f6de35dfdf7147857a3c28153b10f3ad7d424cb9faeea15de75cacd27556
+    sidecar_requirements: environments/linx-v0.1.2/interpax-sidecar.txt
+    sidecar_hashes:
+      - 09bfeb5135f2f793c6c1306c0fc3b92e7e880d7de865770e84e54587108a6f4a
+      - c9d4ece484f4e5fe1310d9c455115b05424cfa55a3bb4de11f81c535454247e6
+    resolver_note: interpax is a no-deps sidecar because upstream pins are metadata-inconsistent
+
+  W1-PRYM:
+    repository: https://github.com/vallima/PRyMordial
+    revision: 725d8a8db3ad5ea2630580d825c9d0d69ed76533
+    license: GPL-3.0
+    license_sha256: c61f12da7cdad526bdcbed47a4c0a603e60dbbfdaf8b66933cd088e9132c303f
+    dependency_evidence:
+      readme_sha256: 0c2b73d6cc5484ec048e85bd32a9b1d196b3ff73c304503c4b2218701d6a0b2e
+      packaging_metadata: absent
+      declared_required: [numpy, scipy]
+      declared_recommended: [numba, numdifftools, vegas]
+      declared_optional: [julia, diffeqpy]
+    environment_status: solver_cpu_candidate_requires_smoke
+
+  W2-PRIMAT:
+    repository: https://github.com/CyrilPitrou/primat
+    revision: 21ff8f39fa18e3937e9fdf386cfa982361bfdfce
+    release: v0.3.2
+    license: GPL-3.0-or-later
+    license_sha256: d07bf30b88a4239ca0ffa5124454d22f8ca27f66d578f8dd7ad7a805ee422020
+    dependency_evidence:
+      pyproject_sha256: 0937b27c4585949cddb7d95823eef75ec88ff46bf584e951fe49fde4a0083eec
+      requires_python: ">=3.10"
+      core: [numpy, scipy]
+    environment_status: solver_cpu_candidate_requires_source_install_smoke
+
+  W3-ABCMB:
+    repository: https://github.com/TonyZhou729/ABCMB
+    revision: 5eabbab4ed7e53f264e16024743d1ba517845c37
+    release: v0.3.1
+    license: MIT
+    license_sha256: a5c4f92edd8133aa904206ebaaa6285ff90cd799e9148bbbe8214222ded09f0d
+    dependency_evidence:
+      setup_cfg_sha256: 2c944bbc031f31e6af64ef138f3de3b6628c62a379feedd79a57c13e0852fc63
+      jax: 0.8.1
+      equinox: 0.13.2
+      optimistix: 0.0.11
+      bundled_linx_tree: 59b3ab7b3ada7d7ff6484920e0e29291cf4a084e
+    environment_status: dedicated_lock_declared_pending_worker_smoke
+    environment: environments/abcmb-v0.3.1/uv.lock
+    environment_sha256: 38ca8a96022b50ddaabf95a820d60142db71758fc7080be2c7599c822c21ebdd
+    resolved_diffrax: 0.7.1
+    resolved_interpax: 0.3.14
+    resolver_note: diffrax and interpax resolve from ABCMB metadata under its exact JAX and Optimistix pins
+    comparison_rule: bundled LINX must be compared against W0-LINX, not assumed identical
+
+shared_environment_finding:
+  current_solver_cpu_jax: 0.7.2
+  compatible_with_exact_W0: false
+  compatible_with_exact_W3: false
+  decision: separate W0-LINX and W3-ABCMB locks before timing

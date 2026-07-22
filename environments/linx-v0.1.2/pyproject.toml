@@ -1,0 +1,33 @@
+[project]
+name = "uncertainty-linx-v0-1-2"
+version = "0.2.1"
+description = "Exact dependency environment for the frozen LINX v0.1.2 fast baseline"
+requires-python = "==3.11.15"
+dependencies = [
+  "diffrax==0.6.0",
+  "equinox==0.11.10",
+  "jax==0.4.28",
+  "jaxlib==0.4.28",
+  "jaxtyping==0.3.9",
+  "lineax==0.0.7",
+  "numpy==2.4.6",
+  "optimistix==0.0.10",
+  "scipy==1.16.3",
+]
+
+[tool.uv]
+package = false
+# Upstream requires interpax 0.3.1 to be installed with --no-deps because its
+# metadata conflicts with both the frozen JAX and NumPy versions. It is
+# deliberately excluded from this resolver lock and installed by the
+# environment bootstrap as a hash-verified sidecar.
+override-dependencies = [
+  "jax==0.4.28",
+  "jaxlib==0.4.28",
+]
+
+[tool.uncertainty.sidecar]
+requirement = "interpax==0.3.1"
+install_args = ["--no-deps"]
+requirements_file = "interpax-sidecar.txt"
+reason = "exact upstream requirements-fast.txt contract"
