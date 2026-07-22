@@ -1,0 +1,21 @@
+schema_version: 1
+dataset_id: CMB-v1
+decision_date_utc: "2026-07-21"
+main_stage:
+  dataset: planck_2018_base_lcdm
+  combination: TT_TE_EE_lowE_lensing
+  observable: omega_b_h2
+  distribution: normal
+  mean: 0.02237
+  sigma: 0.00015
+  confidence: 68_percent
+  source_id: planck_2018_arxiv_1807_06209_v4
+  source_location: equation_24
+  approximation_status: registered
+  limitation: >-
+    This scalar prior is the initial-stage baseline, not a replacement for a
+    consistent joint CMB likelihood in final Track B inference.
+mandatory_stress_tests:
+  - full_planck_chain_or_likelihood
+  - alternative_registered_cmb_combination
+change_rule: Alternatives cannot replace the main stage after unblinding.

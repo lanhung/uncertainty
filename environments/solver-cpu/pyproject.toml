@@ -1,0 +1,21 @@
+[project]
+name = "uncertainty-solver-cpu"
+version = "0.2.1"
+description = "Pinned FP64 CPU/JAX environment for BBN solver validation"
+requires-python = "==3.11.15"
+dependencies = [
+  "diffrax==0.7.2",
+  "equinox==0.13.2",
+  "interpax==0.3.10",
+  "jax[cpu]==0.7.2",
+  "numba==0.62.1",
+  "numdifftools==0.9.42",
+  "numpy==2.3.5",
+  "primat==0.3.2",
+  "PyYAML==6.0.3",
+  "scipy==1.16.3",
+  "vegas==6.4.1",
+]
+
+[tool.uv]
+package = false

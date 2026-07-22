@@ -1,0 +1,42 @@
+schema_version: 1
+manifest_id: OBS-v1-sources
+retrieved_at_utc: "2026-07-21"
+hash_algorithm: sha256
+retention: >-
+  Source documents were downloaded to a temporary verification directory and
+  are not committed. Re-download from the immutable versioned URL and verify
+  the hash before production use.
+sources:
+  lbt_yp_project_iv_arxiv_2601_22238_v1:
+    url: https://arxiv.org/pdf/2601.22238v1
+    sha256: 72f646a345c36b77211e6035d3a78345498f0766cf9fc0a54932ebe0dd670c6a
+  cooke_2018_arxiv_1710_11129_v3:
+    url: https://arxiv.org/pdf/1710.11129v3
+    sha256: 1a6ec19d6568b8854a40e9dd587906f99a8ea94ecd2d5c712ad86aa506b93f4a
+  kislitsyn_arxiv_2401_12797_v1:
+    url: https://arxiv.org/pdf/2401.12797v1
+    sha256: a518317d4ea77b3d7ca40225b1aed35f50c54d5d0beb9440f72d51b450247e9d
+  empress_arxiv_2506_24050_v2:
+    url: https://arxiv.org/pdf/2506.24050v2
+    sha256: 2ece646a6fe6eae20d051a22f6043b50389e3b8e75dd2dc8f23d0c3f389984cd
+  aver_2015_arxiv_1503_08146_v1:
+    url: https://arxiv.org/pdf/1503.08146v1
+    sha256: 9aa6f68b8edbbb4e44fdc8e08adfb00cf7fc4beeaf069575d9e8eb4aa6c86a87
+  planck_2018_arxiv_1807_06209_v4:
+    url: https://arxiv.org/pdf/1807.06209v4
+    sha256: 8e172730faf07c9f4ff3fdcc7043f76ed67df6f76066d47df30d693025b6ce77
+  lvk_arxiv_2510_26848_v2:
+    url: https://arxiv.org/pdf/2510.26848v2
+    sha256: 0dabc73a7e49872ec9bcc5a1c001940393b6265927b979966c25424dc01802ae
+  pdg_2026_neutron_listing:
+    url: https://pdg.lbl.gov/2026/listings/rpp2026-list-n.pdf
+    sha256: c115909d8985f30e1109eaf669a52b03f515e5d36df9b028aff4be3be37595ff
+  ucntau_arxiv_2409_05560_v1:
+    url: https://arxiv.org/pdf/2409.05560v1
+    sha256: 20738ff8815058966eb8821665c33fb1b3d0c9d66e66ec08239e3788a31fdf33
+  yue_arxiv_1309_2623_v2:
+    url: https://arxiv.org/pdf/1309.2623v2
+    sha256: d0c75875849c988b259a1b6381297739f3c6c2e705f1d239f0a1724f5e25d15a
+  jparc_arxiv_2412_19519_v1:
+    url: https://arxiv.org/pdf/2412.19519v1
+    sha256: 4698cde89bdfa2bad3bfa76908ace2323c8eb3610f29468d302b194ed0fb6ebe

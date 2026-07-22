@@ -1,0 +1,71 @@
+schema_version: 1
+prior_id: NEUTRON-v1
+decision_date_utc: "2026-07-21"
+units: s
+decision_status: frozen
+track_b_gate_status: closed_pending_signoff
+
+scenarios:
+  N0:
+    label: primary_pdg_2026_ucn_average
+    role: main_baseline
+    distribution: normal
+    mean: 878.3
+    sigma: 0.4
+    source_id: pdg_2026_neutron_listing
+    notes:
+      - PDG averages eight of the best nine ultracold-neutron measurements.
+      - The quoted uncertainty includes a scale factor of 1.8.
+  N1:
+    label: latest_ucntau_bottle_only
+    role: mandatory_robustness
+    distribution: split_normal
+    mode: 877.82
+    sigma_minus: 0.2780288
+    sigma_plus: 0.2973214
+    uncertainty_combination: quadrature_of_statistical_and_directional_systematic
+    published_components:
+      sigma_stat: 0.22
+      sigma_sys_minus: 0.17
+      sigma_sys_plus: 0.20
+    source_id: ucntau_arxiv_2409_05560_v1
+  N2:
+    label: yue_proton_detection_beam
+    role: mandatory_robustness
+    distribution: normal
+    mean: 887.7
+    sigma: 2.2472205
+    uncertainty_combination: quadrature_of_statistical_and_systematic
+    published_components:
+      sigma_stat: 1.2
+      sigma_sys: 1.9
+    source_id: yue_arxiv_1309_2623_v2
+  N3:
+    label: beam_bottle_mixture
+    role: mandatory_discrepancy_model
+    distribution: finite_mixture
+    weights:
+      N1: 0.5
+      N2: 0.5
+    interpretation: >-
+      A pre-registered sensitivity model for unresolved method discrepancy; it
+      is not a claim that either component has posterior probability one half.
+
+additional_stress_tests:
+  JPARC_ELECTRON_BEAM:
+    distribution: split_normal
+    mode: 877.2
+    sigma_minus: 3.9812058
+    sigma_plus: 4.3462628
+    uncertainty_combination: quadrature_of_statistical_and_directional_systematic
+    published_components:
+      sigma_stat: 1.7
+      sigma_sys_minus: 3.6
+      sigma_sys_plus: 4.0
+    source_id: jparc_arxiv_2412_19519_v1
+
+modeling_rules:
+  - Neutron lifetime and weak-rate theory corrections are separate uncertainty sources.
+  - Do not add a neutron-lifetime effect twice through both tau_n and weak-rate normalization.
+  - Report N0 through N3 for every flagship endpoint.
+  - Selection among scenarios cannot depend on the observed Track B significance.

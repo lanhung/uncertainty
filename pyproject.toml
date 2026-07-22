@@ -1,0 +1,43 @@
+[project]
+name = "uncertainty-research-ops"
+version = "0.2.1"
+description = "Reproducible control plane and audit tooling for BBNet-UQ"
+readme = "README.md"
+requires-python = "==3.11.15"
+dependencies = [
+  "fastapi==0.128.8",
+  "httpx==0.28.1",
+  "pydantic==2.13.4",
+  "PyYAML==6.0.3",
+  "uvicorn[standard]==0.39.0",
+]
+
+[dependency-groups]
+dev = [
+  "mypy==1.19.1",
+  "pre-commit==4.5.1",
+  "pytest==8.4.2",
+  "ruff==0.14.13",
+]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+norecursedirs = ["legacy"]
+pythonpath = ["."]
+addopts = "-ra"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+extend-exclude = ["legacy"]
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F"]
+
+[tool.mypy]
+python_version = "3.11"
+exclude = ["^legacy/"]
+warn_unused_configs = true

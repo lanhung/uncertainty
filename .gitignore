@@ -19,6 +19,7 @@ logs/
 
 # Generated local delivery artifacts
 dist/
+private-handoff/
 
 # Secrets and local overrides
 .env

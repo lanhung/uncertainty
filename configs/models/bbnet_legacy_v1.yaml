@@ -1,0 +1,40 @@
+schema_version: 1
+model_id: bbnet_legacy_v1
+status: non_runnable_audit_import
+task: P0-repo-migrate
+origin:
+  repository: https://github.com/Hdiao112/BBNet
+  package_commit: ea66fe66b16d5189676a853337aaa5ae480839b0
+  recovered_training_commit: 704274c780f91f7e090d478f1a4f03a8ff933df9
+  paper: https://arxiv.org/abs/2512.15266v1
+license:
+  identifier: MIT
+  file: legacy/bbnet/upstream-ea66fe6/BBNet/LICENSE
+
+declared_modes:
+  pe:
+    inputs: [eta10, dn_nu, kappa, tau_n]
+    outputs: [H2_over_H, Y_p]
+    architecture_source: upstream_commit_704274c:bbn_partheno_with_plot.py
+    checkpoint_status: absent_from_all_inspected_upstream_history
+  al:
+    inputs: [dd0, dd0_rad, tau_n, omegabn]
+    outputs: [H2_over_H, Y_p]
+    architecture_source: upstream_commit_704274c:bbn_alterbbn_with_plot.py
+    checkpoint_status: historical_file_is_truncated_and_unloadable
+
+known_blockers:
+  - The current upstream commit contains no checkpoint files.
+  - No PArthENoPE checkpoint was found in reachable history.
+  - The historical AlterBBN checkpoint is exactly 5 MiB and lacks the ZIP central directory required by the PyTorch serialization container.
+  - Current package artifact names use scaler_ while published files use scalers_.
+  - The package initializer is named _init_.py instead of __init__.py.
+  - Training datasets, split indices, solver commits and full training configuration are absent.
+  - The package architecture and historical AlterBBN checkpoint size are inconsistent and cannot be validated without a loadable checkpoint.
+  - Deleted root-level training scripts are recorded by commit/blob only because the nested MIT license does not unambiguously cover them.
+
+use_policy:
+  approved_for_scientific_inference: false
+  approved_for_claims: false
+  purpose: provenance-preserving audit and refactor input only
+  next_gate: recover authoritative datasets/checkpoints or retrain from registered solver data

@@ -1,0 +1,87 @@
+schema_version: 1
+dataset_id: OBS-v1
+decision_date_utc: "2026-07-21"
+decision_status: frozen
+track_b_gate_status: closed
+track_b_gate_reason: >-
+  The observational choices are frozen, but Track B remains closed until the
+  required scientific sign-offs and the LVK likelihood implementation audit
+  are complete.
+blinding_statement: >-
+  These choices were recorded before any Track B production effect size,
+  flagship contour, or detector-overlap result was inspected.
+
+main_likelihood:
+  helium4_mass_fraction:
+    dataset: lbt_yp_project_iv_2026
+    observable: Y_p
+    distribution: normal
+    mean: 0.2458
+    sigma: 0.0013
+    source_id: lbt_yp_project_iv_arxiv_2601_22238_v1
+    rationale: >-
+      Uniform LBT analysis with a pre-declared low-metallicity subset; selected
+      before Track B inference and not because of its effect on new physics.
+  deuterium_number_ratio:
+    dataset: cooke_2018_homogeneous
+    observable: D_over_H_times_1e5
+    distribution: normal
+    mean: 2.527
+    sigma: 0.030
+    source_id: cooke_2018_arxiv_1710_11129_v3
+    rationale: >-
+      Conservative homogeneous high-precision sample. The newer compilation is
+      retained as a mandatory stress test rather than selected post hoc.
+
+mandatory_stress_tests:
+  helium4:
+    - dataset: aver_olive_skillman_2015
+      role: legacy_helium
+      observable: Y_p
+      distribution: normal
+      mean: 0.2449
+      sigma: 0.0040
+      source_id: aver_2015_arxiv_1503_08146_v1
+    - dataset: empress_2026
+      role: low_helium_alternative
+      observable: Y_p
+      distribution: split_normal
+      mode: 0.2402
+      sigma_minus: 0.0040
+      sigma_plus: 0.0040
+      source_id: empress_arxiv_2506_24050_v2
+  deuterium:
+    - dataset: kislitsyn_2024_all_available
+      role: updated_compilation_all
+      observable: D_over_H_times_1e5
+      distribution: normal
+      mean: 2.533
+      sigma: 0.024
+      source_id: kislitsyn_arxiv_2401_12797_v1
+    - dataset: kislitsyn_2024_precision_nine
+      role: updated_compilation_precision_subset
+      observable: D_over_H_times_1e5
+      distribution: normal
+      mean: 2.501
+      sigma: 0.028
+      source_id: kislitsyn_arxiv_2401_12797_v1
+
+excluded_from_main_likelihood:
+  lithium7:
+    role: independent_null_test
+    reason: >-
+      Li/H is not multiplied into the default likelihood and may not be used to
+      tune the main model, priors, or anomaly handling.
+
+combination_rules:
+  - Never multiply alternative helium determinations together as if independent.
+  - Never multiply overlapping D/H compilations together as if independent.
+  - Shared-object and shared-calibration systematics require an explicit covariance or hierarchical nuisance model.
+  - Use a published non-Gaussian posterior when available; any Gaussian approximation requires a validation artifact.
+  - Forecast likelihoods must be stored and plotted separately from observed-data likelihoods.
+
+change_control:
+  deviation_log: docs/preregistration/DEVIATION_LOG.md
+  rule: >-
+    Any change after this decision must record the reason, timestamp, affected
+    result, and confirmatory or exploratory status before rerunning inference.

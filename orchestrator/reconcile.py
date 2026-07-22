@@ -1,7 +1,7 @@
 """Validate and reconcile ``plan/plan.yaml`` into the live task ledger."""
+
 from __future__ import annotations
 
-from dataclasses import asdict
 from pathlib import Path
 from typing import Any
 
@@ -57,9 +57,7 @@ def validate_plan(plan: dict[str, Any]) -> dict[str, Any]:
             except (TypeError, ValueError):
                 errors.append(f"{task_id}: total must be numeric")
         depends_on = spec.get("depends_on", [])
-        if not isinstance(depends_on, list) or not all(
-            isinstance(dep, str) for dep in depends_on
-        ):
+        if not isinstance(depends_on, list) or not all(isinstance(dep, str) for dep in depends_on):
             errors.append(f"{task_id}: depends_on must be a list of task ids")
 
     for task_id, spec in by_id.items():
@@ -152,9 +150,7 @@ def reconcile(store: Store, plan_path: str | Path) -> dict[str, Any]:
         existing.phase = str(spec.get("phase", ""))
         existing.weight = float(spec.get("weight", 1.0))
         existing.unit = str(spec.get("unit", "units"))
-        existing.total = (
-            float(spec["total"]) if spec.get("total") is not None else None
-        )
+        existing.total = float(spec["total"]) if spec.get("total") is not None else None
         existing.depends_on = list(spec.get("depends_on", []))
         existing.declared_eta = spec.get("declared_eta")
         if existing.status == "cancelled":

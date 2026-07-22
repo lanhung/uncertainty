@@ -1,0 +1,78 @@
+schema_version: 1
+manifest_id: bbnet_legacy_upstream_v1
+captured_at_utc: "2026-07-21"
+task_id: P0-repo-migrate
+origin_repository: https://github.com/Hdiao112/BBNet
+paper: https://arxiv.org/abs/2512.15266v1
+license: MIT
+license_scope_note: >-
+  The upstream repository places the MIT license inside BBNet/. Only files under
+  that licensed package directory are imported. Two deleted root-level training
+  scripts are recorded by commit and blob but are not redistributed because the
+  nested license does not unambiguously cover them.
+
+imports:
+  package_snapshot:
+    upstream_commit: ea66fe66b16d5189676a853337aaa5ae480839b0
+    local_root: legacy/bbnet/upstream-ea66fe6
+    line_endings: normalized_to_lf_during_import
+    files:
+      - path: legacy/bbnet/upstream-ea66fe6/BBNet/LICENSE
+        upstream_git_blob: 572ce65b64ec0677dd5ea74604b05b764e5c89eb
+        local_sha256: d5657813776f8df42fd6760ecafa786da820a48c0dad4d59cef4cf27aa85fd8f
+      - path: legacy/bbnet/upstream-ea66fe6/BBNet/README.md
+        upstream_git_blob: 2ff42d59211f5a23d5d681cb6ac6e3f5172d0282
+        local_sha256: 66d49cfae0dcdb3ec12cd77d3238ac13fd4d489e86181d489fa3870bd6684ddb
+      - path: legacy/bbnet/upstream-ea66fe6/BBNet/pyproject.toml
+        upstream_git_blob: 6f43704097837544fa0eb2c3cb383ed8c6ed94c4
+        local_sha256: 1c6af4918f4b58731338159cfe1bc348d70a61e69531d837d23f25c5ae02c37f
+      - path: legacy/bbnet/upstream-ea66fe6/BBNet/bbnet/_init_.py
+        upstream_git_blob: b644866fc5960ef5c06aadbe9ad3d37144ae16d9
+        local_sha256: e83926997c66359afad668e1f5277773cacd81397117ded280eb1b630b7c3cf3
+      - path: legacy/bbnet/upstream-ea66fe6/BBNet/bbnet/inference.py
+        upstream_git_blob: f803f3a061412aa170a4ab22648880b2ac80cc8a
+        local_sha256: 125348ffe3dc8bd483d91439acaabf6dfc052a1f8ae4e028fc4a68a6496fbbc1
+      - path: legacy/bbnet/upstream-ea66fe6/BBNet/bbnet/model.py
+        upstream_git_blob: 9ffd51202f7c85473a7732f5650924466d44173c
+        local_sha256: db890f319d1935efe823cff8fe7f014f51d313414a9f05285e421e8b62f15f47
+      - path: legacy/bbnet/upstream-ea66fe6/BBNet/bbnet/tests/test_inference.py
+        upstream_git_blob: addf556cca29ca1da77b549fd44d4112871b2e86
+        local_sha256: 0e58fcd071d3f1b7a0ffa2c6c705719db1f5f8a1541778be471756cd9e6fc503
+  recovered_training_scripts:
+    upstream_commit: 704274c780f91f7e090d478f1a4f03a8ff933df9
+    deleted_by_later_upstream_commits: true
+    imported: false
+    reason: nested_mit_license_scope_is_ambiguous_for_root_level_files
+    files:
+      - upstream_path: bbn_alterbbn_with_plot.py
+        upstream_git_blob: 6ae5f039f19c41ed4aee6f028a98fbe9a24faa22
+        upstream_content_sha256: 22876c79c20eed6feb569b7fa9095eb49b9e5beb3c8c44e911dea66cc18feeff
+      - upstream_path: bbn_partheno_with_plot.py
+        upstream_git_blob: 52b50c2d4a5d251aa120516101c0f871d82ee306
+        upstream_content_sha256: 1c92a3e7e2a06fc6c4b28f235a278e4c44faa5c1a0980192d5624ac087d9535f
+
+binary_artifacts_not_imported:
+  - name: scalers_al.pkl
+    upstream_commit: ea66fe66b16d5189676a853337aaa5ae480839b0
+    upstream_git_blob: 7748a91312897d2f483ebfa16ea52315ca98cd93
+    sha256: 8ca5ab8cc3ed07ec1975dd3dd521210f72c20f82036508e59d13fdf42d0b5a1b
+    status: available_but_untrusted_pickle
+  - name: scalers_pe.pkl
+    upstream_commit: ea66fe66b16d5189676a853337aaa5ae480839b0
+    upstream_git_blob: 17ab5153a7600db8273ed4e63a974b2dc5ab89b6
+    sha256: 88aeabee10321c5214c9fdabbb57991009899a1a313c20ab09673b850f6f6cb2
+    status: available_but_untrusted_pickle
+  - name: model_al.pth
+    upstream_commit: c9fab5c454cad27b2c81c14a810aaf966676cef2
+    upstream_git_blob: a76c92c5876424f9110b7b060fedf35c735ef404
+    size_bytes: 5242880
+    sha256: f78c42361a9bbc39053eacf28909660bbe9cdc2ecea203028fed0cd132ef969b
+    status: rejected_truncated_pytorch_zip_missing_central_directory
+  - name: model_pe.pth
+    status: absent_from_all_reachable_upstream_history
+
+scientific_status:
+  runnable: false
+  reproduction_complete: false
+  approved_for_inference: false
+  reason: required datasets and loadable checkpoints are absent

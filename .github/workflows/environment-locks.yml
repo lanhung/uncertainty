@@ -1,0 +1,76 @@
+name: environment-locks
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'pyproject.toml'
+      - 'uv.lock'
+      - 'environments/**'
+      - 'scripts/bootstrap_science_env.sh'
+      - 'scripts/science_environment_smoke.py'
+      - '.pre-commit-config.yaml'
+      - '.github/workflows/environment-locks.yml'
+  pull_request:
+    paths:
+      - 'pyproject.toml'
+      - 'uv.lock'
+      - 'environments/**'
+      - 'scripts/bootstrap_science_env.sh'
+      - 'scripts/science_environment_smoke.py'
+      - '.pre-commit-config.yaml'
+      - '.github/workflows/environment-locks.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  locks-and-control:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v7
+        with:
+          version: '0.11.28'
+          enable-cache: true
+      - name: Verify lock files are current
+        run: make lock-check
+      - name: Install exact control and development environment
+        run: uv sync --locked
+      - name: Run repository tests
+        run: uv run python -m pytest -q
+      - name: Check new Python entry points
+        run: uv run ruff check scripts/science_environment_smoke.py tests/unit
+      - name: Check formatting
+        run: uv run ruff format --check scripts/science_environment_smoke.py tests/unit
+      - name: Check shell bootstrap syntax
+        run: bash -n scripts/bootstrap_science_env.sh
+
+  solver-cpu-smoke:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v7
+        with:
+          version: '0.11.28'
+          enable-cache: true
+      - name: Install exact CPU solver environment
+        env:
+          UV_PROJECT_ENVIRONMENT: ${{ github.workspace }}/.solver-cpu-venv
+        run: uv sync --project environments/solver-cpu --locked --no-dev --python 3.11.15
+      - name: Validate FP64 CPU/JAX fixed point
+        env:
+          JAX_PLATFORMS: cpu
+        run: |
+          .solver-cpu-venv/bin/python scripts/science_environment_smoke.py \
+            --kind solver-cpu \
+            --lock environments/solver-cpu/uv.lock \
+            --output environment-solver-cpu-ci.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: environment-solver-cpu-ci
+          path: environment-solver-cpu-ci.json
+          if-no-files-found: error
+          retention-days: 14

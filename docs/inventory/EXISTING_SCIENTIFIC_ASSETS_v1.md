@@ -1,6 +1,6 @@
 # Existing scientific assets inventory v1
 
-Status: complete for the locations and credentials available on 2026-07-21
+Status: amended after published-upstream discovery on 2026-07-21
 
 Task: `P0-code-inventory`
 
@@ -28,7 +28,7 @@ names are deliberately excluded from this document.
 
 | Asset class | Located | Evidence and interpretation |
 |---|---:|---|
-| BBNet source or fork | 0 | No matching repository, branch, tag, or host path was found. |
+| BBNet source or fork | 1 public upstream | No project-owned copy was found in the original scope. A later paper-reference audit located `Hdiao112/BBNet`; see the amendment below. |
 | Project-specific PArthENoPE patches | 0 | No source tree, patch series, build directory, or solver card was found. |
 | Project-specific AlterBBN patches | 0 | No source tree, patch series, build directory, or solver card was found. |
 | LINX / PRyMordial / PRIMAT checkout | 0 | No existing checkout was found on the registered hosts. These remain external baselines to acquire reproducibly. |
@@ -47,9 +47,9 @@ scientific-code branch or release tag exists in the inspected remote.
 ## Migration decision
 
 `P0-code-inventory` can close: the available asset set has been enumerated and
-contains no scientific implementation to migrate. `P0-repo-migrate` must not
-invent or silently substitute the missing project code. Its next valid inputs
-are either:
+contained no project-owned scientific implementation to migrate.
+`P0-repo-migrate` must not invent or silently substitute missing project code.
+Its valid inputs are either:
 
 1. an operator-provided path/archive/repository containing the original BBNet,
    MCMC, and modified solver sources; or
@@ -59,6 +59,33 @@ are either:
 
 Until one of these inputs exists, any newly written scientific implementation
 is new work and must be labelled as such rather than represented as a migration.
+
+## Amendment: published BBNet upstream
+
+A follow-up audit of the BBNet paper source located the explicitly cited public
+repository `https://github.com/Hdiao112/BBNet`. This repository was outside the
+original account-owned repository listing, so the original negative result is
+retained as a scoped observation rather than deleted.
+
+The repository provides a nested MIT-licensed package at commit
+`ea66fe66b16d5189676a853337aaa5ae480839b0`. Its history also contains two
+training scripts at commit `704274c780f91f7e090d478f1a4f03a8ff933df9` that
+were later deleted. The licensed package text has been imported under
+`legacy/bbnet/` with normalized line endings. The two root-level training
+scripts are recorded by commit, blob and checksum but not redistributed because
+the nested MIT license does not unambiguously cover them.
+
+The import is not a scientific reproduction. The current upstream commit has no
+checkpoints; no PArthENoPE checkpoint exists in reachable history; and the only
+historical AlterBBN checkpoint is an exactly 5 MiB truncated PyTorch ZIP without
+a central directory. Training data, split indices, solver commits and a complete
+training configuration are also absent. The import is therefore marked
+`non_runnable_audit_import` and cannot support inference or claims.
+
+Machine-readable details are in:
+
+- `manifests/models/bbnet_legacy_upstream_v1.yaml`;
+- `configs/models/bbnet_legacy_v1.yaml`.
 
 ## Reproduction notes
 
