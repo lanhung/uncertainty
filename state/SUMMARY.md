@@ -1,46 +1,49 @@
 # uncertainty — live research status
 
-_Generated: 2026-07-22T00:03:31+00:00; revision: 80_
+_Generated: 2026-07-22T13:22:24+00:00; revision: 230_
 
-**Overall plan completion: 17%.** This is effort-weighted execution progress, not scientific confidence.
+**Scientific program gate: 21%.** This is effort-weighted gate completion, not scientific confidence.
+**Current execution milestones: 100%.**
 
-Status counts — running: 1, blocked: 2, pending: 23, done: 7
-
-## Next runnable
-- **P0-WHY-NOT-01** — Write why-not-LINX/PRyMordial/PRIMAT and emulator economics memo
+Status counts — running: 1, stale: 1, blocked: 2, pending: 21, done: 9
 
 ## Live now
-- **P0-env-lock** — Create environment lock, pyproject, CI, pre-commit and make smoke [running]
-  - progress: 20% (1/5 checks); ETA: —
+- **P0-WHY-NOT-01** — Write why-not-LINX/PRyMordial/PRIMAT and emulator economics memo [running]
+  - progress: 0% (0/1 memos); ETA: —
   - owner: vultr; attempt: 1; run_id: —
-  - heartbeat age: 11 s
-  - depends on: P0-repo-migrate
-  - note: Environment design frozen: Python 3.11; isolated control, CPU-solver/JAX and GPU-train/PyTorch locks; worker verification still pending.
+  - heartbeat age: 149 s
+  - depends on: P0-LIT-01
+  - note: PR #49 and #50 merged: all W0-W3 standard-fiducial runtime slices are now registered with validated hashes, timings, failures and cost. PR #51 froze the ABCMB bundled-LINX scalar/native-batch consistency follow-up before execution. The runtime milestone is 4/4, but P0-WHY-NOT-01 remains 0/1 because rate marginalization, extension, posterior recovery, full ABCMB/Fisher/HMC economics and the final memo conclusion remain incomplete.
+  - artifacts: [docs/decisions/ADR-WHY-NOT-001.md](https://github.com/lanhung/uncertainty/blob/main/docs/decisions/ADR-WHY-NOT-001.md), [configs/benchmarks/why_not_existing_solvers_v1.yaml](https://github.com/lanhung/uncertainty/blob/main/configs/benchmarks/why_not_existing_solvers_v1.yaml), [artifacts/solver-build/DIRECT_SOLVER_SMOKE_v1.json](https://github.com/lanhung/uncertainty/blob/main/artifacts/solver-build/DIRECT_SOLVER_SMOKE_v1.json), [artifacts/solver-build/linx-test-SBBN-PRIMAT-v1.log](https://github.com/lanhung/uncertainty/blob/main/artifacts/solver-build/linx-test-SBBN-PRIMAT-v1.log), [artifacts/solver-build/prymordial-standard-v1.log](https://github.com/lanhung/uncertainty/blob/main/artifacts/solver-build/prymordial-standard-v1.log), [docs/inventory/DIRECT_SOLVER_EXECUTION_v1.md](https://github.com/lanhung/uncertainty/blob/main/docs/inventory/DIRECT_SOLVER_EXECUTION_v1.md), [artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W2-PRIMAT/RESULT_REGISTRY_v1.yaml](https://github.com/lanhung/uncertainty/blob/main/artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W2-PRIMAT/RESULT_REGISTRY_v1.yaml), [artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W2-PRIMAT/run-20260722T0535Z/run_manifest.json](https://github.com/lanhung/uncertainty/blob/main/artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W2-PRIMAT/run-20260722T0535Z/run_manifest.json), [artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W2-PRIMAT/run-20260722T0535Z/timings.jsonl](https://github.com/lanhung/uncertainty/blob/main/artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W2-PRIMAT/run-20260722T0535Z/timings.jsonl), [artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W2-PRIMAT/run-20260722T0535Z/resource_report.json](https://github.com/lanhung/uncertainty/blob/main/artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W2-PRIMAT/run-20260722T0535Z/resource_report.json), [docs/inventory/WHY_NOT_PRIMAT_RUNTIME_v1.md](https://github.com/lanhung/uncertainty/blob/main/docs/inventory/WHY_NOT_PRIMAT_RUNTIME_v1.md), [artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W0-LINX/RESULT_REGISTRY_v1.yaml](https://github.com/lanhung/uncertainty/blob/main/artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W0-LINX/RESULT_REGISTRY_v1.yaml), [artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W0-LINX/run-20260722T0605Z/run_manifest.json](https://github.com/lanhung/uncertainty/blob/main/artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W0-LINX/run-20260722T0605Z/run_manifest.json), [artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W0-LINX/run-20260722T0605Z/timings.jsonl](https://github.com/lanhung/uncertainty/blob/main/artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W0-LINX/run-20260722T0605Z/timings.jsonl), [artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W0-LINX/run-20260722T0605Z/resource_report.json](https://github.com/lanhung/uncertainty/blob/main/artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W0-LINX/run-20260722T0605Z/resource_report.json), [docs/inventory/WHY_NOT_LINX_RUNTIME_v1.md](https://github.com/lanhung/uncertainty/blob/main/docs/inventory/WHY_NOT_LINX_RUNTIME_v1.md), [artifacts/numerical/LINX-BATCH-TOLERANCE-v1/RESULT_REGISTRY_v1.yaml](https://github.com/lanhung/uncertainty/blob/main/artifacts/numerical/LINX-BATCH-TOLERANCE-v1/RESULT_REGISTRY_v1.yaml), [artifacts/numerical/LINX-BATCH-TOLERANCE-v1/run-20260722T0618Z/run_manifest.json](https://github.com/lanhung/uncertainty/blob/main/artifacts/numerical/LINX-BATCH-TOLERANCE-v1/run-20260722T0618Z/run_manifest.json), [artifacts/numerical/LINX-BATCH-TOLERANCE-v1/run-20260722T0618Z/scan_results.json](https://github.com/lanhung/uncertainty/blob/main/artifacts/numerical/LINX-BATCH-TOLERANCE-v1/run-20260722T0618Z/scan_results.json), [artifacts/numerical/LINX-BATCH-TOLERANCE-v1/run-20260722T0618Z/timings.jsonl](https://github.com/lanhung/uncertainty/blob/main/artifacts/numerical/LINX-BATCH-TOLERANCE-v1/run-20260722T0618Z/timings.jsonl), [artifacts/numerical/LINX-BATCH-TOLERANCE-v1/run-20260722T0618Z/resource_report.json](https://github.com/lanhung/uncertainty/blob/main/artifacts/numerical/LINX-BATCH-TOLERANCE-v1/run-20260722T0618Z/resource_report.json), [docs/inventory/LINX_BATCH_TOLERANCE_v1.md](https://github.com/lanhung/uncertainty/blob/main/docs/inventory/LINX_BATCH_TOLERANCE_v1.md), [artifacts/numerical/LINX-EXTENDED-CONVERGENCE-v2/RESULT_REGISTRY_v2.yaml](https://github.com/lanhung/uncertainty/blob/main/artifacts/numerical/LINX-EXTENDED-CONVERGENCE-v2/RESULT_REGISTRY_v2.yaml), [artifacts/numerical/LINX-EXTENDED-CONVERGENCE-v2/run-20260722T0653Z/run_manifest.json](https://github.com/lanhung/uncertainty/blob/main/artifacts/numerical/LINX-EXTENDED-CONVERGENCE-v2/run-20260722T0653Z/run_manifest.json), [artifacts/numerical/LINX-EXTENDED-CONVERGENCE-v2/run-20260722T0653Z/scan_results.json](https://github.com/lanhung/uncertainty/blob/main/artifacts/numerical/LINX-EXTENDED-CONVERGENCE-v2/run-20260722T0653Z/scan_results.json), [artifacts/numerical/LINX-EXTENDED-CONVERGENCE-v2/run-20260722T0653Z/failures.jsonl](https://github.com/lanhung/uncertainty/blob/main/artifacts/numerical/LINX-EXTENDED-CONVERGENCE-v2/run-20260722T0653Z/failures.jsonl), [docs/inventory/LINX_EXTENDED_CONVERGENCE_v2.md](https://github.com/lanhung/uncertainty/blob/main/docs/inventory/LINX_EXTENDED_CONVERGENCE_v2.md), [artifacts/numerical/LINX-MAX-STEPS-DIAGNOSTIC-v3/RESULT_REGISTRY_v3.yaml](https://github.com/lanhung/uncertainty/blob/main/artifacts/numerical/LINX-MAX-STEPS-DIAGNOSTIC-v3/RESULT_REGISTRY_v3.yaml), [artifacts/numerical/LINX-MAX-STEPS-DIAGNOSTIC-v3/run-20260722T0708Z/run_manifest.json](https://github.com/lanhung/uncertainty/blob/main/artifacts/numerical/LINX-MAX-STEPS-DIAGNOSTIC-v3/run-20260722T0708Z/run_manifest.json), [artifacts/numerical/LINX-MAX-STEPS-DIAGNOSTIC-v3/run-20260722T0708Z/scan_results.json](https://github.com/lanhung/uncertainty/blob/main/artifacts/numerical/LINX-MAX-STEPS-DIAGNOSTIC-v3/run-20260722T0708Z/scan_results.json), [docs/inventory/LINX_MAX_STEPS_DIAGNOSTIC_v3.md](https://github.com/lanhung/uncertainty/blob/main/docs/inventory/LINX_MAX_STEPS_DIAGNOSTIC_v3.md), [artifacts/numerical/LINX-CONVERGENCE-RERUN-v4/RESULT_REGISTRY_v4.yaml](https://github.com/lanhung/uncertainty/blob/main/artifacts/numerical/LINX-CONVERGENCE-RERUN-v4/RESULT_REGISTRY_v4.yaml), [artifacts/numerical/LINX-CONVERGENCE-RERUN-v4/run-20260722T0722Z/run_manifest.json](https://github.com/lanhung/uncertainty/blob/main/artifacts/numerical/LINX-CONVERGENCE-RERUN-v4/run-20260722T0722Z/run_manifest.json), [artifacts/numerical/LINX-CONVERGENCE-RERUN-v4/run-20260722T0722Z/scan_results.json](https://github.com/lanhung/uncertainty/blob/main/artifacts/numerical/LINX-CONVERGENCE-RERUN-v4/run-20260722T0722Z/scan_results.json), [artifacts/numerical/LINX-CONVERGENCE-RERUN-v4/run-20260722T0722Z/timings.jsonl](https://github.com/lanhung/uncertainty/blob/main/artifacts/numerical/LINX-CONVERGENCE-RERUN-v4/run-20260722T0722Z/timings.jsonl), [artifacts/numerical/LINX-CONVERGENCE-RERUN-v4/run-20260722T0722Z/resource_report.json](https://github.com/lanhung/uncertainty/blob/main/artifacts/numerical/LINX-CONVERGENCE-RERUN-v4/run-20260722T0722Z/resource_report.json), [docs/inventory/LINX_CONVERGENCE_RERUN_v4.md](https://github.com/lanhung/uncertainty/blob/main/docs/inventory/LINX_CONVERGENCE_RERUN_v4.md), [configs/benchmarks/abcmb_linx_runtime_adapter_v1.yaml](https://github.com/lanhung/uncertainty/blob/main/configs/benchmarks/abcmb_linx_runtime_adapter_v1.yaml), [scripts/validate_why_not_runtime.py](https://github.com/lanhung/uncertainty/blob/main/scripts/validate_why_not_runtime.py), [docs/compute/cost_ledger.csv](https://github.com/lanhung/uncertainty/blob/main/docs/compute/cost_ledger.csv), [docs/compute/solver_throughput.csv](https://github.com/lanhung/uncertainty/blob/main/docs/compute/solver_throughput.csv), [docs/ops/BENCHMARK_RESUME.md](https://github.com/lanhung/uncertainty/blob/main/docs/ops/BENCHMARK_RESUME.md), [scripts/generate_why_not_result_registry.py](https://github.com/lanhung/uncertainty/blob/main/scripts/generate_why_not_result_registry.py), [configs/benchmarks/why_not_result_registry_policy_v1.yaml](https://github.com/lanhung/uncertainty/blob/main/configs/benchmarks/why_not_result_registry_policy_v1.yaml), [artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W1-PRYM/RESULT_REGISTRY_v1.yaml](https://github.com/lanhung/uncertainty/blob/main/artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W1-PRYM/RESULT_REGISTRY_v1.yaml), [artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W1-PRYM/run-20260722T0753Z](https://github.com/lanhung/uncertainty/blob/main/artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W1-PRYM/run-20260722T0753Z), [docs/inventory/WHY_NOT_PRYMORDIAL_RUNTIME_v1.md](https://github.com/lanhung/uncertainty/blob/main/docs/inventory/WHY_NOT_PRYMORDIAL_RUNTIME_v1.md), [artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W3-ABCMB/RESULT_REGISTRY_v1.yaml](https://github.com/lanhung/uncertainty/blob/main/artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W3-ABCMB/RESULT_REGISTRY_v1.yaml), [artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W3-ABCMB/run-20260722T1118Z](https://github.com/lanhung/uncertainty/blob/main/artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W3-ABCMB/run-20260722T1118Z), [docs/inventory/WHY_NOT_ABCMB_RUNTIME_v1.md](https://github.com/lanhung/uncertainty/blob/main/docs/inventory/WHY_NOT_ABCMB_RUNTIME_v1.md), [configs/benchmarks/abcmb_linx_batch_consistency_v1.yaml](https://github.com/lanhung/uncertainty/blob/main/configs/benchmarks/abcmb_linx_batch_consistency_v1.yaml)
+- **P0-solvers-build** — Build project PArthENoPE/AlterBBN plus LINX and PRyMordial reference paths [stale]
+  - progress: 50% (2/4 solvers); ETA: —
+  - owner: vultr; attempt: 1; run_id: —
+  - heartbeat age: 26846 s
+  - depends on: P0-env-lock
+  - note: Still 2/4 executable paths. Direct evidence is current at main a795b95; modified PArthENoPE/AlterBBN remain the only missing paths for this task.
+  - artifacts: [artifacts/solver-build/DIRECT_SOLVER_SMOKE_v1.json](https://github.com/lanhung/uncertainty/blob/main/artifacts/solver-build/DIRECT_SOLVER_SMOKE_v1.json), [artifacts/solver-build/linx-test-SBBN-PRIMAT-v1.log](https://github.com/lanhung/uncertainty/blob/main/artifacts/solver-build/linx-test-SBBN-PRIMAT-v1.log), [artifacts/solver-build/prymordial-standard-v1.log](https://github.com/lanhung/uncertainty/blob/main/artifacts/solver-build/prymordial-standard-v1.log), [docs/inventory/DIRECT_SOLVER_EXECUTION_v1.md](https://github.com/lanhung/uncertainty/blob/main/docs/inventory/DIRECT_SOLVER_EXECUTION_v1.md)
 
 ## Blocked / needs a decision
 - **P0-tailnet** — Join control + two workers to the private tailnet [blocked]
   - progress: 67% (2/3 hosts); ETA: —
   - owner: uncertainty-autodl-westb-01-elastic; attempt: 1; run_id: —
-  - note: control and westb joined (2/3); second eligible worker awaits persistent storage and an idle window
+  - note: 2026-07-22 recheck: the bjb1 primary endpoint can now reach the Tailscale control/login endpoints through its current academic proxy, but it remains unjoined because the host is actively occupied by another project's GW-YOLO CPU/I/O queues. Westb remains joined only through its existing userspace daemon and still cannot reach the Tailscale control plane through its current proxy. Completion remains 2/3 hosts.
 - **P0-worker-bootstrap** — Bootstrap two shared AutoDL nodes as elastic workers [blocked]
   - progress: 50% (1/2 workers); ETA: —
   - owner: uncertainty-autodl-westb-01-elastic; attempt: 1; run_id: —
   - blocked by: P0-tailnet
-  - note: westb ready (1/2); remaining workers lack /root/autodl-fs and are occupied, so policy forbids bootstrap
+  - note: PR #43 merged. Public-safe inventory now records the accepted westb resource capture and checksum lineage, task-time role/lease boundaries, and keeps both bjb1 nodes explicitly ineligible while externally occupied. No progress credit was added: worker bootstrap remains 1/2 until an eligible bjb1 node is independently captured and validated.
+  - artifacts: [docs/compute/autodl_inventory.md](https://github.com/lanhung/uncertainty/blob/main/docs/compute/autodl_inventory.md)
 
 ## Pending
-- **P0-WHY-NOT-01** — Write why-not-LINX/PRyMordial/PRIMAT and emulator economics memo [pending]
-  - progress: 0% (0/1 memos); ETA: —
-  - depends on: P0-LIT-01
 - **P0-benchmark** — Benchmark cold/warm, FP64, batch, CPU, RAM, I/O and failure rates [pending]
   - progress: 0% (0/6 configurations); ETA: —
   - blocked by: P0-solvers-build
 - **P0-reproduce-bbnet** — Reproduce one known BBNet result end-to-end through the monitored pipeline [pending]
   - progress: 0% (0/3 checks); ETA: —
   - blocked by: P0-solvers-build
-- **P0-solvers-build** — Build project PArthENoPE/AlterBBN plus LINX and PRyMordial reference paths [pending]
-  - progress: 0% (0/4 solvers); ETA: —
-  - blocked by: P0-env-lock
+  - note: PR #47 merged. Future solver/checkpoint/scaler/data/generator/MCMC handoffs now enter a deterministic checksum and provenance quarantine that never extracts, executes, imports or deserializes content. This prepares safe intake only; reproduction remains 0/3 and no missing asset is treated as supplied.
+  - artifacts: [configs/models/bbnet_interface_schema_v1.yaml](https://github.com/lanhung/uncertainty/blob/main/configs/models/bbnet_interface_schema_v1.yaml), [scripts/bbnet_schema_adapter.py](https://github.com/lanhung/uncertainty/blob/main/scripts/bbnet_schema_adapter.py), [docs/ops/SCIENTIFIC_ASSET_HANDOFF.md](https://github.com/lanhung/uncertainty/blob/main/docs/ops/SCIENTIFIC_ASSET_HANDOFF.md), [scripts/register_scientific_asset.py](https://github.com/lanhung/uncertainty/blob/main/scripts/register_scientific_asset.py)
 - **P1-hardsoft-posterior** — EXP-A01 hard/soft comparison in the full 10-D physical posterior [pending]
   - progress: 0% (0/16 chains); ETA: —
   - blocked by: P1-mcmc-refactor
@@ -59,15 +62,22 @@ Status counts — running: 1, blocked: 2, pending: 23, done: 7
 - **P2-discrepancy-factorization** — Separate engine, rate-library, weak-rate and extension discrepancies [pending]
   - progress: 0% (0/4 factors); ETA: —
   - blocked by: P2-unified-adapter
+  - artifacts: [docs/decisions/ADR-SOLVER-FACTORIAL-v1.md](https://github.com/lanhung/uncertainty/blob/main/docs/decisions/ADR-SOLVER-FACTORIAL-v1.md)
 - **P2-functional-rate-basis** — Construct 2-3 functional uncertainty modes for the three leading deuterium reactions [pending]
   - progress: 0% (0/3 reactions); ETA: —
   - blocked by: P2-rate-registry
+  - note: PR #34 merged at main 28addff. The three required functional candidates now have stable IDs and enforced placeholder fields, but progress remains 0/3: no posterior-derived basis, energy grid, eigenvalues, cumulative variance, thermal integration, or cross-validation has been approved.
+  - artifacts: [configs/physics/nuclear_prior_NUC-v1.yaml](https://github.com/lanhung/uncertainty/blob/main/configs/physics/nuclear_prior_NUC-v1.yaml)
 - **P2-rate-registry** — Reaction-rate registry with central curves, sigma(T), covariance and provenance [pending]
   - progress: 0% (0/12 reactions); ETA: —
   - blocked by: P2-solver-matrix
+  - note: PR #34 merged at main 28addff. NUC-v1 now provides a machine-readable non-production contract for 12 target core reactions and registers three incomplete head-deuterium placeholders. Progress remains 0/12: authoritative sources, central curves, sigma(T), covariances, detailed-balance mappings, solver mappings, checksums, and A03/A00/A09 review are still pending.
+  - artifacts: [configs/physics/nuclear_prior_NUC-v1.yaml](https://github.com/lanhung/uncertainty/blob/main/configs/physics/nuclear_prior_NUC-v1.yaml), [docs/preregistration/NUCLEAR_PRIOR_FREEZE_v1.md](https://github.com/lanhung/uncertainty/blob/main/docs/preregistration/NUCLEAR_PRIOR_FREEZE_v1.md)
 - **P2-solver-matrix** — Implement initial solver/rate matrix S0, S1, S5 and S6 [pending]
   - progress: 0% (0/4 paths); ETA: —
   - blocked by: P0-solvers-build
+  - note: Matched E/R/W/X/nu factorial protocol merged in PR #20 at main a795b95; execution remains pending P0-solvers-build and missing S0/S1 sources.
+  - artifacts: [docs/decisions/ADR-SOLVER-FACTORIAL-v1.md](https://github.com/lanhung/uncertainty/blob/main/docs/decisions/ADR-SOLVER-FACTORIAL-v1.md)
 - **P2-unified-adapter** — Unified simulate(theta, q, a, neutron, solver, network, precision) adapter [pending]
   - progress: 0% (0/4 paths); ETA: —
   - blocked by: P2-solver-matrix, P2-rate-registry
@@ -77,9 +87,12 @@ Status counts — running: 1, blocked: 2, pending: 23, done: 7
 - **P2.5-gate-report** — Issue G0/G1/G2/G3 Fisher Gate decision and authorize or stop Pilot-10k [pending]
   - progress: 0% (0/3 signoffs); ETA: —
   - blocked by: P2.5-fisher-propagation, P0-WHY-NOT-01
+  - note: PR #41 merged at main 82f8e56. Track B now has a single machine-readable preregistration index. Production, unblinding, Pilot-1k, Pilot-10k and Nature-tier authorization remain false; NUC-v1 remains not frozen and the Fisher Gate Report remains explicitly missing. No gate progress or signoff credit was added.
+  - artifacts: [docs/decisions/ADR-FISHER-GATE-v1.md](https://github.com/lanhung/uncertainty/blob/main/docs/decisions/ADR-FISHER-GATE-v1.md), [artifacts/gates/FISHER_GATE_REPORT_v1.md](https://github.com/lanhung/uncertainty/blob/main/artifacts/gates/FISHER_GATE_REPORT_v1.md), [configs/physics/physics_endpoints_v1.yaml](https://github.com/lanhung/uncertainty/blob/main/configs/physics/physics_endpoints_v1.yaml), [docs/preregistration/PHYSICS_ENDPOINTS_v1.md](https://github.com/lanhung/uncertainty/blob/main/docs/preregistration/PHYSICS_ENDPOINTS_v1.md), [configs/preregistration/track_b_prereg_v1.yaml](https://github.com/lanhung/uncertainty/blob/main/configs/preregistration/track_b_prereg_v1.yaml), [docs/preregistration/TRACK_B_PREREG_v1.md](https://github.com/lanhung/uncertainty/blob/main/docs/preregistration/TRACK_B_PREREG_v1.md)
 - **P2.5-jacobians** — Compute J_theta, J_q and function-shape proxies at representative points [pending]
   - progress: 0% (0/64 points); ETA: —
   - blocked by: P2-unified-adapter
+  - artifacts: [docs/decisions/ADR-FISHER-GATE-v1.md](https://github.com/lanhung/uncertainty/blob/main/docs/decisions/ADR-FISHER-GATE-v1.md)
 - **P3-cross-solver** — Cross-solver and cross-rate-library validation including PRIMAT-family rates [pending]
   - progress: 0% (0/4 baselines); ETA: —
   - blocked by: P3-pilot-10k
@@ -100,11 +113,16 @@ Status counts — running: 1, blocked: 2, pending: 23, done: 7
   - blocked by: P3-pilot-10k
 
 ## Done
+- **EXEC-WHY-RUNTIME** — Complete W0-W3 registered standard-fiducial runtime slices [done]
+  - progress: 100% (4/4 slices); ETA: —
+  - owner: vultr; attempt: 1; run_id: —
+  - note: Operational milestone complete: four registered standard-fiducial runtime slices passed artifact-integrity validation. This does not complete the scientific WHY-NOT task.
+  - artifacts: [artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W0-LINX/RESULT_REGISTRY_v1.yaml](https://github.com/lanhung/uncertainty/blob/main/artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W0-LINX/RESULT_REGISTRY_v1.yaml), [artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W1-PRYM/RESULT_REGISTRY_v1.yaml](https://github.com/lanhung/uncertainty/blob/main/artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W1-PRYM/RESULT_REGISTRY_v1.yaml), [artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W2-PRIMAT/RESULT_REGISTRY_v1.yaml](https://github.com/lanhung/uncertainty/blob/main/artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W2-PRIMAT/RESULT_REGISTRY_v1.yaml), [artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W3-ABCMB/RESULT_REGISTRY_v1.yaml](https://github.com/lanhung/uncertainty/blob/main/artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W3-ABCMB/RESULT_REGISTRY_v1.yaml), [docs/compute/solver_throughput.csv](https://github.com/lanhung/uncertainty/blob/main/docs/compute/solver_throughput.csv)
 - **P0-LIT-01** — Competitor matrix: LINX, PRyMordial, PRIMAT, PArthENoPE, AlterBBN, ABCMB+LINX [done]
   - progress: 100% (8/8 baselines); ETA: —
   - owner: vultr; attempt: 1; run_id: —
-  - note: Competition inventory complete; code reproduction queue and claim signoffs remain separate gates
-  - artifacts: [docs/literature/COMPETITOR_MATRIX_v1.md](https://github.com/lanhung/uncertainty/blob/main/docs/literature/COMPETITOR_MATRIX_v1.md), [docs/literature/competitor_matrix_v0.1.csv](https://github.com/lanhung/uncertainty/blob/main/docs/literature/competitor_matrix_v0.1.csv)
+  - note: PR #40 merged at main 0c04fb9. Claim-evidence registry now binds nine C0-C4 candidates to exact scopes, missing evidence, falsifiers and signoffs. All C2/C3/C4 claims are machine-enforced unavailable; A00/A09/A11/A12 remain pending; Track B and Nature-tier gates remain closed.
+  - artifacts: [docs/literature/COMPETITOR_MATRIX_v1.md](https://github.com/lanhung/uncertainty/blob/main/docs/literature/COMPETITOR_MATRIX_v1.md), [docs/literature/competitor_matrix_v0.1.csv](https://github.com/lanhung/uncertainty/blob/main/docs/literature/competitor_matrix_v0.1.csv), [docs/literature/NOVELTY_CLEARANCE_v1.md](https://github.com/lanhung/uncertainty/blob/main/docs/literature/NOVELTY_CLEARANCE_v1.md), [configs/claims/claim_evidence_matrix_v1.yaml](https://github.com/lanhung/uncertainty/blob/main/configs/claims/claim_evidence_matrix_v1.yaml), [docs/claims/CLAIM_EVIDENCE_MATRIX_v1.md](https://github.com/lanhung/uncertainty/blob/main/docs/claims/CLAIM_EVIDENCE_MATRIX_v1.md)
 - **P0-NEUTRON-01** — Preregister neutron-lifetime N0-N3 baseline and robustness models [done]
   - progress: 100% (1/1 decisions); ETA: —
   - owner: vultr; attempt: 1; run_id: —
@@ -118,12 +136,18 @@ Status counts — running: 1, blocked: 2, pending: 23, done: 7
 - **P0-code-inventory** — Inventory all existing BBNet, MCMC, solver patches, data and model files [done]
   - progress: 100% (1/1 inventories); ETA: —
   - owner: vultr; attempt: 1; run_id: —
-  - note: AMENDMENT: public BBNet upstream Hdiao112/BBNet was located after the initial host audit; pinned licensed package source and provenance were inventoried, while datasets and usable checkpoints remain unavailable.
-  - artifacts: [docs/inventory/EXISTING_SCIENTIFIC_ASSETS_v1.md](https://github.com/lanhung/uncertainty/blob/main/docs/inventory/EXISTING_SCIENTIFIC_ASSETS_v1.md), [manifests/inventory/existing_scientific_assets_v1.json](https://github.com/lanhung/uncertainty/blob/main/manifests/inventory/existing_scientific_assets_v1.json)
+  - note: SageNet structural validation passed on autodl-westb-01: all four SHA-verified checkpoints loaded with weights_only=True, strict state-dict matching, and finite (1,256,2) CPU output. This is not accuracy validation. Scaler pickles mix sklearn 1.2.2 (CosmicNet2/RNN) and 1.6.1 (LSTM/Transformer), so paper-environment equivalence remains open.
+  - artifacts: [docs/inventory/EXISTING_SCIENTIFIC_ASSETS_v1.md](https://github.com/lanhung/uncertainty/blob/main/docs/inventory/EXISTING_SCIENTIFIC_ASSETS_v1.md), [manifests/inventory/existing_scientific_assets_v1.json](https://github.com/lanhung/uncertainty/blob/main/manifests/inventory/existing_scientific_assets_v1.json), [manifests/models/ml4gw_upstreams_v1.yaml](https://github.com/lanhung/uncertainty/blob/main/manifests/models/ml4gw_upstreams_v1.yaml), [docs/inventory/ML4GW_UPSTREAM_AUDIT_v1.md](https://github.com/lanhung/uncertainty/blob/main/docs/inventory/ML4GW_UPSTREAM_AUDIT_v1.md), [artifacts/validation/SAGENET_CHECKPOINT_STRUCTURAL_v1.json](https://github.com/lanhung/uncertainty/blob/main/artifacts/validation/SAGENET_CHECKPOINT_STRUCTURAL_v1.json)
 - **P0-control-plane** — Deploy project-isolated research-ops service on the shared Vultr host [done]
   - progress: 100% (5/5 checks); ETA: —
   - owner: vultr; attempt: 1; run_id: —
   - note: project-isolated control service, auth, ledger, local ops-status branch and health check ready; systemd persistence pending sandbox boundary
+- **P0-env-lock** — Create environment lock, pyproject, CI, pre-commit and make smoke [done]
+  - progress: 100% (5/5 checks); ETA: —
+  - owner: vultr; attempt: 2; run_id: —
+  - depends on: P0-repo-migrate
+  - note: Environment gate complete at main a588392: exact locks, worker CPU/GPU smokes, source-revision checks, and CI evidence are all registered.
+  - artifacts: [environments/linx-v0.1.2/uv.lock](https://github.com/lanhung/uncertainty/blob/main/environments/linx-v0.1.2/uv.lock), [environments/abcmb-v0.3.1/uv.lock](https://github.com/lanhung/uncertainty/blob/main/environments/abcmb-v0.3.1/uv.lock), [artifacts/environments/environment-solver-cpu-autodl-westb-01.json](https://github.com/lanhung/uncertainty/blob/main/artifacts/environments/environment-solver-cpu-autodl-westb-01.json), [artifacts/environments/environment-train-gpu-autodl-westb-01.json](https://github.com/lanhung/uncertainty/blob/main/artifacts/environments/environment-train-gpu-autodl-westb-01.json), [artifacts/environments/environment-W0-LINX-autodl-westb-01.json](https://github.com/lanhung/uncertainty/blob/main/artifacts/environments/environment-W0-LINX-autodl-westb-01.json), [artifacts/environments/environment-W1-PRYM-autodl-westb-01.json](https://github.com/lanhung/uncertainty/blob/main/artifacts/environments/environment-W1-PRYM-autodl-westb-01.json), [artifacts/environments/environment-W2-PRIMAT-autodl-westb-01.json](https://github.com/lanhung/uncertainty/blob/main/artifacts/environments/environment-W2-PRIMAT-autodl-westb-01.json), [artifacts/environments/environment-W3-ABCMB-autodl-westb-01.json](https://github.com/lanhung/uncertainty/blob/main/artifacts/environments/environment-W3-ABCMB-autodl-westb-01.json), [docs/inventory/WORKER_ENVIRONMENT_VALIDATION_v1.md](https://github.com/lanhung/uncertainty/blob/main/docs/inventory/WORKER_ENVIRONMENT_VALIDATION_v1.md)
 - **P0-ops-e2e** — Validate ledger, heartbeat, stale detection and ops-status snapshots [done]
   - progress: 100% (4/4 checks); ETA: —
   - owner: uncertainty-autodl-westb-01-elastic; attempt: 1; run_id: 57fa65e3-24ba-4559-884f-a652c6c5df0c
@@ -133,5 +157,5 @@ Status counts — running: 1, blocked: 2, pending: 23, done: 7
 - **P0-repo-migrate** — Migrate existing scientific code into lanhung/uncertainty and remove local paths [done]
   - owner: vultr; attempt: 1; run_id: —
   - depends on: P0-code-inventory
-  - note: Pinned MIT-licensed BBNet package imported for audit; upstream lacks usable checkpoints/data, so reproduction remains blocked and no scientific result is claimed
-  - artifacts: [manifests/models/bbnet_legacy_upstream_v1.yaml](https://github.com/lanhung/uncertainty/blob/main/manifests/models/bbnet_legacy_upstream_v1.yaml), [legacy/bbnet/README.md](https://github.com/lanhung/uncertainty/blob/main/legacy/bbnet/README.md), [configs/models/bbnet_legacy_v1.yaml](https://github.com/lanhung/uncertainty/blob/main/configs/models/bbnet_legacy_v1.yaml)
+  - note: Canonical ML4GW/BBNet source snapshot imported at exact commit under MIT; earlier Hdiao112 lineage retained separately. New source audit found train/evaluate schema mismatches, so it is approved only as refactor input.
+  - artifacts: [manifests/models/bbnet_legacy_upstream_v1.yaml](https://github.com/lanhung/uncertainty/blob/main/manifests/models/bbnet_legacy_upstream_v1.yaml), [legacy/bbnet/README.md](https://github.com/lanhung/uncertainty/blob/main/legacy/bbnet/README.md), [configs/models/bbnet_legacy_v1.yaml](https://github.com/lanhung/uncertainty/blob/main/configs/models/bbnet_legacy_v1.yaml), [legacy/bbnet/ml4gw-9bd5147](https://github.com/lanhung/uncertainty/blob/main/legacy/bbnet/ml4gw-9bd5147)

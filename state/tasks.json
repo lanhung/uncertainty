@@ -1,12 +1,18 @@
 {
   "project": "uncertainty",
-  "generated_at": "2026-07-22T00:03:31+00:00",
-  "revision": 80,
-  "overall_progress": 0.1698198198198198,
-  "overall_kind": "effort-weighted plan completion",
+  "generated_at": "2026-07-22T13:22:24+00:00",
+  "revision": 230,
+  "overall_progress": 0.21171171171171171,
+  "overall_kind": "effort-weighted scientific program gate completion",
+  "science_gate_progress": 0.21171171171171171,
+  "execution_progress": 1.0,
+  "execution_kind": "effort-weighted current execution milestone completion",
   "phases": {
+    "EXEC": {
+      "progress": 1.0
+    },
     "P0": {
-      "progress": 0.5236111111111111
+      "progress": 0.6527777777777778
     },
     "P1": {
       "progress": 0.0
@@ -22,12 +28,69 @@
     }
   },
   "status_counts": {
-    "done": 7,
-    "pending": 23,
+    "done": 9,
     "running": 1,
+    "pending": 21,
+    "stale": 1,
     "blocked": 2
   },
   "tasks": [
+    {
+      "id": "EXEC-WHY-RUNTIME",
+      "title": "Complete W0-W3 registered standard-fiducial runtime slices",
+      "phase": "EXEC",
+      "status": "done",
+      "weight": 1.0,
+      "unit": "slices",
+      "current": 4.0,
+      "total": 4.0,
+      "owner": "vultr",
+      "depends_on": [],
+      "started_at": "2026-07-22T13:19:55+00:00",
+      "updated_at": "2026-07-22T13:19:56+00:00",
+      "finished_at": "2026-07-22T13:19:56+00:00",
+      "declared_eta": null,
+      "message": "Operational milestone complete: four registered standard-fiducial runtime slices passed artifact-integrity validation. This does not complete the scientific WHY-NOT task.",
+      "artifacts": [
+        "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W0-LINX/RESULT_REGISTRY_v1.yaml",
+        "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W1-PRYM/RESULT_REGISTRY_v1.yaml",
+        "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W2-PRIMAT/RESULT_REGISTRY_v1.yaml",
+        "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W3-ABCMB/RESULT_REGISTRY_v1.yaml",
+        "docs/compute/solver_throughput.csv"
+      ],
+      "metrics": {},
+      "attempt": 1,
+      "run_id": null,
+      "progress": 1.0,
+      "rate": null,
+      "eta": null,
+      "eta_kind": "none",
+      "heartbeat_age_s": 148.08921098709106,
+      "ready": false,
+      "blocked_by": [],
+      "artifact_links": [
+        {
+          "label": "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W0-LINX/RESULT_REGISTRY_v1.yaml",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W0-LINX/RESULT_REGISTRY_v1.yaml"
+        },
+        {
+          "label": "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W1-PRYM/RESULT_REGISTRY_v1.yaml",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W1-PRYM/RESULT_REGISTRY_v1.yaml"
+        },
+        {
+          "label": "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W2-PRIMAT/RESULT_REGISTRY_v1.yaml",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W2-PRIMAT/RESULT_REGISTRY_v1.yaml"
+        },
+        {
+          "label": "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W3-ABCMB/RESULT_REGISTRY_v1.yaml",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W3-ABCMB/RESULT_REGISTRY_v1.yaml"
+        },
+        {
+          "label": "docs/compute/solver_throughput.csv",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/docs/compute/solver_throughput.csv"
+        }
+      ]
+    },
     {
       "id": "P0-LIT-01",
       "title": "Competitor matrix: LINX, PRyMordial, PRIMAT, PArthENoPE, AlterBBN, ABCMB+LINX",
@@ -40,13 +103,16 @@
       "owner": "vultr",
       "depends_on": [],
       "started_at": "2026-07-21T23:43:47+00:00",
-      "updated_at": "2026-07-21T23:58:28+00:00",
+      "updated_at": "2026-07-22T08:39:37+00:00",
       "finished_at": "2026-07-21T23:58:28+00:00",
       "declared_eta": null,
-      "message": "Competition inventory complete; code reproduction queue and claim signoffs remain separate gates",
+      "message": "PR #40 merged at main 0c04fb9. Claim-evidence registry now binds nine C0-C4 candidates to exact scopes, missing evidence, falsifiers and signoffs. All C2/C3/C4 claims are machine-enforced unavailable; A00/A09/A11/A12 remain pending; Track B and Nature-tier gates remain closed.",
       "artifacts": [
         "docs/literature/COMPETITOR_MATRIX_v1.md",
-        "docs/literature/competitor_matrix_v0.1.csv"
+        "docs/literature/competitor_matrix_v0.1.csv",
+        "docs/literature/NOVELTY_CLEARANCE_v1.md",
+        "configs/claims/claim_evidence_matrix_v1.yaml",
+        "docs/claims/CLAIM_EVIDENCE_MATRIX_v1.md"
       ],
       "metrics": {},
       "attempt": 1,
@@ -55,7 +121,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 303.3717451095581,
+      "heartbeat_age_s": 16967.089319705963,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -66,6 +132,18 @@
         {
           "label": "docs/literature/competitor_matrix_v0.1.csv",
           "url": "https://github.com/lanhung/uncertainty/blob/main/docs/literature/competitor_matrix_v0.1.csv"
+        },
+        {
+          "label": "docs/literature/NOVELTY_CLEARANCE_v1.md",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/docs/literature/NOVELTY_CLEARANCE_v1.md"
+        },
+        {
+          "label": "configs/claims/claim_evidence_matrix_v1.yaml",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/configs/claims/claim_evidence_matrix_v1.yaml"
+        },
+        {
+          "label": "docs/claims/CLAIM_EVIDENCE_MATRIX_v1.md",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/docs/claims/CLAIM_EVIDENCE_MATRIX_v1.md"
         }
       ]
     },
@@ -96,7 +174,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 304.3718466758728,
+      "heartbeat_age_s": 48237.08940291405,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -138,7 +216,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 305.37195444107056,
+      "heartbeat_age_s": 48238.08951497078,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -160,32 +238,289 @@
       "id": "P0-WHY-NOT-01",
       "title": "Write why-not-LINX/PRyMordial/PRIMAT and emulator economics memo",
       "phase": "P0",
-      "status": "pending",
+      "status": "running",
       "weight": 1.0,
       "unit": "memos",
       "current": 0.0,
       "total": 1.0,
-      "owner": null,
+      "owner": "vultr",
       "depends_on": [
         "P0-LIT-01"
       ],
-      "started_at": null,
-      "updated_at": null,
+      "started_at": "2026-07-22T02:49:40+00:00",
+      "updated_at": "2026-07-22T13:19:55+00:00",
       "finished_at": null,
       "declared_eta": null,
-      "message": "",
-      "artifacts": [],
+      "message": "PR #49 and #50 merged: all W0-W3 standard-fiducial runtime slices are now registered with validated hashes, timings, failures and cost. PR #51 froze the ABCMB bundled-LINX scalar/native-batch consistency follow-up before execution. The runtime milestone is 4/4, but P0-WHY-NOT-01 remains 0/1 because rate marginalization, extension, posterior recovery, full ABCMB/Fisher/HMC economics and the final memo conclusion remain incomplete.",
+      "artifacts": [
+        "docs/decisions/ADR-WHY-NOT-001.md",
+        "configs/benchmarks/why_not_existing_solvers_v1.yaml",
+        "artifacts/solver-build/DIRECT_SOLVER_SMOKE_v1.json",
+        "artifacts/solver-build/linx-test-SBBN-PRIMAT-v1.log",
+        "artifacts/solver-build/prymordial-standard-v1.log",
+        "docs/inventory/DIRECT_SOLVER_EXECUTION_v1.md",
+        "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W2-PRIMAT/RESULT_REGISTRY_v1.yaml",
+        "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W2-PRIMAT/run-20260722T0535Z/run_manifest.json",
+        "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W2-PRIMAT/run-20260722T0535Z/timings.jsonl",
+        "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W2-PRIMAT/run-20260722T0535Z/resource_report.json",
+        "docs/inventory/WHY_NOT_PRIMAT_RUNTIME_v1.md",
+        "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W0-LINX/RESULT_REGISTRY_v1.yaml",
+        "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W0-LINX/run-20260722T0605Z/run_manifest.json",
+        "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W0-LINX/run-20260722T0605Z/timings.jsonl",
+        "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W0-LINX/run-20260722T0605Z/resource_report.json",
+        "docs/inventory/WHY_NOT_LINX_RUNTIME_v1.md",
+        "artifacts/numerical/LINX-BATCH-TOLERANCE-v1/RESULT_REGISTRY_v1.yaml",
+        "artifacts/numerical/LINX-BATCH-TOLERANCE-v1/run-20260722T0618Z/run_manifest.json",
+        "artifacts/numerical/LINX-BATCH-TOLERANCE-v1/run-20260722T0618Z/scan_results.json",
+        "artifacts/numerical/LINX-BATCH-TOLERANCE-v1/run-20260722T0618Z/timings.jsonl",
+        "artifacts/numerical/LINX-BATCH-TOLERANCE-v1/run-20260722T0618Z/resource_report.json",
+        "docs/inventory/LINX_BATCH_TOLERANCE_v1.md",
+        "artifacts/numerical/LINX-EXTENDED-CONVERGENCE-v2/RESULT_REGISTRY_v2.yaml",
+        "artifacts/numerical/LINX-EXTENDED-CONVERGENCE-v2/run-20260722T0653Z/run_manifest.json",
+        "artifacts/numerical/LINX-EXTENDED-CONVERGENCE-v2/run-20260722T0653Z/scan_results.json",
+        "artifacts/numerical/LINX-EXTENDED-CONVERGENCE-v2/run-20260722T0653Z/failures.jsonl",
+        "docs/inventory/LINX_EXTENDED_CONVERGENCE_v2.md",
+        "artifacts/numerical/LINX-MAX-STEPS-DIAGNOSTIC-v3/RESULT_REGISTRY_v3.yaml",
+        "artifacts/numerical/LINX-MAX-STEPS-DIAGNOSTIC-v3/run-20260722T0708Z/run_manifest.json",
+        "artifacts/numerical/LINX-MAX-STEPS-DIAGNOSTIC-v3/run-20260722T0708Z/scan_results.json",
+        "docs/inventory/LINX_MAX_STEPS_DIAGNOSTIC_v3.md",
+        "artifacts/numerical/LINX-CONVERGENCE-RERUN-v4/RESULT_REGISTRY_v4.yaml",
+        "artifacts/numerical/LINX-CONVERGENCE-RERUN-v4/run-20260722T0722Z/run_manifest.json",
+        "artifacts/numerical/LINX-CONVERGENCE-RERUN-v4/run-20260722T0722Z/scan_results.json",
+        "artifacts/numerical/LINX-CONVERGENCE-RERUN-v4/run-20260722T0722Z/timings.jsonl",
+        "artifacts/numerical/LINX-CONVERGENCE-RERUN-v4/run-20260722T0722Z/resource_report.json",
+        "docs/inventory/LINX_CONVERGENCE_RERUN_v4.md",
+        "configs/benchmarks/abcmb_linx_runtime_adapter_v1.yaml",
+        "scripts/validate_why_not_runtime.py",
+        "docs/compute/cost_ledger.csv",
+        "docs/compute/solver_throughput.csv",
+        "docs/ops/BENCHMARK_RESUME.md",
+        "scripts/generate_why_not_result_registry.py",
+        "configs/benchmarks/why_not_result_registry_policy_v1.yaml",
+        "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W1-PRYM/RESULT_REGISTRY_v1.yaml",
+        "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W1-PRYM/run-20260722T0753Z",
+        "docs/inventory/WHY_NOT_PRYMORDIAL_RUNTIME_v1.md",
+        "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W3-ABCMB/RESULT_REGISTRY_v1.yaml",
+        "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W3-ABCMB/run-20260722T1118Z",
+        "docs/inventory/WHY_NOT_ABCMB_RUNTIME_v1.md",
+        "configs/benchmarks/abcmb_linx_batch_consistency_v1.yaml"
+      ],
       "metrics": {},
-      "attempt": 0,
+      "attempt": 1,
       "run_id": null,
       "progress": 0.0,
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": null,
-      "ready": true,
+      "heartbeat_age_s": 149.0897078514099,
+      "ready": false,
       "blocked_by": [],
-      "artifact_links": []
+      "artifact_links": [
+        {
+          "label": "docs/decisions/ADR-WHY-NOT-001.md",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/docs/decisions/ADR-WHY-NOT-001.md"
+        },
+        {
+          "label": "configs/benchmarks/why_not_existing_solvers_v1.yaml",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/configs/benchmarks/why_not_existing_solvers_v1.yaml"
+        },
+        {
+          "label": "artifacts/solver-build/DIRECT_SOLVER_SMOKE_v1.json",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/solver-build/DIRECT_SOLVER_SMOKE_v1.json"
+        },
+        {
+          "label": "artifacts/solver-build/linx-test-SBBN-PRIMAT-v1.log",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/solver-build/linx-test-SBBN-PRIMAT-v1.log"
+        },
+        {
+          "label": "artifacts/solver-build/prymordial-standard-v1.log",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/solver-build/prymordial-standard-v1.log"
+        },
+        {
+          "label": "docs/inventory/DIRECT_SOLVER_EXECUTION_v1.md",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/docs/inventory/DIRECT_SOLVER_EXECUTION_v1.md"
+        },
+        {
+          "label": "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W2-PRIMAT/RESULT_REGISTRY_v1.yaml",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W2-PRIMAT/RESULT_REGISTRY_v1.yaml"
+        },
+        {
+          "label": "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W2-PRIMAT/run-20260722T0535Z/run_manifest.json",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W2-PRIMAT/run-20260722T0535Z/run_manifest.json"
+        },
+        {
+          "label": "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W2-PRIMAT/run-20260722T0535Z/timings.jsonl",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W2-PRIMAT/run-20260722T0535Z/timings.jsonl"
+        },
+        {
+          "label": "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W2-PRIMAT/run-20260722T0535Z/resource_report.json",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W2-PRIMAT/run-20260722T0535Z/resource_report.json"
+        },
+        {
+          "label": "docs/inventory/WHY_NOT_PRIMAT_RUNTIME_v1.md",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/docs/inventory/WHY_NOT_PRIMAT_RUNTIME_v1.md"
+        },
+        {
+          "label": "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W0-LINX/RESULT_REGISTRY_v1.yaml",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W0-LINX/RESULT_REGISTRY_v1.yaml"
+        },
+        {
+          "label": "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W0-LINX/run-20260722T0605Z/run_manifest.json",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W0-LINX/run-20260722T0605Z/run_manifest.json"
+        },
+        {
+          "label": "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W0-LINX/run-20260722T0605Z/timings.jsonl",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W0-LINX/run-20260722T0605Z/timings.jsonl"
+        },
+        {
+          "label": "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W0-LINX/run-20260722T0605Z/resource_report.json",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W0-LINX/run-20260722T0605Z/resource_report.json"
+        },
+        {
+          "label": "docs/inventory/WHY_NOT_LINX_RUNTIME_v1.md",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/docs/inventory/WHY_NOT_LINX_RUNTIME_v1.md"
+        },
+        {
+          "label": "artifacts/numerical/LINX-BATCH-TOLERANCE-v1/RESULT_REGISTRY_v1.yaml",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/numerical/LINX-BATCH-TOLERANCE-v1/RESULT_REGISTRY_v1.yaml"
+        },
+        {
+          "label": "artifacts/numerical/LINX-BATCH-TOLERANCE-v1/run-20260722T0618Z/run_manifest.json",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/numerical/LINX-BATCH-TOLERANCE-v1/run-20260722T0618Z/run_manifest.json"
+        },
+        {
+          "label": "artifacts/numerical/LINX-BATCH-TOLERANCE-v1/run-20260722T0618Z/scan_results.json",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/numerical/LINX-BATCH-TOLERANCE-v1/run-20260722T0618Z/scan_results.json"
+        },
+        {
+          "label": "artifacts/numerical/LINX-BATCH-TOLERANCE-v1/run-20260722T0618Z/timings.jsonl",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/numerical/LINX-BATCH-TOLERANCE-v1/run-20260722T0618Z/timings.jsonl"
+        },
+        {
+          "label": "artifacts/numerical/LINX-BATCH-TOLERANCE-v1/run-20260722T0618Z/resource_report.json",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/numerical/LINX-BATCH-TOLERANCE-v1/run-20260722T0618Z/resource_report.json"
+        },
+        {
+          "label": "docs/inventory/LINX_BATCH_TOLERANCE_v1.md",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/docs/inventory/LINX_BATCH_TOLERANCE_v1.md"
+        },
+        {
+          "label": "artifacts/numerical/LINX-EXTENDED-CONVERGENCE-v2/RESULT_REGISTRY_v2.yaml",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/numerical/LINX-EXTENDED-CONVERGENCE-v2/RESULT_REGISTRY_v2.yaml"
+        },
+        {
+          "label": "artifacts/numerical/LINX-EXTENDED-CONVERGENCE-v2/run-20260722T0653Z/run_manifest.json",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/numerical/LINX-EXTENDED-CONVERGENCE-v2/run-20260722T0653Z/run_manifest.json"
+        },
+        {
+          "label": "artifacts/numerical/LINX-EXTENDED-CONVERGENCE-v2/run-20260722T0653Z/scan_results.json",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/numerical/LINX-EXTENDED-CONVERGENCE-v2/run-20260722T0653Z/scan_results.json"
+        },
+        {
+          "label": "artifacts/numerical/LINX-EXTENDED-CONVERGENCE-v2/run-20260722T0653Z/failures.jsonl",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/numerical/LINX-EXTENDED-CONVERGENCE-v2/run-20260722T0653Z/failures.jsonl"
+        },
+        {
+          "label": "docs/inventory/LINX_EXTENDED_CONVERGENCE_v2.md",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/docs/inventory/LINX_EXTENDED_CONVERGENCE_v2.md"
+        },
+        {
+          "label": "artifacts/numerical/LINX-MAX-STEPS-DIAGNOSTIC-v3/RESULT_REGISTRY_v3.yaml",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/numerical/LINX-MAX-STEPS-DIAGNOSTIC-v3/RESULT_REGISTRY_v3.yaml"
+        },
+        {
+          "label": "artifacts/numerical/LINX-MAX-STEPS-DIAGNOSTIC-v3/run-20260722T0708Z/run_manifest.json",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/numerical/LINX-MAX-STEPS-DIAGNOSTIC-v3/run-20260722T0708Z/run_manifest.json"
+        },
+        {
+          "label": "artifacts/numerical/LINX-MAX-STEPS-DIAGNOSTIC-v3/run-20260722T0708Z/scan_results.json",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/numerical/LINX-MAX-STEPS-DIAGNOSTIC-v3/run-20260722T0708Z/scan_results.json"
+        },
+        {
+          "label": "docs/inventory/LINX_MAX_STEPS_DIAGNOSTIC_v3.md",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/docs/inventory/LINX_MAX_STEPS_DIAGNOSTIC_v3.md"
+        },
+        {
+          "label": "artifacts/numerical/LINX-CONVERGENCE-RERUN-v4/RESULT_REGISTRY_v4.yaml",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/numerical/LINX-CONVERGENCE-RERUN-v4/RESULT_REGISTRY_v4.yaml"
+        },
+        {
+          "label": "artifacts/numerical/LINX-CONVERGENCE-RERUN-v4/run-20260722T0722Z/run_manifest.json",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/numerical/LINX-CONVERGENCE-RERUN-v4/run-20260722T0722Z/run_manifest.json"
+        },
+        {
+          "label": "artifacts/numerical/LINX-CONVERGENCE-RERUN-v4/run-20260722T0722Z/scan_results.json",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/numerical/LINX-CONVERGENCE-RERUN-v4/run-20260722T0722Z/scan_results.json"
+        },
+        {
+          "label": "artifacts/numerical/LINX-CONVERGENCE-RERUN-v4/run-20260722T0722Z/timings.jsonl",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/numerical/LINX-CONVERGENCE-RERUN-v4/run-20260722T0722Z/timings.jsonl"
+        },
+        {
+          "label": "artifacts/numerical/LINX-CONVERGENCE-RERUN-v4/run-20260722T0722Z/resource_report.json",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/numerical/LINX-CONVERGENCE-RERUN-v4/run-20260722T0722Z/resource_report.json"
+        },
+        {
+          "label": "docs/inventory/LINX_CONVERGENCE_RERUN_v4.md",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/docs/inventory/LINX_CONVERGENCE_RERUN_v4.md"
+        },
+        {
+          "label": "configs/benchmarks/abcmb_linx_runtime_adapter_v1.yaml",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/configs/benchmarks/abcmb_linx_runtime_adapter_v1.yaml"
+        },
+        {
+          "label": "scripts/validate_why_not_runtime.py",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/scripts/validate_why_not_runtime.py"
+        },
+        {
+          "label": "docs/compute/cost_ledger.csv",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/docs/compute/cost_ledger.csv"
+        },
+        {
+          "label": "docs/compute/solver_throughput.csv",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/docs/compute/solver_throughput.csv"
+        },
+        {
+          "label": "docs/ops/BENCHMARK_RESUME.md",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/docs/ops/BENCHMARK_RESUME.md"
+        },
+        {
+          "label": "scripts/generate_why_not_result_registry.py",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/scripts/generate_why_not_result_registry.py"
+        },
+        {
+          "label": "configs/benchmarks/why_not_result_registry_policy_v1.yaml",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/configs/benchmarks/why_not_result_registry_policy_v1.yaml"
+        },
+        {
+          "label": "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W1-PRYM/RESULT_REGISTRY_v1.yaml",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W1-PRYM/RESULT_REGISTRY_v1.yaml"
+        },
+        {
+          "label": "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W1-PRYM/run-20260722T0753Z",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W1-PRYM/run-20260722T0753Z"
+        },
+        {
+          "label": "docs/inventory/WHY_NOT_PRYMORDIAL_RUNTIME_v1.md",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/docs/inventory/WHY_NOT_PRYMORDIAL_RUNTIME_v1.md"
+        },
+        {
+          "label": "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W3-ABCMB/RESULT_REGISTRY_v1.yaml",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W3-ABCMB/RESULT_REGISTRY_v1.yaml"
+        },
+        {
+          "label": "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W3-ABCMB/run-20260722T1118Z",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W3-ABCMB/run-20260722T1118Z"
+        },
+        {
+          "label": "docs/inventory/WHY_NOT_ABCMB_RUNTIME_v1.md",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/docs/inventory/WHY_NOT_ABCMB_RUNTIME_v1.md"
+        },
+        {
+          "label": "configs/benchmarks/abcmb_linx_batch_consistency_v1.yaml",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/configs/benchmarks/abcmb_linx_batch_consistency_v1.yaml"
+        }
+      ]
     },
     {
       "id": "P0-benchmark",
@@ -232,13 +567,16 @@
       "owner": "vultr",
       "depends_on": [],
       "started_at": "2026-07-21T23:38:30+00:00",
-      "updated_at": "2026-07-22T00:03:20+00:00",
+      "updated_at": "2026-07-22T02:27:30+00:00",
       "finished_at": "2026-07-21T23:38:30+00:00",
       "declared_eta": null,
-      "message": "AMENDMENT: public BBNet upstream Hdiao112/BBNet was located after the initial host audit; pinned licensed package source and provenance were inventoried, while datasets and usable checkpoints remain unavailable.",
+      "message": "SageNet structural validation passed on autodl-westb-01: all four SHA-verified checkpoints loaded with weights_only=True, strict state-dict matching, and finite (1,256,2) CPU output. This is not accuracy validation. Scaler pickles mix sklearn 1.2.2 (CosmicNet2/RNN) and 1.6.1 (LSTM/Transformer), so paper-environment equivalence remains open.",
       "artifacts": [
         "docs/inventory/EXISTING_SCIENTIFIC_ASSETS_v1.md",
-        "manifests/inventory/existing_scientific_assets_v1.json"
+        "manifests/inventory/existing_scientific_assets_v1.json",
+        "manifests/models/ml4gw_upstreams_v1.yaml",
+        "docs/inventory/ML4GW_UPSTREAM_AUDIT_v1.md",
+        "artifacts/validation/SAGENET_CHECKPOINT_STRUCTURAL_v1.json"
       ],
       "metrics": {},
       "attempt": 1,
@@ -247,7 +585,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 11.372287034988403,
+      "heartbeat_age_s": 39294.09007191658,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -258,6 +596,18 @@
         {
           "label": "manifests/inventory/existing_scientific_assets_v1.json",
           "url": "https://github.com/lanhung/uncertainty/blob/main/manifests/inventory/existing_scientific_assets_v1.json"
+        },
+        {
+          "label": "manifests/models/ml4gw_upstreams_v1.yaml",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/manifests/models/ml4gw_upstreams_v1.yaml"
+        },
+        {
+          "label": "docs/inventory/ML4GW_UPSTREAM_AUDIT_v1.md",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/docs/inventory/ML4GW_UPSTREAM_AUDIT_v1.md"
+        },
+        {
+          "label": "artifacts/validation/SAGENET_CHECKPOINT_STRUCTURAL_v1.json",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/validation/SAGENET_CHECKPOINT_STRUCTURAL_v1.json"
         }
       ]
     },
@@ -285,7 +635,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 22521.372363090515,
+      "heartbeat_age_s": 70454.09015107155,
       "ready": false,
       "blocked_by": [],
       "artifact_links": []
@@ -294,32 +644,79 @@
       "id": "P0-env-lock",
       "title": "Create environment lock, pyproject, CI, pre-commit and make smoke",
       "phase": "P0",
-      "status": "running",
+      "status": "done",
       "weight": 2.0,
       "unit": "checks",
-      "current": 1.0,
+      "current": 5.0,
       "total": 5.0,
       "owner": "vultr",
       "depends_on": [
         "P0-repo-migrate"
       ],
-      "started_at": "2026-07-22T00:03:20+00:00",
-      "updated_at": "2026-07-22T00:03:20+00:00",
-      "finished_at": null,
+      "started_at": "2026-07-22T02:00:58+00:00",
+      "updated_at": "2026-07-22T05:08:19+00:00",
+      "finished_at": "2026-07-22T05:08:19+00:00",
       "declared_eta": null,
-      "message": "Environment design frozen: Python 3.11; isolated control, CPU-solver/JAX and GPU-train/PyTorch locks; worker verification still pending.",
-      "artifacts": [],
+      "message": "Environment gate complete at main a588392: exact locks, worker CPU/GPU smokes, source-revision checks, and CI evidence are all registered.",
+      "artifacts": [
+        "environments/linx-v0.1.2/uv.lock",
+        "environments/abcmb-v0.3.1/uv.lock",
+        "artifacts/environments/environment-solver-cpu-autodl-westb-01.json",
+        "artifacts/environments/environment-train-gpu-autodl-westb-01.json",
+        "artifacts/environments/environment-W0-LINX-autodl-westb-01.json",
+        "artifacts/environments/environment-W1-PRYM-autodl-westb-01.json",
+        "artifacts/environments/environment-W2-PRIMAT-autodl-westb-01.json",
+        "artifacts/environments/environment-W3-ABCMB-autodl-westb-01.json",
+        "docs/inventory/WORKER_ENVIRONMENT_VALIDATION_v1.md"
+      ],
       "metrics": {},
-      "attempt": 1,
+      "attempt": 2,
       "run_id": null,
-      "progress": 0.2,
+      "progress": 1.0,
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 11.37245225906372,
+      "heartbeat_age_s": 29645.090236902237,
       "ready": false,
       "blocked_by": [],
-      "artifact_links": []
+      "artifact_links": [
+        {
+          "label": "environments/linx-v0.1.2/uv.lock",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/environments/linx-v0.1.2/uv.lock"
+        },
+        {
+          "label": "environments/abcmb-v0.3.1/uv.lock",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/environments/abcmb-v0.3.1/uv.lock"
+        },
+        {
+          "label": "artifacts/environments/environment-solver-cpu-autodl-westb-01.json",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/environments/environment-solver-cpu-autodl-westb-01.json"
+        },
+        {
+          "label": "artifacts/environments/environment-train-gpu-autodl-westb-01.json",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/environments/environment-train-gpu-autodl-westb-01.json"
+        },
+        {
+          "label": "artifacts/environments/environment-W0-LINX-autodl-westb-01.json",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/environments/environment-W0-LINX-autodl-westb-01.json"
+        },
+        {
+          "label": "artifacts/environments/environment-W1-PRYM-autodl-westb-01.json",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/environments/environment-W1-PRYM-autodl-westb-01.json"
+        },
+        {
+          "label": "artifacts/environments/environment-W2-PRIMAT-autodl-westb-01.json",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/environments/environment-W2-PRIMAT-autodl-westb-01.json"
+        },
+        {
+          "label": "artifacts/environments/environment-W3-ABCMB-autodl-westb-01.json",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/environments/environment-W3-ABCMB-autodl-westb-01.json"
+        },
+        {
+          "label": "docs/inventory/WORKER_ENVIRONMENT_VALIDATION_v1.md",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/docs/inventory/WORKER_ENVIRONMENT_VALIDATION_v1.md"
+        }
+      ]
     },
     {
       "id": "P0-ops-e2e",
@@ -349,7 +746,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 21027.372603178024,
+      "heartbeat_age_s": 68960.09031653404,
       "ready": false,
       "blocked_by": [
         "P0-worker-bootstrap"
@@ -370,14 +767,15 @@
         "P0-code-inventory"
       ],
       "started_at": "2026-07-21T23:58:28+00:00",
-      "updated_at": "2026-07-21T23:58:30+00:00",
+      "updated_at": "2026-07-22T02:13:50+00:00",
       "finished_at": "2026-07-21T23:58:30+00:00",
       "declared_eta": null,
-      "message": "Pinned MIT-licensed BBNet package imported for audit; upstream lacks usable checkpoints/data, so reproduction remains blocked and no scientific result is claimed",
+      "message": "Canonical ML4GW/BBNet source snapshot imported at exact commit under MIT; earlier Hdiao112 lineage retained separately. New source audit found train/evaluate schema mismatches, so it is approved only as refactor input.",
       "artifacts": [
         "manifests/models/bbnet_legacy_upstream_v1.yaml",
         "legacy/bbnet/README.md",
-        "configs/models/bbnet_legacy_v1.yaml"
+        "configs/models/bbnet_legacy_v1.yaml",
+        "legacy/bbnet/ml4gw-9bd5147"
       ],
       "metrics": {},
       "attempt": 1,
@@ -386,7 +784,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 301.3726885318756,
+      "heartbeat_age_s": 40114.09039545059,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -401,6 +799,10 @@
         {
           "label": "configs/models/bbnet_legacy_v1.yaml",
           "url": "https://github.com/lanhung/uncertainty/blob/main/configs/models/bbnet_legacy_v1.yaml"
+        },
+        {
+          "label": "legacy/bbnet/ml4gw-9bd5147",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/legacy/bbnet/ml4gw-9bd5147"
         }
       ]
     },
@@ -419,11 +821,16 @@
         "P0-ops-e2e"
       ],
       "started_at": null,
-      "updated_at": null,
+      "updated_at": "2026-07-22T10:51:26+00:00",
       "finished_at": null,
       "declared_eta": null,
-      "message": "",
-      "artifacts": [],
+      "message": "PR #47 merged. Future solver/checkpoint/scaler/data/generator/MCMC handoffs now enter a deterministic checksum and provenance quarantine that never extracts, executes, imports or deserializes content. This prepares safe intake only; reproduction remains 0/3 and no missing asset is treated as supplied.",
+      "artifacts": [
+        "configs/models/bbnet_interface_schema_v1.yaml",
+        "scripts/bbnet_schema_adapter.py",
+        "docs/ops/SCIENTIFIC_ASSET_HANDOFF.md",
+        "scripts/register_scientific_asset.py"
+      ],
       "metrics": {},
       "attempt": 0,
       "run_id": null,
@@ -431,45 +838,82 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": null,
+      "heartbeat_age_s": 9058.09053516388,
       "ready": false,
       "blocked_by": [
         "P0-solvers-build"
       ],
-      "artifact_links": []
+      "artifact_links": [
+        {
+          "label": "configs/models/bbnet_interface_schema_v1.yaml",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/configs/models/bbnet_interface_schema_v1.yaml"
+        },
+        {
+          "label": "scripts/bbnet_schema_adapter.py",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/scripts/bbnet_schema_adapter.py"
+        },
+        {
+          "label": "docs/ops/SCIENTIFIC_ASSET_HANDOFF.md",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/docs/ops/SCIENTIFIC_ASSET_HANDOFF.md"
+        },
+        {
+          "label": "scripts/register_scientific_asset.py",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/scripts/register_scientific_asset.py"
+        }
+      ]
     },
     {
       "id": "P0-solvers-build",
       "title": "Build project PArthENoPE/AlterBBN plus LINX and PRyMordial reference paths",
       "phase": "P0",
-      "status": "pending",
+      "status": "stale",
       "weight": 3.0,
       "unit": "solvers",
-      "current": 0.0,
+      "current": 2.0,
       "total": 4.0,
-      "owner": null,
+      "owner": "vultr",
       "depends_on": [
         "P0-env-lock"
       ],
-      "started_at": null,
-      "updated_at": null,
+      "started_at": "2026-07-22T05:09:04+00:00",
+      "updated_at": "2026-07-22T05:54:58+00:00",
       "finished_at": null,
       "declared_eta": null,
-      "message": "",
-      "artifacts": [],
+      "message": "Still 2/4 executable paths. Direct evidence is current at main a795b95; modified PArthENoPE/AlterBBN remain the only missing paths for this task.",
+      "artifacts": [
+        "artifacts/solver-build/DIRECT_SOLVER_SMOKE_v1.json",
+        "artifacts/solver-build/linx-test-SBBN-PRIMAT-v1.log",
+        "artifacts/solver-build/prymordial-standard-v1.log",
+        "docs/inventory/DIRECT_SOLVER_EXECUTION_v1.md"
+      ],
       "metrics": {},
-      "attempt": 0,
+      "attempt": 1,
       "run_id": null,
-      "progress": 0.0,
+      "progress": 0.5,
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": null,
+      "heartbeat_age_s": 26846.09065413475,
       "ready": false,
-      "blocked_by": [
-        "P0-env-lock"
-      ],
-      "artifact_links": []
+      "blocked_by": [],
+      "artifact_links": [
+        {
+          "label": "artifacts/solver-build/DIRECT_SOLVER_SMOKE_v1.json",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/solver-build/DIRECT_SOLVER_SMOKE_v1.json"
+        },
+        {
+          "label": "artifacts/solver-build/linx-test-SBBN-PRIMAT-v1.log",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/solver-build/linx-test-SBBN-PRIMAT-v1.log"
+        },
+        {
+          "label": "artifacts/solver-build/prymordial-standard-v1.log",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/solver-build/prymordial-standard-v1.log"
+        },
+        {
+          "label": "docs/inventory/DIRECT_SOLVER_EXECUTION_v1.md",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/docs/inventory/DIRECT_SOLVER_EXECUTION_v1.md"
+        }
+      ]
     },
     {
       "id": "P0-tailnet",
@@ -483,10 +927,10 @@
       "owner": "uncertainty-autodl-westb-01-elastic",
       "depends_on": [],
       "started_at": "2026-07-21T17:48:10+00:00",
-      "updated_at": "2026-07-21T18:19:11+00:00",
+      "updated_at": "2026-07-22T03:03:19+00:00",
       "finished_at": "2026-07-21T18:19:11+00:00",
       "declared_eta": null,
-      "message": "control and westb joined (2/3); second eligible worker awaits persistent storage and an idle window",
+      "message": "2026-07-22 recheck: the bjb1 primary endpoint can now reach the Tailscale control/login endpoints through its current academic proxy, but it remains unjoined because the host is actively occupied by another project's GW-YOLO CPU/I/O queues. Westb remains joined only through its existing userspace daemon and still cannot reach the Tailscale control plane through its current proxy. Completion remains 2/3 hosts.",
       "artifacts": [],
       "metrics": {},
       "attempt": 1,
@@ -495,7 +939,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 20660.37287735939,
+      "heartbeat_age_s": 37145.09078884125,
       "ready": false,
       "blocked_by": [],
       "artifact_links": []
@@ -515,11 +959,13 @@
         "P0-tailnet"
       ],
       "started_at": "2026-07-21T18:08:52+00:00",
-      "updated_at": "2026-07-21T18:19:11+00:00",
+      "updated_at": "2026-07-22T08:53:47+00:00",
       "finished_at": "2026-07-21T18:19:11+00:00",
       "declared_eta": null,
-      "message": "westb ready (1/2); remaining workers lack /root/autodl-fs and are occupied, so policy forbids bootstrap",
-      "artifacts": [],
+      "message": "PR #43 merged. Public-safe inventory now records the accepted westb resource capture and checksum lineage, task-time role/lease boundaries, and keeps both bjb1 nodes explicitly ineligible while externally occupied. No progress credit was added: worker bootstrap remains 1/2 until an eligible bjb1 node is independently captured and validated.",
+      "artifacts": [
+        "docs/compute/autodl_inventory.md"
+      ],
       "metrics": {},
       "attempt": 1,
       "run_id": null,
@@ -527,12 +973,17 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 20660.372982501984,
+      "heartbeat_age_s": 16117.090863704681,
       "ready": false,
       "blocked_by": [
         "P0-tailnet"
       ],
-      "artifact_links": []
+      "artifact_links": [
+        {
+          "label": "docs/compute/autodl_inventory.md",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/docs/compute/autodl_inventory.md"
+        }
+      ]
     },
     {
       "id": "P1-hardsoft-posterior",
@@ -715,11 +1166,13 @@
         "P2-unified-adapter"
       ],
       "started_at": null,
-      "updated_at": null,
+      "updated_at": "2026-07-22T05:54:57+00:00",
       "finished_at": null,
       "declared_eta": null,
       "message": "",
-      "artifacts": [],
+      "artifacts": [
+        "docs/decisions/ADR-SOLVER-FACTORIAL-v1.md"
+      ],
       "metrics": {},
       "attempt": 0,
       "run_id": null,
@@ -727,12 +1180,17 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": null,
+      "heartbeat_age_s": 26847.091279506683,
       "ready": false,
       "blocked_by": [
         "P2-unified-adapter"
       ],
-      "artifact_links": []
+      "artifact_links": [
+        {
+          "label": "docs/decisions/ADR-SOLVER-FACTORIAL-v1.md",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/docs/decisions/ADR-SOLVER-FACTORIAL-v1.md"
+        }
+      ]
     },
     {
       "id": "P2-functional-rate-basis",
@@ -748,11 +1206,13 @@
         "P2-rate-registry"
       ],
       "started_at": null,
-      "updated_at": null,
+      "updated_at": "2026-07-22T07:43:51+00:00",
       "finished_at": null,
       "declared_eta": null,
-      "message": "",
-      "artifacts": [],
+      "message": "PR #34 merged at main 28addff. The three required functional candidates now have stable IDs and enforced placeholder fields, but progress remains 0/3: no posterior-derived basis, energy grid, eigenvalues, cumulative variance, thermal integration, or cross-validation has been approved.",
+      "artifacts": [
+        "configs/physics/nuclear_prior_NUC-v1.yaml"
+      ],
       "metrics": {},
       "attempt": 0,
       "run_id": null,
@@ -760,12 +1220,17 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": null,
+      "heartbeat_age_s": 20313.0913541317,
       "ready": false,
       "blocked_by": [
         "P2-rate-registry"
       ],
-      "artifact_links": []
+      "artifact_links": [
+        {
+          "label": "configs/physics/nuclear_prior_NUC-v1.yaml",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/configs/physics/nuclear_prior_NUC-v1.yaml"
+        }
+      ]
     },
     {
       "id": "P2-rate-registry",
@@ -781,11 +1246,14 @@
         "P2-solver-matrix"
       ],
       "started_at": null,
-      "updated_at": null,
+      "updated_at": "2026-07-22T07:43:51+00:00",
       "finished_at": null,
       "declared_eta": null,
-      "message": "",
-      "artifacts": [],
+      "message": "PR #34 merged at main 28addff. NUC-v1 now provides a machine-readable non-production contract for 12 target core reactions and registers three incomplete head-deuterium placeholders. Progress remains 0/12: authoritative sources, central curves, sigma(T), covariances, detailed-balance mappings, solver mappings, checksums, and A03/A00/A09 review are still pending.",
+      "artifacts": [
+        "configs/physics/nuclear_prior_NUC-v1.yaml",
+        "docs/preregistration/NUCLEAR_PRIOR_FREEZE_v1.md"
+      ],
       "metrics": {},
       "attempt": 0,
       "run_id": null,
@@ -793,12 +1261,21 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": null,
+      "heartbeat_age_s": 20313.091434001923,
       "ready": false,
       "blocked_by": [
         "P2-solver-matrix"
       ],
-      "artifact_links": []
+      "artifact_links": [
+        {
+          "label": "configs/physics/nuclear_prior_NUC-v1.yaml",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/configs/physics/nuclear_prior_NUC-v1.yaml"
+        },
+        {
+          "label": "docs/preregistration/NUCLEAR_PRIOR_FREEZE_v1.md",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/docs/preregistration/NUCLEAR_PRIOR_FREEZE_v1.md"
+        }
+      ]
     },
     {
       "id": "P2-solver-matrix",
@@ -814,11 +1291,13 @@
         "P0-solvers-build"
       ],
       "started_at": null,
-      "updated_at": null,
+      "updated_at": "2026-07-22T05:54:58+00:00",
       "finished_at": null,
       "declared_eta": null,
-      "message": "",
-      "artifacts": [],
+      "message": "Matched E/R/W/X/nu factorial protocol merged in PR #20 at main a795b95; execution remains pending P0-solvers-build and missing S0/S1 sources.",
+      "artifacts": [
+        "docs/decisions/ADR-SOLVER-FACTORIAL-v1.md"
+      ],
       "metrics": {},
       "attempt": 0,
       "run_id": null,
@@ -826,12 +1305,17 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": null,
+      "heartbeat_age_s": 26846.091510534286,
       "ready": false,
       "blocked_by": [
         "P0-solvers-build"
       ],
-      "artifact_links": []
+      "artifact_links": [
+        {
+          "label": "docs/decisions/ADR-SOLVER-FACTORIAL-v1.md",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/docs/decisions/ADR-SOLVER-FACTORIAL-v1.md"
+        }
+      ]
     },
     {
       "id": "P2-unified-adapter",
@@ -918,11 +1402,18 @@
         "P0-WHY-NOT-01"
       ],
       "started_at": null,
-      "updated_at": null,
+      "updated_at": "2026-07-22T08:42:48+00:00",
       "finished_at": null,
       "declared_eta": null,
-      "message": "",
-      "artifacts": [],
+      "message": "PR #41 merged at main 82f8e56. Track B now has a single machine-readable preregistration index. Production, unblinding, Pilot-1k, Pilot-10k and Nature-tier authorization remain false; NUC-v1 remains not frozen and the Fisher Gate Report remains explicitly missing. No gate progress or signoff credit was added.",
+      "artifacts": [
+        "docs/decisions/ADR-FISHER-GATE-v1.md",
+        "artifacts/gates/FISHER_GATE_REPORT_v1.md",
+        "configs/physics/physics_endpoints_v1.yaml",
+        "docs/preregistration/PHYSICS_ENDPOINTS_v1.md",
+        "configs/preregistration/track_b_prereg_v1.yaml",
+        "docs/preregistration/TRACK_B_PREREG_v1.md"
+      ],
       "metrics": {},
       "attempt": 0,
       "run_id": null,
@@ -930,13 +1421,38 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": null,
+      "heartbeat_age_s": 16776.091772317886,
       "ready": false,
       "blocked_by": [
         "P2.5-fisher-propagation",
         "P0-WHY-NOT-01"
       ],
-      "artifact_links": []
+      "artifact_links": [
+        {
+          "label": "docs/decisions/ADR-FISHER-GATE-v1.md",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/docs/decisions/ADR-FISHER-GATE-v1.md"
+        },
+        {
+          "label": "artifacts/gates/FISHER_GATE_REPORT_v1.md",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/gates/FISHER_GATE_REPORT_v1.md"
+        },
+        {
+          "label": "configs/physics/physics_endpoints_v1.yaml",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/configs/physics/physics_endpoints_v1.yaml"
+        },
+        {
+          "label": "docs/preregistration/PHYSICS_ENDPOINTS_v1.md",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/docs/preregistration/PHYSICS_ENDPOINTS_v1.md"
+        },
+        {
+          "label": "configs/preregistration/track_b_prereg_v1.yaml",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/configs/preregistration/track_b_prereg_v1.yaml"
+        },
+        {
+          "label": "docs/preregistration/TRACK_B_PREREG_v1.md",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/docs/preregistration/TRACK_B_PREREG_v1.md"
+        }
+      ]
     },
     {
       "id": "P2.5-jacobians",
@@ -954,11 +1470,13 @@
         "P0-NEUTRON-01"
       ],
       "started_at": null,
-      "updated_at": null,
+      "updated_at": "2026-07-22T05:54:57+00:00",
       "finished_at": null,
       "declared_eta": null,
       "message": "",
-      "artifacts": [],
+      "artifacts": [
+        "docs/decisions/ADR-FISHER-GATE-v1.md"
+      ],
       "metrics": {},
       "attempt": 0,
       "run_id": null,
@@ -966,12 +1484,17 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": null,
+      "heartbeat_age_s": 26847.09185576439,
       "ready": false,
       "blocked_by": [
         "P2-unified-adapter"
       ],
-      "artifact_links": []
+      "artifact_links": [
+        {
+          "label": "docs/decisions/ADR-FISHER-GATE-v1.md",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/docs/decisions/ADR-FISHER-GATE-v1.md"
+        }
+      ]
     },
     {
       "id": "P3-cross-solver",
