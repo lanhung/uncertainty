@@ -1,0 +1,132 @@
+schema_version: 1
+endpoint_registry_id: PHYSICS-ENDPOINTS-v1
+decision_date_utc: "2026-07-22"
+status: definitions_prepared_effect_thresholds_partially_pending_signoff
+track_b_gate_status: closed
+
+analysis_strata:
+  main_observation: OBS-v1
+  neutron_primary: N0
+  mandatory_neutron_robustness: [N1, N2, N3]
+  model_ladder: [M0, M1, M2, M3, M4, M5, M6, M7]
+  required_factor_strata: [engine, rate_library, weak_physics, extension, network]
+  forecast_separation_rule: real_data_and_forecasts_must_not_be_pooled
+
+physical_primary_endpoints:
+  detectable_volume_ratio:
+    expression: V_detectable_full / V_detectable_baseline
+    estimand: >-
+      Ratio of posterior or allowed parameter volume intersecting the
+      preregistered real or forecast detector-sensitivity region.
+    reporting: [point_estimate, uncertainty_interval, data_stratum, detector]
+    decision_threshold:
+      status: pending_detector_and_extension_contract
+      rule: must_be_frozen_before_track_b_unblinding
+
+  normalized_parameter_shift:
+    expression: (median_full - median_reference) / sigma_reference
+    estimand: per_core_parameter_posterior_location_change
+    null_effect_boundary_absolute: 0.1
+    reporting: [signed_shift, absolute_shift, reference_definition]
+
+  credible_interval_ratio:
+    expression: width_full / width_reference
+    estimand: per_core_parameter_registered_interval_width_change
+    null_effect_interval: [0.95, 1.05]
+    reporting: [interval_level, interval_type, ratio]
+
+  posterior_or_exclusion_topology:
+    estimand: registered_mode_or_decision_boundary_topology_change
+    categories: [unchanged, mode_created, mode_removed, connectedness_changed, boundary_reordered]
+    null_effect_category: unchanged
+    audit: requires_independent_visual_and_numeric_topology_check
+
+  model_probability:
+    estimand: model_probability_or_bayes_factor
+    use_condition: only_when_prior_and_parameterization_robustness_pass
+    default_status: secondary_not_automatically_reportable
+
+  sensitivity_reordering:
+    estimand: standard_vs_nonstandard_reaction_ranking_change
+    metrics: [kendall_tau, spearman_rho, rank_inversion_count]
+    success_threshold:
+      status: pending_rate_registry_and_scenario_manifest
+      rule: must_not_be_chosen_after_observing_track_b_effect
+
+  nuclear_value_of_information:
+    estimand: target_parameter_or_detector_volume_gain_under_registered_rate_precision_intervention
+    reporting: [reaction_id, intervention, gain, uncertainty, cost_assumption]
+    success_threshold:
+      status: pending_rate_registry_and_experimental_intervention_contract
+
+computational_primary_endpoints:
+  - high_fidelity_calls_at_target_posterior_risk_and_coverage
+  - end_to_end_wall_time
+  - cpu_core_hours
+  - gpu_hours
+  - monetary_cost
+  - ess_per_hour
+  - sbc_1000_total_cost
+  - nuisance_dimension_and_function_mode_scaling
+  - explicit_failure_ood_and_fallback_fraction
+
+computational_decision_rules:
+  direct_first:
+    maximum_workers: 2
+    maximum_calendar_days: 14
+    maximum_worker_hours: 672
+  hybrid_speed_claim:
+    minimum_high_fidelity_call_reduction: 10
+    alternative_minimum_end_to_end_wall_reduction: 5
+    fidelity_must_pass: true
+  in_domain_failure_fraction_maximum: 0.01
+  posterior_fidelity:
+    maximum_absolute_normalized_median_shift: 0.1
+    credible_interval_ratio: [0.95, 1.05]
+    topology_must_match: true
+    sbc_replicates: 1000
+    sbc_interval: exact_binomial
+
+auxiliary_endpoints:
+  - mse
+  - nll
+  - crps
+  - energy_score
+  - single_forward_speed
+  - model_parameter_count
+  - gpu_utilization
+
+auxiliary_rule: auxiliary_endpoints_cannot_replace_primary_physical_or_computational_endpoints
+
+null_and_stopping_outcomes:
+  H1_constant_theory_error_not_rejected:
+    condition: all_core_shifts_below_0.1_sigma_intervals_within_5_percent_and_no_topology_change
+    consequence: report_negative_result_and_do_not_expand_search_freedom
+  H3_functional_shape_not_required:
+    condition: same_null_boundaries_and_no_predictive_or_tail_coverage_improvement
+    consequence: retain_scalar_baseline_and_stop_functional_expansion_for_main_claim
+  H6_direct_solver_sufficient:
+    condition: direct_stack_passes_fidelity_and_registered_resource_ceiling
+    consequence: speed_alone_cannot_justify_new_emulator
+  fisher_G0:
+    condition: all_core_effects_below_0.1_sigma_and_5_percent_with_no_topology_change
+    consequence: pilot_10k_not_authorized_and_Nature_Astronomy_effect_route_closed
+
+claim_boundaries:
+  lithium:
+    role: null_test_only
+    prohibited_claim: solves_lithium_problem
+  conditional_slices:
+    rule: fixed_degenerate_parameters_must_be_labeled_conditional_not_constraints
+  solver_language:
+    rule: solver_independent_requires_at_least_three_matched_implementations
+  forecasts:
+    rule: must_be_stored_and_plotted_separately_from_real_data_results
+
+open_blockers:
+  - detector_specific_volume_measure_and_threshold
+  - authoritative_extension_and_SGWB_parameter_contract
+  - rate_registry_dependent_ranking_threshold
+  - nuclear_intervention_and_cost_model
+  - A00_scientific_signoff
+  - A03_statistical_signoff
