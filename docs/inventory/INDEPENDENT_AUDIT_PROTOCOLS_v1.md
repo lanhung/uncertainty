@@ -1,6 +1,7 @@
 # Independent pre-asset audit protocols v1
 
-Status: frozen protocols and reviewed harnesses; measurements pending
+Status: heartbeat complete; LINX negative result and ABCMB spectra retained;
+generic challenge and remaining components paused by ADR-0006
 
 These protocols cover work that does not require the missing modified solvers,
 legacy BBNet checkpoint/scaler/data/MCMC assets, or independent scientific
@@ -27,6 +28,18 @@ signatures.
 
 Every workstream has a separate `EXEC` task. Reaching 100% execution does not
 complete `P0-WHY-NOT-01` or any blocked solver/rate/Fisher task.
+
+## Post-measurement disposition
+
+- the offline heartbeat regression passed 8/8 and was replayed to the ledger;
+- the LINX neighborhood gradient candidate completed 4/4 execution groups but
+  failed all 45 frozen acceptance records without silent non-finite values;
+- all five ABCMB spectra cases passed, completing only the spectra component
+  (1/4); gradient, toy-Fisher and synthetic recovery were not run;
+- ADR-0006 then removed the generic LINX/ABCMB follow-up and W0-W3 challenge
+  grid from active desired state. Their task records are cancelled, not
+  scientifically completed, and their artifacts remain available for a future
+  signed reactivation.
 
 ## Resource policy
 

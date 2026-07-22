@@ -225,10 +225,23 @@ only the standard-point bundled-LINX numerical candidate. It supplies no
 full-ABCMB, gradient, Fisher, HMC/NUTS, posterior, extension, cross-solver or
 WHY-NOT completion credit.
 
+The registered LINX neighborhood diagnostic then completed all 45 expected
+path/point records. Every record failed structurally, with no silently accepted
+non-finite values, so the three-coordinate gradient candidate is rejected. The
+separate ABCMB spectra-first audit accepted all five frozen spectra cases with
+zero repeat drift, completing only one of four components; gradient,
+toy-Fisher, synthetic recovery and HMC/NUTS were not run. Exact evidence and
+scope boundaries are in `docs/inventory/LINX_GRADIENT_STABILITY_v1.md` and
+`docs/inventory/ABCMB_FULL_COMPONENT_AUDIT_v1.md`.
+
 Posterior-region, adversarial, extension and matched-posterior measurements
 remain pending. LINX's previously observed non-finite gradient also remains
 rejected. The answer to all four “why not” questions is therefore still
 **undetermined**. This ADR closes protocol discretion, not `P0-WHY-NOT-01`.
+
+ADR-0006 pauses further generic ABCMB/LINX auditing while retaining this
+evidence. `P0-WHY-NOT-01` remains active only for the direct-solver necessity
+and emulator-economics memo tied to the nuclear-rate UQ workload.
 
 Before any registered W1 timing, the PRyMordial adapter contract was frozen in
 `configs/benchmarks/prymordial_runtime_adapter_v1.yaml`. It selects the Python

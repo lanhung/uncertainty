@@ -84,11 +84,13 @@ claims:
     evidence:
       - docs/inventory/WHY_NOT_LINX_RUNTIME_v1.md
       - docs/inventory/WHY_NOT_PRIMAT_RUNTIME_v1.md
+      - docs/inventory/LINX_GRADIENT_STABILITY_v1.md
+      - docs/inventory/ABCMB_FULL_COMPONENT_AUDIT_v1.md
       - docs/compute/cost_ledger.csv
     missing_evidence:
       - W1_final_validated_artifact
       - W3_component_and_full_joint_stack_measurements
-      - W0_finite_gradient_and_posterior_recovery
+      - W0_replacement_or_repaired_finite_gradient_and_posterior_recovery
       - W1_rate_marginalization_and_posterior_recovery
       - W2_posterior_region_and_adversarial_points
       - full_robustness_and_SBC_workload_projection
