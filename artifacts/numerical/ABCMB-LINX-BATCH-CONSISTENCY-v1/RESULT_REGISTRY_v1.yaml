@@ -1,0 +1,20 @@
+schema_version: 1
+scan_id: ABCMB-LINX-BATCH-CONSISTENCY-v1
+source_revision: 5eabbab4ed7e53f264e16024743d1ba517845c37
+bundled_linx_tree: 59b3ab7b3ada7d7ff6484920e0e29291cf4a084e
+registered_runs: 1
+runs:
+  - run: run-20260722T113106Z
+    status: complete_not_accepted
+    cases_completed: 8
+    timing_records: 64
+    failed_cases: 0
+    decision:
+      scalar_batch_candidate_budget: passed
+      tolerance_plateau: failed
+      weak_rate_sampling_plateau: failed
+      numerical_consistency: not_accepted
+    scientific_use: standard_fiducial_scalar_native_batch_consistency_only
+follow_up_required: extended_tolerance_and_sampling_convergence_scan
+full_abcmb_pipeline_status: not_run
+why_not_conclusion: undetermined
