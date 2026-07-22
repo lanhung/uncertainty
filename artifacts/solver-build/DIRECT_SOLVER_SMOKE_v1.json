@@ -1,0 +1,69 @@
+{
+  "captured_at_utc": "2026-07-22T13:20:00Z",
+  "node_name": "autodl-westb-01",
+  "physical_host": "autodl-container-9qk6ggtwem-6244361c",
+  "precision": "float64",
+  "schema_version": 1,
+  "scientific_use": "direct_solver_source_smoke_not_registered_repeated_benchmark",
+  "results": {
+    "W0-LINX": {
+      "abundances": {
+        "D_over_H_times_1e5": 2.43430645360321,
+        "He3_over_H_times_1e5": 1.0355132971964414,
+        "Li7_over_H_times_1e10": 5.696730363756094,
+        "Neff": 3.0452829238759525,
+        "Y_p": 0.24700777529116724
+      },
+      "command": "scripts/test_SBBN_PRIMAT.py",
+      "environment_artifact": "artifacts/environments/environment-W0-LINX-autodl-westb-01.json",
+      "forward_reference_max_absolute_percent_difference": 0.16313,
+      "forward_reference_status": "passed_below_upstream_0.3_percent_threshold",
+      "gradient": {
+        "component_count": 15,
+        "finite_component_count": 14,
+        "first_component": "NaN",
+        "status": "failed_nan",
+        "upstream_process_exit_code": 0,
+        "use_for_gradient_or_hmc_baseline": false
+      },
+      "raw_log": "artifacts/solver-build/linx-test-SBBN-PRIMAT-v1.log",
+      "raw_log_sha256": "3b1c319d698892095de5ad5b84e31856343e0ef14f0f36cec063764f21eccb04",
+      "revision": "ec2e9d2ca455e8204137e884da29f5dd13a638fa",
+      "timings_seconds": {
+        "cold_forward": 55.80594205856323,
+        "gradient_compile": 289.5867772102356,
+        "warm_forward": 0.7248592376708984,
+        "warm_value_and_gradient": 3.2813193798065186
+      }
+    },
+    "W1-PRYM": {
+      "command": "runPRyM_julia.py",
+      "environment_artifact": "artifacts/environments/environment-W1-PRYM-autodl-westb-01.json",
+      "large_network": {
+        "D_over_H_times_1e5": 2.4544083247528055,
+        "He3_over_H_times_1e5": 1.04118106330337,
+        "Li7_over_H_times_1e10": 5.438855918823732,
+        "Neff": 3.044388520277016,
+        "Y_p_BBN": 0.24689031418313634,
+        "Y_p_CMB": 0.24556439914216444,
+        "elapsed_seconds": 9.016111850738525,
+        "status": "passed"
+      },
+      "optional_julia_backend": "not_installed_not_required_for_python_source_smoke",
+      "raw_log": "artifacts/solver-build/prymordial-standard-v1.log",
+      "raw_log_sha256": "c0231aeebbdd871f1448498eb42df8e5a16402cc669e44b914d243b0c7249a9e",
+      "revision": "725d8a8db3ad5ea2630580d825c9d0d69ed76533",
+      "small_network": {
+        "D_over_H_times_1e5": 2.4593993669012497,
+        "He3_over_H_times_1e5": 1.0418942543366116,
+        "Li7_over_H_times_1e10": 5.486455968906597,
+        "Neff": 3.044388520277016,
+        "Y_p_BBN": 0.2468816718011093,
+        "Y_p_CMB": 0.24555578804030265,
+        "elapsed_seconds": 7.808642148971558,
+        "status": "passed"
+      }
+    }
+  },
+  "status": "partial_pass_with_linx_gradient_failure"
+}

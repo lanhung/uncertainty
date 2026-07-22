@@ -1,0 +1,61 @@
+2026-07-22 13:14:18.602562: E external/xla/xla/service/slow_operation_alarm.cc:65]
+********************************
+[Compiling module jit_get_m2LL] Very slow compile? If you want to file a bug, run with envvar XLA_FLAGS=--xla_dump_to=/tmp/foo and attach the results.
+********************************
+2026-07-22 13:14:57.160266: E external/xla/xla/service/slow_operation_alarm.cc:133] The operation took 2m38.557897455s
+
+********************************
+[Compiling module jit_get_m2LL] Very slow compile? If you want to file a bug, run with envvar XLA_FLAGS=--xla_dump_to=/tmp/foo and attach the results.
+********************************
+`\         /´  ||||        ||||  |||||     ||||  ||||   ||||
+ /\_______/\   ||||        ||||  |||||||   ||||   |||| ||||
+ ) __` ´__ (   ||||        ||||  |||| |||| ||||    |||||||
+/  `-|_|-´  \  ||||        ||||  ||||  |||| |||    |||||||
+/   (_x_)   \  ||||||||||  ||||  ||||   |||||||   |||| ||||
+  )  `-´  (    ||||||||||  ||||  ||||    ||||||  ||||   ||||
+
+Compiling thermodynamics model...
+Compiling abundance model...
+Neff:  3.0452829238759525
+ Yn:  7.180829585563709e-11 Yp:  0.7529321741508676
+ Yd:  1.832867650660953e-05 Yt:  5.842355052764648e-08
+ YHe3: 7.738289231674855e-06 YHe4: 0.06175194382279181
+ YLi7: 2.1856729224076476e-11 YBe7: 4.070684286093374e-10
+
+Results in readable form:
+Neff:  3.0452829238759525
+Y_p:  0.24700777529116724
+D/H x 10^5:  2.43430645360321
+He3/H x 10^5:  1.0355132971964414
+Li7/H x 10^10:  5.696730363756094
+
+
+Percent Difference (LINX - PRIMAT) / PRIMAT:
+Neff: 0.05728%
+Y_p: -0.04309%
+D/H: -0.14751%
+He3/H: -0.06274%
+Li7/H: 0.16313%
+PRIMAT comparison test passed! Agreement with reference < 0.3%.
+-------------------------------------------
+Total time taken by LINX:  55.80594205856323  seconds
+Total time taken by compiled single run:  0.7248592376708984  seconds
+----------------------------
+Testing Differentiability...
+----------------------------
+`\         /´  ||||        ||||  |||||     ||||  ||||   ||||
+ /\_______/\   ||||        ||||  |||||||   ||||   |||| ||||
+ ) __` ´__ (   ||||        ||||  |||| |||| ||||    |||||||
+/  `-|_|-´  \  ||||        ||||  ||||  |||| |||    |||||||
+/   (_x_)   \  ||||||||||  ||||  ||||   |||||||   |||| ||||
+  )  `-´  (    ||||||||||  ||||  ||||    ||||||  ||||   ||||
+
+Compiling thermodynamics model...
+Compiling abundance model...
+(Array(1.50615287e+08, dtype=float64), Array([            nan, -3.09334942e+07,  1.26579237e+07, -2.27492212e+05,
+        6.40483339e+05,  3.91934219e+05,  2.88114666e+06, -7.07035177e+06,
+       -8.64320616e+05, -2.14750459e+03,  5.90122748e+05, -5.48803232e+05,
+       -4.51080623e+02, -1.15291952e+02,  3.23388839e-04], dtype=float64))
+Differentiability test failed.
+Total time taken by LINX to compile:  289.5867772102356  seconds
+Total time per call with grad:  3.2813193798065186  seconds
