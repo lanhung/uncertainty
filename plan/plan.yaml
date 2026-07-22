@@ -1,13 +1,13 @@
-# Declarative desired state for the first operational and scientific stages.
-# Edit this file, validate it, then run `taskctl reconcile`.
+# Declarative desired state after the four-abundance JCAP manuscript review.
 # Runtime progress, metrics and artifacts are preserved across reconciliation.
-plan_version: 1
+# Conditional Pilot/Nature tasks are intentionally absent until UQ1-GATE-REPORT.
+plan_version: 2
 project: uncertainty
-updated_at: 2026-07-21
+updated_at: 2026-07-23
 
 tasks:
   # ----------------------------------------------------------------------
-  # EXEC — operational milestones reported separately from science gates
+  # EXEC — completed or essential operations; excluded from science gate
   # ----------------------------------------------------------------------
   - id: EXEC-WHY-RUNTIME
     title: "Complete W0-W3 registered standard-fiducial runtime slices"
@@ -23,27 +23,6 @@ tasks:
     unit: cases
     total: 6
 
-  - id: EXEC-ABCMB-FULL-AUDIT
-    title: "Execute frozen ABCMB spectra, gradient, toy-Fisher and synthetic audits"
-    phase: EXEC
-    weight: 1
-    unit: components
-    total: 4
-
-  - id: EXEC-LINX-GRADIENT
-    title: "Execute frozen LINX standard-neighborhood gradient diagnostics"
-    phase: EXEC
-    weight: 1
-    unit: groups
-    total: 4
-
-  - id: EXEC-STANDARD-CHALLENGE
-    title: "Execute the W0-W3 frozen standard-BBN challenge grid"
-    phase: EXEC
-    weight: 1
-    unit: baselines
-    total: 4
-
   - id: EXEC-HEARTBEAT-OFFLINE-E2E-v1
     title: "Validate offline heartbeat buffering, checkpointing, replay and lease release"
     phase: EXEC
@@ -51,55 +30,47 @@ tasks:
     unit: checks
     total: 8
 
+  - id: EXEC-SECOND-WORKER-CAPACITY
+    title: "Register a second AutoDL worker only when free from other projects"
+    phase: EXEC
+    weight: 1
+    unit: workers
+    total: 1
+
   # ----------------------------------------------------------------------
-  # P0 — shared control host, elastic worker pool, repository and preregistration
+  # P0 — retained completed foundations
   # ----------------------------------------------------------------------
   - id: P0-control-plane
-    title: "Deploy project-isolated research-ops service on the shared Vultr host"
+    title: "Deploy the project-isolated research-ops control instance"
     phase: P0
     weight: 1
     unit: checks
     total: 5
 
-  - id: P0-tailnet
-    title: "Join control + two workers to the private tailnet"
-    phase: P0
-    weight: 1
-    unit: hosts
-    total: 3
-
-  - id: P0-worker-bootstrap
-    title: "Bootstrap two shared AutoDL nodes as elastic workers"
-    phase: P0
-    weight: 1
-    unit: workers
-    total: 2
-    depends_on: [P0-control-plane, P0-tailnet]
-
   - id: P0-ops-e2e
-    title: "Validate ledger, heartbeat, stale detection and ops-status snapshots"
+    title: "Validate ledger, heartbeat, stale detection and snapshots on one worker"
     phase: P0
     weight: 1
     unit: checks
     total: 4
-    depends_on: [P0-worker-bootstrap]
 
   - id: P0-code-inventory
-    title: "Inventory all existing BBNet, MCMC, solver patches, data and model files"
+    title: "Audit all located public and private BBNet/SageNet/scientific assets"
     phase: P0
     weight: 1
     unit: inventories
     total: 1
 
   - id: P0-repo-migrate
-    title: "Migrate existing scientific code into lanhung/uncertainty and remove local paths"
+    title: "Import and audit the public BBNet/SageNet source lineages"
     phase: P0
-    weight: 3
-    unit: modules
+    weight: 2
+    unit: source_lineages
+    total: 2
     depends_on: [P0-code-inventory]
 
   - id: P0-env-lock
-    title: "Create environment lock, pyproject, CI, pre-commit and make smoke"
+    title: "Freeze reproducible control, solver, LINX and ABCMB environments"
     phase: P0
     weight: 2
     unit: checks
@@ -107,218 +78,166 @@ tasks:
     depends_on: [P0-repo-migrate]
 
   - id: P0-LIT-01
-    title: "Competitor matrix: LINX, PRyMordial, PRIMAT, PArthENoPE, AlterBBN, ABCMB+LINX"
+    title: "Freeze the competitor and novelty matrix"
     phase: P0
     weight: 2
     unit: baselines
     total: 8
 
-  - id: P0-WHY-NOT-01
-    title: "Write why-not-LINX/PRyMordial/PRIMAT and emulator economics memo"
-    phase: P0
-    weight: 1
-    unit: memos
-    total: 1
-    depends_on: [P0-LIT-01]
-
   - id: P0-OBS-01
-    title: "Preregister primary and stress-test D/H, Y_p, CMB and GW datasets"
+    title: "Freeze the future UQ observation registry OBS-v1"
     phase: P0
     weight: 2
     unit: decisions
     total: 1
 
   - id: P0-NEUTRON-01
-    title: "Preregister neutron-lifetime N0-N3 baseline and robustness models"
+    title: "Freeze neutron-lifetime N0-N3 scenarios"
     phase: P0
     weight: 1
     unit: decisions
     total: 1
 
-  - id: P0-solvers-build
-    title: "Build project PArthENoPE/AlterBBN plus LINX and PRyMordial reference paths"
-    phase: P0
-    weight: 3
-    unit: solvers
-    total: 4
-    depends_on: [P0-env-lock]
-
-  - id: P0-reproduce-bbnet
-    title: "Reproduce one known BBNet result end-to-end through the monitored pipeline"
-    phase: P0
-    weight: 3
-    unit: checks
-    total: 3
-    depends_on: [P0-solvers-build, P0-ops-e2e]
-
-  - id: P0-benchmark
-    title: "Benchmark cold/warm, FP64, batch, CPU, RAM, I/O and failure rates"
-    phase: P0
+  # ----------------------------------------------------------------------
+  # M0 — immediate JCAP manuscript, release and clean reproduction
+  # ----------------------------------------------------------------------
+  - id: M0-MANUSCRIPT-REGISTER
+    title: "Register the four-abundance stiff-phase manuscript claims, tables and figures"
+    phase: M0
     weight: 2
-    unit: configurations
-    total: 6
-    depends_on: [P0-solvers-build]
+    unit: dossiers
+    total: 1
 
-  # ----------------------------------------------------------------------
-  # P1 — Track A freeze; independently publishable and not blocked by Track B
-  # ----------------------------------------------------------------------
-  - id: P1-mcmc-refactor
-    title: "Refactor MCMC to >=4 chains with split-R-hat, ESS, MCSE and resume"
-    phase: P1
+  - id: M0-PHYSICS-CONTRACT
+    title: "Freeze kappa10, stiff H(T), SGWB DeltaNeff and reheating parameter semantics"
+    phase: M0
     weight: 3
-    unit: checks
-    total: 6
-    depends_on: [P0-reproduce-bbnet]
+    unit: contracts
+    total: 1
+    depends_on: [M0-MANUSCRIPT-REGISTER]
 
-  - id: P1-hardsoft-posterior
-    title: "EXP-A01 hard/soft comparison in the full 10-D physical posterior"
-    phase: P1
+  - id: M0-DATA-STRATA
+    title: "Separate MANUSCRIPT-OBS-v1 from the future UQ OBS-v1 analysis"
+    phase: M0
+    weight: 2
+    unit: strata
+    total: 2
+    depends_on: [M0-MANUSCRIPT-REGISTER]
+
+  - id: M0-ASSET-HANDOFF
+    title: "Collect BBNet+ weights, scalers, generators, modified solvers, chains and scans"
+    phase: M0
+    weight: 5
+    unit: asset_families
+    total: 12
+    depends_on: [M0-MANUSCRIPT-REGISTER]
+
+  - id: M0-BBNPLUS-PUBLIC-RELEASE
+    title: "Publish or accurately document the four-abundance BBNet+ release and solver assets"
+    phase: M0
     weight: 4
-    unit: chains
-    total: 16
-    depends_on: [P1-mcmc-refactor]
-
-  - id: P1-kappa-identifiability
-    title: "EXP-A02 kappa identifiability for consistency relation, free n_t and free T_re"
-    phase: P1
-    weight: 3
-    unit: runs
-    total: 7
-    depends_on: [P1-mcmc-refactor]
-
-  - id: P1-schramm-slices
-    title: "Produce preregistered Schramm-style conditional and marginalized slices"
-    phase: P1
-    weight: 2
-    unit: figures
+    unit: release_components
     total: 6
-    depends_on: [P1-kappa-identifiability]
+    depends_on: [M0-ASSET-HANDOFF, M0-PHYSICS-CONTRACT]
 
-  - id: P1-trackA-freeze
-    title: "Freeze Track A claims, tables, figures and reproducibility package"
-    phase: P1
-    weight: 1
+  - id: M0-REPRO-EMULATOR
+    title: "Reproduce four-abundance accuracy, Schramm slices, timing and SGWB integration"
+    phase: M0
+    weight: 4
+    unit: checks
+    total: 4
+    depends_on: [M0-ASSET-HANDOFF, M0-PHYSICS-CONTRACT]
+
+  - id: M0-REPRO-INFERENCE
+    title: "Reproduce one main posterior, partial likelihood and deterministic no-go diagnostic"
+    phase: M0
+    weight: 5
+    unit: checks
+    total: 5
+    depends_on: [M0-REPRO-EMULATOR, M0-DATA-STRATA]
+
+  - id: M0-SUBMISSION-AUDIT
+    title: "Audit citations, placeholders, convergence, availability statements and result lineage"
+    phase: M0
+    weight: 3
+    unit: audit_sections
+    total: 6
+    depends_on: [M0-BBNPLUS-PUBLIC-RELEASE, M0-REPRO-INFERENCE]
+
+  - id: M0-JCAP-FREEZE
+    title: "Freeze the JCAP submission, tagged software release and Zenodo deposition"
+    phase: M0
+    weight: 2
     unit: signoffs
     total: 3
-    depends_on: [P1-hardsoft-posterior, P1-schramm-slices]
+    depends_on: [M0-SUBMISSION-AUDIT]
 
   # ----------------------------------------------------------------------
-  # P2 — solver/rate foundations; no production-scale generation yet
+  # UQ0 — self-contained, decision-focused precheck for the sequel
   # ----------------------------------------------------------------------
-  - id: P2-solver-matrix
-    title: "Implement initial solver/rate matrix S0, S1, S5 and S6"
-    phase: P2
-    weight: 3
-    unit: paths
-    total: 4
-    depends_on: [P0-solvers-build]
-
-  - id: P2-rate-registry
-    title: "Reaction-rate registry with central curves, sigma(T), covariance and provenance"
-    phase: P2
-    weight: 3
-    unit: reactions
-    total: 12
-    depends_on: [P2-solver-matrix]
-
-  - id: P2-functional-rate-basis
-    title: "Construct 2-3 functional uncertainty modes for the three leading deuterium reactions"
-    phase: P2
-    weight: 3
-    unit: reactions
-    total: 3
-    depends_on: [P2-rate-registry]
-
-  - id: P2-unified-adapter
-    title: "Unified simulate(theta, q, a, neutron, solver, network, precision) adapter"
-    phase: P2
-    weight: 3
-    unit: paths
-    total: 4
-    depends_on: [P2-solver-matrix, P2-rate-registry]
-
-  - id: P2-discrepancy-factorization
-    title: "Separate engine, rate-library, weak-rate and extension discrepancies"
-    phase: P2
+  - id: UQ0-QUESTION-FREEZE
+    title: "Freeze the nuclear-UQ test of the stiff-phase lithium no-go"
+    phase: UQ0
     weight: 2
-    unit: factors
-    total: 4
-    depends_on: [P2-unified-adapter]
+    unit: decisions
+    total: 1
+    depends_on: [M0-PHYSICS-CONTRACT, M0-DATA-STRATA]
 
-  # ----------------------------------------------------------------------
-  # P2.5 — cheap gate before Pilot-10k or large cloud spend
-  # ----------------------------------------------------------------------
-  - id: P2.5-jacobians
-    title: "Compute J_theta, J_q and function-shape proxies at representative points"
-    phase: P2.5
+  - id: UQ0-SELF-CONTAINED-SOLVER
+    title: "Establish recovered or clean-room direct four-abundance stiff solver paths"
+    phase: UQ0
+    weight: 4
+    unit: paths
+    total: 2
+    depends_on: [M0-PHYSICS-CONTRACT, P0-env-lock]
+
+  - id: UQ0-CORE6-RATE-REGISTRY
+    title: "Register scalar priors for three deuterium and three lithium-flow reactions"
+    phase: UQ0
+    weight: 4
+    unit: reactions
+    total: 6
+    depends_on: [UQ0-QUESTION-FREEZE, UQ0-SELF-CONTAINED-SOLVER]
+
+  - id: UQ0-SCALAR-SMOKE-16
+    title: "Run a 16-point scalar-rate response smoke for the lithium no-go endpoints"
+    phase: UQ0
     weight: 3
     unit: points
-    total: 64
-    depends_on: [P2-unified-adapter, P0-OBS-01, P0-NEUTRON-01]
+    total: 16
+    depends_on: [UQ0-CORE6-RATE-REGISTRY]
 
-  - id: P2.5-fisher-propagation
-    title: "Propagate rate, shape, solver and observation covariance into approximate posteriors"
-    phase: P2.5
+  # ----------------------------------------------------------------------
+  # UQ1 — formal gate; active plan stops here until a decision is signed
+  # ----------------------------------------------------------------------
+  - id: UQ1-DIRECT-ECONOMICS
+    title: "Project direct-versus-emulator cost for the manuscript and UQ workloads"
+    phase: UQ1
     weight: 2
-    unit: scenarios
+    unit: workloads
     total: 4
-    depends_on: [P2.5-jacobians, P2-discrepancy-factorization]
+    depends_on: [M0-REPRO-INFERENCE, UQ0-SELF-CONTAINED-SOLVER]
 
-  - id: P2.5-gate-report
-    title: "Issue G0/G1/G2/G3 Fisher Gate decision and authorize or stop Pilot-10k"
-    phase: P2.5
-    weight: 1
+  - id: UQ1-FISHER64
+    title: "Execute the frozen 64-point scalar nuclear/weak/backend Fisher gate"
+    phase: UQ1
+    weight: 4
+    unit: points
+    total: 64
+    depends_on: [UQ0-SCALAR-SMOKE-16]
+
+  - id: UQ1-GATE-REPORT
+    title: "Issue G0/G1/G2/G3 for no-go robustness and authorize or stop the sequel"
+    phase: UQ1
+    weight: 2
     unit: signoffs
     total: 3
-    depends_on: [P2.5-fisher-propagation, P0-WHY-NOT-01]
+    depends_on: [UQ1-FISHER64, UQ1-DIRECT-ECONOMICS]
 
-  # ----------------------------------------------------------------------
-  # P3 — conditional pilot; start only when Fisher Gate authorizes it
-  # ----------------------------------------------------------------------
-  - id: P3-pilot-1k
-    title: "Pilot-1k real-solver labels with checksums, failures and throughput ledger"
-    phase: P3
-    weight: 2
-    unit: samples
-    total: 1000
-    depends_on: [P2.5-gate-report]
-
-  - id: P3-pilot-10k
-    title: "Pilot-10k targeted/active-learning dataset; forbidden under G0"
-    phase: P3
-    weight: 3
-    unit: samples
-    total: 10000
-    depends_on: [P3-pilot-1k]
-
-  - id: P3-standard-atlas-regression
-    title: "Reproduce known standard-BBN reaction sensitivity ranking as a regression test"
-    phase: P3
-    weight: 2
-    unit: reactions
-    total: 12
-    depends_on: [P3-pilot-10k]
-
-  - id: P3-nonstandard-reordering
-    title: "Test rate-rank inversion under stiff and other non-standard expansion histories"
-    phase: P3
-    weight: 4
-    unit: scenarios
-    total: 4
-    depends_on: [P3-standard-atlas-regression]
-
-  - id: P3-cross-solver
-    title: "Cross-solver and cross-rate-library validation including PRIMAT-family rates"
-    phase: P3
-    weight: 3
-    unit: baselines
-    total: 4
-    depends_on: [P3-pilot-10k]
-
-  - id: P3-nuclear-voi
-    title: "Quantify nuclear-experiment value-of-information for early-Universe/GW parameters"
-    phase: P3
-    weight: 3
-    unit: interventions
-    total: 6
-    depends_on: [P3-nonstandard-reordering, P3-cross-solver]
+  - id: UQ1-NEXT-PLAN
+    title: "Reconcile a conditional Pilot plan only after the signed Gate decision"
+    phase: UQ1
+    weight: 1
+    unit: plans
+    total: 1
+    depends_on: [UQ1-GATE-REPORT]
