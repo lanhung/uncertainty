@@ -1,7 +1,7 @@
 {
   "project": "uncertainty",
-  "generated_at": "2026-07-22T20:14:29+00:00",
-  "revision": 286,
+  "generated_at": "2026-07-22T20:15:32+00:00",
+  "revision": 294,
   "overall_progress": 0.21171171171171171,
   "overall_kind": "effort-weighted scientific program gate completion",
   "science_gate_progress": 0.21171171171171171,
@@ -30,7 +30,8 @@
   "status_counts": {
     "done": 11,
     "pending": 24,
-    "stale": 2,
+    "running": 1,
+    "stale": 1,
     "blocked": 2
   },
   "tasks": [
@@ -61,7 +62,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 22530.23545885086,
+      "heartbeat_age_s": 22593.5585167408,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -101,7 +102,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 2517.235532283783,
+      "heartbeat_age_s": 2580.5586144924164,
       "ready": true,
       "blocked_by": [],
       "artifact_links": [
@@ -123,12 +124,14 @@
       "owner": "autodl-container-9qk6ggtwem-6244361c",
       "depends_on": [],
       "started_at": "2026-07-22T20:06:56+00:00",
-      "updated_at": "2026-07-22T20:06:56+00:00",
+      "updated_at": "2026-07-22T20:15:31+00:00",
       "finished_at": "2026-07-22T20:06:56+00:00",
       "declared_eta": null,
-      "message": "METRIC demo_fraction=1.000000",
+      "message": "Accepted 8/8 offline heartbeat regression at main 1334f1d: durable outbox replayed 11/11 in order with zero duplicates, final checkpoint present, lease release/reacquire verified; this is execution evidence and does not alter the 21% science gate.",
       "artifacts": [
-        "configs/ops/offline_heartbeat_e2e_v1.yaml"
+        "configs/ops/offline_heartbeat_e2e_v1.yaml",
+        "docs/ops/OFFLINE_HEARTBEAT_E2E_v1.md",
+        "artifacts/ops/OFFLINE-HEARTBEAT-E2E-v1/run-20260722T200435Z"
       ],
       "metrics": {
         "demo_fraction": 1.0
@@ -139,13 +142,21 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 453.2356131076813,
+      "heartbeat_age_s": 1.558668851852417,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
         {
           "label": "configs/ops/offline_heartbeat_e2e_v1.yaml",
           "url": "https://github.com/lanhung/uncertainty/blob/main/configs/ops/offline_heartbeat_e2e_v1.yaml"
+        },
+        {
+          "label": "docs/ops/OFFLINE_HEARTBEAT_E2E_v1.md",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/docs/ops/OFFLINE_HEARTBEAT_E2E_v1.md"
+        },
+        {
+          "label": "artifacts/ops/OFFLINE-HEARTBEAT-E2E-v1/run-20260722T200435Z",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/ops/OFFLINE-HEARTBEAT-E2E-v1/run-20260722T200435Z"
         }
       ]
     },
@@ -175,7 +186,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 2517.2356696128845,
+      "heartbeat_age_s": 2580.558720111847,
       "ready": true,
       "blocked_by": [],
       "artifact_links": [
@@ -211,7 +222,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 2517.2357501983643,
+      "heartbeat_age_s": 2580.558770418167,
       "ready": true,
       "blocked_by": [],
       "artifact_links": [
@@ -251,7 +262,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 24873.235799074173,
+      "heartbeat_age_s": 24936.55883693695,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -307,7 +318,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 41692.23585295677,
+      "heartbeat_age_s": 41755.558876514435,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -360,7 +371,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 72962.23589134216,
+      "heartbeat_age_s": 73025.55892181396,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -402,7 +413,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 72963.23592829704,
+      "heartbeat_age_s": 73026.55897951126,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -424,7 +435,7 @@
       "id": "P0-WHY-NOT-01",
       "title": "Write why-not-LINX/PRyMordial/PRIMAT and emulator economics memo",
       "phase": "P0",
-      "status": "stale",
+      "status": "running",
       "weight": 1.0,
       "unit": "memos",
       "current": 0.0,
@@ -434,10 +445,10 @@
         "P0-LIT-01"
       ],
       "started_at": "2026-07-22T02:49:40+00:00",
-      "updated_at": "2026-07-22T13:59:00+00:00",
+      "updated_at": "2026-07-22T20:15:32+00:00",
       "finished_at": null,
       "declared_eta": null,
-      "message": "PR #58 merged. ABCMB V2 passed its frozen standard-point bundled-LINX numerical criteria (tolerance plateau 0.000387133 sigma; sampling plateau 0.000771123 sigma; zero drift). Full ABCMB, gradients, Fisher/HMC, posterior, extensions and final WHY-NOT remain incomplete, so progress stays 0/1.",
+      "message": "Public baseline rate-table provenance is now hash-bound (21 files, four exact repositories), but this is source/input provenance only and supplies no posterior/HMC or emulator-necessity conclusion; WHY-NOT completion remains unchanged.",
       "artifacts": [
         "docs/decisions/ADR-WHY-NOT-001.md",
         "configs/benchmarks/why_not_existing_solvers_v1.yaml",
@@ -495,7 +506,8 @@
         "docs/inventory/ABCMB_LINX_BATCH_CONSISTENCY_v1.md",
         "artifacts/numerical/ABCMB-LINX-EXTENDED-CONVERGENCE-v2/RESULT_REGISTRY_v2.yaml",
         "artifacts/numerical/ABCMB-LINX-EXTENDED-CONVERGENCE-v2/run-20260722T134322Z",
-        "docs/inventory/ABCMB_LINX_EXTENDED_CONVERGENCE_v2.md"
+        "docs/inventory/ABCMB_LINX_EXTENDED_CONVERGENCE_v2.md",
+        "artifacts/provenance/PUBLIC-NUCLEAR-RATE-PROVENANCE-v1/capture-20260722T200435Z.json"
       ],
       "metrics": {},
       "attempt": 1,
@@ -504,7 +516,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 22529.236040353775,
+      "heartbeat_age_s": 0.5590760707855225,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -735,6 +747,10 @@
         {
           "label": "docs/inventory/ABCMB_LINX_EXTENDED_CONVERGENCE_v2.md",
           "url": "https://github.com/lanhung/uncertainty/blob/main/docs/inventory/ABCMB_LINX_EXTENDED_CONVERGENCE_v2.md"
+        },
+        {
+          "label": "artifacts/provenance/PUBLIC-NUCLEAR-RATE-PROVENANCE-v1/capture-20260722T200435Z.json",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/provenance/PUBLIC-NUCLEAR-RATE-PROVENANCE-v1/capture-20260722T200435Z.json"
         }
       ]
     },
@@ -801,7 +817,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 64019.236142873764,
+      "heartbeat_age_s": 64082.559231996536,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -851,7 +867,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 95179.23617744446,
+      "heartbeat_age_s": 95242.55927109718,
       "ready": false,
       "blocked_by": [],
       "artifact_links": []
@@ -892,7 +908,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 54370.23621892929,
+      "heartbeat_age_s": 54433.559311151505,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -964,7 +980,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 22377.236258745193,
+      "heartbeat_age_s": 22440.559354543686,
       "ready": false,
       "blocked_by": [
         "P0-worker-bootstrap"
@@ -1007,7 +1023,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 64839.23629617691,
+      "heartbeat_age_s": 64902.55939435959,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -1061,7 +1077,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 33783.23635458946,
+      "heartbeat_age_s": 33846.5594329834,
       "ready": false,
       "blocked_by": [
         "P0-solvers-build"
@@ -1116,7 +1132,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 51571.23639559746,
+      "heartbeat_age_s": 51634.559485673904,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -1162,7 +1178,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 61870.23645210266,
+      "heartbeat_age_s": 61933.55953645706,
       "ready": false,
       "blocked_by": [],
       "artifact_links": []
@@ -1196,7 +1212,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 40842.23649930954,
+      "heartbeat_age_s": 40905.5595908165,
       "ready": false,
       "blocked_by": [
         "P0-tailnet"
@@ -1403,7 +1419,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 51572.236708164215,
+      "heartbeat_age_s": 51635.55984091759,
       "ready": false,
       "blocked_by": [
         "P2-unified-adapter"
@@ -1443,7 +1459,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 45038.23674607277,
+      "heartbeat_age_s": 45101.559906721115,
       "ready": false,
       "blocked_by": [
         "P2-rate-registry"
@@ -1469,13 +1485,15 @@
         "P2-solver-matrix"
       ],
       "started_at": null,
-      "updated_at": "2026-07-22T07:43:51+00:00",
+      "updated_at": "2026-07-22T20:15:31+00:00",
       "finished_at": null,
       "declared_eta": null,
-      "message": "PR #34 merged at main 28addff. NUC-v1 now provides a machine-readable non-production contract for 12 target core reactions and registers three incomplete head-deuterium placeholders. Progress remains 0/12: authoritative sources, central curves, sigma(T), covariances, detailed-balance mappings, solver mappings, checksums, and A03/A00/A09 review are still pending.",
+      "message": "Captured 21 exact public solver rate-table files across LINX, PRyMordial, PRIMAT and ABCMB at main 1334f1d. Inventory-only provenance: it does not provide authoritative nuclear-data covariance, scalar envelopes or functional modes, so NUC-v1 remains NOT FROZEN and progress is unchanged.",
       "artifacts": [
         "configs/physics/nuclear_prior_NUC-v1.yaml",
-        "docs/preregistration/NUCLEAR_PRIOR_FREEZE_v1.md"
+        "docs/preregistration/NUCLEAR_PRIOR_FREEZE_v1.md",
+        "docs/inventory/PUBLIC_NUCLEAR_RATE_PROVENANCE_v1.md",
+        "artifacts/provenance/PUBLIC-NUCLEAR-RATE-PROVENANCE-v1/capture-20260722T200435Z.json"
       ],
       "metrics": {},
       "attempt": 0,
@@ -1484,7 +1502,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 45038.236792087555,
+      "heartbeat_age_s": 1.5599825382232666,
       "ready": false,
       "blocked_by": [
         "P2-solver-matrix"
@@ -1497,6 +1515,14 @@
         {
           "label": "docs/preregistration/NUCLEAR_PRIOR_FREEZE_v1.md",
           "url": "https://github.com/lanhung/uncertainty/blob/main/docs/preregistration/NUCLEAR_PRIOR_FREEZE_v1.md"
+        },
+        {
+          "label": "docs/inventory/PUBLIC_NUCLEAR_RATE_PROVENANCE_v1.md",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/docs/inventory/PUBLIC_NUCLEAR_RATE_PROVENANCE_v1.md"
+        },
+        {
+          "label": "artifacts/provenance/PUBLIC-NUCLEAR-RATE-PROVENANCE-v1/capture-20260722T200435Z.json",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/provenance/PUBLIC-NUCLEAR-RATE-PROVENANCE-v1/capture-20260722T200435Z.json"
         }
       ]
     },
@@ -1528,7 +1554,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 51571.23683094978,
+      "heartbeat_age_s": 51634.560059309006,
       "ready": false,
       "blocked_by": [
         "P0-solvers-build"
@@ -1644,7 +1670,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 41501.2370159626,
+      "heartbeat_age_s": 41564.56019759178,
       "ready": false,
       "blocked_by": [
         "P2.5-fisher-propagation",
@@ -1707,7 +1733,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 51572.23705863953,
+      "heartbeat_age_s": 51635.5602478981,
       "ready": false,
       "blocked_by": [
         "P2-unified-adapter"
