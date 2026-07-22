@@ -1,0 +1,63 @@
+{
+  "abundances": {
+    "DoH": 2.442265830163442e-05,
+    "He3oH": 1.036660230980823e-05,
+    "Li7oH": 5.670908588307103e-10,
+    "Neff": 3.0443606111766113,
+    "YPBBN": 0.2468898255223857
+  },
+  "batch_compile_and_first_solve_seconds": 19.612696267664433,
+  "batch_reference_abundances": {
+    "DoH": 2.44234642221324e-05,
+    "He3oH": 1.0366981854977285e-05,
+    "Li7oH": 5.669502893814184e-10,
+    "Neff": 3.0443606111766113,
+    "YPBBN": 0.24689140328805828
+  },
+  "bundled_component": "abcmb.linx",
+  "cold_import_seconds": 10.463541578501463,
+  "cold_solve_seconds": 12.86602501384914,
+  "input_mapping": {
+    "eta_fac": 0.9977698483496878,
+    "linx_reference_Omegabh2": 0.02242,
+    "linx_reference_tau_n_seconds": 879.4,
+    "tau_n_fac": 0.9987491471457812
+  },
+  "jax_x64": true,
+  "load_provenance": {
+    "abcmb": "0.3.1",
+    "bundled_linx_tree": "59b3ab7b3ada7d7ff6484920e0e29291cf4a084e",
+    "direct_url": "https://github.com/TonyZhou729/ABCMB.git",
+    "installed_commit": "5eabbab4ed7e53f264e16024743d1ba517845c37",
+    "jax": "0.8.1",
+    "package": "/root/autodl-tmp/projects/uncertainty/envs/why-not/abcmb-v0.3.1/lib/python3.11/site-packages/abcmb/__init__.py"
+  },
+  "maximum_absolute_repeat_drift": 1.5777656725834976e-06,
+  "maximum_absolute_repeat_drift_by_abundance": {
+    "DoH": 8.059204979803461e-10,
+    "He3oH": 3.7954516905490995e-10,
+    "Li7oH": 1.4056944929191054e-13,
+    "Neff": 0.0,
+    "YPBBN": 1.5777656725834976e-06
+  },
+  "network": "key_PRIMAT_2023",
+  "scientific_scope": "abcmb_bundled_linx_bbn_only_not_full_joint_pipeline",
+  "timings_seconds": {
+    "warm_batch_1": {
+      "maximum": 0.32387592270970345,
+      "median": 0.3111197939142585,
+      "minimum": 0.2722070887684822,
+      "p95": 0.3230931850150227,
+      "q1": 0.30753404507413507,
+      "q3": 0.3155665989033878
+    },
+    "warm_batch_64": {
+      "maximum": 0.9609285164624453,
+      "median": 0.896764948964119,
+      "minimum": 0.8779068160802126,
+      "p95": 0.9436500520445407,
+      "q1": 0.8873977293260396,
+      "q3": 0.9054078133776784
+    }
+  }
+}

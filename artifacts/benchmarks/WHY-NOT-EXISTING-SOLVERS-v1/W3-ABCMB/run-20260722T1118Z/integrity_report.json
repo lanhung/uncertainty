@@ -1,0 +1,42 @@
+{
+  "baseline": "W3-ABCMB",
+  "checks": [
+    "common_protocol_hash",
+    "parameter_schema_hash",
+    "source_revision",
+    "scientific_boundary",
+    "repetition_contract",
+    "batch_contract",
+    "environment_lock_hash",
+    "adapter_config_hash",
+    "cold_import_record",
+    "cold_solve_record",
+    "scalar_timing_records",
+    "batch_timing_records",
+    "native_batch_compile",
+    "native_batch_mode",
+    "structured_warm_status",
+    "failure_count_consistency",
+    "manifest_failure_status",
+    "timing_summary_recomputed",
+    "posterior_boundary",
+    "gpu_boundary",
+    "cost_recomputed"
+  ],
+  "failure_records": 0,
+  "manifest_status": "complete",
+  "maximum_absolute_repeat_drift": 1.5777656725834976e-06,
+  "run": "run-20260722T1118Z",
+  "schema_version": 1,
+  "scientific_use": "artifact_integrity_only_not_scientific_acceptance",
+  "successful_warm_points": 1950,
+  "timed_warm_points_expected": 1950,
+  "timings": {
+    "batch_64_median_seconds": 0.896764948964119,
+    "batch_64_median_seconds_per_point": 0.014011952327564359,
+    "batch_64_p95_seconds": 0.9436500520445407,
+    "scalar_median_seconds": 0.3111197939142585,
+    "scalar_p95_seconds": 0.3230931850150227
+  },
+  "validation_status": "passed"
+}

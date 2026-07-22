@@ -1,6 +1,6 @@
 # ADR-WHY-NOT-001: direct-solver necessity benchmark
 
-Status: benchmark protocol frozen; W0/W1/W2 standard runtime slices complete; W3 pending
+Status: benchmark protocol frozen; W0-W3 standard runtime slices complete; full measurements pending
 
 Date: 2026-07-22
 
@@ -195,6 +195,16 @@ run consumed 3.17975 worker-hours at an estimated CNY 9.15767. This is only the
 standard-fiducial runtime slice: explicit rate marginalization, the registered
 extension point, matched posterior recovery and the full workload projection
 remain pending.
+
+W3's ABCMB-bundled LINX component also completed 30 warm scalar solves and 30
+native 64-point workloads with 1,950 successful warm points and no structured
+failures. Its scalar median was 0.31112 seconds and its native batch median was
+0.89676 seconds, or 0.01401 seconds per point. The scalar and batch abundance
+outputs were not numerically identical: the maximum difference was
+`1.5777656725834976e-6`, dominated by `Y_p`. The discrepancy remains open, as
+do the full CMB pipeline, Fisher matrix, gradient stability, HMC/NUTS,
+posterior recovery and extension-development measurements. The runtime slice
+therefore cannot answer Q4 by itself.
 
 Posterior-region, adversarial, extension and matched-posterior measurements
 remain pending. LINX's previously observed non-finite gradient also remains
