@@ -1,0 +1,30 @@
+{
+  "baseline": "W1-PRYM",
+  "fp64": {
+    "dtype": "float64",
+    "solution": [
+      0.09090909090909091,
+      0.6363636363636364
+    ]
+  },
+  "host": {
+    "hostname": "autodl-container-9qk6ggtwem-6244361c",
+    "machine": "x86_64",
+    "platform": "Linux-5.15.0-78-generic-x86_64-with-glibc2.35"
+  },
+  "lock_sha256": "45f60efbea16955ae3ca2740d6d55e9ae969fe9a5e33d5ef9d71d92d12f3c723",
+  "python": "3.11.15",
+  "schema_version": 1,
+  "scientific_use": "environment_acceptance_only_not_a_benchmark",
+  "source": {
+    "name": "PRyMordial",
+    "revision": "725d8a8db3ad5ea2630580d825c9d0d69ed76533"
+  },
+  "source_result": {
+    "numpy": "2.3.5",
+    "reaction_count": 63,
+    "scipy": "1.16.3",
+    "tau_n_seconds": 878.4
+  },
+  "status": "source_smoke_passed"
+}

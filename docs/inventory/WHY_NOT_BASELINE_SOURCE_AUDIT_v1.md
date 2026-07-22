@@ -1,6 +1,6 @@
 # WHY-NOT baseline source audit v1
 
-Status: exact sources acquired; executable environments pending
+Status: exact sources acquired; executable source smokes passed on westb
 
 Captured: 2026-07-22
 
@@ -47,9 +47,11 @@ The first two dedicated resolver locks are now checked in:
 - `environments/abcmb-v0.3.1/uv.lock` freezes ABCMB at its Git commit with JAX
   0.8.1, Optimistix 0.0.11, resolved Diffrax 0.7.1 and Interpax 0.3.14.
 
-Both locks resolve locally and are included in `make lock-check`; neither is
-accepted for timing until it installs and passes an FP64 source-level smoke test
-on an available worker.
+Both locks resolve locally, are included in `make lock-check`, and passed FP64
+source-level smoke tests on `autodl-westb-01`. PRyMordial loaded its 63-reaction
+source tables, and PRIMAT built its C backend from the exact frozen checkout and
+returned finite physical abundances in a small-network smoke run. The raw
+manifests are under `artifacts/environments/`.
 
 The ABCMB bundled LINX tree has Git tree
 `59b3ab7b3ada7d7ff6484920e0e29291cf4a084e`. It must be compared against

@@ -1,0 +1,45 @@
+{
+  "comparison_sha256": "aaee95cf73d2962f90e1f10d47a8ab31411de3fd6eefa7b369b461a3a97b0274",
+  "fixed_point": {
+    "compute_capability": [
+      8,
+      9
+    ],
+    "cuda_available": true,
+    "device": "cuda",
+    "dtype": "torch.float64",
+    "gpu_memory_bytes": 50864390144,
+    "gpu_name": "NVIDIA GeForce RTX 4090",
+    "solution": [
+      0.469879518072,
+      -0.831325301205,
+      -0.096385542169
+    ],
+    "torch_cuda": "13.0"
+  },
+  "host": {
+    "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+    "gfortran": "GNU Fortran (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+    "hostname": "autodl-container-9qk6ggtwem-6244361c",
+    "machine": "x86_64",
+    "platform": "Linux-5.15.0-78-generic-x86_64-with-glibc2.35"
+  },
+  "kind": "train-gpu",
+  "lock_sha256": "d365c6748fc22446762d3de5015652eb70e2f37ca11c12195831d62f58304b1f",
+  "packages": {
+    "PyYAML": "6.0.3",
+    "arviz": "0.22.0",
+    "emcee": "3.1.6",
+    "h5py": "3.15.1",
+    "joblib": "1.5.2",
+    "matplotlib": "3.10.7",
+    "numpy": "2.3.5",
+    "pandas": "2.3.3",
+    "scikit-learn": "1.7.2",
+    "scipy": "1.16.3",
+    "torch": "2.12.1+cu130"
+  },
+  "python": "3.11.15",
+  "schema_version": 1,
+  "status": "smoke_passed"
+}

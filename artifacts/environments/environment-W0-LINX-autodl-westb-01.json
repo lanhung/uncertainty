@@ -1,0 +1,30 @@
+{
+  "baseline": "W0-LINX",
+  "fp64": {
+    "dtype": "float64",
+    "solution": [
+      0.09090909090909091,
+      0.6363636363636364
+    ]
+  },
+  "host": {
+    "hostname": "autodl-container-9qk6ggtwem-6244361c",
+    "machine": "x86_64",
+    "platform": "Linux-5.15.0-78-generic-x86_64-with-glibc2.35"
+  },
+  "lock_sha256": "98c8f6de35dfdf7147857a3c28153b10f3ad7d424cb9faeea15de75cacd27556",
+  "python": "3.11.15",
+  "schema_version": 1,
+  "scientific_use": "environment_acceptance_only_not_a_benchmark",
+  "source": {
+    "name": "LINX",
+    "revision": "ec2e9d2ca455e8204137e884da29f5dd13a638fa"
+  },
+  "source_result": {
+    "jax": "0.4.28",
+    "jax_x64": true,
+    "network": "key_PRIMAT_2023",
+    "reaction_count": 12
+  },
+  "status": "source_smoke_passed"
+}

@@ -1,0 +1,29 @@
+{
+  "baseline": "W2-PRIMAT",
+  "fp64": {
+    "dtype": "float64",
+    "solution": [
+      0.09090909090909091,
+      0.6363636363636364
+    ]
+  },
+  "host": {
+    "hostname": "autodl-container-9qk6ggtwem-6244361c",
+    "machine": "x86_64",
+    "platform": "Linux-5.15.0-78-generic-x86_64-with-glibc2.35"
+  },
+  "lock_sha256": "45f60efbea16955ae3ca2740d6d55e9ae969fe9a5e33d5ef9d71d92d12f3c723",
+  "python": "3.11.15",
+  "schema_version": 1,
+  "scientific_use": "environment_acceptance_only_not_a_benchmark",
+  "source": {
+    "name": "PRIMAT",
+    "revision": "21ff8f39fa18e3937e9fdf386cfa982361bfdfce"
+  },
+  "source_result": {
+    "DoH": 2.4359144706943068e-05,
+    "YPBBN": 0.24699752646768924,
+    "primat": "0.3.2"
+  },
+  "status": "source_smoke_passed"
+}

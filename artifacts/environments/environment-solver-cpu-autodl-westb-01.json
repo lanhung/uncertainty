@@ -1,0 +1,44 @@
+{
+  "comparison_sha256": "d7daa70712633ce4adb35cc128ec3c518fc4f91f8a529c8afa3028ceae407f7e",
+  "fixed_point": {
+    "jax_backend": "cpu",
+    "jax_solution": [
+      0.469879518072,
+      -0.831325301205,
+      -0.096385542169
+    ],
+    "jax_x64": true,
+    "max_abs_difference": 0.0,
+    "scipy_solution": [
+      0.469879518072,
+      -0.831325301205,
+      -0.096385542169
+    ]
+  },
+  "host": {
+    "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+    "gfortran": "GNU Fortran (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+    "hostname": "autodl-container-9qk6ggtwem-6244361c",
+    "machine": "x86_64",
+    "platform": "Linux-5.15.0-78-generic-x86_64-with-glibc2.35"
+  },
+  "kind": "solver-cpu",
+  "lock_sha256": "45f60efbea16955ae3ca2740d6d55e9ae969fe9a5e33d5ef9d71d92d12f3c723",
+  "packages": {
+    "PyYAML": "6.0.3",
+    "diffrax": "0.7.2",
+    "equinox": "0.13.2",
+    "interpax": "0.3.10",
+    "jax": "0.7.2",
+    "jaxlib": "0.7.2",
+    "numba": "0.62.1",
+    "numdifftools": "0.9.42",
+    "numpy": "2.3.5",
+    "primat": "0.3.2",
+    "scipy": "1.16.3",
+    "vegas": "6.4.1"
+  },
+  "python": "3.11.15",
+  "schema_version": 1,
+  "status": "smoke_passed"
+}
