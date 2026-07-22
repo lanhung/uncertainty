@@ -13,7 +13,7 @@ from typing import Any
 import yaml
 
 COMMON_PROTOCOL = Path("configs/benchmarks/why_not_existing_solvers_v1.yaml")
-PARAMETER_SCHEMA = Path("configs/physics/parameter_schema.yaml")
+PARAMETER_SCHEMA = Path("configs/physics/parameter_schema_standard_bbn_v1.yaml")
 ADAPTER_CONFIGS = {
     "W1-PRYM": Path("configs/benchmarks/prymordial_runtime_adapter_v1.yaml"),
     "W3-ABCMB": Path("configs/benchmarks/abcmb_linx_runtime_adapter_v1.yaml"),

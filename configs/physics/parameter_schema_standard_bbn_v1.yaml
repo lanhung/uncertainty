@@ -1,0 +1,186 @@
+schema_version: 1
+schema_id: PHYSICS-PARAMETERS-v1
+decision_date_utc: "2026-07-22"
+status: standard_bbn_subset_frozen_extension_semantics_pending
+track_b_gate_status: closed
+
+standard_bbn_fiducial:
+  purpose: common_direct_solver_benchmark_point
+  selection_rule: >-
+    Values are inherited from the already frozen CMB-v1 main-stage mean and
+    NEUTRON-v1 N0 mean. Null values are used for extension coordinates. No
+    value was selected using solver timing or abundance output.
+  values:
+    omega_b_h2: 0.02237
+    delta_neff: 0.0
+    tau_n_seconds: 878.3
+    kappa10: 0.0
+  sources:
+    omega_b_h2: configs/data/cmb_data_v1.yaml#main_stage
+    tau_n_seconds: configs/physics/neutron_lifetime_v1.yaml#scenarios.N0
+    delta_neff: standard_model_null
+    kappa10: standard_model_null_only_semantics_not_frozen
+
+parameters:
+  omega_b_h2:
+    symbol: Omega_b h^2
+    definition: physical baryon density parameter
+    units: dimensionless
+    sampling_transform: identity
+    role: core_parameter
+    prior:
+      distribution: normal
+      mean: 0.02237
+      sigma: 0.00015
+      source: configs/data/cmb_data_v1.yaml#main_stage
+    physical_bounds:
+      lower: 0.0
+      upper: null
+      lower_inclusive: false
+    fiducial: 0.02237
+    sensitive_data: [CMB, D_over_H, Y_p]
+    identifiability_risk: correlated_with_nuclear_rates_and_expansion_history
+    freeze_status: frozen_for_standard_bbn_benchmark
+
+  delta_neff:
+    symbol: Delta N_eff
+    definition: additive change in effective relativistic degrees of freedom
+    units: dimensionless
+    sampling_transform: identity
+    role: extension_parameter
+    prior:
+      status: not_frozen
+      legacy_training_range: [-1.0, 1.0]
+      source: legacy/bbnet/ml4gw-9bd5147/README.md
+    physical_bounds:
+      rule: total_Neff_must_remain_positive
+      implementation_status: adapter_specific_check_pending
+    fiducial: 0.0
+    sensitive_data: [Y_p, D_over_H, CMB, SGWB]
+    identifiability_risk: correlated_with_omega_b_h2_tau_n_and_kappa10
+    freeze_status: null_fiducial_only
+
+  tau_n_seconds:
+    symbol: tau_n
+    definition: free-neutron lifetime
+    units: s
+    sampling_transform: identity
+    role: nuisance_parameter
+    prior:
+      scenario_registry: configs/physics/neutron_lifetime_v1.yaml
+      primary_scenario: N0
+    physical_bounds:
+      lower: 0.0
+      upper: null
+      lower_inclusive: false
+    fiducial: 878.3
+    sensitive_data: [Y_p, D_over_H]
+    identifiability_risk: >-
+      Must not be double counted through both tau_n and weak-rate
+      normalization.
+    freeze_status: frozen
+
+  kappa10:
+    symbol: kappa_10
+    definition: >-
+      Project extension coordinate used by the legacy BBNet work. Its exact
+      physical normalization, units and mapping to AlterBBN dd0/dd0_rad are
+      not present in the supplied public source and must not be inferred.
+    units: unresolved
+    sampling_transform:
+      positive_branch: log10
+      positive_training_range: [-7.0, 3.0]
+      null_value: 0.0
+      null_handling: explicit_standard_model_spike_not_log_transformed
+    role: extension_parameter
+    prior:
+      status: not_frozen
+      legacy_positive_range: [1.0e-7, 1.0e3]
+      legacy_source: legacy/bbnet/ml4gw-9bd5147/README.md
+    physical_bounds:
+      status: unresolved_pending_modified_solver_contract
+    fiducial: 0.0
+    sensitive_data: [Y_p, D_over_H, SGWB]
+    identifiability_risk: >-
+      Definition and conversion are unresolved; conditional slices cannot be
+      interpreted as constraints until the extension contract is supplied.
+    freeze_status: standard_model_null_only
+
+  tensor_tilt:
+    symbol: n_t
+    definition: primordial tensor spectral tilt
+    units: dimensionless
+    sampling_transform: unresolved
+    role: core_or_derived_parameter_by_registered_model
+    prior:
+      status: not_frozen
+    physical_bounds:
+      status: model_dependent
+    fiducial: null
+    sensitive_data: [SGWB, CMB]
+    identifiability_risk: correlated_with_tensor_amplitude_reheating_and_stiff_history
+    required_models:
+      - inflationary_consistency_relation
+      - free_tensor_tilt
+    freeze_status: pending_old_mcmc_and_model_contract
+
+  reheating_temperature:
+    symbol: T_re
+    definition: reheating temperature under a registered reheating model
+    units: unresolved_pending_model_contract
+    sampling_transform: unresolved
+    role: extension_parameter
+    prior:
+      status: not_frozen
+    physical_bounds:
+      status: model_dependent
+    fiducial: null
+    sensitive_data: [SGWB, BBN]
+    identifiability_risk: correlated_with_tensor_tilt_and_stiff_duration
+    freeze_status: pending_old_mcmc_and_model_contract
+
+parameter_families:
+  nuclear_rate_q:
+    symbol: q_i
+    role: nuisance_parameter
+    distribution_baseline: standard_normal
+    dimension: pending_NUC_v1_registry
+    freeze_status: pending_nuclear_prior
+  functional_rate_modes:
+    symbol: a_ik
+    role: nuisance_parameter
+    distribution_baseline: standard_normal
+    dimension: pending_functional_basis_validation
+    freeze_status: pending_nuclear_prior
+  solver_choices:
+    symbols: [E, R, W, X, nu]
+    role: registered_discrete_model_choices
+    registry: docs/decisions/ADR-SOLVER-FACTORIAL-v1.md
+    freeze_status: pending_factorial_ADR
+
+adapter_aliases:
+  common:
+    omega_b_h2: [OmegaBh2, omegabn]
+    delta_neff: [DeltaNeff, dn_nu, DN_eff]
+    tau_n_seconds: [tau_n, tau]
+    kappa10: [kappa, kappa10]
+  prohibited_unresolved_mappings:
+    - from: kappa10
+      to: dd0
+      reason: physical conversion absent from supplied public source
+    - from: delta_neff
+      to: dd0_rad
+      reason: physical conversion absent from supplied public source
+
+validation_rules:
+  - Reject unknown parameter names rather than silently dropping them.
+  - Record canonical values and adapter-transformed values in every run manifest.
+  - Do not use extension parameters whose definition or units are unresolved.
+  - Do not interpret the legacy training range as a frozen inference prior.
+  - Standard-BBN direct benchmarks may use only the frozen fiducial subset.
+
+open_blockers:
+  - authoritative_kappa10_definition_units_and_modified_solver_mapping
+  - authoritative_tensor_tilt_amplitude_and_consistency_relation_contract
+  - authoritative_reheating_and_stiff_transition_parameterization
+  - NUC_v1_rate_and_functional_mode_registry

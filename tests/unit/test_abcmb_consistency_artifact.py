@@ -24,7 +24,7 @@ def test_manifest_is_bound_to_frozen_inputs_and_exact_source() -> None:
         "scan_config_sha256": ROOT / "configs/benchmarks/abcmb_linx_batch_consistency_v1.yaml",
         "benchmark_config_sha256": ROOT / "configs/benchmarks/why_not_existing_solvers_v1.yaml",
         "observation_config_sha256": ROOT / "configs/data/abundance_OBS-v1.yaml",
-        "parameter_schema_sha256": ROOT / "configs/physics/parameter_schema.yaml",
+        "parameter_schema_sha256": ROOT / "configs/physics/parameter_schema_standard_bbn_v1.yaml",
         "environment_lock_sha256": ROOT / "environments/abcmb-v0.3.1/uv.lock",
     }
 

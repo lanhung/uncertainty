@@ -76,17 +76,16 @@ def test_offline_heartbeat_protocol_requires_safe_replay_and_gate_invariance() -
     assert protocol["acceptance_checks"][-1] == ("science_gate_unchanged_and_snapshot_pushed")
 
 
-def test_all_new_trackers_are_execution_only() -> None:
+def test_pivot_retains_only_completed_or_critical_execution_trackers() -> None:
     plan = load("plan/plan.yaml")
     tasks = {task["id"]: task for task in plan["tasks"]}
-    expected = {
-        "EXEC-ABCMB-FULL-AUDIT": (4, "components"),
-        "EXEC-LINX-GRADIENT": (4, "groups"),
-        "EXEC-STANDARD-CHALLENGE": (4, "baselines"),
-        "EXEC-HEARTBEAT-OFFLINE-E2E-v1": (8, "checks"),
-    }
+    heartbeat = tasks["EXEC-HEARTBEAT-OFFLINE-E2E-v1"]
 
-    for task_id, (total, unit) in expected.items():
-        assert tasks[task_id]["phase"] == "EXEC"
-        assert tasks[task_id]["total"] == total
-        assert tasks[task_id]["unit"] == unit
+    assert heartbeat["phase"] == "EXEC"
+    assert heartbeat["total"] == 8
+    assert heartbeat["unit"] == "checks"
+    assert {
+        "EXEC-ABCMB-FULL-AUDIT",
+        "EXEC-LINX-GRADIENT",
+        "EXEC-STANDARD-CHALLENGE",
+    }.isdisjoint(tasks)
