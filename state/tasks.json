@@ -1,7 +1,7 @@
 {
   "project": "uncertainty",
-  "generated_at": "2026-07-22T13:28:26+00:00",
-  "revision": 230,
+  "generated_at": "2026-07-22T13:29:29+00:00",
+  "revision": 235,
   "overall_progress": 0.21171171171171171,
   "overall_kind": "effort-weighted scientific program gate completion",
   "science_gate_progress": 0.21171171171171171,
@@ -65,7 +65,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 510.6549050807953,
+      "heartbeat_age_s": 573.4096522331238,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -121,7 +121,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 17329.655018806458,
+      "heartbeat_age_s": 17392.409723997116,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -174,7 +174,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 48599.65513801575,
+      "heartbeat_age_s": 48662.40980052948,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -216,7 +216,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 48600.6552901268,
+      "heartbeat_age_s": 48663.409850120544,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -248,10 +248,10 @@
         "P0-LIT-01"
       ],
       "started_at": "2026-07-22T02:49:40+00:00",
-      "updated_at": "2026-07-22T13:19:55+00:00",
+      "updated_at": "2026-07-22T13:29:29+00:00",
       "finished_at": null,
       "declared_eta": null,
-      "message": "PR #49 and #50 merged: all W0-W3 standard-fiducial runtime slices are now registered with validated hashes, timings, failures and cost. PR #51 froze the ABCMB bundled-LINX scalar/native-batch consistency follow-up before execution. The runtime milestone is 4/4, but P0-WHY-NOT-01 remains 0/1 because rate marginalization, extension, posterior recovery, full ABCMB/Fisher/HMC economics and the final memo conclusion remain incomplete.",
+      "message": "PR #54 merged at main 9a1faa0. ABCMB consistency V1 executed all 8/8 frozen cases with zero failures, but tolerance plateau 0.0047691 sigma and weak-rate sampling plateau 0.0274556 sigma both exceed the frozen 0.001 sigma limit. Execution is complete; numerical acceptance is rejected, WHY-NOT remains 0/1, and no science-gate progress is awarded.",
       "artifacts": [
         "docs/decisions/ADR-WHY-NOT-001.md",
         "configs/benchmarks/why_not_existing_solvers_v1.yaml",
@@ -303,7 +303,10 @@
         "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W3-ABCMB/RESULT_REGISTRY_v1.yaml",
         "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W3-ABCMB/run-20260722T1118Z",
         "docs/inventory/WHY_NOT_ABCMB_RUNTIME_v1.md",
-        "configs/benchmarks/abcmb_linx_batch_consistency_v1.yaml"
+        "configs/benchmarks/abcmb_linx_batch_consistency_v1.yaml",
+        "artifacts/numerical/ABCMB-LINX-BATCH-CONSISTENCY-v1/RESULT_REGISTRY_v1.yaml",
+        "artifacts/numerical/ABCMB-LINX-BATCH-CONSISTENCY-v1/run-20260722T113106Z",
+        "docs/inventory/ABCMB_LINX_BATCH_CONSISTENCY_v1.md"
       ],
       "metrics": {},
       "attempt": 1,
@@ -312,7 +315,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 511.65556025505066,
+      "heartbeat_age_s": 0.40991902351379395,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -519,6 +522,18 @@
         {
           "label": "configs/benchmarks/abcmb_linx_batch_consistency_v1.yaml",
           "url": "https://github.com/lanhung/uncertainty/blob/main/configs/benchmarks/abcmb_linx_batch_consistency_v1.yaml"
+        },
+        {
+          "label": "artifacts/numerical/ABCMB-LINX-BATCH-CONSISTENCY-v1/RESULT_REGISTRY_v1.yaml",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/numerical/ABCMB-LINX-BATCH-CONSISTENCY-v1/RESULT_REGISTRY_v1.yaml"
+        },
+        {
+          "label": "artifacts/numerical/ABCMB-LINX-BATCH-CONSISTENCY-v1/run-20260722T113106Z",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/numerical/ABCMB-LINX-BATCH-CONSISTENCY-v1/run-20260722T113106Z"
+        },
+        {
+          "label": "docs/inventory/ABCMB_LINX_BATCH_CONSISTENCY_v1.md",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/docs/inventory/ABCMB_LINX_BATCH_CONSISTENCY_v1.md"
         }
       ]
     },
@@ -585,7 +600,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 39656.6558303833,
+      "heartbeat_age_s": 39719.41001558304,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -635,7 +650,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 70816.65588831902,
+      "heartbeat_age_s": 70879.41005134583,
       "ready": false,
       "blocked_by": [],
       "artifact_links": []
@@ -676,7 +691,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 30007.65592932701,
+      "heartbeat_age_s": 30070.410089492798,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -746,7 +761,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 69322.65601468086,
+      "heartbeat_age_s": 69385.41012644768,
       "ready": false,
       "blocked_by": [
         "P0-worker-bootstrap"
@@ -784,7 +799,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 40476.656067848206,
+      "heartbeat_age_s": 40539.410188913345,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -838,7 +853,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 9420.656183958054,
+      "heartbeat_age_s": 9483.410241603851,
       "ready": false,
       "blocked_by": [
         "P0-solvers-build"
@@ -893,7 +908,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 27208.656270742416,
+      "heartbeat_age_s": 27271.410280942917,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -939,7 +954,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 37507.656329870224,
+      "heartbeat_age_s": 37570.41033124924,
       "ready": false,
       "blocked_by": [],
       "artifact_links": []
@@ -973,7 +988,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 16479.656388521194,
+      "heartbeat_age_s": 16542.410384655,
       "ready": false,
       "blocked_by": [
         "P0-tailnet"
@@ -1180,7 +1195,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 27209.656693935394,
+      "heartbeat_age_s": 27272.41073870659,
       "ready": false,
       "blocked_by": [
         "P2-unified-adapter"
@@ -1220,7 +1235,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 20675.656744003296,
+      "heartbeat_age_s": 20738.410783290863,
       "ready": false,
       "blocked_by": [
         "P2-rate-registry"
@@ -1261,7 +1276,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 20675.6567838192,
+      "heartbeat_age_s": 20738.410838842392,
       "ready": false,
       "blocked_by": [
         "P2-solver-matrix"
@@ -1305,7 +1320,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 27208.656819820404,
+      "heartbeat_age_s": 27271.410885572433,
       "ready": false,
       "blocked_by": [
         "P0-solvers-build"
@@ -1421,7 +1436,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 17138.656922101974,
+      "heartbeat_age_s": 17201.411012887955,
       "ready": false,
       "blocked_by": [
         "P2.5-fisher-propagation",
@@ -1484,7 +1499,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 27209.656957387924,
+      "heartbeat_age_s": 27272.411049365997,
       "ready": false,
       "blocked_by": [
         "P2-unified-adapter"
