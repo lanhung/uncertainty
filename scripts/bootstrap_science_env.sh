@@ -72,8 +72,9 @@ if [[ ! -x "$UV_BIN" ]]; then
   "$BOOTSTRAP_PYTHON" -m venv "$UV_TOOL_ROOT"
   "$UV_TOOL_ROOT/bin/python" -m pip install --disable-pip-version-check "uv==${UV_VERSION}"
 fi
-[[ "$($UV_BIN --version)" == "uv ${UV_VERSION}" ]] || {
-  echo "ERROR: unexpected uv version: $($UV_BIN --version)" >&2
+UV_VERSION_OUTPUT="$($UV_BIN --version)"
+[[ "$(awk '{print $1, $2}' <<<"$UV_VERSION_OUTPUT")" == "uv ${UV_VERSION}" ]] || {
+  echo "ERROR: unexpected uv version: $UV_VERSION_OUTPUT" >&2
   exit 1
 }
 
