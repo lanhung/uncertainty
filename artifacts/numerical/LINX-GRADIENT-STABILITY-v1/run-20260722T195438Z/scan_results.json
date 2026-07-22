@@ -1,0 +1,812 @@
+{
+  "acceptance_points": [
+    {
+      "physical": {
+        "delta_neff": 0.0,
+        "omega_b_h2": 0.02237,
+        "tau_n_seconds": 878.3
+      },
+      "point_id": "fiducial",
+      "standardized": {
+        "delta_neff": 0.0,
+        "omega_b_h2": 0.0,
+        "tau_n_seconds": 0.0
+      }
+    },
+    {
+      "physical": {
+        "delta_neff": -0.05,
+        "omega_b_h2": 0.02237,
+        "tau_n_seconds": 878.3
+      },
+      "point_id": "axis_delta_neff_m0p5",
+      "standardized": {
+        "delta_neff": -0.5,
+        "omega_b_h2": 0.0,
+        "tau_n_seconds": 0.0
+      }
+    },
+    {
+      "physical": {
+        "delta_neff": 0.05,
+        "omega_b_h2": 0.02237,
+        "tau_n_seconds": 878.3
+      },
+      "point_id": "axis_delta_neff_p0p5",
+      "standardized": {
+        "delta_neff": 0.5,
+        "omega_b_h2": 0.0,
+        "tau_n_seconds": 0.0
+      }
+    },
+    {
+      "physical": {
+        "delta_neff": 0.0,
+        "omega_b_h2": 0.02222,
+        "tau_n_seconds": 878.3
+      },
+      "point_id": "axis_omega_b_h2_m1",
+      "standardized": {
+        "delta_neff": 0.0,
+        "omega_b_h2": -1.0,
+        "tau_n_seconds": 0.0
+      }
+    },
+    {
+      "physical": {
+        "delta_neff": 0.0,
+        "omega_b_h2": 0.022520000000000002,
+        "tau_n_seconds": 878.3
+      },
+      "point_id": "axis_omega_b_h2_p1",
+      "standardized": {
+        "delta_neff": 0.0,
+        "omega_b_h2": 1.0,
+        "tau_n_seconds": 0.0
+      }
+    },
+    {
+      "physical": {
+        "delta_neff": 0.0,
+        "omega_b_h2": 0.02237,
+        "tau_n_seconds": 877.9
+      },
+      "point_id": "axis_tau_n_seconds_m1",
+      "standardized": {
+        "delta_neff": 0.0,
+        "omega_b_h2": 0.0,
+        "tau_n_seconds": -1.0
+      }
+    },
+    {
+      "physical": {
+        "delta_neff": 0.0,
+        "omega_b_h2": 0.02237,
+        "tau_n_seconds": 878.6999999999999
+      },
+      "point_id": "axis_tau_n_seconds_p1",
+      "standardized": {
+        "delta_neff": 0.0,
+        "omega_b_h2": 0.0,
+        "tau_n_seconds": 1.0
+      }
+    },
+    {
+      "physical": {
+        "delta_neff": -0.05,
+        "omega_b_h2": 0.02222,
+        "tau_n_seconds": 877.9
+      },
+      "point_id": "corner_m0p5_m1_m1",
+      "standardized": {
+        "delta_neff": -0.5,
+        "omega_b_h2": -1.0,
+        "tau_n_seconds": -1.0
+      }
+    },
+    {
+      "physical": {
+        "delta_neff": -0.05,
+        "omega_b_h2": 0.02222,
+        "tau_n_seconds": 878.6999999999999
+      },
+      "point_id": "corner_m0p5_m1_p1",
+      "standardized": {
+        "delta_neff": -0.5,
+        "omega_b_h2": -1.0,
+        "tau_n_seconds": 1.0
+      }
+    },
+    {
+      "physical": {
+        "delta_neff": -0.05,
+        "omega_b_h2": 0.022520000000000002,
+        "tau_n_seconds": 877.9
+      },
+      "point_id": "corner_m0p5_p1_m1",
+      "standardized": {
+        "delta_neff": -0.5,
+        "omega_b_h2": 1.0,
+        "tau_n_seconds": -1.0
+      }
+    },
+    {
+      "physical": {
+        "delta_neff": -0.05,
+        "omega_b_h2": 0.022520000000000002,
+        "tau_n_seconds": 878.6999999999999
+      },
+      "point_id": "corner_m0p5_p1_p1",
+      "standardized": {
+        "delta_neff": -0.5,
+        "omega_b_h2": 1.0,
+        "tau_n_seconds": 1.0
+      }
+    },
+    {
+      "physical": {
+        "delta_neff": 0.05,
+        "omega_b_h2": 0.02222,
+        "tau_n_seconds": 877.9
+      },
+      "point_id": "corner_p0p5_m1_m1",
+      "standardized": {
+        "delta_neff": 0.5,
+        "omega_b_h2": -1.0,
+        "tau_n_seconds": -1.0
+      }
+    },
+    {
+      "physical": {
+        "delta_neff": 0.05,
+        "omega_b_h2": 0.02222,
+        "tau_n_seconds": 878.6999999999999
+      },
+      "point_id": "corner_p0p5_m1_p1",
+      "standardized": {
+        "delta_neff": 0.5,
+        "omega_b_h2": -1.0,
+        "tau_n_seconds": 1.0
+      }
+    },
+    {
+      "physical": {
+        "delta_neff": 0.05,
+        "omega_b_h2": 0.022520000000000002,
+        "tau_n_seconds": 877.9
+      },
+      "point_id": "corner_p0p5_p1_m1",
+      "standardized": {
+        "delta_neff": 0.5,
+        "omega_b_h2": 1.0,
+        "tau_n_seconds": -1.0
+      }
+    },
+    {
+      "physical": {
+        "delta_neff": 0.05,
+        "omega_b_h2": 0.022520000000000002,
+        "tau_n_seconds": 878.6999999999999
+      },
+      "point_id": "corner_p0p5_p1_p1",
+      "standardized": {
+        "delta_neff": 0.5,
+        "omega_b_h2": 1.0,
+        "tau_n_seconds": 1.0
+      }
+    }
+  ],
+  "cold_import_seconds": 2.0129216331988573,
+  "decision": {
+    "acceptance_record_count": 45,
+    "checks": {
+      "ad_fd_difference": false,
+      "ad_mode_difference": false,
+      "all_records_ok": false,
+      "all_records_present": true,
+      "fd_plateau_difference": false,
+      "finite_forward_fraction": false,
+      "finite_jacobian_fraction": false,
+      "repeat_drift": false,
+      "silent_nonfinite_count": true,
+      "structured_failures": false
+    },
+    "expected_acceptance_record_count": 45,
+    "finite_forward_fraction": 0.0,
+    "finite_jacobian_fraction": 0.0,
+    "maximum_ad_fd_scaled_difference": Infinity,
+    "maximum_ad_mode_scaled_difference": Infinity,
+    "maximum_fd_plateau_scaled_difference": Infinity,
+    "maximum_scaled_repeat_drift": Infinity,
+    "numerical_gradient_status": "not_accepted",
+    "passed": false,
+    "scientific_scope": "standard_neighborhood_three_coordinate_gradient_candidate_only",
+    "silent_nonfinite_count": 0,
+    "structured_failure_count": 45
+  },
+  "diagnostic_only_upstream_challenge": {
+    "affects_acceptance_domain": false,
+    "cases": {
+      "all_2_except_delta_neff_0": {
+        "elapsed_seconds": 3.5194747503846884,
+        "finite_gradient_fraction": 0.9333333333333333,
+        "gradient": [
+          NaN,
+          4893.6228304334745,
+          1196.9622443940682,
+          2.887816706794005,
+          73.84330979607125,
+          30.14599332526678,
+          23.82778138117122,
+          1.0812925789804428,
+          -0.04954103061685579,
+          0.0022989832813480773,
+          -2.606035618035913,
+          1.243899394319735,
+          -0.004628157755934704,
+          0.002178815179859078,
+          4.923619024164194e-08
+        ],
+        "nonfinite_gradient_indices": [
+          0
+        ],
+        "objective": 6050.28886890459,
+        "status": "nonfinite"
+      },
+      "all_rates_q_2_only": {
+        "elapsed_seconds": 3.5400524232536554,
+        "finite_gradient_fraction": 0.9333333333333333,
+        "gradient": [
+          NaN,
+          2474.571835511757,
+          -558.3569889293361,
+          1.3144706085861033,
+          11.485642363208648,
+          8.830981218673301,
+          7.399864698668663,
+          0.23032816979811283,
+          0.001177199177299703,
+          0.00028946855467535537,
+          -0.5508054806929321,
+          0.2168385651146662,
+          -9.587296881519415e-05,
+          0.00011445829220225704,
+          -1.473551067689187e-08
+        ],
+        "nonfinite_gradient_indices": [
+          0
+        ],
+        "objective": 62.784956528887115,
+        "status": "nonfinite"
+      },
+      "delta_neff_2_only": {
+        "elapsed_seconds": 3.5982648879289627,
+        "finite_gradient_fraction": 0.9333333333333333,
+        "gradient": [
+          NaN,
+          -893.0110028520318,
+          579.7011375145753,
+          -0.5063485754130214,
+          -3.8899141666769554,
+          -3.270079354129614,
+          -2.756090595077747,
+          -0.058885588573599754,
+          -0.001309404812492529,
+          -0.00010126322744057512,
+          0.1961667855118793,
+          -0.0733025992584466,
+          2.636577703409038e-05,
+          -3.595821729502668e-05,
+          1.788060886803668e-08
+        ],
+        "nonfinite_gradient_indices": [
+          0
+        ],
+        "objective": 15.128694881563069,
+        "status": "nonfinite"
+      },
+      "eta_fac_2_only": {
+        "elapsed_seconds": 3.5225297547876835,
+        "finite_gradient_fraction": 0.9333333333333333,
+        "gradient": [
+          NaN,
+          4323.428367678175,
+          -1807.051906774275,
+          1.9803191425664823,
+          75.19972273157143,
+          25.2502633235627,
+          19.539389902621895,
+          0.4704099265965047,
+          -0.06167360621266562,
+          0.0009049425977679473,
+          -2.450872515124759,
+          1.3633207683905697,
+          -0.0035773484008394156,
+          0.0011613252923355537,
+          -1.1176587673659733e-08
+        ],
+        "nonfinite_gradient_indices": [
+          0
+        ],
+        "objective": 5563.7741776013945,
+        "status": "nonfinite"
+      },
+      "tau_n_fac_2_only": {
+        "elapsed_seconds": 3.4946222193539143,
+        "finite_gradient_fraction": 0.9333333333333333,
+        "gradient": [
+          NaN,
+          -13653.914778508704,
+          4557.600891167022,
+          -9.777507586765251,
+          -48.888918062728635,
+          -49.53893420575251,
+          -42.36624061153535,
+          -1.0729065664454567,
+          -0.03620291817582325,
+          -0.002798360769818832,
+          2.588918382840736,
+          -1.0693519581827744,
+          0.00018359573077232218,
+          -0.0005827819006475416,
+          5.822237334952211e-07
+        ],
+        "nonfinite_gradient_indices": [
+          0
+        ],
+        "objective": 2820.8279778231886,
+        "status": "nonfinite"
+      },
+      "two_times_ones_15": {
+        "elapsed_seconds": 273.3115524351597,
+        "finite_gradient_fraction": 0.9333333333333333,
+        "gradient": [
+          NaN,
+          4955.545804909635,
+          1289.352739823169,
+          3.0951923907755927,
+          72.02006368897747,
+          31.029059865516775,
+          24.656484521354564,
+          1.1197332286935826,
+          -0.04507422830361548,
+          0.0024306527493293552,
+          -2.600231178956112,
+          1.179169542806752,
+          -0.004241789119178456,
+          0.0021828320184710728,
+          5.9486507370131534e-08
+        ],
+        "nonfinite_gradient_indices": [
+          0
+        ],
+        "objective": 5838.657852600309,
+        "status": "nonfinite"
+      }
+    },
+    "historical_likelihood_only": true
+  },
+  "jax_x64": true,
+  "load_provenance": {
+    "jax": "0.4.28",
+    "package": "/autodl-fs/data/projects/uncertainty/external/why-not-v1/LINX/linx/__init__.py"
+  },
+  "observation_sigmas": {
+    "DoH": 3.0000000000000004e-07,
+    "YPBBN": 0.0013
+  },
+  "path_results": {
+    "background_only_delta_neff": [
+      {
+        "error": "FloatingPointError('jacrev Jacobian contains non-finite entries at [[0, 0], [1, 0], [2, 0]]')",
+        "forward_finite": false,
+        "jacobian_finite": false,
+        "path": "background_only_delta_neff",
+        "point_id": "fiducial",
+        "silent_nonfinite_count": 0,
+        "status": "failed"
+      },
+      {
+        "error": "FloatingPointError('jacrev Jacobian contains non-finite entries at [[0, 0], [1, 0], [2, 0]]')",
+        "forward_finite": false,
+        "jacobian_finite": false,
+        "path": "background_only_delta_neff",
+        "point_id": "axis_delta_neff_m0p5",
+        "silent_nonfinite_count": 0,
+        "status": "failed"
+      },
+      {
+        "error": "TypeError(\"can't apply forward-mode autodiff (jvp) to a custom_vjp function.\")",
+        "forward_finite": false,
+        "jacobian_finite": false,
+        "path": "background_only_delta_neff",
+        "point_id": "axis_delta_neff_p0p5",
+        "silent_nonfinite_count": 0,
+        "status": "failed"
+      },
+      {
+        "error": "FloatingPointError('jacrev Jacobian contains non-finite entries at [[0, 0], [1, 0], [2, 0]]')",
+        "forward_finite": false,
+        "jacobian_finite": false,
+        "path": "background_only_delta_neff",
+        "point_id": "axis_omega_b_h2_m1",
+        "silent_nonfinite_count": 0,
+        "status": "failed"
+      },
+      {
+        "error": "FloatingPointError('jacrev Jacobian contains non-finite entries at [[0, 0], [1, 0], [2, 0]]')",
+        "forward_finite": false,
+        "jacobian_finite": false,
+        "path": "background_only_delta_neff",
+        "point_id": "axis_omega_b_h2_p1",
+        "silent_nonfinite_count": 0,
+        "status": "failed"
+      },
+      {
+        "error": "FloatingPointError('jacrev Jacobian contains non-finite entries at [[0, 0], [1, 0], [2, 0]]')",
+        "forward_finite": false,
+        "jacobian_finite": false,
+        "path": "background_only_delta_neff",
+        "point_id": "axis_tau_n_seconds_m1",
+        "silent_nonfinite_count": 0,
+        "status": "failed"
+      },
+      {
+        "error": "FloatingPointError('jacrev Jacobian contains non-finite entries at [[0, 0], [1, 0], [2, 0]]')",
+        "forward_finite": false,
+        "jacobian_finite": false,
+        "path": "background_only_delta_neff",
+        "point_id": "axis_tau_n_seconds_p1",
+        "silent_nonfinite_count": 0,
+        "status": "failed"
+      },
+      {
+        "error": "FloatingPointError('jacrev Jacobian contains non-finite entries at [[0, 0], [1, 0], [2, 0]]')",
+        "forward_finite": false,
+        "jacobian_finite": false,
+        "path": "background_only_delta_neff",
+        "point_id": "corner_m0p5_m1_m1",
+        "silent_nonfinite_count": 0,
+        "status": "failed"
+      },
+      {
+        "error": "FloatingPointError('jacrev Jacobian contains non-finite entries at [[0, 0], [1, 0], [2, 0]]')",
+        "forward_finite": false,
+        "jacobian_finite": false,
+        "path": "background_only_delta_neff",
+        "point_id": "corner_m0p5_m1_p1",
+        "silent_nonfinite_count": 0,
+        "status": "failed"
+      },
+      {
+        "error": "FloatingPointError('jacrev Jacobian contains non-finite entries at [[0, 0], [1, 0], [2, 0]]')",
+        "forward_finite": false,
+        "jacobian_finite": false,
+        "path": "background_only_delta_neff",
+        "point_id": "corner_m0p5_p1_m1",
+        "silent_nonfinite_count": 0,
+        "status": "failed"
+      },
+      {
+        "error": "FloatingPointError('jacrev Jacobian contains non-finite entries at [[0, 0], [1, 0], [2, 0]]')",
+        "forward_finite": false,
+        "jacobian_finite": false,
+        "path": "background_only_delta_neff",
+        "point_id": "corner_m0p5_p1_p1",
+        "silent_nonfinite_count": 0,
+        "status": "failed"
+      },
+      {
+        "error": "TypeError(\"can't apply forward-mode autodiff (jvp) to a custom_vjp function.\")",
+        "forward_finite": false,
+        "jacobian_finite": false,
+        "path": "background_only_delta_neff",
+        "point_id": "corner_p0p5_m1_m1",
+        "silent_nonfinite_count": 0,
+        "status": "failed"
+      },
+      {
+        "error": "TypeError(\"can't apply forward-mode autodiff (jvp) to a custom_vjp function.\")",
+        "forward_finite": false,
+        "jacobian_finite": false,
+        "path": "background_only_delta_neff",
+        "point_id": "corner_p0p5_m1_p1",
+        "silent_nonfinite_count": 0,
+        "status": "failed"
+      },
+      {
+        "error": "TypeError(\"can't apply forward-mode autodiff (jvp) to a custom_vjp function.\")",
+        "forward_finite": false,
+        "jacobian_finite": false,
+        "path": "background_only_delta_neff",
+        "point_id": "corner_p0p5_p1_m1",
+        "silent_nonfinite_count": 0,
+        "status": "failed"
+      },
+      {
+        "error": "TypeError(\"can't apply forward-mode autodiff (jvp) to a custom_vjp function.\")",
+        "forward_finite": false,
+        "jacobian_finite": false,
+        "path": "background_only_delta_neff",
+        "point_id": "corner_p0p5_p1_p1",
+        "silent_nonfinite_count": 0,
+        "status": "failed"
+      }
+    ],
+    "frozen_background_abundance_eta_tau": [
+      {
+        "error": "TypeError(\"can't apply forward-mode autodiff (jvp) to a custom_vjp function.\")",
+        "forward_finite": false,
+        "jacobian_finite": false,
+        "path": "frozen_background_abundance_eta_tau",
+        "point_id": "fiducial",
+        "silent_nonfinite_count": 0,
+        "status": "failed"
+      },
+      {
+        "error": "TypeError(\"can't apply forward-mode autodiff (jvp) to a custom_vjp function.\")",
+        "forward_finite": false,
+        "jacobian_finite": false,
+        "path": "frozen_background_abundance_eta_tau",
+        "point_id": "axis_delta_neff_m0p5",
+        "silent_nonfinite_count": 0,
+        "status": "failed"
+      },
+      {
+        "error": "XlaRuntimeError('INTERNAL: Generated function failed: CpuCallback error: Traceback (most recent call last):\\n  File \"/root/autodl-tmp/projects/uncertainty/repo/scripts/linx_gradient_stability_scan.py\", line 858, in <module>\\n  File \"/root/autodl-tmp/projects/uncertainty/repo/scripts/linx_gradient_stability_scan.py\", line 713, in main\\n  File \"/root/autodl-tmp/projects/uncertainty/repo/scripts/linx_gradient_stability_scan.py\", line 396, in _run_point\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/traceback_util.py\", line 179, in reraise_with_filtered_traceback\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/pjit.py\", line 304, in cache_miss\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/pjit.py\", line 181, in _python_pjit_helper\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/core.py\", line 2789, in bind\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/core.py\", line 391, in bind_with_trace\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/core.py\", line 879, in process_primitive\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/pjit.py\", line 1525, in _pjit_call_impl\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/pjit.py\", line 1508, in call_impl_cache_miss\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/pjit.py\", line 1462, in _pjit_call_impl_python\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/profiler.py\", line 335, in wrapper\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/interpreters/pxla.py\", line 1177, in __call__\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/interpreters/mlir.py\", line 2483, in _wrapped_callback\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/callback.py\", line 221, in _callback\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/callback.py\", line 82, in pure_callback_impl\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/callback.py\", line 64, in __call__\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/equinox/_errors.py\", line 89, in raises\\n_EquinoxRuntimeError: The linear solver returned non-finite (NaN or inf) output. This usually means that the\\noperator was not well-posed, and that the solver does not support this.\\n\\nIf you are trying solve a linear least-squares problem then you should pass\\n`solver=AutoLinearSolver(well_posed=False)`. By default `lineax.linear_solve`\\nassumes that the operator is square and nonsingular.\\n\\nIf you *were* expecting this solver to work with this operator, then it may be because:\\n\\n(a) the operator is singular, and your code has a bug; or\\n\\n(b) the operator was nearly singular (i.e. it had a high condition number:\\n    `jnp.linalg.cond(operator.as_matrix())` is large), and the solver suffered from\\n    numerical instability issues; or\\n\\n(c) the operator is declared to exhibit a certain property (e.g. positive definiteness)\\n    that is does not actually satisfy.\\n\\n\\n--------------------\\nAn error occurred during the runtime of your JAX program! Unfortunately you do not appear to be using `equinox.filter_jit` (perhaps you are using `jax.jit` instead?) and so further information about the error cannot be displayed. (Probably you are seeing a very large but uninformative error message right now.) Please wrap your program with `equinox.filter_jit`.\\n--------------------\\n')",
+        "forward_finite": false,
+        "jacobian_finite": false,
+        "path": "frozen_background_abundance_eta_tau",
+        "point_id": "axis_delta_neff_p0p5",
+        "silent_nonfinite_count": 0,
+        "status": "failed"
+      },
+      {
+        "error": "TypeError(\"can't apply forward-mode autodiff (jvp) to a custom_vjp function.\")",
+        "forward_finite": false,
+        "jacobian_finite": false,
+        "path": "frozen_background_abundance_eta_tau",
+        "point_id": "axis_omega_b_h2_m1",
+        "silent_nonfinite_count": 0,
+        "status": "failed"
+      },
+      {
+        "error": "TypeError(\"can't apply forward-mode autodiff (jvp) to a custom_vjp function.\")",
+        "forward_finite": false,
+        "jacobian_finite": false,
+        "path": "frozen_background_abundance_eta_tau",
+        "point_id": "axis_omega_b_h2_p1",
+        "silent_nonfinite_count": 0,
+        "status": "failed"
+      },
+      {
+        "error": "TypeError(\"can't apply forward-mode autodiff (jvp) to a custom_vjp function.\")",
+        "forward_finite": false,
+        "jacobian_finite": false,
+        "path": "frozen_background_abundance_eta_tau",
+        "point_id": "axis_tau_n_seconds_m1",
+        "silent_nonfinite_count": 0,
+        "status": "failed"
+      },
+      {
+        "error": "TypeError(\"can't apply forward-mode autodiff (jvp) to a custom_vjp function.\")",
+        "forward_finite": false,
+        "jacobian_finite": false,
+        "path": "frozen_background_abundance_eta_tau",
+        "point_id": "axis_tau_n_seconds_p1",
+        "silent_nonfinite_count": 0,
+        "status": "failed"
+      },
+      {
+        "error": "XlaRuntimeError('INTERNAL: Generated function failed: CpuCallback error: Traceback (most recent call last):\\n  File \"/root/autodl-tmp/projects/uncertainty/repo/scripts/linx_gradient_stability_scan.py\", line 858, in <module>\\n  File \"/root/autodl-tmp/projects/uncertainty/repo/scripts/linx_gradient_stability_scan.py\", line 713, in main\\n  File \"/root/autodl-tmp/projects/uncertainty/repo/scripts/linx_gradient_stability_scan.py\", line 396, in _run_point\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/traceback_util.py\", line 179, in reraise_with_filtered_traceback\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/pjit.py\", line 304, in cache_miss\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/pjit.py\", line 181, in _python_pjit_helper\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/core.py\", line 2789, in bind\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/core.py\", line 391, in bind_with_trace\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/core.py\", line 879, in process_primitive\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/pjit.py\", line 1525, in _pjit_call_impl\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/pjit.py\", line 1508, in call_impl_cache_miss\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/pjit.py\", line 1462, in _pjit_call_impl_python\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/profiler.py\", line 335, in wrapper\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/interpreters/pxla.py\", line 1177, in __call__\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/interpreters/mlir.py\", line 2483, in _wrapped_callback\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/callback.py\", line 221, in _callback\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/callback.py\", line 82, in pure_callback_impl\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/callback.py\", line 64, in __call__\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/equinox/_errors.py\", line 89, in raises\\n_EquinoxRuntimeError: The linear solver returned non-finite (NaN or inf) output. This usually means that the\\noperator was not well-posed, and that the solver does not support this.\\n\\nIf you are trying solve a linear least-squares problem then you should pass\\n`solver=AutoLinearSolver(well_posed=False)`. By default `lineax.linear_solve`\\nassumes that the operator is square and nonsingular.\\n\\nIf you *were* expecting this solver to work with this operator, then it may be because:\\n\\n(a) the operator is singular, and your code has a bug; or\\n\\n(b) the operator was nearly singular (i.e. it had a high condition number:\\n    `jnp.linalg.cond(operator.as_matrix())` is large), and the solver suffered from\\n    numerical instability issues; or\\n\\n(c) the operator is declared to exhibit a certain property (e.g. positive definiteness)\\n    that is does not actually satisfy.\\n\\n\\n--------------------\\nAn error occurred during the runtime of your JAX program! Unfortunately you do not appear to be using `equinox.filter_jit` (perhaps you are using `jax.jit` instead?) and so further information about the error cannot be displayed. (Probably you are seeing a very large but uninformative error message right now.) Please wrap your program with `equinox.filter_jit`.\\n--------------------\\n')",
+        "forward_finite": false,
+        "jacobian_finite": false,
+        "path": "frozen_background_abundance_eta_tau",
+        "point_id": "corner_m0p5_m1_m1",
+        "silent_nonfinite_count": 0,
+        "status": "failed"
+      },
+      {
+        "error": "TypeError(\"can't apply forward-mode autodiff (jvp) to a custom_vjp function.\")",
+        "forward_finite": false,
+        "jacobian_finite": false,
+        "path": "frozen_background_abundance_eta_tau",
+        "point_id": "corner_m0p5_m1_p1",
+        "silent_nonfinite_count": 0,
+        "status": "failed"
+      },
+      {
+        "error": "XlaRuntimeError('INTERNAL: Generated function failed: CpuCallback error: Traceback (most recent call last):\\n  File \"/root/autodl-tmp/projects/uncertainty/repo/scripts/linx_gradient_stability_scan.py\", line 858, in <module>\\n  File \"/root/autodl-tmp/projects/uncertainty/repo/scripts/linx_gradient_stability_scan.py\", line 713, in main\\n  File \"/root/autodl-tmp/projects/uncertainty/repo/scripts/linx_gradient_stability_scan.py\", line 396, in _run_point\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/traceback_util.py\", line 179, in reraise_with_filtered_traceback\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/pjit.py\", line 304, in cache_miss\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/pjit.py\", line 181, in _python_pjit_helper\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/core.py\", line 2789, in bind\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/core.py\", line 391, in bind_with_trace\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/core.py\", line 879, in process_primitive\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/pjit.py\", line 1525, in _pjit_call_impl\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/pjit.py\", line 1508, in call_impl_cache_miss\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/pjit.py\", line 1462, in _pjit_call_impl_python\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/profiler.py\", line 335, in wrapper\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/interpreters/pxla.py\", line 1177, in __call__\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/interpreters/mlir.py\", line 2483, in _wrapped_callback\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/callback.py\", line 221, in _callback\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/callback.py\", line 82, in pure_callback_impl\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/callback.py\", line 64, in __call__\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/equinox/_errors.py\", line 89, in raises\\n_EquinoxRuntimeError: The linear solver returned non-finite (NaN or inf) output. This usually means that the\\noperator was not well-posed, and that the solver does not support this.\\n\\nIf you are trying solve a linear least-squares problem then you should pass\\n`solver=AutoLinearSolver(well_posed=False)`. By default `lineax.linear_solve`\\nassumes that the operator is square and nonsingular.\\n\\nIf you *were* expecting this solver to work with this operator, then it may be because:\\n\\n(a) the operator is singular, and your code has a bug; or\\n\\n(b) the operator was nearly singular (i.e. it had a high condition number:\\n    `jnp.linalg.cond(operator.as_matrix())` is large), and the solver suffered from\\n    numerical instability issues; or\\n\\n(c) the operator is declared to exhibit a certain property (e.g. positive definiteness)\\n    that is does not actually satisfy.\\n\\n\\n--------------------\\nAn error occurred during the runtime of your JAX program! Unfortunately you do not appear to be using `equinox.filter_jit` (perhaps you are using `jax.jit` instead?) and so further information about the error cannot be displayed. (Probably you are seeing a very large but uninformative error message right now.) Please wrap your program with `equinox.filter_jit`.\\n--------------------\\n')",
+        "forward_finite": false,
+        "jacobian_finite": false,
+        "path": "frozen_background_abundance_eta_tau",
+        "point_id": "corner_m0p5_p1_m1",
+        "silent_nonfinite_count": 0,
+        "status": "failed"
+      },
+      {
+        "error": "TypeError(\"can't apply forward-mode autodiff (jvp) to a custom_vjp function.\")",
+        "forward_finite": false,
+        "jacobian_finite": false,
+        "path": "frozen_background_abundance_eta_tau",
+        "point_id": "corner_m0p5_p1_p1",
+        "silent_nonfinite_count": 0,
+        "status": "failed"
+      },
+      {
+        "error": "TypeError(\"can't apply forward-mode autodiff (jvp) to a custom_vjp function.\")",
+        "forward_finite": false,
+        "jacobian_finite": false,
+        "path": "frozen_background_abundance_eta_tau",
+        "point_id": "corner_p0p5_m1_m1",
+        "silent_nonfinite_count": 0,
+        "status": "failed"
+      },
+      {
+        "error": "TypeError(\"can't apply forward-mode autodiff (jvp) to a custom_vjp function.\")",
+        "forward_finite": false,
+        "jacobian_finite": false,
+        "path": "frozen_background_abundance_eta_tau",
+        "point_id": "corner_p0p5_m1_p1",
+        "silent_nonfinite_count": 0,
+        "status": "failed"
+      },
+      {
+        "error": "TypeError(\"can't apply forward-mode autodiff (jvp) to a custom_vjp function.\")",
+        "forward_finite": false,
+        "jacobian_finite": false,
+        "path": "frozen_background_abundance_eta_tau",
+        "point_id": "corner_p0p5_p1_m1",
+        "silent_nonfinite_count": 0,
+        "status": "failed"
+      },
+      {
+        "error": "TypeError(\"can't apply forward-mode autodiff (jvp) to a custom_vjp function.\")",
+        "forward_finite": false,
+        "jacobian_finite": false,
+        "path": "frozen_background_abundance_eta_tau",
+        "point_id": "corner_p0p5_p1_p1",
+        "silent_nonfinite_count": 0,
+        "status": "failed"
+      }
+    ],
+    "full_end_to_end_three_coordinate_jacobian": [
+      {
+        "error": "FloatingPointError('jacrev Jacobian contains non-finite entries at [[0, 0], [1, 0]]')",
+        "forward_finite": false,
+        "jacobian_finite": false,
+        "path": "full_end_to_end_three_coordinate_jacobian",
+        "point_id": "fiducial",
+        "silent_nonfinite_count": 0,
+        "status": "failed"
+      },
+      {
+        "error": "FloatingPointError('jacrev Jacobian contains non-finite entries at [[0, 0], [1, 0]]')",
+        "forward_finite": false,
+        "jacobian_finite": false,
+        "path": "full_end_to_end_three_coordinate_jacobian",
+        "point_id": "axis_delta_neff_m0p5",
+        "silent_nonfinite_count": 0,
+        "status": "failed"
+      },
+      {
+        "error": "XlaRuntimeError('INTERNAL: Generated function failed: CpuCallback error: Traceback (most recent call last):\\n  File \"/root/autodl-tmp/projects/uncertainty/repo/scripts/linx_gradient_stability_scan.py\", line 858, in <module>\\n  File \"/root/autodl-tmp/projects/uncertainty/repo/scripts/linx_gradient_stability_scan.py\", line 713, in main\\n  File \"/root/autodl-tmp/projects/uncertainty/repo/scripts/linx_gradient_stability_scan.py\", line 396, in _run_point\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/traceback_util.py\", line 179, in reraise_with_filtered_traceback\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/pjit.py\", line 304, in cache_miss\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/pjit.py\", line 181, in _python_pjit_helper\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/core.py\", line 2789, in bind\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/core.py\", line 391, in bind_with_trace\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/core.py\", line 879, in process_primitive\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/pjit.py\", line 1525, in _pjit_call_impl\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/pjit.py\", line 1508, in call_impl_cache_miss\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/pjit.py\", line 1462, in _pjit_call_impl_python\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/profiler.py\", line 335, in wrapper\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/interpreters/pxla.py\", line 1177, in __call__\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/interpreters/mlir.py\", line 2483, in _wrapped_callback\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/callback.py\", line 221, in _callback\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/callback.py\", line 82, in pure_callback_impl\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/callback.py\", line 64, in __call__\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/equinox/_errors.py\", line 89, in raises\\n_EquinoxRuntimeError: The linear solver returned non-finite (NaN or inf) output. This usually means that the\\noperator was not well-posed, and that the solver does not support this.\\n\\nIf you are trying solve a linear least-squares problem then you should pass\\n`solver=AutoLinearSolver(well_posed=False)`. By default `lineax.linear_solve`\\nassumes that the operator is square and nonsingular.\\n\\nIf you *were* expecting this solver to work with this operator, then it may be because:\\n\\n(a) the operator is singular, and your code has a bug; or\\n\\n(b) the operator was nearly singular (i.e. it had a high condition number:\\n    `jnp.linalg.cond(operator.as_matrix())` is large), and the solver suffered from\\n    numerical instability issues; or\\n\\n(c) the operator is declared to exhibit a certain property (e.g. positive definiteness)\\n    that is does not actually satisfy.\\n\\n\\n--------------------\\nAn error occurred during the runtime of your JAX program! Unfortunately you do not appear to be using `equinox.filter_jit` (perhaps you are using `jax.jit` instead?) and so further information about the error cannot be displayed. (Probably you are seeing a very large but uninformative error message right now.) Please wrap your program with `equinox.filter_jit`.\\n--------------------\\n')",
+        "forward_finite": false,
+        "jacobian_finite": false,
+        "path": "full_end_to_end_three_coordinate_jacobian",
+        "point_id": "axis_delta_neff_p0p5",
+        "silent_nonfinite_count": 0,
+        "status": "failed"
+      },
+      {
+        "error": "FloatingPointError('jacrev Jacobian contains non-finite entries at [[0, 0], [1, 0]]')",
+        "forward_finite": false,
+        "jacobian_finite": false,
+        "path": "full_end_to_end_three_coordinate_jacobian",
+        "point_id": "axis_omega_b_h2_m1",
+        "silent_nonfinite_count": 0,
+        "status": "failed"
+      },
+      {
+        "error": "FloatingPointError('jacrev Jacobian contains non-finite entries at [[0, 0], [1, 0]]')",
+        "forward_finite": false,
+        "jacobian_finite": false,
+        "path": "full_end_to_end_three_coordinate_jacobian",
+        "point_id": "axis_omega_b_h2_p1",
+        "silent_nonfinite_count": 0,
+        "status": "failed"
+      },
+      {
+        "error": "FloatingPointError('jacrev Jacobian contains non-finite entries at [[0, 0], [1, 0]]')",
+        "forward_finite": false,
+        "jacobian_finite": false,
+        "path": "full_end_to_end_three_coordinate_jacobian",
+        "point_id": "axis_tau_n_seconds_m1",
+        "silent_nonfinite_count": 0,
+        "status": "failed"
+      },
+      {
+        "error": "FloatingPointError('jacrev Jacobian contains non-finite entries at [[0, 0], [1, 0]]')",
+        "forward_finite": false,
+        "jacobian_finite": false,
+        "path": "full_end_to_end_three_coordinate_jacobian",
+        "point_id": "axis_tau_n_seconds_p1",
+        "silent_nonfinite_count": 0,
+        "status": "failed"
+      },
+      {
+        "error": "XlaRuntimeError('INTERNAL: Generated function failed: CpuCallback error: Traceback (most recent call last):\\n  File \"/root/autodl-tmp/projects/uncertainty/repo/scripts/linx_gradient_stability_scan.py\", line 858, in <module>\\n  File \"/root/autodl-tmp/projects/uncertainty/repo/scripts/linx_gradient_stability_scan.py\", line 713, in main\\n  File \"/root/autodl-tmp/projects/uncertainty/repo/scripts/linx_gradient_stability_scan.py\", line 396, in _run_point\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/traceback_util.py\", line 179, in reraise_with_filtered_traceback\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/pjit.py\", line 304, in cache_miss\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/pjit.py\", line 181, in _python_pjit_helper\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/core.py\", line 2789, in bind\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/core.py\", line 391, in bind_with_trace\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/core.py\", line 879, in process_primitive\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/pjit.py\", line 1525, in _pjit_call_impl\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/pjit.py\", line 1508, in call_impl_cache_miss\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/pjit.py\", line 1462, in _pjit_call_impl_python\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/profiler.py\", line 335, in wrapper\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/interpreters/pxla.py\", line 1177, in __call__\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/interpreters/mlir.py\", line 2483, in _wrapped_callback\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/callback.py\", line 221, in _callback\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/callback.py\", line 82, in pure_callback_impl\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/callback.py\", line 64, in __call__\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/equinox/_errors.py\", line 89, in raises\\n_EquinoxRuntimeError: The linear solver returned non-finite (NaN or inf) output. This usually means that the\\noperator was not well-posed, and that the solver does not support this.\\n\\nIf you are trying solve a linear least-squares problem then you should pass\\n`solver=AutoLinearSolver(well_posed=False)`. By default `lineax.linear_solve`\\nassumes that the operator is square and nonsingular.\\n\\nIf you *were* expecting this solver to work with this operator, then it may be because:\\n\\n(a) the operator is singular, and your code has a bug; or\\n\\n(b) the operator was nearly singular (i.e. it had a high condition number:\\n    `jnp.linalg.cond(operator.as_matrix())` is large), and the solver suffered from\\n    numerical instability issues; or\\n\\n(c) the operator is declared to exhibit a certain property (e.g. positive definiteness)\\n    that is does not actually satisfy.\\n\\n\\n--------------------\\nAn error occurred during the runtime of your JAX program! Unfortunately you do not appear to be using `equinox.filter_jit` (perhaps you are using `jax.jit` instead?) and so further information about the error cannot be displayed. (Probably you are seeing a very large but uninformative error message right now.) Please wrap your program with `equinox.filter_jit`.\\n--------------------\\n')",
+        "forward_finite": false,
+        "jacobian_finite": false,
+        "path": "full_end_to_end_three_coordinate_jacobian",
+        "point_id": "corner_m0p5_m1_m1",
+        "silent_nonfinite_count": 0,
+        "status": "failed"
+      },
+      {
+        "error": "FloatingPointError('jacrev Jacobian contains non-finite entries at [[0, 0], [1, 0]]')",
+        "forward_finite": false,
+        "jacobian_finite": false,
+        "path": "full_end_to_end_three_coordinate_jacobian",
+        "point_id": "corner_m0p5_m1_p1",
+        "silent_nonfinite_count": 0,
+        "status": "failed"
+      },
+      {
+        "error": "XlaRuntimeError('INTERNAL: Generated function failed: CpuCallback error: Traceback (most recent call last):\\n  File \"/root/autodl-tmp/projects/uncertainty/repo/scripts/linx_gradient_stability_scan.py\", line 858, in <module>\\n  File \"/root/autodl-tmp/projects/uncertainty/repo/scripts/linx_gradient_stability_scan.py\", line 713, in main\\n  File \"/root/autodl-tmp/projects/uncertainty/repo/scripts/linx_gradient_stability_scan.py\", line 396, in _run_point\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/traceback_util.py\", line 179, in reraise_with_filtered_traceback\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/pjit.py\", line 304, in cache_miss\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/pjit.py\", line 181, in _python_pjit_helper\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/core.py\", line 2789, in bind\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/core.py\", line 391, in bind_with_trace\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/core.py\", line 879, in process_primitive\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/pjit.py\", line 1525, in _pjit_call_impl\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/pjit.py\", line 1508, in call_impl_cache_miss\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/pjit.py\", line 1462, in _pjit_call_impl_python\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/profiler.py\", line 335, in wrapper\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/interpreters/pxla.py\", line 1177, in __call__\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/interpreters/mlir.py\", line 2483, in _wrapped_callback\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/callback.py\", line 221, in _callback\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/callback.py\", line 82, in pure_callback_impl\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/callback.py\", line 64, in __call__\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/equinox/_errors.py\", line 89, in raises\\n_EquinoxRuntimeError: The linear solver returned non-finite (NaN or inf) output. This usually means that the\\noperator was not well-posed, and that the solver does not support this.\\n\\nIf you are trying solve a linear least-squares problem then you should pass\\n`solver=AutoLinearSolver(well_posed=False)`. By default `lineax.linear_solve`\\nassumes that the operator is square and nonsingular.\\n\\nIf you *were* expecting this solver to work with this operator, then it may be because:\\n\\n(a) the operator is singular, and your code has a bug; or\\n\\n(b) the operator was nearly singular (i.e. it had a high condition number:\\n    `jnp.linalg.cond(operator.as_matrix())` is large), and the solver suffered from\\n    numerical instability issues; or\\n\\n(c) the operator is declared to exhibit a certain property (e.g. positive definiteness)\\n    that is does not actually satisfy.\\n\\n\\n--------------------\\nAn error occurred during the runtime of your JAX program! Unfortunately you do not appear to be using `equinox.filter_jit` (perhaps you are using `jax.jit` instead?) and so further information about the error cannot be displayed. (Probably you are seeing a very large but uninformative error message right now.) Please wrap your program with `equinox.filter_jit`.\\n--------------------\\n')",
+        "forward_finite": false,
+        "jacobian_finite": false,
+        "path": "full_end_to_end_three_coordinate_jacobian",
+        "point_id": "corner_m0p5_p1_m1",
+        "silent_nonfinite_count": 0,
+        "status": "failed"
+      },
+      {
+        "error": "FloatingPointError('jacrev Jacobian contains non-finite entries at [[0, 0], [1, 0]]')",
+        "forward_finite": false,
+        "jacobian_finite": false,
+        "path": "full_end_to_end_three_coordinate_jacobian",
+        "point_id": "corner_m0p5_p1_p1",
+        "silent_nonfinite_count": 0,
+        "status": "failed"
+      },
+      {
+        "error": "XlaRuntimeError('INTERNAL: Generated function failed: CpuCallback error: Traceback (most recent call last):\\n  File \"/root/autodl-tmp/projects/uncertainty/repo/scripts/linx_gradient_stability_scan.py\", line 858, in <module>\\n  File \"/root/autodl-tmp/projects/uncertainty/repo/scripts/linx_gradient_stability_scan.py\", line 713, in main\\n  File \"/root/autodl-tmp/projects/uncertainty/repo/scripts/linx_gradient_stability_scan.py\", line 396, in _run_point\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/traceback_util.py\", line 179, in reraise_with_filtered_traceback\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/pjit.py\", line 304, in cache_miss\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/pjit.py\", line 181, in _python_pjit_helper\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/core.py\", line 2789, in bind\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/core.py\", line 391, in bind_with_trace\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/core.py\", line 879, in process_primitive\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/pjit.py\", line 1525, in _pjit_call_impl\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/pjit.py\", line 1508, in call_impl_cache_miss\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/pjit.py\", line 1462, in _pjit_call_impl_python\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/profiler.py\", line 335, in wrapper\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/interpreters/pxla.py\", line 1177, in __call__\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/interpreters/mlir.py\", line 2483, in _wrapped_callback\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/callback.py\", line 221, in _callback\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/callback.py\", line 82, in pure_callback_impl\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/callback.py\", line 64, in __call__\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/equinox/_errors.py\", line 89, in raises\\n_EquinoxRuntimeError: The linear solver returned non-finite (NaN or inf) output. This usually means that the\\noperator was not well-posed, and that the solver does not support this.\\n\\nIf you are trying solve a linear least-squares problem then you should pass\\n`solver=AutoLinearSolver(well_posed=False)`. By default `lineax.linear_solve`\\nassumes that the operator is square and nonsingular.\\n\\nIf you *were* expecting this solver to work with this operator, then it may be because:\\n\\n(a) the operator is singular, and your code has a bug; or\\n\\n(b) the operator was nearly singular (i.e. it had a high condition number:\\n    `jnp.linalg.cond(operator.as_matrix())` is large), and the solver suffered from\\n    numerical instability issues; or\\n\\n(c) the operator is declared to exhibit a certain property (e.g. positive definiteness)\\n    that is does not actually satisfy.\\n\\n\\n--------------------\\nAn error occurred during the runtime of your JAX program! Unfortunately you do not appear to be using `equinox.filter_jit` (perhaps you are using `jax.jit` instead?) and so further information about the error cannot be displayed. (Probably you are seeing a very large but uninformative error message right now.) Please wrap your program with `equinox.filter_jit`.\\n--------------------\\n')",
+        "forward_finite": false,
+        "jacobian_finite": false,
+        "path": "full_end_to_end_three_coordinate_jacobian",
+        "point_id": "corner_p0p5_m1_m1",
+        "silent_nonfinite_count": 0,
+        "status": "failed"
+      },
+      {
+        "error": "XlaRuntimeError('INTERNAL: Generated function failed: CpuCallback error: Traceback (most recent call last):\\n  File \"/root/autodl-tmp/projects/uncertainty/repo/scripts/linx_gradient_stability_scan.py\", line 858, in <module>\\n  File \"/root/autodl-tmp/projects/uncertainty/repo/scripts/linx_gradient_stability_scan.py\", line 713, in main\\n  File \"/root/autodl-tmp/projects/uncertainty/repo/scripts/linx_gradient_stability_scan.py\", line 396, in _run_point\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/traceback_util.py\", line 179, in reraise_with_filtered_traceback\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/pjit.py\", line 304, in cache_miss\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/pjit.py\", line 181, in _python_pjit_helper\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/core.py\", line 2789, in bind\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/core.py\", line 391, in bind_with_trace\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/core.py\", line 879, in process_primitive\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/pjit.py\", line 1525, in _pjit_call_impl\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/pjit.py\", line 1508, in call_impl_cache_miss\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/pjit.py\", line 1462, in _pjit_call_impl_python\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/profiler.py\", line 335, in wrapper\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/interpreters/pxla.py\", line 1177, in __call__\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/interpreters/mlir.py\", line 2483, in _wrapped_callback\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/callback.py\", line 221, in _callback\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/callback.py\", line 82, in pure_callback_impl\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/callback.py\", line 64, in __call__\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/equinox/_errors.py\", line 89, in raises\\n_EquinoxRuntimeError: The linear solver returned non-finite (NaN or inf) output. This usually means that the\\noperator was not well-posed, and that the solver does not support this.\\n\\nIf you are trying solve a linear least-squares problem then you should pass\\n`solver=AutoLinearSolver(well_posed=False)`. By default `lineax.linear_solve`\\nassumes that the operator is square and nonsingular.\\n\\nIf you *were* expecting this solver to work with this operator, then it may be because:\\n\\n(a) the operator is singular, and your code has a bug; or\\n\\n(b) the operator was nearly singular (i.e. it had a high condition number:\\n    `jnp.linalg.cond(operator.as_matrix())` is large), and the solver suffered from\\n    numerical instability issues; or\\n\\n(c) the operator is declared to exhibit a certain property (e.g. positive definiteness)\\n    that is does not actually satisfy.\\n\\n\\n--------------------\\nAn error occurred during the runtime of your JAX program! Unfortunately you do not appear to be using `equinox.filter_jit` (perhaps you are using `jax.jit` instead?) and so further information about the error cannot be displayed. (Probably you are seeing a very large but uninformative error message right now.) Please wrap your program with `equinox.filter_jit`.\\n--------------------\\n')",
+        "forward_finite": false,
+        "jacobian_finite": false,
+        "path": "full_end_to_end_three_coordinate_jacobian",
+        "point_id": "corner_p0p5_m1_p1",
+        "silent_nonfinite_count": 0,
+        "status": "failed"
+      },
+      {
+        "error": "XlaRuntimeError('INTERNAL: Generated function failed: CpuCallback error: Traceback (most recent call last):\\n  File \"/root/autodl-tmp/projects/uncertainty/repo/scripts/linx_gradient_stability_scan.py\", line 858, in <module>\\n  File \"/root/autodl-tmp/projects/uncertainty/repo/scripts/linx_gradient_stability_scan.py\", line 713, in main\\n  File \"/root/autodl-tmp/projects/uncertainty/repo/scripts/linx_gradient_stability_scan.py\", line 396, in _run_point\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/traceback_util.py\", line 179, in reraise_with_filtered_traceback\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/pjit.py\", line 304, in cache_miss\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/pjit.py\", line 181, in _python_pjit_helper\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/core.py\", line 2789, in bind\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/core.py\", line 391, in bind_with_trace\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/core.py\", line 879, in process_primitive\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/pjit.py\", line 1525, in _pjit_call_impl\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/pjit.py\", line 1508, in call_impl_cache_miss\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/pjit.py\", line 1462, in _pjit_call_impl_python\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/profiler.py\", line 335, in wrapper\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/interpreters/pxla.py\", line 1177, in __call__\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/interpreters/mlir.py\", line 2483, in _wrapped_callback\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/callback.py\", line 221, in _callback\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/callback.py\", line 82, in pure_callback_impl\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/callback.py\", line 64, in __call__\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/equinox/_errors.py\", line 89, in raises\\n_EquinoxRuntimeError: The linear solver returned non-finite (NaN or inf) output. This usually means that the\\noperator was not well-posed, and that the solver does not support this.\\n\\nIf you are trying solve a linear least-squares problem then you should pass\\n`solver=AutoLinearSolver(well_posed=False)`. By default `lineax.linear_solve`\\nassumes that the operator is square and nonsingular.\\n\\nIf you *were* expecting this solver to work with this operator, then it may be because:\\n\\n(a) the operator is singular, and your code has a bug; or\\n\\n(b) the operator was nearly singular (i.e. it had a high condition number:\\n    `jnp.linalg.cond(operator.as_matrix())` is large), and the solver suffered from\\n    numerical instability issues; or\\n\\n(c) the operator is declared to exhibit a certain property (e.g. positive definiteness)\\n    that is does not actually satisfy.\\n\\n\\n--------------------\\nAn error occurred during the runtime of your JAX program! Unfortunately you do not appear to be using `equinox.filter_jit` (perhaps you are using `jax.jit` instead?) and so further information about the error cannot be displayed. (Probably you are seeing a very large but uninformative error message right now.) Please wrap your program with `equinox.filter_jit`.\\n--------------------\\n')",
+        "forward_finite": false,
+        "jacobian_finite": false,
+        "path": "full_end_to_end_three_coordinate_jacobian",
+        "point_id": "corner_p0p5_p1_m1",
+        "silent_nonfinite_count": 0,
+        "status": "failed"
+      },
+      {
+        "error": "XlaRuntimeError('INTERNAL: Generated function failed: CpuCallback error: Traceback (most recent call last):\\n  File \"/root/autodl-tmp/projects/uncertainty/repo/scripts/linx_gradient_stability_scan.py\", line 858, in <module>\\n  File \"/root/autodl-tmp/projects/uncertainty/repo/scripts/linx_gradient_stability_scan.py\", line 713, in main\\n  File \"/root/autodl-tmp/projects/uncertainty/repo/scripts/linx_gradient_stability_scan.py\", line 396, in _run_point\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/traceback_util.py\", line 179, in reraise_with_filtered_traceback\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/pjit.py\", line 304, in cache_miss\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/pjit.py\", line 181, in _python_pjit_helper\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/core.py\", line 2789, in bind\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/core.py\", line 391, in bind_with_trace\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/core.py\", line 879, in process_primitive\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/pjit.py\", line 1525, in _pjit_call_impl\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/pjit.py\", line 1508, in call_impl_cache_miss\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/pjit.py\", line 1462, in _pjit_call_impl_python\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/profiler.py\", line 335, in wrapper\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/interpreters/pxla.py\", line 1177, in __call__\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/interpreters/mlir.py\", line 2483, in _wrapped_callback\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/callback.py\", line 221, in _callback\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/callback.py\", line 82, in pure_callback_impl\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/callback.py\", line 64, in __call__\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/equinox/_errors.py\", line 89, in raises\\n_EquinoxRuntimeError: The linear solver returned non-finite (NaN or inf) output. This usually means that the\\noperator was not well-posed, and that the solver does not support this.\\n\\nIf you are trying solve a linear least-squares problem then you should pass\\n`solver=AutoLinearSolver(well_posed=False)`. By default `lineax.linear_solve`\\nassumes that the operator is square and nonsingular.\\n\\nIf you *were* expecting this solver to work with this operator, then it may be because:\\n\\n(a) the operator is singular, and your code has a bug; or\\n\\n(b) the operator was nearly singular (i.e. it had a high condition number:\\n    `jnp.linalg.cond(operator.as_matrix())` is large), and the solver suffered from\\n    numerical instability issues; or\\n\\n(c) the operator is declared to exhibit a certain property (e.g. positive definiteness)\\n    that is does not actually satisfy.\\n\\n\\n--------------------\\nAn error occurred during the runtime of your JAX program! Unfortunately you do not appear to be using `equinox.filter_jit` (perhaps you are using `jax.jit` instead?) and so further information about the error cannot be displayed. (Probably you are seeing a very large but uninformative error message right now.) Please wrap your program with `equinox.filter_jit`.\\n--------------------\\n')",
+        "forward_finite": false,
+        "jacobian_finite": false,
+        "path": "full_end_to_end_three_coordinate_jacobian",
+        "point_id": "corner_p0p5_p1_p1",
+        "silent_nonfinite_count": 0,
+        "status": "failed"
+      }
+    ]
+  },
+  "schema_version": 1
+}

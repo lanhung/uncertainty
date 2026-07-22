@@ -1,0 +1,724 @@
+{
+  "audit_id": "ABCMB-FULL-COMPONENT-AUDIT-v1",
+  "components": {
+    "gradient": {
+      "reason": "gradient stage is not implemented in this spectra-first harness",
+      "status": "not_run"
+    },
+    "hmc_nuts": {
+      "reason": "the frozen exact environment has no registered likelihood or sampler",
+      "status": "not_run"
+    },
+    "spectra": {
+      "reason": "selected frozen spectra cases",
+      "status": "evaluated"
+    },
+    "synthetic_recovery": {
+      "reason": "Asimov recovery stage awaits accepted spectra and Fisher evidence",
+      "status": "not_run"
+    },
+    "toy_fisher": {
+      "reason": "toy Fisher stage awaits accepted gradient evidence",
+      "status": "not_run"
+    }
+  },
+  "config_sha256": "7770c3c2ffc5810a4bb9d044e16a53cecc8e7588e381075dc9dd029b09fa72a0",
+  "dry_run_evidence": null,
+  "finished_at_utc": "2026-07-22T20:38:04.769794+00:00",
+  "preflight": {
+    "bundled_linx_tree": "59b3ab7b3ada7d7ff6484920e0e29291cf4a084e",
+    "environment_lock": "/root/autodl-tmp/projects/uncertainty/repo/environments/abcmb-v0.3.1/uv.lock",
+    "environment_lock_sha256": "38ca8a96022b50ddaabf95a820d60142db71758fc7080be2c7599c822c21ebdd",
+    "package": {
+      "direct_url": "https://github.com/TonyZhou729/ABCMB.git",
+      "distribution_version": "0.3.1",
+      "installed_commit": "5eabbab4ed7e53f264e16024743d1ba517845c37"
+    },
+    "platform": "Linux-5.15.0-78-generic-x86_64-with-glibc2.35",
+    "python": "3.11.15 (main, Jun 23 2026, 15:19:43) [Clang 22.1.3 ]",
+    "source_revision": "5eabbab4ed7e53f264e16024743d1ba517845c37",
+    "status": "passed"
+  },
+  "prohibited_current_claims": [
+    "formal_FISH-01_or_G0_to_G3_credit",
+    "real_data_or_matched_posterior_recovery",
+    "HMC_or_NUTS_acceptance",
+    "nuclear_rate_gradient_claim",
+    "GPU_performance_claim"
+  ],
+  "run_id": "run-20260722T201837Z-3088628b",
+  "scientific_boundary": "Passing accepts only exact-source ABCMB component integrity, selected gradients, a toy Fisher interface and a one-dimensional Asimov recovery. The exact environment has no registered real likelihood/covariance or HMC/NUTS sampler; those claims remain unavailable.",
+  "source_revision": "5eabbab4ed7e53f264e16024743d1ba517845c37",
+  "spectra": [
+    {
+      "backend": "cpu",
+      "case": {
+        "bbn_type": "Table",
+        "id": "S0_quick_default",
+        "lensing": false,
+        "lmax": 500
+      },
+      "case_id": "S0_quick_default",
+      "cold_seconds": 73.5229148901999,
+      "devices": [
+        "TFRT_CPU_0"
+      ],
+      "evaluation": {
+        "accepted": true,
+        "all_finite": true,
+        "drift_by_repeat": [
+          {
+            "ClEE": 0.0,
+            "ClTE": 0.0,
+            "ClTT": 0.0,
+            "Neff": 0.0,
+            "Pk": 0.0,
+            "YHe": 0.0
+          },
+          {
+            "ClEE": 0.0,
+            "ClTE": 0.0,
+            "ClTT": 0.0,
+            "Neff": 0.0,
+            "Pk": 0.0,
+            "YHe": 0.0
+          },
+          {
+            "ClEE": 0.0,
+            "ClTE": 0.0,
+            "ClTT": 0.0,
+            "Neff": 0.0,
+            "Pk": 0.0,
+            "YHe": 0.0
+          }
+        ],
+        "expected_shapes": true,
+        "maximum_relative_repeat_drift": 0.0,
+        "negative_noise_accepted": true,
+        "negative_noise_fraction_of_maximum": {
+          "ClEE": 0.0,
+          "ClTT": 0.0,
+          "Pk": 0.0
+        },
+        "repeat_drift_accepted": true,
+        "summaries": {
+          "ClEE": {
+            "all_finite": true,
+            "dtype": "float64",
+            "finite_count": 499,
+            "maximum": 4.384199025533859e-15,
+            "maximum_absolute": 4.384199025533859e-15,
+            "minimum": 8.26841105391581e-18,
+            "shape": [
+              499
+            ],
+            "size": 499
+          },
+          "ClTE": {
+            "all_finite": true,
+            "dtype": "float64",
+            "finite_count": 499,
+            "maximum": 3.722052236553839e-13,
+            "maximum_absolute": 3.722052236553839e-13,
+            "minimum": -2.086349499634008e-15,
+            "shape": [
+              499
+            ],
+            "size": 499
+          },
+          "ClTT": {
+            "all_finite": true,
+            "dtype": "float64",
+            "finite_count": 499,
+            "maximum": 1.4497405461361547e-10,
+            "maximum_absolute": 1.4497405461361547e-10,
+            "minimum": 7.058684342170988e-15,
+            "shape": [
+              499
+            ],
+            "size": 499
+          },
+          "Neff": {
+            "all_finite": true,
+            "dtype": "float64",
+            "finite_count": 1,
+            "maximum": 3.04399980333348,
+            "maximum_absolute": 3.04399980333348,
+            "minimum": 3.04399980333348,
+            "shape": [],
+            "size": 1
+          },
+          "Pk": {
+            "all_finite": true,
+            "dtype": "float64",
+            "finite_count": 481,
+            "maximum": 81270.41618099756,
+            "maximum_absolute": 81270.41618099756,
+            "minimum": 157.35060998050503,
+            "shape": [
+              481
+            ],
+            "size": 481
+          },
+          "YHe": {
+            "all_finite": true,
+            "dtype": "float64",
+            "finite_count": 1,
+            "maximum": 0.24527006013956051,
+            "maximum_absolute": 0.24527006013956051,
+            "minimum": 0.24527006013956051,
+            "shape": [],
+            "size": 1
+          }
+        }
+      },
+      "jax_version": "0.8.1",
+      "jax_x64": true,
+      "spectra_archive": "S0_quick_default_spectra.npz",
+      "spectra_archive_sha256": "8aadf0874bf6ef309c19b4c334cce883a4cad59038ac2d6da09a180eb7a54d96",
+      "status": "accepted",
+      "warm_seconds": [
+        35.46227531135082,
+        35.137266835197806,
+        35.61336147598922
+      ]
+    },
+    {
+      "backend": "cpu",
+      "case": {
+        "bbn_type": "Table",
+        "id": "S1_table_unlensed",
+        "lensing": false,
+        "lmax": 2500
+      },
+      "case_id": "S1_table_unlensed",
+      "cold_seconds": 64.42680119909346,
+      "devices": [
+        "TFRT_CPU_0"
+      ],
+      "evaluation": {
+        "accepted": true,
+        "all_finite": true,
+        "drift_by_repeat": [
+          {
+            "ClEE": 0.0,
+            "ClTE": 0.0,
+            "ClTT": 0.0,
+            "Neff": 0.0,
+            "Pk": 0.0,
+            "YHe": 0.0
+          },
+          {
+            "ClEE": 0.0,
+            "ClTE": 0.0,
+            "ClTT": 0.0,
+            "Neff": 0.0,
+            "Pk": 0.0,
+            "YHe": 0.0
+          },
+          {
+            "ClEE": 0.0,
+            "ClTE": 0.0,
+            "ClTT": 0.0,
+            "Neff": 0.0,
+            "Pk": 0.0,
+            "YHe": 0.0
+          }
+        ],
+        "expected_shapes": true,
+        "maximum_relative_repeat_drift": 0.0,
+        "negative_noise_accepted": true,
+        "negative_noise_fraction_of_maximum": {
+          "ClEE": 0.0,
+          "ClTT": 0.0,
+          "Pk": 0.0
+        },
+        "repeat_drift_accepted": true,
+        "summaries": {
+          "ClEE": {
+            "all_finite": true,
+            "dtype": "float64",
+            "finite_count": 2499,
+            "maximum": 4.384199025565944e-15,
+            "maximum_absolute": 4.384199025565944e-15,
+            "minimum": 3.1735123084407013e-19,
+            "shape": [
+              2499
+            ],
+            "size": 2499
+          },
+          "ClTE": {
+            "all_finite": true,
+            "dtype": "float64",
+            "finite_count": 2499,
+            "maximum": 3.722052252660682e-13,
+            "maximum_absolute": 3.722052252660682e-13,
+            "minimum": -2.0868458229839176e-15,
+            "shape": [
+              2499
+            ],
+            "size": 2499
+          },
+          "ClTT": {
+            "all_finite": true,
+            "dtype": "float64",
+            "finite_count": 2499,
+            "maximum": 1.4497511607609878e-10,
+            "maximum_absolute": 1.4497511607609878e-10,
+            "minimum": 9.871149058009445e-18,
+            "shape": [
+              2499
+            ],
+            "size": 2499
+          },
+          "Neff": {
+            "all_finite": true,
+            "dtype": "float64",
+            "finite_count": 1,
+            "maximum": 3.04399980333348,
+            "maximum_absolute": 3.04399980333348,
+            "minimum": 3.04399980333348,
+            "shape": [],
+            "size": 1
+          },
+          "Pk": {
+            "all_finite": true,
+            "dtype": "float64",
+            "finite_count": 547,
+            "maximum": 81270.41618099756,
+            "maximum_absolute": 81270.41618099756,
+            "minimum": 157.35060998050503,
+            "shape": [
+              547
+            ],
+            "size": 547
+          },
+          "YHe": {
+            "all_finite": true,
+            "dtype": "float64",
+            "finite_count": 1,
+            "maximum": 0.24527006013956051,
+            "maximum_absolute": 0.24527006013956051,
+            "minimum": 0.24527006013956051,
+            "shape": [],
+            "size": 1
+          }
+        }
+      },
+      "jax_version": "0.8.1",
+      "jax_x64": true,
+      "spectra_archive": "S1_table_unlensed_spectra.npz",
+      "spectra_archive_sha256": "585557d3451d85248ea55fc55d127ad71e00698720bd798acdd5a9454c6bd71a",
+      "status": "accepted",
+      "warm_seconds": [
+        49.89530826359987,
+        49.67321101948619,
+        49.291490353643894
+      ]
+    },
+    {
+      "backend": "cpu",
+      "case": {
+        "bbn_type": "Table",
+        "id": "S2_table_lensed",
+        "lensing": true,
+        "lmax": 2500
+      },
+      "case_id": "S2_table_lensed",
+      "cold_seconds": 71.96510314382613,
+      "devices": [
+        "TFRT_CPU_0"
+      ],
+      "evaluation": {
+        "accepted": true,
+        "all_finite": true,
+        "drift_by_repeat": [
+          {
+            "ClEE": 0.0,
+            "ClTE": 0.0,
+            "ClTT": 0.0,
+            "Neff": 0.0,
+            "Pk": 0.0,
+            "YHe": 0.0
+          },
+          {
+            "ClEE": 0.0,
+            "ClTE": 0.0,
+            "ClTT": 0.0,
+            "Neff": 0.0,
+            "Pk": 0.0,
+            "YHe": 0.0
+          },
+          {
+            "ClEE": 0.0,
+            "ClTE": 0.0,
+            "ClTT": 0.0,
+            "Neff": 0.0,
+            "Pk": 0.0,
+            "YHe": 0.0
+          }
+        ],
+        "expected_shapes": true,
+        "maximum_relative_repeat_drift": 0.0,
+        "negative_noise_accepted": true,
+        "negative_noise_fraction_of_maximum": {
+          "ClEE": 0.0,
+          "ClTT": 0.0,
+          "Pk": 0.0
+        },
+        "repeat_drift_accepted": true,
+        "summaries": {
+          "ClEE": {
+            "all_finite": true,
+            "dtype": "float64",
+            "finite_count": 2499,
+            "maximum": 4.384442248328069e-15,
+            "maximum_absolute": 4.384442248328069e-15,
+            "minimum": 3.842469898417796e-19,
+            "shape": [
+              2499
+            ],
+            "size": 2499
+          },
+          "ClTE": {
+            "all_finite": true,
+            "dtype": "float64",
+            "finite_count": 2499,
+            "maximum": 3.722048574288885e-13,
+            "maximum_absolute": 3.722048574288885e-13,
+            "minimum": -2.08397755217272e-15,
+            "shape": [
+              2499
+            ],
+            "size": 2499
+          },
+          "ClTT": {
+            "all_finite": true,
+            "dtype": "float64",
+            "finite_count": 2499,
+            "maximum": 1.4497559392197417e-10,
+            "maximum_absolute": 1.4497559392197417e-10,
+            "minimum": 1.0526954024102875e-17,
+            "shape": [
+              2499
+            ],
+            "size": 2499
+          },
+          "Neff": {
+            "all_finite": true,
+            "dtype": "float64",
+            "finite_count": 1,
+            "maximum": 3.04399980333348,
+            "maximum_absolute": 3.04399980333348,
+            "minimum": 3.04399980333348,
+            "shape": [],
+            "size": 1
+          },
+          "Pk": {
+            "all_finite": true,
+            "dtype": "float64",
+            "finite_count": 547,
+            "maximum": 81270.41618099756,
+            "maximum_absolute": 81270.41618099756,
+            "minimum": 157.35060998050503,
+            "shape": [
+              547
+            ],
+            "size": 547
+          },
+          "YHe": {
+            "all_finite": true,
+            "dtype": "float64",
+            "finite_count": 1,
+            "maximum": 0.24527006013956051,
+            "maximum_absolute": 0.24527006013956051,
+            "minimum": 0.24527006013956051,
+            "shape": [],
+            "size": 1
+          }
+        }
+      },
+      "jax_version": "0.8.1",
+      "jax_x64": true,
+      "spectra_archive": "S2_table_lensed_spectra.npz",
+      "spectra_archive_sha256": "aafb2aefdd9ba96214dbba3504dc1acae39f1978b6d88865cccfddaef7744e64",
+      "status": "accepted",
+      "warm_seconds": [
+        55.916462276130915,
+        55.62092767469585,
+        54.49317208305001
+      ]
+    },
+    {
+      "backend": "cpu",
+      "case": {
+        "bbn_type": "linx",
+        "id": "S3_linx_unlensed",
+        "lensing": false,
+        "linx_reaction_net": "key_PRIMAT_2023",
+        "lmax": 2500,
+        "nuclear_rates_q": "all_zero"
+      },
+      "case_id": "S3_linx_unlensed",
+      "cold_seconds": 109.40971013531089,
+      "devices": [
+        "TFRT_CPU_0"
+      ],
+      "evaluation": {
+        "accepted": true,
+        "all_finite": true,
+        "drift_by_repeat": [
+          {
+            "ClEE": 0.0,
+            "ClTE": 0.0,
+            "ClTT": 0.0,
+            "Neff": 0.0,
+            "Pk": 0.0,
+            "YHe": 0.0
+          },
+          {
+            "ClEE": 0.0,
+            "ClTE": 0.0,
+            "ClTT": 0.0,
+            "Neff": 0.0,
+            "Pk": 0.0,
+            "YHe": 0.0
+          },
+          {
+            "ClEE": 0.0,
+            "ClTE": 0.0,
+            "ClTT": 0.0,
+            "Neff": 0.0,
+            "Pk": 0.0,
+            "YHe": 0.0
+          }
+        ],
+        "expected_shapes": true,
+        "maximum_relative_repeat_drift": 0.0,
+        "negative_noise_accepted": true,
+        "negative_noise_fraction_of_maximum": {
+          "ClEE": 0.0,
+          "ClTT": 0.0,
+          "Pk": 0.0
+        },
+        "repeat_drift_accepted": true,
+        "summaries": {
+          "ClEE": {
+            "all_finite": true,
+            "dtype": "float64",
+            "finite_count": 2499,
+            "maximum": 4.382772420943658e-15,
+            "maximum_absolute": 4.382772420943658e-15,
+            "minimum": 3.1705526401496247e-19,
+            "shape": [
+              2499
+            ],
+            "size": 2499
+          },
+          "ClTE": {
+            "all_finite": true,
+            "dtype": "float64",
+            "finite_count": 2499,
+            "maximum": 3.721502759432867e-13,
+            "maximum_absolute": 3.721502759432867e-13,
+            "minimum": -2.0869551225420127e-15,
+            "shape": [
+              2499
+            ],
+            "size": 2499
+          },
+          "ClTT": {
+            "all_finite": true,
+            "dtype": "float64",
+            "finite_count": 2499,
+            "maximum": 1.4497650863954198e-10,
+            "maximum_absolute": 1.4497650863954198e-10,
+            "minimum": 9.864963005284269e-18,
+            "shape": [
+              2499
+            ],
+            "size": 2499
+          },
+          "Neff": {
+            "all_finite": true,
+            "dtype": "float64",
+            "finite_count": 1,
+            "maximum": 3.0443606111766113,
+            "maximum_absolute": 3.0443606111766113,
+            "minimum": 3.0443606111766113,
+            "shape": [],
+            "size": 1
+          },
+          "Pk": {
+            "all_finite": true,
+            "dtype": "float64",
+            "finite_count": 547,
+            "maximum": 81268.63712008191,
+            "maximum_absolute": 81268.63712008191,
+            "minimum": 157.35059019913427,
+            "shape": [
+              547
+            ],
+            "size": 547
+          },
+          "YHe": {
+            "all_finite": true,
+            "dtype": "float64",
+            "finite_count": 1,
+            "maximum": 0.24579005406845544,
+            "maximum_absolute": 0.24579005406845544,
+            "minimum": 0.24579005406845544,
+            "shape": [],
+            "size": 1
+          }
+        }
+      },
+      "jax_version": "0.8.1",
+      "jax_x64": true,
+      "spectra_archive": "S3_linx_unlensed_spectra.npz",
+      "spectra_archive_sha256": "d49327fcd5cce3d93a1c0730b717cfad32780348e784aa67368be560036d1618",
+      "status": "accepted",
+      "warm_seconds": [
+        50.221112705767155,
+        51.893739288672805,
+        55.59294143691659
+      ]
+    },
+    {
+      "backend": "cpu",
+      "case": {
+        "bbn_type": "linx",
+        "id": "S4_linx_lensed",
+        "lensing": true,
+        "linx_reaction_net": "key_PRIMAT_2023",
+        "lmax": 2500,
+        "nuclear_rates_q": "all_zero"
+      },
+      "case_id": "S4_linx_lensed",
+      "cold_seconds": 72.50985435582697,
+      "devices": [
+        "TFRT_CPU_0"
+      ],
+      "evaluation": {
+        "accepted": true,
+        "all_finite": true,
+        "drift_by_repeat": [
+          {
+            "ClEE": 0.0,
+            "ClTE": 0.0,
+            "ClTT": 0.0,
+            "Neff": 0.0,
+            "Pk": 0.0,
+            "YHe": 0.0
+          },
+          {
+            "ClEE": 0.0,
+            "ClTE": 0.0,
+            "ClTT": 0.0,
+            "Neff": 0.0,
+            "Pk": 0.0,
+            "YHe": 0.0
+          },
+          {
+            "ClEE": 0.0,
+            "ClTE": 0.0,
+            "ClTT": 0.0,
+            "Neff": 0.0,
+            "Pk": 0.0,
+            "YHe": 0.0
+          }
+        ],
+        "expected_shapes": true,
+        "maximum_relative_repeat_drift": 0.0,
+        "negative_noise_accepted": true,
+        "negative_noise_fraction_of_maximum": {
+          "ClEE": 0.0,
+          "ClTT": 0.0,
+          "Pk": 0.0
+        },
+        "repeat_drift_accepted": true,
+        "summaries": {
+          "ClEE": {
+            "all_finite": true,
+            "dtype": "float64",
+            "finite_count": 2499,
+            "maximum": 4.383015655767742e-15,
+            "maximum_absolute": 4.383015655767742e-15,
+            "minimum": 3.8388500338963987e-19,
+            "shape": [
+              2499
+            ],
+            "size": 2499
+          },
+          "ClTE": {
+            "all_finite": true,
+            "dtype": "float64",
+            "finite_count": 2499,
+            "maximum": 3.7214990817193833e-13,
+            "maximum_absolute": 3.7214990817193833e-13,
+            "minimum": -2.084085249780979e-15,
+            "shape": [
+              2499
+            ],
+            "size": 2499
+          },
+          "ClTT": {
+            "all_finite": true,
+            "dtype": "float64",
+            "finite_count": 2499,
+            "maximum": 1.449769864651467e-10,
+            "maximum_absolute": 1.449769864651467e-10,
+            "minimum": 1.0519828336628086e-17,
+            "shape": [
+              2499
+            ],
+            "size": 2499
+          },
+          "Neff": {
+            "all_finite": true,
+            "dtype": "float64",
+            "finite_count": 1,
+            "maximum": 3.0443606111766113,
+            "maximum_absolute": 3.0443606111766113,
+            "minimum": 3.0443606111766113,
+            "shape": [],
+            "size": 1
+          },
+          "Pk": {
+            "all_finite": true,
+            "dtype": "float64",
+            "finite_count": 547,
+            "maximum": 81268.63712008191,
+            "maximum_absolute": 81268.63712008191,
+            "minimum": 157.35059019913427,
+            "shape": [
+              547
+            ],
+            "size": 547
+          },
+          "YHe": {
+            "all_finite": true,
+            "dtype": "float64",
+            "finite_count": 1,
+            "maximum": 0.24579005406845544,
+            "maximum_absolute": 0.24579005406845544,
+            "minimum": 0.24579005406845544,
+            "shape": [],
+            "size": 1
+          }
+        }
+      },
+      "jax_version": "0.8.1",
+      "jax_x64": true,
+      "spectra_archive": "S4_linx_lensed_spectra.npz",
+      "spectra_archive_sha256": "a8df70e11ce265ab06925a856314723843480144d671c129991aaa7a80a2fdef",
+      "status": "accepted",
+      "warm_seconds": [
+        55.754188131541014,
+        56.3776069432497,
+        61.1470309458673
+      ]
+    }
+  ],
+  "status": "complete_accepted"
+}

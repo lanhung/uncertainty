@@ -1,0 +1,17 @@
+{"elapsed_seconds": 5.075247533619404, "kind": "ad_compile_or_call", "method": "jacrev", "path": "background_only_delta_neff", "point_id": "axis_delta_neff_p0p5", "status": "ok"}
+{"elapsed_seconds": 5.1417557913810015, "kind": "ad_compile_or_call", "method": "jacrev", "path": "background_only_delta_neff", "point_id": "corner_p0p5_m1_m1", "status": "ok"}
+{"elapsed_seconds": 5.166324499994516, "kind": "ad_compile_or_call", "method": "jacrev", "path": "background_only_delta_neff", "point_id": "corner_p0p5_m1_p1", "status": "ok"}
+{"elapsed_seconds": 5.193868421018124, "kind": "ad_compile_or_call", "method": "jacrev", "path": "background_only_delta_neff", "point_id": "corner_p0p5_p1_m1", "status": "ok"}
+{"elapsed_seconds": 5.206669952720404, "kind": "ad_compile_or_call", "method": "jacrev", "path": "background_only_delta_neff", "point_id": "corner_p0p5_p1_p1", "status": "ok"}
+{"elapsed_seconds": 162.2904146388173, "kind": "ad_compile_or_call", "method": "jacrev", "path": "frozen_background_abundance_eta_tau", "point_id": "fiducial", "status": "ok"}
+{"elapsed_seconds": 9.91286396048963, "kind": "ad_compile_or_call", "method": "jacrev", "path": "frozen_background_abundance_eta_tau", "point_id": "axis_delta_neff_m0p5", "status": "ok"}
+{"elapsed_seconds": 9.671496484428644, "kind": "ad_compile_or_call", "method": "jacrev", "path": "frozen_background_abundance_eta_tau", "point_id": "axis_omega_b_h2_m1", "status": "ok"}
+{"elapsed_seconds": 9.722137305885553, "kind": "ad_compile_or_call", "method": "jacrev", "path": "frozen_background_abundance_eta_tau", "point_id": "axis_omega_b_h2_p1", "status": "ok"}
+{"elapsed_seconds": 9.720178140327334, "kind": "ad_compile_or_call", "method": "jacrev", "path": "frozen_background_abundance_eta_tau", "point_id": "axis_tau_n_seconds_m1", "status": "ok"}
+{"elapsed_seconds": 9.951154682785273, "kind": "ad_compile_or_call", "method": "jacrev", "path": "frozen_background_abundance_eta_tau", "point_id": "axis_tau_n_seconds_p1", "status": "ok"}
+{"elapsed_seconds": 10.047309985384345, "kind": "ad_compile_or_call", "method": "jacrev", "path": "frozen_background_abundance_eta_tau", "point_id": "corner_m0p5_m1_p1", "status": "ok"}
+{"elapsed_seconds": 9.752202274277806, "kind": "ad_compile_or_call", "method": "jacrev", "path": "frozen_background_abundance_eta_tau", "point_id": "corner_m0p5_p1_p1", "status": "ok"}
+{"elapsed_seconds": 9.784095829352736, "kind": "ad_compile_or_call", "method": "jacrev", "path": "frozen_background_abundance_eta_tau", "point_id": "corner_p0p5_m1_m1", "status": "ok"}
+{"elapsed_seconds": 9.930686015635729, "kind": "ad_compile_or_call", "method": "jacrev", "path": "frozen_background_abundance_eta_tau", "point_id": "corner_p0p5_m1_p1", "status": "ok"}
+{"elapsed_seconds": 9.828235074877739, "kind": "ad_compile_or_call", "method": "jacrev", "path": "frozen_background_abundance_eta_tau", "point_id": "corner_p0p5_p1_m1", "status": "ok"}
+{"elapsed_seconds": 9.849220506846905, "kind": "ad_compile_or_call", "method": "jacrev", "path": "frozen_background_abundance_eta_tau", "point_id": "corner_p0p5_p1_p1", "status": "ok"}

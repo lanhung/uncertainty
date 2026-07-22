@@ -1,0 +1,361 @@
+lease-acquired resource=cpu-heavy project=uncertainty task=EXEC-LINX-GRADIENT lease_id=45b7d62c5240f9d6bd4d142a
+`\         /´  ||||        ||||  |||||     ||||  ||||   ||||
+ /\_______/\   ||||        ||||  |||||||   ||||   |||| ||||
+ ) __` ´__ (   ||||        ||||  |||| |||| ||||    |||||||
+/  `-|_|-´  \  ||||        ||||  ||||  |||| |||    ||||||| 
+/   (_x_)   \  ||||||||||  ||||  ||||   |||||||   |||| ||||
+  )  `-´  (    ||||||||||  ||||  ||||    ||||||  ||||   ||||
+ 
+Compiling thermodynamics model...
+PROGRESS 1/4
+Compiling abundance model...
+jax.pure_callback failed
+Traceback (most recent call last):
+  File "/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/callback.py", line 79, in pure_callback_impl
+    return tree_util.tree_map(np.asarray, callback(*args))
+                                          ^^^^^^^^^^^^^^^
+  File "/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/callback.py", line 64, in __call__
+    return tree_util.tree_leaves(self.callback_func(*args, **kwargs))
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/equinox/_errors.py", line 89, in raises
+    raise _EquinoxRuntimeError(
+equinox._errors._EquinoxRuntimeError: The linear solver returned non-finite (NaN or inf) output. This usually means that the
+operator was not well-posed, and that the solver does not support this.
+
+If you are trying solve a linear least-squares problem then you should pass
+`solver=AutoLinearSolver(well_posed=False)`. By default `lineax.linear_solve`
+assumes that the operator is square and nonsingular.
+
+If you *were* expecting this solver to work with this operator, then it may be because:
+
+(a) the operator is singular, and your code has a bug; or
+
+(b) the operator was nearly singular (i.e. it had a high condition number:
+    `jnp.linalg.cond(operator.as_matrix())` is large), and the solver suffered from
+    numerical instability issues; or
+
+(c) the operator is declared to exhibit a certain property (e.g. positive definiteness)
+    that is does not actually satisfy.
+
+
+--------------------
+An error occurred during the runtime of your JAX program! Unfortunately you do not appear to be using `equinox.filter_jit` (perhaps you are using `jax.jit` instead?) and so further information about the error cannot be displayed. (Probably you are seeing a very large but uninformative error message right now.) Please wrap your program with `equinox.filter_jit`.
+--------------------
+
+jax.pure_callback failed
+Traceback (most recent call last):
+  File "/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/callback.py", line 79, in pure_callback_impl
+    return tree_util.tree_map(np.asarray, callback(*args))
+                                          ^^^^^^^^^^^^^^^
+  File "/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/callback.py", line 64, in __call__
+    return tree_util.tree_leaves(self.callback_func(*args, **kwargs))
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/equinox/_errors.py", line 89, in raises
+    raise _EquinoxRuntimeError(
+equinox._errors._EquinoxRuntimeError: The linear solver returned non-finite (NaN or inf) output. This usually means that the
+operator was not well-posed, and that the solver does not support this.
+
+If you are trying solve a linear least-squares problem then you should pass
+`solver=AutoLinearSolver(well_posed=False)`. By default `lineax.linear_solve`
+assumes that the operator is square and nonsingular.
+
+If you *were* expecting this solver to work with this operator, then it may be because:
+
+(a) the operator is singular, and your code has a bug; or
+
+(b) the operator was nearly singular (i.e. it had a high condition number:
+    `jnp.linalg.cond(operator.as_matrix())` is large), and the solver suffered from
+    numerical instability issues; or
+
+(c) the operator is declared to exhibit a certain property (e.g. positive definiteness)
+    that is does not actually satisfy.
+
+
+--------------------
+An error occurred during the runtime of your JAX program! Unfortunately you do not appear to be using `equinox.filter_jit` (perhaps you are using `jax.jit` instead?) and so further information about the error cannot be displayed. (Probably you are seeing a very large but uninformative error message right now.) Please wrap your program with `equinox.filter_jit`.
+--------------------
+
+jax.pure_callback failed
+Traceback (most recent call last):
+  File "/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/callback.py", line 79, in pure_callback_impl
+    return tree_util.tree_map(np.asarray, callback(*args))
+                                          ^^^^^^^^^^^^^^^
+  File "/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/callback.py", line 64, in __call__
+    return tree_util.tree_leaves(self.callback_func(*args, **kwargs))
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/equinox/_errors.py", line 89, in raises
+    raise _EquinoxRuntimeError(
+equinox._errors._EquinoxRuntimeError: The linear solver returned non-finite (NaN or inf) output. This usually means that the
+operator was not well-posed, and that the solver does not support this.
+
+If you are trying solve a linear least-squares problem then you should pass
+`solver=AutoLinearSolver(well_posed=False)`. By default `lineax.linear_solve`
+assumes that the operator is square and nonsingular.
+
+If you *were* expecting this solver to work with this operator, then it may be because:
+
+(a) the operator is singular, and your code has a bug; or
+
+(b) the operator was nearly singular (i.e. it had a high condition number:
+    `jnp.linalg.cond(operator.as_matrix())` is large), and the solver suffered from
+    numerical instability issues; or
+
+(c) the operator is declared to exhibit a certain property (e.g. positive definiteness)
+    that is does not actually satisfy.
+
+
+--------------------
+An error occurred during the runtime of your JAX program! Unfortunately you do not appear to be using `equinox.filter_jit` (perhaps you are using `jax.jit` instead?) and so further information about the error cannot be displayed. (Probably you are seeing a very large but uninformative error message right now.) Please wrap your program with `equinox.filter_jit`.
+--------------------
+
+PROGRESS 2/4
+2026-07-23 04:08:37.673528: E external/xla/xla/service/slow_operation_alarm.cc:65] 
+********************************
+[Compiling module jit_selected_jacrev] Very slow compile? If you want to file a bug, run with envvar XLA_FLAGS=--xla_dump_to=/tmp/foo and attach the results.
+********************************
+2026-07-23 04:09:02.114710: E external/xla/xla/service/slow_operation_alarm.cc:133] The operation took 2m24.441394839s
+
+********************************
+[Compiling module jit_selected_jacrev] Very slow compile? If you want to file a bug, run with envvar XLA_FLAGS=--xla_dump_to=/tmp/foo and attach the results.
+********************************
+jax.pure_callback failed
+Traceback (most recent call last):
+  File "/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/callback.py", line 79, in pure_callback_impl
+    return tree_util.tree_map(np.asarray, callback(*args))
+                                          ^^^^^^^^^^^^^^^
+  File "/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/callback.py", line 64, in __call__
+    return tree_util.tree_leaves(self.callback_func(*args, **kwargs))
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/equinox/_errors.py", line 89, in raises
+    raise _EquinoxRuntimeError(
+equinox._errors._EquinoxRuntimeError: The linear solver returned non-finite (NaN or inf) output. This usually means that the
+operator was not well-posed, and that the solver does not support this.
+
+If you are trying solve a linear least-squares problem then you should pass
+`solver=AutoLinearSolver(well_posed=False)`. By default `lineax.linear_solve`
+assumes that the operator is square and nonsingular.
+
+If you *were* expecting this solver to work with this operator, then it may be because:
+
+(a) the operator is singular, and your code has a bug; or
+
+(b) the operator was nearly singular (i.e. it had a high condition number:
+    `jnp.linalg.cond(operator.as_matrix())` is large), and the solver suffered from
+    numerical instability issues; or
+
+(c) the operator is declared to exhibit a certain property (e.g. positive definiteness)
+    that is does not actually satisfy.
+
+
+--------------------
+An error occurred during the runtime of your JAX program! Unfortunately you do not appear to be using `equinox.filter_jit` (perhaps you are using `jax.jit` instead?) and so further information about the error cannot be displayed. (Probably you are seeing a very large but uninformative error message right now.) Please wrap your program with `equinox.filter_jit`.
+--------------------
+
+jax.pure_callback failed
+Traceback (most recent call last):
+  File "/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/callback.py", line 79, in pure_callback_impl
+    return tree_util.tree_map(np.asarray, callback(*args))
+                                          ^^^^^^^^^^^^^^^
+  File "/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/callback.py", line 64, in __call__
+    return tree_util.tree_leaves(self.callback_func(*args, **kwargs))
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/equinox/_errors.py", line 89, in raises
+    raise _EquinoxRuntimeError(
+equinox._errors._EquinoxRuntimeError: The linear solver returned non-finite (NaN or inf) output. This usually means that the
+operator was not well-posed, and that the solver does not support this.
+
+If you are trying solve a linear least-squares problem then you should pass
+`solver=AutoLinearSolver(well_posed=False)`. By default `lineax.linear_solve`
+assumes that the operator is square and nonsingular.
+
+If you *were* expecting this solver to work with this operator, then it may be because:
+
+(a) the operator is singular, and your code has a bug; or
+
+(b) the operator was nearly singular (i.e. it had a high condition number:
+    `jnp.linalg.cond(operator.as_matrix())` is large), and the solver suffered from
+    numerical instability issues; or
+
+(c) the operator is declared to exhibit a certain property (e.g. positive definiteness)
+    that is does not actually satisfy.
+
+
+--------------------
+An error occurred during the runtime of your JAX program! Unfortunately you do not appear to be using `equinox.filter_jit` (perhaps you are using `jax.jit` instead?) and so further information about the error cannot be displayed. (Probably you are seeing a very large but uninformative error message right now.) Please wrap your program with `equinox.filter_jit`.
+--------------------
+
+jax.pure_callback failed
+Traceback (most recent call last):
+  File "/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/callback.py", line 79, in pure_callback_impl
+    return tree_util.tree_map(np.asarray, callback(*args))
+                                          ^^^^^^^^^^^^^^^
+  File "/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/callback.py", line 64, in __call__
+    return tree_util.tree_leaves(self.callback_func(*args, **kwargs))
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/equinox/_errors.py", line 89, in raises
+    raise _EquinoxRuntimeError(
+equinox._errors._EquinoxRuntimeError: The linear solver returned non-finite (NaN or inf) output. This usually means that the
+operator was not well-posed, and that the solver does not support this.
+
+If you are trying solve a linear least-squares problem then you should pass
+`solver=AutoLinearSolver(well_posed=False)`. By default `lineax.linear_solve`
+assumes that the operator is square and nonsingular.
+
+If you *were* expecting this solver to work with this operator, then it may be because:
+
+(a) the operator is singular, and your code has a bug; or
+
+(b) the operator was nearly singular (i.e. it had a high condition number:
+    `jnp.linalg.cond(operator.as_matrix())` is large), and the solver suffered from
+    numerical instability issues; or
+
+(c) the operator is declared to exhibit a certain property (e.g. positive definiteness)
+    that is does not actually satisfy.
+
+
+--------------------
+An error occurred during the runtime of your JAX program! Unfortunately you do not appear to be using `equinox.filter_jit` (perhaps you are using `jax.jit` instead?) and so further information about the error cannot be displayed. (Probably you are seeing a very large but uninformative error message right now.) Please wrap your program with `equinox.filter_jit`.
+--------------------
+
+jax.pure_callback failed
+Traceback (most recent call last):
+  File "/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/callback.py", line 79, in pure_callback_impl
+    return tree_util.tree_map(np.asarray, callback(*args))
+                                          ^^^^^^^^^^^^^^^
+  File "/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/callback.py", line 64, in __call__
+    return tree_util.tree_leaves(self.callback_func(*args, **kwargs))
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/equinox/_errors.py", line 89, in raises
+    raise _EquinoxRuntimeError(
+equinox._errors._EquinoxRuntimeError: The linear solver returned non-finite (NaN or inf) output. This usually means that the
+operator was not well-posed, and that the solver does not support this.
+
+If you are trying solve a linear least-squares problem then you should pass
+`solver=AutoLinearSolver(well_posed=False)`. By default `lineax.linear_solve`
+assumes that the operator is square and nonsingular.
+
+If you *were* expecting this solver to work with this operator, then it may be because:
+
+(a) the operator is singular, and your code has a bug; or
+
+(b) the operator was nearly singular (i.e. it had a high condition number:
+    `jnp.linalg.cond(operator.as_matrix())` is large), and the solver suffered from
+    numerical instability issues; or
+
+(c) the operator is declared to exhibit a certain property (e.g. positive definiteness)
+    that is does not actually satisfy.
+
+
+--------------------
+An error occurred during the runtime of your JAX program! Unfortunately you do not appear to be using `equinox.filter_jit` (perhaps you are using `jax.jit` instead?) and so further information about the error cannot be displayed. (Probably you are seeing a very large but uninformative error message right now.) Please wrap your program with `equinox.filter_jit`.
+--------------------
+
+jax.pure_callback failed
+Traceback (most recent call last):
+  File "/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/callback.py", line 79, in pure_callback_impl
+    return tree_util.tree_map(np.asarray, callback(*args))
+                                          ^^^^^^^^^^^^^^^
+  File "/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/callback.py", line 64, in __call__
+    return tree_util.tree_leaves(self.callback_func(*args, **kwargs))
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/equinox/_errors.py", line 89, in raises
+    raise _EquinoxRuntimeError(
+equinox._errors._EquinoxRuntimeError: The linear solver returned non-finite (NaN or inf) output. This usually means that the
+operator was not well-posed, and that the solver does not support this.
+
+If you are trying solve a linear least-squares problem then you should pass
+`solver=AutoLinearSolver(well_posed=False)`. By default `lineax.linear_solve`
+assumes that the operator is square and nonsingular.
+
+If you *were* expecting this solver to work with this operator, then it may be because:
+
+(a) the operator is singular, and your code has a bug; or
+
+(b) the operator was nearly singular (i.e. it had a high condition number:
+    `jnp.linalg.cond(operator.as_matrix())` is large), and the solver suffered from
+    numerical instability issues; or
+
+(c) the operator is declared to exhibit a certain property (e.g. positive definiteness)
+    that is does not actually satisfy.
+
+
+--------------------
+An error occurred during the runtime of your JAX program! Unfortunately you do not appear to be using `equinox.filter_jit` (perhaps you are using `jax.jit` instead?) and so further information about the error cannot be displayed. (Probably you are seeing a very large but uninformative error message right now.) Please wrap your program with `equinox.filter_jit`.
+--------------------
+
+jax.pure_callback failed
+Traceback (most recent call last):
+  File "/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/callback.py", line 79, in pure_callback_impl
+    return tree_util.tree_map(np.asarray, callback(*args))
+                                          ^^^^^^^^^^^^^^^
+  File "/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/callback.py", line 64, in __call__
+    return tree_util.tree_leaves(self.callback_func(*args, **kwargs))
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/equinox/_errors.py", line 89, in raises
+    raise _EquinoxRuntimeError(
+equinox._errors._EquinoxRuntimeError: The linear solver returned non-finite (NaN or inf) output. This usually means that the
+operator was not well-posed, and that the solver does not support this.
+
+If you are trying solve a linear least-squares problem then you should pass
+`solver=AutoLinearSolver(well_posed=False)`. By default `lineax.linear_solve`
+assumes that the operator is square and nonsingular.
+
+If you *were* expecting this solver to work with this operator, then it may be because:
+
+(a) the operator is singular, and your code has a bug; or
+
+(b) the operator was nearly singular (i.e. it had a high condition number:
+    `jnp.linalg.cond(operator.as_matrix())` is large), and the solver suffered from
+    numerical instability issues; or
+
+(c) the operator is declared to exhibit a certain property (e.g. positive definiteness)
+    that is does not actually satisfy.
+
+
+--------------------
+An error occurred during the runtime of your JAX program! Unfortunately you do not appear to be using `equinox.filter_jit` (perhaps you are using `jax.jit` instead?) and so further information about the error cannot be displayed. (Probably you are seeing a very large but uninformative error message right now.) Please wrap your program with `equinox.filter_jit`.
+--------------------
+
+jax.pure_callback failed
+Traceback (most recent call last):
+  File "/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/callback.py", line 79, in pure_callback_impl
+    return tree_util.tree_map(np.asarray, callback(*args))
+                                          ^^^^^^^^^^^^^^^
+  File "/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/jax/_src/callback.py", line 64, in __call__
+    return tree_util.tree_leaves(self.callback_func(*args, **kwargs))
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/equinox/_errors.py", line 89, in raises
+    raise _EquinoxRuntimeError(
+equinox._errors._EquinoxRuntimeError: The linear solver returned non-finite (NaN or inf) output. This usually means that the
+operator was not well-posed, and that the solver does not support this.
+
+If you are trying solve a linear least-squares problem then you should pass
+`solver=AutoLinearSolver(well_posed=False)`. By default `lineax.linear_solve`
+assumes that the operator is square and nonsingular.
+
+If you *were* expecting this solver to work with this operator, then it may be because:
+
+(a) the operator is singular, and your code has a bug; or
+
+(b) the operator was nearly singular (i.e. it had a high condition number:
+    `jnp.linalg.cond(operator.as_matrix())` is large), and the solver suffered from
+    numerical instability issues; or
+
+(c) the operator is declared to exhibit a certain property (e.g. positive definiteness)
+    that is does not actually satisfy.
+
+
+--------------------
+An error occurred during the runtime of your JAX program! Unfortunately you do not appear to be using `equinox.filter_jit` (perhaps you are using `jax.jit` instead?) and so further information about the error cannot be displayed. (Probably you are seeing a very large but uninformative error message right now.) Please wrap your program with `equinox.filter_jit`.
+--------------------
+
+PROGRESS 3/4
+Compiling abundance model...
+2026-07-23 04:17:04.059723: E external/xla/xla/service/slow_operation_alarm.cc:133] The operation took 2m33.985232776s
+
+********************************
+[Compiling module jit_objective] Very slow compile? If you want to file a bug, run with envvar XLA_FLAGS=--xla_dump_to=/tmp/foo and attach the results.
+********************************
+PROGRESS 4/4
+/root/autodl-fs/projects/uncertainty/artifacts/numerical/LINX-GRADIENT-STABILITY-v1/run-20260722T195438Z
+lease-released resource=cpu-heavy project=uncertainty task=EXEC-LINX-GRADIENT exit=2

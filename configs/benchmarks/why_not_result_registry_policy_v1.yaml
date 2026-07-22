@@ -5,7 +5,7 @@ baselines:
   W0-LINX:
     limitations:
       - identical_input_scalar_vs_vmap_tolerance_scan_pending
-      - upstream_gradient_nan_rejected
+      - registered_standard_neighborhood_gradient_rejected_45_of_45_records
       - posterior_recovery_pending_old_likelihood_assets
       - nonstandard_point_pending_extension_contract
   W1-PRYM:
@@ -21,7 +21,7 @@ baselines:
       - nonstandard_point_pending_extension_contract
   W3-ABCMB:
     limitations:
-      - bundled_linx_component_only_not_full_abcmb_pipeline
-      - cmb_fisher_hmc_and_gradient_contracts_not_exercised
+      - five_frozen_spectra_cases_accepted_but_only_one_of_four_components
+      - gradient_toy_fisher_synthetic_recovery_and_hmc_nuts_not_exercised
       - posterior_recovery_pending_old_likelihood_assets
       - nonstandard_point_pending_extension_contract

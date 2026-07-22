@@ -81,6 +81,15 @@ but identical inputs produced a small scalar/batch abundance discrepancy. The
 result is registered as open pending a tolerance scan rather than promoted to a
 fidelity pass. See `docs/inventory/WHY_NOT_LINX_RUNTIME_v1.md`.
 
+The later frozen neighborhood audit did not rehabilitate W0 gradients: all 45
+registered acceptance records failed structurally, while all six extreme
+diagnostic ablations retained one non-finite coordinate. Separately, the exact
+W3 stack passed all five frozen spectra cases with zero repeat drift, but
+gradient, Fisher, recovery and HMC/NUTS remained unexecuted. ADR-0006 then
+paused those generic audits in favor of the active nuclear-rate UQ path. See
+`docs/inventory/LINX_GRADIENT_STABILITY_v1.md` and
+`docs/inventory/ABCMB_FULL_COMPONENT_AUDIT_v1.md`.
+
 ## Scientific boundary
 
 Source acquisition, dependency inspection and one-off upstream runs do not
