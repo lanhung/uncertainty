@@ -74,12 +74,15 @@ def evaluate_scan(
         value <= scalar_batch_limit for value in candidate_differences.values()
     )
 
+    plateau_pairs = acceptance.get("plateau_pairs")
+    if plateau_pairs is None:
+        plateau_pairs = {
+            "tolerance": acceptance["tolerance_plateau_pair"],
+            "weak_rate_sampling": acceptance["sampling_plateau_pair"],
+        }
     plateau_results: dict[str, Any] = {}
-    for name, pair_key in (
-        ("tolerance", "tolerance_plateau_pair"),
-        ("weak_rate_sampling", "sampling_plateau_pair"),
-    ):
-        left_id, right_id = acceptance[pair_key]
+    for name, pair in plateau_pairs.items():
+        left_id, right_id = pair
         left = cases.get(left_id)
         right = cases.get(right_id)
         if (
@@ -113,16 +116,15 @@ def evaluate_scan(
     repeat_pass = all(case["maximum_repeat_drift"] == 0.0 for case in completed)
     within_batch_pass = all(case["maximum_within_batch_spread"] == 0.0 for case in completed)
     required_ids = set(candidate_ids)
-    required_ids.update(acceptance["tolerance_plateau_pair"])
-    required_ids.update(acceptance["sampling_plateau_pair"])
+    for pair in plateau_pairs.values():
+        required_ids.update(pair)
     all_required_cases_complete = all(
         cases.get(case_id, {}).get("status") == "ok" for case_id in required_ids
     )
     passed = (
         all_required_cases_complete
         and scalar_batch_pass
-        and plateau_results["tolerance"]["passed"]
-        and plateau_results["weak_rate_sampling"]["passed"]
+        and all(result["passed"] for result in plateau_results.values())
         and (repeat_pass or not acceptance["require_zero_repeat_drift"])
         and (within_batch_pass or not acceptance["require_zero_within_batch_spread"])
     )
@@ -177,6 +179,7 @@ def run_case(
     rtol = float(case["rtol"])
     atol = float(case["atol"])
     sampling_n_top = int(case["sampling_nTOp"])
+    max_steps = int(case.get("max_steps", 4096))
 
     def solve_raw(eta_value: Any, tau_value: Any) -> Any:
         return abundance_model(
@@ -191,6 +194,7 @@ def run_case(
             rtol=rtol,
             atol=atol,
             sampling_nTOp=sampling_n_top,
+            max_steps=max_steps,
         )
 
     scalar_started = time.perf_counter()
@@ -293,6 +297,7 @@ def run_case(
         "atol": atol,
         "batch_abundances": batch_reference,
         "group": case["group"],
+        "max_steps": max_steps,
         "maximum_repeat_drift": maximum_repeat_drift,
         "maximum_scalar_batch_difference_observation_sigma": (
             maximum_normalized_difference(scalar_reference, batch_reference, sigmas)
@@ -406,6 +411,7 @@ def main() -> int:
                 "atol": float(case["atol"]),
                 "error": repr(exc),
                 "group": case["group"],
+                "max_steps": int(case.get("max_steps", 4096)),
                 "rtol": float(case["rtol"]),
                 "sampling_nTOp": int(case["sampling_nTOp"]),
                 "status": "failed",

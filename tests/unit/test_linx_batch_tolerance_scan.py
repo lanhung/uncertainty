@@ -127,3 +127,47 @@ def test_v2_extended_scan_keeps_v1_threshold_and_separates_axes() -> None:
         "sampling_1200_tolerance_1e-8",
         "production_candidate",
     ]
+
+
+def test_v3_max_steps_diagnostic_keeps_strict_candidate_and_threshold() -> None:
+    root = Path(__file__).resolve().parents[2]
+    config = yaml.safe_load(
+        (root / "configs/benchmarks/linx_max_steps_diagnostic_v3.yaml").read_text()
+    )
+    cases = {case["id"]: case for case in config["cases"]}
+
+    assert config["parent_result"] == "complete_with_failures_not_accepted"
+    assert config["acceptance"]["maximum_plateau_difference_observation_sigma"] == 0.001
+    assert [cases[f"max_steps_{value}"]["max_steps"] for value in (8192, 16384, 32768)] == [
+        8192,
+        16384,
+        32768,
+    ]
+    assert all(case["rtol"] == 1.0e-8 for case in cases.values())
+    assert all(case["sampling_nTOp"] == 2400 for case in cases.values())
+    assert config["acceptance"]["plateau_pairs"] == {
+        "max_steps_invariance": ["max_steps_16384", "max_steps_32768"]
+    }
+
+
+def test_generic_plateau_pair_supports_max_steps_diagnostic() -> None:
+    sigmas = {"YPBBN": 0.0013, "DoH": 3.0e-7}
+    reference = abundances(0.246, 2.50e-5)
+    batch = abundances(0.2460013, 2.50003e-5)
+    cases = {
+        "max_steps_16384": case(reference, batch, 0.001),
+        "max_steps_32768": case(reference, batch, 0.001),
+    }
+    diagnostic_acceptance = {
+        "candidate_case_ids": ["max_steps_16384", "max_steps_32768"],
+        "maximum_scalar_batch_difference_observation_sigma": 0.01,
+        "maximum_plateau_difference_observation_sigma": 0.001,
+        "plateau_pairs": {"max_steps_invariance": ["max_steps_16384", "max_steps_32768"]},
+        "require_zero_repeat_drift": True,
+        "require_zero_within_batch_spread": True,
+    }
+
+    result = evaluate_scan(cases, diagnostic_acceptance, sigmas)
+
+    assert result["passed"] is True
+    assert result["plateaus"]["max_steps_invariance"]["passed"] is True
