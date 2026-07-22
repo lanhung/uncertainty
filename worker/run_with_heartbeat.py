@@ -7,6 +7,7 @@ The wrapped command should print absolute progress lines such as
 errors (bad token, unknown task, incomplete dependencies) stop the job before
 expensive work begins.
 """
+
 from __future__ import annotations
 
 import argparse
@@ -30,9 +31,7 @@ TOKEN = os.environ.get("RESEARCH_OPS_TOKEN", "")
 OWNER = os.environ.get("RESEARCH_OPS_OWNER") or socket.gethostname()
 STATE_DIR = Path(os.environ.get("RESEARCH_OPS_STATE_DIR", "state"))
 OUTBOX_DIR = Path(os.environ.get("RESEARCH_OPS_OUTBOX", STATE_DIR / "outbox"))
-CHECKPOINT_DIR = Path(
-    os.environ.get("RESEARCH_OPS_CHECKPOINT_DIR", STATE_DIR / "checkpoints")
-)
+CHECKPOINT_DIR = Path(os.environ.get("RESEARCH_OPS_CHECKPOINT_DIR", STATE_DIR / "checkpoints"))
 RUN_DIR = Path(os.environ.get("RESEARCH_OPS_RUN_DIR", STATE_DIR / "runs"))
 DEFAULT_PROGRESS_RE = r"\bPROGRESS\s+(\d+(?:\.\d+)?)\s*/\s*(\d+(?:\.\d+)?)\b"
 
@@ -153,7 +152,7 @@ class Heartbeat:
                     f"server rejected heartbeat ({exc.code}): {detail}"
                 ) from exc
             return "retry"
-        except urllib.error.URLError:
+        except (urllib.error.URLError, TimeoutError):
             return "retry"
 
     def _buffer(self, body: dict[str, Any]) -> None:
