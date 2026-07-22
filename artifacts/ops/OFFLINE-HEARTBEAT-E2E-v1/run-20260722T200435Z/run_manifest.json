@@ -1,0 +1,26 @@
+{
+  "completed_at": "2026-07-22T20:05:25.696386+00:00",
+  "endpoint_confirmed_unreachable": true,
+  "endpoint_during_run": "http://127.0.0.1:1",
+  "lease_release_reacquire": {
+    "deadline_seconds": 2.0,
+    "reacquire_seconds": 0.08821392431855202,
+    "reacquired": true,
+    "release_detected_seconds": 8.47596675157547e-05
+  },
+  "outbox_event_count": 11,
+  "outbox_sha256": "8971c7a8254bc368e25b28c124ea18cd857fd36f86d2951a3912c8b4af15fbc5",
+  "phase": "EXEC",
+  "protocol": "/root/autodl-tmp/projects/uncertainty/repo/configs/ops/offline_heartbeat_e2e_v1.yaml",
+  "protocol_sha256": "4d43e0c3054a0750f459ed11e8d5a749f807724cb05afc1d30d9ede1b51d9122",
+  "repository_commit": "705d2e7a934cbbdd08e32f6ddaafaff667682b8e",
+  "run_id": "497f490f-5c04-4cd6-8a97-df410bfd8de8",
+  "schema_version": 1,
+  "scientific_gate_credit": 0,
+  "started_at": "2026-07-22T20:04:36.992148+00:00",
+  "status": "ready_for_dry_run_and_controlled_replay",
+  "task_id": "EXEC-HEARTBEAT-OFFLINE-E2E-v1",
+  "test_id": "OFFLINE-HEARTBEAT-E2E-v1",
+  "total": 8,
+  "unit": "checks"
+}

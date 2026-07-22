@@ -1,0 +1,11 @@
+{
+  "status": "completed",
+  "task_id": "EXEC-HEARTBEAT-OFFLINE-E2E-v1",
+  "run_id": "497f490f-5c04-4cd6-8a97-df410bfd8de8",
+  "event_count": 11,
+  "events_replayed_this_invocation": 11,
+  "duplicate_acknowledgements": 0,
+  "archive": "artifacts/ops/OFFLINE-HEARTBEAT-E2E-v1/run-20260722T200435Z/replay-archive/offline-heartbeat-e2e-replay-20260722T200435Z-497f490f-5c04-4cd6-8a97-df410bfd8de8-8971c7a8254b.ndjson",
+  "archive_sha256": "8971c7a8254bc368e25b28c124ea18cd857fd36f86d2951a3912c8b4af15fbc5",
+  "outbox_drained": true
+}
