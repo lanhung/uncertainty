@@ -1,0 +1,154 @@
+{
+  "cases": {
+    "production_candidate": {
+      "atol": 1e-11,
+      "error": "EquinoxRuntimeError('Above is the stack outside of JIT. Below is the stack inside of JIT:\\n  File \"/root/autodl-fs/projects/uncertainty/external/why-not-v1/LINX/linx/abundances.py\", line 306, in __call__\\n    sol = diffeqsolve(\\n          ^^^^^^^^^^^^\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/diffrax/_integrate.py\", line 1423, in diffeqsolve\\n    sol = result.error_if(sol, jnp.invert(is_okay(result)))\\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\nequinox.EquinoxRuntimeError: The maximum number of solver steps was reached. Try increasing `max_steps`.\\n\\n-------------------\\n\\nAn error occurred during the runtime of your JAX program.\\n\\n1) Setting the environment variable `EQX_ON_ERROR=breakpoint` is usually the most useful\\nway to debug such errors. This can be interacted with using most of the usual commands\\nfor the Python debugger: `u` and `d` to move up and down frames, the name of a variable\\nto print its value, etc.\\n\\n2) You may also like to try setting `JAX_DISABLE_JIT=1`. This will mean that you can\\n(mostly) inspect the state of your program as if it was normal Python.\\n\\n3) See `https://docs.kidger.site/equinox/api/debug/` for more suggestions.\\n')",
+      "group": "joint_candidate",
+      "rtol": 1e-08,
+      "sampling_nTOp": 2400,
+      "status": "failed"
+    },
+    "sampling_1200_tolerance_1e-8": {
+      "atol": 1e-11,
+      "error": "EquinoxRuntimeError('Above is the stack outside of JIT. Below is the stack inside of JIT:\\n  File \"/root/autodl-fs/projects/uncertainty/external/why-not-v1/LINX/linx/abundances.py\", line 306, in __call__\\n    sol = diffeqsolve(\\n          ^^^^^^^^^^^^\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/diffrax/_integrate.py\", line 1423, in diffeqsolve\\n    sol = result.error_if(sol, jnp.invert(is_okay(result)))\\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\nequinox.EquinoxRuntimeError: The maximum number of solver steps was reached. Try increasing `max_steps`.\\n\\n-------------------\\n\\nAn error occurred during the runtime of your JAX program.\\n\\n1) Setting the environment variable `EQX_ON_ERROR=breakpoint` is usually the most useful\\nway to debug such errors. This can be interacted with using most of the usual commands\\nfor the Python debugger: `u` and `d` to move up and down frames, the name of a variable\\nto print its value, etc.\\n\\n2) You may also like to try setting `JAX_DISABLE_JIT=1`. This will mean that you can\\n(mostly) inspect the state of your program as if it was normal Python.\\n\\n3) See `https://docs.kidger.site/equinox/api/debug/` for more suggestions.\\n')",
+      "group": "weak_rate_sampling",
+      "rtol": 1e-08,
+      "sampling_nTOp": 1200,
+      "status": "failed"
+    },
+    "sampling_300_tolerance_1e-8": {
+      "atol": 1e-11,
+      "error": "EquinoxRuntimeError('Above is the stack outside of JIT. Below is the stack inside of JIT:\\n  File \"/root/autodl-fs/projects/uncertainty/external/why-not-v1/LINX/linx/abundances.py\", line 306, in __call__\\n    sol = diffeqsolve(\\n          ^^^^^^^^^^^^\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/diffrax/_integrate.py\", line 1423, in diffeqsolve\\n    sol = result.error_if(sol, jnp.invert(is_okay(result)))\\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\nequinox.EquinoxRuntimeError: The maximum number of solver steps was reached. Try increasing `max_steps`.\\n\\n-------------------\\n\\nAn error occurred during the runtime of your JAX program.\\n\\n1) Setting the environment variable `EQX_ON_ERROR=breakpoint` is usually the most useful\\nway to debug such errors. This can be interacted with using most of the usual commands\\nfor the Python debugger: `u` and `d` to move up and down frames, the name of a variable\\nto print its value, etc.\\n\\n2) You may also like to try setting `JAX_DISABLE_JIT=1`. This will mean that you can\\n(mostly) inspect the state of your program as if it was normal Python.\\n\\n3) See `https://docs.kidger.site/equinox/api/debug/` for more suggestions.\\n')",
+      "group": "weak_rate_sampling",
+      "rtol": 1e-08,
+      "sampling_nTOp": 300,
+      "status": "failed"
+    },
+    "sampling_600_tolerance_1e-8": {
+      "atol": 1e-11,
+      "error": "EquinoxRuntimeError('Above is the stack outside of JIT. Below is the stack inside of JIT:\\n  File \"/root/autodl-fs/projects/uncertainty/external/why-not-v1/LINX/linx/abundances.py\", line 306, in __call__\\n    sol = diffeqsolve(\\n          ^^^^^^^^^^^^\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/diffrax/_integrate.py\", line 1423, in diffeqsolve\\n    sol = result.error_if(sol, jnp.invert(is_okay(result)))\\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\nequinox.EquinoxRuntimeError: The maximum number of solver steps was reached. Try increasing `max_steps`.\\n\\n-------------------\\n\\nAn error occurred during the runtime of your JAX program.\\n\\n1) Setting the environment variable `EQX_ON_ERROR=breakpoint` is usually the most useful\\nway to debug such errors. This can be interacted with using most of the usual commands\\nfor the Python debugger: `u` and `d` to move up and down frames, the name of a variable\\nto print its value, etc.\\n\\n2) You may also like to try setting `JAX_DISABLE_JIT=1`. This will mean that you can\\n(mostly) inspect the state of your program as if it was normal Python.\\n\\n3) See `https://docs.kidger.site/equinox/api/debug/` for more suggestions.\\n')",
+      "group": "weak_rate_sampling",
+      "rtol": 1e-08,
+      "sampling_nTOp": 600,
+      "status": "failed"
+    },
+    "tolerance_1e-7_sampling_2400": {
+      "absolute_scalar_batch_difference": {
+        "DoH": 4.1233570719414873e-10,
+        "He3oH": 6.789391012896749e-11,
+        "Li7oH": 1.0880109887919241e-15,
+        "Neff": 0.0,
+        "YPBBN": 5.8509340150614264e-08
+      },
+      "atol": 1e-10,
+      "batch_abundances": {
+        "DoH": 2.4416449597456173e-05,
+        "He3oH": 1.0365574666276098e-05,
+        "Li7oH": 5.66585335137987e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.2466558672092995
+      },
+      "group": "tolerance",
+      "maximum_repeat_drift": 0.0,
+      "maximum_scalar_batch_difference_observation_sigma": 0.0013744523573138289,
+      "maximum_within_batch_spread": 0.0,
+      "normalized_scalar_batch_difference": {
+        "DoH": 0.0013744523573138289,
+        "YPBBN": 4.500718473124174e-05
+      },
+      "rtol": 1e-07,
+      "sampling_nTOp": 2400,
+      "scalar_abundances": {
+        "DoH": 2.4416861933163367e-05,
+        "He3oH": 1.0365506772365969e-05,
+        "Li7oH": 5.665864231489758e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24665580869995934
+      },
+      "status": "ok",
+      "timings_seconds": {
+        "cold_batch_compile_and_solve": 54.543822802603245,
+        "cold_scalar_compile_and_solve": 31.41553501226008,
+        "warm_batch": {
+          "maximum": 2.8451629765331745,
+          "median": 2.789350124076009,
+          "minimum": 2.7753667142242193,
+          "p95": 2.8395816912874583,
+          "q1": 2.782358419150114,
+          "q3": 2.8172565503045917
+        },
+        "warm_scalar": {
+          "maximum": 1.3541498221457005,
+          "median": 1.3531124610453844,
+          "minimum": 1.3178176153451204,
+          "p95": 1.3540460860356687,
+          "q1": 1.3354650381952524,
+          "q3": 1.3536311415955424
+        }
+      }
+    },
+    "tolerance_3e-8_sampling_2400": {
+      "atol": 3e-11,
+      "error": "EquinoxRuntimeError('Above is the stack outside of JIT. Below is the stack inside of JIT:\\n  File \"/root/autodl-fs/projects/uncertainty/external/why-not-v1/LINX/linx/abundances.py\", line 306, in __call__\\n    sol = diffeqsolve(\\n          ^^^^^^^^^^^^\\n  File \"/root/autodl-tmp/projects/uncertainty/envs/why-not/linx-v0.1.2/lib/python3.11/site-packages/diffrax/_integrate.py\", line 1423, in diffeqsolve\\n    sol = result.error_if(sol, jnp.invert(is_okay(result)))\\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\nequinox.EquinoxRuntimeError: The maximum number of solver steps was reached. Try increasing `max_steps`.\\n\\n-------------------\\n\\nAn error occurred during the runtime of your JAX program.\\n\\n1) Setting the environment variable `EQX_ON_ERROR=breakpoint` is usually the most useful\\nway to debug such errors. This can be interacted with using most of the usual commands\\nfor the Python debugger: `u` and `d` to move up and down frames, the name of a variable\\nto print its value, etc.\\n\\n2) You may also like to try setting `JAX_DISABLE_JIT=1`. This will mean that you can\\n(mostly) inspect the state of your program as if it was normal Python.\\n\\n3) See `https://docs.kidger.site/equinox/api/debug/` for more suggestions.\\n')",
+      "group": "tolerance",
+      "rtol": 3e-08,
+      "sampling_nTOp": 2400,
+      "status": "failed"
+    }
+  },
+  "cold_import_seconds": 1.9603532403707504,
+  "decision": {
+    "all_required_cases_complete": false,
+    "candidate_case_differences_observation_sigma": {
+      "tolerance_1e-7_sampling_2400": 0.0013744523573138289
+    },
+    "candidate_scalar_batch_pass": false,
+    "limits_observation_sigma": {
+      "plateau": 0.001,
+      "scalar_batch": 0.01
+    },
+    "missing_or_failed_candidate_cases": [
+      "tolerance_3e-8_sampling_2400",
+      "production_candidate"
+    ],
+    "numerical_consistency_status": "not_accepted",
+    "passed": false,
+    "plateaus": {
+      "tolerance": {
+        "case_ids": [
+          "tolerance_3e-8_sampling_2400",
+          "production_candidate"
+        ],
+        "maximum_difference_observation_sigma": null,
+        "passed": false
+      },
+      "weak_rate_sampling": {
+        "case_ids": [
+          "sampling_1200_tolerance_1e-8",
+          "production_candidate"
+        ],
+        "maximum_difference_observation_sigma": null,
+        "passed": false
+      }
+    },
+    "repeat_drift_pass": true,
+    "scientific_scope": "standard_fiducial_scalar_native_batch_consistency_only",
+    "within_batch_spread_pass": true
+  },
+  "input_mapping": {
+    "eta_fac": 0.9977698483496878,
+    "linx_reference_Omegabh2": 0.02242,
+    "linx_reference_tau_n_seconds": 879.4,
+    "tau_n_fac": 0.9987491471457812
+  },
+  "jax_x64": true,
+  "load_provenance": {
+    "jax": "0.4.28",
+    "package": "/autodl-fs/data/projects/uncertainty/external/why-not-v1/LINX/linx/__init__.py"
+  },
+  "observation_sigmas": {
+    "DoH": 3.0000000000000004e-07,
+    "YPBBN": 0.0013
+  },
+  "schema_version": 1
+}

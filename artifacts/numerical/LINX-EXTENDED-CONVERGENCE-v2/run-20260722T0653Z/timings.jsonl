@@ -1,0 +1,8 @@
+{"case_id": "tolerance_1e-7_sampling_2400", "elapsed_seconds": 31.41553501226008, "kind": "cold_scalar_compile_and_solve", "status": "ok"}
+{"case_id": "tolerance_1e-7_sampling_2400", "elapsed_seconds": 1.3531124610453844, "kind": "warm_scalar", "repetition": 0, "status": "ok"}
+{"case_id": "tolerance_1e-7_sampling_2400", "elapsed_seconds": 1.3541498221457005, "kind": "warm_scalar", "repetition": 1, "status": "ok"}
+{"case_id": "tolerance_1e-7_sampling_2400", "elapsed_seconds": 1.3178176153451204, "kind": "warm_scalar", "repetition": 2, "status": "ok"}
+{"batch_size": 64, "case_id": "tolerance_1e-7_sampling_2400", "elapsed_seconds": 54.543822802603245, "kind": "cold_batch_compile_and_solve", "status": "ok"}
+{"batch_size": 64, "case_id": "tolerance_1e-7_sampling_2400", "elapsed_seconds": 2.8451629765331745, "kind": "warm_batch", "per_point_seconds": 0.04445567150833085, "repetition": 0, "status": "ok"}
+{"batch_size": 64, "case_id": "tolerance_1e-7_sampling_2400", "elapsed_seconds": 2.7753667142242193, "kind": "warm_batch", "per_point_seconds": 0.04336510490975343, "repetition": 1, "status": "ok"}
+{"batch_size": 64, "case_id": "tolerance_1e-7_sampling_2400", "elapsed_seconds": 2.789350124076009, "kind": "warm_batch", "per_point_seconds": 0.04358359568868764, "repetition": 2, "status": "ok"}

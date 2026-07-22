@@ -1,0 +1,22 @@
+schema_version: 2
+scan_id: LINX-EXTENDED-CONVERGENCE-v2
+source_revision: ec2e9d2ca455e8204137e884da29f5dd13a638fa
+registered_runs: 1
+runs:
+  - run: run-20260722T0653Z
+    status: complete_with_failures_not_accepted
+    cases_registered: 6
+    cases_completed: 1
+    cases_failed: 5
+    timing_records: 8
+    failure_class: diffrax_maximum_solver_steps_reached
+    default_max_steps: 4096
+    decision:
+      production_candidate: failed
+      tolerance_plateau: not_evaluable
+      weak_rate_sampling_plateau: not_evaluable
+      numerical_consistency: not_accepted
+    scientific_use: standard_fiducial_scalar_native_batch_consistency_only
+follow_up_required: preregistered_max_steps_diagnostic
+gradient_status: rejected_nonfinite_component_from_prior_upstream_smoke
+why_not_conclusion: undetermined
