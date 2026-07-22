@@ -1,0 +1,59 @@
+{
+  "abundances": {
+    "DoH": 2.444116205595043e-05,
+    "He3oH": 1.0398403381967548e-05,
+    "Li7oH": 5.523665182055191e-10,
+    "Neff": 3.044388520277016,
+    "YPBBN": 0.2468834991108598,
+    "YPCMB": 0.24555760873621507
+  },
+  "backend": "python",
+  "cold_import_seconds": 0.48437192663550377,
+  "cold_solve_seconds": 6.4119140394032,
+  "input_mapping": {
+    "DeltaNeff": 0.0,
+    "Omegabh2": 0.02237,
+    "eta0b": 6.12375183213659e-10,
+    "tau_n_seconds": 878.3
+  },
+  "load_provenance": {
+    "config_module": "/autodl-fs/data/projects/uncertainty/external/why-not-v1/PRyMordial/PRyM/PRyM_init.py",
+    "main_module": "/autodl-fs/data/projects/uncertainty/external/why-not-v1/PRyMordial/PRyM/PRyM_main.py",
+    "numpy": "2.3.5",
+    "scipy": "1.16.3"
+  },
+  "maximum_absolute_repeat_drift": 0.0,
+  "maximum_absolute_repeat_drift_by_abundance": {
+    "DoH": 0.0,
+    "He3oH": 0.0,
+    "Li7oH": 0.0,
+    "Neff": 0.0,
+    "YPBBN": 0.0,
+    "YPCMB": 0.0
+  },
+  "network": "small_12_reaction",
+  "rate_compilation": "primat_like",
+  "timings_seconds": {
+    "warm_batch_1": {
+      "maximum": 6.01680663228035,
+      "median": 5.906831167638302,
+      "minimum": 5.793353024870157,
+      "p95": 5.992201987188309,
+      "q1": 5.852088425774127,
+      "q3": 5.947844650130719
+    },
+    "warm_batch_64": {
+      "maximum": 379.93438383564353,
+      "median": 375.0573614994064,
+      "minimum": 372.82151095196605,
+      "p95": 378.92844352601094,
+      "q1": 373.92972291307524,
+      "q3": 376.07527922187
+    }
+  },
+  "weak_rate_contract": {
+    "recompute_background": true,
+    "recompute_thermal_corrections": false,
+    "recompute_weak_rates": true
+  }
+}
