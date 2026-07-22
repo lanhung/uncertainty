@@ -1,0 +1,254 @@
+schema_version: 1
+registry_id: BBN-UQ-FRONTIER-2026-07
+status: frozen_search_inventory_claims_not_cleared
+review_date_utc: "2026-07-23"
+governing_review: docs/literature/FRONTIER_REVIEW_2026-07.md
+scope: >-
+  Primary-source inventory for BBN thermonuclear-rate uncertainty, direct
+  marginalization, abundance emulation, nuisance-aware simulation-based inference,
+  calibration and current precision observations. Presence in this registry is
+  not scientific endorsement and absence is not proof of nonexistence.
+
+source_policy:
+  primary_sources_required: true
+  accepted_types:
+    - peer_reviewed_journal
+    - arxiv_primary_manuscript
+    - official_repository
+    - official_package_registry
+    - official_data_archive
+  monthly_refresh_required: true
+  raw_urls_are_identifiers_not_citations: true
+
+nuclear_probability_information:
+  ETR25:
+    title: The 2025 Evaluation of Experimental Thermonuclear Reaction Rates
+    arxiv: "2601.20059"
+    journal: Astrophysical Journal Supplement Series 283, 17 (2026)
+    doi: "10.3847/1538-4365/ae2bdc"
+    zenodo_doi: "10.5281/zenodo.17610211"
+    code: https://github.com/rlongland/RatesMC
+    evaluation_inputs: https://github.com/TUNL-Reaction-Rates-Group/2025-rates-evaluation
+    scope:
+      evaluated_rates: 78
+      temperature_range: 1_MK_to_10_GK
+      actual_pdf_percentiles: [16, 50, 84]
+      factor_uncertainty_model: lognormal_approximation
+      typical_mc_samples_per_non_bayesian_rate: 50000
+    R0_coverage:
+      dp_gamma_he3: table_6
+      dd_n_he3: table_7
+      dd_p_t: table_8
+    project_role: primary_candidate_experimental_R0_prior
+    required_action:
+      - capture_exact_data_and_code_revisions
+      - preserve_coherent_rate_curve_draws_across_temperature
+      - compare_actual_pdf_percentiles_with_lognormal_approximation
+      - register_missing_cross_reaction_covariance
+
+  GP_deuterium_2026:
+    title: A data-driven prediction for the primordial deuterium abundance
+    arxiv: "2604.16600"
+    submitted: "2026-04-17"
+    reactions: [dp_gamma_he3, dd_n_he3, dd_p_t]
+    method: gaussian_process_regression_on_experimental_nuclear_data
+    key_results:
+      - validated_unbiased_D_over_H_uncertainty
+      - low_degree_polynomial_fits_can_overpredict_D_over_H
+      - dd_measurements_0p1_to_0p6_MeV_are_high_value
+    project_role: mandatory_functional_rate_baseline
+
+  hierarchical_Be7_n_p_Li7:
+    title: Hierarchical Bayesian Thermonuclear Rate for the Be7(n,p)Li7 BBN Reaction
+    arxiv: "1912.06210"
+    method: hierarchical_bayesian_R_matrix
+    project_role: R1_posterior_provenance_example
+
+  hierarchical_dp_gamma:
+    title: Bayesian estimation of the D(p,gamma)3He thermonuclear reaction rate
+    arxiv: "2109.00049"
+    method: hierarchical_bayesian_nuclear_data_analysis
+    project_role: compare_with_ETR25_and_solver_distributed_priors
+
+bbn_codes_and_inference:
+  PRIMAT:
+    repository: https://github.com/CyrilPitrou/primat
+    repository_branch: master
+    repository_version_at_review: "0.3.2"
+    pypi_release_at_review: "0.3.1"
+    license: GPL-3.0-or-later
+    native_capabilities:
+      - lognormal_p_reaction_parameters
+      - run_mc
+      - mc_uncertainty
+      - raw_per_draw_abundance_values
+      - parallel_workers
+      - multiple_networks_and_rate_variants
+    project_role: first_native_direct_MC_reproduction
+
+  PRyMordial:
+    arxiv: "2307.07061"
+    repository: https://github.com/vallima/PRyMordial
+    license: GPL-3.0-or-later
+    native_capabilities:
+      - standard_and_beyond_standard_model_BBN
+      - explicit_lognormal_rate_marginalization
+      - PRIMAT_like_and_NACREII_like_rate_choices
+    project_role: explicit_marginalization_baseline
+
+  Schoneberg_2024:
+    title: The 2024 BBN baryon abundance update
+    arxiv: "2401.15054"
+    key_comparison: PArthENoPE_posthoc_theory_error_vs_PRyMordial_rate_marginalization
+    project_role: establishes_that_standard_BBN_U_M1_vs_U_M2_is_not_globally_novel
+
+  LINX:
+    arxiv: "2408.14538"
+    repository: https://github.com/cgiovanetti/LINX
+    license: MIT
+    native_capabilities:
+      - fast_JAX_BBN
+      - differentiability
+      - nuclear_rates_q
+      - multiple_rate_networks
+      - gradient_based_inference
+    project_role: direct_and_differentiable_baseline
+
+  LINX_joint_CMB_BBN:
+    arxiv: "2408.14531"
+    version_note: v2_2025-11-27_at_review
+    key_result: joint_CMB_BBN_likelihood_marginalizing_Planck_nuisances_and_nuclear_rates_for_three_networks
+    project_role: blocks_first_joint_rate_marginalization_claim
+
+  ABCMB:
+    arxiv: "2602.15104"
+    pypi_version: "0.3.1"
+    pypi_date: "2026-06-02"
+    repository: https://github.com/TonyZhou729/ABCMB
+    license: MIT
+    native_capabilities:
+      - differentiable_CMB
+      - ABCMB_with_LINX_example
+    project_role: joint_direct_inference_economics_baseline
+
+  BBNet:
+    arxiv: "2512.15266"
+    repository: https://github.com/ML4GW/BBNet
+    license: MIT
+    native_capabilities:
+      - deterministic_extended_BBN_abundance_emulation
+      - order_1e4_single_forward_speedup
+    project_role: blocks_generic_BBN_emulator_claim
+
+  PArthENoPE:
+    version: "3.0"
+    official_site: https://parthenope.na.infn.it/
+    license: GPL-3.0
+    project_role: mature_precision_cross_check_and_legacy_band_reference
+
+  AlterBBN:
+    arxiv: "1806.11095"
+    official_site: https://alterbbn.hepforge.org/
+    license: GPL-3.0
+    project_role: alternative_cosmology_and_engineering_cross_check
+
+sensitivity_and_BBN_results:
+  sensitivity_atlas_2026:
+    title: Inside the black box of Big Bang Nucleosynthesis
+    arxiv: "2603.22414"
+    journal: Physics Reports 1194, 1-40 (2026)
+    doi: "10.1016/j.physrep.2026.07.001"
+    code: https://github.com/Anne-KatherineBurns/bbn-sensitivity-atlas
+    scope:
+      physics_and_cosmology_parameters: 14
+      thermonuclear_rates: 63
+      rate_compilations: 2
+      weak_normalizations: 2
+    project_role: standard_sensitivity_and_linear_error_budget_regression_baseline
+    known_limitation_relevant_to_project: off_diagonal_covariance_terms_neglected_in_reported_linear_budget
+
+  nuclear_lithium_MC_2020:
+    title: Thermonuclear reaction rates and primordial nucleosynthesis
+    arxiv: "2008.12200"
+    methods: [Monte_Carlo, mutual_information, genetic_algorithm]
+    project_role: abundance_rate_correlation_and_lithium_nuclear_no_solution_baseline
+
+simulation_based_inference:
+  TMNRE:
+    title: Fast and Credible Likelihood-Free Cosmology with Truncated Marginal Neural Ratio Estimation
+    arxiv: "2111.08030"
+    journal: JCAP_09_2022_004
+    key_capability: marginal_target_inference_with_simulation_count_effectively_independent_of_nuisance_dimension
+    project_role: mandatory_post_gate_posterior_baseline
+
+  AMNRE:
+    title: Arbitrary Marginal Neural Ratio Estimation for Simulation-based Inference
+    arxiv: "2110.00449"
+    key_capability: amortized_arbitrary_parameter_subset_marginals_without_numerical_integration
+    project_role: mandatory_post_gate_posterior_baseline
+
+  nuisance_active_learning:
+    title: Bayesian Active Learning in the Presence of Nuisance Parameters
+    venue: UAI_2024_PMLR_244
+    url: https://proceedings.mlr.press/v244/sloman24a.html
+    key_risk: negative_interference_when_target_focused_acquisition_underlearns_nuisances
+    project_role: active_learning_safety_constraint
+
+  posterior_SBC:
+    arxiv: "2502.03279"
+    key_capability: calibration_checking_conditional_on_observed_data_neighborhood
+    project_role: required_validation_baseline
+
+  CP4SBI:
+    arxiv: "2508.17077"
+    key_capability: local_conformal_calibration_with_finite_sample_local_coverage
+    project_role: candidate_local_coverage_baseline
+
+  calibrated_neural_quantiles:
+    journal: Physical_Review_Letters_136_161001_2026
+    key_capability: many_approximate_simulations_plus_smaller_high_fidelity_calibration_set
+    project_role: multi_fidelity_calibration_baseline
+
+observational_precision:
+  LBT_Yp_IV:
+    arxiv: "2601.22238"
+    result: Y_p_0p2458_plusminus_0p0013
+    project_role: future_OBS_v1_helium_candidate
+
+  LBT_Yp_V:
+    arxiv: "2601.22239"
+    project_role: current_combined_BBN_cosmology_reference
+
+  Neff_2percent_2026:
+    arxiv: "2603.13226"
+    result: N_eff_2p990_plusminus_0p070
+    project_role: current_precision_context
+
+  updated_deuterium_2024:
+    arxiv: "2401.12797"
+    result: D_over_H_2p533e_minus5_plusminus_0p024e_minus5
+    project_role: OBS_v1_stress_or_primary_candidate_subject_to_existing_freeze
+
+claim_blacklist:
+  - first_BBN_nuclear_rate_Monte_Carlo
+  - first_lognormal_rate_nuisance_model
+  - first_explicit_standard_BBN_rate_marginalization
+  - first_joint_CMB_BBN_nuclear_rate_marginalization
+  - first_differentiable_BBN_solver
+  - first_BBN_neural_emulator
+  - first_identification_of_three_head_deuterium_reactions
+  - first_standard_BBN_large_rate_sensitivity_atlas
+  - first_GP_treatment_of_three_deuterium_S_factors
+  - first_SBI_marginalization_of_high_dimensional_nuisance_parameters
+  - general_claim_that_direct_BBN_inference_is_impossible
+
+candidate_delta:
+  required_intersection:
+    - current_posterior_or_actual_PDF_rate_information
+    - coherent_temperature_dependent_rate_curve_sampling
+    - calibrated_joint_abundance_distribution_p_y_given_theta
+    - explicit_fixed_Cth_failure_or_validity_map
+    - matched_solver_rate_library_weak_physics_factorization
+    - posterior_recovery_SBC_OOD_and_direct_fallback
+    - measured_end_to_end_simulation_budget_economics
+  status: empirical_hypothesis_not_claim_clearance

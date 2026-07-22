@@ -1,11 +1,14 @@
-schema_version: 1
+schema_version: 2
 registry_id: NUCLEAR-STAGE0-R0-v1
-status: scope_frozen_numerical_priors_pending
+status: scope_and_source_policy_frozen_numerical_capture_pending
 registered_at_utc: "2026-07-23"
+frontier_review: docs/literature/FRONTIER_REVIEW_2026-07.md
+source_registry: configs/literature/frontier_sources_2026-07.yaml
 scientific_scope: >-
   Minimal self-contained reaction-rate nuisance set for validating BBN theoretical
-  bands, covariance convergence and abundance-distribution learning. This is not
-  a claim that other reactions are irrelevant.
+  bands, covariance convergence, abundance-distribution learning and the validity
+  of a fixed post-hoc theoretical covariance. This is not a claim that other
+  reactions are irrelevant.
 
 primary_outputs:
   - Y_p
@@ -20,18 +23,59 @@ cosmology_stage:
     - delta_neff
     - nonstandard_expansion
 
+prior_source_policy:
+  primary_candidate: ETR25
+  primary_candidate_reference:
+    arxiv: "2601.20059"
+    doi: "10.3847/1538-4365/ae2bdc"
+    zenodo_doi: "10.5281/zenodo.17610211"
+    RatesMC_repository: https://github.com/rlongland/RatesMC
+    evaluation_repository: https://github.com/TUNL-Reaction-Rates-Group/2025-rates-evaluation
+  source_capture_status: pending_exact_revision_and_checksum
+  actual_pdf_policy: >-
+    ETR25 low, median and high values are percentiles of the actual rate
+    probability density, whereas factor uncertainty is a log-normal
+    approximation. Both representations must be propagated and compared before
+    the scalar log-normal model is frozen.
+  coherent_curve_policy: >-
+    A nuclear-input realization must produce one coherent rate curve across the
+    full temperature grid. Independent random perturbations at each temperature
+    bin are prohibited unless they are draws from an explicitly registered
+    function-valued posterior with its covariance.
+  cross_reaction_policy: >-
+    Missing published cross-reaction covariance must be recorded as unmodeled and
+    tested through a preregistered stress model; absence of covariance is not
+    evidence of independence.
+  solver_table_policy: >-
+    A rate table distributed with a BBN solver is a software/input lineage and is
+    not automatically the authoritative nuclear-data posterior.
+
 reactions:
   - reaction_id: dp_gamma_he3
     equation: d(p,gamma)3He
     role: deuterium_destruction_and_He3_feed
     prior_parameter: z_dp_gamma_he3
-    central_curve: pending
-    temperature_grid: pending
-    units: pending
-    uncertainty_model: pending_lognormal_or_posterior
+    ETR25_table: 6
+    ETR25_rate_type: Bayesian_rate_adopted_with_registered_modifications
+    source_capture: pending
+    central_curve: pending_ETR25_median
+    temperature_grid: pending_ETR25_capture
+    units: cm3_mol_minus1_s_minus1_pending_validation
+    actual_pdf_or_samples: pending_RatesMC_or_adopted_posterior_capture
+    actual_percentiles: pending
+    lognormal_factor_uncertainty: pending
+    lognormal_adequacy_audit: required
+    coherent_temperature_draws: required
     covariance_status: pending
     detailed_balance: pending
     solver_mappings: pending
+    alternative_sources:
+      - GP_deuterium_2026_arxiv_2604_16600
+      - hierarchical_Bayesian_dp_gamma_arxiv_2109_00049
+      - PRIMAT_distributed_table
+      - PRyMordial_PRIMAT_like
+      - PRyMordial_NACREII_like
+      - LINX_network_tables
     source_revision: pending
     source_checksum: pending
     production_enabled: false
@@ -40,13 +84,26 @@ reactions:
     equation: d(d,n)3He
     role: deuterium_destruction_and_He3_feed
     prior_parameter: z_dd_n_he3
-    central_curve: pending
-    temperature_grid: pending
-    units: pending
-    uncertainty_model: pending_lognormal_or_posterior
+    ETR25_table: 7
+    ETR25_rate_type: Bayesian_rate_adopted_with_registered_modifications
+    source_capture: pending
+    central_curve: pending_ETR25_median
+    temperature_grid: pending_ETR25_capture
+    units: cm3_mol_minus1_s_minus1_pending_validation
+    actual_pdf_or_samples: pending_RatesMC_or_adopted_posterior_capture
+    actual_percentiles: pending
+    lognormal_factor_uncertainty: pending
+    lognormal_adequacy_audit: required
+    coherent_temperature_draws: required
     covariance_status: pending
     detailed_balance: pending
     solver_mappings: pending
+    alternative_sources:
+      - GP_deuterium_2026_arxiv_2604_16600
+      - PRIMAT_distributed_table
+      - PRyMordial_PRIMAT_like
+      - PRyMordial_NACREII_like
+      - LINX_network_tables
     source_revision: pending
     source_checksum: pending
     production_enabled: false
@@ -55,13 +112,26 @@ reactions:
     equation: d(d,p)t
     role: deuterium_destruction_and_tritium_feed
     prior_parameter: z_dd_p_t
-    central_curve: pending
-    temperature_grid: pending
-    units: pending
-    uncertainty_model: pending_lognormal_or_posterior
+    ETR25_table: 8
+    ETR25_rate_type: Bayesian_rate_adopted_with_registered_modifications
+    source_capture: pending
+    central_curve: pending_ETR25_median
+    temperature_grid: pending_ETR25_capture
+    units: cm3_mol_minus1_s_minus1_pending_validation
+    actual_pdf_or_samples: pending_RatesMC_or_adopted_posterior_capture
+    actual_percentiles: pending
+    lognormal_factor_uncertainty: pending
+    lognormal_adequacy_audit: required
+    coherent_temperature_draws: required
     covariance_status: pending
     detailed_balance: pending
     solver_mappings: pending
+    alternative_sources:
+      - GP_deuterium_2026_arxiv_2604_16600
+      - PRIMAT_distributed_table
+      - PRyMordial_PRIMAT_like
+      - PRyMordial_NACREII_like
+      - LINX_network_tables
     source_revision: pending
     source_checksum: pending
     production_enabled: false
@@ -75,13 +145,40 @@ weak_physics:
   double_counting_prohibited: true
 
 nuisance_contract:
-  baseline_equation: log_r_i_T_equals_log_rbar_i_T_plus_z_i_sigma_i_T
-  marginal_distribution: multivariate_normal
-  covariance_matrix: pending
+  scalar_baseline_equation: log_r_i_T_equals_log_rbar_i_T_plus_z_i_sigma_i_T
+  scalar_baseline_distribution: multivariate_normal
+  scalar_covariance_matrix: pending
+  scalar_model_role: approximation_and_solver_interface_baseline
+  actual_pdf_model:
+    status: pending_ETR25_or_original_posterior_ingestion
+    comparison_to_scalar_required: true
   independence_assumed: false
   missing_covariance_policy: >-
     Record missing correlations explicitly and run a preregistered correlation
     stress test; absence of covariance is not evidence of independence.
+
+mandatory_direct_reproduction:
+  - PRIMAT_native_run_mc_or_mc_uncertainty
+  - PRyMordial_explicit_rate_marginalization
+  - LINX_nuclear_rates_q_central_and_symmetric_checks
+  - one_2026_sensitivity_atlas_R0_slice
+  - structure_of_2026_GP_deuterium_prior
+  scientific_role: reproduction_and_calibration_not_novelty
+
+rate_pdf_audit:
+  task_id: UQ0-RATE-PDF-AUDIT
+  per_reaction_outputs:
+    - source_actual_percentiles
+    - source_lognormal_factor_uncertainty
+    - asymmetry_of_low_median_high
+    - temperature_dependence_of_approximation_error
+    - coherent_curve_draw_validation
+    - BBN_window_summary
+  BBN_temperature_window: preregister_after_solver_and_rate_grid_audit
+  pass_rule: >-
+    The scalar baseline may enter production only after the difference from the
+    actual or posterior-derived representation is quantified and either shown to
+    satisfy the frozen null budget or retained as an explicit model comparison.
 
 monte_carlo_protocol:
   frozen_fiducial_manifest: pending
@@ -94,21 +191,29 @@ monte_carlo_protocol:
     - quantile_absolute_change
     - tail_probability_change
     - cross_abundance_correlation_change
+    - actual_pdf_vs_lognormal_difference
   every_draw_records:
     - seed
-    - nuisance_vector
+    - nuclear_input_draw_id
+    - coherent_rate_curve_hashes
+    - nuisance_vector_or_posterior_draw_reference
     - solver_revision
+    - rate_source_revision
     - config_hash
     - outputs
     - structured_status
     - runtime_seconds
 
 acceptance_before_label_generation:
-  - all_three_rates_have_versioned_sources
-  - units_and_temperature_semantics_are_verified
-  - central_curves_and_uncertainty_models_are_registered
+  - ETR25_or_alternative_source_files_have_immutable_revisions_and_checksums
+  - all_three_rates_have_verified_temperature_grids_and_units
+  - actual_percentiles_or_posterior_products_are_registered
+  - scalar_lognormal_approximation_has_been_audited
+  - coherent_rate_curve_sampling_is_validated
   - solver_rate_mappings_pass_plus_minus_one_regression
+  - cross_reaction_covariance_is_modeled_or_has_a_frozen_stress_test
   - weak_uncertainty_is_not_double_counted
+  - PRIMAT_PRyMordial_and_LINX_direct_baselines_are_reproduced_or_explicitly_blocked
   - source_and_config_checksums_are_frozen
 
 expansion_rules:
@@ -116,9 +221,12 @@ expansion_rules:
     - stage0_pipeline_passes
     - missing_output_variance_or_posterior_sensitivity_is_demonstrated
   add_functional_modes_after:
-    - scalar_theta_dependence_or_tail_failure_is_demonstrated
+    - scalar_or_actual_pdf_theta_dependence_or_tail_failure_is_demonstrated
     - posterior_derived_basis_is_available
     - cross_validation_passes
   add_full_network_after:
     - core_set_fails_variance_or_coverage_budget
     - production_need_is_signed
+  add_learned_models_after:
+    - UQ2_GATE_REPORT_is_G1_or_higher
+    - direct_workload_and_baselines_are_measured
