@@ -1,4 +1,5 @@
 """Render a task snapshot into an LLM-friendly Markdown status report."""
+
 from __future__ import annotations
 
 from typing import Any
@@ -25,11 +26,11 @@ def render(snapshot: dict[str, Any]) -> str:
     lines = [
         f"# {project} — live research status",
         "",
-        f"_Generated: {snapshot.get('generated_at', '')}; revision: "
-        f"{snapshot.get('revision', 0)}_",
+        f"_Generated: {snapshot.get('generated_at', '')}; revision: {snapshot.get('revision', 0)}_",
         "",
-        f"**Overall plan completion: {_pct(snapshot.get('overall_progress', 0))}.** "
-        "This is effort-weighted execution progress, not scientific confidence.",
+        f"**Scientific program gate: {_pct(snapshot.get('science_gate_progress', snapshot.get('overall_progress', 0)))}.** "
+        "This is effort-weighted gate completion, not scientific confidence.",
+        f"**Current execution milestones: {_pct(snapshot.get('execution_progress', 0))}.**",
         "",
     ]
 
@@ -56,9 +57,7 @@ def render(snapshot: dict[str, Any]) -> str:
             return
         lines.append(f"## {title}")
         for task in selected:
-            lines.append(
-                f"- **{task['id']}** — {task.get('title', '')} [{task.get('status')}]"
-            )
+            lines.append(f"- **{task['id']}** — {task.get('title', '')} [{task.get('status')}]")
             if task.get("total") is not None:
                 lines.append(
                     f"  - progress: {_pct(task.get('progress', 0))} "
@@ -74,25 +73,19 @@ def render(snapshot: dict[str, Any]) -> str:
                 "running",
                 "stale",
             }:
-                lines.append(
-                    f"  - heartbeat age: {task['heartbeat_age_s']:.0f} s"
-                )
+                lines.append(f"  - heartbeat age: {task['heartbeat_age_s']:.0f} s")
             if task.get("blocked_by"):
                 lines.append(f"  - blocked by: {', '.join(task['blocked_by'])}")
             elif task.get("depends_on"):
                 lines.append(f"  - depends on: {', '.join(task['depends_on'])}")
             if task.get("metrics"):
-                metrics = ", ".join(
-                    f"{key}={value}" for key, value in task["metrics"].items()
-                )
+                metrics = ", ".join(f"{key}={value}" for key, value in task["metrics"].items())
                 lines.append(f"  - metrics: {metrics}")
             if task.get("message"):
                 lines.append(f"  - note: {task['message']}")
             links = task.get("artifact_links") or []
             if links:
-                formatted = ", ".join(
-                    f"[{item['label']}]({item['url']})" for item in links
-                )
+                formatted = ", ".join(f"[{item['label']}]({item['url']})" for item in links)
                 lines.append(f"  - artifacts: {formatted}")
         lines.append("")
 

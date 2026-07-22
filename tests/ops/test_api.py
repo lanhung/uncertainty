@@ -64,9 +64,7 @@ class ApiTests(unittest.TestCase):
         return self.client.post("/report", json=payload, headers=self.headers)
 
     def test_auth_and_dependency_enforcement(self) -> None:
-        denied = self.client.post(
-            "/report", json={"task_id": "A", "event": "start"}
-        )
+        denied = self.client.post("/report", json={"task_id": "A", "event": "start"})
         self.assertEqual(denied.status_code, 401)
         blocked = self.report({"task_id": "B", "event": "start"})
         self.assertEqual(blocked.status_code, 409)
@@ -95,6 +93,14 @@ class ApiTests(unittest.TestCase):
         self.report({"task_id": "A", "event": "done", "run_id": "run-a"})
         start_b = self.report({"task_id": "B", "event": "start", "run_id": "run-b"})
         self.assertEqual(start_b.status_code, 200)
+
+    def test_state_exposes_separate_science_and_execution_progress(self) -> None:
+        response = self.client.get("/api/state")
+
+        self.assertEqual(response.status_code, 200)
+        snapshot = response.json()
+        self.assertIn("science_gate_progress", snapshot)
+        self.assertIn("execution_progress", snapshot)
 
 
 if __name__ == "__main__":

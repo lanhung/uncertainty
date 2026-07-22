@@ -57,9 +57,9 @@ class StoreTests(unittest.TestCase):
         self.store.start("A", "worker", 10, "samples", "run-1")
         task = self.store.get("A")
         assert task is not None
-        task.updated_at = (
-            datetime.now(timezone.utc) - timedelta(hours=1)
-        ).isoformat(timespec="seconds")
+        task.updated_at = (datetime.now(timezone.utc) - timedelta(hours=1)).isoformat(
+            timespec="seconds"
+        )
         self.store.upsert_static(task)
         snapshot = self.store.snapshot("test", stale_after_s=10)
         item = next(value for value in snapshot["tasks"] if value["id"] == "A")
@@ -67,6 +67,20 @@ class StoreTests(unittest.TestCase):
         persisted = self.store.get("A")
         assert persisted is not None
         self.assertEqual(persisted.status, "running")
+
+    def test_execution_milestones_do_not_inflate_science_gate(self) -> None:
+        self.store.upsert_static(Task(id="EXEC", title="runtime", phase="EXEC", total=4))
+        self.store.start("A", "worker", 10, "samples", "run-a")
+        self.store.progress("A", 4, 10, None, None, "worker", "run-a")
+        self.store.start("EXEC", "worker", 4, "slices", "run-exec")
+        self.store.finish("EXEC", "done", "four slices complete", None, "run-exec")
+
+        snapshot = self.store.snapshot("test")
+
+        self.assertEqual(snapshot["science_gate_progress"], 0.2)
+        self.assertEqual(snapshot["overall_progress"], 0.2)
+        self.assertEqual(snapshot["execution_progress"], 1.0)
+        self.assertEqual(snapshot["phases"]["EXEC"]["progress"], 1.0)
 
 
 if __name__ == "__main__":
