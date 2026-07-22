@@ -4,8 +4,11 @@ from pathlib import Path
 import pytest
 
 from scripts.why_not_benchmark import (
+    atomic_json_dump,
+    finalize_w1_timings,
     finite_abundances,
     linx_abundances,
+    load_resume_state,
     load_yaml,
     prymordial_abundances,
     quantile,
@@ -100,6 +103,9 @@ def test_direct_benchmark_entrypoint_declares_required_artifacts() -> None:
     assert "abcmb_bundled_linx_bbn_only_not_full_joint_pipeline" in source
     assert "installed ABCMB lacks direct_url.json source provenance" in source
     assert 'git_tree_revision(source_dir, "abcmb/linx")' in source
+    assert '"--resume"' in source
+    assert "legacy runs cannot be resumed safely" in source
+    assert '"run_attempt_id": attempt_id' in source
 
 
 def test_yaml_loader_records_in_process_parser(tmp_path: Path) -> None:
@@ -110,3 +116,81 @@ def test_yaml_loader_records_in_process_parser(tmp_path: Path) -> None:
 
     assert result == {"answer": 42}
     assert loader == "in_process_pyyaml"
+
+
+def test_prymordial_resume_state_requires_exact_frozen_identity(tmp_path: Path) -> None:
+    identity = {
+        "baseline": "W1-PRYM",
+        "batch_sizes": [1, 64],
+        "repetitions": 30,
+    }
+    state_path = tmp_path / "resume_state.json"
+    state = {
+        "baseline": "W1-PRYM",
+        "durations_seconds": {"warm_batch_1": [1.0], "warm_batch_64": []},
+        "identity": identity,
+        "run_id": "run-id",
+        "schema_version": 1,
+        "started_at_utc": "2026-07-22T00:00:00+00:00",
+        "status": "in_progress",
+    }
+    atomic_json_dump(state_path, state)
+
+    assert load_resume_state(state_path, identity) == state
+    with pytest.raises(ValueError, match="identity"):
+        load_resume_state(state_path, {**identity, "repetitions": 31})
+
+
+def test_prymordial_resume_rejects_legacy_or_complete_runs(tmp_path: Path) -> None:
+    missing = tmp_path / "missing.json"
+    with pytest.raises(FileNotFoundError, match="legacy runs cannot be resumed safely"):
+        load_resume_state(missing, {})
+
+    state_path = tmp_path / "resume_state.json"
+    atomic_json_dump(
+        state_path,
+        {
+            "baseline": "W1-PRYM",
+            "durations_seconds": {},
+            "identity": {},
+            "run_id": "run-id",
+            "schema_version": 1,
+            "started_at_utc": "2026-07-22T00:00:00+00:00",
+            "status": "complete",
+        },
+    )
+    with pytest.raises(ValueError, match="not in progress"):
+        load_resume_state(state_path, {})
+
+
+def test_prymordial_finalization_deduplicates_cold_records(tmp_path: Path) -> None:
+    timings = tmp_path / "timings.jsonl"
+    timings.write_text(
+        "\n".join(
+            json.dumps(record)
+            for record in (
+                {"kind": "cold_import", "elapsed_seconds": 99.0},
+                {"kind": "cold_solve", "elapsed_seconds": 99.0},
+                {"kind": "warm_batch", "batch_size": 1, "repetition": 0},
+                {"kind": "resume_import", "elapsed_seconds": 2.0},
+            )
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    state = {
+        "attempts": [{"attempt_id": "attempt-1"}],
+        "cold_import_seconds": 1.0,
+        "cold_solve_seconds": 5.0,
+        "started_at_utc": "2026-07-22T00:00:00+00:00",
+    }
+
+    finalize_w1_timings(timings, state)
+    records = [json.loads(line) for line in timings.read_text(encoding="utf-8").splitlines()]
+
+    assert [record["kind"] for record in records].count("cold_import") == 1
+    assert [record["kind"] for record in records].count("cold_solve") == 1
+    assert records[0]["elapsed_seconds"] == 1.0
+    assert records[1]["elapsed_seconds"] == 5.0
+    assert records[2]["kind"] == "warm_batch"
+    assert records[3]["kind"] == "resume_import"

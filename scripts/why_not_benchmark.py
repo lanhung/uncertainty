@@ -109,9 +109,78 @@ def json_dump(path: Path, payload: Any) -> None:
     path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
 
+def atomic_json_dump(path: Path, payload: Any) -> None:
+    """Replace a checkpoint without exposing a partially written JSON document."""
+    temporary = path.with_suffix(path.suffix + ".tmp")
+    json_dump(temporary, payload)
+    temporary.replace(path)
+
+
+def load_resume_state(path: Path, identity: dict[str, Any]) -> dict[str, Any]:
+    """Load and validate an interrupted W1 run before any solver work is skipped."""
+    if not path.is_file():
+        raise FileNotFoundError(
+            f"resume requested but {path} is absent; legacy runs cannot be resumed safely"
+        )
+    state = json.loads(path.read_text(encoding="utf-8"))
+    if state.get("schema_version") != 1 or state.get("baseline") != "W1-PRYM":
+        raise ValueError("unsupported PRyMordial resume-state schema or baseline")
+    if state.get("status") != "in_progress":
+        raise ValueError(f"resume state is not in progress: {state.get('status')!r}")
+    if state.get("identity") != identity:
+        raise ValueError("resume identity does not match the frozen benchmark inputs")
+    if not state.get("run_id") or not state.get("started_at_utc"):
+        raise ValueError("resume state lacks persistent run identity")
+    durations = state.get("durations_seconds")
+    if not isinstance(durations, dict):
+        raise ValueError("resume state lacks duration checkpoints")
+    repetitions = int(identity["repetitions"])
+    for batch_size in identity["batch_sizes"]:
+        label = f"warm_batch_{batch_size}"
+        values = durations.get(label)
+        if not isinstance(values, list) or len(values) > repetitions:
+            raise ValueError(f"invalid resume duration checkpoint for {label}")
+        if any(not isinstance(value, (int, float)) or value < 0 for value in values):
+            raise ValueError(f"invalid duration value for {label}")
+    return state
+
+
 def append_jsonl(path: Path, payload: dict[str, Any]) -> None:
     with path.open("a", encoding="utf-8") as handle:
         handle.write(json.dumps(payload, sort_keys=True) + "\n")
+
+
+def finalize_w1_timings(path: Path, state: dict[str, Any]) -> None:
+    """Canonicalize cold records once all checkpointed warm work is complete."""
+    records = [
+        json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()
+    ]
+    records = [
+        record for record in records if record.get("kind") not in {"cold_import", "cold_solve"}
+    ]
+    first_attempt_id = state["attempts"][0]["attempt_id"]
+    canonical = [
+        {
+            "batch_size": 0,
+            "elapsed_seconds": state["cold_import_seconds"],
+            "kind": "cold_import",
+            "recorded_at_utc": state["started_at_utc"],
+            "run_attempt_id": first_attempt_id,
+        },
+        {
+            "batch_size": 1,
+            "elapsed_seconds": state["cold_solve_seconds"],
+            "kind": "cold_solve",
+            "recorded_at_utc": state["started_at_utc"],
+            "run_attempt_id": first_attempt_id,
+            "status": "ok",
+        },
+    ]
+    temporary = path.with_suffix(path.suffix + ".tmp")
+    with temporary.open("w", encoding="utf-8") as handle:
+        for record in canonical + records:
+            handle.write(json.dumps(record, sort_keys=True) + "\n")
+    temporary.replace(path)
 
 
 def finite_abundances(result: dict[str, Any]) -> dict[str, float]:
@@ -756,7 +825,16 @@ def run_w1_prymordial(
     batch_sizes: list[int],
     timings_path: Path,
     failures_path: Path,
+    resume_state_path: Path,
+    resume_state: dict[str, Any],
 ) -> tuple[dict[str, Any], int, float]:
+    resumed = bool(resume_state["attempts"])
+    attempt_id = str(uuid.uuid4())
+    attempt_wall_started = time.perf_counter()
+    attempt_cpu_started = time.process_time()
+    accounted_wall_before = float(resume_state.get("accounted_wall_seconds", 0.0))
+    accounted_cpu_before = float(resume_state.get("accounted_cpu_seconds", 0.0))
+
     import_started = time.perf_counter()
     config, solver_class, load_provenance = load_prymordial(source_dir)
     import_seconds = time.perf_counter() - import_started
@@ -765,8 +843,9 @@ def run_w1_prymordial(
         {
             "batch_size": 0,
             "elapsed_seconds": import_seconds,
-            "kind": "cold_import",
+            "kind": "resume_import" if resumed else "cold_import",
             "recorded_at_utc": utc_now(),
+            "run_attempt_id": attempt_id,
         },
     )
 
@@ -798,20 +877,81 @@ def run_w1_prymordial(
         {
             "batch_size": 1,
             "elapsed_seconds": cold_seconds,
-            "kind": "cold_solve",
+            "kind": "resume_reference_solve" if resumed else "cold_solve",
             "recorded_at_utc": utc_now(),
+            "run_attempt_id": attempt_id,
             "status": "ok",
         },
     )
 
-    failures = 0
-    durations: dict[str, list[float]] = {}
-    maximum_absolute_repeat_drift = 0.0
-    maximum_absolute_repeat_drift_by_abundance = {key: 0.0 for key in reference}
+    if resumed:
+        frozen_reference = resume_state.get("reference_abundances")
+        if not isinstance(frozen_reference, dict) or frozen_reference.keys() != reference.keys():
+            raise ValueError("resume reference abundance schema changed")
+        for key, value in reference.items():
+            if not math.isclose(value, float(frozen_reference[key]), rel_tol=1.0e-12, abs_tol=0.0):
+                raise ValueError(f"resume reference abundance changed for {key}")
+        durations = {
+            label: [float(value) for value in values]
+            for label, values in resume_state["durations_seconds"].items()
+        }
+        failures = int(resume_state["failure_count"])
+        maximum_absolute_repeat_drift = float(resume_state["maximum_absolute_repeat_drift"])
+        maximum_absolute_repeat_drift_by_abundance = {
+            key: float(value)
+            for key, value in resume_state["maximum_absolute_repeat_drift_by_abundance"].items()
+        }
+        measured_solver_seconds = float(resume_state["measured_solver_seconds"])
+        measured_solver_seconds += import_seconds + cold_seconds
+    else:
+        failures = 0
+        durations = {f"warm_batch_{batch_size}": [] for batch_size in batch_sizes}
+        maximum_absolute_repeat_drift = 0.0
+        maximum_absolute_repeat_drift_by_abundance = {key: 0.0 for key in reference}
+        measured_solver_seconds = import_seconds + cold_seconds
+        resume_state.update(
+            {
+                "cold_import_seconds": import_seconds,
+                "cold_solve_seconds": cold_seconds,
+                "load_provenance": load_provenance,
+                "reference_abundances": reference,
+            }
+        )
+
+    resume_state["attempts"].append(
+        {
+            "attempt_id": attempt_id,
+            "resumed": resumed,
+            "started_at_utc": utc_now(),
+            "status": "running",
+        }
+    )
+
+    def checkpoint() -> None:
+        resume_state.update(
+            {
+                "accounted_cpu_seconds": accounted_cpu_before
+                + time.process_time()
+                - attempt_cpu_started,
+                "accounted_wall_seconds": accounted_wall_before
+                + time.perf_counter()
+                - attempt_wall_started,
+                "durations_seconds": durations,
+                "failure_count": failures,
+                "maximum_absolute_repeat_drift": maximum_absolute_repeat_drift,
+                "maximum_absolute_repeat_drift_by_abundance": (
+                    maximum_absolute_repeat_drift_by_abundance
+                ),
+                "measured_solver_seconds": measured_solver_seconds,
+                "updated_at_utc": utc_now(),
+            }
+        )
+        atomic_json_dump(resume_state_path, resume_state)
+
+    checkpoint()
     for batch_size in batch_sizes:
         label = f"warm_batch_{batch_size}"
-        durations[label] = []
-        for repetition in range(repetitions):
+        for repetition in range(len(durations[label]), repetitions):
             started = time.perf_counter()
             successful_points = 0
             try:
@@ -841,6 +981,7 @@ def run_w1_prymordial(
                 )
             elapsed = time.perf_counter() - started
             durations[label].append(elapsed)
+            measured_solver_seconds += elapsed
             append_jsonl(
                 timings_path,
                 {
@@ -850,16 +991,18 @@ def run_w1_prymordial(
                     "kind": "warm_batch",
                     "per_point_seconds": elapsed / batch_size,
                     "repetition": repetition,
+                    "run_attempt_id": attempt_id,
                     "status": "ok" if successful_points == batch_size else "failed",
                     "successful_points": successful_points,
                 },
             )
+            checkpoint()
 
     summary = {
         "abundances": reference,
         "backend": "python",
-        "cold_import_seconds": import_seconds,
-        "cold_solve_seconds": cold_seconds,
+        "cold_import_seconds": float(resume_state["cold_import_seconds"]),
+        "cold_solve_seconds": float(resume_state["cold_solve_seconds"]),
         "input_mapping": {
             "DeltaNeff": config.DeltaNeff,
             "Omegabh2": config.Omegabh2,
@@ -878,8 +1021,10 @@ def run_w1_prymordial(
             "recompute_weak_rates": True,
         },
     }
-    measured_seconds = import_seconds + cold_seconds + sum(map(sum, durations.values()))
-    return summary, failures, measured_seconds
+    resume_state["attempts"][-1].update({"finished_at_utc": utc_now(), "status": "complete"})
+    checkpoint()
+    finalize_w1_timings(timings_path, resume_state)
+    return summary, failures, measured_solver_seconds
 
 
 def load_primat(source_dir: Path) -> tuple[Callable[..., dict[str, Any]], dict[str, str]]:
@@ -1030,6 +1175,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--batch-size", type=int, action="append", dest="batch_sizes")
     parser.add_argument("--hourly-price-cny", type=float, required=True)
     parser.add_argument("--yaml-python", type=Path)
+    parser.add_argument(
+        "--resume",
+        action="store_true",
+        help="resume a checkpointed W1-PRYM run in the same output directory",
+    )
     return parser.parse_args()
 
 
@@ -1102,6 +1252,8 @@ def main() -> int:
         raise ValueError(f"batch sizes must match registered set {registered_batch_sizes}")
     if any(value <= 0 for value in batch_sizes):
         raise ValueError("batch sizes must be positive")
+    if args.resume and args.baseline != "W1-PRYM":
+        raise ValueError("--resume is currently supported only for W1-PRYM")
 
     revision = git_revision(args.source_dir)
     if revision != registered["revision"]:
@@ -1121,15 +1273,59 @@ def main() -> int:
     if parameter_schema["status"] != "standard_bbn_subset_frozen_extension_semantics_pending":
         raise ValueError("parameter schema standard-BBN subset is not frozen")
 
+    resume_identity = {
+        "adapter_config_sha256": sha256(args.adapter_config) if args.adapter_config else None,
+        "baseline": args.baseline,
+        "batch_sizes": batch_sizes,
+        "config_sha256": sha256(args.config),
+        "environment_lock_sha256": sha256(args.environment_lock),
+        "hardware_inventory_sha256": sha256(args.inventory),
+        "hourly_price_cny": args.hourly_price_cny,
+        "parameter_schema_sha256": sha256(args.parameter_schema),
+        "parameters": parameters,
+        "repetitions": repetitions,
+        "source_revision": revision,
+    }
+
     output_dir = args.output_dir
-    output_dir.mkdir(parents=True, exist_ok=False)
+    resume_state_path = output_dir / "resume_state.json"
+    if args.resume:
+        if not output_dir.is_dir():
+            raise FileNotFoundError(output_dir)
+        resume_state = load_resume_state(resume_state_path, resume_identity)
+        run_id = str(resume_state["run_id"])
+        started_at = str(resume_state["started_at_utc"])
+    else:
+        output_dir.mkdir(parents=True, exist_ok=False)
+        run_id = str(uuid.uuid4())
+        started_at = utc_now()
+        resume_state = {
+            "accounted_cpu_seconds": 0.0,
+            "accounted_wall_seconds": 0.0,
+            "attempts": [],
+            "baseline": args.baseline,
+            "durations_seconds": {f"warm_batch_{batch_size}": [] for batch_size in batch_sizes},
+            "failure_count": 0,
+            "identity": resume_identity,
+            "maximum_absolute_repeat_drift": 0.0,
+            "maximum_absolute_repeat_drift_by_abundance": {},
+            "measured_solver_seconds": 0.0,
+            "schema_version": 1,
+            "run_id": run_id,
+            "started_at_utc": started_at,
+            "status": "in_progress",
+        }
+        if args.baseline == "W1-PRYM":
+            atomic_json_dump(resume_state_path, resume_state)
     timings_path = output_dir / "timings.jsonl"
     failures_path = output_dir / "failures.jsonl"
-    timings_path.touch()
-    failures_path.touch()
+    if args.resume:
+        if not timings_path.is_file() or not failures_path.is_file():
+            raise FileNotFoundError("resume run lacks timings.jsonl or failures.jsonl")
+    else:
+        timings_path.touch()
+        failures_path.touch()
 
-    run_id = str(uuid.uuid4())
-    started_at = utc_now()
     wall_started = time.perf_counter()
     cpu_started = time.process_time()
     runners = {
@@ -1139,11 +1335,26 @@ def main() -> int:
         "W3-ABCMB": run_w3_abcmb,
     }
     runner = runners[args.baseline]
-    result, failure_count, measured_solver_seconds = runner(
-        args.source_dir, parameters, repetitions, batch_sizes, timings_path, failures_path
-    )
+    if args.baseline == "W1-PRYM":
+        result, failure_count, measured_solver_seconds = runner(
+            args.source_dir,
+            parameters,
+            repetitions,
+            batch_sizes,
+            timings_path,
+            failures_path,
+            resume_state_path,
+            resume_state,
+        )
+    else:
+        result, failure_count, measured_solver_seconds = runner(
+            args.source_dir, parameters, repetitions, batch_sizes, timings_path, failures_path
+        )
     wall_seconds = time.perf_counter() - wall_started
     cpu_seconds = time.process_time() - cpu_started
+    if args.baseline == "W1-PRYM":
+        wall_seconds = float(resume_state["accounted_wall_seconds"])
+        cpu_seconds = float(resume_state["accounted_cpu_seconds"])
     finished_at = utc_now()
     usage = resource.getrusage(resource.RUSAGE_SELF)
 
@@ -1174,6 +1385,8 @@ def main() -> int:
         "precision": protocol["execution"]["precision"],
         "python": sys.version,
         "repetitions": repetitions,
+        "resume_attempt_count": len(resume_state["attempts"]) if args.baseline == "W1-PRYM" else 1,
+        "resume_supported": args.baseline == "W1-PRYM",
         "run_id": run_id,
         "schema_version": 1,
         "scientific_use": "registered_standard_fiducial_runtime_slice_only",
@@ -1209,6 +1422,10 @@ def main() -> int:
             "worker_hours": worker_hours,
         },
     )
+    if args.baseline == "W1-PRYM":
+        resume_state["status"] = "complete"
+        resume_state["updated_at_utc"] = utc_now()
+        atomic_json_dump(resume_state_path, resume_state)
     print(output_dir)
     return 0 if failure_count == 0 else 2
 
