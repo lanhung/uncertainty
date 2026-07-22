@@ -1,0 +1,29 @@
+schema_version: 1
+dataset_id: GW-v1
+decision_date_utc: "2026-07-21"
+observed_main:
+  dataset: lvk_o1_o4a_cosmological_implications
+  document: LIGO-P2500150-v13
+  manuscript_version: arXiv_2510.26848v2
+  scope: stiff_equation_of_state_with_cbc_background
+  source_id: lvk_arxiv_2510_26848_v2
+  dcc_url: https://dcc.ligo.org/LIGO-P2500150/public
+  implementation_status: blocked_pending_likelihood_audit
+  block_reason: >-
+    The public DCC record currently exposes the manuscript but no standalone
+    machine-readable stiff-era posterior or likelihood product. Production use
+    requires an official product or an independently validated reimplementation.
+  prohibited_shortcut: Do not digitize a plot and label it the official likelihood.
+strain_reference:
+  dataset: GWOSC_O4a
+  doi: 10.7935/kt51-6n86
+  url: https://gwosc.org/O4/O4a/
+  role: reproducibility input if a registered reimplementation is approved
+forecast_only:
+  - LISA
+  - ET
+  - CE
+separation_rule: Forecast products must never be merged with observed-data results.
+monthly_audit_note: >-
+  Post-freeze O4b or later products enter the monthly competition/data audit and
+  may only become a stress test through the deviation protocol.

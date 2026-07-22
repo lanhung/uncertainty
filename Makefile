@@ -1,8 +1,29 @@
 PYTHON ?= python3
 INVENTORY ?= deploy/hosts.local.env
 DIST_DIR ?= dist
+UV_CACHE_DIR ?= /tmp/uncertainty-uv-cache
+UV_PYTHON_INSTALL_DIR ?= /tmp/uncertainty-uv-python
 
-.PHONY: ops-validate ops-test ops-server ops-show ops-reconcile ops-snapshot ops-demo ops-local-bundle
+.PHONY: help smoke reproduce-mini lock-check ops-validate ops-test ops-server ops-show ops-reconcile ops-snapshot ops-demo ops-local-bundle
+
+help:
+	@echo 'Primary targets:'
+	@echo '  smoke          Validate repository metadata and run local unit tests'
+	@echo '  reproduce-mini Verify the pinned legacy BBNet audit bundle (not a physics reproduction)'
+	@echo '  lock-check     Confirm every uv lock is current without changing it'
+	@echo '  ops-test       Run control-plane validation and unit tests'
+
+smoke: lock-check ops-test reproduce-mini
+	$(PYTHON) -m pytest -q tests/unit
+
+reproduce-mini:
+	$(PYTHON) -m pytest -q tests/unit/test_bbnet_legacy_inventory.py
+	@echo 'AUDIT ONLY: upstream BBNet has no usable checkpoint/dataset; no abundance result is reproduced.'
+
+lock-check:
+	UV_CACHE_DIR=$(UV_CACHE_DIR) UV_PYTHON_INSTALL_DIR=$(UV_PYTHON_INSTALL_DIR) uv lock --check
+	UV_CACHE_DIR=$(UV_CACHE_DIR) UV_PYTHON_INSTALL_DIR=$(UV_PYTHON_INSTALL_DIR) uv lock --project environments/solver-cpu --check
+	UV_CACHE_DIR=$(UV_CACHE_DIR) UV_PYTHON_INSTALL_DIR=$(UV_PYTHON_INSTALL_DIR) uv lock --project environments/train-gpu --check
 
 ops-validate:
 	$(PYTHON) orchestrator/reconcile.py plan/plan.yaml

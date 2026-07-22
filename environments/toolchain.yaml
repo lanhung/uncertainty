@@ -1,0 +1,45 @@
+schema_version: 1
+status: preregistered
+python:
+  required: "3.11.15"
+  manager: uv
+  uv_version: "0.11.28"
+control:
+  lock: uv.lock
+solver_cpu:
+  project: environments/solver-cpu
+  lock: environments/solver-cpu/uv.lock
+  numeric_policy: float64
+  jax_platform: cpu
+train_gpu:
+  project: environments/train-gpu
+  lock: environments/train-gpu/uv.lock
+  torch_build: "2.12.1+cu130"
+  cuda_wheel_index: "https://download.pytorch.org/whl/cu130"
+  validation_precision: float64
+compiler_reference:
+  os: Ubuntu 22.04
+  gcc: "11.4.0"
+  gfortran: "11.4.0"
+  note: >-
+    Native solver cards must record the actual compiler, flags, BLAS and linker.
+    A compiler mismatch requires a new environment manifest or an ADR; a Python
+    lock alone does not establish native-solver reproducibility.
+solver_sources:
+  parthenope_project_modified:
+    status: missing
+    dependency_record: blocked_pending_source_handoff
+  alterbbn_project_modified:
+    status: missing
+    dependency_record: blocked_pending_source_handoff
+  linx:
+    version: "0.1.2"
+    requirements_reference: "https://github.com/cgiovanetti/LINX/blob/v0.1.2/requirements.txt"
+    environment: solver_cpu
+  prymordial:
+    commit: "725d8a8"
+    environment: solver_cpu
+    optional_julia_backend: not_enabled
+  primat:
+    version: "0.3.2"
+    environment: solver_cpu

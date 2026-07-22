@@ -13,6 +13,8 @@ on:
       - 'plan/plan.yaml'
       - 'project.config.yaml'
       - 'requirements-ops.txt'
+      - 'pyproject.toml'
+      - 'uv.lock'
       - 'Makefile'
       - '.github/workflows/ops-tests.yml'
   pull_request:
@@ -26,6 +28,8 @@ on:
       - 'plan/plan.yaml'
       - 'project.config.yaml'
       - 'requirements-ops.txt'
+      - 'pyproject.toml'
+      - 'uv.lock'
       - 'Makefile'
       - '.github/workflows/ops-tests.yml'
 

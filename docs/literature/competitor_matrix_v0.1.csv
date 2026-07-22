@@ -1,0 +1,12 @@
+object,version_or_commit,release_date,code_url,license,reproducibility_status,project_must_exceed
+BBNet,"arXiv 2512.15266v1; ea66fe66b16d5189676a853337aaa5ae480839b0",2025-12-17,https://github.com/Hdiao112/BBNet,"MIT (nested BBNet/LICENSE)","partial: source/scalers at HEAD; pretrained weights absent at HEAD","distributional UQ; full artifacts; factorized solver/rate uncertainty"
+LINX,"v0.1.2; ec2e9d2ca455e8204137e884da29f5dd13a638fa",2026-06-19,https://github.com/cgiovanetti/LINX,MIT,"tagged release with tests/docs","project extension; functional rates; multi-solver/SBC cost"
+ABCMB+LINX,"ABCMB v0.3.1 + LINX v0.1.2",2026-06-02,https://github.com/TonyZhou729/ABCMB,MIT,"tagged differentiable baseline","quantified extension/FP64/gradient/HMC comparison"
+PRyMordial,"725d8a8db3ad5ea2630580d825c9d0d69ed76533",2026-05-08,https://github.com/vallima/PRyMordial,GPL-3.0-or-later,"source and demos; no tag at freeze","functional rates; matched solver factors; project extension"
+PRIMAT,"v0.3.2; 21ff8f39fa18e3937e9fdf386cfa982361bfdfce",2026-07-14,https://github.com/CyrilPitrou/primat,GPL,"public Python/C package","independent precision audit and functional-mode challenge"
+PArthENoPE,"3.0",2021-03-10,https://parthenope.na.infn.it/,GPL-3.0,"versioned CPC distribution","modified-fork audit and matched-factor experiments"
+AlterBBN,"v2 / arXiv 1806.11095",2018-06-28,https://alterbbn.hepforge.org/,GPL-3.0,"public code; canonical freeze commit unresolved","engineering cross-check only; not precision nuclear extreme"
+Cook-Meyers,"arXiv 2512.11163v2",2026-02-24,https://arxiv.org/abs/2512.11163,"paper terms; modified code not linked","paper reproducible; exact pipeline unavailable","complete nuclear/weak/solver UQ plus SGWB"
+2026-sensitivity-atlas,"arXiv 2603.22414v1; d3ea1838d9450673698f07b7c6b8971efb87d0fd",2026-04-09,https://github.com/Anne-KatherineBurns/bbn-sensitivity-atlas,CC0-1.0,"public tables and figures","non-standard rank reordering and nuclear value-of-information"
+2026-GP-DH,"arXiv 2604.16600v1",2026-04-17,https://arxiv.org/abs/2604.16600,"paper terms; no separate code repository linked","method/source public; exact analysis artifact not identified","functional rates in extended posterior and GW endpoints"
+LVK-O1-O4a-stiff,"LIGO-P2500150-v13; arXiv 2510.26848v2",2025-11-07,https://dcc.ligo.org/LIGO-P2500150/public,"GWOSC strain CC-BY-4.0","manuscript/strain public; stiff likelihood product absent","validated likelihood plus self-consistent BBN UQ"
