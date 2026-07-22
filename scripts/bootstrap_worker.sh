@@ -106,7 +106,14 @@ if [ "$TAILSCALE_MODE" != "skip" ]; then
     existing_pid="$(cat "$TS_PID_FILE" 2>/dev/null || true)"
     if [ -z "$existing_pid" ] || ! kill -0 "$existing_pid" 2>/dev/null || [ ! -S "$TS_SOCKET" ]; then
       rm -f "$TS_SOCKET" "$TS_PID_FILE"
-      nohup tailscaled \
+      # AutoDL images may export a short-lived local acceleration proxy. A
+      # userspace tailscaled must never inherit it: once that proxy exits,
+      # coordination and DERP traffic silently go offline while the local
+      # SOCKS socket remains present.
+      nohup env \
+        -u HTTP_PROXY -u HTTPS_PROXY -u http_proxy -u https_proxy \
+        -u ALL_PROXY -u all_proxy \
+        tailscaled \
         --tun=userspace-networking \
         --state="$TS_STATE" \
         --socket="$TS_SOCKET" \
