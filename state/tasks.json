@@ -1,12 +1,12 @@
 {
   "project": "uncertainty",
-  "generated_at": "2026-07-21T23:57:27+00:00",
-  "revision": 59,
-  "overall_progress": 0.0563063063063063,
+  "generated_at": "2026-07-22T00:00:29+00:00",
+  "revision": 77,
+  "overall_progress": 0.1644144144144144,
   "overall_kind": "effort-weighted plan completion",
   "phases": {
     "P0": {
-      "progress": 0.17361111111111108
+      "progress": 0.5069444444444444
     },
     "P1": {
       "progress": 0.0
@@ -22,98 +22,138 @@
     }
   },
   "status_counts": {
-    "running": 3,
+    "done": 7,
     "pending": 24,
-    "done": 3,
-    "blocked": 3
+    "blocked": 2
   },
   "tasks": [
     {
       "id": "P0-LIT-01",
       "title": "Competitor matrix: LINX, PRyMordial, PRIMAT, PArthENoPE, AlterBBN, ABCMB+LINX",
       "phase": "P0",
-      "status": "running",
+      "status": "done",
       "weight": 2.0,
       "unit": "baselines",
-      "current": 0.0,
+      "current": 8.0,
       "total": 8.0,
       "owner": "vultr",
       "depends_on": [],
       "started_at": "2026-07-21T23:43:47+00:00",
-      "updated_at": "2026-07-21T23:43:47+00:00",
-      "finished_at": null,
+      "updated_at": "2026-07-21T23:58:28+00:00",
+      "finished_at": "2026-07-21T23:58:28+00:00",
       "declared_eta": null,
-      "message": "",
-      "artifacts": [],
+      "message": "Competition inventory complete; code reproduction queue and claim signoffs remain separate gates",
+      "artifacts": [
+        "docs/literature/COMPETITOR_MATRIX_v1.md",
+        "docs/literature/competitor_matrix_v0.1.csv"
+      ],
       "metrics": {},
       "attempt": 1,
       "run_id": null,
-      "progress": 0.0,
+      "progress": 1.0,
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 820.4034135341644,
+      "heartbeat_age_s": 121.13241052627563,
       "ready": false,
       "blocked_by": [],
-      "artifact_links": []
+      "artifact_links": [
+        {
+          "label": "docs/literature/COMPETITOR_MATRIX_v1.md",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/docs/literature/COMPETITOR_MATRIX_v1.md"
+        },
+        {
+          "label": "docs/literature/competitor_matrix_v0.1.csv",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/docs/literature/competitor_matrix_v0.1.csv"
+        }
+      ]
     },
     {
       "id": "P0-NEUTRON-01",
       "title": "Preregister neutron-lifetime N0-N3 baseline and robustness models",
       "phase": "P0",
-      "status": "running",
+      "status": "done",
       "weight": 1.0,
       "unit": "decisions",
-      "current": 0.0,
+      "current": 1.0,
       "total": 1.0,
       "owner": "vultr",
       "depends_on": [],
       "started_at": "2026-07-21T23:43:47+00:00",
-      "updated_at": "2026-07-21T23:43:47+00:00",
-      "finished_at": null,
+      "updated_at": "2026-07-21T23:58:27+00:00",
+      "finished_at": "2026-07-21T23:58:27+00:00",
       "declared_eta": null,
-      "message": "",
-      "artifacts": [],
+      "message": "Neutron-lifetime decision frozen; A00 and independent weak-physics signoff remain required for Track B",
+      "artifacts": [
+        "docs/preregistration/NEUTRON_LIFETIME_FREEZE_v1.md",
+        "configs/physics/neutron_lifetime_v1.yaml"
+      ],
       "metrics": {},
       "attempt": 1,
       "run_id": null,
-      "progress": 0.0,
+      "progress": 1.0,
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 820.4034996032715,
+      "heartbeat_age_s": 122.13248014450073,
       "ready": false,
       "blocked_by": [],
-      "artifact_links": []
+      "artifact_links": [
+        {
+          "label": "docs/preregistration/NEUTRON_LIFETIME_FREEZE_v1.md",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/docs/preregistration/NEUTRON_LIFETIME_FREEZE_v1.md"
+        },
+        {
+          "label": "configs/physics/neutron_lifetime_v1.yaml",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/configs/physics/neutron_lifetime_v1.yaml"
+        }
+      ]
     },
     {
       "id": "P0-OBS-01",
       "title": "Preregister primary and stress-test D/H, Y_p, CMB and GW datasets",
       "phase": "P0",
-      "status": "running",
+      "status": "done",
       "weight": 2.0,
       "unit": "decisions",
-      "current": 0.0,
+      "current": 1.0,
       "total": 1.0,
       "owner": "vultr",
       "depends_on": [],
       "started_at": "2026-07-21T23:43:47+00:00",
-      "updated_at": "2026-07-21T23:43:47+00:00",
-      "finished_at": null,
+      "updated_at": "2026-07-21T23:58:26+00:00",
+      "finished_at": "2026-07-21T23:58:26+00:00",
       "declared_eta": null,
-      "message": "",
-      "artifacts": [],
+      "message": "Observation decision frozen before Track B production; Track B remains NOT FROZEN pending signoff and LVK likelihood audit",
+      "artifacts": [
+        "docs/preregistration/OBSERVATION_FREEZE_v1.md",
+        "configs/data/abundance_OBS-v1.yaml",
+        "manifests/data/OBS-v1-sources.yaml"
+      ],
       "metrics": {},
       "attempt": 1,
       "run_id": null,
-      "progress": 0.0,
+      "progress": 1.0,
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 820.4035518169403,
+      "heartbeat_age_s": 123.13253378868103,
       "ready": false,
       "blocked_by": [],
-      "artifact_links": []
+      "artifact_links": [
+        {
+          "label": "docs/preregistration/OBSERVATION_FREEZE_v1.md",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/docs/preregistration/OBSERVATION_FREEZE_v1.md"
+        },
+        {
+          "label": "configs/data/abundance_OBS-v1.yaml",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/configs/data/abundance_OBS-v1.yaml"
+        },
+        {
+          "label": "manifests/data/OBS-v1-sources.yaml",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/manifests/data/OBS-v1-sources.yaml"
+        }
+      ]
     },
     {
       "id": "P0-WHY-NOT-01",
@@ -142,10 +182,8 @@
       "eta": null,
       "eta_kind": "none",
       "heartbeat_age_s": null,
-      "ready": false,
-      "blocked_by": [
-        "P0-LIT-01"
-      ],
+      "ready": true,
+      "blocked_by": [],
       "artifact_links": []
     },
     {
@@ -208,7 +246,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 1137.4036757946014,
+      "heartbeat_age_s": 1319.1326813697815,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -246,7 +284,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 22157.40371632576,
+      "heartbeat_age_s": 22339.132741212845,
       "ready": false,
       "blocked_by": [],
       "artifact_links": []
@@ -278,10 +316,8 @@
       "eta": null,
       "eta_kind": "none",
       "heartbeat_age_s": null,
-      "ready": false,
-      "blocked_by": [
-        "P0-repo-migrate"
-      ],
+      "ready": true,
+      "blocked_by": [],
       "artifact_links": []
     },
     {
@@ -312,7 +348,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 20663.40383386612,
+      "heartbeat_age_s": 20845.1328496933,
       "ready": false,
       "blocked_by": [
         "P0-worker-bootstrap"
@@ -323,32 +359,49 @@
       "id": "P0-repo-migrate",
       "title": "Migrate existing scientific code into lanhung/uncertainty and remove local paths",
       "phase": "P0",
-      "status": "blocked",
+      "status": "done",
       "weight": 3.0,
       "unit": "modules",
       "current": 0.0,
       "total": null,
-      "owner": null,
+      "owner": "vultr",
       "depends_on": [
         "P0-code-inventory"
       ],
-      "started_at": null,
-      "updated_at": "2026-07-21T23:38:38+00:00",
-      "finished_at": "2026-07-21T23:38:38+00:00",
+      "started_at": "2026-07-21T23:58:28+00:00",
+      "updated_at": "2026-07-21T23:58:30+00:00",
+      "finished_at": "2026-07-21T23:58:30+00:00",
       "declared_eta": null,
-      "message": "inventory found no legacy BBNet/MCMC/solver source; requires an original source path/archive or a separately registered upstream acquisition decision",
-      "artifacts": [],
+      "message": "Pinned MIT-licensed BBNet package imported for audit; upstream lacks usable checkpoints/data, so reproduction remains blocked and no scientific result is claimed",
+      "artifacts": [
+        "manifests/models/bbnet_legacy_upstream_v1.yaml",
+        "legacy/bbnet/README.md",
+        "configs/models/bbnet_legacy_v1.yaml"
+      ],
       "metrics": {},
-      "attempt": 0,
+      "attempt": 1,
       "run_id": null,
-      "progress": 0.0,
+      "progress": 1.0,
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 1129.4038681983948,
+      "heartbeat_age_s": 119.13289475440979,
       "ready": false,
       "blocked_by": [],
-      "artifact_links": []
+      "artifact_links": [
+        {
+          "label": "manifests/models/bbnet_legacy_upstream_v1.yaml",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/manifests/models/bbnet_legacy_upstream_v1.yaml"
+        },
+        {
+          "label": "legacy/bbnet/README.md",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/legacy/bbnet/README.md"
+        },
+        {
+          "label": "configs/models/bbnet_legacy_v1.yaml",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/configs/models/bbnet_legacy_v1.yaml"
+        }
+      ]
     },
     {
       "id": "P0-reproduce-bbnet",
@@ -441,7 +494,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 20296.403961896896,
+      "heartbeat_age_s": 20478.133053302765,
       "ready": false,
       "blocked_by": [],
       "artifact_links": []
@@ -473,7 +526,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 20296.404000282288,
+      "heartbeat_age_s": 20478.13311457634,
       "ready": false,
       "blocked_by": [
         "P0-tailnet"
@@ -915,9 +968,7 @@
       "heartbeat_age_s": null,
       "ready": false,
       "blocked_by": [
-        "P2-unified-adapter",
-        "P0-OBS-01",
-        "P0-NEUTRON-01"
+        "P2-unified-adapter"
       ],
       "artifact_links": []
     },

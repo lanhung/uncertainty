@@ -1,29 +1,16 @@
 # uncertainty — live research status
 
-_Generated: 2026-07-21T23:57:27+00:00; revision: 59_
+_Generated: 2026-07-22T00:00:29+00:00; revision: 77_
 
-**Overall plan completion: 6%.** This is effort-weighted execution progress, not scientific confidence.
+**Overall plan completion: 16%.** This is effort-weighted execution progress, not scientific confidence.
 
-Status counts — running: 3, blocked: 3, pending: 24, done: 3
+Status counts — blocked: 2, pending: 24, done: 7
 
-## Live now
-- **P0-LIT-01** — Competitor matrix: LINX, PRyMordial, PRIMAT, PArthENoPE, AlterBBN, ABCMB+LINX [running]
-  - progress: 0% (0/8 baselines); ETA: —
-  - owner: vultr; attempt: 1; run_id: —
-  - heartbeat age: 820 s
-- **P0-NEUTRON-01** — Preregister neutron-lifetime N0-N3 baseline and robustness models [running]
-  - progress: 0% (0/1 decisions); ETA: —
-  - owner: vultr; attempt: 1; run_id: —
-  - heartbeat age: 820 s
-- **P0-OBS-01** — Preregister primary and stress-test D/H, Y_p, CMB and GW datasets [running]
-  - progress: 0% (0/1 decisions); ETA: —
-  - owner: vultr; attempt: 1; run_id: —
-  - heartbeat age: 820 s
+## Next runnable
+- **P0-WHY-NOT-01** — Write why-not-LINX/PRyMordial/PRIMAT and emulator economics memo
+- **P0-env-lock** — Create environment lock, pyproject, CI, pre-commit and make smoke
 
 ## Blocked / needs a decision
-- **P0-repo-migrate** — Migrate existing scientific code into lanhung/uncertainty and remove local paths [blocked]
-  - depends on: P0-code-inventory
-  - note: inventory found no legacy BBNet/MCMC/solver source; requires an original source path/archive or a separately registered upstream acquisition decision
 - **P0-tailnet** — Join control + two workers to the private tailnet [blocked]
   - progress: 67% (2/3 hosts); ETA: —
   - owner: uncertainty-autodl-westb-01-elastic; attempt: 1; run_id: —
@@ -37,13 +24,13 @@ Status counts — running: 3, blocked: 3, pending: 24, done: 3
 ## Pending
 - **P0-WHY-NOT-01** — Write why-not-LINX/PRyMordial/PRIMAT and emulator economics memo [pending]
   - progress: 0% (0/1 memos); ETA: —
-  - blocked by: P0-LIT-01
+  - depends on: P0-LIT-01
 - **P0-benchmark** — Benchmark cold/warm, FP64, batch, CPU, RAM, I/O and failure rates [pending]
   - progress: 0% (0/6 configurations); ETA: —
   - blocked by: P0-solvers-build
 - **P0-env-lock** — Create environment lock, pyproject, CI, pre-commit and make smoke [pending]
   - progress: 0% (0/5 checks); ETA: —
-  - blocked by: P0-repo-migrate
+  - depends on: P0-repo-migrate
 - **P0-reproduce-bbnet** — Reproduce one known BBNet result end-to-end through the monitored pipeline [pending]
   - progress: 0% (0/3 checks); ETA: —
   - blocked by: P0-solvers-build
@@ -88,7 +75,7 @@ Status counts — running: 3, blocked: 3, pending: 24, done: 3
   - blocked by: P2.5-fisher-propagation, P0-WHY-NOT-01
 - **P2.5-jacobians** — Compute J_theta, J_q and function-shape proxies at representative points [pending]
   - progress: 0% (0/64 points); ETA: —
-  - blocked by: P2-unified-adapter, P0-OBS-01, P0-NEUTRON-01
+  - blocked by: P2-unified-adapter
 - **P3-cross-solver** — Cross-solver and cross-rate-library validation including PRIMAT-family rates [pending]
   - progress: 0% (0/4 baselines); ETA: —
   - blocked by: P3-pilot-10k
@@ -109,6 +96,21 @@ Status counts — running: 3, blocked: 3, pending: 24, done: 3
   - blocked by: P3-pilot-10k
 
 ## Done
+- **P0-LIT-01** — Competitor matrix: LINX, PRyMordial, PRIMAT, PArthENoPE, AlterBBN, ABCMB+LINX [done]
+  - progress: 100% (8/8 baselines); ETA: —
+  - owner: vultr; attempt: 1; run_id: —
+  - note: Competition inventory complete; code reproduction queue and claim signoffs remain separate gates
+  - artifacts: [docs/literature/COMPETITOR_MATRIX_v1.md](https://github.com/lanhung/uncertainty/blob/main/docs/literature/COMPETITOR_MATRIX_v1.md), [docs/literature/competitor_matrix_v0.1.csv](https://github.com/lanhung/uncertainty/blob/main/docs/literature/competitor_matrix_v0.1.csv)
+- **P0-NEUTRON-01** — Preregister neutron-lifetime N0-N3 baseline and robustness models [done]
+  - progress: 100% (1/1 decisions); ETA: —
+  - owner: vultr; attempt: 1; run_id: —
+  - note: Neutron-lifetime decision frozen; A00 and independent weak-physics signoff remain required for Track B
+  - artifacts: [docs/preregistration/NEUTRON_LIFETIME_FREEZE_v1.md](https://github.com/lanhung/uncertainty/blob/main/docs/preregistration/NEUTRON_LIFETIME_FREEZE_v1.md), [configs/physics/neutron_lifetime_v1.yaml](https://github.com/lanhung/uncertainty/blob/main/configs/physics/neutron_lifetime_v1.yaml)
+- **P0-OBS-01** — Preregister primary and stress-test D/H, Y_p, CMB and GW datasets [done]
+  - progress: 100% (1/1 decisions); ETA: —
+  - owner: vultr; attempt: 1; run_id: —
+  - note: Observation decision frozen before Track B production; Track B remains NOT FROZEN pending signoff and LVK likelihood audit
+  - artifacts: [docs/preregistration/OBSERVATION_FREEZE_v1.md](https://github.com/lanhung/uncertainty/blob/main/docs/preregistration/OBSERVATION_FREEZE_v1.md), [configs/data/abundance_OBS-v1.yaml](https://github.com/lanhung/uncertainty/blob/main/configs/data/abundance_OBS-v1.yaml), [manifests/data/OBS-v1-sources.yaml](https://github.com/lanhung/uncertainty/blob/main/manifests/data/OBS-v1-sources.yaml)
 - **P0-code-inventory** — Inventory all existing BBNet, MCMC, solver patches, data and model files [done]
   - progress: 100% (1/1 inventories); ETA: —
   - owner: vultr; attempt: 1; run_id: —
@@ -124,3 +126,8 @@ Status counts — running: 3, blocked: 3, pending: 24, done: 3
   - blocked by: P0-worker-bootstrap
   - metrics: demo_fraction=1.0
   - note: METRIC demo_fraction=1.000000
+- **P0-repo-migrate** — Migrate existing scientific code into lanhung/uncertainty and remove local paths [done]
+  - owner: vultr; attempt: 1; run_id: —
+  - depends on: P0-code-inventory
+  - note: Pinned MIT-licensed BBNet package imported for audit; upstream lacks usable checkpoints/data, so reproduction remains blocked and no scientific result is claimed
+  - artifacts: [manifests/models/bbnet_legacy_upstream_v1.yaml](https://github.com/lanhung/uncertainty/blob/main/manifests/models/bbnet_legacy_upstream_v1.yaml), [legacy/bbnet/README.md](https://github.com/lanhung/uncertainty/blob/main/legacy/bbnet/README.md), [configs/models/bbnet_legacy_v1.yaml](https://github.com/lanhung/uncertainty/blob/main/configs/models/bbnet_legacy_v1.yaml)
