@@ -47,3 +47,5 @@ def test_direct_benchmark_entrypoint_declares_required_artifacts() -> None:
         assert json.dumps(name)[1:-1] in source
     assert "registered_standard_fiducial_runtime_slice_only" in source
     assert "sequential_calls_no_native_batch_api" in source
+    assert "direct_url.json" in source
+    assert "primat._primat_c" in source

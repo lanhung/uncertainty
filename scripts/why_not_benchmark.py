@@ -9,6 +9,8 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import importlib.metadata
+import importlib.util
 import json
 import math
 import platform
@@ -22,6 +24,7 @@ import uuid
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Callable
+from urllib.parse import unquote, urlparse
 
 import yaml
 
@@ -90,16 +93,30 @@ def finite_abundances(result: dict[str, Any]) -> dict[str, float]:
     return values
 
 
-def load_primat(source_dir: Path) -> tuple[Callable[..., dict[str, Any]], str]:
-    sys.path.insert(0, str(source_dir))
+def load_primat(source_dir: Path) -> tuple[Callable[..., dict[str, Any]], dict[str, str]]:
     import primat  # type: ignore
     from primat.backend import run_bbn  # type: ignore
 
     loaded_from = Path(primat.__file__).resolve()
     source_root = source_dir.resolve()
-    if source_root not in loaded_from.parents:
-        raise RuntimeError(f"PRIMAT loaded from {loaded_from}, not frozen source {source_root}")
-    return run_bbn, str(loaded_from)
+    direct_url_text = importlib.metadata.distribution("primat").read_text("direct_url.json")
+    if direct_url_text is None:
+        raise RuntimeError("installed PRIMAT lacks direct_url.json source provenance")
+    direct_url = json.loads(direct_url_text)["url"]
+    parsed = urlparse(direct_url)
+    installed_source = Path(unquote(parsed.path)).resolve()
+    if parsed.scheme != "file" or installed_source != source_root:
+        raise RuntimeError(
+            f"installed PRIMAT provenance {direct_url} does not match frozen source {source_root}"
+        )
+    extension = importlib.util.find_spec("primat._primat_c")
+    if extension is None or extension.origin is None:
+        raise RuntimeError("installed frozen PRIMAT has no compiled C extension")
+    return run_bbn, {
+        "compiled_extension": str(Path(extension.origin).resolve()),
+        "direct_url": direct_url,
+        "package": str(loaded_from),
+    }
 
 
 def run_w2_primat(
@@ -111,7 +128,7 @@ def run_w2_primat(
     failures_path: Path,
 ) -> tuple[dict[str, Any], int, float]:
     import_started = time.perf_counter()
-    run_bbn, loaded_from = load_primat(source_dir)
+    run_bbn, load_provenance = load_primat(source_dir)
     import_seconds = time.perf_counter() - import_started
     append_jsonl(
         timings_path,
@@ -198,7 +215,7 @@ def run_w2_primat(
         "backend": "c",
         "cold_import_seconds": import_seconds,
         "cold_solve_seconds": cold_seconds,
-        "loaded_from": loaded_from,
+        "load_provenance": load_provenance,
         "maximum_absolute_repeat_drift": maximum_absolute_repeat_drift,
         "network": "small",
         "timings_seconds": {label: summarize(values) for label, values in durations.items()},
