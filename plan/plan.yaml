@@ -16,6 +16,13 @@ tasks:
     unit: slices
     total: 4
 
+  - id: EXEC-ABCMB-CONVERGENCE
+    title: "Execute the frozen ABCMB bundled-LINX convergence V2 cases"
+    phase: EXEC
+    weight: 1
+    unit: cases
+    total: 6
+
   # ----------------------------------------------------------------------
   # P0 — shared control host, elastic worker pool, repository and preregistration
   # ----------------------------------------------------------------------
