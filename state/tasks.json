@@ -1,15 +1,15 @@
 {
   "project": "uncertainty",
-  "generated_at": "2026-07-22T13:43:43+00:00",
-  "revision": 248,
+  "generated_at": "2026-07-22T13:45:45+00:00",
+  "revision": 249,
   "overall_progress": 0.21171171171171171,
   "overall_kind": "effort-weighted scientific program gate completion",
   "science_gate_progress": 0.21171171171171171,
-  "execution_progress": 0.5,
+  "execution_progress": 0.6666666666666666,
   "execution_kind": "effort-weighted current execution milestone completion",
   "phases": {
     "EXEC": {
-      "progress": 0.5
+      "progress": 0.6666666666666666
     },
     "P0": {
       "progress": 0.6527777777777778
@@ -28,10 +28,10 @@
     }
   },
   "status_counts": {
-    "running": 2,
+    "running": 1,
     "done": 9,
+    "stale": 2,
     "pending": 21,
-    "stale": 1,
     "blocked": 2
   },
   "tasks": [
@@ -42,24 +42,24 @@
       "status": "running",
       "weight": 1.0,
       "unit": "cases",
-      "current": 0.0,
+      "current": 2.0,
       "total": 6.0,
       "owner": "vultr",
       "depends_on": [],
       "started_at": "2026-07-22T13:43:03+00:00",
-      "updated_at": "2026-07-22T13:43:03+00:00",
+      "updated_at": "2026-07-22T13:45:45+00:00",
       "finished_at": null,
       "declared_eta": null,
-      "message": "Attempt 4 will use the source-validated why-not/abcmb-v0.3.1 interpreter confirmed to import ABCMB at the frozen revision.",
+      "message": "westb run-20260722T134322Z: verified worker output PROGRESS 2/6; lease held, zero reported case exceptions so far",
       "artifacts": [],
       "metrics": {},
       "attempt": 4,
       "run_id": null,
-      "progress": 0.0,
+      "progress": 0.3333333333333333,
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 40.32232189178467,
+      "heartbeat_age_s": 0.2639651298522949,
       "ready": false,
       "blocked_by": [],
       "artifact_links": []
@@ -94,7 +94,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 1427.3224833011627,
+      "heartbeat_age_s": 1549.2640516757965,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -150,7 +150,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 18246.322590112686,
+      "heartbeat_age_s": 18368.264106988907,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -203,7 +203,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 49516.32273745537,
+      "heartbeat_age_s": 49638.26416540146,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -245,7 +245,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 49517.3228263855,
+      "heartbeat_age_s": 49639.264204740524,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -267,7 +267,7 @@
       "id": "P0-WHY-NOT-01",
       "title": "Write why-not-LINX/PRyMordial/PRIMAT and emulator economics memo",
       "phase": "P0",
-      "status": "running",
+      "status": "stale",
       "weight": 1.0,
       "unit": "memos",
       "current": 0.0,
@@ -344,7 +344,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 854.322970867157,
+      "heartbeat_age_s": 976.2643291950226,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -629,7 +629,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 40573.32310247421,
+      "heartbeat_age_s": 40695.2645483017,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -679,7 +679,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 71733.32314062119,
+      "heartbeat_age_s": 71855.26459288597,
       "ready": false,
       "blocked_by": [],
       "artifact_links": []
@@ -720,7 +720,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 30924.32318520546,
+      "heartbeat_age_s": 31046.264655828476,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -790,7 +790,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 70239.32322359085,
+      "heartbeat_age_s": 70361.26470255852,
       "ready": false,
       "blocked_by": [
         "P0-worker-bootstrap"
@@ -828,7 +828,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 41393.32331585884,
+      "heartbeat_age_s": 41515.26476097107,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -882,7 +882,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 10337.32338142395,
+      "heartbeat_age_s": 10459.264805555344,
       "ready": false,
       "blocked_by": [
         "P0-solvers-build"
@@ -937,7 +937,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 28125.32342863083,
+      "heartbeat_age_s": 28247.264876127243,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -983,7 +983,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 38424.32348704338,
+      "heartbeat_age_s": 38546.264944791794,
       "ready": false,
       "blocked_by": [],
       "artifact_links": []
@@ -1017,7 +1017,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 17396.32353925705,
+      "heartbeat_age_s": 17518.264995336533,
       "ready": false,
       "blocked_by": [
         "P0-tailnet"
@@ -1224,7 +1224,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 28126.323873519897,
+      "heartbeat_age_s": 28248.265266418457,
       "ready": false,
       "blocked_by": [
         "P2-unified-adapter"
@@ -1264,7 +1264,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 21592.32391834259,
+      "heartbeat_age_s": 21714.265308856964,
       "ready": false,
       "blocked_by": [
         "P2-rate-registry"
@@ -1305,7 +1305,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 21592.323981285095,
+      "heartbeat_age_s": 21714.265350341797,
       "ready": false,
       "blocked_by": [
         "P2-solver-matrix"
@@ -1349,7 +1349,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 28125.324026346207,
+      "heartbeat_age_s": 28247.26540017128,
       "ready": false,
       "blocked_by": [
         "P0-solvers-build"
@@ -1465,7 +1465,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 18055.324140310287,
+      "heartbeat_age_s": 18177.265587568283,
       "ready": false,
       "blocked_by": [
         "P2.5-fisher-propagation",
@@ -1528,7 +1528,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 28126.32418513298,
+      "heartbeat_age_s": 28248.265636205673,
       "ready": false,
       "blocked_by": [
         "P2-unified-adapter"
