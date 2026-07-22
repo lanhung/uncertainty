@@ -187,6 +187,14 @@ remain pending. LINX's previously observed non-finite gradient also remains
 rejected. The answer to all four “why not” questions is therefore still
 **undetermined**. This ADR closes protocol discretion, not `P0-WHY-NOT-01`.
 
+Before any registered W1 timing, the PRyMordial adapter contract was frozen in
+`configs/benchmarks/prymordial_runtime_adapter_v1.yaml`. It selects the Python
+small 12-reaction network, PRIMAT-like rate tables, recomputation of background
+and bulk weak rates, no recomputation of stored thermal weak corrections, and
+sequential calls because the upstream path has no native batch API. Its input
+and abundance-unit mappings are explicit. This authorizes only the standard-
+fiducial runtime slice; W1 measurements are still pending at this revision.
+
 ## Sign-off
 
 - benchmark protocol prepared by Codex, 2026-07-22;

@@ -1,0 +1,39 @@
+schema_version: 1
+adapter_id: PRYMORDIAL-RUNTIME-ADAPTER-v1
+status: frozen_before_registered_runtime_execution
+decision_date_utc: "2026-07-22"
+task_id: P0-WHY-NOT-01
+common_protocol: configs/benchmarks/why_not_existing_solvers_v1.yaml
+baseline: W1-PRYM
+source_revision: 725d8a8db3ad5ea2630580d825c9d0d69ed76533
+
+execution_backend: python
+network: small_12_reaction
+rate_compilation: primat_like
+recompute_background: true
+recompute_weak_rates: true
+recompute_thermal_weak_corrections: false
+native_batch_api: false
+
+input_mapping:
+  omega_b_h2:
+    fields: [Omegabh2, eta0b]
+    rule: eta0b_equals_Omegabh2_to_eta0b_times_Omegabh2
+  delta_neff:
+    field: DeltaNeff
+  tau_n_seconds:
+    field: tau_n
+    unit: second
+
+output_mapping:
+  Neff: result_0
+  YPCMB: result_3
+  YPBBN: result_4
+  DoH: result_5_times_1e_minus_5
+  He3oH: result_6_times_1e_minus_5
+  Li7oH: result_7_times_1e_minus_10
+
+scientific_boundary:
+  - This adapter authorizes only the registered standard-fiducial runtime slice.
+  - The small network is sufficient for a runtime/D/H/Yp baseline, not a lithium claim.
+  - Rate nuisance, extension, posterior, and fidelity measurements remain separate gates.

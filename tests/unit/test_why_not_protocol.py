@@ -11,6 +11,7 @@ CONFIG = ROOT / "configs/benchmarks/why_not_existing_solvers_v1.yaml"
 ADR = ROOT / "docs/decisions/ADR-WHY-NOT-001.md"
 FETCHER = ROOT / "scripts/fetch_why_not_baselines.sh"
 SOURCE_MANIFEST = ROOT / "manifests/software/why_not_baselines_v1.yaml"
+PRYMORDIAL_ADAPTER = ROOT / "configs/benchmarks/prymordial_runtime_adapter_v1.yaml"
 
 
 def test_why_not_protocol_has_all_mandatory_competitors_and_stop_rules() -> None:
@@ -24,6 +25,17 @@ def test_why_not_protocol_has_all_mandatory_competitors_and_stop_rules() -> None
     assert data["decision_rules"]["hybrid_necessity"]["minimum_high_fidelity_call_reduction"] == 10
     assert data["decision_rules"]["reject_hybrid_on_fidelity_failure"] is True
     assert data["source_fetcher"] == "scripts/fetch_why_not_baselines.sh"
+
+    prymordial = yaml.safe_load(PRYMORDIAL_ADAPTER.read_text(encoding="utf-8"))
+    assert prymordial["baseline"] == "W1-PRYM"
+    assert prymordial["source_revision"] == data["baselines"]["W1-PRYM"]["revision"]
+    assert prymordial["status"] == "frozen_before_registered_runtime_execution"
+    assert prymordial["network"] == "small_12_reaction"
+    assert prymordial["rate_compilation"] == "primat_like"
+    assert prymordial["recompute_background"] is True
+    assert prymordial["recompute_weak_rates"] is True
+    assert prymordial["recompute_thermal_weak_corrections"] is False
+    assert prymordial["native_batch_api"] is False
 
     fetcher = FETCHER.read_text(encoding="utf-8")
     for baseline in data["baselines"].values():

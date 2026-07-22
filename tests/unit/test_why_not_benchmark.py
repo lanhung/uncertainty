@@ -7,6 +7,7 @@ from scripts.why_not_benchmark import (
     finite_abundances,
     linx_abundances,
     load_yaml,
+    prymordial_abundances,
     quantile,
     summarize,
 )
@@ -47,6 +48,27 @@ def test_linx_species_are_converted_to_common_abundances() -> None:
     assert result["DoH"] == pytest.approx(2.0e-5 / 0.75)
     assert result["He3oH"] == pytest.approx((1.0e-8 + 8.0e-6) / 0.75)
     assert result["Li7oH"] == pytest.approx((1.0e-11 + 4.0e-10) / 0.75)
+
+
+def test_prymordial_outputs_are_converted_to_common_abundances() -> None:
+    raw = [3.044, 1.0, 2.0, 0.246, 0.247, 2.5, 1.0, 5.0]
+    result = prymordial_abundances(raw)
+
+    assert result == pytest.approx(
+        {
+            "Neff": 3.044,
+            "YPCMB": 0.246,
+            "YPBBN": 0.247,
+            "DoH": 2.5e-5,
+            "He3oH": 1.0e-5,
+            "Li7oH": 5.0e-10,
+        }
+    )
+
+
+def test_prymordial_nonfinite_output_is_rejected() -> None:
+    with pytest.raises(FloatingPointError, match="DoH"):
+        prymordial_abundances([3.044, 1.0, 2.0, 0.246, 0.247, float("nan"), 1.0, 5.0])
 
 
 def test_direct_benchmark_entrypoint_declares_required_artifacts() -> None:
