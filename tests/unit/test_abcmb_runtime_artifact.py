@@ -24,7 +24,7 @@ def test_abcmb_runtime_manifest_is_bound_to_frozen_component() -> None:
     manifest = load_json("run_manifest.json")
     protocol_path = ROOT / "configs/benchmarks/why_not_existing_solvers_v1.yaml"
     adapter_path = ROOT / "configs/benchmarks/abcmb_linx_runtime_adapter_v1.yaml"
-    schema_path = ROOT / "configs/physics/parameter_schema.yaml"
+    schema_path = ROOT / "configs/physics/parameter_schema_standard_bbn_v1.yaml"
     lock_path = ROOT / "environments/abcmb-v0.3.1/uv.lock"
     protocol = yaml.safe_load(protocol_path.read_text(encoding="utf-8"))
     summary = load_json("runtime_summary.json")

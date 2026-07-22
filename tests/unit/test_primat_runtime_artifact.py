@@ -23,7 +23,7 @@ def load_json(name: str) -> dict:
 def test_primat_runtime_manifest_is_bound_to_registered_inputs() -> None:
     manifest = load_json("run_manifest.json")
     protocol_path = ROOT / "configs/benchmarks/why_not_existing_solvers_v1.yaml"
-    schema_path = ROOT / "configs/physics/parameter_schema.yaml"
+    schema_path = ROOT / "configs/physics/parameter_schema_standard_bbn_v1.yaml"
     lock_path = ROOT / "environments/solver-cpu/uv.lock"
     protocol = yaml.safe_load(protocol_path.read_text(encoding="utf-8"))
 

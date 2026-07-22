@@ -24,7 +24,7 @@ def test_tolerance_manifest_is_bound_to_frozen_inputs() -> None:
         "scan_config_sha256": ROOT / "configs/benchmarks/linx_batch_tolerance_scan_v1.yaml",
         "benchmark_config_sha256": ROOT / "configs/benchmarks/why_not_existing_solvers_v1.yaml",
         "observation_config_sha256": ROOT / "configs/data/abundance_OBS-v1.yaml",
-        "parameter_schema_sha256": ROOT / "configs/physics/parameter_schema.yaml",
+        "parameter_schema_sha256": ROOT / "configs/physics/parameter_schema_standard_bbn_v1.yaml",
         "environment_lock_sha256": ROOT / "environments/linx-v0.1.2/uv.lock",
     }
 
