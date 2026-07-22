@@ -1,6 +1,8 @@
 import pytest
 
 from pathlib import Path
+import subprocess
+import sys
 
 import yaml
 
@@ -221,3 +223,17 @@ def test_abcmb_scan_is_frozen_to_parent_component_and_same_thresholds() -> None:
         "sampling_200",
         "sampling_300",
     }
+
+
+def test_scan_direct_script_cli_works_outside_repository(tmp_path: Path) -> None:
+    root = Path(__file__).resolve().parents[2]
+    completed = subprocess.run(
+        [sys.executable, str(root / "scripts/linx_batch_tolerance_scan.py"), "--help"],
+        cwd=tmp_path,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+
+    assert completed.returncode == 0, completed.stderr
+    assert "--benchmark-config" in completed.stdout

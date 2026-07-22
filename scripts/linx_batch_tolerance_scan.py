@@ -15,7 +15,11 @@ import uuid
 from pathlib import Path
 from typing import Any
 
-from scripts.why_not_benchmark import (
+REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
+if str(REPOSITORY_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPOSITORY_ROOT))
+
+from scripts.why_not_benchmark import (  # noqa: E402
     append_jsonl,
     git_revision,
     json_dump,
