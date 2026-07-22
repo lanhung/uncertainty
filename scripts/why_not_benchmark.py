@@ -130,6 +130,23 @@ def linx_abundances(raw: list[float], neff: float) -> dict[str, float]:
     return values
 
 
+def prymordial_abundances(raw: list[float]) -> dict[str, float]:
+    if len(raw) != 8:
+        raise ValueError(f"expected 8 PRyMordial outputs, received {len(raw)}")
+    values = {
+        "Neff": float(raw[0]),
+        "YPCMB": float(raw[3]),
+        "YPBBN": float(raw[4]),
+        "DoH": float(raw[5]) * 1.0e-5,
+        "He3oH": float(raw[6]) * 1.0e-5,
+        "Li7oH": float(raw[7]) * 1.0e-10,
+    }
+    for key, value in values.items():
+        if not math.isfinite(value):
+            raise FloatingPointError(f"non-finite PRyMordial result: {key}={value}")
+    return values
+
+
 def load_linx(source_dir: Path) -> tuple[dict[str, Any], dict[str, str]]:
     sys.path.insert(0, str(source_dir))
     import jax  # type: ignore
@@ -398,6 +415,173 @@ def run_w0_linx(
     return summary, failures, measured_seconds
 
 
+def load_prymordial(source_dir: Path) -> tuple[Any, Any, dict[str, str]]:
+    previous_cwd = Path.cwd()
+    sys.path.insert(0, str(source_dir))
+    try:
+        # PRyM_init captures the current directory as its immutable data root.
+        # Importing from any other directory makes the upstream rate tables
+        # unavailable, so the cwd transition is part of the adapter contract.
+        import os
+
+        os.chdir(source_dir)
+        import PRyM.PRyM_init as config  # type: ignore
+        import PRyM.PRyM_main as main_module  # type: ignore
+    finally:
+        os.chdir(previous_cwd)
+
+    config_path = Path(config.__file__).resolve()
+    main_path = Path(main_module.__file__).resolve()
+    source_root = source_dir.resolve()
+    if source_root not in config_path.parents or source_root not in main_path.parents:
+        raise RuntimeError(
+            f"PRyMordial loaded outside frozen source: config={config_path}, main={main_path}"
+        )
+    return (
+        config,
+        main_module.PRyMclass,
+        {
+            "config_module": str(config_path),
+            "main_module": str(main_path),
+            "numpy": importlib.metadata.version("numpy"),
+            "scipy": importlib.metadata.version("scipy"),
+        },
+    )
+
+
+def run_w1_prymordial(
+    source_dir: Path,
+    parameters: dict[str, float],
+    repetitions: int,
+    batch_sizes: list[int],
+    timings_path: Path,
+    failures_path: Path,
+) -> tuple[dict[str, Any], int, float]:
+    import_started = time.perf_counter()
+    config, solver_class, load_provenance = load_prymordial(source_dir)
+    import_seconds = time.perf_counter() - import_started
+    append_jsonl(
+        timings_path,
+        {
+            "batch_size": 0,
+            "elapsed_seconds": import_seconds,
+            "kind": "cold_import",
+            "recorded_at_utc": utc_now(),
+        },
+    )
+
+    config.Omegabh2 = parameters["omega_b_h2"]
+    config.eta0b = config.Omegabh2_to_eta0b * config.Omegabh2
+    config.DeltaNeff = parameters["delta_neff"]
+    config.tau_n = parameters["tau_n_seconds"] * config.second
+    config.aTid_flag = True
+    config.compute_bckg_flag = True
+    config.compute_nTOp_flag = True
+    config.compute_nTOp_thermal_flag = False
+    config.save_bckg_flag = False
+    config.save_nTOp_flag = False
+    config.save_nTOp_thermal_flag = False
+    config.smallnet_flag = True
+    config.nacreii_flag = False
+    config.rates_dir = "key_primat_rates/"
+    config.julia_flag = False
+    config.verbose_flag = False
+
+    def solve() -> dict[str, float]:
+        return prymordial_abundances(solver_class().PRyMresults().tolist())
+
+    cold_started = time.perf_counter()
+    reference = solve()
+    cold_seconds = time.perf_counter() - cold_started
+    append_jsonl(
+        timings_path,
+        {
+            "batch_size": 1,
+            "elapsed_seconds": cold_seconds,
+            "kind": "cold_solve",
+            "recorded_at_utc": utc_now(),
+            "status": "ok",
+        },
+    )
+
+    failures = 0
+    durations: dict[str, list[float]] = {}
+    maximum_absolute_repeat_drift = 0.0
+    maximum_absolute_repeat_drift_by_abundance = {key: 0.0 for key in reference}
+    for batch_size in batch_sizes:
+        label = f"warm_batch_{batch_size}"
+        durations[label] = []
+        for repetition in range(repetitions):
+            started = time.perf_counter()
+            successful_points = 0
+            try:
+                for _ in range(batch_size):
+                    values = solve()
+                    maximum_absolute_repeat_drift = max(
+                        maximum_absolute_repeat_drift,
+                        *(abs(values[key] - reference[key]) for key in reference),
+                    )
+                    for key in reference:
+                        maximum_absolute_repeat_drift_by_abundance[key] = max(
+                            maximum_absolute_repeat_drift_by_abundance[key],
+                            abs(values[key] - reference[key]),
+                        )
+                    successful_points += 1
+            except Exception as exc:  # pragma: no cover - exercised on worker failures
+                failures += 1
+                append_jsonl(
+                    failures_path,
+                    {
+                        "batch_size": batch_size,
+                        "error": repr(exc),
+                        "kind": "solver_exception",
+                        "repetition": repetition,
+                        "traceback": traceback.format_exc(),
+                    },
+                )
+            elapsed = time.perf_counter() - started
+            durations[label].append(elapsed)
+            append_jsonl(
+                timings_path,
+                {
+                    "batch_size": batch_size,
+                    "elapsed_seconds": elapsed,
+                    "execution_mode": "sequential_calls_no_native_batch_api",
+                    "kind": "warm_batch",
+                    "per_point_seconds": elapsed / batch_size,
+                    "repetition": repetition,
+                    "status": "ok" if successful_points == batch_size else "failed",
+                    "successful_points": successful_points,
+                },
+            )
+
+    summary = {
+        "abundances": reference,
+        "backend": "python",
+        "cold_import_seconds": import_seconds,
+        "cold_solve_seconds": cold_seconds,
+        "input_mapping": {
+            "DeltaNeff": config.DeltaNeff,
+            "Omegabh2": config.Omegabh2,
+            "eta0b": config.eta0b,
+            "tau_n_seconds": config.tau_n / config.second,
+        },
+        "load_provenance": load_provenance,
+        "maximum_absolute_repeat_drift": maximum_absolute_repeat_drift,
+        "maximum_absolute_repeat_drift_by_abundance": (maximum_absolute_repeat_drift_by_abundance),
+        "network": "small_12_reaction",
+        "rate_compilation": "primat_like",
+        "timings_seconds": {label: summarize(values) for label, values in durations.items()},
+        "weak_rate_contract": {
+            "recompute_background": True,
+            "recompute_thermal_corrections": False,
+            "recompute_weak_rates": True,
+        },
+    }
+    measured_seconds = import_seconds + cold_seconds + sum(map(sum, durations.values()))
+    return summary, failures, measured_seconds
+
+
 def load_primat(source_dir: Path) -> tuple[Callable[..., dict[str, Any]], dict[str, str]]:
     import primat  # type: ignore
     from primat.backend import run_bbn  # type: ignore
@@ -530,12 +714,13 @@ def run_w2_primat(
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--baseline", choices=["W0-LINX", "W2-PRIMAT"], required=True)
+    parser.add_argument("--baseline", choices=["W0-LINX", "W1-PRYM", "W2-PRIMAT"], required=True)
     parser.add_argument("--config", type=Path, required=True)
     parser.add_argument("--parameter-schema", type=Path, required=True)
     parser.add_argument("--source-dir", type=Path, required=True)
     parser.add_argument("--inventory", type=Path, required=True)
     parser.add_argument("--environment-lock", type=Path, required=True)
+    parser.add_argument("--adapter-config", type=Path)
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--repetitions", type=int)
     parser.add_argument("--batch-size", type=int, action="append", dest="batch_sizes")
@@ -549,6 +734,33 @@ def main() -> int:
     protocol, protocol_loader = load_yaml(args.config, args.yaml_python)
     parameter_schema, schema_loader = load_yaml(args.parameter_schema, args.yaml_python)
     registered = protocol["baselines"][args.baseline]
+    adapter_config: dict[str, Any] | None = None
+    adapter_loader: str | None = None
+    if args.baseline == "W1-PRYM":
+        if args.adapter_config is None:
+            raise ValueError("W1-PRYM requires --adapter-config")
+        adapter_config, adapter_loader = load_yaml(args.adapter_config, args.yaml_python)
+        expected_adapter = {
+            "adapter_id": "PRYMORDIAL-RUNTIME-ADAPTER-v1",
+            "baseline": "W1-PRYM",
+            "execution_backend": "python",
+            "native_batch_api": False,
+            "network": "small_12_reaction",
+            "rate_compilation": "primat_like",
+            "recompute_background": True,
+            "recompute_thermal_weak_corrections": False,
+            "recompute_weak_rates": True,
+            "source_revision": registered["revision"],
+            "status": "frozen_before_registered_runtime_execution",
+        }
+        for key, expected in expected_adapter.items():
+            if adapter_config.get(key) != expected:
+                raise ValueError(
+                    f"PRyMordial adapter contract mismatch for {key}: "
+                    f"{adapter_config.get(key)!r} != {expected!r}"
+                )
+    elif args.adapter_config is not None:
+        raise ValueError("--adapter-config is supported only for W1-PRYM")
     repetitions = args.repetitions or int(protocol["execution"]["warm_repetitions"])
     batch_sizes = args.batch_sizes or [int(value) for value in protocol["execution"]["batch_sizes"]]
     required_repetitions = int(protocol["execution"]["warm_repetitions"])
@@ -585,7 +797,12 @@ def main() -> int:
     started_at = utc_now()
     wall_started = time.perf_counter()
     cpu_started = time.process_time()
-    runner = run_w0_linx if args.baseline == "W0-LINX" else run_w2_primat
+    runners = {
+        "W0-LINX": run_w0_linx,
+        "W1-PRYM": run_w1_prymordial,
+        "W2-PRIMAT": run_w2_primat,
+    }
+    runner = runners[args.baseline]
     result, failure_count, measured_solver_seconds = runner(
         args.source_dir, parameters, repetitions, batch_sizes, timings_path, failures_path
     )
@@ -595,6 +812,8 @@ def main() -> int:
     usage = resource.getrusage(resource.RUSAGE_SELF)
 
     manifest = {
+        "adapter_config": str(args.adapter_config) if args.adapter_config else None,
+        "adapter_config_sha256": sha256(args.adapter_config) if args.adapter_config else None,
         "baseline": args.baseline,
         "benchmark_id": protocol["benchmark_id"],
         "batch_sizes": batch_sizes,
@@ -607,6 +826,7 @@ def main() -> int:
         "hardware_inventory_sha256": sha256(args.inventory),
         "hostname": socket.gethostname(),
         "metadata_loaders": {
+            "adapter_config": adapter_loader,
             "parameter_schema": schema_loader,
             "protocol": protocol_loader,
         },
