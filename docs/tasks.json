@@ -1,12 +1,12 @@
 {
   "project": "uncertainty",
-  "generated_at": "2026-07-22T00:00:29+00:00",
-  "revision": 77,
-  "overall_progress": 0.1644144144144144,
+  "generated_at": "2026-07-22T00:03:31+00:00",
+  "revision": 80,
+  "overall_progress": 0.1698198198198198,
   "overall_kind": "effort-weighted plan completion",
   "phases": {
     "P0": {
-      "progress": 0.5069444444444444
+      "progress": 0.5236111111111111
     },
     "P1": {
       "progress": 0.0
@@ -23,7 +23,8 @@
   },
   "status_counts": {
     "done": 7,
-    "pending": 24,
+    "pending": 23,
+    "running": 1,
     "blocked": 2
   },
   "tasks": [
@@ -54,7 +55,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 121.13241052627563,
+      "heartbeat_age_s": 303.3717451095581,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -95,7 +96,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 122.13248014450073,
+      "heartbeat_age_s": 304.3718466758728,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -137,7 +138,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 123.13253378868103,
+      "heartbeat_age_s": 305.37195444107056,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -231,10 +232,10 @@
       "owner": "vultr",
       "depends_on": [],
       "started_at": "2026-07-21T23:38:30+00:00",
-      "updated_at": "2026-07-21T23:38:30+00:00",
+      "updated_at": "2026-07-22T00:03:20+00:00",
       "finished_at": "2026-07-21T23:38:30+00:00",
       "declared_eta": null,
-      "message": "inspected Git/GitHub, Vultr and registered workers; no legacy scientific migration input was found",
+      "message": "AMENDMENT: public BBNet upstream Hdiao112/BBNet was located after the initial host audit; pinned licensed package source and provenance were inventoried, while datasets and usable checkpoints remain unavailable.",
       "artifacts": [
         "docs/inventory/EXISTING_SCIENTIFIC_ASSETS_v1.md",
         "manifests/inventory/existing_scientific_assets_v1.json"
@@ -246,7 +247,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 1319.1326813697815,
+      "heartbeat_age_s": 11.372287034988403,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -284,7 +285,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 22339.132741212845,
+      "heartbeat_age_s": 22521.372363090515,
       "ready": false,
       "blocked_by": [],
       "artifact_links": []
@@ -293,30 +294,30 @@
       "id": "P0-env-lock",
       "title": "Create environment lock, pyproject, CI, pre-commit and make smoke",
       "phase": "P0",
-      "status": "pending",
+      "status": "running",
       "weight": 2.0,
       "unit": "checks",
-      "current": 0.0,
+      "current": 1.0,
       "total": 5.0,
-      "owner": null,
+      "owner": "vultr",
       "depends_on": [
         "P0-repo-migrate"
       ],
-      "started_at": null,
-      "updated_at": null,
+      "started_at": "2026-07-22T00:03:20+00:00",
+      "updated_at": "2026-07-22T00:03:20+00:00",
       "finished_at": null,
       "declared_eta": null,
-      "message": "",
+      "message": "Environment design frozen: Python 3.11; isolated control, CPU-solver/JAX and GPU-train/PyTorch locks; worker verification still pending.",
       "artifacts": [],
       "metrics": {},
-      "attempt": 0,
+      "attempt": 1,
       "run_id": null,
-      "progress": 0.0,
+      "progress": 0.2,
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": null,
-      "ready": true,
+      "heartbeat_age_s": 11.37245225906372,
+      "ready": false,
       "blocked_by": [],
       "artifact_links": []
     },
@@ -348,7 +349,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 20845.1328496933,
+      "heartbeat_age_s": 21027.372603178024,
       "ready": false,
       "blocked_by": [
         "P0-worker-bootstrap"
@@ -385,7 +386,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 119.13289475440979,
+      "heartbeat_age_s": 301.3726885318756,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -494,7 +495,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 20478.133053302765,
+      "heartbeat_age_s": 20660.37287735939,
       "ready": false,
       "blocked_by": [],
       "artifact_links": []
@@ -526,7 +527,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 20478.13311457634,
+      "heartbeat_age_s": 20660.372982501984,
       "ready": false,
       "blocked_by": [
         "P0-tailnet"

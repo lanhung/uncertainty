@@ -1,14 +1,21 @@
 # uncertainty — live research status
 
-_Generated: 2026-07-22T00:00:29+00:00; revision: 77_
+_Generated: 2026-07-22T00:03:31+00:00; revision: 80_
 
-**Overall plan completion: 16%.** This is effort-weighted execution progress, not scientific confidence.
+**Overall plan completion: 17%.** This is effort-weighted execution progress, not scientific confidence.
 
-Status counts — blocked: 2, pending: 24, done: 7
+Status counts — running: 1, blocked: 2, pending: 23, done: 7
 
 ## Next runnable
 - **P0-WHY-NOT-01** — Write why-not-LINX/PRyMordial/PRIMAT and emulator economics memo
-- **P0-env-lock** — Create environment lock, pyproject, CI, pre-commit and make smoke
+
+## Live now
+- **P0-env-lock** — Create environment lock, pyproject, CI, pre-commit and make smoke [running]
+  - progress: 20% (1/5 checks); ETA: —
+  - owner: vultr; attempt: 1; run_id: —
+  - heartbeat age: 11 s
+  - depends on: P0-repo-migrate
+  - note: Environment design frozen: Python 3.11; isolated control, CPU-solver/JAX and GPU-train/PyTorch locks; worker verification still pending.
 
 ## Blocked / needs a decision
 - **P0-tailnet** — Join control + two workers to the private tailnet [blocked]
@@ -28,9 +35,6 @@ Status counts — blocked: 2, pending: 24, done: 7
 - **P0-benchmark** — Benchmark cold/warm, FP64, batch, CPU, RAM, I/O and failure rates [pending]
   - progress: 0% (0/6 configurations); ETA: —
   - blocked by: P0-solvers-build
-- **P0-env-lock** — Create environment lock, pyproject, CI, pre-commit and make smoke [pending]
-  - progress: 0% (0/5 checks); ETA: —
-  - depends on: P0-repo-migrate
 - **P0-reproduce-bbnet** — Reproduce one known BBNet result end-to-end through the monitored pipeline [pending]
   - progress: 0% (0/3 checks); ETA: —
   - blocked by: P0-solvers-build
@@ -114,7 +118,7 @@ Status counts — blocked: 2, pending: 24, done: 7
 - **P0-code-inventory** — Inventory all existing BBNet, MCMC, solver patches, data and model files [done]
   - progress: 100% (1/1 inventories); ETA: —
   - owner: vultr; attempt: 1; run_id: —
-  - note: inspected Git/GitHub, Vultr and registered workers; no legacy scientific migration input was found
+  - note: AMENDMENT: public BBNet upstream Hdiao112/BBNet was located after the initial host audit; pinned licensed package source and provenance were inventoried, while datasets and usable checkpoints remain unavailable.
   - artifacts: [docs/inventory/EXISTING_SCIENTIFIC_ASSETS_v1.md](https://github.com/lanhung/uncertainty/blob/main/docs/inventory/EXISTING_SCIENTIFIC_ASSETS_v1.md), [manifests/inventory/existing_scientific_assets_v1.json](https://github.com/lanhung/uncertainty/blob/main/manifests/inventory/existing_scientific_assets_v1.json)
 - **P0-control-plane** — Deploy project-isolated research-ops service on the shared Vultr host [done]
   - progress: 100% (5/5 checks); ETA: —
