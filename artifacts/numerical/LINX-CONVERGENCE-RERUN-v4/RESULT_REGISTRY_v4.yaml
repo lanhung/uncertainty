@@ -1,0 +1,25 @@
+schema_version: 4
+scan_id: LINX-CONVERGENCE-RERUN-v4
+source_revision: ec2e9d2ca455e8204137e884da29f5dd13a638fa
+registered_runs: 1
+runs:
+  - run: run-20260722T0722Z
+    status: complete_standard_point_numerical_candidate_accepted
+    cases_registered: 6
+    cases_completed: 6
+    cases_failed: 0
+    timing_records: 48
+    decision:
+      scalar_batch_candidate_budget: passed
+      tolerance_plateau: passed
+      weak_rate_sampling_plateau: passed
+      standard_point_numerical_convergence: accepted
+    production_candidate:
+      rtol: 1.0e-8
+      atol: 1.0e-11
+      sampling_nTOp: 2400
+      max_steps: 16384
+    scientific_use: standard_fiducial_scalar_native_batch_consistency_only
+broader_w0_status: incomplete
+gradient_status: rejected_nonfinite_component_from_prior_upstream_smoke
+why_not_conclusion: undetermined
