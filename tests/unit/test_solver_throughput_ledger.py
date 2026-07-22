@@ -39,20 +39,14 @@ def test_solver_throughput_is_derived_from_committed_timings() -> None:
         stats = summary["timings_seconds"][f"warm_batch_{batch_size}"]
 
         assert len(matching) == int(row["repetitions"]) == 30
-        assert {record["execution_mode"] for record in matching} == {
-            row["execution_mode"]
-        }
+        assert {record["execution_mode"] for record in matching} == {row["execution_mode"]}
         assert sum(record["successful_points"] for record in matching) == int(
             row["successful_points"]
         )
         assert float(row["median_seconds_per_batch"]) == pytest.approx(stats["median"])
         assert float(row["p95_seconds_per_batch"]) == pytest.approx(stats["p95"])
-        assert float(row["median_seconds_per_point"]) == pytest.approx(
-            stats["median"] / batch_size
-        )
-        assert float(row["p95_seconds_per_point"]) == pytest.approx(
-            stats["p95"] / batch_size
-        )
+        assert float(row["median_seconds_per_point"]) == pytest.approx(stats["median"] / batch_size)
+        assert float(row["p95_seconds_per_point"]) == pytest.approx(stats["p95"] / batch_size)
         assert int(row["failure_count"]) == 0
         assert row["scientific_scope"] == "standard_fiducial_runtime_slice_only"
 
