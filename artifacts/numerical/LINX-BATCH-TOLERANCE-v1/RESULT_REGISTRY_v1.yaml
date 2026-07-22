@@ -1,0 +1,19 @@
+schema_version: 1
+scan_id: LINX-BATCH-TOLERANCE-v1
+source_revision: ec2e9d2ca455e8204137e884da29f5dd13a638fa
+registered_runs: 1
+runs:
+  - run: run-20260722T0618Z
+    status: complete_not_accepted
+    cases_completed: 8
+    timing_records: 64
+    failed_cases: 0
+    decision:
+      scalar_batch_candidate_budget: passed
+      tolerance_plateau: failed
+      weak_rate_sampling_plateau: failed
+      numerical_consistency: not_accepted
+    scientific_use: standard_fiducial_scalar_native_batch_consistency_only
+follow_up_required: extended_tolerance_and_sampling_convergence_scan
+gradient_status: rejected_nonfinite_component_from_prior_upstream_smoke
+why_not_conclusion: undetermined

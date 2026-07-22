@@ -49,9 +49,16 @@ bitwise identical. The maximum absolute differences were:
 
 These differences are small relative to the current observational errors, but
 that does not establish a numerical acceptance plateau. The artifact therefore
-records `batch_discrepancy_open`; a tolerance scan and independent scalar/batch
-comparison remain required before native-batch results support a scientific
-claim.
+records `batch_discrepancy_open`.
+
+The pre-registered follow-up scan completed all eight tolerance/interpolation
+cases with zero failures and deterministic repeats. Candidate scalar/batch
+differences were below `0.01` OBS-v1 standard deviations, but both required
+plateau checks failed: the tight/tighter tolerance change reached `0.004045`
+and the 200/300-point weak-rate interpolation change reached `0.028684`
+observational standard deviations, versus the frozen `0.001` limit. Numerical
+consistency is therefore **not accepted**. See
+`docs/inventory/LINX_BATCH_TOLERANCE_v1.md`.
 
 The earlier upstream value-and-gradient smoke also contained a `NaN` component.
 Forward runtime does not override that failure. LINX is not yet an accepted
@@ -61,5 +68,5 @@ gradient/HMC baseline.
 
 This completes W0's standard-fiducial runtime slice only. Scalar-rate checks,
 an accepted Jacobian, posterior recovery, extension implementation, total
-workload projection and batch-fidelity acceptance remain open. The WHY-NOT
+workload projection and an extended convergence scan remain open. The WHY-NOT
 conclusion is still undetermined.

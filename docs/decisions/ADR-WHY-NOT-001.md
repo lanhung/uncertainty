@@ -159,9 +159,12 @@ worker environments. PRIMAT's 30 warm scalar and 30 sequential 64-point
 workloads produced no structured failures, with a warm scalar median of
 0.06387 seconds. LINX's warm scalar median was 0.21572 seconds and its native
 64-point median was 0.85856 seconds, but identical-input scalar versus native-
-batch abundances were not bitwise equal; the maximum absolute `Y_p` difference
-was `3.7244e-6` and remains open pending a tolerance scan. The raw artifacts are
-registered under `artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/`.
+batch abundances were not bitwise equal. A pre-registered eight-case follow-up
+completed without runtime failures but did not reach either the tightened-
+tolerance or weak-rate interpolation plateau. Numerical consistency is not
+accepted, and an extended convergence scan is required. Raw runtime artifacts
+are registered under `artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/`; the
+follow-up is under `artifacts/numerical/LINX-BATCH-TOLERANCE-v1/`.
 
 Posterior-region, adversarial, extension and matched-posterior measurements
 remain pending. LINX's previously observed non-finite gradient also remains
