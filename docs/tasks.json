@@ -1,15 +1,15 @@
 {
   "project": "uncertainty",
-  "generated_at": "2026-07-22T19:31:44+00:00",
-  "revision": 263,
+  "generated_at": "2026-07-22T19:32:32+00:00",
+  "revision": 275,
   "overall_progress": 0.21171171171171171,
   "overall_kind": "effort-weighted scientific program gate completion",
   "science_gate_progress": 0.21171171171171171,
-  "execution_progress": 1.0,
+  "execution_progress": 0.3333333333333333,
   "execution_kind": "effort-weighted current execution milestone completion",
   "phases": {
     "EXEC": {
-      "progress": 1.0
+      "progress": 0.3333333333333333
     },
     "P0": {
       "progress": 0.6527777777777778
@@ -29,8 +29,8 @@
   },
   "status_counts": {
     "done": 10,
+    "pending": 25,
     "stale": 2,
-    "pending": 21,
     "blocked": 2
   },
   "tasks": [
@@ -61,7 +61,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 19965.537716388702,
+      "heartbeat_age_s": 20013.99432182312,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -72,6 +72,150 @@
         {
           "label": "artifacts/numerical/ABCMB-LINX-EXTENDED-CONVERGENCE-v2/run-20260722T134322Z",
           "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/numerical/ABCMB-LINX-EXTENDED-CONVERGENCE-v2/run-20260722T134322Z"
+        }
+      ]
+    },
+    {
+      "id": "EXEC-ABCMB-FULL-AUDIT",
+      "title": "Execute frozen ABCMB spectra, gradient, toy-Fisher and synthetic audits",
+      "phase": "EXEC",
+      "status": "pending",
+      "weight": 1.0,
+      "unit": "components",
+      "current": 0.0,
+      "total": 4.0,
+      "owner": null,
+      "depends_on": [],
+      "started_at": null,
+      "updated_at": "2026-07-22T19:32:32+00:00",
+      "finished_at": null,
+      "declared_eta": null,
+      "message": "PR #60 froze exact-source CPU-only spectra, gradient, toy-Fisher and Asimov scopes before implementation; formal Fisher, real posterior and HMC/NUTS remain unavailable.",
+      "artifacts": [
+        "configs/benchmarks/abcmb_full_component_audit_v1.yaml"
+      ],
+      "metrics": {},
+      "attempt": 0,
+      "run_id": null,
+      "progress": 0.0,
+      "rate": null,
+      "eta": null,
+      "eta_kind": "none",
+      "heartbeat_age_s": 0.9944579601287842,
+      "ready": true,
+      "blocked_by": [],
+      "artifact_links": [
+        {
+          "label": "configs/benchmarks/abcmb_full_component_audit_v1.yaml",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/configs/benchmarks/abcmb_full_component_audit_v1.yaml"
+        }
+      ]
+    },
+    {
+      "id": "EXEC-HEARTBEAT-OFFLINE-E2E-v1",
+      "title": "Validate offline heartbeat buffering, checkpointing, replay and lease release",
+      "phase": "EXEC",
+      "status": "pending",
+      "weight": 1.0,
+      "unit": "checks",
+      "current": 0.0,
+      "total": 8.0,
+      "owner": null,
+      "depends_on": [],
+      "started_at": null,
+      "updated_at": "2026-07-22T19:32:32+00:00",
+      "finished_at": null,
+      "declared_eta": null,
+      "message": "PR #60 froze eight offline-buffer/checkpoint/replay/lease/gate-invariance checks; implementation must precede any real ledger replay.",
+      "artifacts": [
+        "configs/ops/offline_heartbeat_e2e_v1.yaml"
+      ],
+      "metrics": {},
+      "attempt": 0,
+      "run_id": null,
+      "progress": 0.0,
+      "rate": null,
+      "eta": null,
+      "eta_kind": "none",
+      "heartbeat_age_s": 0.9945187568664551,
+      "ready": true,
+      "blocked_by": [],
+      "artifact_links": [
+        {
+          "label": "configs/ops/offline_heartbeat_e2e_v1.yaml",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/configs/ops/offline_heartbeat_e2e_v1.yaml"
+        }
+      ]
+    },
+    {
+      "id": "EXEC-LINX-GRADIENT",
+      "title": "Execute frozen LINX standard-neighborhood gradient diagnostics",
+      "phase": "EXEC",
+      "status": "pending",
+      "weight": 1.0,
+      "unit": "groups",
+      "current": 0.0,
+      "total": 4.0,
+      "owner": null,
+      "depends_on": [],
+      "started_at": null,
+      "updated_at": "2026-07-22T19:32:32+00:00",
+      "finished_at": null,
+      "declared_eta": null,
+      "message": "PR #60 froze the standard-neighborhood AD/FD diagnostic; the historical extreme all-2 vector is diagnostic-only and cannot decide acceptance-domain validity.",
+      "artifacts": [
+        "configs/benchmarks/linx_gradient_stability_v1.yaml"
+      ],
+      "metrics": {},
+      "attempt": 0,
+      "run_id": null,
+      "progress": 0.0,
+      "rate": null,
+      "eta": null,
+      "eta_kind": "none",
+      "heartbeat_age_s": 0.994560718536377,
+      "ready": true,
+      "blocked_by": [],
+      "artifact_links": [
+        {
+          "label": "configs/benchmarks/linx_gradient_stability_v1.yaml",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/configs/benchmarks/linx_gradient_stability_v1.yaml"
+        }
+      ]
+    },
+    {
+      "id": "EXEC-STANDARD-CHALLENGE",
+      "title": "Execute the W0-W3 frozen standard-BBN challenge grid",
+      "phase": "EXEC",
+      "status": "pending",
+      "weight": 1.0,
+      "unit": "baselines",
+      "current": 0.0,
+      "total": 4.0,
+      "owner": null,
+      "depends_on": [],
+      "started_at": null,
+      "updated_at": "2026-07-22T19:32:32+00:00",
+      "finished_at": null,
+      "declared_eta": null,
+      "message": "PR #60 froze seven standard-BBN reliability points across W0-W3; cross-baseline differences are descriptive pipeline discrepancies only.",
+      "artifacts": [
+        "configs/benchmarks/why_not_standard_challenge_grid_v1.yaml"
+      ],
+      "metrics": {},
+      "attempt": 0,
+      "run_id": null,
+      "progress": 0.0,
+      "rate": null,
+      "eta": null,
+      "eta_kind": "none",
+      "heartbeat_age_s": 0.9946014881134033,
+      "ready": true,
+      "blocked_by": [],
+      "artifact_links": [
+        {
+          "label": "configs/benchmarks/why_not_standard_challenge_grid_v1.yaml",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/configs/benchmarks/why_not_standard_challenge_grid_v1.yaml"
         }
       ]
     },
@@ -105,7 +249,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 22308.53785467148,
+      "heartbeat_age_s": 22356.994651794434,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -161,7 +305,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 39127.53793311119,
+      "heartbeat_age_s": 39175.99473309517,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -214,7 +358,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 70397.5379960537,
+      "heartbeat_age_s": 70445.99482107162,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -256,7 +400,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 70398.53806233406,
+      "heartbeat_age_s": 70446.99492073059,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -358,7 +502,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 19964.538207769394,
+      "heartbeat_age_s": 20012.995075702667,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -655,7 +799,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 61454.53836154938,
+      "heartbeat_age_s": 61502.99525284767,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -705,7 +849,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 92614.53840017319,
+      "heartbeat_age_s": 92662.99529004097,
       "ready": false,
       "blocked_by": [],
       "artifact_links": []
@@ -746,7 +890,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 51805.538445711136,
+      "heartbeat_age_s": 51853.995327949524,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -818,7 +962,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 19812.538548707962,
+      "heartbeat_age_s": 19860.995394706726,
       "ready": false,
       "blocked_by": [
         "P0-worker-bootstrap"
@@ -861,7 +1005,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 62274.53859806061,
+      "heartbeat_age_s": 62322.995468854904,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -915,7 +1059,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 31218.538653850555,
+      "heartbeat_age_s": 31266.99553513527,
       "ready": false,
       "blocked_by": [
         "P0-solvers-build"
@@ -970,7 +1114,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 49006.53869509697,
+      "heartbeat_age_s": 49054.99558186531,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -1016,7 +1160,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 59305.53881645203,
+      "heartbeat_age_s": 59353.9956343174,
       "ready": false,
       "blocked_by": [],
       "artifact_links": []
@@ -1050,7 +1194,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 38277.53887605667,
+      "heartbeat_age_s": 38325.99567389488,
       "ready": false,
       "blocked_by": [
         "P0-tailnet"
@@ -1257,7 +1401,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 49007.5392036438,
+      "heartbeat_age_s": 49055.995877981186,
       "ready": false,
       "blocked_by": [
         "P2-unified-adapter"
@@ -1297,7 +1441,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 42473.539251089096,
+      "heartbeat_age_s": 42521.99594330788,
       "ready": false,
       "blocked_by": [
         "P2-rate-registry"
@@ -1338,7 +1482,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 42473.53930282593,
+      "heartbeat_age_s": 42521.995989084244,
       "ready": false,
       "blocked_by": [
         "P2-solver-matrix"
@@ -1382,7 +1526,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 49006.53936290741,
+      "heartbeat_age_s": 49054.996046066284,
       "ready": false,
       "blocked_by": [
         "P0-solvers-build"
@@ -1498,7 +1642,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 38936.53963160515,
+      "heartbeat_age_s": 38984.99627017975,
       "ready": false,
       "blocked_by": [
         "P2.5-fisher-propagation",
@@ -1561,7 +1705,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 49007.53967857361,
+      "heartbeat_age_s": 49055.99633693695,
       "ready": false,
       "blocked_by": [
         "P2-unified-adapter"
