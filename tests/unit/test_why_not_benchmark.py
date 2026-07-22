@@ -67,6 +67,8 @@ def test_direct_benchmark_entrypoint_declares_required_artifacts() -> None:
     assert "direct_url.json" in source
     assert "primat._primat_c" in source
     assert "jax_jit_vmap_native_batch" in source
+    assert "matrix = matrix.reshape((-1, 8))" in source
+    assert "unexpected LINX batch size" in source
 
 
 def test_yaml_loader_records_in_process_parser(tmp_path: Path) -> None:

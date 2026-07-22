@@ -305,6 +305,13 @@ def run_w0_linx(
                 raw = batched_solve(eta_values, tau_values)
                 jax.block_until_ready(raw)
                 matrix = np.stack([np.asarray(value) for value in jax.device_get(raw)], axis=-1)
+                if matrix.shape[-1] != 8:
+                    raise ValueError(f"unexpected LINX batch species axis: {matrix.shape}")
+                matrix = matrix.reshape((-1, 8))
+                if matrix.shape[0] != native_batch_size:
+                    raise ValueError(
+                        f"unexpected LINX batch size: {matrix.shape[0]} != {native_batch_size}"
+                    )
                 for row in matrix:
                     values = linx_abundances(row.tolist(), reference["Neff"])
                     maximum_absolute_repeat_drift = max(
