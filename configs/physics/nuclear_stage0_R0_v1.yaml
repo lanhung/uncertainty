@@ -1,0 +1,124 @@
+schema_version: 1
+registry_id: NUCLEAR-STAGE0-R0-v1
+status: scope_frozen_numerical_priors_pending
+registered_at_utc: "2026-07-23"
+scientific_scope: >-
+  Minimal self-contained reaction-rate nuisance set for validating BBN theoretical
+  bands, covariance convergence and abundance-distribution learning. This is not
+  a claim that other reactions are irrelevant.
+
+primary_outputs:
+  - Y_p
+  - D_over_H
+secondary_outputs_when_available:
+  - He3_over_H
+  - Li7_over_H
+
+cosmology_stage:
+  primary: standard_BBN
+  optional_after_gate:
+    - delta_neff
+    - nonstandard_expansion
+
+reactions:
+  - reaction_id: dp_gamma_he3
+    equation: d(p,gamma)3He
+    role: deuterium_destruction_and_He3_feed
+    prior_parameter: z_dp_gamma_he3
+    central_curve: pending
+    temperature_grid: pending
+    units: pending
+    uncertainty_model: pending_lognormal_or_posterior
+    covariance_status: pending
+    detailed_balance: pending
+    solver_mappings: pending
+    source_revision: pending
+    source_checksum: pending
+    production_enabled: false
+
+  - reaction_id: dd_n_he3
+    equation: d(d,n)3He
+    role: deuterium_destruction_and_He3_feed
+    prior_parameter: z_dd_n_he3
+    central_curve: pending
+    temperature_grid: pending
+    units: pending
+    uncertainty_model: pending_lognormal_or_posterior
+    covariance_status: pending
+    detailed_balance: pending
+    solver_mappings: pending
+    source_revision: pending
+    source_checksum: pending
+    production_enabled: false
+
+  - reaction_id: dd_p_t
+    equation: d(d,p)t
+    role: deuterium_destruction_and_tritium_feed
+    prior_parameter: z_dd_p_t
+    central_curve: pending
+    temperature_grid: pending
+    units: pending
+    uncertainty_model: pending_lognormal_or_posterior
+    covariance_status: pending
+    detailed_balance: pending
+    solver_mappings: pending
+    source_revision: pending
+    source_checksum: pending
+    production_enabled: false
+
+weak_physics:
+  neutron_lifetime:
+    registry: configs/physics/neutron_lifetime_v1.yaml
+    ordinary_thermonuclear_rate: false
+  weak_normalization:
+    status: pending_solver_audit
+  double_counting_prohibited: true
+
+nuisance_contract:
+  baseline_equation: log_r_i_T_equals_log_rbar_i_T_plus_z_i_sigma_i_T
+  marginal_distribution: multivariate_normal
+  covariance_matrix: pending
+  independence_assumed: false
+  missing_covariance_policy: >-
+    Record missing correlations explicitly and run a preregistered correlation
+    stress test; absence of covariance is not evidence of independence.
+
+monte_carlo_protocol:
+  frozen_fiducial_manifest: pending
+  initial_draws: 1000
+  cumulative_checkpoints: [100, 300, 1000]
+  optional_extensions: [3000, 10000]
+  convergence_metrics:
+    - mean_relative_change
+    - covariance_relative_change
+    - quantile_absolute_change
+    - tail_probability_change
+    - cross_abundance_correlation_change
+  every_draw_records:
+    - seed
+    - nuisance_vector
+    - solver_revision
+    - config_hash
+    - outputs
+    - structured_status
+    - runtime_seconds
+
+acceptance_before_label_generation:
+  - all_three_rates_have_versioned_sources
+  - units_and_temperature_semantics_are_verified
+  - central_curves_and_uncertainty_models_are_registered
+  - solver_rate_mappings_pass_plus_minus_one_regression
+  - weak_uncertainty_is_not_double_counted
+  - source_and_config_checksums_are_frozen
+
+expansion_rules:
+  add_lithium_or_helium_rates_after:
+    - stage0_pipeline_passes
+    - missing_output_variance_or_posterior_sensitivity_is_demonstrated
+  add_functional_modes_after:
+    - scalar_theta_dependence_or_tail_failure_is_demonstrated
+    - posterior_derived_basis_is_available
+    - cross_validation_passes
+  add_full_network_after:
+    - core_set_fails_variance_or_coverage_budget
+    - production_need_is_signed

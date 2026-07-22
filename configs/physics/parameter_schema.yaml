@@ -1,26 +1,24 @@
-schema_version: 1
-schema_id: PHYSICS-PARAMETERS-v1
+schema_version: 2
+schema_id: PHYSICS-PARAMETERS-UQ-v1
 decision_date_utc: "2026-07-23"
-status: manuscript_stiff_semantics_registered_backend_mappings_pending
-track_b_gate_status: closed
-manuscript_contract: configs/manuscript/jcap_stiff_lithium_v1.yaml
+status: standard_bbn_uq_scope_frozen_extensions_optional
+production_gate_status: closed_pending_UQ2_GATE_REPORT
+scientific_scope: docs/science/UNCERTAINTY_SCOPE_v1.md
 
 standard_bbn_fiducial:
-  purpose: common_direct_solver_benchmark_point
+  purpose: common_rate_uncertainty_and_direct_solver_benchmark
   selection_rule: >-
     Values are inherited from the frozen CMB-v1 main-stage mean and NEUTRON-v1
-    N0 mean. Null values are used for extension coordinates. No value was
-    selected using solver timing or abundance output.
+    N0 mean. Extension coordinates are set to their standard-model null values.
+    No value was selected using a favorable uncertainty or posterior result.
   values:
     omega_b_h2: 0.02237
     delta_neff: 0.0
     tau_n_seconds: 878.3
-    kappa10: 0.0
   sources:
     omega_b_h2: configs/data/cmb_data_v1.yaml#main_stage
     tau_n_seconds: configs/physics/neutron_lifetime_v1.yaml#scenarios.N0
     delta_neff: standard_model_null
-    kappa10: configs/manuscript/jcap_stiff_lithium_v1.yaml#physical_model.kappa10
 
 parameters:
   omega_b_h2:
@@ -28,7 +26,7 @@ parameters:
     definition: physical baryon density parameter
     units: dimensionless
     sampling_transform: identity
-    role: core_parameter
+    role: core_cosmological_parameter
     prior:
       distribution: normal
       mean: 0.02237
@@ -39,224 +37,167 @@ parameters:
       upper: null
       lower_inclusive: false
     fiducial: 0.02237
-    sensitive_data: [CMB, D_over_H, Y_p, Li7_over_H]
+    primary_outputs: [D_over_H, Y_p]
+    optional_outputs: [He3_over_H, Li7_over_H]
     identifiability_risk: correlated_with_nuclear_rates_and_expansion_history
-    freeze_status: frozen_for_standard_bbn_benchmark
+    freeze_status: frozen_for_standard_bbn_uq
 
   delta_neff:
     symbol: Delta N_eff
     definition: additive change in effective relativistic degrees of freedom
     units: dimensionless
     sampling_transform: identity
-    role: derived_or_diagnostic_extension_parameter
-    manuscript_use:
-      primary_full_search: derived_from_SageNet_plus_SGWB_integral
-      free_diagnostic: independently_varied_only_at_kappa10_zero
-      main_training_range: [0.0, 1.0]
-      hard_rejection_above: 5.0
+    role: optional_extension_parameter
     prior:
-      status: not_frozen_for_future_uq
-      legacy_training_range: [-1.0, 1.0]
+      status: not_active_in_stage_R0
+      future_freeze_required: true
     physical_bounds:
       rule: total_Neff_must_remain_positive
-      implementation_status: adapter_specific_check_pending
+      implementation_status: adapter_specific_check_required
     fiducial: 0.0
-    sensitive_data: [Y_p, D_over_H, Li7_over_H, CMB, SGWB]
-    identifiability_risk: correlated_with_omega_b_h2_tau_n_and_kappa10
-    freeze_status: manuscript_semantics_registered
+    sensitive_outputs: [Y_p, D_over_H]
+    identifiability_risk: correlated_with_omega_b_h2_tau_n_and_rate_nuisances
+    activation_rule: after_standard_BBN_UQ_baseline_and_signed_gate
+    freeze_status: standard_model_null_only
 
   tau_n_seconds:
     symbol: tau_n
     definition: free-neutron lifetime
     units: s
     sampling_transform: identity
-    role: nuisance_parameter
+    role: weak_physics_nuisance_parameter
     prior:
       scenario_registry: configs/physics/neutron_lifetime_v1.yaml
       primary_scenario: N0
-      manuscript_reproduction: configs/data/manuscript_abundance_v1.yaml#neutron_lifetime
     physical_bounds:
       lower: 0.0
       upper: null
       lower_inclusive: false
     fiducial: 878.3
-    sensitive_data: [Y_p, D_over_H, Li7_over_H]
+    sensitive_outputs: [Y_p, D_over_H]
     identifiability_risk: >-
-      Must not be double counted through both tau_n and weak-rate normalization.
-    freeze_status: frozen
+      Must not be double counted through both tau_n and a weak-rate
+      normalization nuisance.
+    freeze_status: frozen_by_neutron_registry
 
+optional_nonstandard_parameters:
   kappa10:
     symbol: kappa_10
     definition: >-
-      Ratio rho_stiff/rho_gamma evaluated at photon temperature T = 10 MeV.
-      It is the amplitude of the homogeneous pre-BBN stiff component used in
-      the manuscript and stiffGWpy.
+      Optional downstream stiff-expansion coordinate. A public convention defines
+      it as rho_stiff/rho_gamma at T=10 MeV, but it is not part of the active
+      standard-BBN uncertainty gate.
     units: dimensionless
-    authoritative_sources:
-      - configs/manuscript/jcap_stiff_lithium_v1.yaml#physical_model.kappa10
-      - https://github.com/bohuarolandli/stiffGWpy#input
-    expansion_mapping:
-      direct_term: >-
-        H/H_std contains sqrt(1 + kappa10*(T/10 MeV)^(3*(w_phi-1/3)) + rho_GW/rho_rad)
-      reference_temperature_MeV: 10.0
-      equation_of_state_condition: w_phi_greater_than_one_third
-      kination_limit: w_phi_equals_1
-    sampling_transform:
-      positive_branch: log10
-      manuscript_range: [-7.0, 3.0]
-      null_value: 0.0
-      null_handling: explicit_standard_model_spike_not_log_transformed
-    role: extension_parameter
+    role: optional_case_study_parameter
     prior:
-      manuscript_reproduction:
-        distribution: uniform_in_log10
-        log10_range: [-7.0, 3.0]
-      future_uq_status: not_frozen
-    physical_bounds:
-      lower: 0.0
-      upper: null
-      lower_inclusive: true
-    backend_mapping:
-      PArthENoPE_modified: pending_exact_source_or_patch
-      AlterBBN_dd0: pending_exact_authoritative_conversion
-      rule: do_not_infer_backend_mapping_from_names
-    fiducial: 0.0
-    sensitive_data: [Y_p, D_over_H, He3_over_H, Li7_over_H, SGWB]
-    identifiability_risk: correlated_with_tensor_tilt_reheating_and_Delta_N_eff
-    freeze_status: physical_definition_frozen_backend_mapping_pending
-
-  tensor_to_scalar_ratio:
-    symbol: r
-    definition: primordial tensor-to-scalar ratio used to normalize the SGWB
-    units: dimensionless
-    sampling_transform: log10
-    role: extension_parameter
-    prior:
-      manuscript_log10_range: [-40.0, 0.0]
-      future_uq_status: not_frozen
-    physical_bounds:
-      lower: 0.0
-      upper: null
-      lower_inclusive: true
-    fiducial: null
-    sensitive_data: [SGWB, Delta_N_eff]
-    freeze_status: manuscript_semantics_registered
+      status: not_frozen
+    activation_rule: after_UQ2_gate_and_separate_model_contract
+    backend_mappings:
+      status: not_required_for_active_R0_R1_work
+      rule: never_infer_dd0_or_other_internal_mappings_from_names
+    freeze_status: inactive_optional
 
   tensor_tilt:
     symbol: n_t
-    definition: >-
-      Phenomenological primordial/high-frequency tensor spectral tilt controlling
-      the SGWB contribution. The manuscript samples it freely and also retains
-      an inflationary-consistency robustness model.
+    definition: model-dependent primordial tensor spectral tilt
     units: dimensionless
-    sampling_transform: identity
-    role: core_or_derived_parameter_by_registered_model
+    role: optional_case_study_parameter
     prior:
-      manuscript_free_range: [-1.0, 6.0]
-      future_uq_status: not_frozen
-    physical_bounds:
-      status: model_dependent
-    fiducial: null
-    sensitive_data: [SGWB, Delta_N_eff, BBN]
-    identifiability_risk: correlated_with_tensor_amplitude_reheating_and_stiff_history
-    required_models:
-      free_tensor_tilt:
-        sampled: true
-      inflationary_consistency_relation:
-        relation: n_t_equals_minus_r_over_8
-        sampled_independently: false
-      kination_transfer_reference:
-        alpha_stiff: 1.0
-        note: physical_reference_slice_not_the_only_sampled_model
-    freeze_status: manuscript_models_registered_future_prior_pending
+      status: not_frozen
+    activation_rule: after_UQ2_gate_and_separate_SGWB_contract
+    freeze_status: inactive_optional
 
   reheating_temperature:
     symbol: T_re
-    definition: >-
-      Reheating temperature marking the end of reheating and the onset of the
-      conventional hot radiation-dominated history used by the stiff/SGWB model.
-    units: GeV
-    sampling_transform: log10
-    role: extension_parameter
+    definition: model-dependent reheating temperature
+    units: model_contract_required
+    role: optional_case_study_parameter
     prior:
-      manuscript_log10_GeV_range: [-3.0, 7.0]
-      future_uq_status: not_frozen
-    physical_bounds:
-      lower_GeV: 1.0e-3
-      lower_reason: reheating_must_complete_before_BBN
-      upper_GeV: null
-    fiducial: null
-    sensitive_data: [SGWB, Delta_N_eff, BBN]
-    identifiability_risk: correlated_with_tensor_tilt_and_reheating_duration
-    freeze_status: manuscript_semantics_registered
-
-  reheating_duration_efolds:
-    symbol: Delta N_re
-    definition: >-
-      Number of e-folds from the end of inflation to the end of reheating under
-      the manuscript's matter-like reheating evolution.
-    units: e_folds
-    sampling_transform: identity
-    role: extension_parameter
-    prior:
-      manuscript_range: [0.0, 40.0]
-      future_uq_status: not_frozen
-    physical_bounds:
-      lower: 0.0
-      upper: null
-      lower_inclusive: true
-    fiducial: null
-    sensitive_data: [SGWB, Delta_N_eff]
-    identifiability_risk: largely_prior_dominated_in_manuscript
-    freeze_status: manuscript_semantics_registered
+      status: not_frozen
+    activation_rule: after_UQ2_gate_and_separate_reheating_contract
+    freeze_status: inactive_optional
 
 parameter_families:
-  nuclear_rate_q:
-    symbol: q_i
-    role: nuisance_parameter
-    distribution_baseline: standard_normal
-    first_decision_focused_registry: configs/physics/nuclear_core6_no_go_v1.yaml
-    full_dimension: pending_NUC_v1_registry
-    freeze_status: pending_nuclear_prior
+  nuclear_rate_z_R0:
+    symbols:
+      - z_dp_gamma_he3
+      - z_dd_n_he3
+      - z_dd_p_t
+    role: thermonuclear_rate_nuisance_parameters
+    registry: configs/physics/nuclear_stage0_R0_v1.yaml
+    distribution_baseline: multivariate_normal
+    covariance_status: pending_registry_completion
+    freeze_status: scope_frozen_numerical_priors_pending
+
+  nuclear_rate_z_extended:
+    symbol: z_i
+    role: thermonuclear_rate_nuisance_parameters
+    dimension: conditional_on_R0_R1_gates
+    distribution_baseline: registered_lognormal_or_posterior
+    freeze_status: inactive_until_expansion_gate
+
   functional_rate_modes:
     symbol: a_ik
-    role: nuisance_parameter
-    distribution_baseline: standard_normal
-    dimension: conditional_on_scalar_gate_and_basis_validation
-    freeze_status: pending_nuclear_prior
+    role: function_valued_rate_nuisance_parameters
+    distribution_baseline: standard_normal_after_basis_whitening
+    dimension: conditional_on_scalar_theta_dependence_and_basis_validation
+    freeze_status: inactive_until_signed_gate
+
   solver_choices:
     symbols: [E, R, W, X, nu]
     role: registered_discrete_model_choices
     registry: docs/decisions/ADR-SOLVER-FACTORIAL-v1.md
-    freeze_status: pending_factorial_execution
+    active_R0_scope:
+      X: standard_BBN_only
+      outputs: [Y_p, D_over_H]
+    freeze_status: public_paths_and_matched_factors_pending
+
+abundance_outputs:
+  primary_R0:
+    - name: Y_p
+      convention: helium4_mass_fraction
+    - name: D_over_H
+      convention: number_ratio
+  optional_R1:
+    - name: He3_over_H
+      convention: number_ratio
+    - name: Li7_over_H
+      convention: number_ratio_including_post_BBN_Be7_decay_as_solver_defined
+  rule: >-
+    Every adapter records raw solver outputs, conversion formulae and canonical
+    values; outputs with incompatible conventions are not compared silently.
 
 adapter_aliases:
   common:
     omega_b_h2: [OmegaBh2, omegabn]
     delta_neff: [DeltaNeff, dn_nu, DN_eff, delta_N_eff]
     tau_n_seconds: [tau_n, tau]
-    kappa10: [kappa, kappa10]
-    reheating_temperature: [T_re, Tre]
-    reheating_duration_efolds: [DN_re, DeltaNre]
-  prohibited_unresolved_mappings:
-    - from: kappa10
-      to: dd0
-      reason: exact_modified_AlterBBN_conversion_not_yet_handed_off
-    - from: delta_neff
-      to: dd0_rad
-      reason: exact_modified_AlterBBN_conversion_not_yet_handed_off
+  rate_nuisance:
+    z_dp_gamma_he3: [q_dpHe3g, dpHe3g_q]
+    z_dd_n_he3: [q_ddHe3n, ddHe3n_q]
+    z_dd_p_t: [q_ddtp, ddtp_q]
+  prohibited_silent_mappings:
+    - from: any_rate_low_high_flag
+      to: standard_normal_z
+      reason: conversion_requires_source_specific_lognormal_definition
+    - from: solver_internal_rate_index
+      to: canonical_reaction_id
+      reason: mapping_must_be_versioned_and_tested
 
 validation_rules:
-  - Reject unknown parameter names rather than silently dropping them.
+  - Reject unknown parameter and nuisance names rather than silently dropping them.
   - Record canonical and adapter-transformed values in every run manifest.
-  - The physical definition of kappa10 is frozen; backend-specific dd0 mappings are not.
-  - Do not interpret a manuscript training range as the future UQ inference prior.
-  - Standard-BBN direct benchmarks may use only the frozen fiducial subset.
-  - MANUSCRIPT-OBS-v1 and OBS-v1 must be named explicitly and never mixed silently.
+  - Standard-BBN R0 work must not depend on any manuscript or SGWB asset.
+  - Do not use a solver training range as an inference prior without a separate decision.
+  - Do not assume missing rate covariance means independent nuisances.
+  - Do not combine tau_n and weak normalization in a way that double counts the same uncertainty.
+  - Every rate perturbation must pass central and symmetric regression tests before Monte Carlo labels are generated.
+  - Optional non-standard parameters require a separate signed activation contract.
 
 open_blockers:
-  - exact_modified_PArthENoPE_source_or_patch
-  - exact_modified_AlterBBN_kappa10_DeltaNeff_mapping
-  - exact_BBNet_plus_training_and_inference_asset_handoff
-  - NUC_CORE6_numerical_scalar_priors
-  - NUC_v1_full_rate_and_functional_mode_registry
+  - R0_rate_central_curves_units_uncertainties_and_checksums
+  - R0_cross_rate_covariance_or_registered_missing_covariance_stress
+  - public_solver_rate_ID_mappings
+  - weak_normalization_and_tau_n_double_counting_audit
+  - frozen_standard_BBN_point_manifest
+  - UQ2_64_point_manifest_and_gate_report
