@@ -159,15 +159,16 @@ class Heartbeat:
         with open(self.outbox_file, "a", encoding="utf-8") as handle:
             handle.write(json.dumps(body, ensure_ascii=False) + "\n")
 
-    def _drain_locked(self) -> None:
+    def _drain_locked(self) -> bool:
         if not self.outbox_file.exists():
-            return
+            return True
         try:
             lines = self.outbox_file.read_text(encoding="utf-8").splitlines()
         except OSError:
-            return
+            return False
         remaining: list[str] = []
-        for line in lines:
+        transport_available = True
+        for index, line in enumerate(lines):
             if not line.strip():
                 continue
             try:
@@ -175,6 +176,9 @@ class Heartbeat:
                 result = self._request(body)
                 if result == "retry":
                     remaining.append(line)
+                    remaining.extend(item for item in lines[index + 1 :] if item.strip())
+                    transport_available = False
+                    break
             except PermanentTransportError as exc:
                 sys.stderr.write(f"[heartbeat] dropping permanently rejected event: {exc}\n")
             except (json.JSONDecodeError, TypeError) as exc:
@@ -183,12 +187,19 @@ class Heartbeat:
             self.outbox_file.write_text("\n".join(remaining) + "\n", encoding="utf-8")
         else:
             self.outbox_file.unlink(missing_ok=True)
+        return transport_available
 
     def send(self, body: dict[str, Any], *, strict: bool = False) -> bool:
         body.setdefault("event_id", str(uuid.uuid4()))
         body.setdefault("run_id", self.run_id)
         with self._transport_lock:
-            self._drain_locked()
+            if not self._drain_locked():
+                self._buffer(body)
+                if strict:
+                    raise TransientTransportError(
+                        f"control plane unavailable at {ENDPOINT}; start event buffered"
+                    )
+                return False
             try:
                 result = self._request(body)
             except PermanentTransportError:
