@@ -304,7 +304,9 @@ def run_w0_linx(
             try:
                 raw = batched_solve(eta_values, tau_values)
                 jax.block_until_ready(raw)
-                matrix = np.stack([np.asarray(value) for value in jax.device_get(raw)], axis=-1)
+                matrix = np.asarray(jax.device_get(raw))
+                if matrix.shape[-1] != 8 and matrix.shape[0] == 8:
+                    matrix = np.moveaxis(matrix, 0, -1)
                 if matrix.shape[-1] != 8:
                     raise ValueError(f"unexpected LINX batch species axis: {matrix.shape}")
                 matrix = matrix.reshape((-1, 8))
