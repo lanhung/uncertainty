@@ -1,0 +1,82 @@
+schema_version: 1
+schema_id: BBNET-INTERFACES-v1
+status: structural_contract_only_scientific_inference_forbidden
+source_repository: ML4GW/BBNet
+source_revision: 9bd5147095f25fd8c6ac7cad30d78c71bcd3ece7
+
+canonical_inputs: [omega_b_h2, delta_neff, kappa10, tau_n_seconds]
+canonical_outputs: [D_over_H, Y_p]
+
+interfaces:
+  parthenope_training:
+    source: legacy/bbnet/ml4gw-9bd5147/train_bbn_parthenope.py
+    source_sha256: 294d4e41e831f57c862cfaa2e4ced3f4bb467f3712b268aeed50b06ef0cc4553
+    input_columns: [OmegaBh^2, dn_nu, kappa, tau]
+    output_columns: [H2/H, Y_p]
+    input_mapping:
+      OmegaBh^2: {canonical: omega_b_h2}
+      dn_nu: {canonical: delta_neff}
+      kappa: {canonical: kappa10}
+      tau: {canonical: tau_n_seconds}
+    output_mapping:
+      H2/H: D_over_H
+      Y_p: Y_p
+    approved_for_scientific_inference: false
+
+  alterbbn_training:
+    source: legacy/bbnet/ml4gw-9bd5147/train_bbn_alterbbn.py
+    source_sha256: 05522585f7b845b4cd8cb09afc9086f6ed29dea1476d45ac3e9f72b824d3869b
+    input_columns: [dd0, dd0_rad, tau, omegabn]
+    output_columns: [H2/H, Yp]
+    input_mapping:
+      dd0:
+        canonical: null
+        unresolved_reason: authoritative_conversion_to_kappa10_absent
+      dd0_rad:
+        canonical: null
+        unresolved_reason: authoritative_conversion_to_delta_neff_absent
+      tau: {canonical: tau_n_seconds}
+      omegabn: {canonical: omega_b_h2}
+    output_mapping:
+      H2/H: D_over_H
+      Yp: Y_p
+    approved_for_scientific_inference: false
+
+  mislabeled_parthenope_evaluator:
+    source: legacy/bbnet/ml4gw-9bd5147/mape_for_parthenope.py
+    source_sha256: 568a2d6288ab7162ca2c6f9e977a3d9d99cfda29bae70e8d4ec219c6da8ff883
+    input_columns: [kappa10, DN_eff, tau, omegabn]
+    output_columns: [H2/H, Yp]
+    input_mapping:
+      kappa10: {canonical: kappa10}
+      DN_eff: {canonical: delta_neff}
+      tau: {canonical: tau_n_seconds}
+      omegabn: {canonical: omega_b_h2}
+    output_mapping:
+      H2/H: D_over_H
+      Yp: Y_p
+    interface_warning: filename_claims_parthenope_but_code_loads_alterbbn_style_schema
+    approved_for_scientific_inference: false
+
+  alterbbn_evaluator:
+    source: legacy/bbnet/ml4gw-9bd5147/mape_for_alterbbn_exp.py
+    source_sha256: ea40195bb52cfce7deb7b61bc70ea3db702307af57ec83134b6fc9e194459abe
+    input_columns: [kappa10, DN_eff, tau, omegabn]
+    output_columns: [H2/H, Yp]
+    input_mapping:
+      kappa10: {canonical: kappa10}
+      DN_eff: {canonical: delta_neff}
+      tau: {canonical: tau_n_seconds}
+      omegabn: {canonical: omega_b_h2}
+    output_mapping:
+      H2/H: D_over_H
+      Yp: Y_p
+    interface_warning: incompatible_with_alterbbn_training_dd0_dd0_rad_without_conversion
+    approved_for_scientific_inference: false
+
+global_boundaries:
+  - Never infer dd0 from kappa10 or dd0_rad from delta_neff.
+  - Never silently drop missing or unknown fields.
+  - Structural materialization does not establish checkpoint compatibility.
+  - Model state dictionaries must eventually load with strict=true.
+  - Accuracy and scientific use remain blocked by authoritative artifacts.

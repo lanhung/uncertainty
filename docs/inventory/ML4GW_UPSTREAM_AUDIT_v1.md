@@ -35,6 +35,14 @@ registered. Evaluators also load state dictionaries with `strict=False`.
 These inconsistencies must be corrected and regression-tested against an
 authoritative artifact, not guessed from parameter names.
 
+The exact four public interfaces are now frozen in
+`configs/models/bbnet_interface_schema_v1.yaml` and exercised by the fail-closed
+`scripts/bbnet_schema_adapter.py`. The adapter can normalize structurally
+equivalent names, retains `dd0` and `dd0_rad` as explicit unresolved values, and
+refuses to generate an AlterBBN training row from `kappa10`/`delta_neff`. This
+removes silent column-order and alias errors but does not resolve the missing
+physical conversion or approve any checkpoint.
+
 The repository does **not** contain pretrained BBNet weights or scalers. The
 tree entry named `weights` is a one-byte regular file, not the checkpoint
 directory described in the README. All four reachable commits were inspected;
