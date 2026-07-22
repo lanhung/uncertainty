@@ -1,0 +1,224 @@
+schema_version: 1
+registry_id: CLAIM-EVIDENCE-v1
+captured_at_utc: "2026-07-22"
+registry_status: draft_evidence_mapping_not_claim_freeze
+track_a_status: active
+track_b_status: not_frozen
+nature_tier_gate: closed
+
+status_definitions:
+  evidence_registered_review_pending: artifact_exists_but_required_independent_review_is_open
+  scope_limited_evidence: evidence_supports_only_the_explicitly_named_slice
+  incomplete: some_required_evidence_exists_but_the_claim_gate_is_open
+  unavailable: no_reportable_claim_at_this_tier
+
+global_rules:
+  - A claim is reportable only within its registered evidence scope.
+  - Missing evidence cannot be replaced by model output or agent judgment.
+  - C3 and C4 claims require independent A09 evidence and A00 approval.
+  - Negative and null results are retained and trigger registered stop rules.
+  - Auxiliary metrics cannot substitute for physical or computational endpoints.
+
+claims:
+  - claim_id: C0-OPS-CONTROL-01
+    tier: C0
+    task_ids: [P0-control-plane, P0-ops-e2e, P0-env-lock]
+    route_relevance: engineering_reproducibility_only
+    candidate_statement: >-
+      The project control plane, ledger, worker lease wrapper, environment locks,
+      and disconnected-SSH execution path pass their registered local and worker smokes.
+    current_status: evidence_registered_review_pending
+    allowed_scope:
+      - project_isolated_control_and_ledger_smoke
+      - worker_lease_and_persistent_artifact_smoke
+      - exact_environment_lock_and_ci_smoke
+    evidence:
+      - AGENTS-ops.md
+      - docs/ops/CLUSTER_RUNBOOK.md
+      - docs/inventory/WORKER_ENVIRONMENT_VALIDATION_v1.md
+      - task:P0-ops-e2e
+    missing_evidence:
+      - clean_host_external_reproduction
+      - independent_A09_reproducibility_review
+      - service_persistence_validation_outside_current_sandbox
+    falsifier: fresh_host_bootstrap_or_disconnected_job_fails_registered_smoke
+    required_signoffs: [A01, A09]
+    signoff_status: pending
+
+  - claim_id: C1-LINX-STANDARD-NUMERICS-01
+    tier: C1
+    task_ids: [P0-WHY-NOT-01]
+    route_relevance: numerical_baseline_only
+    candidate_statement: >-
+      At the frozen standard-BBN point, the registered LINX V4 tolerance,
+      weak-rate sampling, and maximum-step plateau criteria pass.
+    current_status: scope_limited_evidence
+    allowed_scope:
+      - one_standard_fiducial_point
+      - rtol_1e_minus_8_atol_1e_minus_11_sampling_2400_max_steps_16384
+    evidence:
+      - artifacts/numerical/LINX-CONVERGENCE-RERUN-v4/RESULT_REGISTRY_v4.yaml
+      - docs/inventory/LINX_CONVERGENCE_RERUN_v4.md
+    missing_evidence:
+      - posterior_region_numerical_validation
+      - adversarial_and_boundary_points
+      - finite_stable_gradient
+      - rate_nuisance_derivatives
+      - nonstandard_extension_validation
+    prohibited_generalization: not_a_global_LINX_fidelity_or_gradient_claim
+    falsifier: registered_region_or_adversarial_test_exceeds_numerical_budget
+    required_signoffs: [A02, A09]
+    signoff_status: pending
+
+  - claim_id: C1-DIRECT-SOLVER-COST-01
+    tier: C1
+    task_ids: [P0-WHY-NOT-01]
+    route_relevance: direct_first_emulator_necessity_gate
+    candidate_statement: >-
+      Direct-solver feasibility and end-to-end cost can be decided from the
+      registered W0 through W3 measurements and full workload projection.
+    current_status: incomplete
+    allowed_scope:
+      - W0_and_W2_standard_point_runtime_observations
+      - completed_run_costs_in_cost_ledger
+    evidence:
+      - docs/inventory/WHY_NOT_LINX_RUNTIME_v1.md
+      - docs/inventory/WHY_NOT_PRIMAT_RUNTIME_v1.md
+      - docs/compute/cost_ledger.csv
+    missing_evidence:
+      - W1_final_validated_artifact
+      - W3_component_and_full_joint_stack_measurements
+      - W0_finite_gradient_and_posterior_recovery
+      - W1_rate_marginalization_and_posterior_recovery
+      - W2_posterior_region_and_adversarial_points
+      - full_robustness_and_SBC_workload_projection
+    falsifier: a_direct_stack_passes_fidelity_within_14_days_and_672_worker_hours
+    required_signoffs: [A02, A07, A09]
+    signoff_status: pending
+
+  - claim_id: C2-HYBRID-CALIBRATION-01
+    tier: C2
+    task_ids: [P2.5-gate-report, P3-pilot-1k]
+    route_relevance: computational_science_or_machine_intelligence
+    candidate_statement: >-
+      A nuisance-aware hybrid can reduce high-fidelity calls or end-to-end time
+      while preserving registered posterior fidelity and coverage.
+    current_status: unavailable
+    allowed_scope: []
+    evidence: []
+    missing_evidence:
+      - fisher_gate_authorization
+      - approved_training_and_blind_challenge_data
+      - direct_posterior_reference
+      - one_thousand_SBC_replicates
+      - OOD_and_fallback_validation
+      - tenfold_call_or_fivefold_wall_time_advantage
+    falsifier: hybrid_misses_fidelity_coverage_or_failure_thresholds
+    required_signoffs: [A07, A08, A09]
+    signoff_status: pending
+
+  - claim_id: C3-FUNCTIONAL-RATE-SHAPE-01
+    tier: C3
+    task_ids: [P2-rate-registry, P2-functional-rate-basis, P2.5-gate-report]
+    route_relevance: physical_discovery
+    candidate_statement: >-
+      At least one registered functional rate-shape mode changes a physical
+      posterior endpoint beyond the frozen scalar-model null boundary.
+    current_status: unavailable
+    allowed_scope: []
+    evidence: []
+    missing_evidence:
+      - frozen_NUC_v1_numerical_prior
+      - posterior_derived_cross_validated_functional_bases
+      - scalar_vs_functional_matched_inference
+      - cross_solver_and_cross_rate_library_robustness
+      - posterior_predictive_and_tail_coverage
+    falsifier: all_registered_shifts_below_0_1_sigma_and_intervals_within_5_percent
+    required_signoffs: [A00, A03, A08, A09]
+    signoff_status: pending
+
+  - claim_id: C3-SENSITIVITY-REORDERING-01
+    tier: C3
+    task_ids: [P3-standard-atlas-regression, P3-nonstandard-reordering, P3-nuclear-voi]
+    route_relevance: physical_discovery_and_nuclear_experiment_strategy
+    candidate_statement: >-
+      A preregistered non-standard expansion causes robust reaction-rank
+      inversions and changes nuclear experimental value-of-information.
+    current_status: unavailable
+    allowed_scope: []
+    evidence: []
+    missing_evidence:
+      - standard_atlas_regression
+      - frozen_nonstandard_scenarios
+      - at_least_two_rate_libraries
+      - registered_rank_and_value_of_information_thresholds
+      - independent_solver_validation
+    falsifier: no_registered_rank_inversion_or_value_of_information_change
+    required_signoffs: [A00, A03, A09, A11]
+    signoff_status: pending
+
+  - claim_id: C3-SGWB-DECISION-01
+    tier: C3
+    task_ids: [P2.5-gate-report, P3-cross-solver]
+    route_relevance: nature_astronomy_or_nature_communications
+    candidate_statement: >-
+      Full BBN uncertainty propagation changes a preregistered stiff-era or
+      SGWB detector-overlap decision beyond its frozen threshold.
+    current_status: unavailable
+    allowed_scope: []
+    evidence: []
+    missing_evidence:
+      - authoritative_extension_and_SGWB_contract
+      - validated_LVK_likelihood
+      - detector_volume_threshold
+      - matched_multi_solver_posterior
+      - data_prior_neutron_and_rate_robustness
+    falsifier: no_shift_interval_volume_or_topology_endpoint_crosses_its_threshold
+    required_signoffs: [A00, A04, A08, A09]
+    signoff_status: pending
+
+  - claim_id: C4-BROAD-PHYSICS-01
+    tier: C4
+    task_ids: [P3-cross-solver, P3-nuclear-voi]
+    route_relevance: nature_astronomy
+    candidate_statement: >-
+      A validated C3 physical result changes practice across early-universe,
+      gravitational-wave, or nuclear-experiment communities.
+    current_status: unavailable
+    allowed_scope: []
+    evidence: []
+    missing_evidence:
+      - validated_C3_physical_claim
+      - at_least_two_affected_communities
+      - testable_prediction
+      - independent_external_style_reproduction
+      - nature_tier_seven_question_pass
+    falsifier: no_C3_result_or_no_cross_community_decision_consequence
+    required_signoffs: [A00, A09, A11, A12]
+    signoff_status: pending
+
+  - claim_id: C4-CROSS-TASK-METHOD-01
+    tier: C4
+    task_ids: [P2.5-gate-report, P3-pilot-1k]
+    route_relevance: nature_machine_intelligence_or_nature_computational_science
+    candidate_statement: >-
+      A new calibrated multi-fidelity method generalizes beyond BBN and changes
+      simulation-based inference practice under high-dimensional nuisance inputs.
+    current_status: unavailable
+    allowed_scope: []
+    evidence: []
+    missing_evidence:
+      - new_algorithmic_or_theoretical_contribution
+      - at_least_one_independent_public_scientific_simulator
+      - multiple_budgets_dimensions_and_seeds
+      - strong_baseline_superiority
+      - calibration_cost_and_failure_analysis
+    falsifier: advantage_is_BBN_only_or_disappears_against_strong_baselines
+    required_signoffs: [A00, A07, A09, A11]
+    signoff_status: pending
+
+claim_freeze_signoffs:
+  A00_scientific_lead: pending
+  A09_independent_validation: pending
+  A11_literature_competition: pending
+  A12_publication_strategy: pending
