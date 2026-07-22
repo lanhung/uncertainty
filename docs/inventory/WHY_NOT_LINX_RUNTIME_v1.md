@@ -1,6 +1,6 @@
 # WHY-NOT LINX standard-fiducial runtime v1
 
-Status: registered runtime slice complete; batch consistency and gradients not accepted
+Status: standard-point numerical candidate accepted; gradients and broader W0 not accepted
 
 Captured: 2026-07-22
 
@@ -73,6 +73,13 @@ was exactly zero, so the maximum-step diagnostic passed. This does not yet pass
 the tolerance/sampling convergence gate; that grid must be rerun at
 `max_steps=16384`.
 
+V4 reran the full strict tolerance/sampling grid at `max_steps=16384`. All six
+cases completed with zero failures. The tolerance plateau was `0.000364` and
+the weak-rate sampling plateau was `0.000774` OBS-v1 standard deviations, both
+below the frozen `0.001` limit. The standard-point numerical candidate is
+therefore accepted with `rtol=1e-8`, `atol=1e-11`, `sampling_nTOp=2400` and
+`max_steps=16384`. See `docs/inventory/LINX_CONVERGENCE_RERUN_v4.md`.
+
 The earlier upstream value-and-gradient smoke also contained a `NaN` component.
 Forward runtime does not override that failure. LINX is not yet an accepted
 gradient/HMC baseline.
@@ -81,5 +88,5 @@ gradient/HMC baseline.
 
 This completes W0's standard-fiducial runtime slice only. Scalar-rate checks,
 an accepted Jacobian, posterior recovery, extension implementation, total
-workload projection and the tolerance/sampling convergence rerun remain open.
+workload projection and parameter-region numerical validation remain open.
 The WHY-NOT conclusion is still undetermined.

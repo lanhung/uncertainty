@@ -177,6 +177,11 @@ scalar and batch invariance between `max_steps=16384` and 32768; that narrow
 diagnostic passed. The next tolerance/sampling convergence rerun is registered
 to use 16384. V3 does not restore the rejected gradient or complete W0.
 
+V4 completed that rerun with zero failures. Both unchanged plateau limits
+passed, nominating `rtol=1e-8`, `atol=1e-11`, `sampling_nTOp=2400` and
+`max_steps=16384` as the standard-point numerical candidate. This does not
+accept the non-finite gradient, posterior recovery, extensions or W0 overall.
+
 Posterior-region, adversarial, extension and matched-posterior measurements
 remain pending. LINX's previously observed non-finite gradient also remains
 rejected. The answer to all four “why not” questions is therefore still

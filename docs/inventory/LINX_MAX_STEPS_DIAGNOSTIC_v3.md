@@ -51,3 +51,7 @@ V3 does not retroactively pass V1 or V2. The tolerance and weak-rate sampling
 plateaus must be rerun with `max_steps=16384`; only that follow-up can nominate a
 standard-point production numerical configuration. Gradient finiteness,
 posterior recovery, extension coverage and cross-solver fidelity remain open.
+
+That V4 rerun subsequently passed both unchanged plateau criteria and nominated
+the strict standard-point numerical candidate. See
+`docs/inventory/LINX_CONVERGENCE_RERUN_v4.md`.
