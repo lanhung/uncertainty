@@ -1,5 +1,9 @@
 import pytest
 
+from pathlib import Path
+
+import yaml
+
 from scripts.linx_batch_tolerance_scan import (
     absolute_differences,
     evaluate_scan,
@@ -96,3 +100,30 @@ def test_scan_rejects_a_missing_case_or_repeat_drift() -> None:
     assert result["all_required_cases_complete"] is False
     assert result["repeat_drift_pass"] is False
     assert result["plateaus"]["weak_rate_sampling"]["passed"] is False
+
+
+def test_v2_extended_scan_keeps_v1_threshold_and_separates_axes() -> None:
+    root = Path(__file__).resolve().parents[2]
+    config = yaml.safe_load(
+        (root / "configs/benchmarks/linx_extended_convergence_scan_v2.yaml").read_text()
+    )
+    cases = {case["id"]: case for case in config["cases"]}
+    acceptance = config["acceptance"]
+
+    assert config["parent_result"] == "complete_not_accepted"
+    assert acceptance["maximum_plateau_difference_observation_sigma"] == 0.001
+    assert cases["production_candidate"] == {
+        "id": "production_candidate",
+        "group": "joint_candidate",
+        "rtol": 1.0e-8,
+        "atol": 1.0e-11,
+        "sampling_nTOp": 2400,
+    }
+    assert acceptance["tolerance_plateau_pair"] == [
+        "tolerance_3e-8_sampling_2400",
+        "production_candidate",
+    ]
+    assert acceptance["sampling_plateau_pair"] == [
+        "sampling_1200_tolerance_1e-8",
+        "production_candidate",
+    ]
