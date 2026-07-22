@@ -2,7 +2,9 @@ name: one-time-manuscript-agents
 
 on:
   push:
-    branches: [science/manuscript-baseline-pivot]
+    branches:
+      - science/manuscript-baseline-pivot
+      - main
     paths:
       - 'scripts/apply_manuscript_pivot_to_agents.py'
       - '.github/workflows/one-time-manuscript-agents.yml'
