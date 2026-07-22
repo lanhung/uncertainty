@@ -1,0 +1,105 @@
+schema_version: 1
+grid_id: WHY-NOT-STANDARD-CHALLENGE-GRID-v1
+status: protocol_frozen_measurements_pending
+decision_date_utc: "2026-07-22"
+task_id: P0-WHY-NOT-01
+parent_protocol: configs/benchmarks/why_not_existing_solvers_v1.yaml
+scientific_scope: standard_bbn_pipeline_reliability_grid_only
+
+baselines:
+  W0-LINX:
+    source_revision: ec2e9d2ca455e8204137e884da29f5dd13a638fa
+    network: key_PRIMAT_2023
+    numerical_profile: accepted_standard_point_candidate
+  W1-PRYM:
+    source_revision: 725d8a8db3ad5ea2630580d825c9d0d69ed76533
+    network: small_12_reaction
+    rate_compilation: primat_like
+  W2-PRIMAT:
+    source_revision: 21ff8f39fa18e3937e9fdf386cfa982361bfdfce
+    network: small
+  W3-ABCMB:
+    source_revision: 5eabbab4ed7e53f264e16024743d1ba517845c37
+    bundled_linx_tree: 59b3ab7b3ada7d7ff6484920e0e29291cf4a084e
+    network: key_PRIMAT_2023
+    numerical_profile: accepted_standard_point_candidate
+
+source_bindings:
+  parameter_schema: configs/physics/parameter_schema.yaml
+  neutron_lifetime: configs/physics/neutron_lifetime_v1.yaml
+  cmb_prior: configs/data/cmb_data_v1.yaml
+  observation_normalization: configs/data/abundance_OBS-v1.yaml
+
+repetitions_per_point: 2
+precision: float64
+
+cases:
+  - id: fiducial
+    omega_b_h2: 0.02237
+    tau_n_seconds: 878.3
+    delta_neff: 0.0
+    derivation: CMB-v1 mean and NEUTRON-v1 N0 mean
+  - id: omega_b_minus_2sigma
+    omega_b_h2: 0.02207
+    tau_n_seconds: 878.3
+    delta_neff: 0.0
+    derivation: CMB-v1 mean minus two registered standard deviations
+  - id: omega_b_plus_2sigma
+    omega_b_h2: 0.02267
+    tau_n_seconds: 878.3
+    delta_neff: 0.0
+    derivation: CMB-v1 mean plus two registered standard deviations
+  - id: tau_n_n0_minus_2sigma
+    omega_b_h2: 0.02237
+    tau_n_seconds: 877.5
+    delta_neff: 0.0
+    derivation: NEUTRON-v1 N0 mean minus two registered standard deviations
+  - id: tau_n_n0_plus_2sigma
+    omega_b_h2: 0.02237
+    tau_n_seconds: 879.1
+    delta_neff: 0.0
+    derivation: NEUTRON-v1 N0 mean plus two registered standard deviations
+  - id: tau_n_bottle_n1
+    omega_b_h2: 0.02237
+    tau_n_seconds: 877.82
+    delta_neff: 0.0
+    derivation: NEUTRON-v1 N1 registered bottle mode
+  - id: tau_n_beam_n2
+    omega_b_h2: 0.02237
+    tau_n_seconds: 887.7
+    delta_neff: 0.0
+    derivation: NEUTRON-v1 N2 registered beam mean
+
+linx_numerics:
+  background:
+    W0-LINX: upstream_default
+    W3-ABCMB:
+      rtol: 1.0e-8
+      atol: 1.0e-10
+      max_steps: 512
+  abundance:
+    rtol: 1.0e-8
+    atol: 1.0e-11
+    sampling_nTOp: 2400
+    max_steps: 16384
+
+acceptance:
+  require_all_cases_complete: true
+  maximum_structured_failures: 0
+  require_finite_outputs: true
+  maximum_absolute_repeat_drift: 0.0
+  require_exact_source_revision: true
+  require_exact_input_derivations: true
+  cross_baseline_abundance_differences_are_descriptive_only: true
+
+decision_rule: >-
+  A baseline passes only this standard-BBN reliability grid when every frozen
+  case completes twice with finite outputs, zero structured failures, exact
+  deterministic repeats, and exact source/input provenance. Cross-baseline
+  abundance differences are pipeline discrepancies because rate libraries,
+  weak physics and networks are not matched; they have no acceptance threshold.
+
+scientific_boundary: >-
+  Passing does not establish matched solver fidelity, rate-nuisance support,
+  non-standard cosmology, posterior recovery, gradient validity, or emulator
+  necessity. It supplies no progress credit to blocked solver-factor tasks.

@@ -1,0 +1,83 @@
+schema_version: 1
+scan_id: LINX-GRADIENT-STABILITY-v1
+status: protocol_frozen_measurements_pending
+decision_date_utc: "2026-07-22"
+task_id: P0-WHY-NOT-01
+execution_task_id: EXEC-LINX-GRADIENT
+source_revision: ec2e9d2ca455e8204137e884da29f5dd13a638fa
+environment_lock: environments/linx-v0.1.2/uv.lock
+network: key_PRIMAT_2023
+precision: float64
+nuclear_rates_q: all_zero
+
+coordinates:
+  delta_neff:
+    numerical_scale: 0.1
+    scientific_prior: not_defined_by_this_diagnostic
+  omega_b_h2:
+    center_source: configs/data/cmb_data_v1.yaml#main_stage.mean
+    scale_source: configs/data/cmb_data_v1.yaml#main_stage.sigma
+  tau_n_seconds:
+    center_source: configs/physics/neutron_lifetime_v1.yaml#scenarios.N0.mean
+    scale_source: configs/physics/neutron_lifetime_v1.yaml#scenarios.N0.sigma
+
+acceptance_points:
+  axis_points:
+    delta_neff_standardized: [-0.5, 0.0, 0.5]
+    omega_b_h2_standardized: [-1.0, 0.0, 1.0]
+    tau_n_seconds_standardized: [-1.0, 0.0, 1.0]
+  neighborhood_corners:
+    delta_neff_standardized: [-0.5, 0.5]
+    omega_b_h2_standardized: [-1.0, 1.0]
+    tau_n_seconds_standardized: [-1.0, 1.0]
+
+numerics:
+  abundance:
+    rtol: 1.0e-8
+    atol: 1.0e-11
+    sampling_nTOp: 2400
+    max_steps: 16384
+  repeats: 3
+
+paths:
+  - background_only_delta_neff
+  - frozen_background_abundance_eta_tau
+  - full_end_to_end_three_coordinate_jacobian
+ad_methods: [jacrev, jacfwd, jvp_basis]
+finite_difference:
+  method: five_point_central
+  standardized_steps: [0.25, 0.125, 0.0625]
+outputs: [YPBBN, DoH]
+output_normalization: configs/data/abundance_OBS-v1.yaml
+
+acceptance:
+  finite_forward_fraction: 1.0
+  finite_jacobian_fraction: 1.0
+  maximum_silent_nonfinite_count: 0
+  maximum_structured_failures: 0
+  maximum_scaled_repeat_drift: 1.0e-10
+  maximum_ad_mode_scaled_difference: 0.02
+  maximum_ad_fd_scaled_difference: 0.02
+  maximum_fd_plateau_scaled_difference: 0.02
+
+diagnostic_only_upstream_challenge:
+  vector: two_times_ones_15
+  expected_historical_nonfinite_coordinate: delta_neff
+  ablations:
+    - delta_neff_2_only
+    - eta_fac_2_only
+    - tau_n_fac_2_only
+    - all_rates_q_2_only
+    - all_2_except_delta_neff_0
+  affects_acceptance_domain: false
+
+decision_rule: >-
+  Any failure at an acceptance point rejects the W0 standard-neighborhood
+  gradient candidate. Passing accepts only three-coordinate gradients in this
+  small standard neighborhood. The extreme upstream challenge is diagnostic
+  and cannot by itself accept or reject the registered domain.
+
+scientific_boundary: >-
+  No rate-gradient, HMC, posterior, rate-prior, or non-standard-extension claim
+  follows from this diagnostic. Delta N_eff scaling is numerical and is not a
+  frozen scientific prior.

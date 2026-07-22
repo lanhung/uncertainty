@@ -1,0 +1,54 @@
+schema_version: 1
+test_id: OFFLINE-HEARTBEAT-E2E-v1
+status: protocol_frozen_implementation_pending
+decision_date_utc: "2026-07-22"
+task_id: EXEC-HEARTBEAT-OFFLINE-E2E-v1
+phase: EXEC
+resource: ops-e2e
+endpoint_during_run: http://127.0.0.1:1
+steps: 8
+sleep_seconds: 6
+heartbeat_interval_seconds: 5
+state_root_rule: dedicated_persistent_run_directory
+replay_mode: dry_run_then_explicit_apply
+
+required_artifacts:
+  - run_manifest.json
+  - runner.log
+  - checkpoint-midrun.json
+  - checkpoint-final.json
+  - run_metadata.json
+  - lease-midrun.json
+  - outbox-before-replay.ndjson
+  - replay_report.json
+  - validation_report.json
+  - resource_report.json
+  - SHA256SUMS
+
+replay_safety:
+  exec_phase_tasks_only: true
+  one_task_id_per_file: true
+  one_run_id_per_file: true
+  first_event: start
+  terminal_events: [done, fail, block]
+  require_unique_event_ids: true
+  preserve_order: true
+  archive_before_apply: true
+  token_source: RESEARCH_OPS_TOKEN_environment_only
+  stop_and_preserve_tail_on: [connection_error, http_4xx, http_5xx, corrupt_record]
+  duplicate_response_is_success: true
+  atomic_acknowledged_prefix_removal: true
+
+acceptance_checks:
+  - endpoint_confirmed_unreachable
+  - child_started_and_start_buffered
+  - atomic_midrun_checkpoint_captured
+  - ordered_unique_monotone_outbox
+  - final_checkpoint_8_of_8_and_metric_1
+  - lease_released_within_2_seconds_and_reacquirable
+  - dry_run_then_successful_controlled_replay
+  - science_gate_unchanged_and_snapshot_pushed
+
+scientific_boundary: >-
+  This is an execution/control-plane regression only. It may change EXEC
+  progress but must not change science-gate progress or scientific task state.

@@ -23,6 +23,34 @@ tasks:
     unit: cases
     total: 6
 
+  - id: EXEC-ABCMB-FULL-AUDIT
+    title: "Execute frozen ABCMB spectra, gradient, toy-Fisher and synthetic audits"
+    phase: EXEC
+    weight: 1
+    unit: components
+    total: 4
+
+  - id: EXEC-LINX-GRADIENT
+    title: "Execute frozen LINX standard-neighborhood gradient diagnostics"
+    phase: EXEC
+    weight: 1
+    unit: groups
+    total: 4
+
+  - id: EXEC-STANDARD-CHALLENGE
+    title: "Execute the W0-W3 frozen standard-BBN challenge grid"
+    phase: EXEC
+    weight: 1
+    unit: baselines
+    total: 4
+
+  - id: EXEC-HEARTBEAT-OFFLINE-E2E-v1
+    title: "Validate offline heartbeat buffering, checkpointing, replay and lease release"
+    phase: EXEC
+    weight: 1
+    unit: checks
+    total: 8
+
   # ----------------------------------------------------------------------
   # P0 — shared control host, elastic worker pool, repository and preregistration
   # ----------------------------------------------------------------------
