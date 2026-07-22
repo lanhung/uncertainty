@@ -1,0 +1,273 @@
+schema_version: 1
+registry_id: NUC-v1
+contract_date_utc: "2026-07-22"
+decision_status: not_frozen
+production_use: prohibited
+track_b_gate_status: closed
+
+purpose: >-
+  Machine-readable contract for the scalar and functional nuclear-rate priors.
+  This file does not yet contain an approved numerical prior and cannot be used
+  to generate Track B labels or likelihood inputs.
+
+freeze_blockers:
+  - authoritative_nuclear_data_versions_not_registered
+  - central_rate_curves_and_checksums_missing
+  - scalar_sigma_T_envelopes_missing
+  - shared_experimental_correlations_not_evaluated
+  - functional_bases_not_constructed_or_cross_validated
+  - forward_reverse_detailed_balance_mappings_not_validated
+  - solver_rate_id_mappings_not_validated
+  - A03_nuclear_data_review
+  - A00_scientific_signoff
+  - A09_independent_validation
+
+production_guard:
+  enabled: true
+  allow_training_labels: false
+  allow_track_b_inference: false
+  allow_fisher_gate_inputs: false
+  rule: all_reactions_and_required_signoffs_must_be_frozen_before_use
+
+registry_scope:
+  target_core_reaction_count: 12
+  registered_placeholder_count: 3
+  remaining_registry_status: pending_reaction_selection_and_source_audit
+  lithium_role: null_test_only
+  initial_functional_candidates:
+    - dp_gamma_he3
+    - dd_n_he3
+    - dd_p_t
+
+scalar_prior_contract:
+  parameterization: log_rate_envelope
+  equation: log_r_i_T_equals_log_rbar_i_T_plus_q_i_times_sigma_i_T
+  nuisance_distribution: standard_normal
+  numerical_values_status: pending
+  required_fields:
+    - central_rate_curve
+    - temperature_grid
+    - sigma_T
+    - source_version
+    - source_checksum
+
+functional_prior_contract:
+  parameterization: log_s_factor_modes
+  equation: log_S_i_E_equals_mu_i_E_plus_sum_a_ik_sqrt_lambda_ik_phi_ik_E
+  nuisance_distribution: standard_normal
+  allowed_basis_sources:
+    - nuclear_data_gaussian_process_posterior
+    - posterior_covariance_kl_or_pca
+    - validated_physical_normalization_slope_curvature_basis
+    - hierarchical_bayesian_rate_posterior
+  mode_count_rule: cross_validation_and_cumulative_posterior_variance
+  numerical_values_status: pending
+  required_fields:
+    - nuclear_data_source
+    - energy_grid
+    - posterior_mean
+    - basis_vectors
+    - eigenvalues
+    - cumulative_variance
+    - thermal_integration_method
+    - source_checksum
+
+correlation_policy:
+  independence_assumed: false
+  status: not_evaluated
+  missing_correlation_rule: >-
+    Record the correlation as unmodeled and run a registered sensitivity stress
+    test; absence of a published covariance does not imply independence.
+  required_sources:
+    - shared_experiment_normalization
+    - shared_detector_or_calibration_systematics
+    - cross_reaction_covariance
+
+neutron_lifetime:
+  modeled_separately: true
+  registry_reference: configs/physics/neutron_lifetime_v1.yaml
+  double_counting_prohibited: true
+  note: neutron_lifetime_is_not_an_ordinary_thermonuclear_rate
+
+reaction_entry_required_fields:
+  - reaction_id
+  - equation
+  - aliases
+  - inclusion_sets
+  - nuclear_data
+  - rate_compilation
+  - central_rate
+  - scalar_prior
+  - functional_prior
+  - correlations
+  - detailed_balance
+  - solver_mappings
+  - provenance
+  - production_enabled
+
+reactions:
+  - reaction_id: dp_gamma_he3
+    equation: d(p,gamma)3He
+    aliases: [d_p_gamma_he3]
+    inclusion_sets:
+      core: pending
+      extended: pending
+      full_stress: pending
+      functional_candidate: true
+    nuclear_data:
+      status: pending_source_audit
+      source_id: pending
+      version: pending
+      energy_grid: pending
+    rate_compilation:
+      status: pending_comparison
+      primary: pending
+      alternatives: pending
+    central_rate:
+      status: pending
+      curve: pending
+      temperature_grid: pending
+      units: pending
+    scalar_prior:
+      status: pending
+      sigma_T: pending
+      covariance: pending
+    functional_prior:
+      status: not_constructed
+      basis_method: pending_cross_validation
+      mode_count: pending_cross_validation
+      basis_vectors: pending
+      eigenvalues: pending
+      cumulative_variance: pending
+      thermal_integration_method: pending
+    correlations:
+      status: not_evaluated
+      independence_assumed: false
+      shared_normalization: pending
+      cross_reaction_covariance: pending
+    detailed_balance:
+      status: not_validated
+      reverse_rate_mapping: pending
+    solver_mappings:
+      status: not_validated
+      mappings: pending
+    provenance:
+      license: pending
+      source_checksums: pending
+    production_enabled: false
+
+  - reaction_id: dd_n_he3
+    equation: d(d,n)3He
+    aliases: [d_d_n_he3]
+    inclusion_sets:
+      core: pending
+      extended: pending
+      full_stress: pending
+      functional_candidate: true
+    nuclear_data:
+      status: pending_source_audit
+      source_id: pending
+      version: pending
+      energy_grid: pending
+    rate_compilation:
+      status: pending_comparison
+      primary: pending
+      alternatives: pending
+    central_rate:
+      status: pending
+      curve: pending
+      temperature_grid: pending
+      units: pending
+    scalar_prior:
+      status: pending
+      sigma_T: pending
+      covariance: pending
+    functional_prior:
+      status: not_constructed
+      basis_method: pending_cross_validation
+      mode_count: pending_cross_validation
+      basis_vectors: pending
+      eigenvalues: pending
+      cumulative_variance: pending
+      thermal_integration_method: pending
+    correlations:
+      status: not_evaluated
+      independence_assumed: false
+      shared_normalization: pending
+      cross_reaction_covariance: pending
+    detailed_balance:
+      status: not_validated
+      reverse_rate_mapping: pending
+    solver_mappings:
+      status: not_validated
+      mappings: pending
+    provenance:
+      license: pending
+      source_checksums: pending
+    production_enabled: false
+
+  - reaction_id: dd_p_t
+    equation: d(d,p)t
+    aliases: [d_d_p_t]
+    inclusion_sets:
+      core: pending
+      extended: pending
+      full_stress: pending
+      functional_candidate: true
+    nuclear_data:
+      status: pending_source_audit
+      source_id: pending
+      version: pending
+      energy_grid: pending
+    rate_compilation:
+      status: pending_comparison
+      primary: pending
+      alternatives: pending
+    central_rate:
+      status: pending
+      curve: pending
+      temperature_grid: pending
+      units: pending
+    scalar_prior:
+      status: pending
+      sigma_T: pending
+      covariance: pending
+    functional_prior:
+      status: not_constructed
+      basis_method: pending_cross_validation
+      mode_count: pending_cross_validation
+      basis_vectors: pending
+      eigenvalues: pending
+      cumulative_variance: pending
+      thermal_integration_method: pending
+    correlations:
+      status: not_evaluated
+      independence_assumed: false
+      shared_normalization: pending
+      cross_reaction_covariance: pending
+    detailed_balance:
+      status: not_validated
+      reverse_rate_mapping: pending
+    solver_mappings:
+      status: not_validated
+      mappings: pending
+    provenance:
+      license: pending
+      source_checksums: pending
+    production_enabled: false
+
+freeze_criteria:
+  - all_core_reactions_have_versioned_sources_and_immutable_checksums
+  - all_numerical_curves_grids_units_and_covariances_are_registered
+  - functional_mode_counts_pass_cross_validation_and_variance_criteria
+  - shared_correlations_are_modeled_or_have_registered_stress_tests
+  - detailed_balance_and_solver_mappings_pass_validation
+  - neutron_lifetime_reference_is_consistent_and_not_double_counted
+  - A03_nuclear_data_review_is_recorded
+  - A00_scientific_signoff_is_recorded
+  - A09_independent_validation_is_recorded
+
+signoffs:
+  A03_nuclear_data: pending
+  A00_scientific_lead: pending
+  A09_independent_validation: pending
