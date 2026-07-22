@@ -9,6 +9,7 @@ import yaml
 ROOT = Path(__file__).resolve().parents[2]
 MANIFEST = ROOT / "manifests/models/ml4gw_upstreams_v1.yaml"
 BBNET_CONFIG = ROOT / "configs/models/bbnet_ml4gw_v1.yaml"
+SAGENET_VALIDATOR = ROOT / "scripts/validate_sagenet_checkpoints.py"
 
 
 def _sha256(path: Path) -> str:
@@ -43,6 +44,7 @@ def test_upstreams_are_not_misrepresented_as_validated() -> None:
     assert status["approved_for_claims"] is False
     assert status["bbnet_reproduction_complete"] is False
     assert status["sagenet_forward_validation_complete"] is False
+    assert status["sagenet_structural_validation_complete"] is True
 
     bbnet = data["sources"]["bbnet"]
     weight_record = next(item for item in bbnet["files"] if item["path"] == "weights")
@@ -58,7 +60,7 @@ def test_upstreams_are_not_misrepresented_as_validated() -> None:
         if artifact["path"].endswith("solve_plus.data_test_5400.json")
     )
     assert "log10OmegaGW" in inputs["missing_fields"]
-    assert "checkpoint forward-pass equivalence in the project lock" in sagenet["not_established"]
+    assert "checkpoint prediction equivalence to the paper environment" in sagenet["not_established"]
 
 
 def test_bbnet_schema_mismatch_remains_an_explicit_gate() -> None:
@@ -69,3 +71,16 @@ def test_bbnet_schema_mismatch_remains_an_explicit_gate() -> None:
     assert training["parthenope"]["inputs"] != evaluation["file_named_parthenope"]["expected_inputs"]
     assert training["alterbbn"]["inputs"] != evaluation["alterbbn_expert"]["expected_inputs"]
     assert data["use_policy"]["approved_for_scientific_inference"] is False
+
+
+def test_sagenet_validator_never_enables_unrestricted_pickle_loading() -> None:
+    source = SAGENET_VALIDATOR.read_text(encoding="utf-8")
+    assert "weights_only=True" in source
+    assert "weights_only=False" not in source
+    assert "strict=True" in source
+
+    data = yaml.safe_load(MANIFEST.read_text(encoding="utf-8"))
+    validation = data["sources"]["sagenet"]["structural_validation"]
+    assert validation["status"] == "passed"
+    assert validation["scientific_output_equivalence"] is False
+    assert set(validation["scaler_serialization_versions"].values()) == {"1.2.2", "1.6.1"}

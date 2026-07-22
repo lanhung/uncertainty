@@ -1,0 +1,55 @@
+{
+  "captured_at": "2026-07-22T02:26:59.532391+00:00",
+  "environment": {
+    "joblib": "1.5.2",
+    "numpy": "2.4.6",
+    "python": "3.12.3",
+    "scikit_learn": "1.7.2",
+    "scipy": "1.16.3",
+    "threadpoolctl": "3.6.0",
+    "torch": "2.12.1+cu130"
+  },
+  "models": {
+    "CosmicNet2": {
+      "output_finite": true,
+      "output_shape": [1, 256, 2],
+      "safe_weights_only_load": true,
+      "serialized_sklearn": "1.2.2",
+      "sha256": "d3f3ca4320229a6e4dcb2ebd0a84f1ef6920e21357c6a93200d1b2e4adfd016c",
+      "state_dict_strict_match": true,
+      "version_warning_observed": true
+    },
+    "LSTM": {
+      "output_finite": true,
+      "output_shape": [1, 256, 2],
+      "safe_weights_only_load": true,
+      "serialized_sklearn": "1.6.1",
+      "sha256": "6c1066ba4b74d283f6d451346aa40a23062ad81feeec0bcbbbace1548a3ab343",
+      "state_dict_strict_match": true,
+      "version_warning_observed": true
+    },
+    "RNN": {
+      "output_finite": true,
+      "output_shape": [1, 256, 2],
+      "safe_weights_only_load": true,
+      "serialized_sklearn": "1.2.2",
+      "sha256": "19f4812cec55f60eca32df73b4a98a4b7477a0b401aadd86bf37e84ad38e6a3b",
+      "state_dict_strict_match": true,
+      "version_warning_observed": true
+    },
+    "Transformer": {
+      "output_finite": true,
+      "output_shape": [1, 256, 2],
+      "safe_weights_only_load": true,
+      "serialized_sklearn": "1.6.1",
+      "sha256": "95d87b483472fd4a73f6de5ba85213358ed138bf75a2d26d8bd1ce4181a6d485",
+      "state_dict_strict_match": true,
+      "version_warning_observed": true
+    }
+  },
+  "node_name": "autodl-westb-01",
+  "sagenet_commit": "ab7face439b5ad47a8551d61e1a3fbdfd2d0ac55",
+  "schema_version": 1,
+  "scientific_output_equivalence_validated": false,
+  "validation_kind": "structural_only_not_accuracy"
+}
