@@ -54,13 +54,13 @@ v0.2.x 建立的竞争基线、预注册、Fisher Gate、多 solver 验证和集
 
 建立一个端到端、物理驱动、统计校准、可解释且可复现的 BBN 不确定度推断系统，将下列来源统一传播到最终物理结论：
 
-1. 非标准早期宇宙参数 `theta`；
+1. 标准或扩展 BBN 的低维物理参数 `theta`；R0 首先使用标准 BBN；
 2. 核反应率标量 nuisance parameters `q`；
 3. 关键核反应的函数型不确定度模态 `a`；
 4. 中子寿命与弱反应归一化；
 5. 数值 solver、反应网络和 rate compilation 的差异；
 6. emulator 的近似误差与 epistemic uncertainty；
-7. 轻元素观测、CMB、SGWB/PTA/LVK 数据误差和系统学；
+7. 轻元素观测与必要的 CMB 重子密度信息；SGWB/PTA/LVK 仅属于 Gate 后可选应用；
 8. prior、参数化和模型选择不确定度。
 
 最终目标不是制造一个更大的神经网络，而是回答：
@@ -286,8 +286,6 @@ r_i(T) = ThermalIntegral[S_i(E), T]
 
 函数基底可来自：
 
-函数基底可来自：
-
 - 核实验数据的 Gaussian-process posterior；
 - posterior covariance 的 KL/PCA 模态；
 - 物理可解释的 normalization/slope/curvature basis；
@@ -344,7 +342,7 @@ delta_total = delta_engine
 
 #### H1 — 非恒定理论协方差
 
-`C_rate(theta)` 在扩展宇宙学空间显著变化，常数 `sigma_th` 无法保持后验正确性。
+`C_rate(theta)` 在注册的宇宙学参数空间显著变化，常数 `sigma_th` 无法保持后验正确性。
 
 否证条件：在预注册范围内，常数误差与完整边缘化导致的所有核心参数偏移 `<0.1 sigma`、区间变化 `<5%`，且无 posterior topology 变化。
 
@@ -363,7 +361,7 @@ delta_total = delta_engine
 
 #### H3 — 函数型 rate shape 重要
 
-至少一个头部反应的 shape 模态对 D/H、目标扩展参数或 detector-relevant region 的影响不能被单一 normalization `q_i` 吸收。
+至少一个头部反应的 shape 模态对主丰度分布或核心宇宙学 posterior 的影响不能被单一 normalization `q_i` 吸收。
 
 否证条件：函数型模型相对标量模型的 posterior 差异 `<0.1 sigma`、区间变化 `<5%`，且 posterior predictive/tail coverage 无改善。
 
@@ -371,14 +369,16 @@ delta_total = delta_engine
 
 在匹配输入物理后，数值引擎差异小于 rate-library/weak-physics 差异，或能够被独立量化；若相反，则必须找到具体数值/实现原因。
 
-#### H5 — 早期宇宙物理结论被改变
+#### H5 — 宇宙学推断结论被改变
 
-完整传播后，至少一个 stiff-era/SGWB 结论发生决策相关变化，例如：
+完整 rate/weak/solver 不确定度传播后，至少一个注册的 BBN inference 结论发生决策相关变化，例如：
 
-- 原先“可探测”区域变成“不可探测”，或相反；
-- BBN 与 LVK/PTA/未来探测器允许区域的交集体积变化达到预注册阈值；
-- exclusion contour 发生拓扑变化；
-- 某模型证据等级发生稳健改变。
+- central-rate 与完整边缘化的核心参数 posterior 明显偏移；
+- credible interval 或 exclusion boundary 超出冻结的 null band；
+- posterior mode/topology 或数据张力解释发生变化；
+- 不同丰度之间的理论相关性改变联合 likelihood 的约束。
+
+非标准宇宙学应用只有在 UQ baseline 和正式 Gate 通过后才进入该假设的扩展检验。
 
 #### H6 — emulator 具有必要性
 
@@ -407,8 +407,6 @@ delta_total = delta_engine
 5. posterior predictive 与 simulation-based coverage；
 6. rate/weak/solver variance decomposition；
 7. Stage R0/R1/R2 的 residual variance 与停止条件。
-
-#### 计算主终点
 
 #### 计算主终点
 
