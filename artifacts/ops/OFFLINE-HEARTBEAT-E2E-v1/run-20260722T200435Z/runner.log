@@ -1,0 +1,22 @@
+lease-acquired resource=ops-e2e project=uncertainty task=EXEC-HEARTBEAT-OFFLINE-E2E-v1 lease_id=e45791d635ddd33de57b7115
+PROGRESS 1/8
+METRIC demo_fraction=0.125000
+PROGRESS 2/8
+METRIC demo_fraction=0.250000
+PROGRESS 3/8
+METRIC demo_fraction=0.375000
+PROGRESS 4/8
+METRIC demo_fraction=0.500000
+PROGRESS 5/8
+METRIC demo_fraction=0.625000
+PROGRESS 6/8
+METRIC demo_fraction=0.750000
+PROGRESS 7/8
+METRIC demo_fraction=0.875000
+PROGRESS 8/8
+METRIC demo_fraction=1.000000
+lease-released resource=ops-e2e project=uncertainty task=EXEC-HEARTBEAT-OFFLINE-E2E-v1 exit=0
+
+[offline-e2e] lease reacquire probe
+lease-acquired resource=ops-e2e project=uncertainty task=EXEC-HEARTBEAT-OFFLINE-E2E-v1 lease_id=78d0dbc6fddce80cfcb7dc19
+lease-released resource=ops-e2e project=uncertainty task=EXEC-HEARTBEAT-OFFLINE-E2E-v1 exit=0

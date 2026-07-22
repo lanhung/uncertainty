@@ -1,6 +1,6 @@
 # Public nuclear-rate provenance inventory v1
 
-Status: capture protocol frozen; exact-source measurement pending
+Status: exact-source inventory captured; scientific prior freeze still pending
 
 Date: 2026-07-22 UTC
 
@@ -41,3 +41,16 @@ rate libraries.
 Consequently this work can narrow the provenance search and prevent accidental
 double counting, but it cannot freeze a prior, authorize `RATE-F01`, or replace
 A03/A00/A09 review. `NUC-v1` remains **NOT FROZEN**.
+
+## Captured result
+
+The exact-source capture at main `705d2e7` accepted all 21 registered tracked
+files across the four frozen repositories. It found three byte-identical
+content groups; these are recorded as copied-lineage evidence and not counted
+as independent nuclear inputs. The complete machine-readable result is
+`artifacts/provenance/PUBLIC-NUCLEAR-RATE-PROVENANCE-v1/capture-20260722T200435Z.json`.
+
+This closes only the public solver-table hashing step. Underlying experiment
+versions, units, covariance, correlation, detailed balance, functional bases
+and scientific sign-offs remain open, so no `P2-rate-registry` progress credit
+is assigned.

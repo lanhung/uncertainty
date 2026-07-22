@@ -1,0 +1,225 @@
+{
+  "captured_at_utc": "2026-07-22T20:04:36.759923+00:00",
+  "config": "/root/autodl-tmp/projects/uncertainty/repo/configs/physics/public_nuclear_rate_provenance_v1.yaml",
+  "config_sha256": "56da482f8f77dedf6235dbe519fa89c323394f8cc5b3afd302137d2dc0e73ca9",
+  "duplicate_content_groups": [
+    {
+      "locations": [
+        "LINX/key_PRIMAT_2023/linx/data/nuclear_rates/key_PRIMAT_2023/dpHe3g.txt",
+        "ABCMB/bundled_linx_key_PRIMAT_2023/abcmb/linx/data/nuclear_rates/key_PRIMAT_2023/dpHe3g.txt"
+      ],
+      "sha256": "02b0a3456b83b4a87991fce23b7d3009de3b43b4df0d441c6c5d9efce923f8ce"
+    },
+    {
+      "locations": [
+        "LINX/key_PRIMAT_2023/linx/data/nuclear_rates/key_PRIMAT_2023/ddtp.txt",
+        "ABCMB/bundled_linx_key_PRIMAT_2023/abcmb/linx/data/nuclear_rates/key_PRIMAT_2023/ddtp.txt"
+      ],
+      "sha256": "13f3b6962a7171b08758ba73016a8769f0d29f04bbf925fc9720d1d5c25ab33e"
+    },
+    {
+      "locations": [
+        "LINX/key_PRIMAT_2023/linx/data/nuclear_rates/key_PRIMAT_2023/ddHe3n.txt",
+        "ABCMB/bundled_linx_key_PRIMAT_2023/abcmb/linx/data/nuclear_rates/key_PRIMAT_2023/ddHe3n.txt"
+      ],
+      "sha256": "2f25eb6683970d85f04ab9be6f5534391f697cb88c89bc0e4065a87d899718c5"
+    }
+  ],
+  "file_count": 21,
+  "inventory_id": "PUBLIC-NUCLEAR-RATE-PROVENANCE-v1",
+  "repositories": {
+    "ABCMB": {
+      "collections": {
+        "bundled_linx_key_PRIMAT_2023": [
+          {
+            "git_blob": "55f92299e196d14a293541cfde8654e2a6c0b72e",
+            "line_count": 65,
+            "path": "abcmb/linx/data/nuclear_rates/key_PRIMAT_2023/dpHe3g.txt",
+            "sha256": "02b0a3456b83b4a87991fce23b7d3009de3b43b4df0d441c6c5d9efce923f8ce",
+            "size_bytes": 2154
+          },
+          {
+            "git_blob": "7a8f384a01d0e71d2b30e24d85f3cc6ba33ba83e",
+            "line_count": 63,
+            "path": "abcmb/linx/data/nuclear_rates/key_PRIMAT_2023/ddHe3n.txt",
+            "sha256": "2f25eb6683970d85f04ab9be6f5534391f697cb88c89bc0e4065a87d899718c5",
+            "size_bytes": 2086
+          },
+          {
+            "git_blob": "565fb4ef4c592b256f3ad93a3285bd1eedd49d69",
+            "line_count": 63,
+            "path": "abcmb/linx/data/nuclear_rates/key_PRIMAT_2023/ddtp.txt",
+            "sha256": "13f3b6962a7171b08758ba73016a8769f0d29f04bbf925fc9720d1d5c25ab33e",
+            "size_bytes": 2086
+          }
+        ]
+      },
+      "license": "MIT",
+      "revision": "5eabbab4ed7e53f264e16024743d1ba517845c37",
+      "tracked_tree": "73262d3ec86ae92356be057457321f4e0d56c85e"
+    },
+    "LINX": {
+      "collections": {
+        "key_PRIMAT_2023": [
+          {
+            "git_blob": "55f92299e196d14a293541cfde8654e2a6c0b72e",
+            "line_count": 65,
+            "path": "linx/data/nuclear_rates/key_PRIMAT_2023/dpHe3g.txt",
+            "sha256": "02b0a3456b83b4a87991fce23b7d3009de3b43b4df0d441c6c5d9efce923f8ce",
+            "size_bytes": 2154
+          },
+          {
+            "git_blob": "7a8f384a01d0e71d2b30e24d85f3cc6ba33ba83e",
+            "line_count": 63,
+            "path": "linx/data/nuclear_rates/key_PRIMAT_2023/ddHe3n.txt",
+            "sha256": "2f25eb6683970d85f04ab9be6f5534391f697cb88c89bc0e4065a87d899718c5",
+            "size_bytes": 2086
+          },
+          {
+            "git_blob": "565fb4ef4c592b256f3ad93a3285bd1eedd49d69",
+            "line_count": 63,
+            "path": "linx/data/nuclear_rates/key_PRIMAT_2023/ddtp.txt",
+            "sha256": "13f3b6962a7171b08758ba73016a8769f0d29f04bbf925fc9720d1d5c25ab33e",
+            "size_bytes": 2086
+          }
+        ],
+        "key_recommended": [
+          {
+            "git_blob": "ac7d26e7032d8b58c1ea494bbb1db0ec6a761e50",
+            "line_count": 153,
+            "path": "linx/data/nuclear_rates/key_recommended/dpHe3g.txt",
+            "sha256": "b5c410b91daaef1d4fe4b3c349f615fa9fa0a7a013a98b28b2e295574c0b4906",
+            "size_bytes": 4556
+          },
+          {
+            "git_blob": "50fa383ea2ae0c510c7f2513dff271d7e0d4f64d",
+            "line_count": 153,
+            "path": "linx/data/nuclear_rates/key_recommended/ddHe3n.txt",
+            "sha256": "3c7aed50f298501e60279782ae638e6799c4247d265e43075a2ad2fd46225d7d",
+            "size_bytes": 4556
+          },
+          {
+            "git_blob": "b4e5303bc3a29e42e6c4d77a4e15fccf51d94a40",
+            "line_count": 153,
+            "path": "linx/data/nuclear_rates/key_recommended/ddtp.txt",
+            "sha256": "bd9acc42dcccb9de167cc78b19e8d91c51b0f8ee5bbc2c0e155d2bd69344cc45",
+            "size_bytes": 4556
+          }
+        ]
+      },
+      "license": "MIT",
+      "revision": "ec2e9d2ca455e8204137e884da29f5dd13a638fa",
+      "tracked_tree": "dfb6290f5dc91079a147ed3e60944cc7bab50e14"
+    },
+    "PRIMAT": {
+      "collections": {
+        "parthenope3_0": [
+          {
+            "git_blob": "958b1f2c48ddb96386cfbf4de69516acac7a865a",
+            "line_count": 1009,
+            "path": "primat/data/nuclear/tables/d_p__He3_g/d_p__He3_g_parthenope3.0.txt",
+            "sha256": "44a6c1722eece235c410d6469611b262ee54b4d957023cfe2379ceb4f16d657e",
+            "size_bytes": 39613
+          },
+          {
+            "git_blob": "d4a9c751a6c2ffaae1fbae893292542231115be9",
+            "line_count": 1009,
+            "path": "primat/data/nuclear/tables/d_d__He3_n/d_d__He3_n_parthenope3.0.txt",
+            "sha256": "f99110cc1a46bd8f51c4f2aef277a318ae2a1cf3f6ed35a7e02a2033c49d0195",
+            "size_bytes": 39613
+          },
+          {
+            "git_blob": "3f4b5e220eb93dfb11818caa699bd18f23f1f05d",
+            "line_count": 1009,
+            "path": "primat/data/nuclear/tables/d_d__t_p/d_d__t_p_parthenope3.0.txt",
+            "sha256": "b96ce119f7f30ca003dafbd51e5b46a00687e427654fb92012e027bafd837d94",
+            "size_bytes": 39609
+          }
+        ],
+        "primat": [
+          {
+            "git_blob": "18bd5926d572272592e5e35ca4e688eef90bcd30",
+            "line_count": 1003,
+            "path": "primat/data/nuclear/tables/d_p__He3_g/d_p__He3_g_primat.txt",
+            "sha256": "90e2ca25dd9b4f801432678203aad21a02a3d09b6746096639becf04ab2cad55",
+            "size_bytes": 43176
+          },
+          {
+            "git_blob": "b122ea323331173159c9a4d5fda5d87b0e8d9288",
+            "line_count": 1003,
+            "path": "primat/data/nuclear/tables/d_d__He3_n/d_d__He3_n_primat.txt",
+            "sha256": "bef7f3a63fc39b4a89d24c71a0d60b18bbf7321a6b19f4f5e010d97590b93ebb",
+            "size_bytes": 43171
+          },
+          {
+            "git_blob": "10024f3d9cb97ae640eb0838b0b801fcb7a7b9c6",
+            "line_count": 1003,
+            "path": "primat/data/nuclear/tables/d_d__t_p/d_d__t_p_primat.txt",
+            "sha256": "2c532f0018f51ba124313107eb25fdf35a088ef7a2b81c6c892b775a250c18d4",
+            "size_bytes": 43168
+          }
+        ]
+      },
+      "license": "GPL-3.0-or-later",
+      "revision": "21ff8f39fa18e3937e9fdf386cfa982361bfdfce",
+      "tracked_tree": "9ae225a109aacfe8534f4e5ff25bf81a40a08326"
+    },
+    "PRyMordial": {
+      "collections": {
+        "key_nacreii_rates": [
+          {
+            "git_blob": "adf36245d00f6e88209227d0ec7182c9f19ce12b",
+            "line_count": 502,
+            "path": "PRyMrates/nuclear/key_nacreii_rates/dpHe3g.txt",
+            "sha256": "106257cf5031591f61089e431e669aa819a89d5ba56a61e75f89cb3e493ab059",
+            "size_bytes": 37589
+          },
+          {
+            "git_blob": "14ed1c70172fcd8084252ca50aec31fff9cef916",
+            "line_count": 501,
+            "path": "PRyMrates/nuclear/key_nacreii_rates/ddHe3n.txt",
+            "sha256": "f3117c23328272515fef93dfcf3a7918881e1cf2ce9584151f31676e18fb72ee",
+            "size_bytes": 37561
+          },
+          {
+            "git_blob": "74452baabbdabff62f13c3dc6921a18752a349ee",
+            "line_count": 501,
+            "path": "PRyMrates/nuclear/key_nacreii_rates/ddtp.txt",
+            "sha256": "39c2ed86b6b0c3c9003111bce39df31e332f93d6d337a1221fc7ac3b72535184",
+            "size_bytes": 37561
+          }
+        ],
+        "key_primat_rates": [
+          {
+            "git_blob": "3d00fc185ae3f0a1c05be6dabbcbce728bda866f",
+            "line_count": 501,
+            "path": "PRyMrates/nuclear/key_primat_rates/dpHe3g.txt",
+            "sha256": "286148ae9b9605e41083937dcc91c2395033b8fb6c9221abcf2f25f860eef347",
+            "size_bytes": 37576
+          },
+          {
+            "git_blob": "9e63f7d63cea522401feb0cde495307abc7084f3",
+            "line_count": 501,
+            "path": "PRyMrates/nuclear/key_primat_rates/ddHe3n.txt",
+            "sha256": "4804d937668dfb8d9e5eedb8dfd46f39f48306771487625a77ebd26e6d30fbf4",
+            "size_bytes": 37576
+          },
+          {
+            "git_blob": "e7023e50c93c71f67c4beed565a6e6129fc3c3d2",
+            "line_count": 501,
+            "path": "PRyMrates/nuclear/key_primat_rates/ddtp.txt",
+            "sha256": "516038fc7fb4e0b526c7a239efd20437bbeb2f3c5daf734d5d0478320d568790",
+            "size_bytes": 37576
+          }
+        ]
+      },
+      "license": "GPL-3.0",
+      "revision": "725d8a8db3ad5ea2630580d825c9d0d69ed76533",
+      "tracked_tree": "2bd940ca1b1a05593eb0bc215fdfce40b7f68093"
+    }
+  },
+  "schema_version": 1,
+  "scientific_boundary": "This inventory binds public solver-distributed rate tables to exact source commits. It does not establish authoritative nuclear-data provenance, covariance, units, scalar envelopes, functional modes, or a frozen NUC-v1 prior. Duplicate bytes across repositories are lineage evidence only.",
+  "source_root": "/autodl-fs/data/projects/uncertainty/external/why-not-v1",
+  "status": "captured_inventory_only_not_nuc_freeze"
+}
