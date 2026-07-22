@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run the frozen LINX scalar/native-batch numerical consistency scan."""
+"""Run a frozen LINX scalar/native-batch numerical consistency scan."""
 
 from __future__ import annotations
 
@@ -19,6 +19,7 @@ from scripts.why_not_benchmark import (
     append_jsonl,
     git_revision,
     json_dump,
+    load_abcmb_linx,
     linx_abundances,
     load_linx,
     load_yaml,
@@ -341,13 +342,21 @@ def main() -> int:
     parameter_schema, schema_loader = load_yaml(args.parameter_schema, args.yaml_python)
     observation, observation_loader = load_yaml(args.observation_config, args.yaml_python)
     if scan["status"] != "protocol_frozen_measurements_pending":
-        raise ValueError("LINX tolerance scan protocol is not frozen")
+        raise ValueError("LINX scalar/native-batch scan protocol is not frozen")
     if observation["decision_status"] != "frozen":
         raise ValueError("observation normalization source is not frozen")
     if parameter_schema["status"] != "standard_bbn_subset_frozen_extension_semantics_pending":
         raise ValueError("standard-BBN parameter subset is not frozen")
-    if scan["source_revision"] != benchmark["baselines"]["W0-LINX"]["revision"]:
+    baseline = scan["baseline"]
+    if baseline not in {"W0-LINX", "W3-ABCMB"}:
+        raise ValueError(f"unsupported LINX scan baseline: {baseline}")
+    if scan["source_revision"] != benchmark["baselines"][baseline]["revision"]:
         raise ValueError("scan and WHY-NOT benchmark source revisions differ")
+    if (
+        baseline == "W3-ABCMB"
+        and scan["bundled_linx_tree"] != benchmark["baselines"][baseline]["bundled_linx_tree"]
+    ):
+        raise ValueError("scan and WHY-NOT bundled LINX trees differ")
     revision = git_revision(args.source_dir)
     if revision != scan["source_revision"]:
         raise ValueError(f"source revision {revision} != registered {scan['source_revision']}")
@@ -365,14 +374,27 @@ def main() -> int:
     import numpy as np
 
     import_started = time.perf_counter()
-    modules, load_provenance = load_linx(args.source_dir)
+    modules, load_provenance = (
+        load_abcmb_linx(args.source_dir) if baseline == "W3-ABCMB" else load_linx(args.source_dir)
+    )
+    if baseline == "W3-ABCMB" and load_provenance["bundled_linx_tree"] != scan["bundled_linx_tree"]:
+        raise ValueError("loaded ABCMB bundled LINX tree differs from frozen scan")
     import_seconds = time.perf_counter() - import_started
     jax = modules["jax"]
     jnp = modules["jnp"]
     const = modules["const"]
     background_model = modules["BackgroundModel"]()
     parameters = parameter_schema["standard_bbn_fiducial"]["values"]
-    background_raw = background_model(jnp.asarray(parameters["delta_neff"]))
+    if baseline == "W3-ABCMB":
+        background_numerics = scan["background_numerics"]
+        background_raw = background_model(
+            jnp.asarray(parameters["delta_neff"]),
+            rtol=float(background_numerics["rtol"]),
+            atol=float(background_numerics["atol"]),
+            max_steps=int(background_numerics["max_steps"]),
+        )
+    else:
+        background_raw = background_model(jnp.asarray(parameters["delta_neff"]))
     jax.block_until_ready(background_raw)
     t_vec, a_vec, rho_g, rho_nu, rho_np, pressure_np, neff_vec = background_raw
     background = (t_vec, a_vec, rho_g, rho_nu, rho_np, pressure_np)
@@ -440,6 +462,7 @@ def main() -> int:
         {
             "benchmark_config": str(args.benchmark_config),
             "benchmark_config_sha256": sha256(args.benchmark_config),
+            "baseline": baseline,
             "environment_lock": str(args.environment_lock),
             "environment_lock_sha256": sha256(args.environment_lock),
             "finished_at_utc": finished_at,

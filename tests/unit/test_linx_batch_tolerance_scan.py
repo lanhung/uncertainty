@@ -191,3 +191,33 @@ def test_v4_rerun_uses_accepted_max_steps_without_relaxing_thresholds() -> None:
             "production_candidate",
         ],
     }
+
+
+def test_abcmb_scan_is_frozen_to_parent_component_and_same_thresholds() -> None:
+    root = Path(__file__).resolve().parents[2]
+    config = yaml.safe_load(
+        (root / "configs/benchmarks/abcmb_linx_batch_consistency_v1.yaml").read_text()
+    )
+    adapter = yaml.safe_load(
+        (root / "configs/benchmarks/abcmb_linx_runtime_adapter_v1.yaml").read_text()
+    )
+    cases = {case["id"]: case for case in config["cases"]}
+
+    assert config["status"] == "protocol_frozen_measurements_pending"
+    assert config["baseline"] == "W3-ABCMB"
+    assert config["parent_run"] == "run-20260722T1118Z"
+    assert config["source_revision"] == adapter["source_revision"]
+    assert config["bundled_linx_tree"] == adapter["bundled_linx_tree"]
+    assert config["background_numerics"] == adapter["background_numerics"]
+    assert config["acceptance"]["maximum_scalar_batch_difference_observation_sigma"] == 0.01
+    assert config["acceptance"]["maximum_plateau_difference_observation_sigma"] == 0.001
+    assert set(cases) == {
+        "tolerance_loose",
+        "tolerance_intermediate",
+        "registered",
+        "tolerance_tight",
+        "tolerance_tighter",
+        "sampling_100",
+        "sampling_200",
+        "sampling_300",
+    }
