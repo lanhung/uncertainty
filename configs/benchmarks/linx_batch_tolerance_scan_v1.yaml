@@ -1,0 +1,79 @@
+schema_version: 1
+scan_id: LINX-BATCH-TOLERANCE-v1
+status: protocol_frozen_measurements_pending
+decision_date_utc: "2026-07-22"
+task_id: P0-WHY-NOT-01
+baseline: W0-LINX
+source_revision: ec2e9d2ca455e8204137e884da29f5dd13a638fa
+network: key_PRIMAT_2023
+parameter_set: standard_bbn_fiducial
+precision: float64
+batch_size: 64
+warm_repetitions: 3
+
+observation_normalization:
+  source: configs/data/abundance_OBS-v1.yaml
+  observables:
+    YPBBN:
+      source_field: main_likelihood.helium4_mass_fraction.sigma
+      scale: 1.0
+    DoH:
+      source_field: main_likelihood.deuterium_number_ratio.sigma
+      scale: 1.0e-5
+
+cases:
+  - id: tolerance_loose
+    group: tolerance
+    rtol: 1.0e-5
+    atol: 1.0e-8
+    sampling_nTOp: 150
+  - id: tolerance_intermediate
+    group: tolerance
+    rtol: 3.0e-6
+    atol: 3.0e-9
+    sampling_nTOp: 150
+  - id: registered
+    group: tolerance
+    rtol: 1.0e-6
+    atol: 1.0e-9
+    sampling_nTOp: 150
+  - id: tolerance_tight
+    group: tolerance
+    rtol: 3.0e-7
+    atol: 3.0e-10
+    sampling_nTOp: 150
+  - id: tolerance_tighter
+    group: tolerance
+    rtol: 1.0e-7
+    atol: 1.0e-10
+    sampling_nTOp: 150
+  - id: sampling_100
+    group: weak_rate_sampling
+    rtol: 1.0e-6
+    atol: 1.0e-9
+    sampling_nTOp: 100
+  - id: sampling_200
+    group: weak_rate_sampling
+    rtol: 1.0e-6
+    atol: 1.0e-9
+    sampling_nTOp: 200
+  - id: sampling_300
+    group: weak_rate_sampling
+    rtol: 1.0e-6
+    atol: 1.0e-9
+    sampling_nTOp: 300
+
+acceptance:
+  candidate_case_ids: [registered, tolerance_tight, tolerance_tighter]
+  maximum_scalar_batch_difference_observation_sigma: 0.01
+  maximum_plateau_difference_observation_sigma: 0.001
+  tolerance_plateau_pair: [tolerance_tight, tolerance_tighter]
+  sampling_plateau_pair: [sampling_200, sampling_300]
+  require_zero_repeat_drift: true
+  require_zero_within_batch_spread: true
+
+scientific_boundary: >-
+  Passing this scan accepts only scalar/native-batch numerical consistency at
+  the frozen standard-BBN point. It does not accept gradients, rate-nuisance
+  derivatives, posterior recovery, non-standard cosmology, or scientific
+  solver fidelity.
