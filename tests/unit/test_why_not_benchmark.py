@@ -3,7 +3,13 @@ from pathlib import Path
 
 import pytest
 
-from scripts.why_not_benchmark import finite_abundances, linx_abundances, quantile, summarize
+from scripts.why_not_benchmark import (
+    finite_abundances,
+    linx_abundances,
+    load_yaml,
+    quantile,
+    summarize,
+)
 
 
 def test_timing_summary_uses_registered_distribution_statistics() -> None:
@@ -61,3 +67,13 @@ def test_direct_benchmark_entrypoint_declares_required_artifacts() -> None:
     assert "direct_url.json" in source
     assert "primat._primat_c" in source
     assert "jax_jit_vmap_native_batch" in source
+
+
+def test_yaml_loader_records_in_process_parser(tmp_path: Path) -> None:
+    config = tmp_path / "config.yaml"
+    config.write_text("answer: 42\n", encoding="utf-8")
+
+    result, loader = load_yaml(config, None)
+
+    assert result == {"answer": 42}
+    assert loader == "in_process_pyyaml"

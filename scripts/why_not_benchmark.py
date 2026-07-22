@@ -26,7 +26,28 @@ from pathlib import Path
 from typing import Any, Callable
 from urllib.parse import unquote, urlparse
 
-import yaml
+
+def load_yaml(path: Path, yaml_python: Path | None) -> tuple[dict[str, Any], str]:
+    try:
+        import yaml
+    except ModuleNotFoundError:
+        if yaml_python is None:
+            raise RuntimeError(
+                "PyYAML is absent from the exact solver environment; provide --yaml-python"
+            ) from None
+        helper = (
+            "import json,sys,yaml; "
+            "print(json.dumps(yaml.safe_load(open(sys.argv[1], encoding='utf-8'))))"
+        )
+        completed = subprocess.run(
+            [str(yaml_python), "-c", helper, str(path)],
+            check=True,
+            capture_output=True,
+            text=True,
+            timeout=30,
+        )
+        return json.loads(completed.stdout), f"isolated_subprocess:{yaml_python}"
+    return yaml.safe_load(path.read_text(encoding="utf-8")), "in_process_pyyaml"
 
 
 def utc_now() -> str:
@@ -491,13 +512,14 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--repetitions", type=int)
     parser.add_argument("--batch-size", type=int, action="append", dest="batch_sizes")
     parser.add_argument("--hourly-price-cny", type=float, required=True)
+    parser.add_argument("--yaml-python", type=Path)
     return parser.parse_args()
 
 
 def main() -> int:
     args = parse_args()
-    protocol = yaml.safe_load(args.config.read_text(encoding="utf-8"))
-    parameter_schema = yaml.safe_load(args.parameter_schema.read_text(encoding="utf-8"))
+    protocol, protocol_loader = load_yaml(args.config, args.yaml_python)
+    parameter_schema, schema_loader = load_yaml(args.parameter_schema, args.yaml_python)
     registered = protocol["baselines"][args.baseline]
     repetitions = args.repetitions or int(protocol["execution"]["warm_repetitions"])
     batch_sizes = args.batch_sizes or [int(value) for value in protocol["execution"]["batch_sizes"]]
@@ -556,6 +578,10 @@ def main() -> int:
         "hardware_inventory": str(args.inventory),
         "hardware_inventory_sha256": sha256(args.inventory),
         "hostname": socket.gethostname(),
+        "metadata_loaders": {
+            "parameter_schema": schema_loader,
+            "protocol": protocol_loader,
+        },
         "node_name": json.loads(args.inventory.read_text(encoding="utf-8"))["node_name"],
         "parameter_schema": str(args.parameter_schema),
         "parameter_schema_sha256": sha256(args.parameter_schema),
