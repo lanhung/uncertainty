@@ -1,0 +1,38 @@
+{
+  "abundances": {
+    "DoH": 2.4447361728164994e-05,
+    "He3oH": 1.0412636328465646e-05,
+    "Li7oH": 5.531518584720403e-10,
+    "Neff": 3.0439772985579183,
+    "YPBBN": 0.24695513077748688,
+    "YPCMB": 0.2456289811737058
+  },
+  "backend": "c",
+  "cold_import_seconds": 0.5028267223387957,
+  "cold_solve_seconds": 0.1790469065308571,
+  "load_provenance": {
+    "compiled_extension": "/root/autodl-tmp/projects/uncertainty/envs/solver-cpu/lib/python3.11/site-packages/primat/_primat_c.cpython-311-x86_64-linux-gnu.so",
+    "direct_url": "file:///root/autodl-fs/projects/uncertainty/external/why-not-v1/PRIMAT",
+    "package": "/root/autodl-tmp/projects/uncertainty/envs/solver-cpu/lib/python3.11/site-packages/primat/__init__.py"
+  },
+  "maximum_absolute_repeat_drift": 0.0,
+  "network": "small",
+  "timings_seconds": {
+    "warm_batch_1": {
+      "maximum": 0.06719278357923031,
+      "median": 0.06387380324304104,
+      "minimum": 0.06353379227221012,
+      "p95": 0.06564134862273932,
+      "q1": 0.06370300427079201,
+      "q3": 0.06451224954798818
+    },
+    "warm_batch_64": {
+      "maximum": 4.173726504668593,
+      "median": 4.104405495338142,
+      "minimum": 4.077212544158101,
+      "p95": 4.156560208648443,
+      "q1": 4.081920218653977,
+      "q3": 4.138049028348178
+    }
+  }
+}

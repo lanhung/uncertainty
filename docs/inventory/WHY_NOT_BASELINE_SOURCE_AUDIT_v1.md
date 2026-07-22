@@ -69,6 +69,12 @@ network paths both completed with finite abundances. Exact values, timings and
 raw logs are recorded in `docs/inventory/DIRECT_SOLVER_EXECUTION_v1.md` and
 `artifacts/solver-build/DIRECT_SOLVER_SMOKE_v1.json`.
 
+The first registered common-harness slice has since completed for W2 PRIMAT at
+the frozen standard-BBN point. It contains every observation for 30 scalar and
+30 sequential 64-point timing repetitions with zero structured failures. See
+`docs/inventory/WHY_NOT_PRIMAT_RUNTIME_v1.md`. This is a runtime slice, not a
+completed baseline or posterior-fidelity result.
+
 ## Scientific boundary
 
 Source acquisition, dependency inspection and one-off upstream runs do not

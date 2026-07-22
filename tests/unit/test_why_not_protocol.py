@@ -39,7 +39,7 @@ def test_why_not_protocol_does_not_fabricate_results() -> None:
     assert results["conclusion"] == "undetermined"
 
     text = ADR.read_text(encoding="utf-8")
-    assert "No baseline has yet been measured" in text
+    assert "No baseline has yet completed the full registered measurement set" in text
     assert "closes protocol discretion, not `P0-WHY-NOT-01`" in text
 
 

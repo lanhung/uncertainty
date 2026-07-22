@@ -153,9 +153,16 @@ No result may be entered manually without a corresponding run manifest.
 
 ## Current result
 
-No baseline has yet been measured in the locked worker environment. The current
-answer to all four “why not” questions is therefore **undetermined**. This ADR
-closes protocol discretion, not `P0-WHY-NOT-01`.
+No baseline has yet completed the full registered measurement set. W2 PRIMAT's
+standard-fiducial runtime slice has completed in the locked worker environment:
+30 warm scalar repetitions and 30 sequential 64-point workloads produced no
+structured failures, with a warm scalar median of 0.06387 seconds. The raw
+artifact is registered under
+`artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W2-PRIMAT/`.
+
+Posterior-region, adversarial, extension and matched-posterior measurements
+remain pending. The answer to all four “why not” questions is therefore still
+**undetermined**. This ADR closes protocol discretion, not `P0-WHY-NOT-01`.
 
 ## Sign-off
 
