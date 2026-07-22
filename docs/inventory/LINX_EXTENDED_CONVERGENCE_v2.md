@@ -52,6 +52,11 @@ control and must be audited explicitly. The next protocol must:
 4. retain the existing `0.001 sigma_obs` plateau criterion;
 5. avoid promoting any configuration until an independent solver-fidelity audit.
 
+That diagnostic completed in V3. The 4096 control failed, while 8192, 16384 and
+32768 completed; the pre-registered 16384/32768 invariance check was exactly
+zero and passed. The next convergence rerun must use the conservative
+`max_steps=16384`. See `docs/inventory/LINX_MAX_STEPS_DIAGNOSTIC_v3.md`.
+
 ## Scientific boundary
 
 This is a numerical configuration failure at one standard-BBN point, not a

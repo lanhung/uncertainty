@@ -66,6 +66,13 @@ all five cases at `rtol <= 3e-8` reached LINX's default `max_steps=4096` and
 failed explicitly. Neither plateau was evaluable. See
 `docs/inventory/LINX_EXTENDED_CONVERGENCE_v2.md`.
 
+The V3 maximum-step diagnostic then held the strict tolerance and 2400-point
+weak-rate grid fixed. The 4096 control failed, but 8192, 16384 and 32768 all
+completed. The pre-registered 16384/32768 scalar and batch invariance difference
+was exactly zero, so the maximum-step diagnostic passed. This does not yet pass
+the tolerance/sampling convergence gate; that grid must be rerun at
+`max_steps=16384`.
+
 The earlier upstream value-and-gradient smoke also contained a `NaN` component.
 Forward runtime does not override that failure. LINX is not yet an accepted
 gradient/HMC baseline.
@@ -74,5 +81,5 @@ gradient/HMC baseline.
 
 This completes W0's standard-fiducial runtime slice only. Scalar-rate checks,
 an accepted Jacobian, posterior recovery, extension implementation, total
-workload projection and a pre-registered maximum-step diagnostic remain open.
+workload projection and the tolerance/sampling convergence rerun remain open.
 The WHY-NOT conclusion is still undetermined.
