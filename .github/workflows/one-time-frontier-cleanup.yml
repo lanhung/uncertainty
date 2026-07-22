@@ -1,0 +1,32 @@
+name: one-time-frontier-cleanup
+
+on:
+  push:
+    branches: [fix/frontier-doc-dedup]
+    paths:
+      - 'scripts/fix_frontier_merge_artifacts.py'
+      - '.github/workflows/one-time-frontier-cleanup.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Remove duplicated frontier text and pending metadata overstatement
+        run: python scripts/fix_frontier_merge_artifacts.py
+      - name: Validate desired-state plan
+        run: python orchestrator/reconcile.py plan/plan.yaml
+      - name: Commit generated cleanup
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add AGENTS.md configs/physics/nuclear_stage0_R0_v1.yaml
+          git commit -m 'fix: clean frontier merge artifacts'
+          git push origin HEAD:${GITHUB_REF_NAME}
