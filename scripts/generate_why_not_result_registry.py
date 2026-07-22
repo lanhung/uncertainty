@@ -5,15 +5,24 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from pathlib import Path
 from typing import Any
 
 import yaml
 
-from scripts.validate_why_not_runtime import validate_run
-
 
 DEFAULT_POLICY = Path("configs/benchmarks/why_not_result_registry_policy_v1.yaml")
+
+
+def validate_runtime(repo_root: Path, run_dir: Path) -> dict[str, Any]:
+    """Import the validator in both module and direct-script execution modes."""
+    repository = str(repo_root)
+    if repository not in sys.path:
+        sys.path.insert(0, repository)
+    from scripts.validate_why_not_runtime import validate_run
+
+    return validate_run(repo_root, run_dir)
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -21,7 +30,7 @@ def load_json(path: Path) -> dict[str, Any]:
 
 
 def generate_registry(repo_root: Path, run_dir: Path) -> dict[str, Any]:
-    validation = validate_run(repo_root, run_dir)
+    validation = validate_runtime(repo_root, run_dir)
     manifest = load_json(run_dir / "run_manifest.json")
     summary = load_json(run_dir / "runtime_summary.json")
     policy = yaml.safe_load((repo_root / DEFAULT_POLICY).read_text(encoding="utf-8"))
