@@ -60,7 +60,9 @@ def test_upstreams_are_not_misrepresented_as_validated() -> None:
         if artifact["path"].endswith("solve_plus.data_test_5400.json")
     )
     assert "log10OmegaGW" in inputs["missing_fields"]
-    assert "checkpoint prediction equivalence to the paper environment" in sagenet["not_established"]
+    assert (
+        "checkpoint prediction equivalence to the paper environment" in sagenet["not_established"]
+    )
 
 
 def test_bbnet_schema_mismatch_remains_an_explicit_gate() -> None:
@@ -68,7 +70,9 @@ def test_bbnet_schema_mismatch_remains_an_explicit_gate() -> None:
     training = data["training_scripts"]
     evaluation = data["evaluation_scripts"]
 
-    assert training["parthenope"]["inputs"] != evaluation["file_named_parthenope"]["expected_inputs"]
+    assert (
+        training["parthenope"]["inputs"] != evaluation["file_named_parthenope"]["expected_inputs"]
+    )
     assert training["alterbbn"]["inputs"] != evaluation["alterbbn_expert"]["expected_inputs"]
     assert data["use_policy"]["approved_for_scientific_inference"] is False
 
