@@ -17,12 +17,14 @@ def test_solver_throughput_is_derived_from_committed_timings() -> None:
     with LEDGER.open(encoding="utf-8", newline="") as stream:
         rows = list(csv.DictReader(stream))
 
-    assert len(rows) == 4
+    assert len(rows) == 6
     assert {(row["baseline"], int(row["batch_size"])) for row in rows} == {
         ("W0-LINX", 1),
         ("W0-LINX", 64),
         ("W2-PRIMAT", 1),
         ("W2-PRIMAT", 64),
+        ("W1-PRYM", 1),
+        ("W1-PRYM", 64),
     }
 
     for row in rows:
@@ -51,8 +53,10 @@ def test_solver_throughput_is_derived_from_committed_timings() -> None:
         assert row["scientific_scope"] == "standard_fiducial_runtime_slice_only"
 
 
-def test_active_w1_is_not_prematurely_recorded() -> None:
+def test_w1_is_recorded_only_at_runtime_slice_scope() -> None:
     text = LEDGER.read_text(encoding="utf-8")
 
-    assert "W1-PRYM" not in text
-    assert "run-20260722T0753Z" not in text
+    assert "W1-PRYM" in text
+    assert "run-20260722T0753Z" in text
+    assert "standard_fiducial_runtime_slice_only" in text
+    assert "W3-ABCMB" not in text

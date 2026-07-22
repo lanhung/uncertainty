@@ -1,6 +1,6 @@
 # ADR-WHY-NOT-001: direct-solver necessity benchmark
 
-Status: benchmark protocol frozen; measurements pending
+Status: benchmark protocol frozen; W0/W1/W2 standard runtime slices complete; W3 pending
 
 Date: 2026-07-22
 
@@ -159,8 +159,8 @@ numerical, posterior or scientific acceptance.
 ## Current result
 
 No baseline has yet completed the full registered measurement set. Standard-
-fiducial runtime slices have completed for W2 PRIMAT and W0 LINX in locked
-worker environments. PRIMAT's 30 warm scalar and 30 sequential 64-point
+fiducial runtime slices have completed for W2 PRIMAT, W0 LINX and W1
+PRyMordial in locked worker environments. PRIMAT's 30 warm scalar and 30 sequential 64-point
 workloads produced no structured failures, with a warm scalar median of
 0.06387 seconds. LINX's warm scalar median was 0.21572 seconds and its native
 64-point median was 0.85856 seconds, but identical-input scalar versus native-
@@ -187,6 +187,15 @@ passed, nominating `rtol=1e-8`, `atol=1e-11`, `sampling_nTOp=2400` and
 `max_steps=16384` as the standard-point numerical candidate. This does not
 accept the non-finite gradient, posterior recovery, extensions or W0 overall.
 
+W1 completed 30 warm scalar solves and 30 sequential 64-point workloads with
+1,950 successful warm points and no structured failures. Its warm scalar median
+was 5.90683 seconds and its sequential 64-point median was 375.05736 seconds,
+or 5.86027 seconds per point. Repeated outputs had zero recorded drift, and the
+run consumed 3.17975 worker-hours at an estimated CNY 9.15767. This is only the
+standard-fiducial runtime slice: explicit rate marginalization, the registered
+extension point, matched posterior recovery and the full workload projection
+remain pending.
+
 Posterior-region, adversarial, extension and matched-posterior measurements
 remain pending. LINX's previously observed non-finite gradient also remains
 rejected. The answer to all four “why not” questions is therefore still
@@ -197,8 +206,8 @@ Before any registered W1 timing, the PRyMordial adapter contract was frozen in
 small 12-reaction network, PRIMAT-like rate tables, recomputation of background
 and bulk weak rates, no recomputation of stored thermal weak corrections, and
 sequential calls because the upstream path has no native batch API. Its input
-and abundance-unit mappings are explicit. This authorizes only the standard-
-fiducial runtime slice; W1 measurements are still pending at this revision.
+and abundance-unit mappings are explicit. The standard-fiducial runtime slice
+is now registered; this does not authorize or imply the remaining W1 labels.
 
 The W3 pre-execution component contract is frozen separately in
 `configs/benchmarks/abcmb_linx_runtime_adapter_v1.yaml`. It binds the installed

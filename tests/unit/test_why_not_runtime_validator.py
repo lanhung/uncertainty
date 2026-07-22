@@ -13,6 +13,7 @@ BENCHMARK_ROOT = ROOT / "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1"
     ("baseline", "run", "expected_mode"),
     [
         ("W0-LINX", "run-20260722T0605Z", "native_batch_mode"),
+        ("W1-PRYM", "run-20260722T0753Z", "sequential_batch_mode"),
         ("W2-PRIMAT", "run-20260722T0535Z", "sequential_batch_mode"),
     ],
 )
