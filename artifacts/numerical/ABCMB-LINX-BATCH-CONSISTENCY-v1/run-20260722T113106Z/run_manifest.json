@@ -1,0 +1,41 @@
+{
+  "baseline": "W3-ABCMB",
+  "benchmark_config": "configs/benchmarks/why_not_existing_solvers_v1.yaml",
+  "benchmark_config_sha256": "4acf990cd6ce9ced9a905d827e54711e4d0fcb35fc467aec82f29e50d99f6078",
+  "environment_lock": "environments/abcmb-v0.3.1/uv.lock",
+  "environment_lock_sha256": "38ca8a96022b50ddaabf95a820d60142db71758fc7080be2c7599c822c21ebdd",
+  "finished_at_utc": "2026-07-22T11:36:27.967606+00:00",
+  "hardware_inventory": "/root/autodl-fs/projects/uncertainty/artifacts/worker-inventory.json",
+  "hardware_inventory_sha256": "8af7676442b166e552e102f5520e2a08f6642c29af295e0a0c08e816ed849cd8",
+  "hostname": "autodl-container-9qk6ggtwem-6244361c",
+  "metadata_loaders": {
+    "benchmark": "isolated_subprocess:/root/autodl-tmp/projects/uncertainty/envs/solver-cpu/bin/python",
+    "observation": "isolated_subprocess:/root/autodl-tmp/projects/uncertainty/envs/solver-cpu/bin/python",
+    "parameter_schema": "isolated_subprocess:/root/autodl-tmp/projects/uncertainty/envs/solver-cpu/bin/python",
+    "scan": "isolated_subprocess:/root/autodl-tmp/projects/uncertainty/envs/solver-cpu/bin/python"
+  },
+  "node_name": "autodl-westb-01",
+  "observation_config": "configs/data/abundance_OBS-v1.yaml",
+  "observation_config_sha256": "02a4a5453afff34c7f1f036a33d46e728d49a954d46a34e52aa45a570f6f7a8c",
+  "parameter_schema": "configs/physics/parameter_schema.yaml",
+  "parameter_schema_sha256": "61dc9c3ec1fdc9eb455f9ed64ad604a49d801e2b7de361db8db74a883b8c3c9e",
+  "parameters": {
+    "delta_neff": 0.0,
+    "kappa10": 0.0,
+    "omega_b_h2": 0.02237,
+    "tau_n_seconds": 878.3
+  },
+  "platform": "Linux-5.15.0-78-generic-x86_64-with-glibc2.35",
+  "precision": "float64",
+  "python": "3.11.15 (main, Jun 23 2026, 15:19:43) [Clang 22.1.3 ]",
+  "run_id": "9cf18e38-e255-405b-a97d-81e78f4f7a66",
+  "scan_config": "configs/benchmarks/abcmb_linx_batch_consistency_v1.yaml",
+  "scan_config_sha256": "e868f068fdc3e46db18c852c0da8e0f4ca08575c2f7a4349c2e6142880969d88",
+  "scan_id": "ABCMB-LINX-BATCH-CONSISTENCY-v1",
+  "schema_version": 1,
+  "scientific_use": "standard_fiducial_scalar_native_batch_consistency_only",
+  "source_dir": "/root/autodl-fs/projects/uncertainty/external/why-not-v1/ABCMB",
+  "source_revision": "5eabbab4ed7e53f264e16024743d1ba517845c37",
+  "started_at_utc": "2026-07-22T11:31:33.508893+00:00",
+  "status": "complete"
+}

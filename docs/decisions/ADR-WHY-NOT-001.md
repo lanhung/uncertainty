@@ -206,6 +206,14 @@ do the full CMB pipeline, Fisher matrix, gradient stability, HMC/NUTS,
 posterior recovery and extension-development measurements. The runtime slice
 therefore cannot answer Q4 by itself.
 
+The preregistered eight-case W3 scalar/native-batch follow-up subsequently
+completed without failures. All three candidate cases passed the frozen
+`0.01` observation-sigma scalar/batch budget, but the tolerance plateau was
+`0.0047691 sigma` and the weak-rate sampling plateau was `0.0274556 sigma`,
+both above the frozen `0.001 sigma` threshold. W3 numerical consistency is not
+accepted. An extended convergence protocol is required; the threshold may not
+be relaxed after this result.
+
 Posterior-region, adversarial, extension and matched-posterior measurements
 remain pending. LINX's previously observed non-finite gradient also remains
 rejected. The answer to all four “why not” questions is therefore still

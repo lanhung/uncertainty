@@ -44,8 +44,11 @@ input. The maximum absolute difference was `1.5777656725834976e-6`, dominated
 by `Y_p`; the D/H difference was `8.059204979803461e-10`. The integrity
 validator confirms that all expected records exist and that the summaries are
 reproducible, but it does not make this difference scientifically acceptable.
-A preregistered tolerance and batching follow-up is required before using this
-path for gradients, Fisher calculations or posterior claims.
+The preregistered eight-case follow-up completed as
+`run-20260722T113106Z`. Its candidate scalar/batch budget passed, but its
+tolerance and weak-rate sampling plateaus failed the frozen `0.001 sigma`
+limit. The path therefore remains numerically unaccepted for gradients, Fisher
+calculations or posterior claims; an extended convergence protocol is required.
 
 ## Scientific boundary
 
