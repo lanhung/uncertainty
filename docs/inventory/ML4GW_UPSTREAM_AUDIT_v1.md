@@ -63,6 +63,16 @@ verify commit and SHA-256 first, then load only in an isolated, unprivileged
 environment. Upstream currently calls `torch.load(..., weights_only=False)`;
 that call is not approved for the shared control host.
 
+A structural audit on `autodl-westb-01` safely loaded all four checkpoints with
+`weights_only=True`, matched every state-dict key strictly, and produced finite
+`(1, 256, 2)` tensors for a zero input. This is not an accuracy test. It also
+revealed mixed scaler provenance: CosmicNet2/RNN were serialized by
+scikit-learn 1.2.2, while LSTM/Transformer used 1.6.1. That conflicts with the
+single open-ended dependency declared by the package. Prediction equivalence
+therefore remains unvalidated until version-matched environments and target
+spectra or authoritative reference outputs are available. The machine-readable
+record is `artifacts/validation/SAGENET_CHECKPOINT_STRUCTURAL_v1.json`.
+
 SageNet's `sagenetgw/stiffGWpy` is a separate GPL-3.0 submodule pinned at
 `d6903d3f2552fc81f7de8f8765e9567766c4361e`. Its Cobaya wrapper expects an
 external modified AlterBBN v2.2 executable. The solver source is therefore

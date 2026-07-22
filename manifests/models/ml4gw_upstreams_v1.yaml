@@ -5,6 +5,7 @@ scientific_status:
   approved_for_claims: false
   bbnet_reproduction_complete: false
   sagenet_forward_validation_complete: false
+  sagenet_structural_validation_complete: true
   note: >-
     This manifest records source and artifact provenance. It does not validate
     README accuracy claims, scientific correctness, or paper-level performance.
@@ -111,6 +112,21 @@ sources:
         Verify the repository commit and SHA-256 before loading. Treat the files
         as executable pickle-bearing artifacts; do not use unrestricted
         torch.load on an unverified copy or in a privileged shared environment.
+    structural_validation:
+      status: passed
+      report: artifacts/validation/SAGENET_CHECKPOINT_STRUCTURAL_v1.json
+      validator: scripts/validate_sagenet_checkpoints.py
+      scope: safe load, strict state-dict match, finite zero-input forward shape
+      scientific_output_equivalence: false
+      scaler_serialization_versions:
+        CosmicNet2: 1.2.2
+        LSTM: 1.6.1
+        RNN: 1.2.2
+        Transformer: 1.6.1
+      packaging_discrepancy: >-
+        The checkpoint set mixes scikit-learn 1.2.2 and 1.6.1 scaler pickles,
+        while the package declares only scikit-learn>=1.6.1. Exact paper
+        environment and prediction-equivalence validation remain unresolved.
     submodules:
       - path: sagenetgw/stiffGWpy
         repository: https://github.com/YifangLuo/stiffGWpy
@@ -133,7 +149,7 @@ sources:
       - 5400-sample legacy SGWB parameter input corpus
       - legacy stiffGW and Cobaya configuration lineage
     not_established:
-      - checkpoint forward-pass equivalence in the project lock
+      - checkpoint prediction equivalence to the paper environment
       - README speed or accuracy claims
       - compatibility with current LVK O1-O4a products
       - BBN solver availability
