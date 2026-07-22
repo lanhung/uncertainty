@@ -1,0 +1,72 @@
+schema_version: 1
+card_id: UQ0-S4-PRyMordial-small-PRIMAT-like-v1
+task_id: UQ0-PUBLIC-SOLVER-BASELINES
+matrix_id: S4
+status: accepted_for_uq0_public_forward_baseline
+
+source:
+  repository: https://github.com/vallima/PRyMordial
+  revision: 725d8a8db3ad5ea2630580d825c9d0d69ed76533
+  license: GPL-3.0
+  license_sha256: c61f12da7cdad526bdcbed47a4c0a603e60dbbfdaf8b66933cd088e9132c303f
+
+environment:
+  precision: float64
+  lock: environments/solver-cpu/uv.lock
+  lock_sha256: 45f60efbea16955ae3ca2740d6d55e9ae969fe9a5e33d5ef9d71d92d12f3c723
+  backend: python
+  network: small_12_reaction
+  rate_compilation: primat_like
+
+accepted_configuration:
+  config: configs/benchmarks/why_not_existing_solvers_v1.yaml
+  config_sha256: 4acf990cd6ce9ced9a905d827e54711e4d0fcb35fc467aec82f29e50d99f6078
+  adapter_config: configs/benchmarks/prymordial_runtime_adapter_v1.yaml
+  adapter_config_sha256: 85e90422e4c55732d0a15e0f3998b422acbffc7159a195c09468b88139167e53
+  accepted_scope: frozen_standard_fiducial_sequential_forward
+
+outputs:
+  Y_p:
+    artifact_key: abundances.YPBBN
+    value: 0.2468834991108598
+    unit: dimensionless
+  D_over_H:
+    artifact_key: abundances.DoH
+    value: 2.444116205595043e-5
+    unit: dimensionless_number_ratio
+
+runtime:
+  cold_solve_seconds: 6.4119140394032
+  warm_scalar_median_seconds_per_point: 5.906831167638302
+  warm_sequential_batch_64_median_seconds: 375.0573614994064
+  wall_seconds: 11447.088187288493
+  cpu_core_hours: 3.1735253363755556
+  gpu_hours: 0.0
+  structured_failure_count: 0
+
+structured_failure_contract:
+  format: json_lines
+  implementation: scripts/why_not_benchmark.py
+  ledger: artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W1-PRYM/run-20260722T0753Z/failures.jsonl
+  ledger_sha256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  required_failure_fields: [batch_size, error, kind, repetition, traceback]
+  nonfinite_policy: reject
+
+evidence:
+  manifest:
+    path: artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W1-PRYM/run-20260722T0753Z/run_manifest.json
+    sha256: 6948f5d3eaf275efd4b789759a109c663588eff362b0cef64314bf9495640ade
+    source_revision_field: source_revision
+    config_hash_field: config_sha256
+  result:
+    path: artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W1-PRYM/run-20260722T0753Z/runtime_summary.json
+    sha256: 973323651caf9ee8c305a0247dc712f48da08ce594845de780ab5c3bb91cee52
+  resources:
+    path: artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W1-PRYM/run-20260722T0753Z/resource_report.json
+    sha256: fb28ac3fe6d31d77c1bba911f1ffc35e28819100c08c33e1f2b08d3850d59243
+
+limitations:
+  - The small network is accepted for Y_p and D/H baseline work, not a lithium claim.
+  - The 64-point measurement is sequential and is not a native batch API.
+  - R0 nuisance mappings, full rate marginalization and weak-prior separation remain pending.
+  - Parameter-region accuracy and cross-solver fidelity are not established.

@@ -1,0 +1,200 @@
+schema_version: 1
+audit_id: NUCLEAR-STAGE0-R0-SOURCE-CANDIDATES-v1
+status: provenance_bound_scientific_selection_pending
+production_use: prohibited
+numerical_prior_credit: false
+audit_date_utc: "2026-07-23"
+
+scope:
+  stage0_contract: configs/physics/nuclear_stage0_R0_v1.yaml
+  public_inventory_protocol: configs/physics/public_nuclear_rate_provenance_v1.yaml
+  captured_inventory: >-
+    artifacts/provenance/PUBLIC-NUCLEAR-RATE-PROVENANCE-v1/capture-20260722T200435Z.json
+  captured_inventory_sha256: 7c79a1e9569c5ee82c41c04be086c6adb1214ecaf9efc3f9cdff0e38dcbf63c2
+  reactions:
+    - dp_gamma_he3
+    - dd_n_he3
+    - dd_p_t
+
+scientific_boundary: >-
+  The mappings below bind canonical R0 reaction IDs to filenames and exact bytes
+  distributed by pinned public solver repositories. They are filename-token
+  candidates only. They do not validate table columns, units, temperature
+  semantics, central-versus-uncertainty content, underlying experimental
+  provenance, covariance, detailed balance, or a solver nuisance parameter.
+
+selection:
+  primary_candidate_id: null
+  primary_selection_status: pending_A03_review
+  selection_must_precede_result_inspection: true
+  candidates_are_independent_nuclear_evidence: not_established
+
+candidate_collections:
+  - candidate_id: linx_key_primat_2023
+    repository: LINX
+    revision: ec2e9d2ca455e8204137e884da29f5dd13a638fa
+    license: MIT
+    collection: key_PRIMAT_2023
+    mapping_status: filename_token_candidate_only
+    numerical_prior_credit: false
+    reactions:
+      dp_gamma_he3:
+        path: linx/data/nuclear_rates/key_PRIMAT_2023/dpHe3g.txt
+        sha256: 02b0a3456b83b4a87991fce23b7d3009de3b43b4df0d441c6c5d9efce923f8ce
+      dd_n_he3:
+        path: linx/data/nuclear_rates/key_PRIMAT_2023/ddHe3n.txt
+        sha256: 2f25eb6683970d85f04ab9be6f5534391f697cb88c89bc0e4065a87d899718c5
+      dd_p_t:
+        path: linx/data/nuclear_rates/key_PRIMAT_2023/ddtp.txt
+        sha256: 13f3b6962a7171b08758ba73016a8769f0d29f04bbf925fc9720d1d5c25ab33e
+
+  - candidate_id: linx_key_recommended
+    repository: LINX
+    revision: ec2e9d2ca455e8204137e884da29f5dd13a638fa
+    license: MIT
+    collection: key_recommended
+    mapping_status: filename_token_candidate_only
+    numerical_prior_credit: false
+    reactions:
+      dp_gamma_he3:
+        path: linx/data/nuclear_rates/key_recommended/dpHe3g.txt
+        sha256: b5c410b91daaef1d4fe4b3c349f615fa9fa0a7a013a98b28b2e295574c0b4906
+      dd_n_he3:
+        path: linx/data/nuclear_rates/key_recommended/ddHe3n.txt
+        sha256: 3c7aed50f298501e60279782ae638e6799c4247d265e43075a2ad2fd46225d7d
+      dd_p_t:
+        path: linx/data/nuclear_rates/key_recommended/ddtp.txt
+        sha256: bd9acc42dcccb9de167cc78b19e8d91c51b0f8ee5bbc2c0e155d2bd69344cc45
+
+  - candidate_id: prymordial_key_nacreii_rates
+    repository: PRyMordial
+    revision: 725d8a8db3ad5ea2630580d825c9d0d69ed76533
+    license: GPL-3.0
+    collection: key_nacreii_rates
+    mapping_status: filename_token_candidate_only
+    numerical_prior_credit: false
+    reactions:
+      dp_gamma_he3:
+        path: PRyMrates/nuclear/key_nacreii_rates/dpHe3g.txt
+        sha256: 106257cf5031591f61089e431e669aa819a89d5ba56a61e75f89cb3e493ab059
+      dd_n_he3:
+        path: PRyMrates/nuclear/key_nacreii_rates/ddHe3n.txt
+        sha256: f3117c23328272515fef93dfcf3a7918881e1cf2ce9584151f31676e18fb72ee
+      dd_p_t:
+        path: PRyMrates/nuclear/key_nacreii_rates/ddtp.txt
+        sha256: 39c2ed86b6b0c3c9003111bce39df31e332f93d6d337a1221fc7ac3b72535184
+
+  - candidate_id: prymordial_key_primat_rates
+    repository: PRyMordial
+    revision: 725d8a8db3ad5ea2630580d825c9d0d69ed76533
+    license: GPL-3.0
+    collection: key_primat_rates
+    mapping_status: filename_token_candidate_only
+    numerical_prior_credit: false
+    reactions:
+      dp_gamma_he3:
+        path: PRyMrates/nuclear/key_primat_rates/dpHe3g.txt
+        sha256: 286148ae9b9605e41083937dcc91c2395033b8fb6c9221abcf2f25f860eef347
+      dd_n_he3:
+        path: PRyMrates/nuclear/key_primat_rates/ddHe3n.txt
+        sha256: 4804d937668dfb8d9e5eedb8dfd46f39f48306771487625a77ebd26e6d30fbf4
+      dd_p_t:
+        path: PRyMrates/nuclear/key_primat_rates/ddtp.txt
+        sha256: 516038fc7fb4e0b526c7a239efd20437bbeb2f3c5daf734d5d0478320d568790
+
+  - candidate_id: primat_primat
+    repository: PRIMAT
+    revision: 21ff8f39fa18e3937e9fdf386cfa982361bfdfce
+    license: GPL-3.0-or-later
+    collection: primat
+    mapping_status: filename_token_candidate_only
+    numerical_prior_credit: false
+    reactions:
+      dp_gamma_he3:
+        path: primat/data/nuclear/tables/d_p__He3_g/d_p__He3_g_primat.txt
+        sha256: 90e2ca25dd9b4f801432678203aad21a02a3d09b6746096639becf04ab2cad55
+      dd_n_he3:
+        path: primat/data/nuclear/tables/d_d__He3_n/d_d__He3_n_primat.txt
+        sha256: bef7f3a63fc39b4a89d24c71a0d60b18bbf7321a6b19f4f5e010d97590b93ebb
+      dd_p_t:
+        path: primat/data/nuclear/tables/d_d__t_p/d_d__t_p_primat.txt
+        sha256: 2c532f0018f51ba124313107eb25fdf35a088ef7a2b81c6c892b775a250c18d4
+
+  - candidate_id: primat_parthenope3_0
+    repository: PRIMAT
+    revision: 21ff8f39fa18e3937e9fdf386cfa982361bfdfce
+    license: GPL-3.0-or-later
+    collection: parthenope3_0
+    mapping_status: filename_token_candidate_only
+    numerical_prior_credit: false
+    reactions:
+      dp_gamma_he3:
+        path: primat/data/nuclear/tables/d_p__He3_g/d_p__He3_g_parthenope3.0.txt
+        sha256: 44a6c1722eece235c410d6469611b262ee54b4d957023cfe2379ceb4f16d657e
+      dd_n_he3:
+        path: primat/data/nuclear/tables/d_d__He3_n/d_d__He3_n_parthenope3.0.txt
+        sha256: f99110cc1a46bd8f51c4f2aef277a318ae2a1cf3f6ed35a7e02a2033c49d0195
+      dd_p_t:
+        path: primat/data/nuclear/tables/d_d__t_p/d_d__t_p_parthenope3.0.txt
+        sha256: b96ce119f7f30ca003dafbd51e5b46a00687e427654fb92012e027bafd837d94
+
+  - candidate_id: abcmb_bundled_linx_key_primat_2023
+    repository: ABCMB
+    revision: 5eabbab4ed7e53f264e16024743d1ba517845c37
+    license: MIT
+    collection: bundled_linx_key_PRIMAT_2023
+    mapping_status: filename_token_candidate_only
+    numerical_prior_credit: false
+    reactions:
+      dp_gamma_he3:
+        path: abcmb/linx/data/nuclear_rates/key_PRIMAT_2023/dpHe3g.txt
+        sha256: 02b0a3456b83b4a87991fce23b7d3009de3b43b4df0d441c6c5d9efce923f8ce
+      dd_n_he3:
+        path: abcmb/linx/data/nuclear_rates/key_PRIMAT_2023/ddHe3n.txt
+        sha256: 2f25eb6683970d85f04ab9be6f5534391f697cb88c89bc0e4065a87d899718c5
+      dd_p_t:
+        path: abcmb/linx/data/nuclear_rates/key_PRIMAT_2023/ddtp.txt
+        sha256: 13f3b6962a7171b08758ba73016a8769f0d29f04bbf925fc9720d1d5c25ab33e
+
+copied_lineage_groups:
+  - lineage_id: linx_and_abcmb_bundled_linx_key_primat_2023
+    candidate_ids:
+      - linx_key_primat_2023
+      - abcmb_bundled_linx_key_primat_2023
+    sha256_values:
+      - 02b0a3456b83b4a87991fce23b7d3009de3b43b4df0d441c6c5d9efce923f8ce
+      - 2f25eb6683970d85f04ab9be6f5534391f697cb88c89bc0e4065a87d899718c5
+      - 13f3b6962a7171b08758ba73016a8769f0d29f04bbf925fc9720d1d5c25ab33e
+    independent_nuclear_evidence: false
+
+source_selection_checklist:
+  - id: underlying_primary_publication_and_data_release
+    status: pending
+  - id: table_column_and_temperature_semantics
+    status: pending
+  - id: central_curve_units_and_grid
+    status: pending
+  - id: scalar_sigma_T_or_posterior_draw_definition
+    status: pending
+  - id: shared_normalization_and_cross_reaction_covariance
+    status: pending
+  - id: detailed_balance_and_reverse_rate_mapping
+    status: pending
+  - id: solver_internal_rate_id_and_nuisance_transform
+    status: pending
+  - id: plus_minus_one_regression
+    status: pending
+  - id: redistribution_and_derived_data_license_review
+    status: pending
+  - id: A03_nuclear_data_review
+    status: pending
+  - id: A00_scientific_signoff
+    status: pending
+  - id: A09_independent_validation
+    status: pending
+
+freeze_rule: >-
+  This audit may be marked complete as provenance preparation, but
+  UQ0-R0-RATE-PRIOR remains pending until a reviewed numerical source package,
+  mappings, regressions, correlation policy and required signoffs satisfy the
+  Stage-0 contract.

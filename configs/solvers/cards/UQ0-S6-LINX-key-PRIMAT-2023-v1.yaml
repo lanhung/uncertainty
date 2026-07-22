@@ -1,0 +1,75 @@
+schema_version: 1
+card_id: UQ0-S6-LINX-key-PRIMAT-2023-v1
+task_id: UQ0-PUBLIC-SOLVER-BASELINES
+matrix_id: S6
+status: accepted_for_uq0_public_forward_baseline
+
+source:
+  repository: https://github.com/cgiovanetti/LINX
+  release: v0.1.2
+  revision: ec2e9d2ca455e8204137e884da29f5dd13a638fa
+  license: MIT
+  license_sha256: 8f1ee40b1b13d0c5710438ae9db3bfde4f61582c75cfa744ddf90439a5a35f92
+
+environment:
+  precision: float64
+  lock: environments/linx-v0.1.2/uv.lock
+  lock_sha256: 98c8f6de35dfdf7147857a3c28153b10f3ad7d424cb9faeea15de75cacd27556
+  jax: 0.4.28
+  network: key_PRIMAT_2023
+
+accepted_configuration:
+  config: configs/benchmarks/linx_convergence_rerun_v4.yaml
+  config_sha256: 3e355f4e3cd9a55b0e790689801fe654da4a4298a27f9dcee795748929ace1fb
+  rtol: 1.0e-8
+  atol: 1.0e-11
+  sampling_nTOp: 2400
+  max_steps: 16384
+  accepted_scope: frozen_standard_fiducial_scalar_and_identical_input_native_batch
+
+outputs:
+  Y_p:
+    artifact_key: scalar_abundances.YPBBN
+    value: 0.24665653167658091
+    unit: dimensionless
+  D_over_H:
+    artifact_key: scalar_abundances.DoH
+    value: 2.4417232840590098e-5
+    unit: dimensionless_number_ratio
+
+runtime:
+  cold_scalar_compile_and_solve_seconds: 33.90787837281823
+  warm_scalar_median_seconds_per_point: 2.34754978120327
+  cold_native_batch_compile_and_solve_seconds: 60.81560732424259
+  warm_native_batch_64_median_seconds: 6.077125994488597
+  wall_seconds: 668.4124813359231
+  cpu_core_hours: 0.2641883301688889
+  gpu_hours: 0.0
+  structured_failure_count: 0
+
+structured_failure_contract:
+  format: json_lines
+  implementation: scripts/linx_batch_tolerance_scan.py
+  ledger: artifacts/numerical/LINX-CONVERGENCE-RERUN-v4/run-20260722T0722Z/failures.jsonl
+  ledger_sha256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  required_failure_fields: [case_id, error, traceback]
+  nonfinite_policy: reject
+
+evidence:
+  manifest:
+    path: artifacts/numerical/LINX-CONVERGENCE-RERUN-v4/run-20260722T0722Z/run_manifest.json
+    sha256: 9b73db16b068442a41da19fd192d4fd10254a6a0355ec4aef6354c671c574287
+    source_revision_field: source_revision
+    config_hash_field: scan_config_sha256
+  result:
+    path: artifacts/numerical/LINX-CONVERGENCE-RERUN-v4/run-20260722T0722Z/scan_results.json
+    sha256: 52d691302a14eb3abde1b9cc68e2d15c8be0b43403794701e234e8d671e0938d
+  resources:
+    path: artifacts/numerical/LINX-CONVERGENCE-RERUN-v4/run-20260722T0722Z/resource_report.json
+    sha256: 52f9e264de4d2c7468955883e11a1e20cdba84b5ecb5e67d352c08972ff73f4c
+
+limitations:
+  - Acceptance is local to the frozen standard-BBN point.
+  - The prior 45-of-45 gradient acceptance audit failed structurally; gradients and HMC are prohibited.
+  - Nuclear-rate nuisance mappings and z=0,+/-1 regressions are not yet executed.
+  - Parameter-region accuracy and cross-solver fidelity are not established.

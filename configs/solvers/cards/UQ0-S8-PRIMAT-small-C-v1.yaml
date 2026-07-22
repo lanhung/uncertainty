@@ -1,0 +1,70 @@
+schema_version: 1
+card_id: UQ0-S8-PRIMAT-small-C-v1
+task_id: UQ0-PUBLIC-SOLVER-BASELINES
+matrix_id: S8
+status: accepted_for_uq0_public_forward_baseline
+
+source:
+  repository: https://github.com/CyrilPitrou/primat
+  release: v0.3.2
+  revision: 21ff8f39fa18e3937e9fdf386cfa982361bfdfce
+  license: GPL-3.0-or-later
+  license_sha256: d07bf30b88a4239ca0ffa5124454d22f8ca27f66d578f8dd7ad7a805ee422020
+
+environment:
+  precision: float64
+  lock: environments/solver-cpu/uv.lock
+  lock_sha256: 45f60efbea16955ae3ca2740d6d55e9ae969fe9a5e33d5ef9d71d92d12f3c723
+  backend: compiled_c_extension_from_exact_checkout
+  network: small
+
+accepted_configuration:
+  config: configs/benchmarks/why_not_existing_solvers_v1.yaml
+  config_sha256: 4acf990cd6ce9ced9a905d827e54711e4d0fcb35fc467aec82f29e50d99f6078
+  accepted_scope: frozen_standard_fiducial_sequential_forward
+
+outputs:
+  Y_p:
+    artifact_key: abundances.YPBBN
+    value: 0.24695513077748688
+    unit: dimensionless
+  D_over_H:
+    artifact_key: abundances.DoH
+    value: 2.4447361728164994e-5
+    unit: dimensionless_number_ratio
+
+runtime:
+  cold_solve_seconds: 0.1790469065308571
+  warm_scalar_median_seconds_per_point: 0.06387380324304104
+  warm_sequential_batch_64_median_seconds: 4.104405495338142
+  wall_seconds: 127.21875890344381
+  cpu_core_hours: 0.03771815330916667
+  gpu_hours: 0.0
+  structured_failure_count: 0
+
+structured_failure_contract:
+  format: json_lines
+  implementation: scripts/why_not_benchmark.py
+  ledger: artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W2-PRIMAT/run-20260722T0535Z/failures.jsonl
+  ledger_sha256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  required_failure_fields: [batch_size, error, kind, repetition, traceback]
+  nonfinite_policy: reject
+
+evidence:
+  manifest:
+    path: artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W2-PRIMAT/run-20260722T0535Z/run_manifest.json
+    sha256: 5ea0ca84f87ce98443363398fd2fd940d9d244c2dda7f517df2bfae2d322bd59
+    source_revision_field: source_revision
+    config_hash_field: config_sha256
+  result:
+    path: artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W2-PRIMAT/run-20260722T0535Z/runtime_summary.json
+    sha256: dfbfff9536cc16aa592786a38a41c4e5eb664faa9e4333f829e1b38080c7419f
+  resources:
+    path: artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W2-PRIMAT/run-20260722T0535Z/resource_report.json
+    sha256: 405c44f4e6d863866f3c71c5f79a08a35377bd3144032963db3ca068c054a837
+
+limitations:
+  - The accepted baseline is the public small-network C backend at one standard point.
+  - R0 nuisance mappings and plus/minus perturbation regressions remain pending.
+  - Posterior-region, adversarial-point and cross-solver fidelity checks are not established.
+  - PRIMAT remains an independent reference path regardless of measured throughput.
