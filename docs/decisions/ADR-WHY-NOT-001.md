@@ -166,6 +166,12 @@ accepted, and an extended convergence scan is required. Raw runtime artifacts
 are registered under `artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/`; the
 follow-up is under `artifacts/numerical/LINX-BATCH-TOLERANCE-v1/`.
 
+An extended V2 scan retained the same plateau threshold. Five of its six cases,
+including the proposed production candidate, reached LINX's default
+`max_steps=4096`; both plateaus were therefore not evaluable. These are
+structured numerical failures, not missing records. The artifacts are under
+`artifacts/numerical/LINX-EXTENDED-CONVERGENCE-v2/`.
+
 Posterior-region, adversarial, extension and matched-posterior measurements
 remain pending. LINX's previously observed non-finite gradient also remains
 rejected. The answer to all four “why not” questions is therefore still

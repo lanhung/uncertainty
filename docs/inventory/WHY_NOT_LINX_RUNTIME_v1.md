@@ -60,6 +60,12 @@ observational standard deviations, versus the frozen `0.001` limit. Numerical
 consistency is therefore **not accepted**. See
 `docs/inventory/LINX_BATCH_TOLERANCE_v1.md`.
 
+The separately frozen V2 extension then tested tighter tolerances and up to
+2400 weak-rate interpolation points. Only `rtol=1e-7`, `atol=1e-10` completed;
+all five cases at `rtol <= 3e-8` reached LINX's default `max_steps=4096` and
+failed explicitly. Neither plateau was evaluable. See
+`docs/inventory/LINX_EXTENDED_CONVERGENCE_v2.md`.
+
 The earlier upstream value-and-gradient smoke also contained a `NaN` component.
 Forward runtime does not override that failure. LINX is not yet an accepted
 gradient/HMC baseline.
@@ -68,5 +74,5 @@ gradient/HMC baseline.
 
 This completes W0's standard-fiducial runtime slice only. Scalar-rate checks,
 an accepted Jacobian, posterior recovery, extension implementation, total
-workload projection and an extended convergence scan remain open. The WHY-NOT
-conclusion is still undetermined.
+workload projection and a pre-registered maximum-step diagnostic remain open.
+The WHY-NOT conclusion is still undetermined.
