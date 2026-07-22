@@ -49,6 +49,9 @@ The preregistered eight-case follow-up completed as
 tolerance and weak-rate sampling plateaus failed the frozen `0.001 sigma`
 limit. The path therefore remains numerically unaccepted for gradients, Fisher
 calculations or posterior claims; an extended convergence protocol is required.
+That protocol is frozen as
+`configs/benchmarks/abcmb_linx_extended_convergence_v2.yaml`; it preserves the
+failed V1 limits and remains measurement-pending.
 
 ## Scientific boundary
 

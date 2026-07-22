@@ -225,6 +225,48 @@ def test_abcmb_scan_is_frozen_to_parent_component_and_same_thresholds() -> None:
     }
 
 
+def test_abcmb_v2_extends_both_axes_without_relaxing_v1_thresholds() -> None:
+    root = Path(__file__).resolve().parents[2]
+    v1 = yaml.safe_load(
+        (root / "configs/benchmarks/abcmb_linx_batch_consistency_v1.yaml").read_text()
+    )
+    v2 = yaml.safe_load(
+        (root / "configs/benchmarks/abcmb_linx_extended_convergence_v2.yaml").read_text()
+    )
+    cases = {case["id"]: case for case in v2["cases"]}
+
+    assert v2["status"] == "protocol_frozen_measurements_pending"
+    assert v2["parent_scan"] == v1["scan_id"]
+    assert v2["parent_result"] == "complete_not_accepted"
+    assert v2["source_revision"] == v1["source_revision"]
+    assert v2["bundled_linx_tree"] == v1["bundled_linx_tree"]
+    assert v2["background_numerics"] == v1["background_numerics"]
+    assert (
+        v2["acceptance"]["maximum_scalar_batch_difference_observation_sigma"]
+        == (v1["acceptance"]["maximum_scalar_batch_difference_observation_sigma"])
+    )
+    assert (
+        v2["acceptance"]["maximum_plateau_difference_observation_sigma"]
+        == (v1["acceptance"]["maximum_plateau_difference_observation_sigma"])
+    )
+    assert cases["production_candidate"] == {
+        "id": "production_candidate",
+        "group": "joint_candidate",
+        "rtol": 1.0e-8,
+        "atol": 1.0e-11,
+        "sampling_nTOp": 2400,
+        "max_steps": 16384,
+    }
+    assert all(case["max_steps"] == 16384 for case in cases.values())
+    assert v2["acceptance"]["plateau_pairs"] == {
+        "tolerance": ["tolerance_3e-8_sampling_2400", "production_candidate"],
+        "weak_rate_sampling": [
+            "sampling_1200_tolerance_1e-8",
+            "production_candidate",
+        ],
+    }
+
+
 def test_scan_direct_script_cli_works_outside_repository(tmp_path: Path) -> None:
     root = Path(__file__).resolve().parents[2]
     completed = subprocess.run(
