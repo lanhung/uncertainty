@@ -1,0 +1,25 @@
+schema_version: 2
+scan_id: ABCMB-LINX-EXTENDED-CONVERGENCE-v2
+source_revision: 5eabbab4ed7e53f264e16024743d1ba517845c37
+bundled_linx_tree: 59b3ab7b3ada7d7ff6484920e0e29291cf4a084e
+registered_runs: 1
+runs:
+  - run: run-20260722T134322Z
+    status: complete_accepted_narrow_scope
+    cases_completed: 6
+    timing_records: 48
+    failed_cases: 0
+    decision:
+      scalar_batch_candidate_budget: passed
+      tolerance_plateau: passed
+      weak_rate_sampling_plateau: passed
+      numerical_consistency: accepted
+    production_candidate:
+      rtol: 1.0e-8
+      atol: 1.0e-11
+      sampling_nTOp: 2400
+      max_steps: 16384
+    scientific_use: standard_fiducial_scalar_native_batch_consistency_only
+full_abcmb_pipeline_status: not_run
+why_not_conclusion: undetermined
+scientific_task_progress_credit: 0

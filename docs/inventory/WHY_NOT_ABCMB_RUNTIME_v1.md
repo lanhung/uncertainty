@@ -1,6 +1,6 @@
 # WHY-NOT ABCMB bundled-LINX standard-fiducial runtime v1
 
-Status: component runtime slice complete; scalar/native-batch discrepancy and full joint pipeline pending
+Status: component runtime and standard-point numerical consistency accepted; full joint pipeline pending
 
 Captured: 2026-07-22
 
@@ -37,7 +37,7 @@ The scalar call returned `Y_P(BBN) = 0.2468898255`, `D/H =
 2.4422658302e-5`, and `N_eff = 3.0443606112`. These values are retained as
 solver outputs, not as a goodness-of-fit or solver-acceptance claim.
 
-## Open numerical discrepancy
+## Numerical consistency follow-up
 
 The native batch result was not identical to the scalar result at the same
 input. The maximum absolute difference was `1.5777656725834976e-6`, dominated
@@ -47,11 +47,16 @@ reproducible, but it does not make this difference scientifically acceptable.
 The preregistered eight-case follow-up completed as
 `run-20260722T113106Z`. Its candidate scalar/batch budget passed, but its
 tolerance and weak-rate sampling plateaus failed the frozen `0.001 sigma`
-limit. The path therefore remains numerically unaccepted for gradients, Fisher
-calculations or posterior claims; an extended convergence protocol is required.
-That protocol is frozen as
-`configs/benchmarks/abcmb_linx_extended_convergence_v2.yaml`; it preserves the
-failed V1 limits and remains measurement-pending.
+limit. The path therefore remained numerically unaccepted for gradients,
+Fisher calculations or posterior claims until an extended convergence
+protocol ran. That protocol was frozen as
+`configs/benchmarks/abcmb_linx_extended_convergence_v2.yaml`; it preserved the
+failed V1 limits. Its six-case run `run-20260722T134322Z` completed with zero
+failures. The tolerance plateau was `0.000387133 sigma` and the weak-rate
+sampling plateau was `0.000771123 sigma`, both below the unchanged
+`0.001 sigma` limit; candidate scalar/native-batch differences and both
+zero-drift checks also passed. This accepts only the standard-point bundled-
+LINX numerical candidate, not gradients, Fisher calculations or posteriors.
 
 ## Scientific boundary
 
