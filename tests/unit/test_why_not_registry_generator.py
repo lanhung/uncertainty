@@ -19,6 +19,7 @@ BENCHMARK_ROOT = ROOT / "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1"
         ("W0-LINX", "run-20260722T0605Z"),
         ("W1-PRYM", "run-20260722T0753Z"),
         ("W2-PRIMAT", "run-20260722T0535Z"),
+        ("W3-ABCMB", "run-20260722T1118Z"),
     ],
 )
 def test_generator_reproduces_committed_runtime_registries(baseline: str, run: str) -> None:

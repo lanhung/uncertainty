@@ -1,0 +1,16 @@
+schema_version: 1
+baseline: W3-ABCMB
+source_revision: 5eabbab4ed7e53f264e16024743d1ba517845c37
+registered_runtime_slices: 1
+slices:
+- scenario: standard_fiducial
+  status: complete
+  run: run-20260722T1118Z
+  scientific_use: registered_standard_fiducial_runtime_slice_only
+  limitations:
+  - bundled_linx_component_only_not_full_abcmb_pipeline
+  - cmb_fisher_hmc_and_gradient_contracts_not_exercised
+  - posterior_recovery_pending_old_likelihood_assets
+  - nonstandard_point_pending_extension_contract
+full_baseline_status: incomplete
+why_not_conclusion: undetermined
