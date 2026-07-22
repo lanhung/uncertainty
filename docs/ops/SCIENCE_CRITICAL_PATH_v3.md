@@ -1,107 +1,201 @@
-# Science critical path v3 — BBN nuclear-rate uncertainty only
+# Science critical path v3.1 — BBN nuclear-rate uncertainty only
 
 > Effective date: 2026-07-23  
-> Governing decision: `docs/decisions/ADR-0006-uncertainty-core-refocus.md`  
-> Scientific scope: `docs/science/UNCERTAINTY_SCOPE_v1.md`
+> Governing decisions: `ADR-0006-uncertainty-core-refocus.md`, `ADR-0007-frontier-literature-2026-07.md`  
+> Scientific scope: `docs/science/UNCERTAINTY_SCOPE_v1.md`  
+> Frontier review: `docs/literature/FRONTIER_REVIEW_2026-07.md`
 
 ## 1. Deliverable
 
 The active project has one deliverable:
 
-> A self-contained, calibrated and computationally audited treatment of BBN nuclear-reaction-rate uncertainty, from solver perturbations to abundance distributions and cosmological posterior marginalization.
+> A self-contained, calibrated and computationally audited treatment of BBN nuclear-reaction-rate uncertainty, from current nuclear probability information and direct solver perturbations to joint abundance distributions and cosmological posterior marginalization.
 
 The separate JCAP stiff/SGWB manuscript is not part of this critical path.
 
-## 2. First scientific figure
+## 2. First scientific figure and first potentially new figure
 
-The first required paper-quality result is not a posterior corner plot and not a new neural-network architecture. It is a solver-grounded theoretical-band figure showing, at frozen cosmological inputs:
+### 2.1 First calibration figure
+
+The first required paper-quality calibration result is a solver-grounded theoretical-band figure showing, at frozen cosmological inputs:
 
 - central abundance curves;
 - Monte Carlo 68% and 95% bands from physical rate perturbations;
 - convergence of those bands with nuisance sample count;
 - cross-abundance correlations;
-- comparison of direct Monte Carlo with a constant-`sigma_th` approximation.
+- comparison of direct Monte Carlo with a constant-`C_th` approximation.
 
-Until this figure and its machine-readable data exist, no production emulator campaign is authorized.
+This figure is necessary but not novel by itself; Monte Carlo BBN bands already exist.
 
-## 3. Phase U0 — scope, solvers and priors
+### 2.2 First potentially new figure
 
-### U0-SCOPE-FREEZE
+The first figure that can support a new claim compares, over a frozen domain:
 
-- freeze the variables `theta`, `z`, weak nuisances, abundance conventions and units;
+```text
+actual/posterior nuclear-rate PDFs
+vs scalar log-normal approximation
+vs fixed post-hoc C_th
+```
+
+and reports the resulting joint abundance quantiles, covariance, tails and posterior risk. Until these data products exist, no production emulator campaign is authorized.
+
+## 3. Phase P0 — frontier freeze
+
+### P0-FRONTIER-2026-07
+
+Freeze and sign:
+
+- `FRONTIER_REVIEW_2026-07.md`;
+- the updated competitor matrix and novelty clearance;
+- `frontier_sources_2026-07.yaml`;
+- the claim blacklist;
+- the mandatory direct and SBI baseline set.
+
+The review establishes that native PRIMAT Monte Carlo, PRyMordial marginalization, LINX rate nuisances, standard sensitivity rankings, GP deuterium rates and nuisance-marginal SBI must be reproduced or benchmarked rather than rediscovered.
+
+## 4. Phase UQ0 — current nuclear PDFs, direct baselines and priors
+
+### UQ0-SCOPE-FREEZE
+
+- freeze variables `theta`, scalar `z`, original nuclear draw `u`, weak nuisances and abundance conventions;
 - freeze model labels `U-M0` through `U-M6`;
-- specify which outputs are primary in each stage;
-- confirm the JCAP manuscript is non-blocking and out of scope.
+- confirm that ETR25 actual-PDF versus log-normal comparison is part of R0;
+- confirm that the JCAP manuscript remains out of scope.
 
-### U0-PUBLIC-SOLVER-BASELINES
+### UQ0-PUBLIC-SOLVER-BASELINES
 
-Establish at least three executable, pinned paths from:
+Pin and execute the primary three paths:
 
 ```text
-LINX
-PRyMordial
 PRIMAT
-PArthENoPE
-AlterBBN
+PRyMordial
+LINX
 ```
 
-At minimum, each accepted path must return `Y_p` and `D/H`, structured failures, runtime and source/config hashes. Four-abundance support is added when the selected path can provide it reproducibly.
+PArthENoPE and AlterBBN are later precision/engineering checks. At minimum, each accepted path returns `Y_p` and `D/H`, structured failures, runtime and source/config hashes.
 
-### U0-RATE-PRIOR-R0
+### UQ0-ETR25-R0-INGEST
 
-Register:
+For:
 
 ```text
-d(p,gamma)3He
-d(d,n)3He
-d(d,p)t
+d(p,gamma)3He       ETR25 Table 6
+d(d,n)3He           ETR25 Table 7
+d(d,p)t             ETR25 Table 8
 ```
 
-For every rate record central curve, temperature grid, units, uncertainty representation, covariance status, forward/reverse mapping, solver IDs, source revision and checksum.
+capture:
 
-### U0-WEAK-PRIOR
+- paper, Zenodo and repository identifiers;
+- exact downloadable files, revisions and checksums;
+- temperature grids and units;
+- low/median/high actual percentiles;
+- factor uncertainties and their log-normal interpretation;
+- available original posterior or nuclear-input products;
+- missing cross-reaction covariance.
+
+### UQ0-RATE-PDF-AUDIT
+
+For each R0 reaction:
+
+- measure low/median/high asymmetry versus temperature;
+- compare actual/posterior quantiles with the scalar log-normal approximation;
+- identify the BBN-relevant temperature interval;
+- validate coherent rate-curve draws;
+- prohibit independent random noise at each temperature bin;
+- record whether the scalar model is adequate or must remain a competing approximation.
+
+### UQ0-R0-RATE-PRIOR
+
+Freeze the accepted actual/posterior model and scalar baseline, including solver mappings, reverse-rate handling and missing-correlation stress tests.
+
+### UQ0-WEAK-PRIOR
 
 Register neutron lifetime and weak normalization separately. Do not count the same weak uncertainty twice.
 
-## 4. Phase U1 — direct Monte Carlo bands
+### UQ0-NUISANCE-ADAPTER and PLUSMINUS regression
 
-### U1-MC-FIDUCIAL-1K
+Implement:
+
+```text
+simulate(theta, rate_draw, tau_n, solver, network, precision) -> y, status, provenance
+```
+
+and validate:
+
+- central values;
+- scalar `z=+/-1`;
+- coherent source-posterior curves;
+- units and reverse mappings;
+- deterministic seeds;
+- structured failures.
+
+### UQ0-NATIVE-UQ-REPRO
+
+Before custom production, reproduce:
+
+1. PRIMAT native `run_mc()` / `mc_uncertainty()`;
+2. PRyMordial explicit rate marginalization;
+3. LINX central and `nuclear_rates_q` perturbations;
+4. one R0 sensitivity-atlas slice;
+5. the structure of the 2026 GP deuterium prior.
+
+These are calibration baselines, not novelty claims.
+
+## 5. Phase UQ1 — direct abundance distributions
+
+### UQ1-FIDUCIAL-MC-1K
 
 At a frozen standard-BBN point:
 
-- draw 1,000 nuisance vectors from the registered prior;
-- run the direct solver;
-- preserve every failure and seed;
-- compute abundance quantiles, covariance, skewness and correlations;
-- measure cost and throughput.
+- draw 1,000 coherent nuclear-rate realizations;
+- preserve the source draw or nuisance vector, rate-curve hashes, seed, failure and runtime;
+- compute abundance quantiles, covariance, skewness, tails and correlations;
+- run at least one independent reference path.
 
-### U1-MC-CONVERGENCE
+### UQ1-MC-CONVERGENCE
 
-Compare cumulative results at at least:
+Compare cumulative results at:
 
 ```text
 N = 100, 300, 1,000
 ```
 
-and, if needed:
+and, only when required:
 
 ```text
 N = 3,000, 10,000.
 ```
 
-Stop when the preregistered quantile/covariance tolerances are met. Do not run a larger sample solely because the original concept document mentioned `10^5`.
+Stop when preregistered quantile/covariance/tail tolerances are met. Do not run `10^5` solely because the original concept note mentioned it.
 
-### U1-SCHRAMM-BANDS
+### UQ1-RATE-PDF-PROPAGATION
 
-Produce central, 68% and 95% bands over a baryon-density or equivalent standard-BBN slice. Validate at selected points with a second solver/rate compilation.
+Compare three representations under matched central physics:
 
-### U1-POSTHOC-SIGMA-AUDIT
+1. actual or original-posterior rate draws;
+2. scalar log-normal envelope;
+3. solver-distributed legacy low/high representation.
 
-Construct the best possible constant theoretical covariance from the fiducial sample and document exactly what information it discards.
+Report the difference in the joint abundance distribution, not only one-dimensional standard deviations.
 
-## 5. Phase U2 — theta dependence and formal gate
+### UQ1-SCHRAMM-BANDS
 
-### U2-COVARIANCE-SMOKE-16
+Produce central, 68% and 95% bands over a baryon-density or equivalent standard-BBN slice. Validate selected points with a second solver/rate compilation. Label this as a reproduction/calibration result unless a new distributional effect is demonstrated.
+
+### UQ1-POSTHOC-SIGMA-AUDIT
+
+Construct the best possible constant theoretical covariance from the fiducial sample and document exactly what it discards:
+
+- parameter dependence;
+- cross-abundance correlation;
+- skewness and tails;
+- rate-PDF model dependence;
+- solver/rate-library discreteness.
+
+## 6. Phase UQ2 — parameter dependence, novelty and production gate
+
+### UQ2-COVARIANCE-SMOKE-16
 
 At 16 frozen cosmological points, measure:
 
@@ -109,62 +203,86 @@ At 16 frozen cosmological points, measure:
 - `C_rate(theta)`;
 - cross-abundance correlations;
 - skew/tail diagnostics;
-- finite-difference responses to the R0 rates and weak nuisances;
-- solver/rate-library differences.
+- actual-PDF versus scalar-lognormal differences;
+- finite-difference responses to R0 rates and weak nuisances;
+- matched solver/rate-library differences.
 
-This is an engineering and effect-size smoke, not a publication claim.
+This is an effect-size smoke, not a publication claim.
 
-### U2-FISHER64
+### UQ2-FISHER64
 
-Freeze 64 points before execution. Include standard region, observationally relevant region, degeneracy directions, boundaries and failure-critical points. Use symmetric finite differences at two step sizes and validated autodiff where available.
+Freeze 64 points before execution. Include the standard region, observationally relevant region, degeneracy directions, boundaries and failure-critical points. Use symmetric finite differences at two step sizes and validated autodiff where available.
 
-### U2-GATE-REPORT
+### UQ2-DIRECT-ECONOMICS
 
-Issue one decision:
+Measure complete registered workloads for:
 
-- `G0`: bands effectively constant and inference changes below thresholds; stop production scaling;
-- `G1`: modest theta dependence or posterior effect; authorize targeted labels only;
-- `G2`: important nonlinearity, covariance drift, posterior shift or ranking change; authorize model/data expansion;
-- `G3`: qualitative decision change or strong solver disagreement; authorize independent red team and high-impact route.
+- PRIMAT native MC;
+- PRyMordial explicit marginalization;
+- LINX direct/differentiable inference;
+- repeated posterior analyses;
+- 1,000 SBC replicates.
 
-## 6. Phase U3 — learned models
+Count labels, failures, CPU-core-hours, GPU-hours, wall time and monetary cost.
 
-Only after `G1+`:
+### UQ2-METHOD-BASELINE-MANIFEST
 
-### U3-FORWARD-EMU
-
-Train a deterministic conditional baseline
-
-```text
-(theta, z, tau_n) -> y.
-```
-
-Start with a modest MLP/residual network. Record learning curves versus high-fidelity calls.
-
-### U3-MARGINAL-DIST
-
-Learn
+Before authorizing learned models, freeze the comparison set:
 
 ```text
-p(y | theta)
+deterministic conditional MLP
+heteroscedastic multivariate Gaussian
+ensemble
+mixture or calibrated quantile model
+TMNRE / AMNRE-style marginal ratio estimation
+neural likelihood or flow only if required
+posterior SBC and local calibration
 ```
 
-only when direct Monte Carlo shows that a distributional model is required. Compare Gaussian/heteroscedastic, mixture and flow baselines before adopting a complex architecture.
+### UQ2-GATE-REPORT
 
-### U3-CALIBRATION
+Issue one decision covering both physical novelty and method necessity:
+
+- `G0`: distributions effectively constant/near-Gaussian, `U-M1` adequate and direct tools affordable; stop scaling;
+- `G1`: modest parameter/PDF dependence or repeated-workload benefit; authorize targeted labels and simple baselines only;
+- `G2`: important covariance/tail/PDF drift, posterior shift or direct cost; authorize broader rates and learned distributions;
+- `G3`: qualitative inference change or strong matched solver disagreement; authorize independent red team and high-impact route.
+
+## 7. Phase UQ3 — learned models, only after G1+
+
+### UQ3-FORWARD-EMU
+
+Train a modest conditional baseline:
+
+```text
+(theta, z or u, tau_n) -> y.
+```
+
+Record learning curves versus high-fidelity calls.
+
+### UQ3-MARGINAL-DIST / RATIO
+
+Depending on the direct distribution and target:
+
+- use a multivariate Gaussian or mixture when sufficient;
+- learn `p(y|theta)` only when distribution diagnostics require it;
+- include TMNRE/AMNRE when the main target is a low-dimensional posterior with high-dimensional nuisances;
+- use flows/diffusion/Simformer-class models only for demonstrated complexity.
+
+### UQ3-CALIBRATION
 
 Validate:
 
 - held-out point accuracy;
-- conditional quantiles;
+- conditional quantiles and covariance;
 - 68%/95% coverage;
-- abundance covariance;
-- tail behavior;
-- OOD and fallback;
-- multiple seeds;
+- tails;
+- prior and posterior SBC;
+- multiple seeds/ensembles;
+- OOD and direct fallback;
 - direct-solver challenge points.
 
-## 7. Phase U4 — cosmological inference
+## 8. Phase UQ4 — cosmological inference
 
 Compare, using identical data and priors:
 
@@ -172,8 +290,8 @@ Compare, using identical data and priors:
 U-M0 central rates
 U-M1 constant post-hoc C_th
 U-M2 explicit/direct marginalization
-U-M3 forward emulator plus explicit z marginalization
-U-M4 learned p(y|theta)
+U-M3 forward emulator plus explicit nuisance marginalization
+U-M4 learned p(y|theta) or authorized marginal ratio model
 ```
 
 Primary outputs:
@@ -181,74 +299,78 @@ Primary outputs:
 - normalized posterior shifts;
 - credible-interval ratios;
 - posterior topology/mode changes;
-- posterior predictive coverage;
-- high-fidelity calls;
-- wall time, CPU/GPU hours and monetary cost.
+- posterior predictive and SBC coverage;
+- rate/weak/solver variance decomposition;
+- high-fidelity calls and full cost.
 
-## 8. Optional later extensions
+## 9. Optional later extensions
 
 The following are conditional, not active assumptions:
 
-- add `3He/H` and `7Li/H` core reactions;
+- add `3He/H` and `Li7/H` core reactions;
 - expand from R0 to 10–20 or full-network rates;
-- introduce function-valued S-factor/rate modes;
+- introduce function-valued S-factor/rate modes beyond already published deuterium GP baselines;
 - apply the framework to `Delta N_eff`, stiff expansion, reheating or SGWB;
-- develop multi-fidelity active learning;
+- develop nuisance-safe multi-fidelity active learning;
 - pursue Nature Astronomy, Nature Computational Science or Nature Machine Intelligence.
 
 Each requires a signed gate and a specific scientific or computational necessity.
 
-## 9. Compute policy
+## 10. Compute policy
 
-- One available AutoDL worker is sufficient for U0–U2; the second worker is optional capacity.
+- One available AutoDL worker is sufficient for P0–UQ2; the second worker is optional capacity.
 - Solver generation is primarily CPU/FP64 work; GPU availability does not define scientific progress.
 - Long jobs use heartbeat/checkpoint/resource lease.
 - Report solver calls, CPU-core-hours, GPU-hours, wall time and cost separately.
-- No Pilot-10k or larger production data set before `U2-GATE-REPORT`.
+- No Pilot-10k or larger production data set before `UQ2-GATE-REPORT`.
 
-## 10. Immediate 14-day sequence
+## 11. Immediate 14-day sequence
 
 ### Days 1–2
 
-- reconcile the UQ-only plan;
-- freeze R0 rate/weak schemas;
-- select the first executable direct path and independent check;
-- create the fixed standard-BBN point manifest.
+- reconcile plan version 4;
+- freeze and sign the July frontier artifacts;
+- capture ETR25 R0 files and exact provenance;
+- pin PRIMAT, PRyMordial and LINX;
+- create the frozen standard-BBN point manifest.
 
 ### Days 3–5
 
-- implement the nuisance adapter;
-- run deterministic `z=0` and `z=±1` regression tests;
-- run 100/300-draw shakedowns;
-- fix units, mappings and failure handling.
+- audit actual/posterior versus log-normal R0 rate representations;
+- reproduce PRIMAT native MC, PRyMordial and LINX uncertainty paths;
+- implement the common nuisance adapter;
+- run central, `z=+/-1` and coherent-curve regression tests.
 
 ### Days 6–8
 
-- execute `U1-MC-FIDUCIAL-1K`;
-- compute distribution and convergence diagnostics;
+- execute `UQ1-FIDUCIAL-MC-1K`;
+- compute convergence, joint covariance and tails;
+- compare rate-PDF representations;
 - produce the first theoretical-band data product.
 
 ### Days 9–10
 
 - complete Schramm bands;
-- compare direct bands with constant `C_th`;
+- compare direct joint distributions with constant `C_th`;
 - decide whether 3k/10k draws are necessary.
 
 ### Days 11–14
 
-- freeze and run the 16-point covariance smoke;
-- issue a provisional effect-size memo;
-- prepare the 64-point manifest without unblinding production significance.
+- freeze and run the 16-point covariance/PDF smoke;
+- issue a provisional effect-size and duplication-risk memo;
+- prepare the 64-point and method-baseline manifests.
 
-## 11. Definition of being unblocked
+## 12. Definition of being unblocked
 
-The project is scientifically moving when at least one of the following is true:
+The project is scientifically moving when at least one is true:
 
-- direct nuisance draws are actively producing registered labels;
-- convergence diagnostics are updating with sample count;
-- a Schramm theoretical band has been generated from solver truth;
-- `C_rate(theta)` is being measured at multiple points;
-- a learned model is being calibrated against direct distributions;
-- posterior treatments are being compared.
+- current nuclear probability products are being ingested and validated;
+- direct coherent-rate draws are producing registered labels;
+- convergence diagnostics update with sample count;
+- actual-PDF and scalar-lognormal abundance distributions are being compared;
+- a Schramm theoretical band exists from solver truth;
+- `C_rate(theta)` is measured at multiple points;
+- posterior treatments are compared;
+- an authorized learned model is calibrated against direct distributions.
 
-Creating additional governance documents, manuscript artifacts or unrelated solver audits does not by itself satisfy this definition.
+Creating additional governance documents, manuscript artifacts, generic model architectures or unrelated solver audits does not by itself satisfy this definition.
