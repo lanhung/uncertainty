@@ -47,6 +47,11 @@ UV_VERSION="0.11.28"
 UV_TOOL_ROOT="${PERSIST_ROOT}/tools/uv-${UV_VERSION}"
 UV_BIN="${UV_TOOL_ROOT}/bin/uv"
 if [[ ! -x "$UV_BIN" ]]; then
+  if [[ -e "$UV_TOOL_ROOT" ]]; then
+    QUARANTINE="${UV_TOOL_ROOT}.incomplete.$(date -u +%Y%m%dT%H%M%SZ).$$"
+    mv "$UV_TOOL_ROOT" "$QUARANTINE"
+    echo "quarantined incomplete uv bootstrap: $QUARANTINE" >&2
+  fi
   BOOTSTRAP_PYTHON=""
   # AutoDL's system Python may omit ensurepip/python3-venv. Prefer the
   # image-provided Miniconda interpreter only for this project-local uv
