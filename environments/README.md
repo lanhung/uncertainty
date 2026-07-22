@@ -28,3 +28,17 @@ project artifact storage. It never modifies a shared global Conda environment.
 The train environment is intentionally NVIDIA/Linux-specific. CUDA
 availability is mandatory for its worker smoke test. The solver environment
 forces JAX CPU execution and enables 64-bit mode.
+
+The frozen competitor environments are separate from the general solver lock.
+After `solver-cpu` passes, build one exact source path at a time with:
+
+```bash
+bash scripts/bootstrap_why_not_env.sh --baseline W0-LINX
+bash scripts/bootstrap_why_not_env.sh --baseline W1-PRYM
+bash scripts/bootstrap_why_not_env.sh --baseline W2-PRIMAT
+bash scripts/bootstrap_why_not_env.sh --baseline W3-ABCMB
+```
+
+These commands verify every source Git revision and write source-level smoke
+manifests. Smoke outputs are environment acceptance evidence, not registered
+runtime measurements and not scientific solver validation.
