@@ -150,6 +150,11 @@ The machine-readable specification is
 - a final `WHY_NOT_EXISTING_SOLVERS_v1.md` generated from measurements.
 
 No result may be entered manually without a corresponding run manifest.
+Every completed standard-fiducial runtime slice must also pass
+`scripts/validate_why_not_runtime.py`. The validator recomputes source/config/
+lock bindings, timing summaries, failure counts, successful-point counts and
+cost arithmetic. Its report certifies artifact integrity only; it cannot grant
+numerical, posterior or scientific acceptance.
 
 ## Current result
 
