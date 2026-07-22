@@ -1,7 +1,7 @@
 {
   "project": "uncertainty",
-  "generated_at": "2026-07-22T21:06:21+00:00",
-  "revision": 442,
+  "generated_at": "2026-07-22T21:09:18+00:00",
+  "revision": 451,
   "overall_progress": 0.21212121212121213,
   "overall_kind": "effort-weighted scientific program gate completion",
   "science_gate_progress": 0.21212121212121213,
@@ -28,7 +28,7 @@
     "done": 12,
     "cancelled": 27,
     "pending": 16,
-    "stale": 1
+    "running": 1
   },
   "tasks": [
     {
@@ -58,7 +58,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 25642.598754644394,
+      "heartbeat_age_s": 25819.425949811935,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -84,12 +84,14 @@
       "owner": "uncertainty-autodl-westb-01-elastic",
       "depends_on": [],
       "started_at": "2026-07-22T20:55:35+00:00",
-      "updated_at": "2026-07-22T21:01:09+00:00",
+      "updated_at": "2026-07-22T21:09:17+00:00",
       "finished_at": "2026-07-22T21:01:09+00:00",
       "declared_eta": null,
-      "message": "removed from desired-state plan",
+      "message": "ADR-0006 cancelled further generic ABCMB audit work. Retained the completed spectra-only component (1/4): five frozen cases accepted with zero warm-repeat drift; gradient/Fisher/recovery/HMC components were not run and receive no completion credit.",
       "artifacts": [
-        "configs/benchmarks/abcmb_full_component_audit_v1.yaml"
+        "configs/benchmarks/abcmb_full_component_audit_v1.yaml",
+        "artifacts/numerical/ABCMB-FULL-COMPONENT-AUDIT-v1/run-20260722T201836Z",
+        "docs/inventory/ABCMB_FULL_COMPONENT_AUDIT_v1.md"
       ],
       "metrics": {},
       "attempt": 1,
@@ -98,13 +100,21 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 312.598849773407,
+      "heartbeat_age_s": 1.4260270595550537,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
         {
           "label": "configs/benchmarks/abcmb_full_component_audit_v1.yaml",
           "url": "https://github.com/lanhung/uncertainty/blob/main/configs/benchmarks/abcmb_full_component_audit_v1.yaml"
+        },
+        {
+          "label": "artifacts/numerical/ABCMB-FULL-COMPONENT-AUDIT-v1/run-20260722T201836Z",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/numerical/ABCMB-FULL-COMPONENT-AUDIT-v1/run-20260722T201836Z"
+        },
+        {
+          "label": "docs/inventory/ABCMB_FULL_COMPONENT_AUDIT_v1.md",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/docs/inventory/ABCMB_FULL_COMPONENT_AUDIT_v1.md"
         }
       ]
     },
@@ -138,7 +148,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 3050.598965406418,
+      "heartbeat_age_s": 3227.4260835647583,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -168,12 +178,14 @@
       "owner": "autodl-container-9qk6ggtwem-6244361c",
       "depends_on": [],
       "started_at": "2026-07-22T20:55:35+00:00",
-      "updated_at": "2026-07-22T21:01:09+00:00",
+      "updated_at": "2026-07-22T21:09:17+00:00",
       "finished_at": "2026-07-22T21:01:09+00:00",
       "declared_eta": null,
-      "message": "removed from desired-state plan",
+      "message": "ADR-0006 cancelled further generic gradient work. Retained exact completed negative evidence at main 7f0294b: 45/45 acceptance records were structured failures, zero silent non-finite outputs, decision not_accepted; diagnostic only, no UQ science-gate credit.",
       "artifacts": [
-        "configs/benchmarks/linx_gradient_stability_v1.yaml"
+        "configs/benchmarks/linx_gradient_stability_v1.yaml",
+        "artifacts/numerical/LINX-GRADIENT-STABILITY-v1/run-20260722T195438Z",
+        "docs/inventory/LINX_GRADIENT_STABILITY_v1.md"
       ],
       "metrics": {},
       "attempt": 1,
@@ -182,13 +194,21 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 312.5990436077118,
+      "heartbeat_age_s": 1.4261329174041748,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
         {
           "label": "configs/benchmarks/linx_gradient_stability_v1.yaml",
           "url": "https://github.com/lanhung/uncertainty/blob/main/configs/benchmarks/linx_gradient_stability_v1.yaml"
+        },
+        {
+          "label": "artifacts/numerical/LINX-GRADIENT-STABILITY-v1/run-20260722T195438Z",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/numerical/LINX-GRADIENT-STABILITY-v1/run-20260722T195438Z"
+        },
+        {
+          "label": "docs/inventory/LINX_GRADIENT_STABILITY_v1.md",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/docs/inventory/LINX_GRADIENT_STABILITY_v1.md"
         }
       ]
     },
@@ -247,7 +267,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 312.59916496276855,
+      "heartbeat_age_s": 489.4262435436249,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -287,7 +307,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 27985.599280834198,
+      "heartbeat_age_s": 28162.426294088364,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -343,7 +363,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 44804.599383831024,
+      "heartbeat_age_s": 44981.426333904266,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -396,7 +416,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 76074.59946155548,
+      "heartbeat_age_s": 76251.42638587952,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -438,7 +458,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 76075.59951162338,
+      "heartbeat_age_s": 76252.4264690876,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -460,7 +480,7 @@
       "id": "P0-WHY-NOT-01",
       "title": "Complete direct-solver necessity and emulator-economics memo for the UQ workload",
       "phase": "P0",
-      "status": "stale",
+      "status": "running",
       "weight": 2.0,
       "unit": "memos",
       "current": 0.0,
@@ -470,10 +490,10 @@
         "P0-LIT-01"
       ],
       "started_at": "2026-07-22T02:49:40+00:00",
-      "updated_at": "2026-07-22T20:15:32+00:00",
+      "updated_at": "2026-07-22T21:09:18+00:00",
       "finished_at": null,
       "declared_eta": null,
-      "message": "Public baseline rate-table provenance is now hash-bound (21 files, four exact repositories), but this is source/input provenance only and supplies no posterior/HMC or emulator-necessity conclusion; WHY-NOT completion remains unchanged.",
+      "message": "Historical LINX/ABCMB evidence is retained at main 7f0294b. Under ADR-0006, WHY-NOT remains active only for nuclear-rate UQ necessity and direct-solver economics; neither the negative gradient audit nor the spectra component completes that memo.",
       "artifacts": [
         "docs/decisions/ADR-WHY-NOT-001.md",
         "configs/benchmarks/why_not_existing_solvers_v1.yaml",
@@ -532,7 +552,8 @@
         "artifacts/numerical/ABCMB-LINX-EXTENDED-CONVERGENCE-v2/RESULT_REGISTRY_v2.yaml",
         "artifacts/numerical/ABCMB-LINX-EXTENDED-CONVERGENCE-v2/run-20260722T134322Z",
         "docs/inventory/ABCMB_LINX_EXTENDED_CONVERGENCE_v2.md",
-        "artifacts/provenance/PUBLIC-NUCLEAR-RATE-PROVENANCE-v1/capture-20260722T200435Z.json"
+        "artifacts/provenance/PUBLIC-NUCLEAR-RATE-PROVENANCE-v1/capture-20260722T200435Z.json",
+        "docs/inventory/WHY_NOT_BASELINE_SOURCE_AUDIT_v1.md"
       ],
       "metrics": {},
       "attempt": 1,
@@ -541,7 +562,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 3049.5997066497803,
+      "heartbeat_age_s": 0.4265456199645996,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -776,6 +797,10 @@
         {
           "label": "artifacts/provenance/PUBLIC-NUCLEAR-RATE-PROVENANCE-v1/capture-20260722T200435Z.json",
           "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/provenance/PUBLIC-NUCLEAR-RATE-PROVENANCE-v1/capture-20260722T200435Z.json"
+        },
+        {
+          "label": "docs/inventory/WHY_NOT_BASELINE_SOURCE_AUDIT_v1.md",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/docs/inventory/WHY_NOT_BASELINE_SOURCE_AUDIT_v1.md"
         }
       ]
     },
@@ -805,7 +830,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 312.5998749732971,
+      "heartbeat_age_s": 489.42666006088257,
       "ready": false,
       "blocked_by": [
         "P0-solvers-build"
@@ -842,7 +867,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 67131.59996390343,
+      "heartbeat_age_s": 67308.42674183846,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -892,7 +917,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 98291.60002303123,
+      "heartbeat_age_s": 98468.4267873764,
       "ready": false,
       "blocked_by": [],
       "artifact_links": []
@@ -933,7 +958,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 57482.60008120537,
+      "heartbeat_age_s": 57659.426841259,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -1003,7 +1028,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 25489.600136995316,
+      "heartbeat_age_s": 25666.42688560486,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -1044,7 +1069,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 67951.60018968582,
+      "heartbeat_age_s": 68128.42697453499,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -1098,7 +1123,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 312.60024070739746,
+      "heartbeat_age_s": 489.4270269870758,
       "ready": false,
       "blocked_by": [
         "P0-solvers-build"
@@ -1153,7 +1178,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 312.60029125213623,
+      "heartbeat_age_s": 489.4270730018616,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -1199,7 +1224,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 312.60034108161926,
+      "heartbeat_age_s": 489.42711758613586,
       "ready": false,
       "blocked_by": [],
       "artifact_links": []
@@ -1233,7 +1258,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 312.60039019584656,
+      "heartbeat_age_s": 489.4271740913391,
       "ready": false,
       "blocked_by": [
         "P0-tailnet"
@@ -1271,7 +1296,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 312.6004567146301,
+      "heartbeat_age_s": 489.4272208213806,
       "ready": false,
       "blocked_by": [
         "P1-mcmc-refactor"
@@ -1304,7 +1329,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 312.6004989147186,
+      "heartbeat_age_s": 489.4272720813751,
       "ready": false,
       "blocked_by": [
         "P1-mcmc-refactor"
@@ -1337,7 +1362,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 312.60054206848145,
+      "heartbeat_age_s": 489.4273178577423,
       "ready": false,
       "blocked_by": [
         "P0-reproduce-bbnet"
@@ -1370,7 +1395,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 312.60058760643005,
+      "heartbeat_age_s": 489.4273736476898,
       "ready": false,
       "blocked_by": [
         "P1-kappa-identifiability"
@@ -1404,7 +1429,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 312.60063314437866,
+      "heartbeat_age_s": 489.427437543869,
       "ready": false,
       "blocked_by": [
         "P1-hardsoft-posterior",
@@ -1440,7 +1465,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 312.6006746292114,
+      "heartbeat_age_s": 489.42752170562744,
       "ready": false,
       "blocked_by": [
         "P2-unified-adapter"
@@ -1480,7 +1505,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 312.6007158756256,
+      "heartbeat_age_s": 489.42756724357605,
       "ready": false,
       "blocked_by": [
         "P2-rate-registry"
@@ -1523,7 +1548,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 312.6007630825043,
+      "heartbeat_age_s": 489.42760396003723,
       "ready": false,
       "blocked_by": [
         "P2-solver-matrix"
@@ -1575,7 +1600,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 312.6008081436157,
+      "heartbeat_age_s": 489.42763805389404,
       "ready": false,
       "blocked_by": [
         "P0-solvers-build"
@@ -1614,7 +1639,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 312.6008584499359,
+      "heartbeat_age_s": 489.4276719093323,
       "ready": false,
       "blocked_by": [
         "P2-solver-matrix",
@@ -1649,7 +1674,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 312.60089778900146,
+      "heartbeat_age_s": 489.4277057647705,
       "ready": false,
       "blocked_by": [
         "P2.5-jacobians",
@@ -1691,7 +1716,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 312.6009578704834,
+      "heartbeat_age_s": 489.4277415275574,
       "ready": false,
       "blocked_by": [
         "P2.5-fisher-propagation",
@@ -1754,7 +1779,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 312.6010015010834,
+      "heartbeat_age_s": 489.4277799129486,
       "ready": false,
       "blocked_by": [
         "P2-unified-adapter"
@@ -1792,7 +1817,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 312.6010353565216,
+      "heartbeat_age_s": 489.4278163909912,
       "ready": false,
       "blocked_by": [
         "P3-pilot-10k"
@@ -1825,7 +1850,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 312.6010675430298,
+      "heartbeat_age_s": 489.4278955459595,
       "ready": false,
       "blocked_by": [
         "P3-standard-atlas-regression"
@@ -1859,7 +1884,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 312.6011004447937,
+      "heartbeat_age_s": 489.42794466018677,
       "ready": false,
       "blocked_by": [
         "P3-nonstandard-reordering",
@@ -1893,7 +1918,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 312.6011657714844,
+      "heartbeat_age_s": 489.4279808998108,
       "ready": false,
       "blocked_by": [
         "P3-pilot-1k"
@@ -1926,7 +1951,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 312.60120463371277,
+      "heartbeat_age_s": 489.42804050445557,
       "ready": false,
       "blocked_by": [
         "P2.5-gate-report"
@@ -1959,7 +1984,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 312.60123801231384,
+      "heartbeat_age_s": 489.42807936668396,
       "ready": false,
       "blocked_by": [
         "P3-pilot-10k"
@@ -2130,7 +2155,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 251.60142183303833,
+      "heartbeat_age_s": 428.42828464508057,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
