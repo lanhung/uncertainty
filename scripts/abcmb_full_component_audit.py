@@ -407,6 +407,18 @@ def component_statuses(spectra_executed: bool) -> dict[str, dict[str, str]]:
     }
 
 
+def spectra_component_complete(
+    selected_case_ids: list[str],
+    cases_by_id: dict[str, dict[str, Any]],
+    spectra_results: list[dict[str, Any]],
+) -> bool:
+    return (
+        set(selected_case_ids) == set(cases_by_id)
+        and len(spectra_results) == len(cases_by_id)
+        and all(item.get("status") == "accepted" for item in spectra_results)
+    )
+
+
 def resource_report(started_wall: float, started_cpu: float, status: str) -> dict[str, Any]:
     wall_seconds = time.perf_counter() - started_wall
     cpu_seconds = time.process_time() - started_cpu
@@ -551,12 +563,17 @@ def main(argv: list[str] | None = None) -> int:
                     )
                     break
 
+            complete_spectra = spectra_component_complete(
+                selected_case_ids, cases_by_id, spectra_results
+            )
             results["spectra"] = spectra_results
             results["dry_run_evidence"] = dry_run_evidence
-            results["components"] = component_statuses(True)
+            results["components"] = component_statuses(complete_spectra)
             accepted = len(spectra_results) == len(selected_case_ids) and all(
                 item["status"] == "accepted" for item in spectra_results
             )
+            if complete_spectra:
+                print("PROGRESS 1/4", flush=True)
             status = "complete_accepted" if accepted else "complete_not_accepted"
     except Exception as error:  # preserve structured evidence for every failure
         append_jsonl(
