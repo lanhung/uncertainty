@@ -99,6 +99,25 @@ class WorkerParserTests(unittest.TestCase):
             self.assertEqual(heartbeat.total, 100)
             self.assertAlmostEqual(heartbeat.metrics["loss"], 0.0125)
 
+    def test_successful_partial_stage_emits_terminal_block(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            os.environ["RESEARCH_OPS_STATE_DIR"] = directory
+            os.environ["RESEARCH_OPS_OUTBOX"] = str(Path(directory) / "outbox")
+            os.environ["RESEARCH_OPS_CHECKPOINT_DIR"] = str(Path(directory) / "checkpoints")
+            os.environ["RESEARCH_OPS_RUN_DIR"] = str(Path(directory) / "runs")
+            path = Path(__file__).parents[2] / "worker" / "run_with_heartbeat.py"
+            spec = importlib.util.spec_from_file_location("heartbeat_partial_module", path)
+            assert spec and spec.loader
+            module = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(module)
+            heartbeat = module.Heartbeat(
+                "EXEC-PARTIAL", 4, "components", 30, module.DEFAULT_PROGRESS_RE, False, False
+            )
+            emitted = []
+            heartbeat.emit = lambda event, **kwargs: emitted.append((event, kwargs))
+            heartbeat.finish(0, success_event="block", success_reason="one component accepted")
+            self.assertEqual(emitted, [("block", {"reason": "one component accepted"})])
+
 
 if __name__ == "__main__":
     unittest.main()

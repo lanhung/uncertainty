@@ -93,6 +93,17 @@ def test_unimplemented_components_are_explicit_not_run() -> None:
     assert components["hmc_nuts"]["status"] == "not_run"
 
 
+def test_spectra_component_requires_every_frozen_case_to_pass() -> None:
+    module = load_module()
+    cases = module.validate_protocol(load_protocol())
+    accepted = [{"status": "accepted"} for _ in cases]
+
+    assert module.spectra_component_complete(list(cases), cases, accepted)
+    assert not module.spectra_component_complete(list(cases)[:1], cases, accepted[:1])
+    rejected = [*accepted[:-1], {"status": "not_accepted"}]
+    assert not module.spectra_component_complete(list(cases), cases, rejected)
+
+
 def test_preflight_writes_required_artifacts_without_running_spectra(
     monkeypatch: pytest.MonkeyPatch, tmp_path: Path
 ) -> None:

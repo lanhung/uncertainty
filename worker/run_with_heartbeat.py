@@ -297,14 +297,28 @@ class Heartbeat:
         self._stop.set()
         self.emit("block", reason=f"interrupted by signal {signum}")
 
-    def finish(self, code: int) -> None:
+    def finish(
+        self,
+        code: int,
+        *,
+        success_event: str = "done",
+        success_reason: str | None = None,
+    ) -> None:
         self._stop.set()
         if self._report_thread is not None:
             self._report_thread.join(timeout=max(1.0, min(5.0, self.interval)))
         if self._interrupted:
             return
         if code == 0:
-            self.emit("done", message=self.last_line or "completed")
+            if success_event == "done":
+                self.emit("done", message=self.last_line or "completed")
+            elif success_event == "block":
+                self.emit(
+                    "block",
+                    reason=success_reason or "completed partial stage; remaining work blocked",
+                )
+            else:
+                raise ValueError(f"unsupported success event: {success_event}")
         else:
             self.emit("fail", reason=f"exit code {code}: {self.last_line}")
 
@@ -345,6 +359,16 @@ def main() -> None:
         action="store_true",
         help="start despite incomplete plan dependencies; reserved for approved diagnostics",
     )
+    parser.add_argument(
+        "--success-event",
+        choices=("done", "block"),
+        default="done",
+        help="terminal event for a successful child; use block for an accepted partial stage",
+    )
+    parser.add_argument(
+        "--success-reason",
+        help="required explanation when --success-event=block",
+    )
     parser.add_argument("--cwd")
     parser.add_argument(
         "cmd",
@@ -358,6 +382,8 @@ def main() -> None:
         parser.error("no command supplied after --")
     if args.interval < 5:
         parser.error("--interval must be at least 5 seconds")
+    if args.success_event == "block" and not args.success_reason:
+        parser.error("--success-reason is required when --success-event=block")
 
     heartbeat = Heartbeat(
         args.task,
@@ -409,7 +435,11 @@ def main() -> None:
         sys.stdout.flush()
         heartbeat.observe(line)
     code = process.wait()
-    heartbeat.finish(code)
+    heartbeat.finish(
+        code,
+        success_event=args.success_event,
+        success_reason=args.success_reason,
+    )
     raise SystemExit(code)
 
 
