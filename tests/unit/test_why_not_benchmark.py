@@ -96,6 +96,10 @@ def test_direct_benchmark_entrypoint_declares_required_artifacts() -> None:
     assert "batch_reference_abundances" in source
     assert "maximum_absolute_repeat_drift_by_abundance" in source
     assert "batch_discrepancy_open" in source
+    assert "run_w3_abcmb" in source
+    assert "abcmb_bundled_linx_bbn_only_not_full_joint_pipeline" in source
+    assert "installed ABCMB lacks direct_url.json source provenance" in source
+    assert 'git_tree_revision(source_dir, "abcmb/linx")' in source
 
 
 def test_yaml_loader_records_in_process_parser(tmp_path: Path) -> None:

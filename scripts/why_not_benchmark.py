@@ -94,6 +94,17 @@ def git_revision(source_dir: Path) -> str:
     return completed.stdout.strip()
 
 
+def git_tree_revision(source_dir: Path, tree_path: str) -> str:
+    completed = subprocess.run(
+        ["git", "-C", str(source_dir), "rev-parse", f"HEAD:{tree_path}"],
+        check=True,
+        capture_output=True,
+        text=True,
+        timeout=30,
+    )
+    return completed.stdout.strip()
+
+
 def json_dump(path: Path, payload: Any) -> None:
     path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
@@ -415,6 +426,295 @@ def run_w0_linx(
     return summary, failures, measured_seconds
 
 
+def load_abcmb_linx(source_dir: Path) -> tuple[dict[str, Any], dict[str, str]]:
+    import abcmb  # type: ignore
+    import jax  # type: ignore
+    from abcmb.linx import const  # type: ignore
+    from abcmb.linx.abundances import AbundanceModel  # type: ignore
+    from abcmb.linx.background import BackgroundModel  # type: ignore
+    from abcmb.linx.nuclear import NuclearRates  # type: ignore
+    from jax import numpy as jnp  # type: ignore
+
+    jax.config.update("jax_enable_x64", True)
+    if not bool(jax.config.x64_enabled):
+        raise RuntimeError("ABCMB bundled LINX benchmark requires JAX x64 mode")
+
+    distribution = importlib.metadata.distribution("ABCMB")
+    direct_url_text = distribution.read_text("direct_url.json")
+    if direct_url_text is None:
+        raise RuntimeError("installed ABCMB lacks direct_url.json source provenance")
+    direct_url = json.loads(direct_url_text)
+    installed_commit = direct_url.get("vcs_info", {}).get("commit_id")
+    frozen_commit = git_revision(source_dir)
+    if installed_commit != frozen_commit:
+        raise RuntimeError(
+            f"installed ABCMB commit {installed_commit!r} does not match frozen source "
+            f"{frozen_commit}"
+        )
+
+    modules = {
+        "AbundanceModel": AbundanceModel,
+        "BackgroundModel": BackgroundModel,
+        "NuclearRates": NuclearRates,
+        "const": const,
+        "jax": jax,
+        "jnp": jnp,
+    }
+    provenance = {
+        "abcmb": importlib.metadata.version("ABCMB"),
+        "bundled_linx_tree": git_tree_revision(source_dir, "abcmb/linx"),
+        "direct_url": direct_url["url"],
+        "installed_commit": installed_commit,
+        "jax": jax.__version__,
+        "package": str(Path(abcmb.__file__).resolve()),
+    }
+    return modules, provenance
+
+
+def run_w3_abcmb(
+    source_dir: Path,
+    parameters: dict[str, float],
+    repetitions: int,
+    batch_sizes: list[int],
+    timings_path: Path,
+    failures_path: Path,
+) -> tuple[dict[str, Any], int, float]:
+    import numpy as np
+
+    import_started = time.perf_counter()
+    modules, load_provenance = load_abcmb_linx(source_dir)
+    jax = modules["jax"]
+    jnp = modules["jnp"]
+    const = modules["const"]
+    import_seconds = time.perf_counter() - import_started
+    append_jsonl(
+        timings_path,
+        {
+            "batch_size": 0,
+            "elapsed_seconds": import_seconds,
+            "kind": "cold_import",
+            "recorded_at_utc": utc_now(),
+        },
+    )
+
+    background = modules["BackgroundModel"]()
+    background_raw = background(
+        jnp.asarray(parameters["delta_neff"]),
+        rtol=1.0e-8,
+        atol=1.0e-10,
+        max_steps=512,
+    )
+    jax.block_until_ready(background_raw)
+    t_vec, a_vec, rho_g, rho_nu, rho_np, pressure_np, neff_vec = background_raw
+    abundance_model = modules["AbundanceModel"](
+        modules["NuclearRates"](nuclear_net="key_PRIMAT_2023")
+    )
+    eta_fac = parameters["omega_b_h2"] / float(const.Omegabh2)
+    tau_n_fac = parameters["tau_n_seconds"] / float(const.tau_n)
+
+    def solve_raw(eta_value: Any, tau_value: Any) -> Any:
+        return abundance_model(
+            rho_g,
+            rho_nu,
+            rho_np,
+            pressure_np,
+            t_vec=t_vec,
+            a_vec=a_vec,
+            eta_fac=jnp.asarray(eta_value),
+            tau_n_fac=jnp.asarray(tau_value),
+            rtol=1.0e-6,
+            atol=1.0e-9,
+            sampling_nTOp=150,
+            max_steps=4096,
+        )
+
+    def extract_scalar(raw: Any) -> dict[str, float]:
+        return linx_abundances(
+            [float(value) for value in jax.device_get(raw)],
+            float(jax.device_get(neff_vec[-1])),
+        )
+
+    cold_started = time.perf_counter()
+    reference_raw = solve_raw(eta_fac, tau_n_fac)
+    jax.block_until_ready(reference_raw)
+    reference = extract_scalar(reference_raw)
+    cold_seconds = time.perf_counter() - cold_started
+    append_jsonl(
+        timings_path,
+        {
+            "batch_size": 1,
+            "elapsed_seconds": cold_seconds,
+            "kind": "cold_solve",
+            "recorded_at_utc": utc_now(),
+            "status": "ok",
+        },
+    )
+
+    failures = 0
+    scalar_durations: list[float] = []
+    maximum_absolute_repeat_drift = 0.0
+    maximum_absolute_repeat_drift_by_abundance = {key: 0.0 for key in reference}
+    batch_reference: dict[str, float] | None = None
+    scalar_repetitions = repetitions if 1 in batch_sizes else 0
+    for repetition in range(scalar_repetitions):
+        started = time.perf_counter()
+        successful_points = 0
+        try:
+            raw = solve_raw(eta_fac, tau_n_fac)
+            jax.block_until_ready(raw)
+            values = extract_scalar(raw)
+            maximum_absolute_repeat_drift = max(
+                maximum_absolute_repeat_drift,
+                *(abs(values[key] - reference[key]) for key in reference),
+            )
+            for key in reference:
+                maximum_absolute_repeat_drift_by_abundance[key] = max(
+                    maximum_absolute_repeat_drift_by_abundance[key],
+                    abs(values[key] - reference[key]),
+                )
+            successful_points = 1
+        except Exception as exc:  # pragma: no cover - exercised on worker failures
+            failures += 1
+            append_jsonl(
+                failures_path,
+                {
+                    "batch_size": 1,
+                    "error": repr(exc),
+                    "kind": "solver_exception",
+                    "repetition": repetition,
+                    "traceback": traceback.format_exc(),
+                },
+            )
+        elapsed = time.perf_counter() - started
+        scalar_durations.append(elapsed)
+        append_jsonl(
+            timings_path,
+            {
+                "batch_size": 1,
+                "elapsed_seconds": elapsed,
+                "execution_mode": "compiled_scalar_call",
+                "kind": "warm_batch",
+                "per_point_seconds": elapsed,
+                "repetition": repetition,
+                "status": "ok" if successful_points == 1 else "failed",
+                "successful_points": successful_points,
+            },
+        )
+
+    native_batch_size = next((value for value in batch_sizes if value != 1), None)
+    batch_durations: list[float] = []
+    batch_compile_seconds = 0.0
+    if native_batch_size is not None:
+        batched_solve = jax.jit(jax.vmap(solve_raw, in_axes=(0, 0)))
+        eta_values = jnp.full((native_batch_size,), eta_fac, dtype=jnp.float64)
+        tau_values = jnp.full((native_batch_size,), tau_n_fac, dtype=jnp.float64)
+        compile_started = time.perf_counter()
+        compiled_raw = batched_solve(eta_values, tau_values)
+        jax.block_until_ready(compiled_raw)
+        batch_compile_seconds = time.perf_counter() - compile_started
+        append_jsonl(
+            timings_path,
+            {
+                "batch_size": native_batch_size,
+                "elapsed_seconds": batch_compile_seconds,
+                "kind": "cold_batch_compile_and_solve",
+                "recorded_at_utc": utc_now(),
+                "status": "ok",
+            },
+        )
+        for repetition in range(repetitions):
+            started = time.perf_counter()
+            successful_points = 0
+            try:
+                raw = batched_solve(eta_values, tau_values)
+                jax.block_until_ready(raw)
+                matrix = np.asarray(jax.device_get(raw))
+                if matrix.shape[-1] != 8 and matrix.shape[0] == 8:
+                    matrix = np.moveaxis(matrix, 0, -1)
+                if matrix.shape[-1] != 8:
+                    raise ValueError(f"unexpected ABCMB LINX batch species axis: {matrix.shape}")
+                matrix = matrix.reshape((-1, 8))
+                if matrix.shape[0] != native_batch_size:
+                    raise ValueError(
+                        f"unexpected ABCMB LINX batch size: {matrix.shape[0]} != "
+                        f"{native_batch_size}"
+                    )
+                for row in matrix:
+                    values = linx_abundances(row.tolist(), reference["Neff"])
+                    if batch_reference is None:
+                        batch_reference = values
+                    maximum_absolute_repeat_drift = max(
+                        maximum_absolute_repeat_drift,
+                        *(abs(values[key] - reference[key]) for key in reference),
+                    )
+                    for key in reference:
+                        maximum_absolute_repeat_drift_by_abundance[key] = max(
+                            maximum_absolute_repeat_drift_by_abundance[key],
+                            abs(values[key] - reference[key]),
+                        )
+                successful_points = native_batch_size
+            except Exception as exc:  # pragma: no cover - exercised on worker failures
+                failures += 1
+                append_jsonl(
+                    failures_path,
+                    {
+                        "batch_size": native_batch_size,
+                        "error": repr(exc),
+                        "kind": "solver_exception",
+                        "repetition": repetition,
+                        "traceback": traceback.format_exc(),
+                    },
+                )
+            elapsed = time.perf_counter() - started
+            batch_durations.append(elapsed)
+            append_jsonl(
+                timings_path,
+                {
+                    "batch_size": native_batch_size,
+                    "elapsed_seconds": elapsed,
+                    "execution_mode": "jax_jit_vmap_native_batch",
+                    "kind": "warm_batch",
+                    "per_point_seconds": elapsed / native_batch_size,
+                    "repetition": repetition,
+                    "status": "ok" if successful_points == native_batch_size else "failed",
+                    "successful_points": successful_points,
+                },
+            )
+
+    timings = {"warm_batch_1": summarize(scalar_durations)}
+    if native_batch_size is not None:
+        timings[f"warm_batch_{native_batch_size}"] = summarize(batch_durations)
+    summary = {
+        "abundances": reference,
+        "batch_reference_abundances": batch_reference,
+        "batch_compile_and_first_solve_seconds": batch_compile_seconds,
+        "bundled_component": "abcmb.linx",
+        "cold_import_seconds": import_seconds,
+        "cold_solve_seconds": cold_seconds,
+        "input_mapping": {
+            "eta_fac": eta_fac,
+            "linx_reference_Omegabh2": float(const.Omegabh2),
+            "linx_reference_tau_n_seconds": float(const.tau_n),
+            "tau_n_fac": tau_n_fac,
+        },
+        "jax_x64": bool(jax.config.x64_enabled),
+        "load_provenance": load_provenance,
+        "maximum_absolute_repeat_drift": maximum_absolute_repeat_drift,
+        "maximum_absolute_repeat_drift_by_abundance": (maximum_absolute_repeat_drift_by_abundance),
+        "network": "key_PRIMAT_2023",
+        "scientific_scope": "abcmb_bundled_linx_bbn_only_not_full_joint_pipeline",
+        "timings_seconds": timings,
+    }
+    measured_seconds = (
+        import_seconds
+        + cold_seconds
+        + batch_compile_seconds
+        + sum(scalar_durations)
+        + sum(batch_durations)
+    )
+    return summary, failures, measured_seconds
+
+
 def load_prymordial(source_dir: Path) -> tuple[Any, Any, dict[str, str]]:
     previous_cwd = Path.cwd()
     sys.path.insert(0, str(source_dir))
@@ -714,7 +1014,11 @@ def run_w2_primat(
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--baseline", choices=["W0-LINX", "W1-PRYM", "W2-PRIMAT"], required=True)
+    parser.add_argument(
+        "--baseline",
+        choices=["W0-LINX", "W1-PRYM", "W2-PRIMAT", "W3-ABCMB"],
+        required=True,
+    )
     parser.add_argument("--config", type=Path, required=True)
     parser.add_argument("--parameter-schema", type=Path, required=True)
     parser.add_argument("--source-dir", type=Path, required=True)
@@ -736,23 +1040,48 @@ def main() -> int:
     registered = protocol["baselines"][args.baseline]
     adapter_config: dict[str, Any] | None = None
     adapter_loader: str | None = None
-    if args.baseline == "W1-PRYM":
+    if args.baseline in {"W1-PRYM", "W3-ABCMB"}:
         if args.adapter_config is None:
-            raise ValueError("W1-PRYM requires --adapter-config")
+            raise ValueError(f"{args.baseline} requires --adapter-config")
         adapter_config, adapter_loader = load_yaml(args.adapter_config, args.yaml_python)
-        expected_adapter = {
-            "adapter_id": "PRYMORDIAL-RUNTIME-ADAPTER-v1",
-            "baseline": "W1-PRYM",
-            "execution_backend": "python",
-            "native_batch_api": False,
-            "network": "small_12_reaction",
-            "rate_compilation": "primat_like",
-            "recompute_background": True,
-            "recompute_thermal_weak_corrections": False,
-            "recompute_weak_rates": True,
-            "source_revision": registered["revision"],
-            "status": "frozen_before_registered_runtime_execution",
-        }
+        if args.baseline == "W1-PRYM":
+            expected_adapter = {
+                "adapter_id": "PRYMORDIAL-RUNTIME-ADAPTER-v1",
+                "baseline": "W1-PRYM",
+                "execution_backend": "python",
+                "native_batch_api": False,
+                "network": "small_12_reaction",
+                "rate_compilation": "primat_like",
+                "recompute_background": True,
+                "recompute_thermal_weak_corrections": False,
+                "recompute_weak_rates": True,
+                "source_revision": registered["revision"],
+                "status": "frozen_before_registered_runtime_execution",
+            }
+        else:
+            expected_adapter = {
+                "adapter_id": "ABCMB-LINX-RUNTIME-ADAPTER-v1",
+                "abundance_numerics": {
+                    "atol": 1.0e-9,
+                    "max_steps": 4096,
+                    "rtol": 1.0e-6,
+                    "sampling_nTOp": 150,
+                },
+                "baseline": "W3-ABCMB",
+                "background_numerics": {
+                    "atol": 1.0e-10,
+                    "max_steps": 512,
+                    "rtol": 1.0e-8,
+                },
+                "bundled_linx_tree": registered["bundled_linx_tree"],
+                "component_scope": "abcmb_bundled_linx_bbn_only",
+                "execution_backend": "jax_cpu",
+                "native_batch_api": "jax_jit_vmap",
+                "network": "key_PRIMAT_2023",
+                "precision": "float64",
+                "source_revision": registered["revision"],
+                "status": "frozen_before_registered_runtime_execution",
+            }
         for key, expected in expected_adapter.items():
             if adapter_config.get(key) != expected:
                 raise ValueError(
@@ -760,7 +1089,7 @@ def main() -> int:
                     f"{adapter_config.get(key)!r} != {expected!r}"
                 )
     elif args.adapter_config is not None:
-        raise ValueError("--adapter-config is supported only for W1-PRYM")
+        raise ValueError("--adapter-config is supported only for W1-PRYM and W3-ABCMB")
     repetitions = args.repetitions or int(protocol["execution"]["warm_repetitions"])
     batch_sizes = args.batch_sizes or [int(value) for value in protocol["execution"]["batch_sizes"]]
     required_repetitions = int(protocol["execution"]["warm_repetitions"])
@@ -777,6 +1106,12 @@ def main() -> int:
     revision = git_revision(args.source_dir)
     if revision != registered["revision"]:
         raise ValueError(f"source revision {revision} != registered {registered['revision']}")
+    if args.baseline == "W3-ABCMB":
+        bundled_tree = git_tree_revision(args.source_dir, "abcmb/linx")
+        if bundled_tree != adapter_config["bundled_linx_tree"]:
+            raise ValueError(
+                f"ABCMB bundled LINX tree {bundled_tree} != {adapter_config['bundled_linx_tree']}"
+            )
     if not args.inventory.is_file():
         raise FileNotFoundError(args.inventory)
     if not args.environment_lock.is_file():
@@ -801,6 +1136,7 @@ def main() -> int:
         "W0-LINX": run_w0_linx,
         "W1-PRYM": run_w1_prymordial,
         "W2-PRIMAT": run_w2_primat,
+        "W3-ABCMB": run_w3_abcmb,
     }
     runner = runners[args.baseline]
     result, failure_count, measured_solver_seconds = runner(
