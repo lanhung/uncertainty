@@ -36,8 +36,10 @@ def validate(prior_path: Path, stage_path: Path, repository_root: Path) -> dict[
         raise ValueError("unsupported engineering-prior schema")
     if prior.get("prior_id") != "NUCLEAR-R0-ENGINEERING-v1":
         raise ValueError("unexpected engineering-prior id")
-    if prior.get("status") != ("legacy_solver_envelope_mapping_frozen_ETR25_primary_pending"):
-        raise ValueError("legacy solver-envelope mapping must retain pending ETR25 work")
+    if prior.get("status") != (
+        "legacy_mapping_and_ETR25_pdf_audit_complete_coherent_prior_pending"
+    ):
+        raise ValueError("legacy mapping must retain the coherent-prior boundary")
     if prior.get("production_use") != ("prohibited_pending_ETR25_pdf_audit_regression_and_signoff"):
         raise ValueError("engineering prior must prohibit production use")
 
@@ -107,7 +109,7 @@ def validate(prior_path: Path, stage_path: Path, repository_root: Path) -> dict[
     stage_reactions = {item["reaction_id"]: item for item in stage["reactions"]}
     if set(stage_reactions) != REACTIONS:
         raise ValueError("Stage-R0 registry reaction set differs from the engineering prior")
-    if stage.get("status") != "public_table_capture_complete_rate_pdf_audit_pending":
+    if stage.get("status") != ("public_table_and_rate_pdf_audit_complete_coherent_prior_pending"):
         raise ValueError("Stage-R0 registry has an unsafe status")
     if any(item.get("production_enabled") is not False for item in stage_reactions.values()):
         raise ValueError("Stage-R0 production must remain disabled")

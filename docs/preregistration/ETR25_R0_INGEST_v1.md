@@ -1,6 +1,6 @@
 # ETR25 R0 public-product ingest v1
 
-Status: **public products captured; rate-PDF audit pending; production prohibited**
+Status: **public products captured; descriptive rate-PDF audit complete; production prohibited**
 
 Task: `UQ0-ETR25-R0-INGEST`
 
@@ -78,7 +78,8 @@ shape, unit, percentile-order, high-temperature-lineage and independent arXiv
 cross-check validations. Completion records the public evidence and its
 absence boundaries; it does not approve a scientific prior.
 
-The next task is `UQ0-RATE-PDF-AUDIT`, which must quantify the asymmetry between
-actual pointwise percentiles and the scalar log-normal approximation at all 60
-knots, identify a solver-supported BBN temperature window and retain the
-unpublished covariance as an unresolved scientific limitation.
+The successor `UQ0-RATE-PDF-AUDIT` is recorded in
+`configs/physics/etr25_R0_rate_pdf_audit_v1.yaml`. It quantifies the asymmetry
+between actual pointwise percentiles and the scalar log-normal approximation
+while retaining the unpublished covariance as an unresolved scientific
+limitation. Production remains prohibited.

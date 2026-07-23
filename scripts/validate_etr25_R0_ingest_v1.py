@@ -43,8 +43,8 @@ def validate(
         raise ValueError("unsupported ETR25 ingest schema")
     if registry.get("registry_id") != "ETR25-R0-INGEST-v1":
         raise ValueError("unexpected ETR25 ingest registry id")
-    if registry.get("status") != "R0_percentile_tables_captured_rate_pdf_audit_pending":
-        raise ValueError("ETR25 ingest must retain the rate-PDF audit boundary")
+    if registry.get("status") != "R0_percentile_tables_captured_rate_pdf_audit_complete":
+        raise ValueError("ETR25 ingest must record the completed descriptive audit")
     if registry.get("production_use") != "prohibited":
         raise ValueError("ETR25 public-table ingest must not authorize production")
 
@@ -157,8 +157,8 @@ def validate(
     stage_reactions = {item["reaction_id"]: item for item in stage["reactions"]}
     if set(stage_reactions) != REACTIONS:
         raise ValueError("Stage-R0 registry reaction set differs from the ingest")
-    if stage.get("status") != "public_table_capture_complete_rate_pdf_audit_pending":
-        raise ValueError("Stage-R0 status must retain the rate-PDF audit gate")
+    if stage.get("status") != ("public_table_and_rate_pdf_audit_complete_coherent_prior_pending"):
+        raise ValueError("Stage-R0 status must retain the coherent-prior gate")
     if stage["nuisance_contract"]["actual_pdf_model"]["status"] != (
         "pointwise_percentiles_ingested_coherent_actual_posterior_unavailable"
     ):
