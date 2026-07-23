@@ -29,7 +29,10 @@
     "A00_scientific_signoff": "pending",
     "A03_nuclear_data_signoff": "pending",
     "A09_independent_validation": "pending",
-    "PRIMAT_reverse_regression_passed": false,
+    "PRIMAT_ETR25_curve_injection_regression_passed": false,
+    "PRIMAT_cache_guard_implemented": true,
+    "PRIMAT_reverse_regression_passed": true,
+    "PRIMAT_solver_trajectory_cap_regression_passed": false,
     "accepted_scientific_prior_reactions": 0,
     "actual_posterior_or_original_nuclear_model_available": false,
     "numerical_candidate_reactions": 3,
@@ -1729,10 +1732,13 @@
   "reverse_rate_contract": {
     "FP64_regression": {
       "absolute_tolerance": 1e-10,
+      "actual_solver_temperature_trajectory_evaluated": false,
       "evaluation_points": [
-        "all_table_knots",
-        "all_interior_midpoints",
-        "actual_solver_temperature_trajectory"
+        "28_registered_ETR25_primary_knots",
+        "27_registered_ETR25_primary_geometric_midpoints",
+        "510_PRIMAT_native_LT_grid_knots",
+        "509_PRIMAT_native_LT_grid_geometric_midpoints",
+        "both_LT_boundary_points"
       ],
       "explicit_underflow_or_zero_floor_exclusions_only": true,
       "q_values": [
@@ -1767,9 +1773,26 @@
       }
     },
     "PRIMAT": {
+      "consecutive_draw_cache_regression_completed": true,
       "consecutive_draw_cache_regression_required": true,
       "native_reverse_cap": "load_time_median_QED_forward_not_recomputed_by_apply_variations",
-      "production_remediation": "recompute_cap_per_draw_or_disable_on_registered_domain",
+      "production_remediation": "project MT/LT cache guard after every apply_variations is implemented; emitted solver-trajectory and ETR25 curve-injection cap regressions remain mandatory before production",
+      "project_cache_guard": "worker/primat_rate_draw.py",
+      "reverse_regression": {
+        "R0_reverse_cap_not_detected_on_actual_LT_probe_points_within_tolerance": true,
+        "R0_reverse_cap_not_detected_over_full_diagnostic_grid_within_tolerance": false,
+        "actual_solver_temperature_trajectory_evaluated": false,
+        "artifact_id": "PRIMAT-R0-REVERSE-REGRESSION-v1",
+        "path": "artifacts/priors/PRIMAT-R0-REVERSE-REGRESSION-v1/regression.json",
+        "project_wrapper_guard_passed": true,
+        "rate_draw_model": "PRIMAT_native_p_and_expsigma_not_ETR25_injection",
+        "reverse_cap_active_actual_LT_probe_rows": 0,
+        "reverse_cap_active_within_tolerance_rows": 90,
+        "sha256": "cf665f1d1de758122d47b3cb5c0fb18a073f379aff8abacc440430e98158a6ae",
+        "unclamped_log_shift_identity_passed": true,
+        "unclamped_reverse_detailed_balance_passed": true,
+        "upstream_cache_invalidation_required": true
+      },
       "revision": "21ff8f39fa18e3937e9fdf386cfa982361bfdfce",
       "same_perturbed_forward_used_before_cap": true,
       "source_files": {
@@ -1789,6 +1812,6 @@
       }
     }
   },
-  "status": "numerical_candidate_ready_actual_posterior_reverse_regression_and_signoffs_pending",
+  "status": "numerical_candidate_ready_actual_posterior_and_signoffs_pending",
   "task_id": "UQ0-R0-RATE-PRIOR"
 }

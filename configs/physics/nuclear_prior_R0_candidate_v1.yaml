@@ -21,9 +21,14 @@ candidate_artifacts:
     path: artifacts/priors/ETR25-R0-COHERENT-COMPARATORS-v1/package.json
     sha256: 0634a74a1e1937b8d6b959282f10e21f505514e7449ccbd05b5e639083f2b5dd
     builder: scripts/build_etr25_R0_coherent_comparators.py
+  PRIMAT_reverse_regression:
+    path: artifacts/priors/PRIMAT-R0-REVERSE-REGRESSION-v1/regression.json
+    sha256: cf665f1d1de758122d47b3cb5c0fb18a073f379aff8abacc440430e98158a6ae
+    runner: scripts/run_primat_R0_reverse_regression.py
+    validator: scripts/validate_primat_R0_reverse_regression.py
   candidate_contract:
     path: artifacts/priors/R0-PRIOR-CANDIDATE-CONTRACT-v1/package.json
-    sha256: 8e7505e6b48685a4aa0f98337bf8a7e2a792abd630ff7ee284ae5bb5e1f6cb6b
+    sha256: 13e923a28436d67e50dba86bbbe0fb62e25eca201d80b22bce4e0026aa7cd78a
     builder: scripts/build_R0_prior_candidate_contract.py
   validator: scripts/validate_R0_prior_candidate_v1.py
 
@@ -69,11 +74,14 @@ reverse_rate:
   PRIMAT_status: >-
     same perturbed forward before reverse cap; v0.3.2 low-temperature cap is
     constructed from the median/QED forward at load time and is not recomputed
-    by apply_variations.
+    by apply_variations. Clipping above the 1e-13 detection tolerance was not
+    seen at the discrete native-grid/midpoint actual-LT probes under native
+    PRIMAT p/expsigma draws, but was seen above the LT boundary.
   PRIMAT_production_requirement:
-    - recompute_reverse_cap_per_draw_or_disable_on_registered_domain
-    - pass_reverse_ratio_regression
-    - pass_consecutive_draw_same_temperature_cache_regression
+    - use_worker_primat_rate_draw_cache_guard_after_every_apply_variations
+    - pass_actual_emitted_solver_temperature_trajectory_cap_regression
+    - pass_ETR25_curve_injection_cap_regression
+    - reject_unmeasured_temperature_or_rate_draw_domain_until_both_pass
   matched_engine_status: not_established_native_inverse_coefficients_differ
 
 correlation_stress:
@@ -94,7 +102,10 @@ completion_boundary:
   numerical_candidate_reactions: 3
   accepted_scientific_prior_reactions: 0
   actual_posterior_or_original_nuclear_model_available: false
-  PRIMAT_reverse_regression_passed: false
+  PRIMAT_reverse_regression_passed: true
+  PRIMAT_cache_guard_implemented: true
+  PRIMAT_solver_trajectory_cap_regression_passed: false
+  PRIMAT_ETR25_curve_injection_regression_passed: false
   coherent_actual_draw_gate_closed: true
   A03_nuclear_data_signoff: pending
   A00_scientific_signoff: pending

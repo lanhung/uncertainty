@@ -12,6 +12,15 @@ from typing import Any
 
 import yaml
 
+try:
+    from scripts.validate_primat_R0_reverse_regression import (
+        validate as validate_primat_reverse,
+    )
+except ModuleNotFoundError:  # Direct ``python scripts/<name>.py`` execution.
+    from validate_primat_R0_reverse_regression import (
+        validate as validate_primat_reverse,
+    )
+
 
 REACTIONS = {"dp_gamma_he3", "dd_n_he3", "dd_p_t"}
 ORDER = ["dp_gamma_he3", "dd_n_he3", "dd_p_t"]
@@ -124,6 +133,18 @@ def validate(
     ):
         raise ValueError("quantile surrogate cannot enter production")
 
+    reverse_record = registry["candidate_artifacts"]["PRIMAT_reverse_regression"]
+    reverse_path = resolve_record_path(repository_root, reverse_record["path"])
+    if sha256(reverse_path) != reverse_record["sha256"]:
+        raise ValueError("PRIMAT reverse regression SHA256 mismatch")
+    reverse_summary = validate_primat_reverse(reverse_path)
+    reverse_artifact = json.loads(reverse_path.read_text(encoding="utf-8"))
+    guard_path = repository_root / "worker/primat_rate_draw.py"
+    if sha256(guard_path) != reverse_artifact[
+        "project_UpdateNuclearRates_wrapper_guard_regression"
+    ]["guard_sha256"]:
+        raise ValueError("project PRIMAT wrapper guard SHA256 mismatch")
+
     reverse = contract["solver_reverse_status"]
     if reverse["LINX"]["same_perturbed_forward_used_by_reverse"] is not True:
         raise ValueError("LINX reverse source contract drift")
@@ -133,7 +154,39 @@ def validate(
     if primat["strict_same_draw_detailed_balance_unconditional"] is not False:
         raise ValueError("PRIMAT median-derived reverse cap is hidden")
     if primat["consecutive_draw_cache_regression_required"] is not True:
+        raise ValueError("PRIMAT consecutive-draw regression requirement is hidden")
+    if primat["consecutive_draw_cache_regression_completed"] is not True:
         raise ValueError("PRIMAT consecutive-draw regression is missing")
+    frozen_reverse = primat["reverse_regression"]
+    if frozen_reverse["sha256"] != reverse_record["sha256"]:
+        raise ValueError("contract and registry disagree on PRIMAT regression")
+    if not frozen_reverse[
+        "R0_reverse_cap_not_detected_on_actual_LT_probe_points_within_tolerance"
+    ]:
+        raise ValueError("PRIMAT actual-LT probe cap result is hidden")
+    if frozen_reverse[
+        "R0_reverse_cap_not_detected_over_full_diagnostic_grid_within_tolerance"
+    ]:
+        raise ValueError("PRIMAT above-LT cap boundary is hidden")
+    if frozen_reverse["actual_solver_temperature_trajectory_evaluated"]:
+        raise ValueError("PRIMAT solver-trajectory coverage is overstated")
+    if not frozen_reverse["project_wrapper_guard_passed"]:
+        raise ValueError("PRIMAT MT/LT wrapper guard result is hidden")
+    if reverse_summary["cache_guard_required"] is not True:
+        raise ValueError("PRIMAT cache guard requirement is hidden")
+    completion = contract["completion_boundary"]
+    if completion["PRIMAT_reverse_regression_passed"] is not True:
+        raise ValueError("completed PRIMAT reverse regression is not recorded")
+    if completion["PRIMAT_cache_guard_implemented"] is not True:
+        raise ValueError("PRIMAT cache guard implementation is not recorded")
+    if completion["PRIMAT_solver_trajectory_cap_regression_passed"] is not False:
+        raise ValueError("PRIMAT solver-trajectory cap gate was manufactured")
+    if completion["PRIMAT_ETR25_curve_injection_regression_passed"] is not False:
+        raise ValueError("PRIMAT ETR25 injection cap gate was manufactured")
+    if completion["accepted_scientific_prior_reactions"] != 0:
+        raise ValueError("numerical regression cannot accept the scientific prior")
+    if completion["production_adapter_unlocked"] is not False:
+        raise ValueError("numerical regression cannot unlock production")
     engineering_primat = engineering["solver_mappings"]["PRIMAT_S8"]
     if engineering_primat["repository"] != "https://github.com/CyrilPitrou/primat":
         raise ValueError("PRIMAT source repository is not canonical")

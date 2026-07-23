@@ -59,6 +59,23 @@ def test_PRIMAT_reverse_cap_caveat_is_machine_enforced() -> None:
 
     assert primat["strict_same_draw_detailed_balance_unconditional"] is False
     assert primat["consecutive_draw_cache_regression_required"] is True
+    assert primat["consecutive_draw_cache_regression_completed"] is True
+    assert (
+        primat["reverse_regression"][
+            "R0_reverse_cap_not_detected_on_actual_LT_probe_points_within_tolerance"
+        ]
+        is True
+    )
+    assert (
+        primat["reverse_regression"][
+            "R0_reverse_cap_not_detected_over_full_diagnostic_grid_within_tolerance"
+        ]
+        is False
+    )
+    assert (
+        primat["reverse_regression"]["actual_solver_temperature_trajectory_evaluated"]
+        is False
+    )
     assert (
         primat["native_reverse_cap"]
         == "load_time_median_QED_forward_not_recomputed_by_apply_variations"
