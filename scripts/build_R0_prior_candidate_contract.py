@@ -13,6 +13,9 @@ from typing import Any
 
 
 EXPECTED_COMPARATOR_SHA256 = "0634a74a1e1937b8d6b959282f10e21f505514e7449ccbd05b5e639083f2b5dd"
+EXPECTED_PRIMAT_REVERSE_SHA256 = (
+    "cf665f1d1de758122d47b3cb5c0fb18a073f379aff8abacc440430e98158a6ae"
+)
 ORDER = ["dp_gamma_he3", "dd_n_he3", "dd_p_t"]
 
 
@@ -126,7 +129,7 @@ def correlation_suite() -> list[dict[str, Any]]:
     return records
 
 
-def build(comparator_path: Path) -> dict[str, Any]:
+def build(comparator_path: Path, primat_reverse_path: Path) -> dict[str, Any]:
     actual_sha256 = sha256(comparator_path)
     if actual_sha256 != EXPECTED_COMPARATOR_SHA256:
         raise ValueError(
@@ -135,6 +138,24 @@ def build(comparator_path: Path) -> dict[str, Any]:
     comparator = json.loads(comparator_path.read_text(encoding="utf-8"))
     if set(comparator["reactions"]) != set(ORDER):
         raise ValueError("comparator package reaction order is incomplete")
+    reverse_sha256 = sha256(primat_reverse_path)
+    if reverse_sha256 != EXPECTED_PRIMAT_REVERSE_SHA256:
+        raise ValueError(
+            "PRIMAT reverse regression SHA256 mismatch: "
+            f"{reverse_sha256} != {EXPECTED_PRIMAT_REVERSE_SHA256}"
+        )
+    reverse_regression = json.loads(primat_reverse_path.read_text(encoding="utf-8"))
+    reverse_acceptance = reverse_regression["acceptance"]
+    if not (
+        reverse_acceptance["unclamped_reverse_detailed_balance_passed"]
+        and reverse_acceptance["unclamped_log_shift_identity_passed"]
+        and reverse_acceptance[
+            "R0_reverse_cap_not_detected_on_actual_LT_probe_points_within_tolerance"
+        ]
+        and reverse_acceptance["upstream_cache_invalidation_required"]
+        and reverse_acceptance["project_wrapper_guard_passed"]
+    ):
+        raise ValueError("PRIMAT reverse/cache regression does not satisfy the contract")
     matrices = correlation_suite()
     unique_matrix_count = len({record["matrix_sha256"] for record in matrices})
     return {
@@ -142,7 +163,7 @@ def build(comparator_path: Path) -> dict[str, Any]:
         "contract_id": "R0-PRIOR-CANDIDATE-CONTRACT-v1",
         "task_id": "UQ0-R0-RATE-PRIOR",
         "status": (
-            "numerical_candidate_ready_actual_posterior_reverse_regression_and_signoffs_pending"
+            "numerical_candidate_ready_actual_posterior_and_signoffs_pending"
         ),
         "reaction_order": ORDER,
         "candidate_representations": {
@@ -189,10 +210,13 @@ def build(comparator_path: Path) -> dict[str, Any]:
             "FP64_regression": {
                 "q_values": [-3.0, -1.0, 0.0, 1.0, 3.0],
                 "evaluation_points": [
-                    "all_table_knots",
-                    "all_interior_midpoints",
-                    "actual_solver_temperature_trajectory",
+                    "28_registered_ETR25_primary_knots",
+                    "27_registered_ETR25_primary_geometric_midpoints",
+                    "510_PRIMAT_native_LT_grid_knots",
+                    "509_PRIMAT_native_LT_grid_geometric_midpoints",
+                    "both_LT_boundary_points",
                 ],
+                "actual_solver_temperature_trajectory_evaluated": False,
                 "ratio_identity": "reverse/(K*forward)=1",
                 "shift_identity": ("ln(reverse(z)/reverse(0))-ln(forward(z)/forward(0))=0"),
                 "absolute_tolerance": 1e-10,
@@ -233,9 +257,36 @@ def build(comparator_path: Path) -> dict[str, Any]:
                 ),
                 "strict_same_draw_detailed_balance_unconditional": False,
                 "production_remediation": (
-                    "recompute_cap_per_draw_or_disable_on_registered_domain"
+                    "project MT/LT cache guard after every apply_variations is "
+                    "implemented; emitted solver-trajectory and ETR25 curve-injection "
+                    "cap regressions remain mandatory before production"
                 ),
                 "consecutive_draw_cache_regression_required": True,
+                "consecutive_draw_cache_regression_completed": True,
+                "project_cache_guard": "worker/primat_rate_draw.py",
+                "reverse_regression": {
+                    "path": str(primat_reverse_path),
+                    "sha256": reverse_sha256,
+                    "artifact_id": reverse_regression["artifact_id"],
+                    "unclamped_reverse_detailed_balance_passed": True,
+                    "unclamped_log_shift_identity_passed": True,
+                    "R0_reverse_cap_not_detected_on_actual_LT_probe_points_within_tolerance": (
+                        True
+                    ),
+                    "R0_reverse_cap_not_detected_over_full_diagnostic_grid_within_tolerance": (
+                        False
+                    ),
+                    "actual_solver_temperature_trajectory_evaluated": False,
+                    "rate_draw_model": "PRIMAT_native_p_and_expsigma_not_ETR25_injection",
+                    "reverse_cap_active_within_tolerance_rows": reverse_acceptance[
+                        "reverse_cap_active_within_tolerance_rows"
+                    ],
+                    "reverse_cap_active_actual_LT_probe_rows": reverse_acceptance[
+                        "reverse_cap_active_actual_LT_probe_rows"
+                    ],
+                    "upstream_cache_invalidation_required": True,
+                    "project_wrapper_guard_passed": True,
+                },
                 "source_files": {
                     "primat/network_data.py": (
                         "96a771b2e6c23b9d17500740f8ffc9bfecb41d89c23904de4f1a356ca677e1ec"
@@ -311,7 +362,10 @@ def build(comparator_path: Path) -> dict[str, Any]:
             "numerical_candidate_reactions": 3,
             "accepted_scientific_prior_reactions": 0,
             "actual_posterior_or_original_nuclear_model_available": False,
-            "PRIMAT_reverse_regression_passed": False,
+            "PRIMAT_reverse_regression_passed": True,
+            "PRIMAT_cache_guard_implemented": True,
+            "PRIMAT_solver_trajectory_cap_regression_passed": False,
+            "PRIMAT_ETR25_curve_injection_regression_passed": False,
             "A03_nuclear_data_signoff": "pending",
             "A00_scientific_signoff": "pending",
             "A09_independent_validation": "pending",
@@ -324,9 +378,17 @@ def build(comparator_path: Path) -> dict[str, Any]:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--comparators", type=Path, required=True)
+    parser.add_argument("--primat-reverse-regression", type=Path, required=True)
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
-    payload = json.dumps(build(args.comparators), indent=2, sort_keys=True) + "\n"
+    payload = (
+        json.dumps(
+            build(args.comparators, args.primat_reverse_regression),
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n"
+    )
     if args.output is None:
         print(payload, end="")
     else:

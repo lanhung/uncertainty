@@ -73,18 +73,42 @@ median/QED-corrected forward at load time. `apply_variations()` changes the
 active forward but does not rebuild that cap. The same-draw identity therefore
 holds before the cap or where the cap is inactive, not unconditionally.
 
-Before production, PRIMAT must either rebuild the cap per draw or disable it on
-the registered domain, then pass:
+The frozen worker regression at PRIMAT revision
+`21ff8f39fa18e3937e9fdf386cfa982361bfdfce` evaluated all three R0 reactions,
+five `q` values, 28 published knots, 27 published-grid geometric midpoints,
+510 PRIMAT native LT knots, 509 native-grid geometric midpoints and both LT
+boundaries. It found:
+
+- maximum unclamped detailed-balance relative residual
+  `2.35e-13`;
+- maximum forward/reverse log-shift residual `1.14e-13`;
+- no cap clipping above the frozen `1e-13` relative detection tolerance at
+  1,070 discrete actual-LT probe points
+  (`0.0116045 <= T9 <= 1.276497`);
+- 90 cap-active rows above the LT boundary, so the result must not be
+  extrapolated to the whole `0.06 <= T9 <= 2` diagnostic grid;
+- 5,760 explicit zero/subnormal exclusions for each log-identity metric; no
+  excluded row is silently assigned zero residual;
+- all six same-temperature consecutive-draw cases returned the old buffer
+  until the private cache keys were invalidated;
+- all 12 real-wrapper MT/LT cases changed to the new draw after the project
+  guard invalidated both era caches.
+
+The regression therefore passes:
 
 ```text
 reverse / (K * forward) = 1
 ln[reverse(z)/reverse(0)] - ln[forward(z)/forward(0)] = 0
 ```
 
-at `z=(-3,-1,0,1,3)`, table knots, interior midpoints and solver temperature
-trajectories in FP64 with registered `1e-10` tolerance. A consecutive-draw,
-same-temperature regression is also mandatory because the upstream
-`fill_buffer` cache is not explicitly cleared by `apply_variations()`.
+at `z=(-3,-1,0,1,3)` within the measured contract. The project guard
+`worker/primat_rate_draw.py` now invalidates both cache keys for both MT and LT
+networks immediately after every wrapper `apply_variations()` call. The dense
+probe set is not an emitted solver trajectory or a continuous-domain proof,
+and the regression used PRIMAT's native `p/expsigma`, not injected ETR25
+curves. Any future adapter must use the guard and remain locked until both an
+actual emitted-trajectory regression and an ETR25 curve-injection regression
+are frozen.
 
 Native inverse coefficients are not byte-identical across the three solvers.
 Native reproduction is consequently a pipeline comparison. A matched-engine
