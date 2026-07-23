@@ -1,0 +1,4 @@
+{"backend":"c","completed_at_utc":"2026-07-23T09:19:21.297468+00:00","elapsed_seconds":0.5803756136447191,"n_jobs":20,"new_draws":100,"stage":"parallel_prefix","target_draws":100}
+{"backend":"c","completed_at_utc":"2026-07-23T09:19:22.055211+00:00","elapsed_seconds":0.7027857601642609,"n_jobs":20,"new_draws":200,"stage":"parallel_prefix","target_draws":300}
+{"backend":"c","completed_at_utc":"2026-07-23T09:19:23.883245+00:00","elapsed_seconds":1.7581821475178003,"n_jobs":20,"new_draws":700,"stage":"parallel_prefix","target_draws":1000}
+{"backend":"c","completed_at_utc":"2026-07-23T09:19:24.941812+00:00","elapsed_seconds":1.0031634606420994,"n_jobs":1,"new_draws":16,"stage":"serial_prefix_replay","target_draws":16}

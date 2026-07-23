@@ -1,0 +1,165 @@
+schema_version: 1
+protocol_id: PRYMORDIAL-NATIVE-UQ-REPRODUCTION-v1
+task_id: UQ0-NATIVE-UQ-REPRO
+status: frozen_before_registered_execution
+decision_date_utc: "2026-07-23"
+
+scientific_boundary:
+  claim_level: C0_upstream_native_numerical_reproduction_only
+  abundance_level_uq: true
+  upstream_native_prior_only: true
+  project_R0_prior_used: false
+  accepted_scientific_prior: false
+  production_authorized: false
+  posterior_marginalization_reproduced: false
+  scientific_signoff_provided: false
+  interpretation: >-
+    This protocol statistically reproduces the public PRyMordial abundance
+    Monte Carlo at one public-table point. It does not select the project's R0
+    nuclear prior, reconstruct unpublished draws, or reproduce a cosmological
+    posterior.
+
+source:
+  repository: https://github.com/vallima/PRyMordial
+  revision: 725d8a8db3ad5ea2630580d825c9d0d69ed76533
+  license: GPL-3.0
+  required_files:
+    PRyM/PRyM_init.py:
+      sha256: 7b52cdd4cf7a7c39082d6cdf4a2e4f3b67458dc20d6ff9f07c2b488ef1819e2f
+    PRyM/PRyM_main.py:
+      sha256: 98f0724f27ace2927d38c3eec615def05bfbfd9c1c9cc09cfa91470417b3451f
+    PRyM/PRyM_nuclear_net63.py:
+      sha256: dfc634de131e740810f3e2992649f82747173495b2c8e6e0f849a69b1f6da577
+    PRyMdemoSM.ipynb:
+      sha256: 64669919eda1eaaaf6ce855f2a26b23832c17830751a83bd8f5695721df4d63c
+    PRyM_Yp_DH_cosmoMC_2023.dat:
+      sha256: bf4d16855ec08ded5e1bc4ebfb298b772feb9a69effd26f457abe00d814dfc41
+
+environment:
+  lock_path: environments/solver-cpu/uv.lock
+  lock_sha256: 45f60efbea16955ae3ca2740d6d55e9ae969fe9a5e33d5ef9d71d92d12f3c723
+  python: 3.11.15
+  numpy: 2.3.5
+  scipy: 1.16.3
+  precision: float64
+  backend: python
+
+public_reference:
+  table_path: PRyM_Yp_DH_cosmoMC_2023.dat
+  conditioned_parameters:
+    omega_b_h2: 0.0222
+    delta_neff: 0.0
+  exact_row:
+    eta10: 6.0772146031932186
+    Yp_CMB: 0.24544965730610158
+    Yp_BBN: 0.24677515532524957
+    sigma_Yp_BBN: 0.00013508787327181341
+    D_over_H: 2.5390204658712323e-05
+    sigma_D_over_H: 9.9930168567448787e-07
+  published_draw_seed_available: false
+  published_draw_manifest_available: false
+  published_joint_covariance_available: false
+  comparison_mode: statistical_not_drawwise
+
+solver:
+  network: large_63_reaction
+  smallnet_flag: false
+  rate_collection: NACRE_II_for_key_rates_plus_distributed_large_network
+  nacreii_flag: true
+  julia_flag: false
+  aTid_flag: true
+  compute_bckg_flag: true
+  compute_nTOp_flag: true
+  compute_nTOp_thermal_flag: false
+  save_bckg_flag: false
+  save_nTOp_flag: false
+  save_nTOp_thermal_flag: false
+  tau_n_flag: true
+  NP_nTOp_flag: false
+  NP_nuclear_flag: false
+  all_NP_delta: 0.0
+  output_mapping:
+    Yp_BBN:
+      result_index: 4
+      scale: 1.0
+    D_over_H:
+      result_index: 5
+      scale: 1.0e-05
+
+native_prior:
+  interpretation: upstream_demo_prior_not_project_scientific_prior
+  baryon_density:
+    distribution: fixed
+    omega_b_h2: 0.0222
+  delta_neff:
+    distribution: fixed
+    value: 0.0
+  neutron_lifetime:
+    distribution: normal
+    mean_seconds: 878.4
+    sigma_seconds: 0.5
+  nuclear_rates:
+    native_parameter_prefix: p_
+    parameter_order_source: >-
+      Ordered 63-name chained assignment initialized by
+      np.zeros(num_reactions) in PRyM/PRyM_init.py.
+    count: 63
+    joint_distribution: independent_standard_normal
+    mean: 0.0
+    sigma: 1.0
+    correlation_assumption: upstream_demo_identity_not_project_default
+
+rng:
+  master_seed: 240701
+  numpy_bit_generator: PCG64DXSM
+  per_draw_seed_sequence: SeedSequence_spawn
+  draw_count: 1000
+  bootstrap_seed: 240702
+  bootstrap_resamples: 20000
+  bootstrap_confidence: 0.99
+
+execution:
+  process_pool_start_method: spawn
+  default_workers: 20
+  maximum_workers: 22
+  threads_per_process: 1
+  required_thread_environment:
+    OMP_NUM_THREADS: "1"
+    MKL_NUM_THREADS: "1"
+    OPENBLAS_NUM_THREADS: "1"
+    NUMBA_NUM_THREADS: "1"
+  checkpoint_every_completed_draws: 1
+  no_failure_resampling: true
+  sentinel_repeat_draw_indices: [0, 499, 999]
+  require_resource_lease: cpu-heavy
+  require_heartbeat_wrapper: true
+  output_files:
+    run_manifest: run_manifest.json
+    draw_manifest: draw_manifest.jsonl
+    results: results.jsonl
+    failures: failures.jsonl
+    state: run_state.json
+    summary: summary.json
+
+acceptance:
+  expected_attempted_draws: 1000
+  maximum_failure_fraction: 0.01
+  minimum_successful_draws: 990
+  maximum_repeat_relative_drift: 1.0e-12
+  maximum_central_reference_offset_in_public_sigma: 0.25
+  maximum_median_reference_offset_in_public_sigma: 0.25
+  public_sigma_ratio_interval: [0.90, 1.10]
+  require_public_sigma_inside_bootstrap_interval: true
+  bootstrap_interval_quantiles: [0.005, 0.995]
+  require_all_outputs_finite_and_positive: true
+  require_unique_draw_ids: true
+  require_complete_failure_accounting: true
+  fail_closed_if_any_contract_check_is_missing: true
+
+cost_boundary:
+  measured_small_network_seconds_per_point: 5.860271273428225
+  estimated_large_network_seconds_per_point: 6.7664595545408215
+  estimate_not_measured_parallel_scaling: true
+  registered_worker_hourly_price_cny: 2.88
+  expected_worker_wall_minutes_range: [10, 20]
+  expected_cost_cny_range: [0.48, 0.96]

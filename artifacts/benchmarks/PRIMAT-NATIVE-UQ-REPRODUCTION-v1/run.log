@@ -1,0 +1,10 @@
+lease-acquired resource=cpu-heavy project=uncertainty task=UQ0-NATIVE-UQ-REPRO lease_id=f99f9bd2882dd958d7281938
+[primat.backend] run_mc: used C backend (force_backend='c')
+PROGRESS 100/1000
+[primat.backend] run_mc: used C backend (force_backend='c')
+PROGRESS 300/1000
+[primat.backend] run_mc: used C backend (force_backend='c')
+PROGRESS 1000/1000
+[primat.backend] run_mc: used C backend (force_backend='c')
+{"accepted": true, "artifact": "/autodl-fs/data/projects/uncertainty/artifacts/native-uq/PRIMAT-NATIVE-UQ-REPRODUCTION-v1/artifact.json", "draws": 1000, "evidence_sha256": "a351c12594dd24dd277864a886db22b02d3da8e1259023de1489ff6ec5376374", "resumed_from_draws": 0}
+lease-released resource=cpu-heavy project=uncertainty task=UQ0-NATIVE-UQ-REPRO exit=0

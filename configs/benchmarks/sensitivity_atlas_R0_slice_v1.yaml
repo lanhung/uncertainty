@@ -1,0 +1,80 @@
+schema_version: 1
+protocol_id: SENSITIVITY-ATLAS-R0-SLICE-v1
+task_id: UQ0-NATIVE-UQ-REPRO
+status: frozen_before_registered_execution
+decision_date_utc: "2026-07-23"
+
+scientific_boundary:
+  claim_level: C0_public_calibration_reproduction_only
+  accepted_scientific_prior: false
+  production_authorized: false
+  novelty_claim: false
+  interpretation: >-
+    Reproduce one public R0 abundance-sensitivity slice with frozen public
+    PRyMordial code and compare it with the published atlas table. The atlas
+    does not publish its generating code or PRyMordial commit, so this is an
+    independent implementation comparison, not a bitwise rerun.
+
+published_object:
+  repository: https://github.com/Anne-KatherineBurns/bbn-sensitivity-atlas
+  revision: d3ea1838d9450673698f07b7c6b8971efb87d0fd
+  license: CC0-1.0
+  table_path: Sensitivity_Summary_Tables/Tau_n_Weak_Norm_Sensitivity_Summary_Table.pdf
+  table_sha256: bf7bd5bcb1753a7e805837e18460b85d3af06fa4fdaf0d5f96b4eee7bff0f035
+  paper_arxiv: "2603.22414"
+  published_generator_revision_available: false
+
+solver:
+  repository: https://github.com/vallima/PRyMordial
+  revision: 725d8a8db3ad5ea2630580d825c9d0d69ed76533
+  network: large_63_reaction
+  rate_compilation: PRIMAT
+  weak_normalization: tau_n
+  omega_b_h2: 0.02237
+  delta_neff: 0.0
+  tau_n_seconds: 878.4
+  q_values: [-1.0, 0.0, 1.0]
+  reactions:
+    - canonical_id: d(p,gamma)3He
+      native_id: dpHe3g
+    - canonical_id: d(d,n)3He
+      native_id: ddHe3n
+    - canonical_id: d(d,p)t
+      native_id: ddtp
+
+published_reference:
+  abundance_units:
+    Yp: dimensionless_mass_fraction
+    DH: 1e5_times_D_over_H
+    Li7H: 1e10_times_Li7_over_H
+  rows:
+    dpHe3g:
+      central: {Yp: 0.2469140171, DH: 2.44545387, Li7H: 5.522986002}
+      derivative_per_q: {Yp: -1.58e-6, DH: -0.0179274522, Li7H: 0.07178932003}
+      R2: {Yp: 0.9999983555, DH: 0.9999258001, Li7H: 0.9997690692}
+    ddHe3n:
+      central: {Yp: 0.2469143134, DH: 2.445397608, Li7H: 5.522979295}
+      derivative_per_q: {Yp: 1.63e-5, DH: -0.01476710452, Li7H: 0.04092688408}
+      R2: {Yp: 0.9998235568, DH: 0.999998146, Li7H: 0.999981493}
+    ddtp:
+      central: {Yp: 0.2469140171, DH: 2.44539382, Li7H: 5.522917276}
+      derivative_per_q: {Yp: 1.69e-5, DH: -0.01204416835, Li7H: 0.002630262795}
+      R2: {Yp: 0.9998527246, DH: 0.9999973433, Li7H: 0.9997962035}
+
+acceptance:
+  maximum_central_absolute_difference:
+    Yp: 5.0e-5
+    DH: 0.01
+    Li7H: 0.03
+  maximum_derivative_relative_difference:
+    Yp: 0.35
+    DH: 0.15
+    Li7H: 0.20
+  derivative_absolute_floor:
+    Yp: 5.0e-6
+    DH: 5.0e-4
+    Li7H: 5.0e-4
+  maximum_repeat_relative_drift: 1.0e-12
+  require_expected_derivative_sign: true
+  require_all_outputs_finite_and_positive: true
+  require_complete_runtime_and_failure_accounting: true

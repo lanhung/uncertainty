@@ -150,6 +150,14 @@ The 2026 BBN sensitivity atlas evaluates 14 particle/cosmological parameters and
 
 Primary resource: arXiv:2603.22414 and <https://github.com/Anne-KatherineBurns/bbn-sensitivity-atlas>.
 
+Reproducibility audit (2026-07-23): the public result repository is frozen at
+`d3ea1838d9450673698f07b7c6b8971efb87d0fd` under CC0-1.0. It contains the
+response plots and PDF summary/budget tables, but not the generating scripts,
+and the paper does not identify the PRyMordial commit used. The project's
+independent R0-slice protocol therefore treats comparison with the published
+table as a numerical calibration with an explicit version-mismatch risk, not
+as a bitwise rerun.
+
 ### 3.3 Function-valued inference for the three deuterium reactions already exists
 
 The 2026 data-driven D/H study uses Gaussian-process regression on the experimental data for `d(d,n)3He`, `d(d,p)t` and `d(p,gamma)3He`. It validates the GP uncertainty, finds that low-order polynomial fits can systematically overpredict D/H, and identifies the 0.1–0.6 MeV region as important for improved `dd` measurements.
@@ -157,6 +165,15 @@ The 2026 data-driven D/H study uses Gaussian-process regression on the experimen
 **Project consequence:** “use a GP for the three head reactions” is not a novelty claim. A function-valued extension must compare posterior-derived shape modes with the scalar approximation and demonstrate an effect on joint abundance distributions, posterior coverage or a registered physics decision.
 
 Primary resource: arXiv:2604.16600.
+
+Reproducibility audit (2026-07-23): arXiv v1 source archive
+`1123d5327c48fd57c55626cbb804854b5c3832443f1f49dd3c04626ae97cd04d`
+fixes the public method description. The paper states that analysis code will
+be released with later cosmological work; fitted hyperparameters, posterior
+draws, the exact experimental-data bundle and random seeds are not currently
+public. The prior structure and published abundance summaries can therefore
+be captured exactly, but ADR-0008 forbids counting this as an independently
+rerun abundance distribution until those inputs are released.
 
 ### 3.4 Reaction posteriors can require hierarchical nuclear models
 

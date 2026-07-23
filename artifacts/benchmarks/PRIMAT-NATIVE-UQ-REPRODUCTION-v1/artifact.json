@@ -1,0 +1,446 @@
+{
+  "acceptance": {
+    "accepted": true,
+    "all_selected_abundances_positive": true,
+    "all_selected_samples_finite": true,
+    "all_selected_standard_deviations_positive": true,
+    "compiled_C_backend": true,
+    "correlation_finite_symmetric_unit_diagonal": true,
+    "covariance_finite_and_symmetric": true,
+    "parallel_serial_prefix_exact": true,
+    "prefix_statistics_diagnostic_only": true
+  },
+  "artifact_id": "PRIMAT-NATIVE-UQ-REPRODUCTION-v1",
+  "central_acceptance": {
+    "absolute_differences": {
+      "DoH": 0.0,
+      "YPBBN": 0.0
+    },
+    "absolute_tolerance": 1e-14,
+    "accepted": true,
+    "outputs": {
+      "DoH": 2.4447361728164994e-05,
+      "He3oH": 1.0412636328465646e-05,
+      "Li7oH": 5.531518584720403e-10,
+      "YPBBN": 0.24695513077748688
+    },
+    "reference_outputs": {
+      "DoH": 2.4447361728164994e-05,
+      "YPBBN": 0.24695513077748688
+    },
+    "relative_tolerance": 1e-10
+  },
+  "completed_at_utc": "2026-07-23T09:19:25.094925+00:00",
+  "environment": {
+    "machine": "x86_64",
+    "numpy": "2.3.5",
+    "platform": "Linux-5.15.0-78-generic-x86_64-with-glibc2.35",
+    "precision": "float64",
+    "python": "3.11.15",
+    "scipy": "1.16.3"
+  },
+  "evidence_sha256": "a351c12594dd24dd277864a886db22b02d3da8e1259023de1489ff6ec5376374",
+  "execution": {
+    "api": "primat.run_mc",
+    "backend": "c",
+    "draws": 1000,
+    "force_backend": "c",
+    "n_jobs": 20,
+    "native_thermonuclear_latent_count": 12,
+    "parameters": {
+      "DeltaNeff": 0.0,
+      "Omegabh2": 0.02237,
+      "QED_corrections": true,
+      "debug": false,
+      "mc_rate_rescale_cap": 30.0,
+      "network": "small",
+      "nuclear_qed_corrections": true,
+      "numerical_precision": 1e-07,
+      "rescale_nuclear_rates": false,
+      "show_progress": false,
+      "std_tau_n": 0.5,
+      "tau_n": 878.3,
+      "tau_n_normalization": true,
+      "verbose": false
+    },
+    "prefix_draws": [
+      100,
+      300,
+      1000
+    ],
+    "prohibited_backend_used": false,
+    "quantities": [
+      "YPBBN",
+      "DoH",
+      "He3oH",
+      "Li7oH"
+    ],
+    "resumed_from_draws": 0,
+    "seed": 2026072301
+  },
+  "failure_accounting": {
+    "failures_file_empty": true,
+    "structured_failure_count": 0
+  },
+  "files": {
+    "checkpoint_json": {
+      "path": "checkpoint.json",
+      "sha256": "127065d31f9642ec2e23974da1dca8463f7e4d0e1a8002a2fada8e4a7001800a"
+    },
+    "checkpoint_samples_npy": {
+      "path": "checkpoint_samples_1000.npy",
+      "sha256": "e7e471cfbe59c233671f149c4284d549e8f1a8c5b192f79348059a3c772ade43"
+    },
+    "correlation_tsv": {
+      "path": "correlation.tsv",
+      "sha256": "c5937a1a2fb67b3642c816cb579b0a216314bea21db86759ada18e520b27d83a"
+    },
+    "covariance_tsv": {
+      "path": "covariance.tsv",
+      "sha256": "e25fd84811c7fabe457ace1749d634c5890d72865dac79be9d8733d7716fd3fd"
+    },
+    "failures_jsonl": {
+      "path": "failures.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "resource_report_json": {
+      "path": "resource_report.json",
+      "sha256": "db881abd1c3f87a1a9d78330f7163177679d4391a79bb0035cce371c7603a98e"
+    },
+    "samples_npy": {
+      "path": "samples.npy",
+      "sha256": "6a1784811f8f903a69bc18e010d7dcfea183a495ca8007f583476565eab48464"
+    },
+    "samples_tsv": {
+      "path": "samples.tsv",
+      "sha256": "5473449840cc67b63d3dd6a9d8b5fe7335d036e2c28b3247daeef2ea7c840098"
+    },
+    "timings_jsonl": {
+      "path": "timings.jsonl",
+      "sha256": "5551d24997cda9a6a20e2d64200f396238e96dcf1029ce239c99adaea2edfdda"
+    }
+  },
+  "known_limitations": [
+    "Native run_mc returns abundance draws but not the sampled rate latents or tau_n draw.",
+    "A compiled-C batch error aborts the batch and does not identify a structured per-draw failure.",
+    "The reverse-rate rescale cap is built from median/QED rates and is not rebuilt per draw.",
+    "This native full-network-plus-weak prior is not the project R0 or ETR25 scientific prior.",
+    "The Python Monte Carlo backend is prohibited because the exact revision has a stale fill-buffer cache risk.",
+    "Passing this protocol establishes only an upstream-native C0 reproduction baseline."
+  ],
+  "prefix_statistics": {
+    "100": {
+      "draws": 100,
+      "quantities": {
+        "DoH": {
+          "mean": 2.446437808153047e-05,
+          "quantiles": {
+            "0.025": 2.394625205299269e-05,
+            "0.160": 2.4229200159569642e-05,
+            "0.500": 2.4488137031393285e-05,
+            "0.840": 2.4687123728650626e-05,
+            "0.975": 2.492760574374331e-05
+          },
+          "standard_deviation_ddof1": 2.4889151511491166e-07
+        },
+        "He3oH": {
+          "mean": 1.0391949087466281e-05,
+          "quantiles": {
+            "0.025": 1.0146714836920918e-05,
+            "0.160": 1.026921951325089e-05,
+            "0.500": 1.0378545341592853e-05,
+            "0.840": 1.0540860374525389e-05,
+            "0.975": 1.0637094584633958e-05
+          },
+          "standard_deviation_ddof1": 1.336937074732291e-07
+        },
+        "Li7oH": {
+          "mean": 5.523597932726573e-10,
+          "quantiles": {
+            "0.025": 5.17380909452746e-10,
+            "0.160": 5.29660273171591e-10,
+            "0.500": 5.547391024042119e-10,
+            "0.840": 5.697074879543866e-10,
+            "0.975": 5.869760959901349e-10
+          },
+          "standard_deviation_ddof1": 1.84902411848579e-11
+        },
+        "YPBBN": {
+          "mean": 0.24694592821277223,
+          "quantiles": {
+            "0.025": 0.24671530276878018,
+            "0.160": 0.2468304816989691,
+            "0.500": 0.24695041796560033,
+            "0.840": 0.24706360875917768,
+            "0.975": 0.24713531492943663
+          },
+          "standard_deviation_ddof1": 0.00010968224175234305
+        }
+      }
+    },
+    "1000": {
+      "draws": 1000,
+      "quantities": {
+        "DoH": {
+          "mean": 2.4456385111877122e-05,
+          "quantiles": {
+            "0.025": 2.3953581504504555e-05,
+            "0.160": 2.420647427248083e-05,
+            "0.500": 2.443817352349461e-05,
+            "0.840": 2.473488846756535e-05,
+            "0.975": 2.4970660915357124e-05
+          },
+          "standard_deviation_ddof1": 2.6064744037157236e-07
+        },
+        "He3oH": {
+          "mean": 1.0409755370932667e-05,
+          "quantiles": {
+            "0.025": 1.0150391340798139e-05,
+            "0.160": 1.0275754545508134e-05,
+            "0.500": 1.0406876886130592e-05,
+            "0.840": 1.0544822069210076e-05,
+            "0.975": 1.0673924366107491e-05
+          },
+          "standard_deviation_ddof1": 1.3654713923235473e-07
+        },
+        "Li7oH": {
+          "mean": 5.530533436463242e-10,
+          "quantiles": {
+            "0.025": 5.175128891192166e-10,
+            "0.160": 5.346811176450333e-10,
+            "0.500": 5.530907156878074e-10,
+            "0.840": 5.71535876302279e-10,
+            "0.975": 5.882303733538742e-10
+          },
+          "standard_deviation_ddof1": 1.8442505871662255e-11
+        },
+        "YPBBN": {
+          "mean": 0.24695589989503608,
+          "quantiles": {
+            "0.025": 0.24674391495983003,
+            "0.160": 0.24684378253529568,
+            "0.500": 0.24695943616973087,
+            "0.840": 0.24706375495753727,
+            "0.975": 0.24717202582708314
+          },
+          "standard_deviation_ddof1": 0.00010946821792861984
+        }
+      }
+    },
+    "300": {
+      "draws": 300,
+      "quantities": {
+        "DoH": {
+          "mean": 2.44657792498686e-05,
+          "quantiles": {
+            "0.025": 2.3965353463017148e-05,
+            "0.160": 2.421130099593274e-05,
+            "0.500": 2.4443760309089846e-05,
+            "0.840": 2.474771901941133e-05,
+            "0.975": 2.4995220227874772e-05
+          },
+          "standard_deviation_ddof1": 2.6454274729722833e-07
+        },
+        "He3oH": {
+          "mean": 1.0408979216799728e-05,
+          "quantiles": {
+            "0.025": 1.0154379909851784e-05,
+            "0.160": 1.0280224399390915e-05,
+            "0.500": 1.0409519025182233e-05,
+            "0.840": 1.054342184489262e-05,
+            "0.975": 1.0651375899020763e-05
+          },
+          "standard_deviation_ddof1": 1.3332268845658542e-07
+        },
+        "Li7oH": {
+          "mean": 5.520916085218592e-10,
+          "quantiles": {
+            "0.025": 5.175756548694827e-10,
+            "0.160": 5.327632674853519e-10,
+            "0.500": 5.524179372921818e-10,
+            "0.840": 5.703598394380217e-10,
+            "0.975": 5.883246099295922e-10
+          },
+          "standard_deviation_ddof1": 1.8896079739121584e-11
+        },
+        "YPBBN": {
+          "mean": 0.2469532483386457,
+          "quantiles": {
+            "0.025": 0.24672356327560435,
+            "0.160": 0.24683684765200978,
+            "0.500": 0.2469532702660368,
+            "0.840": 0.24706533656075594,
+            "0.975": 0.24715290169542903
+          },
+          "standard_deviation_ddof1": 0.00011178527159046106
+        }
+      }
+    }
+  },
+  "protocol": {
+    "path": "configs/benchmarks/primat_native_uq_reproduction_v1.yaml",
+    "sha256": "4cc776daa3c6f31b816c35319e935002f11d9d3dfd7c91ed7b2d91ba7c593303"
+  },
+  "repository_inputs": {
+    "environment_lock": "45f60efbea16955ae3ca2740d6d55e9ae969fe9a5e33d5ef9d71d92d12f3c723",
+    "forward_card": "33e1de0cfc768e017b2a9f76fb22867177d7bb2646941be5d04498a17ac1bc7b",
+    "parameter_schema": "61dc9c3ec1fdc9eb455f9ed64ad604a49d801e2b7de361db8db74a883b8c3c9e"
+  },
+  "resource_summary": {
+    "estimated_cost_cny": 0.004166861121356487,
+    "gpu_hours": 0.0,
+    "wall_seconds": 5.208576401695609
+  },
+  "sample_standard_deviations_ddof1": {
+    "DoH": 2.6064744037157247e-07,
+    "He3oH": 1.365471392323547e-07,
+    "Li7oH": 1.844250587166225e-11,
+    "YPBBN": 0.00010946821792861981
+  },
+  "schema_version": 1,
+  "scientific_scope": {
+    "R0_prior_validated": false,
+    "UQ1_direct_MC_truth": false,
+    "claim_level": "C0",
+    "novelty_claim": false,
+    "production_authorized": false,
+    "project_nuclear_prior_selected": false,
+    "solver_independent_validation": false,
+    "upstream_native_calibration_only": true
+  },
+  "serial_replay": {
+    "backend": "c",
+    "draws": 16,
+    "exact_parallel_prefix_match": true,
+    "maximum_absolute_difference": 0.0,
+    "n_jobs": 1,
+    "samples": [
+      [
+        0.2470581931305724,
+        2.4229651135241463e-05,
+        1.0346943469557905e-05,
+        5.45970903711963e-10
+      ],
+      [
+        0.24700017296309548,
+        2.427457107051217e-05,
+        1.032947380548418e-05,
+        5.632896177360208e-10
+      ],
+      [
+        0.24668790018240405,
+        2.4134877620096092e-05,
+        1.03589736880395e-05,
+        5.463129500946475e-10
+      ],
+      [
+        0.24702185678153094,
+        2.4970627030145305e-05,
+        1.0325913394163498e-05,
+        5.268153577772904e-10
+      ],
+      [
+        0.24669706091287066,
+        2.4416496873912086e-05,
+        1.041249998950648e-05,
+        5.689402442462853e-10
+      ],
+      [
+        0.2469363735964481,
+        2.416898093495849e-05,
+        1.0337420051612292e-05,
+        5.365899282321252e-10
+      ],
+      [
+        0.2468991243503727,
+        2.4508542403633743e-05,
+        1.0427260588015481e-05,
+        5.636202387109669e-10
+      ],
+      [
+        0.2468444378846605,
+        2.4704230457545313e-05,
+        1.0437508295272214e-05,
+        5.541455091291074e-10
+      ],
+      [
+        0.24699099070008151,
+        2.4380450147448556e-05,
+        1.055309598634739e-05,
+        5.696965880121819e-10
+      ],
+      [
+        0.24690042495938222,
+        2.448822999846462e-05,
+        1.0461045920111301e-05,
+        5.587100341530983e-10
+      ],
+      [
+        0.24678612604343084,
+        2.4268770682710753e-05,
+        1.046761481528328e-05,
+        5.5133039149073e-10
+      ],
+      [
+        0.24695421333925946,
+        2.4667939022458545e-05,
+        1.0574374463507386e-05,
+        5.733818713509924e-10
+      ],
+      [
+        0.2467680792746278,
+        2.4721544755813886e-05,
+        1.029965708448947e-05,
+        5.198976657738125e-10
+      ],
+      [
+        0.24703481207266595,
+        2.4540653020846167e-05,
+        1.0498689584892813e-05,
+        5.390135906248052e-10
+      ],
+      [
+        0.2469164772098764,
+        2.4596096310083904e-05,
+        1.0432628073688403e-05,
+        5.584885767104247e-10
+      ],
+      [
+        0.24683686603748842,
+        2.4361791766450234e-05,
+        1.0409838992355853e-05,
+        5.636005837549259e-10
+      ]
+    ],
+    "samples_sha256": "dd19d0076f672b222cc2bb3a191e4eaa0f210a1088061c909741cab5899c6dda",
+    "seed": 2026072301
+  },
+  "source": {
+    "compiled_extension": "/root/autodl-tmp/projects/uncertainty/envs/solver-cpu/lib/python3.11/site-packages/primat/_primat_c.cpython-311-x86_64-linux-gnu.so",
+    "compiled_extension_sha256": "694f19c6c9f6ee179e77a50784f9442b83192d5d5a9c406f2de5fb19cf91c48a",
+    "direct_url": {
+      "dir_info": {},
+      "url": "file:///root/autodl-fs/projects/uncertainty/external/why-not-v1/PRIMAT"
+    },
+    "installed_package": "/root/autodl-tmp/projects/uncertainty/envs/solver-cpu/lib/python3.11/site-packages/primat/__init__.py",
+    "release": "v0.3.2",
+    "repository": "https://github.com/CyrilPitrou/primat",
+    "revision": "21ff8f39fa18e3937e9fdf386cfa982361bfdfce",
+    "source_file_hashes": {
+      "primat-c/include/mc.h": "7f0a97cc6edb696595a99e430f980727d8d5a7cfb229ce87deaa334e9161bdfd",
+      "primat-c/src/mc.c": "1ab18ef79a39bba73638760835e5cd011cc674bff255396ee39fdd28aad86116",
+      "primat-c/src/network_data.c": "48d02ac8cb95fd3776f98a8dccf29061da0f7d52705208c29408606e2747ae54",
+      "primat/_primat_c_src/_wrapper.c": "eda39de43a442736bc3d4e564f067fc74e31d455ec2be0223e44e5aca0c0fdcb",
+      "primat/backend.py": "307b25c9f407323105c773de7cc216f5e0fb295c06fe07319aba272f65e347e5",
+      "primat/config.py": "ec3f905975f98d90f976456e2d2827b93e933ba92b9fef16d5f6445421fd2ce2",
+      "primat/data/nuclear/networks/small.txt": "358a6c141f281e75fda3bba0e2993f9f4b3f1c036b2621a2755e4281488a2981",
+      "primat/main.py": "5d0a3d5fb68759bfb3346ac07a8d28da3078bc0595db2a4b4d2e71f10f1c5779",
+      "primat/network_data.py": "96a771b2e6c23b9d17500740f8ffc9bfecb41d89c23904de4f1a356ca677e1ec",
+      "pyproject.toml": "0937b27c4585949cddb7d95823eef75ec88ff46bf584e951fe49fde4a0083eec"
+    },
+    "source_root": "/autodl-fs/data/projects/uncertainty/external/why-not-v1/PRIMAT",
+    "worktree_clean": true
+  },
+  "status": "completed_upstream_native_compiled_C_calibration",
+  "task_id": "UQ0-NATIVE-UQ-REPRO"
+}

@@ -1,0 +1,18 @@
+{
+  "accounted_process_rusage_seconds": 53.45893,
+  "completed_at_utc": "2026-07-23T09:19:25.071591+00:00",
+  "current_attempt_wall_seconds": 5.208576401695609,
+  "estimated_cost_cny": 0.004166861121356487,
+  "gpu_hours": 0.0,
+  "hostname": "autodl-container-9qk6ggtwem-6244361c",
+  "hourly_price_cny": 2.88,
+  "logical_cpu_count": 208,
+  "max_rss_kib": 225500,
+  "measured_solver_wall_seconds_all_attempts": 4.04450698196888,
+  "process_cpu_seconds": 53.45899359,
+  "protocol_id": "PRIMAT-NATIVE-UQ-REPRODUCTION-v1",
+  "schema_version": 1,
+  "task_id": "UQ0-NATIVE-UQ-REPRO",
+  "wall_accounting_scope": "max(current_attempt_wall, durable_solver_timings_all_attempts); resumed-attempt setup time before the current process is unavailable",
+  "wall_seconds": 5.208576401695609
+}

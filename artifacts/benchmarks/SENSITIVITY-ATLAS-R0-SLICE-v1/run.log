@@ -1,0 +1,3 @@
+lease-acquired resource=cpu-heavy project=uncertainty task=UQ0-NATIVE-UQ-REPRO lease_id=48946d4bb3271d59f37082d1
+{"output": "/root/autodl-fs/projects/uncertainty/artifacts/native-uq/sensitivity-atlas-r0-v1/artifact.json", "evidence_sha256": "412adfd0614a4d7239338ea56349428cd4b4eef8338e047f8669841656cf618b"}
+lease-released resource=cpu-heavy project=uncertainty task=UQ0-NATIVE-UQ-REPRO exit=0

@@ -1,0 +1,42 @@
+{
+  "config_path": "/root/autodl-tmp/projects/uncertainty/repo/configs/benchmarks/prymordial_native_uq_reproduction_v1.yaml",
+  "config_sha256": "0b3c71d302f18531ce2504aaa8968685e21b1d0165841854ba042b6f9be5c297",
+  "created_at_utc": "2026-07-23T09:38:02.079326+00:00",
+  "draw_manifest_sha256": "32ec9edb4de94e4533074739a6e56b7be680bf35b2afa0fe9765dcef2b809819",
+  "environment": {
+    "backend": "python",
+    "lock_path": "environments/solver-cpu/uv.lock",
+    "lock_sha256": "45f60efbea16955ae3ca2740d6d55e9ae969fe9a5e33d5ef9d71d92d12f3c723",
+    "numpy": "2.3.5",
+    "platform": "Linux-5.15.0-78-generic-x86_64-with-glibc2.35",
+    "precision": "float64",
+    "python": "3.11.15",
+    "scipy": "1.16.3"
+  },
+  "evidence_sha256": "7dbc10273c8122f9c829b89ac06f916abcfbd747abd7fb16a113f4365c581ea6",
+  "output_files": {
+    "draw_manifest": "draw_manifest.jsonl",
+    "failures": "failures.jsonl",
+    "results": "results.jsonl",
+    "run_manifest": "run_manifest.json",
+    "state": "run_state.json",
+    "summary": "summary.json"
+  },
+  "protocol_id": "PRYMORDIAL-NATIVE-UQ-REPRODUCTION-v1",
+  "run_id": "6028c26e3f721b49a227f457ecf3c048792ea46914d6f772ec9c7816b4f77ac3",
+  "schema_version": 1,
+  "source": {
+    "license": "GPL-3.0",
+    "repository": "https://github.com/vallima/PRyMordial",
+    "required_file_sha256": {
+      "PRyM/PRyM_init.py": "7b52cdd4cf7a7c39082d6cdf4a2e4f3b67458dc20d6ff9f07c2b488ef1819e2f",
+      "PRyM/PRyM_main.py": "98f0724f27ace2927d38c3eec615def05bfbfd9c1c9cc09cfa91470417b3451f",
+      "PRyM/PRyM_nuclear_net63.py": "dfc634de131e740810f3e2992649f82747173495b2c8e6e0f849a69b1f6da577",
+      "PRyM_Yp_DH_cosmoMC_2023.dat": "bf4d16855ec08ded5e1bc4ebfb298b772feb9a69effd26f457abe00d814dfc41",
+      "PRyMdemoSM.ipynb": "64669919eda1eaaaf6ce855f2a26b23832c17830751a83bd8f5695721df4d63c"
+    },
+    "revision": "725d8a8db3ad5ea2630580d825c9d0d69ed76533",
+    "tracked_worktree_matches_HEAD": true
+  },
+  "task_id": "UQ0-NATIVE-UQ-REPRO"
+}

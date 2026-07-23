@@ -1,0 +1,165 @@
+{
+  "acceptance_boundary": {
+    "native_UQ_task_progress_eligible": false,
+    "reason_not_eligible": "The paper explicitly defers release of analysis code; fitted hyperparameters, posterior draws, exact data bundle and seeds are absent. The published abundance distribution therefore cannot yet be independently rerun under ADR-0008.",
+    "structure_capture_complete_if": [
+      "source_archive_and_tex_hashes_match",
+      "all_required_equation_markers_are_present",
+      "all_three_reaction_representations_are_explicit",
+      "covariance_and_coherent_draw_contracts_are_explicit",
+      "published_abundance_references_are_captured",
+      "unavailable_reproduction_inputs_are_fail_closed"
+    ]
+  },
+  "artifact_id": "GP-DEUTERIUM-PRIOR-STRUCTURE-v1",
+  "evidence_sha256": "1f1a6a14892457451ab2b0192f6ccb1741bef0e6e9cb7233454eaddbdca07922",
+  "generated_at_utc": "2026-07-23T09:02:09.861951+00:00",
+  "next_unblock_condition": "A public release of the analysis code, fitted hyperparameters, exact experimental data bundle and seeded posterior/draw manifest sufficient to rerun the published abundance distribution.",
+  "prior_structure": {
+    "draw_contract": {
+      "downstream_solver": "LINX",
+      "independent_temperature_bin_noise": "prohibited",
+      "object": "coherent_S_factor_curve",
+      "transform": "thermal_average_each_curve_to_rate_curve"
+    },
+    "energy_distance": "absolute_log_ratio",
+    "energy_domain_MeV": [
+      0.014,
+      0.6
+    ],
+    "experimental_covariance": {
+      "ddn_ddp": {
+        "Leonard_2006": "published_full_covariance",
+        "cross_experiment": "zero",
+        "cross_reaction_correlations": "omitted",
+        "diagonal": "statistical_variance_plus_correlated_normalization_variance",
+        "off_diagonal_within_experiment": "correlated_normalization_covariance"
+      },
+      "dpg": {
+        "representation": "lognormal_data_mapped_to_log_space",
+        "shared_Turkat_normalization": "included"
+      }
+    },
+    "fiducial_prior_mean": "zero",
+    "kernel": {
+      "combination": "additive",
+      "fit_method": "leave_dataset_out_predictive_pseudolikelihood",
+      "global": "squared_exponential",
+      "hyperparameters": [
+        "sigma0",
+        "ell0",
+        "sigma1",
+        "ell1"
+      ],
+      "local": "Matern_nu_1_over_4",
+      "optimizer": "Adam",
+      "posterior_hyperparameter_treatment": "fixed_at_optimizer_solution"
+    },
+    "reactions": {
+      "ddn": {
+        "canonical_id": "d(d,n)3He",
+        "fiducial_datasets": [
+          "KR87B",
+          "KR87M",
+          "BR90",
+          "GR95",
+          "Leo06"
+        ],
+        "latent_space": "S_factor",
+        "posterior_family": "multivariate_normal"
+      },
+      "ddp": {
+        "canonical_id": "d(d,p)t",
+        "fiducial_datasets": [
+          "KR87B",
+          "KR87M",
+          "BR90",
+          "GR95",
+          "Leo06"
+        ],
+        "latent_space": "S_factor",
+        "posterior_family": "multivariate_normal"
+      },
+      "dpg": {
+        "canonical_id": "d(p,gamma)3He",
+        "fiducial_datasets": [
+          "MA97",
+          "SC97",
+          "CA02",
+          "TI19",
+          "MO20",
+          "TU21_3",
+          "TU21_4"
+        ],
+        "latent_space": "log_S_factor",
+        "posterior_family": "multivariate_normal_in_log_space"
+      }
+    }
+  },
+  "published_abundance_references": {
+    "Planck_omega_b_marginalized": {
+      "100_omega_b_mean": 2.337,
+      "100_omega_b_sigma": 0.015,
+      "1e5_D_over_H_mean": 2.442,
+      "1e5_D_over_H_sigma": 0.04,
+      "draws": 100000
+    },
+    "fixed_Planck_central_omega_b": {
+      "1e5_D_over_H_mean": 2.442,
+      "1e5_D_over_H_sigma": 0.029,
+      "draws": 60000
+    },
+    "mock_coverage": {
+      "GP_draws_per_mock": 1000,
+      "mock_realizations": 1000,
+      "one_sigma_fraction_range": [
+        0.66,
+        0.69
+      ],
+      "two_sigma_fraction_approx": 0.95
+    }
+  },
+  "reproduction_inputs_unavailable": {
+    "analysis_code": true,
+    "experimental_data_bundle": true,
+    "fitted_hyperparameters": true,
+    "posterior_draws": true,
+    "random_seed": true
+  },
+  "required_tex_markers": {
+    "code_release_deferred": true,
+    "combined_kernel": true,
+    "conditional_posterior": true,
+    "experimental_offdiagonal": true,
+    "leave_dataset_out": true,
+    "lognormal_mapping": true,
+    "published_fixed_omega_result": true,
+    "thermal_average": true
+  },
+  "schema_version": 1,
+  "scientific_scope": {
+    "accepted_project_prior": false,
+    "claim_level": "C0_public_method_structure_audit_only",
+    "exact_abundance_distribution_reproduced": false,
+    "native_UQ_task_progress_eligible": false,
+    "novelty_claim": false,
+    "production_authorized": false
+  },
+  "source": {
+    "analysis_code_public": false,
+    "arxiv": "2604.16600v1",
+    "experimental_data_bundle_public": false,
+    "fitted_hyperparameters_public": false,
+    "observed_source_archive_sha256": "1123d5327c48fd57c55626cbb804854b5c3832443f1f49dd3c04626ae97cd04d",
+    "observed_tex_sha256": "36bc00fba6626b5394b8820868325e0df8d2f7ee40899eb692dc9da0e161ab97",
+    "posterior_draws_public": false,
+    "random_seed_public": false,
+    "source_archive_sha256": "1123d5327c48fd57c55626cbb804854b5c3832443f1f49dd3c04626ae97cd04d",
+    "source_url": "https://arxiv.org/e-print/2604.16600v1",
+    "tex_path": "bbn_gps.tex",
+    "tex_sha256": "36bc00fba6626b5394b8820868325e0df8d2f7ee40899eb692dc9da0e161ab97",
+    "title": "A data-driven prediction for the primordial deuterium abundance"
+  },
+  "status": "public_structure_captured_abundance_rerun_blocked",
+  "task_id": "UQ0-NATIVE-UQ-REPRO"
+}

@@ -118,6 +118,57 @@ class WorkerParserTests(unittest.TestCase):
             heartbeat.finish(0, success_event="block", success_reason="one component accepted")
             self.assertEqual(emitted, [("block", {"reason": "one component accepted"})])
 
+    def test_successful_partial_stage_can_remain_nonterminal(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            os.environ["RESEARCH_OPS_STATE_DIR"] = directory
+            os.environ["RESEARCH_OPS_OUTBOX"] = str(Path(directory) / "outbox")
+            os.environ["RESEARCH_OPS_CHECKPOINT_DIR"] = str(Path(directory) / "checkpoints")
+            os.environ["RESEARCH_OPS_RUN_DIR"] = str(Path(directory) / "runs")
+            path = Path(__file__).parents[2] / "worker" / "run_with_heartbeat.py"
+            spec = importlib.util.spec_from_file_location("heartbeat_progress_module", path)
+            assert spec and spec.loader
+            module = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(module)
+            heartbeat = module.Heartbeat(
+                "EXEC-PARTIAL", 5, "baselines", 30, module.DEFAULT_PROGRESS_RE, False, False
+            )
+            emitted = []
+            heartbeat.emit = lambda event, **kwargs: emitted.append((event, kwargs))
+            heartbeat.finish(0, success_event="progress", success_current=1)
+            self.assertEqual(
+                emitted,
+                [("progress", {"message": "completed partial stage"})],
+            )
+            self.assertEqual(heartbeat.current, 1)
+
+    def test_rejected_component_can_leave_parent_nonterminal(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            os.environ["RESEARCH_OPS_STATE_DIR"] = directory
+            os.environ["RESEARCH_OPS_OUTBOX"] = str(Path(directory) / "outbox")
+            os.environ["RESEARCH_OPS_CHECKPOINT_DIR"] = str(Path(directory) / "checkpoints")
+            os.environ["RESEARCH_OPS_RUN_DIR"] = str(Path(directory) / "runs")
+            path = Path(__file__).parents[2] / "worker" / "run_with_heartbeat.py"
+            spec = importlib.util.spec_from_file_location("heartbeat_rejected_module", path)
+            assert spec and spec.loader
+            module = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(module)
+            heartbeat = module.Heartbeat(
+                "EXEC-PARTIAL", 5, "baselines", 30, module.DEFAULT_PROGRESS_RE, False, False
+            )
+            emitted = []
+            heartbeat.emit = lambda event, **kwargs: emitted.append((event, kwargs))
+            heartbeat.finish(
+                2,
+                failure_event="progress",
+                failure_reason="LINX component rejected",
+                failure_current=2,
+            )
+            self.assertEqual(
+                emitted,
+                [("progress", {"message": "LINX component rejected"})],
+            )
+            self.assertEqual(heartbeat.current, 2)
+
 
 if __name__ == "__main__":
     unittest.main()
