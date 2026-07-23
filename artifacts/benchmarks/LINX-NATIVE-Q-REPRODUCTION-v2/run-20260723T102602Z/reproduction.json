@@ -1,0 +1,101 @@
+{
+  "artifact_id": "LINX-NATIVE-Q-REPRODUCTION-v2",
+  "claim_boundary": {
+    "ETR25_actual_posterior_reconstructed": false,
+    "abundance_level_native_UQ_reproduction": true,
+    "claim_level": "C0",
+    "cross_solver_engine_discrepancy_established": false,
+    "gradients_or_HMC_accepted": false,
+    "novelty_claim_allowed": false,
+    "production_adapter_unlocked": false,
+    "project_scientific_prior_selected": false,
+    "role": "native_legacy_envelope_calibration_only",
+    "scientific_signoff_provided": false
+  },
+  "companion_sha256": {
+    "failures.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "resource_report.json": "28685ee7c62d8ed7750b47fe23968aab7bab3f6c6178ed460817a9bdb67bb9f7",
+    "results.json": "e8353f9405600ad07444c41c1f1e65ae8841c16e1786093462994280e26daa9e",
+    "run_manifest.json": "f6453fc0ef5b1a731b6b08749cec9b030fbdbd225a0a0f06f05d562bef2abafb",
+    "timings.jsonl": "3b6c035fa3d7eacd0b4af7f0df752b850c8728dcbd76c87e3d058f17a2fa7c4b"
+  },
+  "decision": {
+    "checks": {
+      "D_over_H_plus_minus_responses": true,
+      "all_plateaus": true,
+      "batch_grid_complete": true,
+      "expected_batch_rows": true,
+      "expected_scalar_rows": true,
+      "finite_outputs": true,
+      "positive_proton_denominator": true,
+      "row_status_ok": true,
+      "scalar_batch_budget": true,
+      "scalar_grid_complete": true,
+      "zero_batch_repeat_drift": true,
+      "zero_scalar_repeat_drift": true,
+      "zero_structured_failures": true
+    },
+    "maximum_batch_repeat_drift": 0.0,
+    "maximum_scalar_batch_difference_observation_sigma": 8.463480760542923e-05,
+    "maximum_scalar_repeat_drift": 0.0,
+    "passed": true,
+    "plateaus": {
+      "tolerance": {
+        "case_ids": [
+          "B_tolerance",
+          "A_candidate"
+        ],
+        "maximum_difference_observation_sigma": 0.0006193677328284428,
+        "passed": true
+      },
+      "weak_rate_sampling": {
+        "case_ids": [
+          "C_sampling",
+          "A_candidate"
+        ],
+        "maximum_difference_observation_sigma": 0.00022808196589943274,
+        "passed": true
+      }
+    },
+    "response_checks": {
+      "dd_n_he3": {
+        "central": 2.4401402784674668e-05,
+        "minus_one": 2.459347524323903e-05,
+        "minus_shift": 1.9207245856436034e-07,
+        "nonzero_response": true,
+        "passed": true,
+        "plus_one": 2.420953505932457e-05,
+        "plus_shift": -1.9186772535009856e-07,
+        "straddles_central": true
+      },
+      "dd_p_t": {
+        "central": 2.4401402784674668e-05,
+        "minus_one": 2.4538277596140727e-05,
+        "minus_shift": 1.368748114660584e-07,
+        "nonzero_response": true,
+        "passed": true,
+        "plus_one": 2.426438906341168e-05,
+        "plus_shift": -1.3701372126298915e-07,
+        "straddles_central": true
+      },
+      "dp_gamma_he3": {
+        "central": 2.4401402784674668e-05,
+        "minus_one": 2.4584907972723815e-05,
+        "minus_shift": 1.8350518804914718e-07,
+        "nonzero_response": true,
+        "passed": true,
+        "plus_one": 2.421491428888519e-05,
+        "plus_shift": -1.8648849578947803e-07,
+        "straddles_central": true
+      }
+    },
+    "status": "accepted"
+  },
+  "evidence_sha256": "9328c7876d717a840c9b6f09572529bc7b4dc25626fe13ed278336e669beb00b",
+  "generated_at_utc": "2026-07-23T10:32:34Z",
+  "reproduction_id": "LINX-NATIVE-Q-REPRODUCTION-v2",
+  "schema_version": 1,
+  "scientific_scope": "LINX native scalar-envelope abundance calibration at one frozen standard-BBN point; not a selected project prior or posterior",
+  "status": "accepted_C0_calibration",
+  "task_id": "UQ0-NATIVE-UQ-REPRO"
+}

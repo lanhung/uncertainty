@@ -1,0 +1,190 @@
+schema_version: 2
+reproduction_id: LINX-NATIVE-Q-REPRODUCTION-v2
+status: protocol_frozen_measurements_pending
+decision_date_utc: "2026-07-23"
+task_id: UQ0-NATIVE-UQ-REPRO
+baseline_unit: LINX_central_and_nuclear_rates_q_strict_convergence_rerun
+
+source:
+  repository: https://github.com/cgiovanetti/LINX
+  release: v0.1.2
+  revision: ec2e9d2ca455e8204137e884da29f5dd13a638fa
+  network: key_recommended
+  precision: float64
+
+environment:
+  lock: environments/linx-v0.1.2/uv.lock
+  lock_sha256: 98c8f6de35dfdf7147857a3c28153b10f3ad7d424cb9faeea15de75cacd27556
+  jax: 0.4.28
+  jaxlib: 0.4.28
+  backend: cpu
+  x64_required: true
+
+prerequisites:
+  mapping_artifact:
+    path: artifacts/priors/LINX-R0-MAPPING-REGRESSION-v1/regression.json
+    sha256: 6a958225feb3cc531753571c582376a0c5cf3404c1a4e6643482a0d8114e7418
+    artifact_id: LINX-R0-MAPPING-REGRESSION-v1
+    acceptance_passes_required: true
+  parameter_schema:
+    path: configs/physics/parameter_schema.yaml
+    sha256: 4dfbf65ee04e4ab6502e18bf6b69c78a447c9c8d8db660033f2c03b560e04d7a
+  observation_normalization:
+    path: configs/data/abundance_OBS-v1.yaml
+    sha256: 02a4a5453afff34c7f1f036a33d46e728d49a954d46a34e52aa45a570f6f7a8c
+
+parameter_set:
+  id: standard_bbn_fiducial
+  values:
+    omega_b_h2: 0.02237
+    delta_neff: 0.0
+    tau_n_seconds: 878.3
+  background_reused_across_q_draws: true
+
+q_contract:
+  vector_length: 12
+  network_reaction_order:
+    - npdg
+    - dpHe3g
+    - ddHe3n
+    - ddtp
+    - tpag
+    - tdan
+    - taLi7g
+    - He3ntp
+    - He3dap
+    - He3aBe7g
+    - Be7nLi7p
+    - Li7paa
+  canonical_order:
+    - dp_gamma_he3
+    - dd_n_he3
+    - dd_p_t
+  indices_zero_based:
+    dp_gamma_he3: 1
+    dd_n_he3: 2
+    dd_p_t: 3
+  values: [-1.0, 1.0]
+  all_non_R0_entries: 0.0
+  native_sampling_permitted: false
+  vectors:
+    - id: q0
+      reaction: central
+      q: 0.0
+    - id: dp_gamma_he3_m1
+      reaction: dp_gamma_he3
+      q: -1.0
+    - id: dp_gamma_he3_p1
+      reaction: dp_gamma_he3
+      q: 1.0
+    - id: dd_n_he3_m1
+      reaction: dd_n_he3
+      q: -1.0
+    - id: dd_n_he3_p1
+      reaction: dd_n_he3
+      q: 1.0
+    - id: dd_p_t_m1
+      reaction: dd_p_t
+      q: -1.0
+    - id: dd_p_t_p1
+      reaction: dd_p_t
+      q: 1.0
+
+numerical_cases:
+  - id: A_candidate
+    role: strict_candidate
+    rtol: 3.0e-9
+    atol: 3.0e-12
+    sampling_nTOp: 4800
+    max_steps: 32768
+  - id: B_tolerance
+    role: tolerance_plateau
+    rtol: 1.0e-8
+    atol: 1.0e-11
+    sampling_nTOp: 4800
+    max_steps: 32768
+  - id: C_sampling
+    role: weak_rate_sampling_plateau
+    rtol: 3.0e-9
+    atol: 3.0e-12
+    sampling_nTOp: 2400
+    max_steps: 32768
+
+execution:
+  scalar_repetitions_per_case_q: 2
+  heterogeneous_batch:
+    enabled: true
+    numerical_case: A_candidate
+    q_vector_order:
+      - q0
+      - dp_gamma_he3_m1
+      - dp_gamma_he3_p1
+      - dd_n_he3_m1
+      - dd_n_he3_p1
+      - dd_p_t_m1
+      - dd_p_t_p1
+    duplicate_each_q_vector: 2
+    warm_repetitions: 2
+    native_api: jax_jit_vmap_over_nuclear_rates_q
+  resource_lease: cpu-heavy
+  heartbeat_required: true
+  checkpoint_required: true
+
+outputs: [Neff, YPBBN, DoH, He3oH, Li7oH]
+abundance_mapping:
+  YPBBN: 4_times_Y_He4
+  DoH: Y_d_over_Y_p
+  He3oH: Y_t_plus_Y_He3_over_Y_p
+  Li7oH: Y_Li7_plus_Y_Be7_over_Y_p
+
+observation_normalization:
+  YPBBN:
+    source_field: main_likelihood.helium4_mass_fraction.sigma
+    scale: 1.0
+  DoH:
+    source_field: main_likelihood.deuterium_number_ratio.sigma
+    scale: 1.0e-5
+
+acceptance:
+  expected_unique_q_vectors: 7
+  expected_scalar_rows: 42
+  expected_batch_rows: 28
+  require_zero_structured_failures: true
+  require_finite_outputs: true
+  require_positive_proton_denominator: true
+  require_zero_scalar_repeat_drift: true
+  require_zero_batch_repeat_drift: true
+  maximum_scalar_batch_difference_observation_sigma: 0.01
+  maximum_plateau_difference_observation_sigma: 0.001
+  plateau_pairs:
+    tolerance: [B_tolerance, A_candidate]
+    weak_rate_sampling: [C_sampling, A_candidate]
+  require_D_over_H_plus_minus_straddles_central: true
+  require_nonzero_D_over_H_response: true
+
+claim_boundary:
+  role: native_legacy_envelope_calibration_only
+  claim_level: C0
+  abundance_level_native_UQ_reproduction: true
+  project_scientific_prior_selected: false
+  ETR25_actual_posterior_reconstructed: false
+  production_adapter_unlocked: false
+  gradients_or_HMC_accepted: false
+  cross_solver_engine_discrepancy_established: false
+  scientific_signoff_provided: false
+  novelty_claim_allowed: false
+
+rationale: >-
+  V1 missed the frozen tolerance plateau by 0.000246448 observation sigma.
+  V2 does not relax that threshold. It pre-registers a stricter candidate,
+  compares it against the prior accepted 1e-8 tolerance with equal sampling,
+  doubles weak-rate sampling for the candidate, and raises max_steps
+  conservatively. The result may still fail and must be retained if it does.
+
+decision_rule: >-
+  A full pass grants the same single LINX baseline unit of
+  UQ0-NATIVE-UQ-REPRO, superseding V1 only for numerical calibration. Any
+  missing row, structured failure, provenance drift, mapping-prerequisite
+  failure, repeat drift, scalar/batch budget failure, plateau failure or D/H
+  response-direction failure keeps the baseline unaccepted. The 0.001 plateau
+  threshold may not be relaxed after execution.

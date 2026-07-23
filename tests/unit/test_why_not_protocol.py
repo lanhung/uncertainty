@@ -13,6 +13,7 @@ FETCHER = ROOT / "scripts/fetch_why_not_baselines.sh"
 SOURCE_MANIFEST = ROOT / "manifests/software/why_not_baselines_v1.yaml"
 PRYMORDIAL_ADAPTER = ROOT / "configs/benchmarks/prymordial_runtime_adapter_v1.yaml"
 ABCMB_ADAPTER = ROOT / "configs/benchmarks/abcmb_linx_runtime_adapter_v1.yaml"
+FINAL_MEMO = ROOT / "docs/inventory/WHY_NOT_EXISTING_SOLVERS_v1.md"
 
 
 def test_why_not_protocol_has_all_mandatory_competitors_and_stop_rules() -> None:
@@ -63,6 +64,29 @@ def test_why_not_protocol_does_not_fabricate_results() -> None:
     text = ADR.read_text(encoding="utf-8")
     assert "No baseline has yet completed the full registered measurement set" in text
     assert "closes protocol discretion, not `P0-WHY-NOT-01`" in text
+
+    memo = FINAL_MEMO.read_text(encoding="utf-8")
+    assert "final UQ economics undetermined" in memo
+    assert "P0-WHY-NOT-01 progress: 0/1" in memo
+    assert "direct solver sufficient: undetermined" in memo
+    assert "Track B remains **NOT FROZEN**" in memo
+
+
+def test_postmeasurement_status_is_separate_from_hash_frozen_protocol() -> None:
+    status = yaml.safe_load(
+        (ROOT / "configs/benchmarks/why_not_evidence_status_v1.yaml").read_text(encoding="utf-8")
+    )
+
+    assert status["frozen_protocol_mutated"] is False
+    assert status["measured_standard_fiducial_runtime_slices"] == 4
+    assert status["complete_registered_baselines"] == 0
+    native = status["native_uq_reproductions"]
+    assert native["accepted"] == 3
+    assert native["total"] == 5
+    assert native["accepted_baselines"] == ["PRIMAT", "PRyMordial", "LINX_v2"]
+    assert native["superseded_negative_baselines"] == ["LINX_v1"]
+    assert native["not_accepted_baselines"] == ["sensitivity_atlas"]
+    assert native["blocked_baselines"] == ["GP_deuterium"]
 
 
 def test_incompatible_jax_baselines_require_separate_locks() -> None:

@@ -1,6 +1,8 @@
 from __future__ import annotations
 
+import copy
 import importlib.util
+import json
 import subprocess
 from pathlib import Path
 
@@ -10,10 +12,24 @@ import yaml
 ROOT = Path(__file__).resolve().parents[2]
 SCRIPT = ROOT / "scripts/capture_public_nuclear_rate_provenance.py"
 CONFIG = ROOT / "configs/physics/public_nuclear_rate_provenance_v1.yaml"
+ARTIFACT = (
+    ROOT
+    / "artifacts/provenance/PUBLIC-NUCLEAR-RATE-PROVENANCE-v1"
+    / "capture-20260722T200435Z.json"
+)
+VALIDATOR = ROOT / "scripts/validate_public_nuclear_rate_provenance.py"
 
 
 def load_module():
     spec = importlib.util.spec_from_file_location("public_rate_provenance", SCRIPT)
+    assert spec is not None and spec.loader is not None
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def load_validator():
+    spec = importlib.util.spec_from_file_location("validate_public_rate_provenance", VALIDATOR)
     assert spec is not None and spec.loader is not None
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
@@ -104,3 +120,40 @@ def test_capture_rejects_dirty_tracked_source(tmp_path: Path) -> None:
         assert "dirty" in str(exc)
     else:
         raise AssertionError("dirty tracked checkout was accepted")
+
+
+def test_committed_capture_passes_standalone_validator() -> None:
+    result = load_validator().validate(CONFIG, ARTIFACT)
+
+    assert result == {
+        "accepted": True,
+        "artifact_id": "PUBLIC-NUCLEAR-RATE-PROVENANCE-v1",
+        "duplicate_content_groups": 3,
+        "file_count": 21,
+        "nuc_v1_frozen": False,
+        "repositories": 4,
+        "status": "captured_inventory_only_not_nuc_freeze",
+    }
+
+
+def test_validator_rejects_tampered_file_or_duplicate_group(
+    tmp_path: Path,
+) -> None:
+    validator = load_validator()
+    original = json.loads(ARTIFACT.read_text(encoding="utf-8"))
+    for mutation in ("file", "duplicates"):
+        payload = copy.deepcopy(original)
+        if mutation == "file":
+            payload["repositories"]["LINX"]["collections"]["key_recommended"][0]["sha256"] = (
+                "0" * 64
+            )
+        else:
+            payload["duplicate_content_groups"] = []
+        path = tmp_path / f"{mutation}.json"
+        path.write_text(json.dumps(payload), encoding="utf-8")
+        try:
+            validator.validate(CONFIG, path)
+        except ValueError as exc:
+            assert "capture hash drift" in str(exc)
+        else:
+            raise AssertionError(f"tampered {mutation} capture was accepted")

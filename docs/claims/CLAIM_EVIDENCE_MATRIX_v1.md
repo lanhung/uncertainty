@@ -22,7 +22,7 @@ hypotheses and are unavailable for reporting until their gates pass.
 |---|---|---|---|
 | `C0-OPS-CONTROL-01` | C0 | evidence registered; review pending | local/worker engineering smokes only |
 | `C1-LINX-STANDARD-NUMERICS-01` | C1 | scope-limited evidence | one frozen standard-BBN point only |
-| `C1-DIRECT-SOLVER-COST-01` | C1 | incomplete | W0/W2 observations and completed-run costs only |
+| `C1-DIRECT-SOLVER-COST-01` | C1 | incomplete | W0–W3 fiducial runtime slices and accepted native-UQ reproductions only |
 | `C2-HYBRID-CALIBRATION-01` | C2 | unavailable | no method claim |
 | `C3-FUNCTIONAL-RATE-SHAPE-01` | C3 | unavailable | no functional-rate physics claim |
 | `C3-SENSITIVITY-REORDERING-01` | C3 | unavailable | no reordering or experiment-priority claim |
@@ -36,9 +36,14 @@ The accepted LINX V4 artifact supports only the registered standard-point
 numerical candidate. It does not establish parameter-region fidelity, a finite
 gradient, rate-nuisance correctness, extension fidelity, or posterior recovery.
 
-The W0 and W2 runtime artifacts and completed-run cost ledger do not answer the
-direct-first decision. W1 is active, W3 is unexecuted, and the full posterior,
-robustness, SBC and joint-likelihood economics are missing.
+All four W0–W3 standard-fiducial runtime slices are integrity-validated, but
+they do not answer the direct-first decision. PRIMAT, PRyMordial, and the
+stricter pre-registered LINX v2 native-UQ reproduction are accepted. LINX v1
+remains retained as a superseded negative calibration; the sensitivity-atlas
+slice is not accepted, while the GP abundance rerun is blocked by unavailable
+public code, fitted hyperparameters, exact data, posterior draws, and seed.
+The accepted R0 production prior, direct UQ workload, posterior recovery,
+robustness, SBC, and joint-likelihood economics are still missing.
 
 The current NUC-v1 file is a non-production schema with placeholders. It is not
 evidence for scalar or functional nuclear priors. Consequently, all functional

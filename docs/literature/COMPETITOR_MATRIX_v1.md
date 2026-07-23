@@ -92,18 +92,34 @@ No component alone is a cleared claim. A scientific contribution exists only if 
 experiments measure a distributional, posterior or computational effect beyond the frozen null
 boundaries.
 
-## 7. Immediate reproduction and implementation queue
+## 7. Reproduction status and immediate queue
 
-1. ingest ETR25 R0 files, revisions and checksums;
-2. preserve coherent rate-curve draws and audit actual-PDF versus log-normal behavior;
-3. reproduce PRIMAT native `run_mc()` / `mc_uncertainty()` at the frozen point;
-4. reproduce one PRyMordial explicit-marginalization result;
-5. run LINX central and `nuclear_rates_q` perturbation checks;
-6. reproduce one sensitivity-atlas R0 slice;
-7. reproduce the structure of the 2026 GP deuterium prior;
-8. measure the joint `p(Y_p,D/H | theta)` and `C_rate(theta)` drift;
-9. compare `U-M1` against direct `U-M2` before training a complex model;
-10. freeze the post-Gate method baseline set including TMNRE/AMNRE and modern calibration.
+The July reproduction audit is fail-closed. “Executed” is not synonymous with
+“accepted,” and a structural paper audit is not an abundance rerun.
+
+| Baseline | Exact evidence | Decision | Maximum interpretation |
+|---|---|---|---|
+| PRIMAT native MC | `PRIMAT-NATIVE-UQ-REPRODUCTION-v1/artifact.json` | accepted, 1,000/1,000 draws | one frozen public native-MC calibration |
+| PRyMordial native marginalization | `PRYMORDIAL-NATIVE-UQ-REPRODUCTION-v1/summary.json` | accepted, 1,000/1,000 draws | one frozen public log-normal marginalization calibration |
+| LINX native `nuclear_rates_q` | v1 negative artifact plus `LINX-NATIVE-Q-REPRODUCTION-v2/run-20260723T102602Z/reproduction.json` | v2 accepted; unchanged `0.001` gate, tolerance plateau `0.000619368`, sampling plateau `0.000228082`; v1 retained as superseded negative evidence | one frozen public scalar-envelope calibration only |
+| 2026 sensitivity atlas R0 slice | `SENSITIVITY-ATLAS-R0-SLICE-v1/artifact.json` | not accepted under the frozen central/sign checks | independent public-code comparison only |
+| 2026 GP deuterium prior | `GP-DEUTERIUM-PRIOR-STRUCTURE-v1/structure.json` | method structure captured; abundance rerun blocked | equation/provenance audit only; code, fitted hyperparameters, exact data, draws and seed unavailable |
+
+Completed preparation: ETR25 R0 files, revisions and checksums are ingested;
+coherent actual-PDF versus log-normal comparators are registered; three of the
+five public baselines are accepted and the remaining two have a truthful
+rejected or blocked disposition.
+
+The immediate scientific queue is therefore:
+
+1. retain the sensitivity-atlas rejection and GP external-input blocker without
+   weakening their frozen acceptance/reproduction contracts;
+2. freeze the accepted R0 production prior only after the required scientific
+   review and signatures;
+3. run the 1,000-draw direct fiducial abundance distribution;
+4. measure joint `p(Y_p,D/H | theta)` and `C_rate(theta)` drift;
+5. compare `U-M1` against direct `U-M2` before training a complex model;
+6. freeze the post-Gate method baseline set including TMNRE/AMNRE and modern calibration.
 
 ## 8. Search limitation
 
