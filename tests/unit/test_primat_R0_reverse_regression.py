@@ -11,9 +11,7 @@ from worker.primat_rate_draw import apply_variations_safely
 
 
 ROOT = Path(__file__).resolve().parents[2]
-ARTIFACT = (
-    ROOT / "artifacts/priors/PRIMAT-R0-REVERSE-REGRESSION-v1/regression.json"
-)
+ARTIFACT = ROOT / "artifacts/priors/PRIMAT-R0-REVERSE-REGRESSION-v1/regression.json"
 
 
 def test_frozen_reverse_regression_validates() -> None:

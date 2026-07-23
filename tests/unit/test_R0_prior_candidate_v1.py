@@ -72,10 +72,7 @@ def test_PRIMAT_reverse_cap_caveat_is_machine_enforced() -> None:
         ]
         is False
     )
-    assert (
-        primat["reverse_regression"]["actual_solver_temperature_trajectory_evaluated"]
-        is False
-    )
+    assert primat["reverse_regression"]["actual_solver_temperature_trajectory_evaluated"] is False
     assert (
         primat["native_reverse_cap"]
         == "load_time_median_QED_forward_not_recomputed_by_apply_variations"
