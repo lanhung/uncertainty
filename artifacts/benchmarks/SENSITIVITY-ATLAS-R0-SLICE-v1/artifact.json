@@ -1,0 +1,320 @@
+{
+  "acceptance_contract": {
+    "derivative_absolute_floor": {
+      "DH": 0.0005,
+      "Li7H": 0.0005,
+      "Yp": 5e-06
+    },
+    "maximum_central_absolute_difference": {
+      "DH": 0.01,
+      "Li7H": 0.03,
+      "Yp": 5e-05
+    },
+    "maximum_derivative_relative_difference": {
+      "DH": 0.15,
+      "Li7H": 0.2,
+      "Yp": 0.35
+    },
+    "maximum_repeat_relative_drift": 1e-12,
+    "require_all_outputs_finite_and_positive": true,
+    "require_complete_runtime_and_failure_accounting": true,
+    "require_expected_derivative_sign": true
+  },
+  "acceptance_failures": [
+    "central_reference_mismatch:ddHe3n:Li7H",
+    "central_reference_mismatch:ddtp:Li7H",
+    "central_reference_mismatch:dpHe3g:Li7H",
+    "derivative_sign_mismatch:dpHe3g:Yp"
+  ],
+  "acceptance_passes": false,
+  "artifact_id": "SENSITIVITY-ATLAS-R0-SLICE-v1",
+  "attempted_solve_count": 10,
+  "attempts": [
+    {
+      "abundances": {
+        "DH": 2.463723343387724,
+        "Li7H": 5.397474968981005,
+        "Yp": 0.24691601147469214
+      },
+      "elapsed_seconds": 9.308124847710133,
+      "q": -1.0,
+      "reaction": "dpHe3g"
+    },
+    {
+      "abundances": {
+        "DH": 2.4441504306159008,
+        "Li7H": 5.467043001255528,
+        "Yp": 0.24691823243040298
+      },
+      "elapsed_seconds": 8.771230148151517,
+      "q": 0.0,
+      "reaction": "dpHe3g"
+    },
+    {
+      "abundances": {
+        "DH": 2.4233813169446026,
+        "Li7H": 5.54724122120744,
+        "Yp": 0.24691777079846983
+      },
+      "elapsed_seconds": 8.88886683061719,
+      "q": 1.0,
+      "reaction": "dpHe3g"
+    },
+    {
+      "abundances": {
+        "DH": 2.4599071176680827,
+        "Li7H": 5.426560058439906,
+        "Yp": 0.24690178798368734
+      },
+      "elapsed_seconds": 8.648781700059772,
+      "q": -1.0,
+      "reaction": "ddHe3n"
+    },
+    {
+      "abundances": {
+        "DH": 2.4441504306159008,
+        "Li7H": 5.467043001255528,
+        "Yp": 0.24691823243040298
+      },
+      "elapsed_seconds": 8.757635723799467,
+      "q": 0.0,
+      "reaction": "ddHe3n"
+    },
+    {
+      "abundances": {
+        "DH": 2.4320673563236506,
+        "Li7H": 5.505930286195443,
+        "Yp": 0.24693052137367338
+      },
+      "elapsed_seconds": 8.619933051988482,
+      "q": 1.0,
+      "reaction": "ddHe3n"
+    },
+    {
+      "abundances": {
+        "DH": 2.4573736533959027,
+        "Li7H": 5.463164418890731,
+        "Yp": 0.24690396464239348
+      },
+      "elapsed_seconds": 8.88225942850113,
+      "q": -1.0,
+      "reaction": "ddtp"
+    },
+    {
+      "abundances": {
+        "DH": 2.4441504306159008,
+        "Li7H": 5.467043001255528,
+        "Yp": 0.24691823243040298
+      },
+      "elapsed_seconds": 8.755103340372443,
+      "q": 0.0,
+      "reaction": "ddtp"
+    },
+    {
+      "abundances": {
+        "DH": 2.4343679385923185,
+        "Li7H": 5.468337051081935,
+        "Yp": 0.2469283424294243
+      },
+      "elapsed_seconds": 8.915180079638958,
+      "q": 1.0,
+      "reaction": "ddtp"
+    },
+    {
+      "abundances": {
+        "DH": 2.4441504306159008,
+        "Li7H": 5.467043001255528,
+        "Yp": 0.24691823243040298
+      },
+      "elapsed_seconds": 8.697087001055479,
+      "q": 0.0,
+      "reaction": "central_repeat"
+    }
+  ],
+  "comparisons": {
+    "ddHe3n": {
+      "centered_derivative_per_q": {
+        "DH": -0.013919880672216056,
+        "Li7H": 0.03968511387776852,
+        "Yp": 1.4366694993023232e-05
+      },
+      "central": {
+        "DH": 2.4441504306159008,
+        "Li7H": 5.467043001255528,
+        "Yp": 0.24691823243040298
+      },
+      "minus_one_sigma": {
+        "DH": 2.4599071176680827,
+        "Li7H": 5.426560058439906,
+        "Yp": 0.24690178798368734
+      },
+      "plus_one_sigma": {
+        "DH": 2.4320673563236506,
+        "Li7H": 5.505930286195443,
+        "Yp": 0.24693052137367338
+      },
+      "published_R2": {
+        "DH": 0.999998146,
+        "Li7H": 0.999981493,
+        "Yp": 0.9998235568
+      },
+      "published_central": {
+        "DH": 2.445397608,
+        "Li7H": 5.522979295,
+        "Yp": 0.2469143134
+      },
+      "published_derivative_per_q": {
+        "DH": -0.01476710452,
+        "Li7H": 0.04092688408,
+        "Yp": 1.63e-05
+      }
+    },
+    "ddtp": {
+      "centered_derivative_per_q": {
+        "DH": -0.011502857401792133,
+        "Li7H": 0.0025863160956021147,
+        "Yp": 1.2188893515410748e-05
+      },
+      "central": {
+        "DH": 2.4441504306159008,
+        "Li7H": 5.467043001255528,
+        "Yp": 0.24691823243040298
+      },
+      "minus_one_sigma": {
+        "DH": 2.4573736533959027,
+        "Li7H": 5.463164418890731,
+        "Yp": 0.24690396464239348
+      },
+      "plus_one_sigma": {
+        "DH": 2.4343679385923185,
+        "Li7H": 5.468337051081935,
+        "Yp": 0.2469283424294243
+      },
+      "published_R2": {
+        "DH": 0.9999973433,
+        "Li7H": 0.9997962035,
+        "Yp": 0.9998527246
+      },
+      "published_central": {
+        "DH": 2.44539382,
+        "Li7H": 5.522917276,
+        "Yp": 0.2469140171
+      },
+      "published_derivative_per_q": {
+        "DH": -0.01204416835,
+        "Li7H": 0.002630262795,
+        "Yp": 1.69e-05
+      }
+    },
+    "dpHe3g": {
+      "centered_derivative_per_q": {
+        "DH": -0.020171013221560674,
+        "Li7H": 0.07488312611321746,
+        "Yp": 8.796618888445851e-07
+      },
+      "central": {
+        "DH": 2.4441504306159008,
+        "Li7H": 5.467043001255528,
+        "Yp": 0.24691823243040298
+      },
+      "minus_one_sigma": {
+        "DH": 2.463723343387724,
+        "Li7H": 5.397474968981005,
+        "Yp": 0.24691601147469214
+      },
+      "plus_one_sigma": {
+        "DH": 2.4233813169446026,
+        "Li7H": 5.54724122120744,
+        "Yp": 0.24691777079846983
+      },
+      "published_R2": {
+        "DH": 0.9999258001,
+        "Li7H": 0.9997690692,
+        "Yp": 0.9999983555
+      },
+      "published_central": {
+        "DH": 2.44545387,
+        "Li7H": 5.522986002,
+        "Yp": 0.2469140171
+      },
+      "published_derivative_per_q": {
+        "DH": -0.0179274522,
+        "Li7H": 0.07178932003,
+        "Yp": -1.58e-06
+      }
+    }
+  },
+  "configuration": {
+    "delta_neff": 0.0,
+    "network": "large_63_reaction",
+    "omega_b_h2": 0.02237,
+    "q_values": [
+      -1.0,
+      0.0,
+      1.0
+    ],
+    "rate_compilation": "PRIMAT",
+    "reactions": [
+      {
+        "canonical_id": "d(p,gamma)3He",
+        "native_id": "dpHe3g"
+      },
+      {
+        "canonical_id": "d(d,n)3He",
+        "native_id": "ddHe3n"
+      },
+      {
+        "canonical_id": "d(d,p)t",
+        "native_id": "ddtp"
+      }
+    ],
+    "repository": "https://github.com/vallima/PRyMordial",
+    "revision": "725d8a8db3ad5ea2630580d825c9d0d69ed76533",
+    "tau_n_seconds": 878.4,
+    "weak_normalization": "tau_n"
+  },
+  "environment": {
+    "numpy": "2.3.5",
+    "platform": "Linux-5.15.0-78-generic-x86_64-with-glibc2.35",
+    "python": "3.11.15",
+    "scipy": "1.16.3"
+  },
+  "evidence_sha256": "412adfd0614a4d7239338ea56349428cd4b4eef8338e047f8669841656cf618b",
+  "failure_count": 0,
+  "failures": [],
+  "generated_at_utc": "2026-07-23T09:11:39.577282+00:00",
+  "limitations": [
+    "The atlas publishes result PDFs but not its generating scripts.",
+    "The atlas paper does not pin the PRyMordial source revision.",
+    "This artifact compares an independent frozen-public-code rerun with the published table.",
+    "It neither accepts a project prior nor authorizes production."
+  ],
+  "maximum_repeat_relative_drift": 0.0,
+  "native_UQ_task_progress_eligible": false,
+  "runtime_seconds_total": 88.24420215189457,
+  "schema_version": 1,
+  "scientific_scope": {
+    "accepted_scientific_prior": false,
+    "claim_level": "C0_public_calibration_reproduction_only",
+    "interpretation": "Reproduce one public R0 abundance-sensitivity slice with frozen public PRyMordial code and compare it with the published atlas table. The atlas does not publish its generating code or PRyMordial commit, so this is an independent implementation comparison, not a bitwise rerun.",
+    "novelty_claim": false,
+    "production_authorized": false
+  },
+  "source": {
+    "atlas_generator_revision_available": false,
+    "atlas_repository": "https://github.com/Anne-KatherineBurns/bbn-sensitivity-atlas",
+    "atlas_revision": "d3ea1838d9450673698f07b7c6b8971efb87d0fd",
+    "atlas_table_path": "Sensitivity_Summary_Tables/Tau_n_Weak_Norm_Sensitivity_Summary_Table.pdf",
+    "atlas_table_sha256": "bf7bd5bcb1753a7e805837e18460b85d3af06fa4fdaf0d5f96b4eee7bff0f035",
+    "prymordial_repository": "https://github.com/vallima/PRyMordial",
+    "prymordial_revision": "725d8a8db3ad5ea2630580d825c9d0d69ed76533",
+    "prymordial_source_sha256": {
+      "PRyM/PRyM_init.py": "7b52cdd4cf7a7c39082d6cdf4a2e4f3b67458dc20d6ff9f07c2b488ef1819e2f",
+      "PRyM/PRyM_main.py": "98f0724f27ace2927d38c3eec615def05bfbfd9c1c9cc09cfa91470417b3451f",
+      "PRyM/PRyM_nuclear_net63.py": "dfc634de131e740810f3e2992649f82747173495b2c8e6e0f849a69b1f6da577"
+    }
+  },
+  "status": "failed_independent_public_calibration_reproduction",
+  "successful_solve_count": 10,
+  "task_id": "UQ0-NATIVE-UQ-REPRO"
+}

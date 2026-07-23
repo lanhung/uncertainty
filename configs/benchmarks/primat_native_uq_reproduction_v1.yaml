@@ -1,0 +1,124 @@
+schema_version: 1
+protocol_id: PRIMAT-NATIVE-UQ-REPRODUCTION-v1
+task_id: UQ0-NATIVE-UQ-REPRO
+status: frozen_execution_pending
+
+scientific_boundary:
+  purpose: reproduce_PRIMAT_v0.3.2_native_compiled_C_uncertainty
+  claim_level: C0
+  production_use_authorized: false
+  project_nuclear_prior_selected: false
+  counts_as_R0_prior_validation: false
+  counts_as_UQ1_direct_MC_truth: false
+  counts_as_solver_independent_validation: false
+
+source:
+  repository: https://github.com/CyrilPitrou/primat
+  release: v0.3.2
+  revision: 21ff8f39fa18e3937e9fdf386cfa982361bfdfce
+  license: GPL-3.0-or-later
+  exact_checkout_required: true
+  clean_worktree_required: true
+  exact_source_install_required: true
+  source_hashes:
+    primat/backend.py: 307b25c9f407323105c773de7cc216f5e0fb295c06fe07319aba272f65e347e5
+    primat/main.py: 5d0a3d5fb68759bfb3346ac07a8d28da3078bc0595db2a4b4d2e71f10f1c5779
+    primat/config.py: ec3f905975f98d90f976456e2d2827b93e933ba92b9fef16d5f6445421fd2ce2
+    primat/network_data.py: 96a771b2e6c23b9d17500740f8ffc9bfecb41d89c23904de4f1a356ca677e1ec
+    primat-c/src/mc.c: 1ab18ef79a39bba73638760835e5cd011cc674bff255396ee39fdd28aad86116
+    primat-c/src/network_data.c: 48d02ac8cb95fd3776f98a8dccf29061da0f7d52705208c29408606e2747ae54
+    primat-c/include/mc.h: 7f0a97cc6edb696595a99e430f980727d8d5a7cfb229ce87deaa334e9161bdfd
+    primat/_primat_c_src/_wrapper.c: eda39de43a442736bc3d4e564f067fc74e31d455ec2be0223e44e5aca0c0fdcb
+    primat/data/nuclear/networks/small.txt: 358a6c141f281e75fda3bba0e2993f9f4b3f1c036b2621a2755e4281488a2981
+    pyproject.toml: 0937b27c4585949cddb7d95823eef75ec88ff46bf584e951fe49fde4a0083eec
+
+environment:
+  lock: environments/solver-cpu/uv.lock
+  lock_sha256: 45f60efbea16955ae3ca2740d6d55e9ae969fe9a5e33d5ef9d71d92d12f3c723
+  bootstrap_baseline: W2-PRIMAT
+  python: 3.11.15
+  numpy: 2.3.5
+  scipy: 1.16.3
+  precision: float64
+
+registered_forward_baseline:
+  card: configs/solvers/cards/UQ0-S8-PRIMAT-small-C-v1.yaml
+  card_sha256: 33e1de0cfc768e017b2a9f76fb22867177d7bb2646941be5d04498a17ac1bc7b
+  parameter_schema: configs/physics/parameter_schema_standard_bbn_v1.yaml
+  parameter_schema_sha256: 61dc9c3ec1fdc9eb455f9ed64ad604a49d801e2b7de361db8db74a883b8c3c9e
+  central_outputs:
+    YPBBN: 0.24695513077748688
+    DoH: 2.4447361728164994e-5
+  central_output_relative_tolerance: 1.0e-10
+  central_output_absolute_tolerance: 1.0e-14
+
+standard_point:
+  Omegabh2: 0.02237
+  DeltaNeff: 0.0
+  tau_n: 878.3
+
+native_prior:
+  scope: upstream_small_network_full_native_rate_and_weak_prior
+  thermonuclear_latents:
+    count: 12
+    distribution: independent_standard_normal
+    parameterization: median_times_exp_p_times_log_exp_sigma
+    covariance_source: none_independence_is_upstream_native_assumption
+  neutron_lifetime:
+    distribution: normal
+    mean_seconds: 878.3
+    standard_deviation_seconds: 0.5
+    tau_n_normalization: true
+  nuclear_qed_corrections: true
+  mc_rate_rescale_cap: 30
+  reverse_rate_cap_policy: constructed_from_median_QED_rates_at_network_load
+  project_R0_mapping: not_applied
+  ETR25_actual_PDF: not_applied
+
+solver_parameters:
+  network: small
+  numerical_precision: 1.0e-7
+  rescale_nuclear_rates: false
+  verbose: false
+  debug: false
+  show_progress: false
+
+execution:
+  api: primat.run_mc
+  force_backend: c
+  prohibited_backends: [python]
+  draws: 1000
+  seed: 2026072301
+  n_jobs: 20
+  serial_replay_draws: 16
+  serial_replay_n_jobs: 1
+  prefix_draws: [100, 300, 1000]
+  quantities: [YPBBN, DoH, He3oH, Li7oH]
+  quantile_probabilities: [0.025, 0.16, 0.5, 0.84, 0.975]
+  output_artifact: artifact.json
+  raw_samples_npy: samples.npy
+  raw_samples_tsv: samples.tsv
+  covariance_tsv: covariance.tsv
+  correlation_tsv: correlation.tsv
+  failures_jsonl: failures.jsonl
+  timings_jsonl: timings.jsonl
+  resource_report_json: resource_report.json
+
+acceptance:
+  require_compiled_C_backend: true
+  require_exact_parallel_serial_prefix_replay: true
+  require_zero_structured_failures: true
+  require_all_selected_samples_finite: true
+  require_all_selected_abundances_positive: true
+  require_positive_sample_standard_deviation: true
+  require_symmetric_finite_covariance: true
+  require_unit_diagonal_correlation: true
+  prefix_statistics_are_diagnostic_only: true
+
+known_limitations:
+  - Native run_mc returns abundance draws but not the sampled rate latents or tau_n draw.
+  - A compiled-C batch error aborts the batch and does not identify a structured per-draw failure.
+  - The reverse-rate rescale cap is built from median/QED rates and is not rebuilt per draw.
+  - This native full-network-plus-weak prior is not the project R0 or ETR25 scientific prior.
+  - The Python Monte Carlo backend is prohibited because the exact revision has a stale fill-buffer cache risk.
+  - Passing this protocol establishes only an upstream-native C0 reproduction baseline.

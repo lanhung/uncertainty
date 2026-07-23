@@ -1,0 +1,94 @@
+schema_version: 1
+protocol_id: GP-DEUTERIUM-PRIOR-STRUCTURE-v1
+task_id: UQ0-NATIVE-UQ-REPRO
+status: frozen_public_structure_audit
+decision_date_utc: "2026-07-23"
+
+source:
+  title: A data-driven prediction for the primordial deuterium abundance
+  arxiv: "2604.16600v1"
+  source_url: https://arxiv.org/e-print/2604.16600v1
+  source_archive_sha256: 1123d5327c48fd57c55626cbb804854b5c3832443f1f49dd3c04626ae97cd04d
+  tex_path: bbn_gps.tex
+  tex_sha256: 36bc00fba6626b5394b8820868325e0df8d2f7ee40899eb692dc9da0e161ab97
+  analysis_code_public: false
+  fitted_hyperparameters_public: false
+  posterior_draws_public: false
+  experimental_data_bundle_public: false
+  random_seed_public: false
+
+prior_structure:
+  reactions:
+    ddn:
+      canonical_id: d(d,n)3He
+      latent_space: S_factor
+      posterior_family: multivariate_normal
+      fiducial_datasets: [KR87B, KR87M, BR90, GR95, Leo06]
+    ddp:
+      canonical_id: d(d,p)t
+      latent_space: S_factor
+      posterior_family: multivariate_normal
+      fiducial_datasets: [KR87B, KR87M, BR90, GR95, Leo06]
+    dpg:
+      canonical_id: d(p,gamma)3He
+      latent_space: log_S_factor
+      posterior_family: multivariate_normal_in_log_space
+      fiducial_datasets: [MA97, SC97, CA02, TI19, MO20, TU21_3, TU21_4]
+  energy_domain_MeV: [0.014, 0.6]
+  fiducial_prior_mean: zero
+  energy_distance: absolute_log_ratio
+  kernel:
+    global: squared_exponential
+    local: Matern_nu_1_over_4
+    combination: additive
+    hyperparameters: [sigma0, ell0, sigma1, ell1]
+    fit_method: leave_dataset_out_predictive_pseudolikelihood
+    optimizer: Adam
+    posterior_hyperparameter_treatment: fixed_at_optimizer_solution
+  experimental_covariance:
+    ddn_ddp:
+      diagonal: statistical_variance_plus_correlated_normalization_variance
+      off_diagonal_within_experiment: correlated_normalization_covariance
+      cross_experiment: zero
+      Leonard_2006: published_full_covariance
+      cross_reaction_correlations: omitted
+    dpg:
+      representation: lognormal_data_mapped_to_log_space
+      shared_Turkat_normalization: included
+  draw_contract:
+    object: coherent_S_factor_curve
+    transform: thermal_average_each_curve_to_rate_curve
+    independent_temperature_bin_noise: prohibited
+    downstream_solver: LINX
+
+published_abundance_references:
+  fixed_Planck_central_omega_b:
+    draws: 60000
+    1e5_D_over_H_mean: 2.442
+    1e5_D_over_H_sigma: 0.029
+  Planck_omega_b_marginalized:
+    draws: 100000
+    100_omega_b_mean: 2.337
+    100_omega_b_sigma: 0.015
+    1e5_D_over_H_mean: 2.442
+    1e5_D_over_H_sigma: 0.040
+  mock_coverage:
+    mock_realizations: 1000
+    GP_draws_per_mock: 1000
+    one_sigma_fraction_range: [0.66, 0.69]
+    two_sigma_fraction_approx: 0.95
+
+acceptance_boundary:
+  structure_capture_complete_if:
+    - source_archive_and_tex_hashes_match
+    - all_required_equation_markers_are_present
+    - all_three_reaction_representations_are_explicit
+    - covariance_and_coherent_draw_contracts_are_explicit
+    - published_abundance_references_are_captured
+    - unavailable_reproduction_inputs_are_fail_closed
+  native_UQ_task_progress_eligible: false
+  reason_not_eligible: >-
+    The paper explicitly defers release of analysis code; fitted
+    hyperparameters, posterior draws, exact data bundle and seeds are absent.
+    The published abundance distribution therefore cannot yet be independently
+    rerun under ADR-0008.

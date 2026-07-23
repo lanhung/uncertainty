@@ -1,0 +1,151 @@
+{
+  "acceptance_checks": {
+    "all_outputs_finite_and_positive": true,
+    "attempted_draw_count_exact": true,
+    "central_reference_offsets_met": true,
+    "maximum_failure_fraction_met": true,
+    "median_reference_offsets_met": true,
+    "minimum_successful_draws_met": true,
+    "public_sigma_ratios_met": true,
+    "public_sigmas_inside_bootstrap_intervals": true,
+    "sentinel_repeats_met": true
+  },
+  "accepted": true,
+  "artifact_id": "PRYMORDIAL-NATIVE-UQ-REPRODUCTION-v1",
+  "attempted_draws": 1000,
+  "central_reference_offset_in_public_sigma": {
+    "D_over_H": 0.06249224204660624,
+    "Yp_BBN": 0.13695033804375756
+  },
+  "central_result": {
+    "D_over_H": 2.532775605589357e-05,
+    "Yp_BBN": 0.2467566549953394,
+    "draw_id": -1,
+    "elapsed_seconds": 9.172555087134242,
+    "input_record_sha256": "55e727216305011f136470a3c61e390d9521cc8d90d23bdde4eff1d0c96fa10f"
+  },
+  "evidence_sha256": "6ae7f5356fb5b39630b0c4969691a65051e42af99bd4ba5198781f84ad3e80e0",
+  "failed_draws": 0,
+  "failure_fraction": 0.0,
+  "joint_abundance_correlation": [
+    [
+      1.0,
+      -0.6597394261060442
+    ],
+    [
+      -0.6597394261060442,
+      0.9999999999999998
+    ]
+  ],
+  "joint_abundance_covariance": [
+    [
+      1.8750796438739884e-08,
+      -9.183966765801271e-11
+    ],
+    [
+      -9.183966765801271e-11,
+      1.0334655664690098e-12
+    ]
+  ],
+  "joint_abundance_covariance_order": [
+    "Yp_BBN",
+    "D_over_H"
+  ],
+  "maximum_sentinel_repeat_relative_drift": 0.0,
+  "run_id": "6028c26e3f721b49a227f457ecf3c048792ea46914d6f772ec9c7816b4f77ac3",
+  "schema_version": 1,
+  "scientific_boundary": {
+    "abundance_level_uq": true,
+    "accepted_scientific_prior": false,
+    "claim_level": "C0_upstream_native_numerical_reproduction_only",
+    "interpretation": "This protocol statistically reproduces the public PRyMordial abundance Monte Carlo at one public-table point. It does not select the project's R0 nuclear prior, reconstruct unpublished draws, or reproduce a cosmological posterior.",
+    "posterior_marginalization_reproduced": false,
+    "production_authorized": false,
+    "project_R0_prior_used": false,
+    "scientific_signoff_provided": false,
+    "upstream_native_prior_only": true
+  },
+  "sentinel_repeat_results": [
+    {
+      "D_over_H_relative_drift": 0.0,
+      "Yp_BBN_relative_drift": 0.0,
+      "draw_id": 0,
+      "input_record_sha256": "b9db058bc0efe920f47be347d0b62d2d1164fb03fd1d02fe4d6650e7f52c6bb5",
+      "original_success": true,
+      "repeated_D_over_H": 2.453573211552263e-05,
+      "repeated_Yp_BBN": 0.24690384002443586,
+      "repeated_elapsed_seconds": 9.21803504228592
+    },
+    {
+      "D_over_H_relative_drift": 0.0,
+      "Yp_BBN_relative_drift": 0.0,
+      "draw_id": 499,
+      "input_record_sha256": "57def4d99a4de8e6bd00454374cd4a3f80087992fe3f82eaeae8f12f8b1038b2",
+      "original_success": true,
+      "repeated_D_over_H": 2.459666444441384e-05,
+      "repeated_Yp_BBN": 0.2468557629780675,
+      "repeated_elapsed_seconds": 9.081699611619115
+    },
+    {
+      "D_over_H_relative_drift": 0.0,
+      "Yp_BBN_relative_drift": 0.0,
+      "draw_id": 999,
+      "input_record_sha256": "cf233d09730e58b3e6086e88d1cf428d4d4f571abb795f170263d62413536d70",
+      "original_success": true,
+      "repeated_D_over_H": 2.3024673715363837e-05,
+      "repeated_Yp_BBN": 0.24686228517154418,
+      "repeated_elapsed_seconds": 9.074341457337141
+    }
+  ],
+  "statistics": {
+    "D_over_H": {
+      "bootstrap_sample_sigma_interval_99_percent": [
+        9.567565118310871e-07,
+        1.0749284110578487e-06
+      ],
+      "mean": 2.5308864169357823e-05,
+      "median": 2.5322407346796545e-05,
+      "median_reference_offset_in_public_sigma": 0.06784468883390045,
+      "public_center": 2.5390204658712323e-05,
+      "public_sigma": 9.993016856744879e-07,
+      "public_sigma_inside_bootstrap_interval": true,
+      "sample_quantiles": {
+        "q005": 2.2470155083571077e-05,
+        "q025": 2.3263740318745432e-05,
+        "q160": 2.4316630628591355e-05,
+        "q500": 2.5322407346796545e-05,
+        "q840": 2.631545695179861e-05,
+        "q975": 2.7276434061317713e-05,
+        "q995": 2.778349282576535e-05
+      },
+      "sample_standard_deviation": 1.0165950848145049e-06,
+      "sample_to_public_sigma_ratio": 1.0173054838072695
+    },
+    "Yp_BBN": {
+      "bootstrap_sample_sigma_interval_99_percent": [
+        0.00012937447704343448,
+        0.00014448698804872564
+      ],
+      "mean": 0.246755872848334,
+      "median": 0.24675422812302514,
+      "median_reference_offset_in_public_sigma": 0.15491547625690616,
+      "public_center": 0.24677515532524957,
+      "public_sigma": 0.0001350878732718134,
+      "public_sigma_inside_bootstrap_interval": true,
+      "sample_quantiles": {
+        "q005": 0.2464185090053762,
+        "q025": 0.2465031764873808,
+        "q160": 0.24661476413871758,
+        "q500": 0.24675422812302514,
+        "q840": 0.24689723234663563,
+        "q975": 0.24702613926458852,
+        "q995": 0.2470841921870016
+      },
+      "sample_standard_deviation": 0.0001369335475284997,
+      "sample_to_public_sigma_ratio": 1.0136627678857046
+    }
+  },
+  "status": "accepted_C0_native_abundance_MC",
+  "successful_draws": 1000,
+  "task_id": "UQ0-NATIVE-UQ-REPRO"
+}

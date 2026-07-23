@@ -303,6 +303,10 @@ class Heartbeat:
         *,
         success_event: str = "done",
         success_reason: str | None = None,
+        success_current: float | None = None,
+        failure_event: str = "fail",
+        failure_reason: str | None = None,
+        failure_current: float | None = None,
     ) -> None:
         self._stop.set()
         if self._report_thread is not None:
@@ -310,8 +314,13 @@ class Heartbeat:
         if self._interrupted:
             return
         if code == 0:
+            if success_current is not None:
+                with self._data_lock:
+                    self.current = success_current
             if success_event == "done":
                 self.emit("done", message=self.last_line or "completed")
+            elif success_event == "progress":
+                self.emit("progress", message=self.last_line or "completed partial stage")
             elif success_event == "block":
                 self.emit(
                     "block",
@@ -320,7 +329,16 @@ class Heartbeat:
             else:
                 raise ValueError(f"unsupported success event: {success_event}")
         else:
-            self.emit("fail", reason=f"exit code {code}: {self.last_line}")
+            if failure_current is not None:
+                with self._data_lock:
+                    self.current = failure_current
+            reason = failure_reason or f"exit code {code}: {self.last_line}"
+            if failure_event == "fail":
+                self.emit("fail", reason=reason)
+            elif failure_event == "progress":
+                self.emit("progress", message=reason)
+            else:
+                raise ValueError(f"unsupported failure event: {failure_event}")
 
 
 def terminate_process_group(process: subprocess.Popen[str], grace_s: float = 20.0) -> None:
@@ -361,13 +379,39 @@ def main() -> None:
     )
     parser.add_argument(
         "--success-event",
-        choices=("done", "block"),
+        choices=("done", "progress", "block"),
         default="done",
-        help="terminal event for a successful child; use block for an accepted partial stage",
+        help=(
+            "event for a successful child; use progress for a completed nonterminal "
+            "stage or block when remaining work is genuinely blocked"
+        ),
     )
     parser.add_argument(
         "--success-reason",
         help="required explanation when --success-event=block",
+    )
+    parser.add_argument(
+        "--success-current",
+        type=float,
+        help="absolute task progress to emit after a successful nonterminal stage",
+    )
+    parser.add_argument(
+        "--failure-event",
+        choices=("fail", "progress"),
+        default="fail",
+        help=(
+            "event for a failed child; use progress only when one rejected component "
+            "must not fail its still-active parent task"
+        ),
+    )
+    parser.add_argument(
+        "--failure-reason",
+        help="parent-task message when --failure-event=progress",
+    )
+    parser.add_argument(
+        "--failure-current",
+        type=float,
+        help="absolute parent-task progress retained after a rejected component",
     )
     parser.add_argument("--cwd")
     parser.add_argument(
@@ -439,6 +483,10 @@ def main() -> None:
         code,
         success_event=args.success_event,
         success_reason=args.success_reason,
+        success_current=args.success_current,
+        failure_event=args.failure_event,
+        failure_reason=args.failure_reason,
+        failure_current=args.failure_current,
     )
     raise SystemExit(code)
 

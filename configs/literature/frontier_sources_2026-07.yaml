@@ -48,8 +48,16 @@ nuclear_probability_information:
 
   GP_deuterium_2026:
     title: A data-driven prediction for the primordial deuterium abundance
-    arxiv: "2604.16600"
+    arxiv: "2604.16600v1"
     submitted: "2026-04-17"
+    source_archive_sha256: 1123d5327c48fd57c55626cbb804854b5c3832443f1f49dd3c04626ae97cd04d
+    tex_sha256: 36bc00fba6626b5394b8820868325e0df8d2f7ee40899eb692dc9da0e161ab97
+    reproducibility_availability:
+      analysis_code: deferred_by_authors
+      fitted_hyperparameters: unavailable
+      posterior_draws: unavailable
+      experimental_data_bundle: unavailable
+      random_seed: unavailable
     reactions: [dp_gamma_he3, dd_n_he3, dd_p_t]
     method: gaussian_process_regression_on_experimental_nuclear_data
     key_results:
@@ -159,6 +167,11 @@ sensitivity_and_BBN_results:
     journal: Physics Reports 1194, 1-40 (2026)
     doi: "10.1016/j.physrep.2026.07.001"
     code: https://github.com/Anne-KatherineBurns/bbn-sensitivity-atlas
+    code_revision: d3ea1838d9450673698f07b7c6b8971efb87d0fd
+    license: CC0-1.0
+    tau_n_summary_table_sha256: bf7bd5bcb1753a7e805837e18460b85d3af06fa4fdaf0d5f96b4eee7bff0f035
+    generating_scripts_public: false
+    prymordial_revision_in_paper: not_reported
     scope:
       physics_and_cosmology_parameters: 14
       thermonuclear_rates: 63

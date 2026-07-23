@@ -476,6 +476,16 @@ Default policy:
 - leave several vCPUs for the operating system, heartbeat and I/O;
 - only share the GPU after an explicit profiling decision.
 
+When a long run completes only one component of a still-active parent task,
+use `--success-event progress --success-current <ABSOLUTE_COUNT>`. This emits a
+nonterminal task update. Reserve the default `done` event for completion of the
+whole task, and use `block` only when the remaining work is genuinely blocked.
+If a component executes correctly but fails its frozen scientific acceptance
+threshold, use
+`--failure-event progress --failure-current <CURRENT_ACCEPTED_COUNT>` and a
+specific `--failure-reason`. The child still exits nonzero for automation, but
+the parent remains active instead of being falsely marked failed.
+
 ## 13. End-to-end telemetry acceptance test
 
 On either AutoDL node:
