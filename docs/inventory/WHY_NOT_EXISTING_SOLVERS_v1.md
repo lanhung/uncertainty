@@ -18,8 +18,8 @@ separate from the hash-frozen measurement protocol.
 | Question | Current evidence | Status |
 |---|---|---|
 | Can the public solvers run reproducibly at one standard point? | Four integrity-validated W0–W3 runtime slices, each with 1,950 successful warm points and zero structured failures | measured, scope limited |
-| Can native nuclear-rate UQ be reproduced? | PRIMAT and PRyMordial accepted at 1,000/1,000 draws | 2/5 accepted |
-| Is the frozen LINX native candidate numerically accepted? | Tolerance plateau `0.001246448` observation sigma versus frozen `0.001` limit | no |
+| Can native nuclear-rate UQ be reproduced? | PRIMAT and PRyMordial accepted at 1,000/1,000 draws; LINX v2 accepted under unchanged numerical gates | 3/5 accepted |
+| Is the frozen LINX native candidate numerically accepted? | v1 failed at `0.001246448`; stricter pre-registered v2 passed at `0.000619368` versus unchanged `0.001` limit | yes, v2 C0 calibration only |
 | Is the sensitivity-atlas R0 slice accepted? | Frozen central/sign checks failed | no |
 | Can the published GP abundance distribution be rerun? | Method structure captured; code, fitted hyperparameters, exact data, draws and seed are unavailable | blocked |
 | Is the project R0 prior frozen for production? | Engineering candidate and provenance exist; scientific prior and signatures do not | no |
@@ -30,9 +30,9 @@ separate from the hash-frozen measurement protocol.
 
 ## Solver dispositions
 
-- `W0-LINX`: fiducial runtime measured; native scalar-envelope response
-  executed, but its frozen tolerance plateau failed. Gradient and posterior
-  claims are unavailable.
+- `W0-LINX`: fiducial runtime measured; native scalar-envelope v1 failed its
+  tolerance plateau, while the stricter pre-registered v2 passed without
+  relaxing the gate. Gradient and posterior claims remain unavailable.
 - `W1-PRyMordial`: fiducial runtime and one 1,000-draw native
   log-normal-marginalization calibration are accepted. Posterior recovery and
   the project-selected prior remain unmeasured.

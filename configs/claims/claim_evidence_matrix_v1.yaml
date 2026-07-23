@@ -92,6 +92,7 @@ claims:
       - artifacts/benchmarks/PRIMAT-NATIVE-UQ-REPRODUCTION-v1/artifact.json
       - artifacts/benchmarks/PRYMORDIAL-NATIVE-UQ-REPRODUCTION-v1/summary.json
       - artifacts/benchmarks/LINX-NATIVE-Q-REPRODUCTION-v1/reproduction.json
+      - artifacts/benchmarks/LINX-NATIVE-Q-REPRODUCTION-v2/run-20260723T102602Z/reproduction.json
       - artifacts/benchmarks/SENSITIVITY-ATLAS-R0-SLICE-v1/artifact.json
       - artifacts/benchmarks/GP-DEUTERIUM-PRIOR-STRUCTURE-v1/structure.json
       - artifacts/benchmarks/WHY-NOT-UQ-INTERIM-ECONOMICS-v1/package.json
@@ -100,7 +101,7 @@ claims:
     missing_evidence:
       - accepted_R0_project_prior_and_direct_UQ_workload
       - W3_full_joint_CMB_BBN_stack_measurement
-      - W0_finite_gradient_or_gradient_free_posterior_recovery
+      - W0_gradient_free_posterior_recovery_or_separately_accepted_gradient_path
       - W1_rate_marginalization_and_posterior_recovery
       - W2_posterior_region_and_adversarial_points
       - full_robustness_and_SBC_workload_projection

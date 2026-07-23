@@ -1,0 +1,2170 @@
+{
+  "batch_rows": [
+    {
+      "case_id": "A_candidate",
+      "duplicate": 0,
+      "mode": "heterogeneous_batch",
+      "outputs": {
+        "DoH": 2.4401403542085214e-05,
+        "He3oH": 1.042211513419371e-05,
+        "Li7oH": 5.710387322497361e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24663717759083084
+      },
+      "proton_denominator": 0.7533025030428299,
+      "q_id": "q0",
+      "q_vector": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 0,
+      "row_index": 0,
+      "status": "ok"
+    },
+    {
+      "case_id": "A_candidate",
+      "duplicate": 1,
+      "mode": "heterogeneous_batch",
+      "outputs": {
+        "DoH": 2.4401403542085214e-05,
+        "He3oH": 1.042211513419371e-05,
+        "Li7oH": 5.710387322497361e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24663717759083084
+      },
+      "proton_denominator": 0.7533025030428299,
+      "q_id": "q0",
+      "q_vector": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 0,
+      "row_index": 1,
+      "status": "ok"
+    },
+    {
+      "case_id": "A_candidate",
+      "duplicate": 0,
+      "mode": "heterogeneous_batch",
+      "outputs": {
+        "DoH": 2.4584923609991497e-05,
+        "He3oH": 1.0334837578055791e-05,
+        "Li7oH": 5.636292386053818e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24663586346127025
+      },
+      "proton_denominator": 0.7533037378584152,
+      "q_id": "dp_gamma_he3_m1",
+      "q_vector": [
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 0,
+      "row_index": 2,
+      "status": "ok"
+    },
+    {
+      "case_id": "A_candidate",
+      "duplicate": 1,
+      "mode": "heterogeneous_batch",
+      "outputs": {
+        "DoH": 2.4584923609991497e-05,
+        "He3oH": 1.0334837578055791e-05,
+        "Li7oH": 5.636292386053818e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24663586346127025
+      },
+      "proton_denominator": 0.7533037378584152,
+      "q_id": "dp_gamma_he3_m1",
+      "q_vector": [
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 0,
+      "row_index": 3,
+      "status": "ok"
+    },
+    {
+      "case_id": "A_candidate",
+      "duplicate": 0,
+      "mode": "heterogeneous_batch",
+      "outputs": {
+        "DoH": 2.4214934608726215e-05,
+        "He3oH": 1.0511247574058957e-05,
+        "Li7oH": 5.786576984416679e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.2466384892767426
+      },
+      "proton_denominator": 0.7533012709202276,
+      "q_id": "dp_gamma_he3_p1",
+      "q_vector": [
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 0,
+      "row_index": 4,
+      "status": "ok"
+    },
+    {
+      "case_id": "A_candidate",
+      "duplicate": 1,
+      "mode": "heterogeneous_batch",
+      "outputs": {
+        "DoH": 2.4214934608726215e-05,
+        "He3oH": 1.0511247574058957e-05,
+        "Li7oH": 5.786576984416679e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.2466384892767426
+      },
+      "proton_denominator": 0.7533012709202276,
+      "q_id": "dp_gamma_he3_p1",
+      "q_vector": [
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 0,
+      "row_index": 5,
+      "status": "ok"
+    },
+    {
+      "case_id": "A_candidate",
+      "duplicate": 0,
+      "mode": "heterogeneous_batch",
+      "outputs": {
+        "DoH": 2.4593449852796747e-05,
+        "He3oH": 1.0390009201388883e-05,
+        "Li7oH": 5.657530450369566e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24661526226782793
+      },
+      "proton_denominator": 0.7533241998685754,
+      "q_id": "dd_n_he3_m1",
+      "q_vector": [
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 0,
+      "row_index": 6,
+      "status": "ok"
+    },
+    {
+      "case_id": "A_candidate",
+      "duplicate": 1,
+      "mode": "heterogeneous_batch",
+      "outputs": {
+        "DoH": 2.4593449852796747e-05,
+        "He3oH": 1.0390009201388883e-05,
+        "Li7oH": 5.657530450369566e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24661526226782793
+      },
+      "proton_denominator": 0.7533241998685754,
+      "q_id": "dd_n_he3_m1",
+      "q_vector": [
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 0,
+      "row_index": 7,
+      "status": "ok"
+    },
+    {
+      "case_id": "A_candidate",
+      "duplicate": 0,
+      "mode": "heterogeneous_batch",
+      "outputs": {
+        "DoH": 2.4209514948806054e-05,
+        "He3oH": 1.045433812132268e-05,
+        "Li7oH": 5.763744471243369e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.2466592270386963
+      },
+      "proton_denominator": 0.75328067158807,
+      "q_id": "dd_n_he3_p1",
+      "q_vector": [
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 0,
+      "row_index": 8,
+      "status": "ok"
+    },
+    {
+      "case_id": "A_candidate",
+      "duplicate": 1,
+      "mode": "heterogeneous_batch",
+      "outputs": {
+        "DoH": 2.4209514948806054e-05,
+        "He3oH": 1.045433812132268e-05,
+        "Li7oH": 5.763744471243369e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.2466592270386963
+      },
+      "proton_denominator": 0.75328067158807,
+      "q_id": "dd_n_he3_p1",
+      "q_vector": [
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 0,
+      "row_index": 9,
+      "status": "ok"
+    },
+    {
+      "case_id": "A_candidate",
+      "duplicate": 0,
+      "mode": "heterogeneous_batch",
+      "outputs": {
+        "DoH": 2.453828223585919e-05,
+        "He3oH": 1.0453748918380592e-05,
+        "Li7oH": 5.70795586171108e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24662194370775475
+      },
+      "proton_denominator": 0.7533174580122681,
+      "q_id": "dd_p_t_m1",
+      "q_vector": [
+        0.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 0,
+      "row_index": 10,
+      "status": "ok"
+    },
+    {
+      "case_id": "A_candidate",
+      "duplicate": 1,
+      "mode": "heterogeneous_batch",
+      "outputs": {
+        "DoH": 2.453828223585919e-05,
+        "He3oH": 1.0453748918380592e-05,
+        "Li7oH": 5.70795586171108e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24662194370775475
+      },
+      "proton_denominator": 0.7533174580122681,
+      "q_id": "dd_p_t_m1",
+      "q_vector": [
+        0.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 0,
+      "row_index": 11,
+      "status": "ok"
+    },
+    {
+      "case_id": "A_candidate",
+      "duplicate": 0,
+      "mode": "heterogeneous_batch",
+      "outputs": {
+        "DoH": 2.4264382700136304e-05,
+        "He3oH": 1.0390424244615794e-05,
+        "Li7oH": 5.712791954031202e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24665250855756554
+      },
+      "proton_denominator": 0.7532874513296355,
+      "q_id": "dd_p_t_p1",
+      "q_vector": [
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 0,
+      "row_index": 12,
+      "status": "ok"
+    },
+    {
+      "case_id": "A_candidate",
+      "duplicate": 1,
+      "mode": "heterogeneous_batch",
+      "outputs": {
+        "DoH": 2.4264382700136304e-05,
+        "He3oH": 1.0390424244615794e-05,
+        "Li7oH": 5.712791954031202e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24665250855756554
+      },
+      "proton_denominator": 0.7532874513296355,
+      "q_id": "dd_p_t_p1",
+      "q_vector": [
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 0,
+      "row_index": 13,
+      "status": "ok"
+    },
+    {
+      "case_id": "A_candidate",
+      "duplicate": 0,
+      "mode": "heterogeneous_batch",
+      "outputs": {
+        "DoH": 2.4401403542085214e-05,
+        "He3oH": 1.042211513419371e-05,
+        "Li7oH": 5.710387322497361e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24663717759083084
+      },
+      "proton_denominator": 0.7533025030428299,
+      "q_id": "q0",
+      "q_vector": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 1,
+      "row_index": 14,
+      "status": "ok"
+    },
+    {
+      "case_id": "A_candidate",
+      "duplicate": 1,
+      "mode": "heterogeneous_batch",
+      "outputs": {
+        "DoH": 2.4401403542085214e-05,
+        "He3oH": 1.042211513419371e-05,
+        "Li7oH": 5.710387322497361e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24663717759083084
+      },
+      "proton_denominator": 0.7533025030428299,
+      "q_id": "q0",
+      "q_vector": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 1,
+      "row_index": 15,
+      "status": "ok"
+    },
+    {
+      "case_id": "A_candidate",
+      "duplicate": 0,
+      "mode": "heterogeneous_batch",
+      "outputs": {
+        "DoH": 2.4584923609991497e-05,
+        "He3oH": 1.0334837578055791e-05,
+        "Li7oH": 5.636292386053818e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24663586346127025
+      },
+      "proton_denominator": 0.7533037378584152,
+      "q_id": "dp_gamma_he3_m1",
+      "q_vector": [
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 1,
+      "row_index": 16,
+      "status": "ok"
+    },
+    {
+      "case_id": "A_candidate",
+      "duplicate": 1,
+      "mode": "heterogeneous_batch",
+      "outputs": {
+        "DoH": 2.4584923609991497e-05,
+        "He3oH": 1.0334837578055791e-05,
+        "Li7oH": 5.636292386053818e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24663586346127025
+      },
+      "proton_denominator": 0.7533037378584152,
+      "q_id": "dp_gamma_he3_m1",
+      "q_vector": [
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 1,
+      "row_index": 17,
+      "status": "ok"
+    },
+    {
+      "case_id": "A_candidate",
+      "duplicate": 0,
+      "mode": "heterogeneous_batch",
+      "outputs": {
+        "DoH": 2.4214934608726215e-05,
+        "He3oH": 1.0511247574058957e-05,
+        "Li7oH": 5.786576984416679e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.2466384892767426
+      },
+      "proton_denominator": 0.7533012709202276,
+      "q_id": "dp_gamma_he3_p1",
+      "q_vector": [
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 1,
+      "row_index": 18,
+      "status": "ok"
+    },
+    {
+      "case_id": "A_candidate",
+      "duplicate": 1,
+      "mode": "heterogeneous_batch",
+      "outputs": {
+        "DoH": 2.4214934608726215e-05,
+        "He3oH": 1.0511247574058957e-05,
+        "Li7oH": 5.786576984416679e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.2466384892767426
+      },
+      "proton_denominator": 0.7533012709202276,
+      "q_id": "dp_gamma_he3_p1",
+      "q_vector": [
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 1,
+      "row_index": 19,
+      "status": "ok"
+    },
+    {
+      "case_id": "A_candidate",
+      "duplicate": 0,
+      "mode": "heterogeneous_batch",
+      "outputs": {
+        "DoH": 2.4593449852796747e-05,
+        "He3oH": 1.0390009201388883e-05,
+        "Li7oH": 5.657530450369566e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24661526226782793
+      },
+      "proton_denominator": 0.7533241998685754,
+      "q_id": "dd_n_he3_m1",
+      "q_vector": [
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 1,
+      "row_index": 20,
+      "status": "ok"
+    },
+    {
+      "case_id": "A_candidate",
+      "duplicate": 1,
+      "mode": "heterogeneous_batch",
+      "outputs": {
+        "DoH": 2.4593449852796747e-05,
+        "He3oH": 1.0390009201388883e-05,
+        "Li7oH": 5.657530450369566e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24661526226782793
+      },
+      "proton_denominator": 0.7533241998685754,
+      "q_id": "dd_n_he3_m1",
+      "q_vector": [
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 1,
+      "row_index": 21,
+      "status": "ok"
+    },
+    {
+      "case_id": "A_candidate",
+      "duplicate": 0,
+      "mode": "heterogeneous_batch",
+      "outputs": {
+        "DoH": 2.4209514948806054e-05,
+        "He3oH": 1.045433812132268e-05,
+        "Li7oH": 5.763744471243369e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.2466592270386963
+      },
+      "proton_denominator": 0.75328067158807,
+      "q_id": "dd_n_he3_p1",
+      "q_vector": [
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 1,
+      "row_index": 22,
+      "status": "ok"
+    },
+    {
+      "case_id": "A_candidate",
+      "duplicate": 1,
+      "mode": "heterogeneous_batch",
+      "outputs": {
+        "DoH": 2.4209514948806054e-05,
+        "He3oH": 1.045433812132268e-05,
+        "Li7oH": 5.763744471243369e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.2466592270386963
+      },
+      "proton_denominator": 0.75328067158807,
+      "q_id": "dd_n_he3_p1",
+      "q_vector": [
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 1,
+      "row_index": 23,
+      "status": "ok"
+    },
+    {
+      "case_id": "A_candidate",
+      "duplicate": 0,
+      "mode": "heterogeneous_batch",
+      "outputs": {
+        "DoH": 2.453828223585919e-05,
+        "He3oH": 1.0453748918380592e-05,
+        "Li7oH": 5.70795586171108e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24662194370775475
+      },
+      "proton_denominator": 0.7533174580122681,
+      "q_id": "dd_p_t_m1",
+      "q_vector": [
+        0.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 1,
+      "row_index": 24,
+      "status": "ok"
+    },
+    {
+      "case_id": "A_candidate",
+      "duplicate": 1,
+      "mode": "heterogeneous_batch",
+      "outputs": {
+        "DoH": 2.453828223585919e-05,
+        "He3oH": 1.0453748918380592e-05,
+        "Li7oH": 5.70795586171108e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24662194370775475
+      },
+      "proton_denominator": 0.7533174580122681,
+      "q_id": "dd_p_t_m1",
+      "q_vector": [
+        0.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 1,
+      "row_index": 25,
+      "status": "ok"
+    },
+    {
+      "case_id": "A_candidate",
+      "duplicate": 0,
+      "mode": "heterogeneous_batch",
+      "outputs": {
+        "DoH": 2.4264382700136304e-05,
+        "He3oH": 1.0390424244615794e-05,
+        "Li7oH": 5.712791954031202e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24665250855756554
+      },
+      "proton_denominator": 0.7532874513296355,
+      "q_id": "dd_p_t_p1",
+      "q_vector": [
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 1,
+      "row_index": 26,
+      "status": "ok"
+    },
+    {
+      "case_id": "A_candidate",
+      "duplicate": 1,
+      "mode": "heterogeneous_batch",
+      "outputs": {
+        "DoH": 2.4264382700136304e-05,
+        "He3oH": 1.0390424244615794e-05,
+        "Li7oH": 5.712791954031202e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24665250855756554
+      },
+      "proton_denominator": 0.7532874513296355,
+      "q_id": "dd_p_t_p1",
+      "q_vector": [
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 1,
+      "row_index": 27,
+      "status": "ok"
+    }
+  ],
+  "decision": {
+    "checks": {
+      "D_over_H_plus_minus_responses": true,
+      "all_plateaus": true,
+      "batch_grid_complete": true,
+      "expected_batch_rows": true,
+      "expected_scalar_rows": true,
+      "finite_outputs": true,
+      "positive_proton_denominator": true,
+      "row_status_ok": true,
+      "scalar_batch_budget": true,
+      "scalar_grid_complete": true,
+      "zero_batch_repeat_drift": true,
+      "zero_scalar_repeat_drift": true,
+      "zero_structured_failures": true
+    },
+    "maximum_batch_repeat_drift": 0.0,
+    "maximum_scalar_batch_difference_observation_sigma": 8.463480760542923e-05,
+    "maximum_scalar_repeat_drift": 0.0,
+    "passed": true,
+    "plateaus": {
+      "tolerance": {
+        "case_ids": [
+          "B_tolerance",
+          "A_candidate"
+        ],
+        "maximum_difference_observation_sigma": 0.0006193677328284428,
+        "passed": true
+      },
+      "weak_rate_sampling": {
+        "case_ids": [
+          "C_sampling",
+          "A_candidate"
+        ],
+        "maximum_difference_observation_sigma": 0.00022808196589943274,
+        "passed": true
+      }
+    },
+    "response_checks": {
+      "dd_n_he3": {
+        "central": 2.4401402784674668e-05,
+        "minus_one": 2.459347524323903e-05,
+        "minus_shift": 1.9207245856436034e-07,
+        "nonzero_response": true,
+        "passed": true,
+        "plus_one": 2.420953505932457e-05,
+        "plus_shift": -1.9186772535009856e-07,
+        "straddles_central": true
+      },
+      "dd_p_t": {
+        "central": 2.4401402784674668e-05,
+        "minus_one": 2.4538277596140727e-05,
+        "minus_shift": 1.368748114660584e-07,
+        "nonzero_response": true,
+        "passed": true,
+        "plus_one": 2.426438906341168e-05,
+        "plus_shift": -1.3701372126298915e-07,
+        "straddles_central": true
+      },
+      "dp_gamma_he3": {
+        "central": 2.4401402784674668e-05,
+        "minus_one": 2.4584907972723815e-05,
+        "minus_shift": 1.8350518804914718e-07,
+        "nonzero_response": true,
+        "passed": true,
+        "plus_one": 2.421491428888519e-05,
+        "plus_shift": -1.8648849578947803e-07,
+        "straddles_central": true
+      }
+    },
+    "status": "accepted"
+  },
+  "observation_sigmas": {
+    "DoH": 3.0000000000000004e-07,
+    "YPBBN": 0.0013
+  },
+  "scalar_rows": [
+    {
+      "case_id": "A_candidate",
+      "mode": "scalar",
+      "outputs": {
+        "DoH": 2.4401402784674668e-05,
+        "He3oH": 1.042211416886224e-05,
+        "Li7oH": 5.71039332098572e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24663717399450263
+      },
+      "proton_denominator": 0.7533025066421781,
+      "q_id": "q0",
+      "q_vector": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 0,
+      "status": "ok"
+    },
+    {
+      "case_id": "A_candidate",
+      "mode": "scalar",
+      "outputs": {
+        "DoH": 2.4401402784674668e-05,
+        "He3oH": 1.042211416886224e-05,
+        "Li7oH": 5.71039332098572e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24663717399450263
+      },
+      "proton_denominator": 0.7533025066421781,
+      "q_id": "q0",
+      "q_vector": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 1,
+      "status": "ok"
+    },
+    {
+      "case_id": "A_candidate",
+      "mode": "scalar",
+      "outputs": {
+        "DoH": 2.4584907972723815e-05,
+        "He3oH": 1.033483821262722e-05,
+        "Li7oH": 5.636291475358895e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24663587989496571
+      },
+      "proton_denominator": 0.7533037214481694,
+      "q_id": "dp_gamma_he3_m1",
+      "q_vector": [
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 0,
+      "status": "ok"
+    },
+    {
+      "case_id": "A_candidate",
+      "mode": "scalar",
+      "outputs": {
+        "DoH": 2.4584907972723815e-05,
+        "He3oH": 1.033483821262722e-05,
+        "Li7oH": 5.636291475358895e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24663587989496571
+      },
+      "proton_denominator": 0.7533037214481694,
+      "q_id": "dp_gamma_he3_m1",
+      "q_vector": [
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 1,
+      "status": "ok"
+    },
+    {
+      "case_id": "A_candidate",
+      "mode": "scalar",
+      "outputs": {
+        "DoH": 2.421491428888519e-05,
+        "He3oH": 1.0511243838544055e-05,
+        "Li7oH": 5.786592576125033e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.2466385060783599
+      },
+      "proton_denominator": 0.7533012541589876,
+      "q_id": "dp_gamma_he3_p1",
+      "q_vector": [
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 0,
+      "status": "ok"
+    },
+    {
+      "case_id": "A_candidate",
+      "mode": "scalar",
+      "outputs": {
+        "DoH": 2.421491428888519e-05,
+        "He3oH": 1.0511243838544055e-05,
+        "Li7oH": 5.786592576125033e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.2466385060783599
+      },
+      "proton_denominator": 0.7533012541589876,
+      "q_id": "dp_gamma_he3_p1",
+      "q_vector": [
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 1,
+      "status": "ok"
+    },
+    {
+      "case_id": "A_candidate",
+      "mode": "scalar",
+      "outputs": {
+        "DoH": 2.459347524323903e-05,
+        "He3oH": 1.0389993174089157e-05,
+        "Li7oH": 5.657532370618562e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24661526913227028
+      },
+      "proton_denominator": 0.7533241930026485,
+      "q_id": "dd_n_he3_m1",
+      "q_vector": [
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 0,
+      "status": "ok"
+    },
+    {
+      "case_id": "A_candidate",
+      "mode": "scalar",
+      "outputs": {
+        "DoH": 2.459347524323903e-05,
+        "He3oH": 1.0389993174089157e-05,
+        "Li7oH": 5.657532370618562e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24661526913227028
+      },
+      "proton_denominator": 0.7533241930026485,
+      "q_id": "dd_n_he3_m1",
+      "q_vector": [
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 1,
+      "status": "ok"
+    },
+    {
+      "case_id": "A_candidate",
+      "mode": "scalar",
+      "outputs": {
+        "DoH": 2.420953505932457e-05,
+        "He3oH": 1.045432272744661e-05,
+        "Li7oH": 5.763758453277291e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24665924593805222
+      },
+      "proton_denominator": 0.7532806526946876,
+      "q_id": "dd_n_he3_p1",
+      "q_vector": [
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 0,
+      "status": "ok"
+    },
+    {
+      "case_id": "A_candidate",
+      "mode": "scalar",
+      "outputs": {
+        "DoH": 2.420953505932457e-05,
+        "He3oH": 1.045432272744661e-05,
+        "Li7oH": 5.763758453277291e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24665924593805222
+      },
+      "proton_denominator": 0.7532806526946876,
+      "q_id": "dd_n_he3_p1",
+      "q_vector": [
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 1,
+      "status": "ok"
+    },
+    {
+      "case_id": "A_candidate",
+      "mode": "scalar",
+      "outputs": {
+        "DoH": 2.4538277596140727e-05,
+        "He3oH": 1.0453748102546185e-05,
+        "Li7oH": 5.707952016983037e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24662194774832896
+      },
+      "proton_denominator": 0.7533174539808412,
+      "q_id": "dd_p_t_m1",
+      "q_vector": [
+        0.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 0,
+      "status": "ok"
+    },
+    {
+      "case_id": "A_candidate",
+      "mode": "scalar",
+      "outputs": {
+        "DoH": 2.4538277596140727e-05,
+        "He3oH": 1.0453748102546185e-05,
+        "Li7oH": 5.707952016983037e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24662194774832896
+      },
+      "proton_denominator": 0.7533174539808412,
+      "q_id": "dd_p_t_m1",
+      "q_vector": [
+        0.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 1,
+      "status": "ok"
+    },
+    {
+      "case_id": "A_candidate",
+      "mode": "scalar",
+      "outputs": {
+        "DoH": 2.426438906341168e-05,
+        "He3oH": 1.0390436469742477e-05,
+        "Li7oH": 5.712794682233548e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24665251149158607
+      },
+      "proton_denominator": 0.753287448358628,
+      "q_id": "dd_p_t_p1",
+      "q_vector": [
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 0,
+      "status": "ok"
+    },
+    {
+      "case_id": "A_candidate",
+      "mode": "scalar",
+      "outputs": {
+        "DoH": 2.426438906341168e-05,
+        "He3oH": 1.0390436469742477e-05,
+        "Li7oH": 5.712794682233548e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24665251149158607
+      },
+      "proton_denominator": 0.753287448358628,
+      "q_id": "dd_p_t_p1",
+      "q_vector": [
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 1,
+      "status": "ok"
+    },
+    {
+      "case_id": "B_tolerance",
+      "mode": "scalar",
+      "outputs": {
+        "DoH": 2.440121697435482e-05,
+        "He3oH": 1.0422078684310298e-05,
+        "Li7oH": 5.710403166297823e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.2466371119608101
+      },
+      "proton_denominator": 0.7533025690309945,
+      "q_id": "q0",
+      "q_vector": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 0,
+      "status": "ok"
+    },
+    {
+      "case_id": "B_tolerance",
+      "mode": "scalar",
+      "outputs": {
+        "DoH": 2.440121697435482e-05,
+        "He3oH": 1.0422078684310298e-05,
+        "Li7oH": 5.710403166297823e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.2466371119608101
+      },
+      "proton_denominator": 0.7533025690309945,
+      "q_id": "q0",
+      "q_vector": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 1,
+      "status": "ok"
+    },
+    {
+      "case_id": "B_tolerance",
+      "mode": "scalar",
+      "outputs": {
+        "DoH": 2.458474487958443e-05,
+        "He3oH": 1.0334796584335667e-05,
+        "Li7oH": 5.636335883841675e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.2466357957895814
+      },
+      "proton_denominator": 0.7533038058865132,
+      "q_id": "dp_gamma_he3_m1",
+      "q_vector": [
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 0,
+      "status": "ok"
+    },
+    {
+      "case_id": "B_tolerance",
+      "mode": "scalar",
+      "outputs": {
+        "DoH": 2.458474487958443e-05,
+        "He3oH": 1.0334796584335667e-05,
+        "Li7oH": 5.636335883841675e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.2466357957895814
+      },
+      "proton_denominator": 0.7533038058865132,
+      "q_id": "dp_gamma_he3_m1",
+      "q_vector": [
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 1,
+      "status": "ok"
+    },
+    {
+      "case_id": "B_tolerance",
+      "mode": "scalar",
+      "outputs": {
+        "DoH": 2.4214776641025093e-05,
+        "He3oH": 1.0511220373840725e-05,
+        "Li7oH": 5.786602892181513e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.2466384532581042
+      },
+      "proton_denominator": 0.7533013072353896,
+      "q_id": "dp_gamma_he3_p1",
+      "q_vector": [
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 0,
+      "status": "ok"
+    },
+    {
+      "case_id": "B_tolerance",
+      "mode": "scalar",
+      "outputs": {
+        "DoH": 2.4214776641025093e-05,
+        "He3oH": 1.0511220373840725e-05,
+        "Li7oH": 5.786602892181513e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.2466384532581042
+      },
+      "proton_denominator": 0.7533013072353896,
+      "q_id": "dp_gamma_he3_p1",
+      "q_vector": [
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 1,
+      "status": "ok"
+    },
+    {
+      "case_id": "B_tolerance",
+      "mode": "scalar",
+      "outputs": {
+        "DoH": 2.4593332735053658e-05,
+        "He3oH": 1.0389979562754841e-05,
+        "Li7oH": 5.657557133967127e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24661520067820894
+      },
+      "proton_denominator": 0.7533242616966291,
+      "q_id": "dd_n_he3_m1",
+      "q_vector": [
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 0,
+      "status": "ok"
+    },
+    {
+      "case_id": "B_tolerance",
+      "mode": "scalar",
+      "outputs": {
+        "DoH": 2.4593332735053658e-05,
+        "He3oH": 1.0389979562754841e-05,
+        "Li7oH": 5.657557133967127e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24661520067820894
+      },
+      "proton_denominator": 0.7533242616966291,
+      "q_id": "dd_n_he3_m1",
+      "q_vector": [
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 1,
+      "status": "ok"
+    },
+    {
+      "case_id": "B_tolerance",
+      "mode": "scalar",
+      "outputs": {
+        "DoH": 2.420946819135564e-05,
+        "He3oH": 1.0454321016628654e-05,
+        "Li7oH": 5.763777938234842e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.246659169277713
+      },
+      "proton_denominator": 0.7532807294534997,
+      "q_id": "dd_n_he3_p1",
+      "q_vector": [
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 0,
+      "status": "ok"
+    },
+    {
+      "case_id": "B_tolerance",
+      "mode": "scalar",
+      "outputs": {
+        "DoH": 2.420946819135564e-05,
+        "He3oH": 1.0454321016628654e-05,
+        "Li7oH": 5.763777938234842e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.246659169277713
+      },
+      "proton_denominator": 0.7532807294534997,
+      "q_id": "dd_n_he3_p1",
+      "q_vector": [
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 1,
+      "status": "ok"
+    },
+    {
+      "case_id": "B_tolerance",
+      "mode": "scalar",
+      "outputs": {
+        "DoH": 2.4538173665143428e-05,
+        "He3oH": 1.0453741189865823e-05,
+        "Li7oH": 5.707926091176002e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24662187355212611
+      },
+      "proton_denominator": 0.753317528343284,
+      "q_id": "dd_p_t_m1",
+      "q_vector": [
+        0.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 0,
+      "status": "ok"
+    },
+    {
+      "case_id": "B_tolerance",
+      "mode": "scalar",
+      "outputs": {
+        "DoH": 2.4538173665143428e-05,
+        "He3oH": 1.0453741189865823e-05,
+        "Li7oH": 5.707926091176002e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24662187355212611
+      },
+      "proton_denominator": 0.753317528343284,
+      "q_id": "dd_p_t_m1",
+      "q_vector": [
+        0.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 1,
+      "status": "ok"
+    },
+    {
+      "case_id": "B_tolerance",
+      "mode": "scalar",
+      "outputs": {
+        "DoH": 2.4264284310670743e-05,
+        "He3oH": 1.0390434082894875e-05,
+        "Li7oH": 5.712781630137323e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24665245946743997
+      },
+      "proton_denominator": 0.7532875005418336,
+      "q_id": "dd_p_t_p1",
+      "q_vector": [
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 0,
+      "status": "ok"
+    },
+    {
+      "case_id": "B_tolerance",
+      "mode": "scalar",
+      "outputs": {
+        "DoH": 2.4264284310670743e-05,
+        "He3oH": 1.0390434082894875e-05,
+        "Li7oH": 5.712781630137323e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24665245946743997
+      },
+      "proton_denominator": 0.7532875005418336,
+      "q_id": "dd_p_t_p1",
+      "q_vector": [
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 1,
+      "status": "ok"
+    },
+    {
+      "case_id": "C_sampling",
+      "mode": "scalar",
+      "outputs": {
+        "DoH": 2.4401402293994696e-05,
+        "He3oH": 1.0422104591030906e-05,
+        "Li7oH": 5.710384764811917e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24663743209551078
+      },
+      "proton_denominator": 0.7533022485842293,
+      "q_id": "q0",
+      "q_vector": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 0,
+      "status": "ok"
+    },
+    {
+      "case_id": "C_sampling",
+      "mode": "scalar",
+      "outputs": {
+        "DoH": 2.4401402293994696e-05,
+        "He3oH": 1.0422104591030906e-05,
+        "Li7oH": 5.710384764811917e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24663743209551078
+      },
+      "proton_denominator": 0.7533022485842293,
+      "q_id": "q0",
+      "q_vector": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 1,
+      "status": "ok"
+    },
+    {
+      "case_id": "C_sampling",
+      "mode": "scalar",
+      "outputs": {
+        "DoH": 2.4584953632116803e-05,
+        "He3oH": 1.0334843464626161e-05,
+        "Li7oH": 5.636291406553994e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24663617640152138
+      },
+      "proton_denominator": 0.7533034248847155,
+      "q_id": "dp_gamma_he3_m1",
+      "q_vector": [
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 0,
+      "status": "ok"
+    },
+    {
+      "case_id": "C_sampling",
+      "mode": "scalar",
+      "outputs": {
+        "DoH": 2.4584953632116803e-05,
+        "He3oH": 1.0334843464626161e-05,
+        "Li7oH": 5.636291406553994e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24663617640152138
+      },
+      "proton_denominator": 0.7533034248847155,
+      "q_id": "dp_gamma_he3_m1",
+      "q_vector": [
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 1,
+      "status": "ok"
+    },
+    {
+      "case_id": "C_sampling",
+      "mode": "scalar",
+      "outputs": {
+        "DoH": 2.4214934933739198e-05,
+        "He3oH": 1.0511239480884177e-05,
+        "Li7oH": 5.786580501756746e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24663872862959646
+      },
+      "proton_denominator": 0.7533010316043051,
+      "q_id": "dp_gamma_he3_p1",
+      "q_vector": [
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 0,
+      "status": "ok"
+    },
+    {
+      "case_id": "C_sampling",
+      "mode": "scalar",
+      "outputs": {
+        "DoH": 2.4214934933739198e-05,
+        "He3oH": 1.0511239480884177e-05,
+        "Li7oH": 5.786580501756746e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24663872862959646
+      },
+      "proton_denominator": 0.7533010316043051,
+      "q_id": "dp_gamma_he3_p1",
+      "q_vector": [
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 1,
+      "status": "ok"
+    },
+    {
+      "case_id": "C_sampling",
+      "mode": "scalar",
+      "outputs": {
+        "DoH": 2.459345263154953e-05,
+        "He3oH": 1.0389998223601634e-05,
+        "Li7oH": 5.657554481401331e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24661549315887454
+      },
+      "proton_denominator": 0.7533239690166817,
+      "q_id": "dd_n_he3_m1",
+      "q_vector": [
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 0,
+      "status": "ok"
+    },
+    {
+      "case_id": "C_sampling",
+      "mode": "scalar",
+      "outputs": {
+        "DoH": 2.459345263154953e-05,
+        "He3oH": 1.0389998223601634e-05,
+        "Li7oH": 5.657554481401331e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24661549315887454
+      },
+      "proton_denominator": 0.7533239690166817,
+      "q_id": "dd_n_he3_m1",
+      "q_vector": [
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 1,
+      "status": "ok"
+    },
+    {
+      "case_id": "C_sampling",
+      "mode": "scalar",
+      "outputs": {
+        "DoH": 2.4209518153877282e-05,
+        "He3oH": 1.0454331506508798e-05,
+        "Li7oH": 5.763769962376015e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24665949206523163
+      },
+      "proton_denominator": 0.7532804065927804,
+      "q_id": "dd_n_he3_p1",
+      "q_vector": [
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 0,
+      "status": "ok"
+    },
+    {
+      "case_id": "C_sampling",
+      "mode": "scalar",
+      "outputs": {
+        "DoH": 2.4209518153877282e-05,
+        "He3oH": 1.0454331506508798e-05,
+        "Li7oH": 5.763769962376015e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24665949206523163
+      },
+      "proton_denominator": 0.7532804065927804,
+      "q_id": "dd_n_he3_p1",
+      "q_vector": [
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 1,
+      "status": "ok"
+    },
+    {
+      "case_id": "C_sampling",
+      "mode": "scalar",
+      "outputs": {
+        "DoH": 2.4538282715072223e-05,
+        "He3oH": 1.0453760145348059e-05,
+        "Li7oH": 5.707964438909139e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24662219178465386
+      },
+      "proton_denominator": 0.7533172099292161,
+      "q_id": "dd_p_t_m1",
+      "q_vector": [
+        0.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 0,
+      "status": "ok"
+    },
+    {
+      "case_id": "C_sampling",
+      "mode": "scalar",
+      "outputs": {
+        "DoH": 2.4538282715072223e-05,
+        "He3oH": 1.0453760145348059e-05,
+        "Li7oH": 5.707964438909139e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24662219178465386
+      },
+      "proton_denominator": 0.7533172099292161,
+      "q_id": "dd_p_t_m1",
+      "q_vector": [
+        0.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 1,
+      "status": "ok"
+    },
+    {
+      "case_id": "C_sampling",
+      "mode": "scalar",
+      "outputs": {
+        "DoH": 2.4264434015924183e-05,
+        "He3oH": 1.0390421370575458e-05,
+        "Li7oH": 5.712791074655481e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24665277270555025
+      },
+      "proton_denominator": 0.753287187131892,
+      "q_id": "dd_p_t_p1",
+      "q_vector": [
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 0,
+      "status": "ok"
+    },
+    {
+      "case_id": "C_sampling",
+      "mode": "scalar",
+      "outputs": {
+        "DoH": 2.4264434015924183e-05,
+        "He3oH": 1.0390421370575458e-05,
+        "Li7oH": 5.712791074655481e-10,
+        "Neff": 3.0452829238759525,
+        "YPBBN": 0.24665277270555025
+      },
+      "proton_denominator": 0.753287187131892,
+      "q_id": "dd_p_t_p1",
+      "q_vector": [
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "repetition": 1,
+      "status": "ok"
+    }
+  ],
+  "schema_version": 1,
+  "structured_failure_count": 0
+}

@@ -101,19 +101,19 @@ The July reproduction audit is fail-closed. “Executed” is not synonymous wit
 |---|---|---|---|
 | PRIMAT native MC | `PRIMAT-NATIVE-UQ-REPRODUCTION-v1/artifact.json` | accepted, 1,000/1,000 draws | one frozen public native-MC calibration |
 | PRyMordial native marginalization | `PRYMORDIAL-NATIVE-UQ-REPRODUCTION-v1/summary.json` | accepted, 1,000/1,000 draws | one frozen public log-normal marginalization calibration |
-| LINX native `nuclear_rates_q` | `LINX-NATIVE-Q-REPRODUCTION-v1/reproduction.json` | not accepted; tolerance plateau `0.001246448` exceeds frozen `0.001` observation-sigma limit | negative numerical-calibration evidence only |
+| LINX native `nuclear_rates_q` | v1 negative artifact plus `LINX-NATIVE-Q-REPRODUCTION-v2/run-20260723T102602Z/reproduction.json` | v2 accepted; unchanged `0.001` gate, tolerance plateau `0.000619368`, sampling plateau `0.000228082`; v1 retained as superseded negative evidence | one frozen public scalar-envelope calibration only |
 | 2026 sensitivity atlas R0 slice | `SENSITIVITY-ATLAS-R0-SLICE-v1/artifact.json` | not accepted under the frozen central/sign checks | independent public-code comparison only |
 | 2026 GP deuterium prior | `GP-DEUTERIUM-PRIOR-STRUCTURE-v1/structure.json` | method structure captured; abundance rerun blocked | equation/provenance audit only; code, fitted hyperparameters, exact data, draws and seed unavailable |
 
 Completed preparation: ETR25 R0 files, revisions and checksums are ingested;
-coherent actual-PDF versus log-normal comparators are registered; all five
-public baselines above have a truthful accepted, rejected, or blocked
-disposition.
+coherent actual-PDF versus log-normal comparators are registered; three of the
+five public baselines are accepted and the remaining two have a truthful
+rejected or blocked disposition.
 
 The immediate scientific queue is therefore:
 
-1. resolve or formally supersede the failed public calibration candidates
-   without relaxing frozen thresholds after seeing results;
+1. retain the sensitivity-atlas rejection and GP external-input blocker without
+   weakening their frozen acceptance/reproduction contracts;
 2. freeze the accepted R0 production prior only after the required scientific
    review and signatures;
 3. run the 1,000-draw direct fiducial abundance distribution;

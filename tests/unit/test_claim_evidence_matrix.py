@@ -55,6 +55,7 @@ def test_existing_c0_c1_evidence_is_scope_limited() -> None:
     assert "W3_full_joint_CMB_BBN_stack_measurement" in cost["missing_evidence"]
     assert "docs/inventory/WHY_NOT_PRYMORDIAL_RUNTIME_v1.md" in cost["evidence"]
     assert "docs/inventory/WHY_NOT_ABCMB_RUNTIME_v1.md" in cost["evidence"]
+    assert any("LINX-NATIVE-Q-REPRODUCTION-v2" in item for item in cost["evidence"])
 
 
 def test_document_keeps_claim_and_nature_gates_closed() -> None:

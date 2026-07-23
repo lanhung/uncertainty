@@ -37,9 +37,10 @@ numerical candidate. It does not establish parameter-region fidelity, a finite
 gradient, rate-nuisance correctness, extension fidelity, or posterior recovery.
 
 All four W0–W3 standard-fiducial runtime slices are integrity-validated, but
-they do not answer the direct-first decision. PRIMAT and PRyMordial native-UQ
-reproductions are accepted; the frozen LINX candidate and sensitivity-atlas
-slice are not accepted, while the GP abundance rerun is blocked by unavailable
+they do not answer the direct-first decision. PRIMAT, PRyMordial, and the
+stricter pre-registered LINX v2 native-UQ reproduction are accepted. LINX v1
+remains retained as a superseded negative calibration; the sensitivity-atlas
+slice is not accepted, while the GP abundance rerun is blocked by unavailable
 public code, fitted hyperparameters, exact data, posterior draws, and seed.
 The accepted R0 production prior, direct UQ workload, posterior recovery,
 robustness, SBC, and joint-likelihood economics are still missing.

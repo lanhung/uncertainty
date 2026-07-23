@@ -83,10 +83,11 @@ def test_postmeasurement_status_is_separate_from_hash_frozen_protocol() -> None:
     assert status["measured_standard_fiducial_runtime_slices"] == 4
     assert status["complete_registered_baselines"] == 0
     native = status["native_uq_reproductions"]
-    assert native["accepted"] == 2
+    assert native["accepted"] == 3
     assert native["total"] == 5
-    assert native["accepted_baselines"] == ["PRIMAT", "PRyMordial"]
-    assert native["not_accepted_baselines"] == ["LINX", "sensitivity_atlas"]
+    assert native["accepted_baselines"] == ["PRIMAT", "PRyMordial", "LINX_v2"]
+    assert native["superseded_negative_baselines"] == ["LINX_v1"]
+    assert native["not_accepted_baselines"] == ["sensitivity_atlas"]
     assert native["blocked_baselines"] == ["GP_deuterium"]
 
 

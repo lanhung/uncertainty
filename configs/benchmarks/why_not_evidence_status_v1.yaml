@@ -9,10 +9,11 @@ measured_standard_fiducial_runtime_slices: 4
 complete_registered_baselines: 0
 
 native_uq_reproductions:
-  accepted: 2
+  accepted: 3
   total: 5
-  accepted_baselines: [PRIMAT, PRyMordial]
-  not_accepted_baselines: [LINX, sensitivity_atlas]
+  accepted_baselines: [PRIMAT, PRyMordial, LINX_v2]
+  superseded_negative_baselines: [LINX_v1]
+  not_accepted_baselines: [sensitivity_atlas]
   blocked_baselines: [GP_deuterium]
 
 decision:
