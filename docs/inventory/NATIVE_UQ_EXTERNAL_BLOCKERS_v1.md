@@ -1,6 +1,6 @@
 # Native-UQ external reproducibility blockers v1
 
-Status: **audited; task remains 3/5 and production remains prohibited**
+Status: **audited; exact reproduction remains 3/5; external audits are non-blocking under ADR-0008**
 
 This record closes the unregistered guess-and-rerun loop for the two remaining
 `UQ0-NATIVE-UQ-REPRO` baselines. It does not convert either baseline into an
@@ -30,9 +30,10 @@ Li7 central-value mismatch.
 The pinned atlas repository contains 701 paths and no files with common
 generator-code extensions (`.py`, `.ipynb`, `.jl`, `.m`, `.r`, `.sh`). It
 publishes result tables but no generator revision. The existing independent
-run is retained with its four frozen acceptance failures and grants no task
-progress. The required unblock is the generating code, exact solver revision
-and complete input configuration, or an upstream correction.
+run is retained with its four frozen acceptance failures and grants no exact-
+reproduction credit. The required exact-reproduction unblock is the generating
+code, exact solver revision and complete input configuration, or an upstream
+correction.
 
 ## GP deuterium prior
 
@@ -45,11 +46,28 @@ rerun still lacks:
 - posterior draws;
 - random seed.
 
-The required unblock is a public package containing those inputs and a seeded
-draw manifest sufficient to rerun the published abundance distribution.
+The required exact-reproduction unblock is a public package containing those
+inputs and a seeded draw manifest sufficient to rerun the published abundance
+distribution.
+
+## ADR-0008 execution consequence
+
+The frozen exact-reproduction status remains `3/5`; neither threshold is
+relaxed and neither result is relabeled as accepted. However, these two objects
+are literature-paper reproductions rather than sources of the project-owned R0
+prior. `ADR-0008-self-contained-fast-track.md` therefore removes them from the
+exploratory calculation dependency chain.
+
+The active reference-prior path uses only public, versioned information already
+captured in the repository and is explicitly labeled conditional on
+`NUCLEAR-R0-REFERENCE-v1`. It may support exploratory direct calculations and a
+validity/failure study of fixed `C_th`; it may not claim exact reconstruction of
+the unpublished atlas or GP pipelines.
 
 ## Decision
 
-`UQ0-NATIVE-UQ-REPRO` remains `3/5`. Acceptance thresholds were not modified,
-neither blocked item is counted as complete, `UQ0-R0-RATE-PRIOR` remains
-locked, and no production labels are authorized.
+`UQ0-NATIVE-UQ-REPRO` remains historically `3/5` and moves to the non-blocking
+execution/evidence lane in plan version 6. External blocker evidence remains
+immutable. Exploratory reference-prior calculations are authorized separately;
+publication-grade nuclear-posterior claims and independent scientific sign-off
+remain closed.
