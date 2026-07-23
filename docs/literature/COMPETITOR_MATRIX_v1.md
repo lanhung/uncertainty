@@ -102,8 +102,8 @@ The July reproduction audit is fail-closed. “Executed” is not synonymous wit
 | PRIMAT native MC | `PRIMAT-NATIVE-UQ-REPRODUCTION-v1/artifact.json` | accepted, 1,000/1,000 draws | one frozen public native-MC calibration |
 | PRyMordial native marginalization | `PRYMORDIAL-NATIVE-UQ-REPRODUCTION-v1/summary.json` | accepted, 1,000/1,000 draws | one frozen public log-normal marginalization calibration |
 | LINX native `nuclear_rates_q` | v1 negative artifact plus `LINX-NATIVE-Q-REPRODUCTION-v2/run-20260723T102602Z/reproduction.json` | v2 accepted; unchanged `0.001` gate, tolerance plateau `0.000619368`, sampling plateau `0.000228082`; v1 retained as superseded negative evidence | one frozen public scalar-envelope calibration only |
-| 2026 sensitivity atlas R0 slice | `SENSITIVITY-ATLAS-R0-SLICE-v1/artifact.json` | not accepted under the frozen central/sign checks | independent public-code comparison only |
-| 2026 GP deuterium prior | `GP-DEUTERIUM-PRIOR-STRUCTURE-v1/structure.json` | method structure captured; abundance rerun blocked | equation/provenance audit only; code, fitted hyperparameters, exact data, draws and seed unavailable |
+| 2026 sensitivity atlas R0 slice | `SENSITIVITY-ATLAS-R0-SLICE-v1/artifact.json`; `NATIVE-UQ-EXTERNAL-BLOCKERS-v1/audit.json` | not accepted under the frozen central/sign checks; no scientifically distinct public PRyMordial revision remains to test | independent public-code comparison only |
+| 2026 GP deuterium prior | `GP-DEUTERIUM-PRIOR-STRUCTURE-v1/structure.json`; `NATIVE-UQ-EXTERNAL-BLOCKERS-v1/audit.json` | method structure captured; abundance rerun externally blocked | equation/provenance audit only; code, fitted hyperparameters, exact data, draws and seed unavailable |
 
 Completed preparation: ETR25 R0 files, revisions and checksums are ingested;
 coherent actual-PDF versus log-normal comparators are registered; three of the

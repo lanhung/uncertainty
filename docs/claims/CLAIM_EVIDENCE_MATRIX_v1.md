@@ -42,6 +42,9 @@ stricter pre-registered LINX v2 native-UQ reproduction are accepted. LINX v1
 remains retained as a superseded negative calibration; the sensitivity-atlas
 slice is not accepted, while the GP abundance rerun is blocked by unavailable
 public code, fitted hyperparameters, exact data, posterior draws, and seed.
+The source/revision audit in
+`NATIVE-UQ-EXTERNAL-BLOCKERS-v1/audit.json` confirms that neither blocker can
+be removed by selecting another scientifically distinct public revision.
 The accepted R0 production prior, direct UQ workload, posterior recovery,
 robustness, SBC, and joint-likelihood economics are still missing.
 

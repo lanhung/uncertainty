@@ -95,6 +95,7 @@ claims:
       - artifacts/benchmarks/LINX-NATIVE-Q-REPRODUCTION-v2/run-20260723T102602Z/reproduction.json
       - artifacts/benchmarks/SENSITIVITY-ATLAS-R0-SLICE-v1/artifact.json
       - artifacts/benchmarks/GP-DEUTERIUM-PRIOR-STRUCTURE-v1/structure.json
+      - artifacts/benchmarks/NATIVE-UQ-EXTERNAL-BLOCKERS-v1/audit.json
       - artifacts/benchmarks/WHY-NOT-UQ-INTERIM-ECONOMICS-v1/package.json
       - docs/inventory/WHY_NOT_EXISTING_SOLVERS_v1.md
       - docs/compute/cost_ledger.csv
