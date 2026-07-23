@@ -158,11 +158,12 @@ nuisance_contract:
     stress test; absence of covariance is not evidence of independence.
 
 mandatory_direct_reproduction:
-  - PRIMAT_native_run_mc_or_mc_uncertainty
-  - PRyMordial_explicit_rate_marginalization
-  - LINX_nuclear_rates_q_central_and_symmetric_checks
-  - one_2026_sensitivity_atlas_R0_slice
-  - structure_of_2026_GP_deuterium_prior
+  baselines:
+    - PRIMAT_native_run_mc_or_mc_uncertainty
+    - PRyMordial_explicit_rate_marginalization
+    - LINX_nuclear_rates_q_central_and_symmetric_checks
+    - one_2026_sensitivity_atlas_R0_slice
+    - structure_of_2026_GP_deuterium_prior
   scientific_role: reproduction_and_calibration_not_novelty
 
 rate_pdf_audit:
