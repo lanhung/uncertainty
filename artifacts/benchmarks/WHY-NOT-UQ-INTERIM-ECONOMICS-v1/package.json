@@ -1,0 +1,537 @@
+{
+  "artifact_id": "WHY-NOT-UQ-INTERIM-ECONOMICS-v1",
+  "baselines": [
+    {
+      "baseline_id": "W0-LINX",
+      "full_baseline_status": "incomplete",
+      "measured_64_workload_reference_arithmetic": [
+        {
+          "call_equivalents": 1000,
+          "reference_cost_cny_if_identical_call_cost": 0.010732054722029715,
+          "reference_worker_hours_if_identical_call_cost": 0.0037264078895936515
+        },
+        {
+          "call_equivalents": 10000,
+          "reference_cost_cny_if_identical_call_cost": 0.10732054722029714,
+          "reference_worker_hours_if_identical_call_cost": 0.03726407889593651
+        },
+        {
+          "call_equivalents": 64000,
+          "reference_cost_cny_if_identical_call_cost": 0.6868515022099018,
+          "reference_worker_hours_if_identical_call_cost": 0.2384901049339937
+        }
+      ],
+      "measured_standard_fiducial": {
+        "hourly_price_cny": 2.88,
+        "structured_failures": 0,
+        "warm_64_workload_median_seconds": 0.8585643777623773,
+        "warm_64_workload_median_seconds_per_point": 0.013415068402537145,
+        "warm_scalar_median_seconds_per_point": 0.2157159587368369,
+        "warm_scalar_p95_seconds_per_point": 0.2334641886875033,
+        "workload_mode": "native_64_point_batch_at_repeated_standard_input"
+      },
+      "raw_runtime_integrity": {
+        "checks": [
+          "common_protocol_hash",
+          "parameter_schema_hash",
+          "source_revision",
+          "scientific_boundary",
+          "repetition_contract",
+          "batch_contract",
+          "environment_lock_hash",
+          "adapter_absent_as_registered",
+          "cold_import_record",
+          "cold_solve_record",
+          "scalar_timing_records",
+          "batch_timing_records",
+          "native_batch_compile",
+          "native_batch_mode",
+          "structured_warm_status",
+          "failure_count_consistency",
+          "manifest_failure_status",
+          "timing_summary_recomputed",
+          "posterior_boundary",
+          "gpu_boundary",
+          "cost_recomputed"
+        ],
+        "failure_records": 0,
+        "successful_warm_points": 1950,
+        "timed_warm_points_expected": 1950,
+        "validation_status": "passed"
+      },
+      "reference_arithmetic_boundary": {
+        "SBC_measured": false,
+        "not_a_UQ_cost_projection": true,
+        "posterior_recovery_measured": false,
+        "production_candidate_runtime_measured": false,
+        "q_varying_abundance_calls_measured": false,
+        "rate_marginalization_measured": false,
+        "two_worker_scaling_measured": false,
+        "warm_standard_point_linear_extrapolation_only": true
+      },
+      "registered_limitations": [
+        "identical_input_scalar_vs_vmap_tolerance_scan_pending",
+        "registered_standard_neighborhood_gradient_rejected_45_of_45_records",
+        "posterior_recovery_pending_old_likelihood_assets",
+        "nonstandard_point_pending_extension_contract"
+      ],
+      "registered_scope": "registered_standard_fiducial_runtime_slice_only",
+      "run_directory": "run-20260722T0605Z",
+      "run_id": "77c7a285-babc-43ee-ae1d-40feae6569f4",
+      "scalar_path_reference_arithmetic": [
+        {
+          "call_equivalents": 1000,
+          "reference_cost_cny_if_identical_call_cost": 0.17257276698946952,
+          "reference_worker_hours_if_identical_call_cost": 0.059921099649121366
+        },
+        {
+          "call_equivalents": 10000,
+          "reference_cost_cny_if_identical_call_cost": 1.7257276698946953,
+          "reference_worker_hours_if_identical_call_cost": 0.5992109964912137
+        },
+        {
+          "call_equivalents": 64000,
+          "reference_cost_cny_if_identical_call_cost": 11.04465708732605,
+          "reference_worker_hours_if_identical_call_cost": 3.8349503775437674
+        }
+      ],
+      "source_artifacts": {
+        "failures": {
+          "path": "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W0-LINX/run-20260722T0605Z/failures.jsonl",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "posterior_metrics": {
+          "path": "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W0-LINX/run-20260722T0605Z/posterior_metrics.json",
+          "sha256": "d08969569397d0cc8f2c1208a1ee0b457c699e11f754cc58268b4c7b179fd97e"
+        },
+        "registry": {
+          "path": "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W0-LINX/RESULT_REGISTRY_v1.yaml",
+          "sha256": "7621f3d9f89a83dc77d72b0fc7857a9d08f0049d56cf7d5131e995a36c990eec"
+        },
+        "resource_report": {
+          "path": "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W0-LINX/run-20260722T0605Z/resource_report.json",
+          "sha256": "fc3337081312b740c1b76ffefe891f45fe41da0ab297cc05238a3d0f6aeab1bf"
+        },
+        "run_manifest": {
+          "path": "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W0-LINX/run-20260722T0605Z/run_manifest.json",
+          "sha256": "1d9f3f5c1641483623fe1cc94c42472f08b4d3471e27568500caecb4ff67b918"
+        },
+        "runtime_summary": {
+          "path": "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W0-LINX/run-20260722T0605Z/runtime_summary.json",
+          "sha256": "d39404267ed3a0f5c62660c864143922eb697a4765658a2318888a93924d22a2"
+        },
+        "timings": {
+          "path": "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W0-LINX/run-20260722T0605Z/timings.jsonl",
+          "sha256": "9da10b59a4c984b255377c736a43a577681226f7caa300c214539ca8a7882a47"
+        }
+      },
+      "source_revision": "ec2e9d2ca455e8204137e884da29f5dd13a638fa",
+      "why_not_conclusion": "undetermined"
+    },
+    {
+      "baseline_id": "W1-PRYM",
+      "full_baseline_status": "incomplete",
+      "measured_64_workload_reference_arithmetic": [
+        {
+          "call_equivalents": 1000,
+          "reference_cost_cny_if_identical_call_cost": 4.68821701874258,
+          "reference_worker_hours_if_identical_call_cost": 1.6278531315078402
+        },
+        {
+          "call_equivalents": 10000,
+          "reference_cost_cny_if_identical_call_cost": 46.8821701874258,
+          "reference_worker_hours_if_identical_call_cost": 16.278531315078403
+        },
+        {
+          "call_equivalents": 64000,
+          "reference_cost_cny_if_identical_call_cost": 300.0458891995251,
+          "reference_worker_hours_if_identical_call_cost": 104.18260041650177
+        }
+      ],
+      "measured_standard_fiducial": {
+        "hourly_price_cny": 2.88,
+        "structured_failures": 0,
+        "warm_64_workload_median_seconds": 375.0573614994064,
+        "warm_64_workload_median_seconds_per_point": 5.860271273428225,
+        "warm_scalar_median_seconds_per_point": 5.906831167638302,
+        "warm_scalar_p95_seconds_per_point": 5.992201987188309,
+        "workload_mode": "sequential_64_point_workload"
+      },
+      "raw_runtime_integrity": {
+        "checks": [
+          "common_protocol_hash",
+          "parameter_schema_hash",
+          "source_revision",
+          "scientific_boundary",
+          "repetition_contract",
+          "batch_contract",
+          "environment_lock_hash",
+          "adapter_config_hash",
+          "cold_import_record",
+          "cold_solve_record",
+          "scalar_timing_records",
+          "batch_timing_records",
+          "no_native_batch",
+          "sequential_batch_mode",
+          "structured_warm_status",
+          "failure_count_consistency",
+          "manifest_failure_status",
+          "timing_summary_recomputed",
+          "posterior_boundary",
+          "gpu_boundary",
+          "cost_recomputed"
+        ],
+        "failure_records": 0,
+        "successful_warm_points": 1950,
+        "timed_warm_points_expected": 1950,
+        "validation_status": "passed"
+      },
+      "reference_arithmetic_boundary": {
+        "SBC_measured": false,
+        "not_a_UQ_cost_projection": true,
+        "posterior_recovery_measured": false,
+        "production_candidate_runtime_measured": false,
+        "q_varying_abundance_calls_measured": false,
+        "rate_marginalization_measured": false,
+        "two_worker_scaling_measured": false,
+        "warm_standard_point_linear_extrapolation_only": true
+      },
+      "registered_limitations": [
+        "posterior_recovery_pending_old_likelihood_assets",
+        "nonstandard_point_pending_extension_contract",
+        "functional_rate_modes_not_exercised",
+        "full_rate_marginalization_not_exercised"
+      ],
+      "registered_scope": "registered_standard_fiducial_runtime_slice_only",
+      "run_directory": "run-20260722T0753Z",
+      "run_id": "e21e9d3f-4a51-4c31-bd0b-776fc0626acf",
+      "scalar_path_reference_arithmetic": [
+        {
+          "call_equivalents": 1000,
+          "reference_cost_cny_if_identical_call_cost": 4.725464934110641,
+          "reference_worker_hours_if_identical_call_cost": 1.6407864354550838
+        },
+        {
+          "call_equivalents": 10000,
+          "reference_cost_cny_if_identical_call_cost": 47.254649341106415,
+          "reference_worker_hours_if_identical_call_cost": 16.40786435455084
+        },
+        {
+          "call_equivalents": 64000,
+          "reference_cost_cny_if_identical_call_cost": 302.429755783081,
+          "reference_worker_hours_if_identical_call_cost": 105.01033186912537
+        }
+      ],
+      "source_artifacts": {
+        "failures": {
+          "path": "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W1-PRYM/run-20260722T0753Z/failures.jsonl",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "posterior_metrics": {
+          "path": "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W1-PRYM/run-20260722T0753Z/posterior_metrics.json",
+          "sha256": "d08969569397d0cc8f2c1208a1ee0b457c699e11f754cc58268b4c7b179fd97e"
+        },
+        "registry": {
+          "path": "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W1-PRYM/RESULT_REGISTRY_v1.yaml",
+          "sha256": "a3977fe21f4872ace8a3ee8f8b671a20ad82db24db7e6ba270157b8ac2c822ca"
+        },
+        "resource_report": {
+          "path": "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W1-PRYM/run-20260722T0753Z/resource_report.json",
+          "sha256": "fb28ac3fe6d31d77c1bba911f1ffc35e28819100c08c33e1f2b08d3850d59243"
+        },
+        "run_manifest": {
+          "path": "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W1-PRYM/run-20260722T0753Z/run_manifest.json",
+          "sha256": "6948f5d3eaf275efd4b789759a109c663588eff362b0cef64314bf9495640ade"
+        },
+        "runtime_summary": {
+          "path": "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W1-PRYM/run-20260722T0753Z/runtime_summary.json",
+          "sha256": "973323651caf9ee8c305a0247dc712f48da08ce594845de780ab5c3bb91cee52"
+        },
+        "timings": {
+          "path": "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W1-PRYM/run-20260722T0753Z/timings.jsonl",
+          "sha256": "32b866b012c958624b8290d06d76d369e8688b20d78a51e5d34b5993aeeb34f7"
+        }
+      },
+      "source_revision": "725d8a8db3ad5ea2630580d825c9d0d69ed76533",
+      "why_not_conclusion": "undetermined"
+    },
+    {
+      "baseline_id": "W2-PRIMAT",
+      "full_baseline_status": "incomplete",
+      "measured_64_workload_reference_arithmetic": [
+        {
+          "call_equivalents": 1000,
+          "reference_cost_cny_if_identical_call_cost": 0.051305068691726775,
+          "reference_worker_hours_if_identical_call_cost": 0.01781425996240513
+        },
+        {
+          "call_equivalents": 10000,
+          "reference_cost_cny_if_identical_call_cost": 0.5130506869172677,
+          "reference_worker_hours_if_identical_call_cost": 0.1781425996240513
+        },
+        {
+          "call_equivalents": 64000,
+          "reference_cost_cny_if_identical_call_cost": 3.2835243962705136,
+          "reference_worker_hours_if_identical_call_cost": 1.1401126375939283
+        }
+      ],
+      "measured_standard_fiducial": {
+        "hourly_price_cny": 2.88,
+        "structured_failures": 0,
+        "warm_64_workload_median_seconds": 4.104405495338142,
+        "warm_64_workload_median_seconds_per_point": 0.06413133586465847,
+        "warm_scalar_median_seconds_per_point": 0.06387380324304104,
+        "warm_scalar_p95_seconds_per_point": 0.06564134862273932,
+        "workload_mode": "sequential_64_point_workload"
+      },
+      "raw_runtime_integrity": {
+        "checks": [
+          "common_protocol_hash",
+          "parameter_schema_hash",
+          "source_revision",
+          "scientific_boundary",
+          "repetition_contract",
+          "batch_contract",
+          "environment_lock_hash",
+          "adapter_absent_as_registered",
+          "cold_import_record",
+          "cold_solve_record",
+          "scalar_timing_records",
+          "batch_timing_records",
+          "no_native_batch",
+          "sequential_batch_mode",
+          "structured_warm_status",
+          "failure_count_consistency",
+          "manifest_failure_status",
+          "timing_summary_recomputed",
+          "posterior_boundary",
+          "gpu_boundary",
+          "cost_recomputed"
+        ],
+        "failure_records": 0,
+        "successful_warm_points": 1950,
+        "timed_warm_points_expected": 1950,
+        "validation_status": "passed"
+      },
+      "reference_arithmetic_boundary": {
+        "SBC_measured": false,
+        "not_a_UQ_cost_projection": true,
+        "posterior_recovery_measured": false,
+        "production_candidate_runtime_measured": false,
+        "q_varying_abundance_calls_measured": false,
+        "rate_marginalization_measured": false,
+        "two_worker_scaling_measured": false,
+        "warm_standard_point_linear_extrapolation_only": true
+      },
+      "registered_limitations": [
+        "posterior_region_and_adversarial_points_pending",
+        "posterior_recovery_pending_old_likelihood_assets",
+        "nonstandard_point_pending_extension_contract"
+      ],
+      "registered_scope": "registered_standard_fiducial_runtime_slice_only",
+      "run_directory": "run-20260722T0535Z",
+      "run_id": "45bf7c0b-5a59-48ee-9411-9a75652bf23a",
+      "scalar_path_reference_arithmetic": [
+        {
+          "call_equivalents": 1000,
+          "reference_cost_cny_if_identical_call_cost": 0.05109904259443283,
+          "reference_worker_hours_if_identical_call_cost": 0.017742723123066954
+        },
+        {
+          "call_equivalents": 10000,
+          "reference_cost_cny_if_identical_call_cost": 0.5109904259443283,
+          "reference_worker_hours_if_identical_call_cost": 0.17742723123066956
+        },
+        {
+          "call_equivalents": 64000,
+          "reference_cost_cny_if_identical_call_cost": 3.270338726043701,
+          "reference_worker_hours_if_identical_call_cost": 1.135534279876285
+        }
+      ],
+      "source_artifacts": {
+        "failures": {
+          "path": "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W2-PRIMAT/run-20260722T0535Z/failures.jsonl",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "posterior_metrics": {
+          "path": "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W2-PRIMAT/run-20260722T0535Z/posterior_metrics.json",
+          "sha256": "d08969569397d0cc8f2c1208a1ee0b457c699e11f754cc58268b4c7b179fd97e"
+        },
+        "registry": {
+          "path": "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W2-PRIMAT/RESULT_REGISTRY_v1.yaml",
+          "sha256": "9c71c9e10e563ee9db693ce03e7e99467419dadcbca1892dfbd82ab9af7ea5e3"
+        },
+        "resource_report": {
+          "path": "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W2-PRIMAT/run-20260722T0535Z/resource_report.json",
+          "sha256": "405c44f4e6d863866f3c71c5f79a08a35377bd3144032963db3ca068c054a837"
+        },
+        "run_manifest": {
+          "path": "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W2-PRIMAT/run-20260722T0535Z/run_manifest.json",
+          "sha256": "5ea0ca84f87ce98443363398fd2fd940d9d244c2dda7f517df2bfae2d322bd59"
+        },
+        "runtime_summary": {
+          "path": "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W2-PRIMAT/run-20260722T0535Z/runtime_summary.json",
+          "sha256": "dfbfff9536cc16aa592786a38a41c4e5eb664faa9e4333f829e1b38080c7419f"
+        },
+        "timings": {
+          "path": "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W2-PRIMAT/run-20260722T0535Z/timings.jsonl",
+          "sha256": "d1281952768d29f05d736146ca3fb39be93b0dcc035d3da242f723c2f6b54d11"
+        }
+      },
+      "source_revision": "21ff8f39fa18e3937e9fdf386cfa982361bfdfce",
+      "why_not_conclusion": "undetermined"
+    },
+    {
+      "baseline_id": "W3-ABCMB",
+      "full_baseline_status": "incomplete",
+      "measured_64_workload_reference_arithmetic": [
+        {
+          "call_equivalents": 1000,
+          "reference_cost_cny_if_identical_call_cost": 0.011209561862051487,
+          "reference_worker_hours_if_identical_call_cost": 0.0038922089798789886
+        },
+        {
+          "call_equivalents": 10000,
+          "reference_cost_cny_if_identical_call_cost": 0.11209561862051487,
+          "reference_worker_hours_if_identical_call_cost": 0.03892208979878989
+        },
+        {
+          "call_equivalents": 64000,
+          "reference_cost_cny_if_identical_call_cost": 0.7174119591712952,
+          "reference_worker_hours_if_identical_call_cost": 0.24910137471225527
+        }
+      ],
+      "measured_standard_fiducial": {
+        "hourly_price_cny": 2.88,
+        "structured_failures": 0,
+        "warm_64_workload_median_seconds": 0.896764948964119,
+        "warm_64_workload_median_seconds_per_point": 0.014011952327564359,
+        "warm_scalar_median_seconds_per_point": 0.3111197939142585,
+        "warm_scalar_p95_seconds_per_point": 0.3230931850150227,
+        "workload_mode": "native_64_point_bundled_LINX_batch_at_repeated_standard_input"
+      },
+      "raw_runtime_integrity": {
+        "checks": [
+          "common_protocol_hash",
+          "parameter_schema_hash",
+          "source_revision",
+          "scientific_boundary",
+          "repetition_contract",
+          "batch_contract",
+          "environment_lock_hash",
+          "adapter_config_hash",
+          "cold_import_record",
+          "cold_solve_record",
+          "scalar_timing_records",
+          "batch_timing_records",
+          "native_batch_compile",
+          "native_batch_mode",
+          "structured_warm_status",
+          "failure_count_consistency",
+          "manifest_failure_status",
+          "timing_summary_recomputed",
+          "posterior_boundary",
+          "gpu_boundary",
+          "cost_recomputed"
+        ],
+        "failure_records": 0,
+        "successful_warm_points": 1950,
+        "timed_warm_points_expected": 1950,
+        "validation_status": "passed"
+      },
+      "reference_arithmetic_boundary": {
+        "SBC_measured": false,
+        "not_a_UQ_cost_projection": true,
+        "posterior_recovery_measured": false,
+        "production_candidate_runtime_measured": false,
+        "q_varying_abundance_calls_measured": false,
+        "rate_marginalization_measured": false,
+        "two_worker_scaling_measured": false,
+        "warm_standard_point_linear_extrapolation_only": true
+      },
+      "registered_limitations": [
+        "five_frozen_spectra_cases_accepted_but_only_one_of_four_components",
+        "gradient_toy_fisher_synthetic_recovery_and_hmc_nuts_not_exercised",
+        "posterior_recovery_pending_old_likelihood_assets",
+        "nonstandard_point_pending_extension_contract"
+      ],
+      "registered_scope": "registered_standard_fiducial_runtime_slice_only",
+      "run_directory": "run-20260722T1118Z",
+      "run_id": "97cac5c3-1ca9-4481-909e-4fbae9c69822",
+      "scalar_path_reference_arithmetic": [
+        {
+          "call_equivalents": 1000,
+          "reference_cost_cny_if_identical_call_cost": 0.24889583513140676,
+          "reference_worker_hours_if_identical_call_cost": 0.08642216497618291
+        },
+        {
+          "call_equivalents": 10000,
+          "reference_cost_cny_if_identical_call_cost": 2.488958351314068,
+          "reference_worker_hours_if_identical_call_cost": 0.8642216497618291
+        },
+        {
+          "call_equivalents": 64000,
+          "reference_cost_cny_if_identical_call_cost": 15.929333448410032,
+          "reference_worker_hours_if_identical_call_cost": 5.531018558475706
+        }
+      ],
+      "source_artifacts": {
+        "failures": {
+          "path": "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W3-ABCMB/run-20260722T1118Z/failures.jsonl",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "posterior_metrics": {
+          "path": "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W3-ABCMB/run-20260722T1118Z/posterior_metrics.json",
+          "sha256": "d08969569397d0cc8f2c1208a1ee0b457c699e11f754cc58268b4c7b179fd97e"
+        },
+        "registry": {
+          "path": "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W3-ABCMB/RESULT_REGISTRY_v1.yaml",
+          "sha256": "18f8bb5a69bc18a6d9f29458833d4ae261e0bdde029df9d283d23f9f158fc31e"
+        },
+        "resource_report": {
+          "path": "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W3-ABCMB/run-20260722T1118Z/resource_report.json",
+          "sha256": "e8ce57b9de0892a3595f78cf581260c1132fa9eb7860e726c531eee2a1e05468"
+        },
+        "run_manifest": {
+          "path": "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W3-ABCMB/run-20260722T1118Z/run_manifest.json",
+          "sha256": "1d1b516982e9ad88e10b4fcca10a033867529e3ba4721ddb38b1a3558a63bc9b"
+        },
+        "runtime_summary": {
+          "path": "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W3-ABCMB/run-20260722T1118Z/runtime_summary.json",
+          "sha256": "863adc6fa7eb64ca69b88e2fb193cb476878aca4ff801c3dda3ab68e0b70c839"
+        },
+        "timings": {
+          "path": "artifacts/benchmarks/WHY-NOT-EXISTING-SOLVERS-v1/W3-ABCMB/run-20260722T1118Z/timings.jsonl",
+          "sha256": "6e94f51a2fa5214659e4a3915bb0919e02fe79c50eb5431cd5316659c66e54ab"
+        }
+      },
+      "source_revision": "5eabbab4ed7e53f264e16024743d1ba517845c37",
+      "why_not_conclusion": "undetermined"
+    }
+  ],
+  "call_equivalent_scenarios": {
+    "1000": "illustrative standard-point reference arithmetic only; not a UQ1 direct-MC projection",
+    "10000": "illustrative standard-point reference arithmetic only; not an authorized convergence run",
+    "64000": "illustrative 64x1000 arithmetic scale only; not the registered Fisher or SBC workload"
+  },
+  "claim_boundary": {
+    "P0_WHY_NOT_01_done_allowed": false,
+    "UQ0_R0_prior_gate_bypassed": false,
+    "production_run_authorized": false,
+    "progress_credit_memos": 0,
+    "scientific_signoff_provided": false
+  },
+  "decision": {
+    "direct_first_stop_rule_evaluable": false,
+    "direct_solver_sufficient": "undetermined",
+    "emulator_speed_necessity": "undetermined",
+    "reason": "Only standard-fiducial forward runtime is measured. The arithmetic is not a UQ cost projection; actual R0 rate draws, native marginalization, posterior calls, SBC, fidelity, accepted-config retiming and scaling are pending."
+  },
+  "protocol": {
+    "path": "docs/decisions/ADR-WHY-NOT-001.md",
+    "sha256": "cc48cc755c35972d1035f8fedfc0c2866b640b00f9f4aa91f9ed23debd1ce728"
+  },
+  "schema_version": 1,
+  "status": "interim_reference_arithmetic_full_UQ_economics_undetermined",
+  "task_id": "P0-WHY-NOT-01"
+}

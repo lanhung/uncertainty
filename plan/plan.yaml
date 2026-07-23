@@ -2,7 +2,7 @@
 # Runtime progress, metrics and artifacts are preserved across reconciliation.
 # Manuscript/SGWB/lithium-no-go tasks are intentionally outside this project.
 # Learned-model, full-network and Nature-tier tasks are absent until UQ2-GATE-REPORT.
-plan_version: 4
+plan_version: 5
 project: uncertainty
 updated_at: 2026-07-23
 
@@ -150,13 +150,21 @@ tasks:
     total: 3
     depends_on: [UQ0-ETR25-R0-INGEST]
 
+  - id: UQ0-NATIVE-UQ-REPRO
+    title: "Reproduce PRIMAT MC, PRyMordial marginalization, LINX q-runs, atlas and GP baselines"
+    phase: UQ0
+    weight: 4
+    unit: baselines
+    total: 5
+    depends_on: [UQ0-PUBLIC-SOLVER-BASELINES, UQ0-RATE-PDF-AUDIT]
+
   - id: UQ0-R0-RATE-PRIOR
     title: "Freeze coherent numerical priors and solver mappings for the three R0 rates"
     phase: UQ0
     weight: 4
     unit: reactions
     total: 3
-    depends_on: [UQ0-PUBLIC-SOLVER-BASELINES, UQ0-RATE-PDF-AUDIT]
+    depends_on: [UQ0-PUBLIC-SOLVER-BASELINES, UQ0-RATE-PDF-AUDIT, UQ0-NATIVE-UQ-REPRO]
 
   - id: UQ0-WEAK-PRIOR
     title: "Register neutron-lifetime and weak-rate nuisance handling without double counting"
@@ -181,14 +189,6 @@ tasks:
     unit: checks
     total: 12
     depends_on: [UQ0-NUISANCE-ADAPTER]
-
-  - id: UQ0-NATIVE-UQ-REPRO
-    title: "Reproduce PRIMAT MC, PRyMordial marginalization, LINX q-runs, atlas and GP baselines"
-    phase: UQ0
-    weight: 4
-    unit: baselines
-    total: 5
-    depends_on: [UQ0-PUBLIC-SOLVER-BASELINES, UQ0-R0-RATE-PRIOR]
 
   # ----------------------------------------------------------------------
   # UQ1 — direct Monte Carlo abundance distributions and theory bands

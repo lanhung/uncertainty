@@ -105,9 +105,26 @@ For each R0 reaction:
 - prohibit independent random noise at each temperature bin;
 - record whether the scalar model is adequate or must remain a competing approximation.
 
+### UQ0-NATIVE-UQ-REPRO
+
+Before freezing a project-owned production prior or driver, reproduce:
+
+1. PRIMAT native `run_mc()` / `mc_uncertainty()`;
+2. PRyMordial explicit rate marginalization;
+3. LINX central and `nuclear_rates_q` perturbations;
+4. one R0 sensitivity-atlas slice;
+5. the structure of the 2026 GP deuterium prior.
+
+These runs use each public baseline's native uncertainty representation. They
+calibrate upstream semantics and expose implementation constraints; they do
+not require or accept the later project-owned coherent R0 prior and are not
+novelty claims.
+
 ### UQ0-R0-RATE-PRIOR
 
-Freeze the accepted actual/posterior model and scalar baseline, including solver mappings, reverse-rate handling and missing-correlation stress tests.
+After the native uncertainty paths are reproduced, freeze the accepted
+actual/posterior model and scalar baseline, including solver mappings,
+reverse-rate handling and missing-correlation stress tests.
 
 ### UQ0-WEAK-PRIOR
 
@@ -129,18 +146,6 @@ and validate:
 - units and reverse mappings;
 - deterministic seeds;
 - structured failures.
-
-### UQ0-NATIVE-UQ-REPRO
-
-Before custom production, reproduce:
-
-1. PRIMAT native `run_mc()` / `mc_uncertainty()`;
-2. PRyMordial explicit rate marginalization;
-3. LINX central and `nuclear_rates_q` perturbations;
-4. one R0 sensitivity-atlas slice;
-5. the structure of the 2026 GP deuterium prior.
-
-These are calibration baselines, not novelty claims.
 
 ## 5. Phase UQ1 — direct abundance distributions
 
@@ -328,7 +333,7 @@ Each requires a signed gate and a specific scientific or computational necessity
 
 ### Days 1–2
 
-- reconcile plan version 4;
+- reconcile plan version 5;
 - freeze and sign the July frontier artifacts;
 - capture ETR25 R0 files and exact provenance;
 - pin PRIMAT, PRyMordial and LINX;
