@@ -1,10 +1,10 @@
 {
   "project": "uncertainty",
-  "generated_at": "2026-07-23T03:24:33+00:00",
-  "revision": 464,
-  "overall_progress": 0.30303030303030304,
+  "generated_at": "2026-07-23T03:27:36+00:00",
+  "revision": 486,
+  "overall_progress": 0.22988505747126436,
   "overall_kind": "effort-weighted scientific program gate completion",
-  "science_gate_progress": 0.30303030303030304,
+  "science_gate_progress": 0.22988505747126436,
   "execution_progress": 0.75,
   "execution_kind": "effort-weighted current execution milestone completion",
   "phases": {
@@ -12,10 +12,10 @@
       "progress": 0.75
     },
     "P0": {
-      "progress": 0.8571428571428571
+      "progress": 0.75
     },
     "UQ0": {
-      "progress": 0.4
+      "progress": 0.25
     },
     "UQ1": {
       "progress": 0.0
@@ -27,7 +27,7 @@
   "status_counts": {
     "done": 14,
     "cancelled": 27,
-    "pending": 14,
+    "pending": 20,
     "stale": 1
   },
   "tasks": [
@@ -58,7 +58,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 48334.96895980835,
+      "heartbeat_age_s": 48517.86477804184,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -100,7 +100,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 22516.969032287598,
+      "heartbeat_age_s": 22699.864869594574,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -148,7 +148,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 25742.969085931778,
+      "heartbeat_age_s": 25925.86492419243,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -194,7 +194,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 22516.969126701355,
+      "heartbeat_age_s": 22699.864964962006,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -267,7 +267,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 23004.969212770462,
+      "heartbeat_age_s": 23187.86505317688,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -307,7 +307,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 50677.96925210953,
+      "heartbeat_age_s": 50860.865107774734,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -334,8 +334,39 @@
       ]
     },
     {
+      "id": "P0-FRONTIER-2026-07",
+      "title": "Freeze the July 2026 BBN-rate-UQ and nuisance-SBI frontier review",
+      "phase": "P0",
+      "status": "pending",
+      "weight": 2.0,
+      "unit": "reviews",
+      "current": 0.0,
+      "total": 1.0,
+      "owner": null,
+      "depends_on": [
+        "P0-LIT-01"
+      ],
+      "started_at": null,
+      "updated_at": null,
+      "finished_at": null,
+      "declared_eta": null,
+      "message": "",
+      "artifacts": [],
+      "metrics": {},
+      "attempt": 0,
+      "run_id": null,
+      "progress": 0.0,
+      "rate": null,
+      "eta": null,
+      "eta_kind": "none",
+      "heartbeat_age_s": null,
+      "ready": true,
+      "blocked_by": [],
+      "artifact_links": []
+    },
+    {
       "id": "P0-LIT-01",
-      "title": "Freeze the BBN-UQ competitor and novelty matrix",
+      "title": "Maintain the BBN-UQ competitor and novelty matrix",
       "phase": "P0",
       "status": "done",
       "weight": 2.0,
@@ -363,7 +394,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 67496.96930551529,
+      "heartbeat_age_s": 67679.86523914337,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -416,7 +447,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 98766.96935343742,
+      "heartbeat_age_s": 98949.86528921127,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -458,7 +489,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 98767.96940302849,
+      "heartbeat_age_s": 98950.86533713341,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -487,7 +518,7 @@
       "total": 1.0,
       "owner": "vultr",
       "depends_on": [
-        "P0-LIT-01"
+        "P0-FRONTIER-2026-07"
       ],
       "started_at": "2026-07-22T02:49:40+00:00",
       "updated_at": "2026-07-22T21:09:18+00:00",
@@ -562,9 +593,11 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 22515.969516277313,
+      "heartbeat_age_s": 22698.865416526794,
       "ready": false,
-      "blocked_by": [],
+      "blocked_by": [
+        "P0-FRONTIER-2026-07"
+      ],
       "artifact_links": [
         {
           "label": "docs/decisions/ADR-WHY-NOT-001.md",
@@ -830,7 +863,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 23004.96958708763,
+      "heartbeat_age_s": 23187.86549472809,
       "ready": false,
       "blocked_by": [
         "P0-solvers-build"
@@ -867,7 +900,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 89823.96963000298,
+      "heartbeat_age_s": 90006.86553931236,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -917,7 +950,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 120983.9696764946,
+      "heartbeat_age_s": 121166.86558389664,
       "ready": false,
       "blocked_by": [],
       "artifact_links": []
@@ -958,7 +991,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 80174.96975302696,
+      "heartbeat_age_s": 80357.86563754082,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -1028,7 +1061,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 48181.96980166435,
+      "heartbeat_age_s": 48364.865688323975,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -1069,7 +1102,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 90643.9698574543,
+      "heartbeat_age_s": 90826.86574053764,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -1123,7 +1156,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 23004.969908475876,
+      "heartbeat_age_s": 23187.86581802368,
       "ready": false,
       "blocked_by": [
         "P0-solvers-build"
@@ -1178,7 +1211,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 23004.96994614601,
+      "heartbeat_age_s": 23187.865875720978,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -1224,7 +1257,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 23004.969980955124,
+      "heartbeat_age_s": 23187.865914583206,
       "ready": false,
       "blocked_by": [],
       "artifact_links": []
@@ -1258,7 +1291,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 23004.97002673149,
+      "heartbeat_age_s": 23187.865949630737,
       "ready": false,
       "blocked_by": [
         "P0-tailnet"
@@ -1296,7 +1329,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 23004.970063209534,
+      "heartbeat_age_s": 23187.86598420143,
       "ready": false,
       "blocked_by": [
         "P1-mcmc-refactor"
@@ -1329,7 +1362,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 23004.970110177994,
+      "heartbeat_age_s": 23187.866018295288,
       "ready": false,
       "blocked_by": [
         "P1-mcmc-refactor"
@@ -1362,7 +1395,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 23004.970148563385,
+      "heartbeat_age_s": 23187.866050958633,
       "ready": false,
       "blocked_by": [
         "P0-reproduce-bbnet"
@@ -1395,7 +1428,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 23004.970183610916,
+      "heartbeat_age_s": 23187.86608529091,
       "ready": false,
       "blocked_by": [
         "P1-kappa-identifiability"
@@ -1429,7 +1462,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 23004.970218658447,
+      "heartbeat_age_s": 23187.866119146347,
       "ready": false,
       "blocked_by": [
         "P1-hardsoft-posterior",
@@ -1465,7 +1498,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 23004.970252513885,
+      "heartbeat_age_s": 23187.866153478622,
       "ready": false,
       "blocked_by": [
         "P2-unified-adapter"
@@ -1505,7 +1538,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 23004.970286369324,
+      "heartbeat_age_s": 23187.866187095642,
       "ready": false,
       "blocked_by": [
         "P2-rate-registry"
@@ -1548,7 +1581,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 23004.97032213211,
+      "heartbeat_age_s": 23187.866248607635,
       "ready": false,
       "blocked_by": [
         "P2-solver-matrix"
@@ -1600,7 +1633,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 23004.97035551071,
+      "heartbeat_age_s": 23187.86629128456,
       "ready": false,
       "blocked_by": [
         "P0-solvers-build"
@@ -1639,7 +1672,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 23004.970388889313,
+      "heartbeat_age_s": 23187.86632514,
       "ready": false,
       "blocked_by": [
         "P2-solver-matrix",
@@ -1674,7 +1707,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 23004.97042298317,
+      "heartbeat_age_s": 23187.866358995438,
       "ready": false,
       "blocked_by": [
         "P2.5-jacobians",
@@ -1716,7 +1749,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 23004.970481157303,
+      "heartbeat_age_s": 23187.86639547348,
       "ready": false,
       "blocked_by": [
         "P2.5-fisher-propagation",
@@ -1779,7 +1812,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 23004.970519781113,
+      "heartbeat_age_s": 23187.86643052101,
       "ready": false,
       "blocked_by": [
         "P2-unified-adapter"
@@ -1817,7 +1850,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 23004.970555067062,
+      "heartbeat_age_s": 23187.866525650024,
       "ready": false,
       "blocked_by": [
         "P3-pilot-10k"
@@ -1850,7 +1883,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 23004.9705889225,
+      "heartbeat_age_s": 23187.866571187973,
       "ready": false,
       "blocked_by": [
         "P3-standard-atlas-regression"
@@ -1884,7 +1917,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 23004.97062397003,
+      "heartbeat_age_s": 23187.866606473923,
       "ready": false,
       "blocked_by": [
         "P3-nonstandard-reordering",
@@ -1918,7 +1951,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 23004.97066760063,
+      "heartbeat_age_s": 23187.866695404053,
       "ready": false,
       "blocked_by": [
         "P3-pilot-1k"
@@ -1951,7 +1984,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 23004.970716238022,
+      "heartbeat_age_s": 23187.866765737534,
       "ready": false,
       "blocked_by": [
         "P2.5-gate-report"
@@ -1984,7 +2017,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 23004.970754623413,
+      "heartbeat_age_s": 23187.86681175232,
       "ready": false,
       "blocked_by": [
         "P3-pilot-10k"
@@ -1992,8 +2025,76 @@
       "artifact_links": []
     },
     {
+      "id": "UQ0-ETR25-R0-INGEST",
+      "title": "Ingest ETR25 R0 rate products, code revisions, units and checksums",
+      "phase": "UQ0",
+      "status": "pending",
+      "weight": 4.0,
+      "unit": "reactions",
+      "current": 0.0,
+      "total": 3.0,
+      "owner": null,
+      "depends_on": [
+        "UQ0-SCOPE-FREEZE",
+        "P0-FRONTIER-2026-07"
+      ],
+      "started_at": null,
+      "updated_at": null,
+      "finished_at": null,
+      "declared_eta": null,
+      "message": "",
+      "artifacts": [],
+      "metrics": {},
+      "attempt": 0,
+      "run_id": null,
+      "progress": 0.0,
+      "rate": null,
+      "eta": null,
+      "eta_kind": "none",
+      "heartbeat_age_s": null,
+      "ready": false,
+      "blocked_by": [
+        "P0-FRONTIER-2026-07"
+      ],
+      "artifact_links": []
+    },
+    {
+      "id": "UQ0-NATIVE-UQ-REPRO",
+      "title": "Reproduce PRIMAT MC, PRyMordial marginalization, LINX q-runs, atlas and GP baselines",
+      "phase": "UQ0",
+      "status": "pending",
+      "weight": 4.0,
+      "unit": "baselines",
+      "current": 0.0,
+      "total": 5.0,
+      "owner": null,
+      "depends_on": [
+        "UQ0-PUBLIC-SOLVER-BASELINES",
+        "UQ0-R0-RATE-PRIOR"
+      ],
+      "started_at": null,
+      "updated_at": null,
+      "finished_at": null,
+      "declared_eta": null,
+      "message": "",
+      "artifacts": [],
+      "metrics": {},
+      "attempt": 0,
+      "run_id": null,
+      "progress": 0.0,
+      "rate": null,
+      "eta": null,
+      "eta_kind": "none",
+      "heartbeat_age_s": null,
+      "ready": false,
+      "blocked_by": [
+        "UQ0-R0-RATE-PRIOR"
+      ],
+      "artifact_links": []
+    },
+    {
       "id": "UQ0-NUISANCE-ADAPTER",
-      "title": "Implement simulate(theta,z,tau_n,solver,network,precision) for three direct paths",
+      "title": "Implement simulate(theta,rate_draw,tau_n,solver,network,precision) for three direct paths",
       "phase": "UQ0",
       "status": "pending",
       "weight": 5.0,
@@ -2028,13 +2129,13 @@
     },
     {
       "id": "UQ0-PLUSMINUS-REGRESSION",
-      "title": "Validate central and symmetric rate perturbations with units and structured failures",
+      "title": "Validate central and symmetric scalar perturbations, coherent curves and structured failures",
       "phase": "UQ0",
       "status": "pending",
       "weight": 3.0,
       "unit": "checks",
       "current": 0.0,
-      "total": 9.0,
+      "total": 12.0,
       "owner": null,
       "depends_on": [
         "UQ0-NUISANCE-ADAPTER"
@@ -2061,7 +2162,7 @@
     },
     {
       "id": "UQ0-PUBLIC-SOLVER-BASELINES",
-      "title": "Establish at least three pinned self-contained direct BBN solver paths",
+      "title": "Establish pinned PRIMAT, PRyMordial and LINX direct BBN paths",
       "phase": "UQ0",
       "status": "done",
       "weight": 4.0,
@@ -2089,7 +2190,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 21256.970858335495,
+      "heartbeat_age_s": 21439.867057561874,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -2105,7 +2206,7 @@
     },
     {
       "id": "UQ0-R0-RATE-PRIOR",
-      "title": "Register numerical priors and mappings for the three R0 deuterium rates",
+      "title": "Freeze coherent numerical priors and solver mappings for the three R0 rates",
       "phase": "UQ0",
       "status": "pending",
       "weight": 4.0,
@@ -2114,8 +2215,8 @@
       "total": 3.0,
       "owner": null,
       "depends_on": [
-        "UQ0-SCOPE-FREEZE",
-        "UQ0-PUBLIC-SOLVER-BASELINES"
+        "UQ0-PUBLIC-SOLVER-BASELINES",
+        "UQ0-RATE-PDF-AUDIT"
       ],
       "started_at": null,
       "updated_at": "2026-07-22T21:30:18+00:00",
@@ -2133,9 +2234,11 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 21255.970895051956,
-      "ready": true,
-      "blocked_by": [],
+      "heartbeat_age_s": 21438.867101430893,
+      "ready": false,
+      "blocked_by": [
+        "UQ0-RATE-PDF-AUDIT"
+      ],
       "artifact_links": [
         {
           "label": "configs/physics/nuclear_stage0_R0_source_candidates_v1.yaml",
@@ -2148,6 +2251,39 @@
       ]
     },
     {
+      "id": "UQ0-RATE-PDF-AUDIT",
+      "title": "Audit actual or posterior R0 rate distributions against log-normal approximations",
+      "phase": "UQ0",
+      "status": "pending",
+      "weight": 4.0,
+      "unit": "reactions",
+      "current": 0.0,
+      "total": 3.0,
+      "owner": null,
+      "depends_on": [
+        "UQ0-ETR25-R0-INGEST"
+      ],
+      "started_at": null,
+      "updated_at": null,
+      "finished_at": null,
+      "declared_eta": null,
+      "message": "",
+      "artifacts": [],
+      "metrics": {},
+      "attempt": 0,
+      "run_id": null,
+      "progress": 0.0,
+      "rate": null,
+      "eta": null,
+      "eta_kind": "none",
+      "heartbeat_age_s": null,
+      "ready": false,
+      "blocked_by": [
+        "UQ0-ETR25-R0-INGEST"
+      ],
+      "artifact_links": []
+    },
+    {
       "id": "UQ0-SCOPE-FREEZE",
       "title": "Freeze the BBN nuclear-rate uncertainty question and model ladder",
       "phase": "UQ0",
@@ -2157,7 +2293,9 @@
       "current": 1.0,
       "total": 1.0,
       "owner": null,
-      "depends_on": [],
+      "depends_on": [
+        "P0-FRONTIER-2026-07"
+      ],
       "started_at": null,
       "updated_at": "2026-07-22T21:02:10+00:00",
       "finished_at": "2026-07-22T21:02:10+00:00",
@@ -2175,9 +2313,11 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 22943.970930099487,
+      "heartbeat_age_s": 23126.867199659348,
       "ready": false,
-      "blocked_by": [],
+      "blocked_by": [
+        "P0-FRONTIER-2026-07"
+      ],
       "artifact_links": [
         {
           "label": "docs/decisions/ADR-0006-uncertainty-core-refocus.md",
@@ -2223,7 +2363,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 21255.970973968506,
+      "heartbeat_age_s": 21438.867267608643,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -2239,7 +2379,7 @@
     },
     {
       "id": "UQ1-FIDUCIAL-MC-1K",
-      "title": "Generate 1,000 direct nuisance draws at the frozen standard-BBN point",
+      "title": "Generate 1,000 direct coherent-rate draws at the frozen standard-BBN point",
       "phase": "UQ1",
       "status": "pending",
       "weight": 5.0,
@@ -2248,7 +2388,8 @@
       "total": 1000.0,
       "owner": null,
       "depends_on": [
-        "UQ0-PLUSMINUS-REGRESSION"
+        "UQ0-PLUSMINUS-REGRESSION",
+        "UQ0-NATIVE-UQ-REPRO"
       ],
       "started_at": null,
       "updated_at": null,
@@ -2266,13 +2407,14 @@
       "heartbeat_age_s": null,
       "ready": false,
       "blocked_by": [
-        "UQ0-PLUSMINUS-REGRESSION"
+        "UQ0-PLUSMINUS-REGRESSION",
+        "UQ0-NATIVE-UQ-REPRO"
       ],
       "artifact_links": []
     },
     {
       "id": "UQ1-MC-CONVERGENCE",
-      "title": "Evaluate abundance-band convergence at cumulative nuisance sample counts",
+      "title": "Evaluate abundance-distribution convergence at cumulative nuisance sample counts",
       "phase": "UQ1",
       "status": "pending",
       "weight": 3.0,
@@ -2305,13 +2447,13 @@
     },
     {
       "id": "UQ1-POSTHOC-SIGMA-AUDIT",
-      "title": "Compare direct abundance distributions with the constant post-hoc theoretical covariance",
+      "title": "Compare direct joint abundance distributions with constant post-hoc theoretical covariance",
       "phase": "UQ1",
       "status": "pending",
       "weight": 3.0,
       "unit": "diagnostics",
       "current": 0.0,
-      "total": 4.0,
+      "total": 5.0,
       "owner": null,
       "depends_on": [
         "UQ1-SCHRAMM-BANDS"
@@ -2333,6 +2475,41 @@
       "ready": false,
       "blocked_by": [
         "UQ1-SCHRAMM-BANDS"
+      ],
+      "artifact_links": []
+    },
+    {
+      "id": "UQ1-RATE-PDF-PROPAGATION",
+      "title": "Compare actual/posterior, scalar-lognormal and solver-legacy rate representations",
+      "phase": "UQ1",
+      "status": "pending",
+      "weight": 4.0,
+      "unit": "representations",
+      "current": 0.0,
+      "total": 3.0,
+      "owner": null,
+      "depends_on": [
+        "UQ1-FIDUCIAL-MC-1K",
+        "UQ1-MC-CONVERGENCE"
+      ],
+      "started_at": null,
+      "updated_at": null,
+      "finished_at": null,
+      "declared_eta": null,
+      "message": "",
+      "artifacts": [],
+      "metrics": {},
+      "attempt": 0,
+      "run_id": null,
+      "progress": 0.0,
+      "rate": null,
+      "eta": null,
+      "eta_kind": "none",
+      "heartbeat_age_s": null,
+      "ready": false,
+      "blocked_by": [
+        "UQ1-FIDUCIAL-MC-1K",
+        "UQ1-MC-CONVERGENCE"
       ],
       "artifact_links": []
     },
@@ -2347,8 +2524,8 @@
       "total": 4.0,
       "owner": null,
       "depends_on": [
-        "UQ1-FIDUCIAL-MC-1K",
-        "UQ1-MC-CONVERGENCE"
+        "UQ1-MC-CONVERGENCE",
+        "UQ1-RATE-PDF-PROPAGATION"
       ],
       "started_at": null,
       "updated_at": null,
@@ -2366,14 +2543,14 @@
       "heartbeat_age_s": null,
       "ready": false,
       "blocked_by": [
-        "UQ1-FIDUCIAL-MC-1K",
-        "UQ1-MC-CONVERGENCE"
+        "UQ1-MC-CONVERGENCE",
+        "UQ1-RATE-PDF-PROPAGATION"
       ],
       "artifact_links": []
     },
     {
       "id": "UQ2-COVARIANCE-SMOKE-16",
-      "title": "Measure covariance drift, correlations and finite-difference responses at 16 points",
+      "title": "Measure covariance, quantile, correlation, tail and rate-PDF drift at 16 points",
       "phase": "UQ2",
       "status": "pending",
       "weight": 4.0,
@@ -2409,16 +2586,17 @@
     },
     {
       "id": "UQ2-DIRECT-ECONOMICS",
-      "title": "Project direct Monte Carlo, joint marginalization and SBC workload costs",
+      "title": "Measure PRIMAT/PRyMordial/LINX marginalization and 1,000-SBC workload costs",
       "phase": "UQ2",
       "status": "pending",
-      "weight": 2.0,
+      "weight": 3.0,
       "unit": "workloads",
       "current": 0.0,
-      "total": 4.0,
+      "total": 5.0,
       "owner": null,
       "depends_on": [
         "UQ1-FIDUCIAL-MC-1K",
+        "UQ0-NATIVE-UQ-REPRO",
         "P0-WHY-NOT-01"
       ],
       "started_at": null,
@@ -2438,13 +2616,14 @@
       "ready": false,
       "blocked_by": [
         "UQ1-FIDUCIAL-MC-1K",
+        "UQ0-NATIVE-UQ-REPRO",
         "P0-WHY-NOT-01"
       ],
       "artifact_links": []
     },
     {
       "id": "UQ2-FISHER64",
-      "title": "Execute the 64-point nuclear/weak/solver response and Fisher gate",
+      "title": "Execute the 64-point nuclear/weak/solver response and Fisher analysis",
       "phase": "UQ2",
       "status": "pending",
       "weight": 5.0,
@@ -2477,17 +2656,18 @@
     },
     {
       "id": "UQ2-GATE-REPORT",
-      "title": "Issue G0/G1/G2/G3 and authorize or stop learned-model production",
+      "title": "Issue G0/G1/G2/G3 for physics novelty and learned-model necessity",
       "phase": "UQ2",
       "status": "pending",
       "weight": 3.0,
       "unit": "signoffs",
       "current": 0.0,
-      "total": 3.0,
+      "total": 4.0,
       "owner": null,
       "depends_on": [
         "UQ2-FISHER64",
-        "UQ2-DIRECT-ECONOMICS"
+        "UQ2-DIRECT-ECONOMICS",
+        "UQ2-METHOD-BASELINE-MANIFEST"
       ],
       "started_at": null,
       "updated_at": null,
@@ -2506,13 +2686,49 @@
       "ready": false,
       "blocked_by": [
         "UQ2-FISHER64",
+        "UQ2-DIRECT-ECONOMICS",
+        "UQ2-METHOD-BASELINE-MANIFEST"
+      ],
+      "artifact_links": []
+    },
+    {
+      "id": "UQ2-METHOD-BASELINE-MANIFEST",
+      "title": "Freeze post-Gate MLP, Gaussian, mixture, TMNRE/AMNRE and calibration baselines",
+      "phase": "UQ2",
+      "status": "pending",
+      "weight": 2.0,
+      "unit": "manifests",
+      "current": 0.0,
+      "total": 1.0,
+      "owner": null,
+      "depends_on": [
+        "UQ2-COVARIANCE-SMOKE-16",
+        "UQ2-DIRECT-ECONOMICS"
+      ],
+      "started_at": null,
+      "updated_at": null,
+      "finished_at": null,
+      "declared_eta": null,
+      "message": "",
+      "artifacts": [],
+      "metrics": {},
+      "attempt": 0,
+      "run_id": null,
+      "progress": 0.0,
+      "rate": null,
+      "eta": null,
+      "eta_kind": "none",
+      "heartbeat_age_s": null,
+      "ready": false,
+      "blocked_by": [
+        "UQ2-COVARIANCE-SMOKE-16",
         "UQ2-DIRECT-ECONOMICS"
       ],
       "artifact_links": []
     },
     {
       "id": "UQ2-NEXT-PLAN",
-      "title": "Add conditional emulator/full-network tasks only after the signed Gate decision",
+      "title": "Add conditional learned-model, broader-rate or application tasks only after the signed Gate",
       "phase": "UQ2",
       "status": "pending",
       "weight": 1.0,
