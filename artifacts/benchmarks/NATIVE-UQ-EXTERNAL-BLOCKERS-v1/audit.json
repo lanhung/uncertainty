@@ -1,0 +1,91 @@
+{
+  "artifact_id": "NATIVE-UQ-EXTERNAL-BLOCKERS-v1",
+  "generated_at_utc": "2026-07-23T12:30:00Z",
+  "gp_deuterium": {
+    "blocked_inputs": [
+      "analysis_code",
+      "fitted_hyperparameters",
+      "exact_experimental_data_bundle",
+      "posterior_draws",
+      "random_seed"
+    ],
+    "exact_abundance_distribution_reproduced": false,
+    "next_unblock_condition": "A public release of the analysis code, fitted hyperparameters, exact experimental data bundle and seeded posterior/draw manifest sufficient to rerun the published abundance distribution.",
+    "source_artifact": "artifacts/benchmarks/GP-DEUTERIUM-PRIOR-STRUCTURE-v1/structure.json",
+    "source_evidence_sha256": "1f1a6a14892457451ab2b0192f6ccb1741bef0e6e9cb7233454eaddbdca07922",
+    "source_revision": "arXiv:2604.16600v1",
+    "status": "externally_blocked"
+  },
+  "native_uq_task_progress": {
+    "accepted_baselines": [
+      "PRIMAT",
+      "PRyMordial",
+      "LINX-v2"
+    ],
+    "after_audit": 3,
+    "before_audit": 3,
+    "production_authorized": false,
+    "task_id": "UQ0-NATIVE-UQ-REPRO",
+    "total": 5,
+    "unit": "baselines"
+  },
+  "schema_version": 1,
+  "scientific_boundary": {
+    "acceptance_thresholds_changed": false,
+    "claim_level": "C0_reproducibility_blocker_audit_only",
+    "native_uq_task_progress_eligible": false,
+    "novelty_claim": false,
+    "production_authorized": false
+  },
+  "sensitivity_atlas": {
+    "atlas_publication": {
+      "arxiv": "2603.22414v1",
+      "published_at_utc": "2026-03-23T18:00:17Z"
+    },
+    "atlas_repository": {
+      "generator_candidate_extension_count": 0,
+      "generator_revision_declared": false,
+      "revision": "d3ea1838d9450673698f07b7c6b8971efb87d0fd",
+      "revision_committed_at_utc": "2026-04-09T10:01:09Z",
+      "tracked_path_count": 701,
+      "url": "https://github.com/Anne-KatherineBurns/bbn-sensitivity-atlas"
+    },
+    "independent_run": {
+      "acceptance_failures": [
+        "central_reference_mismatch:ddHe3n:Li7H",
+        "central_reference_mismatch:ddtp:Li7H",
+        "central_reference_mismatch:dpHe3g:Li7H",
+        "derivative_sign_mismatch:dpHe3g:Yp"
+      ],
+      "accepted": false,
+      "source_artifact": "artifacts/benchmarks/SENSITIVITY-ATLAS-R0-SLICE-v1/artifact.json",
+      "source_evidence_sha256": "412adfd0614a4d7239338ea56349428cd4b4eef8338e047f8669841656cf618b"
+    },
+    "prymordial_revision_audit": {
+      "comparison": {
+        "ahead_by": 2,
+        "changed_paths": [
+          "PRyMrates/nuclear/key_nacreii_rates/dpHe3g.txt"
+        ],
+        "relevance_to_registered_atlas_path": "The changed file belongs to NACRE-II; the registered atlas slice uses the PRIMAT rate compilation.",
+        "status": "ahead"
+      },
+      "current_registered_revision": {
+        "committed_at_utc": "2026-05-08T12:07:06Z",
+        "revision": "725d8a8db3ad5ea2630580d825c9d0d69ed76533"
+      },
+      "last_public_revision_before_paper": {
+        "committed_at_utc": "2023-08-03T22:20:49Z",
+        "revision": "bf24c3d064fe35ec2d612f2ccd8f03306d570b6a"
+      },
+      "solver_source_hashes_identical": {
+        "PRyM/PRyM_init.py": "7b52cdd4cf7a7c39082d6cdf4a2e4f3b67458dc20d6ff9f07c2b488ef1819e2f",
+        "PRyM/PRyM_main.py": "98f0724f27ace2927d38c3eec615def05bfbfd9c1c9cc09cfa91470417b3451f",
+        "PRyM/PRyM_nuclear_net63.py": "dfc634de131e740810f3e2992649f82747173495b2c8e6e0f849a69b1f6da577"
+      }
+    },
+    "rerun_decision": "No scientifically justified public revision remains to test. Keep the frozen failed result and wait for the generating code, exact solver revision and input configuration or an upstream correction.",
+    "status": "externally_blocked"
+  },
+  "task_id": "UQ0-NATIVE-UQ-REPRO"
+}

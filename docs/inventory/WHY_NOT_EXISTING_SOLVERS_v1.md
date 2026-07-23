@@ -13,6 +13,10 @@ Post-measurement status:
 `configs/benchmarks/why_not_evidence_status_v1.yaml`. It is deliberately
 separate from the hash-frozen measurement protocol.
 
+The fail-closed source/revision audit for the two remaining native-UQ
+baselines is
+`artifacts/benchmarks/NATIVE-UQ-EXTERNAL-BLOCKERS-v1/audit.json`.
+
 ## Evidence matrix
 
 | Question | Current evidence | Status |
@@ -20,7 +24,7 @@ separate from the hash-frozen measurement protocol.
 | Can the public solvers run reproducibly at one standard point? | Four integrity-validated W0–W3 runtime slices, each with 1,950 successful warm points and zero structured failures | measured, scope limited |
 | Can native nuclear-rate UQ be reproduced? | PRIMAT and PRyMordial accepted at 1,000/1,000 draws; LINX v2 accepted under unchanged numerical gates | 3/5 accepted |
 | Is the frozen LINX native candidate numerically accepted? | v1 failed at `0.001246448`; stricter pre-registered v2 passed at `0.000619368` versus unchanged `0.001` limit | yes, v2 C0 calibration only |
-| Is the sensitivity-atlas R0 slice accepted? | Frozen central/sign checks failed | no |
+| Is the sensitivity-atlas R0 slice accepted? | Frozen central/sign checks failed; the pre-paper and registered public PRyMordial revisions are identical on the registered PRIMAT path | no |
 | Can the published GP abundance distribution be rerun? | Method structure captured; code, fitted hyperparameters, exact data, draws and seed are unavailable | blocked |
 | Is the project R0 prior frozen for production? | Engineering candidate and provenance exist; scientific prior and signatures do not | no |
 | Is the direct 1,000-draw project workload measured? | No accepted production-prior run | pending |
