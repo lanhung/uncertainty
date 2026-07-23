@@ -1,6 +1,6 @@
 schema_version: 2
 registry_id: NUCLEAR-STAGE0-R0-v1
-status: scope_and_source_policy_frozen_numerical_capture_pending
+status: public_table_capture_complete_rate_pdf_audit_pending
 registered_at_utc: "2026-07-23"
 frontier_review: docs/literature/FRONTIER_REVIEW_2026-07.md
 source_registry: configs/literature/frontier_sources_2026-07.yaml
@@ -31,7 +31,11 @@ prior_source_policy:
     zenodo_doi: "10.5281/zenodo.17610211"
     RatesMC_repository: https://github.com/rlongland/RatesMC
     evaluation_repository: https://github.com/TUNL-Reaction-Rates-Group/2025-rates-evaluation
-  source_capture_status: pending_exact_revision_and_checksum
+  source_capture_status: >-
+    R0_tables_6_8_captured_from_official_IOP_ASCII_and_exactly_crosschecked
+    against_pinned_arXiv_source_percentile_curves_only
+  source_capture_registry: configs/physics/etr25_R0_ingest_v1.yaml
+  source_capture_package: artifacts/priors/ETR25-R0-TABLES-v1/package.json
   actual_pdf_policy: >-
     ETR25 low, median and high values are percentiles of the actual rate
     probability density, whereas factor uncertainty is a log-normal
@@ -56,17 +60,17 @@ reactions:
     role: deuterium_destruction_and_He3_feed
     prior_parameter: z_dp_gamma_he3
     ETR25_table: 6
-    ETR25_rate_type: pending_exact_ETR25_source_classification
-    source_capture: pending
-    central_curve: pending_ETR25_median
-    temperature_grid: pending_ETR25_capture
-    units: cm3_mol_minus1_s_minus1_pending_validation
-    actual_pdf_or_samples: pending_RatesMC_or_adopted_posterior_capture
-    actual_percentiles: pending
-    lognormal_factor_uncertainty: pending
+    ETR25_rate_type: Bayesian_rate_adopted_from_Moscoso_2021
+    source_capture: configs/physics/etr25_R0_ingest_v1.yaml
+    central_curve: ETR25_Table_6_median_p50
+    temperature_grid: ETR25_common_60_point_T9_0p001_to_10
+    units: cm3_mol_minus1_s_minus1_verified
+    actual_pdf_or_samples: actual_percentiles_only_full_samples_not_in_public_release
+    actual_percentiles: p16_p50_p84_captured
+    lognormal_factor_uncertainty: captured_separately_from_actual_percentiles
     lognormal_adequacy_audit: required
     coherent_temperature_draws: required
-    covariance_status: pending
+    covariance_status: not_published_missing_is_not_independence
     detailed_balance: pending
     solver_mappings: pending
     alternative_sources:
@@ -76,8 +80,9 @@ reactions:
       - PRyMordial_PRIMAT_like
       - PRyMordial_NACREII_like
       - LINX_network_tables
-    source_revision: pending
-    source_checksum: pending
+    source_revision: IOP_ApJS_283_17_Table_6_crosschecked_arXiv_2601p20059v1
+    source_checksum: 9297c83ec659432998047023b7253ef91ba5ecaca159a90bc7feda5fbe1ebba4
+    derived_rows_checksum: b7be9823b7dea46141bb88bac12210184e69865e8b96a7e25728a38b91b3d748
     legacy_solver_envelope:
       role: scalar_interface_calibration_not_primary_prior
       package: artifacts/priors/NUCLEAR-STAGE0-R0-LINX-KEY-RECOMMENDED-v1/package.json
@@ -98,17 +103,17 @@ reactions:
     role: deuterium_destruction_and_He3_feed
     prior_parameter: z_dd_n_he3
     ETR25_table: 7
-    ETR25_rate_type: pending_exact_ETR25_source_classification
-    source_capture: pending
-    central_curve: pending_ETR25_median
-    temperature_grid: pending_ETR25_capture
-    units: cm3_mol_minus1_s_minus1_pending_validation
-    actual_pdf_or_samples: pending_RatesMC_or_adopted_posterior_capture
-    actual_percentiles: pending
-    lognormal_factor_uncertainty: pending
+    ETR25_rate_type: modified_Bayesian_recalculation_relative_to_Gomez_Inesta_2017
+    source_capture: configs/physics/etr25_R0_ingest_v1.yaml
+    central_curve: ETR25_Table_7_median_p50
+    temperature_grid: ETR25_common_60_point_T9_0p001_to_10
+    units: cm3_mol_minus1_s_minus1_verified
+    actual_pdf_or_samples: actual_percentiles_only_full_samples_not_in_public_release
+    actual_percentiles: p16_p50_p84_captured
+    lognormal_factor_uncertainty: captured_separately_from_actual_percentiles
     lognormal_adequacy_audit: required
     coherent_temperature_draws: required
-    covariance_status: pending
+    covariance_status: not_published_missing_is_not_independence
     detailed_balance: pending
     solver_mappings: pending
     alternative_sources:
@@ -117,8 +122,9 @@ reactions:
       - PRyMordial_PRIMAT_like
       - PRyMordial_NACREII_like
       - LINX_network_tables
-    source_revision: pending
-    source_checksum: pending
+    source_revision: IOP_ApJS_283_17_Table_7_crosschecked_arXiv_2601p20059v1
+    source_checksum: 30445d5e13518aeec0220b9b5e422ee1cb14d41310c0ac1c639294e8ed00b9bd
+    derived_rows_checksum: e2d090e971223e08ab18399e2851a37548eb72acfae4c8388c4841e8564081c6
     legacy_solver_envelope:
       role: scalar_interface_calibration_not_primary_prior
       package: artifacts/priors/NUCLEAR-STAGE0-R0-LINX-KEY-RECOMMENDED-v1/package.json
@@ -139,17 +145,17 @@ reactions:
     role: deuterium_destruction_and_tritium_feed
     prior_parameter: z_dd_p_t
     ETR25_table: 8
-    ETR25_rate_type: pending_exact_ETR25_source_classification
-    source_capture: pending
-    central_curve: pending_ETR25_median
-    temperature_grid: pending_ETR25_capture
-    units: cm3_mol_minus1_s_minus1_pending_validation
-    actual_pdf_or_samples: pending_RatesMC_or_adopted_posterior_capture
-    actual_percentiles: pending
-    lognormal_factor_uncertainty: pending
+    ETR25_rate_type: modified_Bayesian_recalculation_relative_to_Gomez_Inesta_2017
+    source_capture: configs/physics/etr25_R0_ingest_v1.yaml
+    central_curve: ETR25_Table_8_median_p50
+    temperature_grid: ETR25_common_60_point_T9_0p001_to_10
+    units: cm3_mol_minus1_s_minus1_verified
+    actual_pdf_or_samples: actual_percentiles_only_full_samples_not_in_public_release
+    actual_percentiles: p16_p50_p84_captured
+    lognormal_factor_uncertainty: captured_separately_from_actual_percentiles
     lognormal_adequacy_audit: required
     coherent_temperature_draws: required
-    covariance_status: pending
+    covariance_status: not_published_missing_is_not_independence
     detailed_balance: pending
     solver_mappings: pending
     alternative_sources:
@@ -158,8 +164,9 @@ reactions:
       - PRyMordial_PRIMAT_like
       - PRyMordial_NACREII_like
       - LINX_network_tables
-    source_revision: pending
-    source_checksum: pending
+    source_revision: IOP_ApJS_283_17_Table_8_crosschecked_arXiv_2601p20059v1
+    source_checksum: 87d0312c4b807cb2069d59dc8519d92014bb12303e9c7931e175801b16e73682
+    derived_rows_checksum: 188532666bbae5e09a8345153abedc15717e21f5ddb3e6aa230733b946d81304
     legacy_solver_envelope:
       role: scalar_interface_calibration_not_primary_prior
       package: artifacts/priors/NUCLEAR-STAGE0-R0-LINX-KEY-RECOMMENDED-v1/package.json
@@ -189,7 +196,7 @@ nuisance_contract:
   scalar_covariance_matrix: pending
   scalar_model_role: approximation_and_solver_interface_baseline
   actual_pdf_model:
-    status: pending_ETR25_or_original_posterior_ingestion
+    status: pointwise_percentiles_ingested_coherent_actual_posterior_unavailable
     comparison_to_scalar_required: true
   independence_assumed: false
   missing_covariance_policy: >-

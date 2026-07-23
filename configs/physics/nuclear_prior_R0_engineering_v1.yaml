@@ -219,7 +219,7 @@ regression_gate:
   no_scientific_labels_before_pass: true
 
 upstream_scientific_gates:
-  UQ0_ETR25_R0_INGEST: pending
+  UQ0_ETR25_R0_INGEST: complete_public_products_only
   UQ0_RATE_PDF_AUDIT: pending
   coherent_ETR25_or_approved_posterior_prior: pending
   common_production_adapter_unlocked: false

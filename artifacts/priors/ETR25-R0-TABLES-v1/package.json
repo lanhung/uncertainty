@@ -1,0 +1,1707 @@
+{
+  "coordinate": {
+    "definition": "T / 1e9 K",
+    "grid": [
+      0.001,
+      0.002,
+      0.003,
+      0.004,
+      0.005,
+      0.006,
+      0.007,
+      0.008,
+      0.009,
+      0.01,
+      0.011,
+      0.012,
+      0.013,
+      0.014,
+      0.015,
+      0.016,
+      0.018,
+      0.02,
+      0.025,
+      0.03,
+      0.04,
+      0.05,
+      0.06,
+      0.07,
+      0.08,
+      0.09,
+      0.1,
+      0.11,
+      0.12,
+      0.13,
+      0.14,
+      0.15,
+      0.16,
+      0.18,
+      0.2,
+      0.25,
+      0.3,
+      0.35,
+      0.4,
+      0.45,
+      0.5,
+      0.6,
+      0.7,
+      0.8,
+      0.9,
+      1.0,
+      1.25,
+      1.5,
+      1.75,
+      2.0,
+      2.5,
+      3.0,
+      3.5,
+      4.0,
+      5.0,
+      6.0,
+      7.0,
+      8.0,
+      9.0,
+      10.0
+    ],
+    "maximum": 10.0,
+    "minimum": 0.001,
+    "name": "T9",
+    "points": 60,
+    "units": "GK"
+  },
+  "machine_readable_source": {
+    "article_url": "https://iopscience.iop.org/article/10.3847/1538-4365/ae2bdc",
+    "license": "CC-BY-4.0",
+    "pinning_contract": "full_url_plus_size_plus_sha256",
+    "publisher": "IOP Publishing",
+    "role": "primary_exact_table_byte_source",
+    "server_etag_last_modified_content_type": "not_supplied"
+  },
+  "official_archives": {
+    "ETR25_Zenodo": {
+      "R0_Bayesian_inputs_or_outputs_in_archives": false,
+      "concept_doi": "10.5281/zenodo.17610210",
+      "doi": "10.5281/zenodo.17610211",
+      "files": {
+        "RatesMC_Input_Files.zip": {
+          "md5": "ac3b9fafb288839a7e90e2c1aaa3cfab",
+          "sha256": "b629cdb6579a66e94bb7f60cbc9dd240cfb6ce14875cfcea4448aeec73a20146",
+          "size": 189139
+        },
+        "RatesMC_Output_Files.zip": {
+          "md5": "9914cc2621e2bdd6d0a444421e00e214",
+          "sha256": "fe15751352aa6fae65fbe19cbc9d5ffc2db108bf62309b23b80055ee36c3fcf6",
+          "size": 106875
+        },
+        "TALYS_Input_Files.zip": {
+          "md5": "ba905caa4cc91c5dc4dd5def1395c09a",
+          "sha256": "c97f451deebaef2b59ff23ca73b98c66c067eebc6880c11d94d6d843e342755e",
+          "size": 47759
+        }
+      },
+      "license": "CC0-1.0",
+      "record_id": 17610211,
+      "version": "vETR25"
+    },
+    "RatesMC_Zenodo": {
+      "concept_doi": "10.5281/zenodo.17516448",
+      "doi": "10.5281/zenodo.17516449",
+      "license_metadata": "GPL-3.0",
+      "record_id": 17516449,
+      "source_archive_md5": "8bde9acc3003ca4484ce83c364047be8",
+      "source_headers_license": "GPL-3.0-or-later",
+      "version": "v2.3"
+    }
+  },
+  "official_repositories": {
+    "ETR25_evaluation_inputs": {
+      "R0_Bayesian_inputs_present": false,
+      "Zenodo_archive_license": "CC0-1.0",
+      "current_revision_audited": "3f6feda6e045056c0aa078311dcc0a2969c5565b",
+      "data_revision": "45e79da431767be5efac137755c645347172afc5",
+      "repository_license": "not_declared",
+      "tag_vETR25_contains_data": false,
+      "tag_vETR25_revision": "23763a0436495095c035ffa3b9b26407d3c03900",
+      "url": "https://github.com/TUNL-Reaction-Rates-Group/2025-rates-evaluation"
+    },
+    "RatesMC": {
+      "license": "GPL-3.0-or-later",
+      "revision": "3649f24baa9be9e8d398d6fc5ca77e83a1107592",
+      "tag": "v2.3",
+      "url": "https://github.com/rlongland/RatesMC"
+    }
+  },
+  "package_id": "ETR25-R0-TABLES-v1",
+  "paper": {
+    "arxiv_id": "2601.20059v1",
+    "arxiv_submitted_utc": "2026-01-27",
+    "authors_short": "Iliadis et al.",
+    "doi": "10.3847/1538-4365/ae2bdc",
+    "journal": "Astrophysical Journal Supplement Series 283, 17 (2026)",
+    "license": "CC-BY-4.0",
+    "paper_tex_path": "paper.tex",
+    "paper_tex_sha256": "cc670aed6f80c25c9517b9098fae9255fe403ad78cd41b13d74b382daa9fe7b9",
+    "source_tar_sha256": "33c1702537d44bf2ca253832dfecbb18a3ada4fd2078af81e28fd1effae50e5b",
+    "source_tar_url": "https://arxiv.org/e-print/2601.20059",
+    "title": "The 2025 Evaluation of Experimental Thermonuclear Reaction Rates"
+  },
+  "production_use": "prohibited_pending_rate_pdf_audit_and_coherent_draw_model",
+  "reactions": {
+    "dd_n_he3": {
+      "arxiv_tex_crosscheck": "exact_numeric_and_parenthesis_match",
+      "ascii_filename": "apjsae2bdct7_ascii.txt",
+      "ascii_note": "Note. Reaction rate: A. Gomez Inesta et al. (2017). S factor: see Table 2 and Figure 1 in A. Gomez Inesta et al. (2017). Normalization: see Table 2 of A. Gomez Inesta et al. (2017). High-temperature rates (in parentheses): A. Coc et al. (2015). Previous rates: A. Coc et al. (2015) and O. Pisanti et al. (2021). Other: the rates listed in the table have been recalculated using a modified Bayesian model compared to A. Gomez Inesta et al. (2017), as discussed in Section 4.",
+      "ascii_sha256": "30445d5e13518aeec0220b9b5e422ee1cb14d41310c0ac1c639294e8ed00b9bd",
+      "ascii_sha256_verified": "30445d5e13518aeec0220b9b5e422ee1cb14d41310c0ac1c639294e8ed00b9bd",
+      "ascii_size_bytes": 3471,
+      "ascii_url": "https://iopscience.iop.org/0067-0049/283/1/17/suppdata/apjsae2bdct7_ascii.txt?doi=10.3847/1538-4365/ae2bdc",
+      "classification": "modified_Bayesian_recalculation_relative_to_Gomez_Inesta_2017",
+      "coordinate": "T9_GK",
+      "equation": "D(d,n)3He",
+      "factor_uncertainty_semantics": {
+        "coverage_percent": 68,
+        "model": "lognormal_approximation",
+        "not_derived_directly_from_actual_percentiles": true,
+        "sigma_log": "ln(factor_uncertainty_lognormal)"
+      },
+      "high_temperature_reference": "Coc_et_al_2015",
+      "high_temperature_start_T9": 2.5,
+      "label": "tab:ddn",
+      "percentile_semantics": {
+        "high": 84,
+        "low": 16,
+        "median": 50,
+        "source": "actual_rate_probability_density"
+      },
+      "primary_rate_reference": "Gomez_Inesta_et_al_2017",
+      "primary_rate_reference_doi": "10.3847/1538-4357/aa9025",
+      "rows": [
+        {
+          "T9": 0.001,
+          "factor_uncertainty_lognormal": 1.011,
+          "high_p84": 1.336e-08,
+          "high_temperature_matched_rate": false,
+          "low_p16": 1.308e-08,
+          "median_p50": 1.323e-08
+        },
+        {
+          "T9": 0.002,
+          "factor_uncertainty_lognormal": 1.011,
+          "high_p84": 5.549e-05,
+          "high_temperature_matched_rate": false,
+          "low_p16": 5.431e-05,
+          "median_p50": 5.493e-05
+        },
+        {
+          "T9": 0.003,
+          "factor_uncertainty_lognormal": 1.011,
+          "high_p84": 0.003058,
+          "high_temperature_matched_rate": false,
+          "low_p16": 0.002993,
+          "median_p50": 0.003027
+        },
+        {
+          "T9": 0.004,
+          "factor_uncertainty_lognormal": 1.011,
+          "high_p84": 0.03778,
+          "high_temperature_matched_rate": false,
+          "low_p16": 0.03697,
+          "median_p50": 0.03739
+        },
+        {
+          "T9": 0.005,
+          "factor_uncertainty_lognormal": 1.011,
+          "high_p84": 0.2239,
+          "high_temperature_matched_rate": false,
+          "low_p16": 0.2191,
+          "median_p50": 0.2216
+        },
+        {
+          "T9": 0.006,
+          "factor_uncertainty_lognormal": 1.011,
+          "high_p84": 0.865,
+          "high_temperature_matched_rate": false,
+          "low_p16": 0.8466,
+          "median_p50": 0.8562
+        },
+        {
+          "T9": 0.007,
+          "factor_uncertainty_lognormal": 1.011,
+          "high_p84": 2.536,
+          "high_temperature_matched_rate": false,
+          "low_p16": 2.482,
+          "median_p50": 2.51
+        },
+        {
+          "T9": 0.008,
+          "factor_uncertainty_lognormal": 1.011,
+          "high_p84": 6.14,
+          "high_temperature_matched_rate": false,
+          "low_p16": 6.01,
+          "median_p50": 6.078
+        },
+        {
+          "T9": 0.009,
+          "factor_uncertainty_lognormal": 1.011,
+          "high_p84": 12.94,
+          "high_temperature_matched_rate": false,
+          "low_p16": 12.66,
+          "median_p50": 12.81
+        },
+        {
+          "T9": 0.01,
+          "factor_uncertainty_lognormal": 1.011,
+          "high_p84": 24.54,
+          "high_temperature_matched_rate": false,
+          "low_p16": 24.02,
+          "median_p50": 24.29
+        },
+        {
+          "T9": 0.011,
+          "factor_uncertainty_lognormal": 1.011,
+          "high_p84": 42.88,
+          "high_temperature_matched_rate": false,
+          "low_p16": 41.97,
+          "median_p50": 42.45
+        },
+        {
+          "T9": 0.012,
+          "factor_uncertainty_lognormal": 1.011,
+          "high_p84": 70.21,
+          "high_temperature_matched_rate": false,
+          "low_p16": 68.72,
+          "median_p50": 69.49
+        },
+        {
+          "T9": 0.013,
+          "factor_uncertainty_lognormal": 1.011,
+          "high_p84": 109.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 106.7,
+          "median_p50": 107.9
+        },
+        {
+          "T9": 0.014,
+          "factor_uncertainty_lognormal": 1.011,
+          "high_p84": 161.9,
+          "high_temperature_matched_rate": false,
+          "low_p16": 158.5,
+          "median_p50": 160.3
+        },
+        {
+          "T9": 0.015,
+          "factor_uncertainty_lognormal": 1.011,
+          "high_p84": 231.8,
+          "high_temperature_matched_rate": false,
+          "low_p16": 226.9,
+          "median_p50": 229.5
+        },
+        {
+          "T9": 0.016,
+          "factor_uncertainty_lognormal": 1.011,
+          "high_p84": 321.7,
+          "high_temperature_matched_rate": false,
+          "low_p16": 314.9,
+          "median_p50": 318.5
+        },
+        {
+          "T9": 0.018,
+          "factor_uncertainty_lognormal": 1.011,
+          "high_p84": 573.6,
+          "high_temperature_matched_rate": false,
+          "low_p16": 561.4,
+          "median_p50": 567.8
+        },
+        {
+          "T9": 0.02,
+          "factor_uncertainty_lognormal": 1.011,
+          "high_p84": 942.3,
+          "high_temperature_matched_rate": false,
+          "low_p16": 922.3,
+          "median_p50": 932.7
+        },
+        {
+          "T9": 0.025,
+          "factor_uncertainty_lognormal": 1.011,
+          "high_p84": 2535.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 2481.0,
+          "median_p50": 2509.0
+        },
+        {
+          "T9": 0.03,
+          "factor_uncertainty_lognormal": 1.011,
+          "high_p84": 5365.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 5251.0,
+          "median_p50": 5311.0
+        },
+        {
+          "T9": 0.04,
+          "factor_uncertainty_lognormal": 1.011,
+          "high_p84": 15870.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 15530.0,
+          "median_p50": 15710.0
+        },
+        {
+          "T9": 0.05,
+          "factor_uncertainty_lognormal": 1.011,
+          "high_p84": 34090.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 33370.0,
+          "median_p50": 33750.0
+        },
+        {
+          "T9": 0.06,
+          "factor_uncertainty_lognormal": 1.011,
+          "high_p84": 60860.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 59570.0,
+          "median_p50": 60240.0
+        },
+        {
+          "T9": 0.07,
+          "factor_uncertainty_lognormal": 1.011,
+          "high_p84": 96430.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 94380.0,
+          "median_p50": 95450.0
+        },
+        {
+          "T9": 0.08,
+          "factor_uncertainty_lognormal": 1.011,
+          "high_p84": 140700.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 137700.0,
+          "median_p50": 139300.0
+        },
+        {
+          "T9": 0.09,
+          "factor_uncertainty_lognormal": 1.011,
+          "high_p84": 193500.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 189400.0,
+          "median_p50": 191500.0
+        },
+        {
+          "T9": 0.1,
+          "factor_uncertainty_lognormal": 1.011,
+          "high_p84": 254400.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 249000.0,
+          "median_p50": 251800.0
+        },
+        {
+          "T9": 0.11,
+          "factor_uncertainty_lognormal": 1.011,
+          "high_p84": 322900.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 316000.0,
+          "median_p50": 319600.0
+        },
+        {
+          "T9": 0.12,
+          "factor_uncertainty_lognormal": 1.011,
+          "high_p84": 398600.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 390200.0,
+          "median_p50": 394600.0
+        },
+        {
+          "T9": 0.13,
+          "factor_uncertainty_lognormal": 1.011,
+          "high_p84": 481100.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 470900.0,
+          "median_p50": 476200.0
+        },
+        {
+          "T9": 0.14,
+          "factor_uncertainty_lognormal": 1.011,
+          "high_p84": 570000.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 557900.0,
+          "median_p50": 564200.0
+        },
+        {
+          "T9": 0.15,
+          "factor_uncertainty_lognormal": 1.011,
+          "high_p84": 664700.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 650600.0,
+          "median_p50": 658000.0
+        },
+        {
+          "T9": 0.16,
+          "factor_uncertainty_lognormal": 1.011,
+          "high_p84": 765000.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 748800.0,
+          "median_p50": 757300.0
+        },
+        {
+          "T9": 0.18,
+          "factor_uncertainty_lognormal": 1.011,
+          "high_p84": 980800.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 959900.0,
+          "median_p50": 970800.0
+        },
+        {
+          "T9": 0.2,
+          "factor_uncertainty_lognormal": 1.011,
+          "high_p84": 1215000.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 1189000.0,
+          "median_p50": 1202000.0
+        },
+        {
+          "T9": 0.25,
+          "factor_uncertainty_lognormal": 1.011,
+          "high_p84": 1864000.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 1824000.0,
+          "median_p50": 1845000.0
+        },
+        {
+          "T9": 0.3,
+          "factor_uncertainty_lognormal": 1.011,
+          "high_p84": 2583000.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 2529000.0,
+          "median_p50": 2557000.0
+        },
+        {
+          "T9": 0.35,
+          "factor_uncertainty_lognormal": 1.011,
+          "high_p84": 3355000.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 3283000.0,
+          "median_p50": 3321000.0
+        },
+        {
+          "T9": 0.4,
+          "factor_uncertainty_lognormal": 1.011,
+          "high_p84": 4163000.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 4074000.0,
+          "median_p50": 4121000.0
+        },
+        {
+          "T9": 0.45,
+          "factor_uncertainty_lognormal": 1.011,
+          "high_p84": 4998000.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 4892000.0,
+          "median_p50": 4947000.0
+        },
+        {
+          "T9": 0.5,
+          "factor_uncertainty_lognormal": 1.011,
+          "high_p84": 5851000.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 5727000.0,
+          "median_p50": 5792000.0
+        },
+        {
+          "T9": 0.6,
+          "factor_uncertainty_lognormal": 1.011,
+          "high_p84": 7592000.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 7431000.0,
+          "median_p50": 7515000.0
+        },
+        {
+          "T9": 0.7,
+          "factor_uncertainty_lognormal": 1.011,
+          "high_p84": 9352000.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 9153000.0,
+          "median_p50": 9257000.0
+        },
+        {
+          "T9": 0.8,
+          "factor_uncertainty_lognormal": 1.011,
+          "high_p84": 11110000.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 10870000.0,
+          "median_p50": 11000000.0
+        },
+        {
+          "T9": 0.9,
+          "factor_uncertainty_lognormal": 1.011,
+          "high_p84": 12850000.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 12570000.0,
+          "median_p50": 12720000.0
+        },
+        {
+          "T9": 1.0,
+          "factor_uncertainty_lognormal": 1.011,
+          "high_p84": 14560000.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 14250000.0,
+          "median_p50": 14410000.0
+        },
+        {
+          "T9": 1.25,
+          "factor_uncertainty_lognormal": 1.011,
+          "high_p84": 18700000.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 18300000.0,
+          "median_p50": 18510000.0
+        },
+        {
+          "T9": 1.5,
+          "factor_uncertainty_lognormal": 1.011,
+          "high_p84": 22610000.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 22130000.0,
+          "median_p50": 22380000.0
+        },
+        {
+          "T9": 1.75,
+          "factor_uncertainty_lognormal": 1.011,
+          "high_p84": 26270000.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 25710000.0,
+          "median_p50": 26010000.0
+        },
+        {
+          "T9": 2.0,
+          "factor_uncertainty_lognormal": 1.011,
+          "high_p84": 29710000.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 29070000.0,
+          "median_p50": 29400000.0
+        },
+        {
+          "T9": 2.5,
+          "factor_uncertainty_lognormal": 1.013,
+          "high_p84": 35920000.0,
+          "high_temperature_matched_rate": true,
+          "low_p16": 35000000.0,
+          "median_p50": 35460000.0
+        },
+        {
+          "T9": 3.0,
+          "factor_uncertainty_lognormal": 1.014,
+          "high_p84": 41500000.0,
+          "high_temperature_matched_rate": true,
+          "low_p16": 40360000.0,
+          "median_p50": 40930000.0
+        },
+        {
+          "T9": 3.5,
+          "factor_uncertainty_lognormal": 1.014,
+          "high_p84": 46490000.0,
+          "high_temperature_matched_rate": true,
+          "low_p16": 45220000.0,
+          "median_p50": 45850000.0
+        },
+        {
+          "T9": 4.0,
+          "factor_uncertainty_lognormal": 1.015,
+          "high_p84": 51060000.0,
+          "high_temperature_matched_rate": true,
+          "low_p16": 49570000.0,
+          "median_p50": 50310000.0
+        },
+        {
+          "T9": 5.0,
+          "factor_uncertainty_lognormal": 1.016,
+          "high_p84": 59090000.0,
+          "high_temperature_matched_rate": true,
+          "low_p16": 57240000.0,
+          "median_p50": 58160000.0
+        },
+        {
+          "T9": 6.0,
+          "factor_uncertainty_lognormal": 1.017,
+          "high_p84": 65980000.0,
+          "high_temperature_matched_rate": true,
+          "low_p16": 63790000.0,
+          "median_p50": 64880000.0
+        },
+        {
+          "T9": 7.0,
+          "factor_uncertainty_lognormal": 1.018,
+          "high_p84": 71990000.0,
+          "high_temperature_matched_rate": true,
+          "low_p16": 69470000.0,
+          "median_p50": 70720000.0
+        },
+        {
+          "T9": 8.0,
+          "factor_uncertainty_lognormal": 1.018,
+          "high_p84": 77190000.0,
+          "high_temperature_matched_rate": true,
+          "low_p16": 74490000.0,
+          "median_p50": 75830000.0
+        },
+        {
+          "T9": 9.0,
+          "factor_uncertainty_lognormal": 1.018,
+          "high_p84": 81820000.0,
+          "high_temperature_matched_rate": true,
+          "low_p16": 78950000.0,
+          "median_p50": 80370000.0
+        },
+        {
+          "T9": 10.0,
+          "factor_uncertainty_lognormal": 1.019,
+          "high_p84": 85970000.0,
+          "high_temperature_matched_rate": true,
+          "low_p16": 82800000.0,
+          "median_p50": 84370000.0
+        }
+      ],
+      "rows_sha256": "e2d090e971223e08ab18399e2851a37548eb72acfae4c8388c4841e8564081c6",
+      "table_number": 7,
+      "units": "cm^3 mol^-1 s^-1"
+    },
+    "dd_p_t": {
+      "arxiv_tex_crosscheck": "exact_numeric_and_parenthesis_match",
+      "ascii_filename": "apjsae2bdct8_ascii.txt",
+      "ascii_note": "Note. Reaction rate: A. Gomez Inesta et al. (2017). S factor: see Table 2 and Figure 2 in A. Gomez Inesta et al. (2017). Normalization: see Table 2 of A. Gomez Inesta et al. (2017). High-temperature rates (in parentheses): A. Coc et al. (2015). Previous rates: A. Coc et al. (2015) and O. Pisanti et al. (2021). Other: the rates listed in the table have been recalculated using a modified Bayesian model compared to A. Gomez Inesta et al. (2017), as discussed in Section 4.",
+      "ascii_sha256": "87d0312c4b807cb2069d59dc8519d92014bb12303e9c7931e175801b16e73682",
+      "ascii_sha256_verified": "87d0312c4b807cb2069d59dc8519d92014bb12303e9c7931e175801b16e73682",
+      "ascii_size_bytes": 3469,
+      "ascii_url": "https://iopscience.iop.org/0067-0049/283/1/17/suppdata/apjsae2bdct8_ascii.txt?doi=10.3847/1538-4365/ae2bdc",
+      "classification": "modified_Bayesian_recalculation_relative_to_Gomez_Inesta_2017",
+      "coordinate": "T9_GK",
+      "equation": "D(d,p)3H",
+      "factor_uncertainty_semantics": {
+        "coverage_percent": 68,
+        "model": "lognormal_approximation",
+        "not_derived_directly_from_actual_percentiles": true,
+        "sigma_log": "ln(factor_uncertainty_lognormal)"
+      },
+      "high_temperature_reference": "Coc_et_al_2015",
+      "high_temperature_start_T9": 2.5,
+      "label": "tab:ddp",
+      "percentile_semantics": {
+        "high": 84,
+        "low": 16,
+        "median": 50,
+        "source": "actual_rate_probability_density"
+      },
+      "primary_rate_reference": "Gomez_Inesta_et_al_2017",
+      "primary_rate_reference_doi": "10.3847/1538-4357/aa9025",
+      "rows": [
+        {
+          "T9": 0.001,
+          "factor_uncertainty_lognormal": 1.013,
+          "high_p84": 1.381e-08,
+          "high_temperature_matched_rate": false,
+          "low_p16": 1.344e-08,
+          "median_p50": 1.361e-08
+        },
+        {
+          "T9": 0.002,
+          "factor_uncertainty_lognormal": 1.013,
+          "high_p84": 5.724e-05,
+          "high_temperature_matched_rate": false,
+          "low_p16": 5.572e-05,
+          "median_p50": 5.644e-05
+        },
+        {
+          "T9": 0.003,
+          "factor_uncertainty_lognormal": 1.013,
+          "high_p84": 0.003149,
+          "high_temperature_matched_rate": false,
+          "low_p16": 0.003065,
+          "median_p50": 0.003104
+        },
+        {
+          "T9": 0.004,
+          "factor_uncertainty_lognormal": 1.013,
+          "high_p84": 0.03883,
+          "high_temperature_matched_rate": false,
+          "low_p16": 0.03779,
+          "median_p50": 0.03828
+        },
+        {
+          "T9": 0.005,
+          "factor_uncertainty_lognormal": 1.013,
+          "high_p84": 0.2298,
+          "high_temperature_matched_rate": false,
+          "low_p16": 0.2236,
+          "median_p50": 0.2265
+        },
+        {
+          "T9": 0.006,
+          "factor_uncertainty_lognormal": 1.013,
+          "high_p84": 0.8865,
+          "high_temperature_matched_rate": false,
+          "low_p16": 0.8629,
+          "median_p50": 0.874
+        },
+        {
+          "T9": 0.007,
+          "factor_uncertainty_lognormal": 1.013,
+          "high_p84": 2.595,
+          "high_temperature_matched_rate": false,
+          "low_p16": 2.526,
+          "median_p50": 2.559
+        },
+        {
+          "T9": 0.008,
+          "factor_uncertainty_lognormal": 1.013,
+          "high_p84": 6.276,
+          "high_temperature_matched_rate": false,
+          "low_p16": 6.109,
+          "median_p50": 6.188
+        },
+        {
+          "T9": 0.009,
+          "factor_uncertainty_lognormal": 1.013,
+          "high_p84": 13.21,
+          "high_temperature_matched_rate": false,
+          "low_p16": 12.86,
+          "median_p50": 13.02
+        },
+        {
+          "T9": 0.01,
+          "factor_uncertainty_lognormal": 1.013,
+          "high_p84": 25.02,
+          "high_temperature_matched_rate": false,
+          "low_p16": 24.36,
+          "median_p50": 24.67
+        },
+        {
+          "T9": 0.011,
+          "factor_uncertainty_lognormal": 1.013,
+          "high_p84": 43.68,
+          "high_temperature_matched_rate": false,
+          "low_p16": 42.52,
+          "median_p50": 43.07
+        },
+        {
+          "T9": 0.012,
+          "factor_uncertainty_lognormal": 1.013,
+          "high_p84": 71.44,
+          "high_temperature_matched_rate": false,
+          "low_p16": 69.53,
+          "median_p50": 70.43
+        },
+        {
+          "T9": 0.013,
+          "factor_uncertainty_lognormal": 1.013,
+          "high_p84": 110.8,
+          "high_temperature_matched_rate": false,
+          "low_p16": 107.8,
+          "median_p50": 109.2
+        },
+        {
+          "T9": 0.014,
+          "factor_uncertainty_lognormal": 1.013,
+          "high_p84": 164.4,
+          "high_temperature_matched_rate": false,
+          "low_p16": 160.0,
+          "median_p50": 162.1
+        },
+        {
+          "T9": 0.015,
+          "factor_uncertainty_lognormal": 1.013,
+          "high_p84": 235.2,
+          "high_temperature_matched_rate": false,
+          "low_p16": 228.9,
+          "median_p50": 231.9
+        },
+        {
+          "T9": 0.016,
+          "factor_uncertainty_lognormal": 1.013,
+          "high_p84": 326.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 317.3,
+          "median_p50": 321.4
+        },
+        {
+          "T9": 0.018,
+          "factor_uncertainty_lognormal": 1.013,
+          "high_p84": 580.2,
+          "high_temperature_matched_rate": false,
+          "low_p16": 564.7,
+          "median_p50": 572.0
+        },
+        {
+          "T9": 0.02,
+          "factor_uncertainty_lognormal": 1.013,
+          "high_p84": 951.3,
+          "high_temperature_matched_rate": false,
+          "low_p16": 926.0,
+          "median_p50": 937.9
+        },
+        {
+          "T9": 0.025,
+          "factor_uncertainty_lognormal": 1.013,
+          "high_p84": 2548.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 2480.0,
+          "median_p50": 2512.0
+        },
+        {
+          "T9": 0.03,
+          "factor_uncertainty_lognormal": 1.013,
+          "high_p84": 5372.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 5229.0,
+          "median_p50": 5296.0
+        },
+        {
+          "T9": 0.04,
+          "factor_uncertainty_lognormal": 1.013,
+          "high_p84": 15770.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 15350.0,
+          "median_p50": 15550.0
+        },
+        {
+          "T9": 0.05,
+          "factor_uncertainty_lognormal": 1.013,
+          "high_p84": 33670.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 32770.0,
+          "median_p50": 33200.0
+        },
+        {
+          "T9": 0.06,
+          "factor_uncertainty_lognormal": 1.013,
+          "high_p84": 59750.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 58150.0,
+          "median_p50": 58900.0
+        },
+        {
+          "T9": 0.07,
+          "factor_uncertainty_lognormal": 1.013,
+          "high_p84": 94150.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 91640.0,
+          "median_p50": 92820.0
+        },
+        {
+          "T9": 0.08,
+          "factor_uncertainty_lognormal": 1.013,
+          "high_p84": 136700.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 133100.0,
+          "median_p50": 134800.0
+        },
+        {
+          "T9": 0.09,
+          "factor_uncertainty_lognormal": 1.013,
+          "high_p84": 187100.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 182100.0,
+          "median_p50": 184400.0
+        },
+        {
+          "T9": 0.1,
+          "factor_uncertainty_lognormal": 1.013,
+          "high_p84": 244800.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 238300.0,
+          "median_p50": 241400.0
+        },
+        {
+          "T9": 0.11,
+          "factor_uncertainty_lognormal": 1.013,
+          "high_p84": 309500.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 301200.0,
+          "median_p50": 305100.0
+        },
+        {
+          "T9": 0.12,
+          "factor_uncertainty_lognormal": 1.013,
+          "high_p84": 380500.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 370400.0,
+          "median_p50": 375200.0
+        },
+        {
+          "T9": 0.13,
+          "factor_uncertainty_lognormal": 1.013,
+          "high_p84": 457500.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 445300.0,
+          "median_p50": 451100.0
+        },
+        {
+          "T9": 0.14,
+          "factor_uncertainty_lognormal": 1.013,
+          "high_p84": 540100.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 525700.0,
+          "median_p50": 532500.0
+        },
+        {
+          "T9": 0.15,
+          "factor_uncertainty_lognormal": 1.013,
+          "high_p84": 627700.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 611000.0,
+          "median_p50": 618900.0
+        },
+        {
+          "T9": 0.16,
+          "factor_uncertainty_lognormal": 1.013,
+          "high_p84": 720100.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 700900.0,
+          "median_p50": 709900.0
+        },
+        {
+          "T9": 0.18,
+          "factor_uncertainty_lognormal": 1.013,
+          "high_p84": 917500.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 893000.0,
+          "median_p50": 904600.0
+        },
+        {
+          "T9": 0.2,
+          "factor_uncertainty_lognormal": 1.013,
+          "high_p84": 1130000.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 1100000.0,
+          "median_p50": 1114000.0
+        },
+        {
+          "T9": 0.25,
+          "factor_uncertainty_lognormal": 1.013,
+          "high_p84": 1713000.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 1667000.0,
+          "median_p50": 1688000.0
+        },
+        {
+          "T9": 0.3,
+          "factor_uncertainty_lognormal": 1.013,
+          "high_p84": 2350000.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 2288000.0,
+          "median_p50": 2317000.0
+        },
+        {
+          "T9": 0.35,
+          "factor_uncertainty_lognormal": 1.013,
+          "high_p84": 3026000.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 2945000.0,
+          "median_p50": 2983000.0
+        },
+        {
+          "T9": 0.4,
+          "factor_uncertainty_lognormal": 1.013,
+          "high_p84": 3728000.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 3628000.0,
+          "median_p50": 3675000.0
+        },
+        {
+          "T9": 0.45,
+          "factor_uncertainty_lognormal": 1.013,
+          "high_p84": 4447000.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 4328000.0,
+          "median_p50": 4384000.0
+        },
+        {
+          "T9": 0.5,
+          "factor_uncertainty_lognormal": 1.013,
+          "high_p84": 5177000.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 5039000.0,
+          "median_p50": 5104000.0
+        },
+        {
+          "T9": 0.6,
+          "factor_uncertainty_lognormal": 1.013,
+          "high_p84": 6655000.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 6478000.0,
+          "median_p50": 6562000.0
+        },
+        {
+          "T9": 0.7,
+          "factor_uncertainty_lognormal": 1.013,
+          "high_p84": 8137000.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 7920000.0,
+          "median_p50": 8023000.0
+        },
+        {
+          "T9": 0.8,
+          "factor_uncertainty_lognormal": 1.013,
+          "high_p84": 9609000.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 9352000.0,
+          "median_p50": 9473000.0
+        },
+        {
+          "T9": 0.9,
+          "factor_uncertainty_lognormal": 1.013,
+          "high_p84": 11060000.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 10770000.0,
+          "median_p50": 10900000.0
+        },
+        {
+          "T9": 1.0,
+          "factor_uncertainty_lognormal": 1.013,
+          "high_p84": 12490000.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 12150000.0,
+          "median_p50": 12310000.0
+        },
+        {
+          "T9": 1.25,
+          "factor_uncertainty_lognormal": 1.013,
+          "high_p84": 15920000.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 15500000.0,
+          "median_p50": 15700000.0
+        },
+        {
+          "T9": 1.5,
+          "factor_uncertainty_lognormal": 1.013,
+          "high_p84": 19160000.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 18650000.0,
+          "median_p50": 18890000.0
+        },
+        {
+          "T9": 1.75,
+          "factor_uncertainty_lognormal": 1.013,
+          "high_p84": 22210000.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 21620000.0,
+          "median_p50": 21900000.0
+        },
+        {
+          "T9": 2.0,
+          "factor_uncertainty_lognormal": 1.013,
+          "high_p84": 25080000.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 24410000.0,
+          "median_p50": 24720000.0
+        },
+        {
+          "T9": 2.5,
+          "factor_uncertainty_lognormal": 1.013,
+          "high_p84": 30150000.0,
+          "high_temperature_matched_rate": true,
+          "low_p16": 29380000.0,
+          "median_p50": 29760000.0
+        },
+        {
+          "T9": 3.0,
+          "factor_uncertainty_lognormal": 1.014,
+          "high_p84": 34880000.0,
+          "high_temperature_matched_rate": true,
+          "low_p16": 33920000.0,
+          "median_p50": 34400000.0
+        },
+        {
+          "T9": 3.5,
+          "factor_uncertainty_lognormal": 1.014,
+          "high_p84": 39210000.0,
+          "high_temperature_matched_rate": true,
+          "low_p16": 38130000.0,
+          "median_p50": 38630000.0
+        },
+        {
+          "T9": 4.0,
+          "factor_uncertainty_lognormal": 1.015,
+          "high_p84": 43150000.0,
+          "high_temperature_matched_rate": true,
+          "low_p16": 41880000.0,
+          "median_p50": 42510000.0
+        },
+        {
+          "T9": 5.0,
+          "factor_uncertainty_lognormal": 1.016,
+          "high_p84": 50250000.0,
+          "high_temperature_matched_rate": true,
+          "low_p16": 48680000.0,
+          "median_p50": 49460000.0
+        },
+        {
+          "T9": 6.0,
+          "factor_uncertainty_lognormal": 1.017,
+          "high_p84": 56460000.0,
+          "high_temperature_matched_rate": true,
+          "low_p16": 54590000.0,
+          "median_p50": 55520000.0
+        },
+        {
+          "T9": 7.0,
+          "factor_uncertainty_lognormal": 1.018,
+          "high_p84": 61860000.0,
+          "high_temperature_matched_rate": true,
+          "low_p16": 59690000.0,
+          "median_p50": 60770000.0
+        },
+        {
+          "T9": 8.0,
+          "factor_uncertainty_lognormal": 1.018,
+          "high_p84": 66460000.0,
+          "high_temperature_matched_rate": true,
+          "low_p16": 64130000.0,
+          "median_p50": 65290000.0
+        },
+        {
+          "T9": 9.0,
+          "factor_uncertainty_lognormal": 1.018,
+          "high_p84": 70360000.0,
+          "high_temperature_matched_rate": true,
+          "low_p16": 67900000.0,
+          "median_p50": 69120000.0
+        },
+        {
+          "T9": 10.0,
+          "factor_uncertainty_lognormal": 1.019,
+          "high_p84": 73650000.0,
+          "high_temperature_matched_rate": true,
+          "low_p16": 70930000.0,
+          "median_p50": 72280000.0
+        }
+      ],
+      "rows_sha256": "188532666bbae5e09a8345153abedc15717e21f5ddb3e6aa230733b946d81304",
+      "table_number": 8,
+      "units": "cm^3 mol^-1 s^-1"
+    },
+    "dp_gamma_he3": {
+      "arxiv_tex_crosscheck": "exact_numeric_and_parenthesis_match",
+      "ascii_filename": "apjsae2bdct6_ascii.txt",
+      "ascii_note": "Note. Reaction rate: J. Moscoso et al. (2021). S factor: see column 2 in Table 1 and Appendix A in J. Moscoso et al. (2021). Normalization: J. B. Warren et al. (1963), L. Ma et al. (1997), G. J. Schmid et al. (1995), C. Casella et al. (2002), I. Tisma et al. (2019), V. Mossa et al. (2020), and S. Turkat et al. (2021). High-temperature rates (in parentheses): A. Coc et al. (2015). Previous rates: C. Iliadis et al. (2016), T.-H. Yeh et al. (2021), and O. Pisanti et al. (2021). Other: Bayesian rate.",
+      "ascii_sha256": "9297c83ec659432998047023b7253ef91ba5ecaca159a90bc7feda5fbe1ebba4",
+      "ascii_sha256_verified": "9297c83ec659432998047023b7253ef91ba5ecaca159a90bc7feda5fbe1ebba4",
+      "ascii_size_bytes": 3471,
+      "ascii_url": "https://iopscience.iop.org/0067-0049/283/1/17/suppdata/apjsae2bdct6_ascii.txt?doi=10.3847/1538-4365/ae2bdc",
+      "classification": "Bayesian_rate_adopted_from_Moscoso_2021",
+      "coordinate": "T9_GK",
+      "equation": "D(p,gamma)3He",
+      "factor_uncertainty_semantics": {
+        "coverage_percent": 68,
+        "model": "lognormal_approximation",
+        "not_derived_directly_from_actual_percentiles": true,
+        "sigma_log": "ln(factor_uncertainty_lognormal)"
+      },
+      "high_temperature_reference": "Coc_et_al_2015",
+      "high_temperature_start_T9": 5.0,
+      "label": "tab:dpg",
+      "percentile_semantics": {
+        "high": 84,
+        "low": 16,
+        "median": 50,
+        "source": "actual_rate_probability_density"
+      },
+      "primary_rate_reference": "Moscoso_et_al_2021",
+      "primary_rate_reference_doi": "10.3847/1538-4357/ac1db0",
+      "rows": [
+        {
+          "T9": 0.001,
+          "factor_uncertainty_lognormal": 1.038,
+          "high_p84": 1.508e-11,
+          "high_temperature_matched_rate": false,
+          "low_p16": 1.399e-11,
+          "median_p50": 1.454e-11
+        },
+        {
+          "T9": 0.002,
+          "factor_uncertainty_lognormal": 1.038,
+          "high_p84": 2.08e-08,
+          "high_temperature_matched_rate": false,
+          "low_p16": 1.933e-08,
+          "median_p50": 2.007e-08
+        },
+        {
+          "T9": 0.003,
+          "factor_uncertainty_lognormal": 1.037,
+          "high_p84": 6.728e-07,
+          "high_temperature_matched_rate": false,
+          "low_p16": 6.257e-07,
+          "median_p50": 6.494e-07
+        },
+        {
+          "T9": 0.004,
+          "factor_uncertainty_lognormal": 1.037,
+          "high_p84": 5.946e-06,
+          "high_temperature_matched_rate": false,
+          "low_p16": 5.533e-06,
+          "median_p50": 5.741e-06
+        },
+        {
+          "T9": 0.005,
+          "factor_uncertainty_lognormal": 1.037,
+          "high_p84": 2.779e-05,
+          "high_temperature_matched_rate": false,
+          "low_p16": 2.588e-05,
+          "median_p50": 2.684e-05
+        },
+        {
+          "T9": 0.006,
+          "factor_uncertainty_lognormal": 1.036,
+          "high_p84": 8.969e-05,
+          "high_temperature_matched_rate": false,
+          "low_p16": 8.359e-05,
+          "median_p50": 8.666e-05
+        },
+        {
+          "T9": 0.007,
+          "factor_uncertainty_lognormal": 1.036,
+          "high_p84": 0.0002278,
+          "high_temperature_matched_rate": false,
+          "low_p16": 0.0002124,
+          "median_p50": 0.0002202
+        },
+        {
+          "T9": 0.008,
+          "factor_uncertainty_lognormal": 1.036,
+          "high_p84": 0.0004906,
+          "high_temperature_matched_rate": false,
+          "low_p16": 0.0004577,
+          "median_p50": 0.0004743
+        },
+        {
+          "T9": 0.009,
+          "factor_uncertainty_lognormal": 1.035,
+          "high_p84": 0.0009367,
+          "high_temperature_matched_rate": false,
+          "low_p16": 0.0008745,
+          "median_p50": 0.0009058
+        },
+        {
+          "T9": 0.01,
+          "factor_uncertainty_lognormal": 1.035,
+          "high_p84": 0.001633,
+          "high_temperature_matched_rate": false,
+          "low_p16": 0.001525,
+          "median_p50": 0.001579
+        },
+        {
+          "T9": 0.011,
+          "factor_uncertainty_lognormal": 1.035,
+          "high_p84": 0.002652,
+          "high_temperature_matched_rate": false,
+          "low_p16": 0.002478,
+          "median_p50": 0.002566
+        },
+        {
+          "T9": 0.012,
+          "factor_uncertainty_lognormal": 1.034,
+          "high_p84": 0.004072,
+          "high_temperature_matched_rate": false,
+          "low_p16": 0.003807,
+          "median_p50": 0.00394
+        },
+        {
+          "T9": 0.013,
+          "factor_uncertainty_lognormal": 1.034,
+          "high_p84": 0.005971,
+          "high_temperature_matched_rate": false,
+          "low_p16": 0.005586,
+          "median_p50": 0.005779
+        },
+        {
+          "T9": 0.014,
+          "factor_uncertainty_lognormal": 1.034,
+          "high_p84": 0.00843,
+          "high_temperature_matched_rate": false,
+          "low_p16": 0.007889,
+          "median_p50": 0.00816
+        },
+        {
+          "T9": 0.015,
+          "factor_uncertainty_lognormal": 1.034,
+          "high_p84": 0.01152,
+          "high_temperature_matched_rate": false,
+          "low_p16": 0.01079,
+          "median_p50": 0.01116
+        },
+        {
+          "T9": 0.016,
+          "factor_uncertainty_lognormal": 1.033,
+          "high_p84": 0.01534,
+          "high_temperature_matched_rate": false,
+          "low_p16": 0.01437,
+          "median_p50": 0.01485
+        },
+        {
+          "T9": 0.018,
+          "factor_uncertainty_lognormal": 1.033,
+          "high_p84": 0.02542,
+          "high_temperature_matched_rate": false,
+          "low_p16": 0.02383,
+          "median_p50": 0.02463
+        },
+        {
+          "T9": 0.02,
+          "factor_uncertainty_lognormal": 1.033,
+          "high_p84": 0.03925,
+          "high_temperature_matched_rate": false,
+          "low_p16": 0.03683,
+          "median_p50": 0.03805
+        },
+        {
+          "T9": 0.025,
+          "factor_uncertainty_lognormal": 1.032,
+          "high_p84": 0.09357,
+          "high_temperature_matched_rate": false,
+          "low_p16": 0.08797,
+          "median_p50": 0.09077
+        },
+        {
+          "T9": 0.03,
+          "factor_uncertainty_lognormal": 1.031,
+          "high_p84": 0.1812,
+          "high_temperature_matched_rate": false,
+          "low_p16": 0.1706,
+          "median_p50": 0.1759
+        },
+        {
+          "T9": 0.04,
+          "factor_uncertainty_lognormal": 1.029,
+          "high_p84": 0.4743,
+          "high_temperature_matched_rate": false,
+          "low_p16": 0.448,
+          "median_p50": 0.4612
+        },
+        {
+          "T9": 0.05,
+          "factor_uncertainty_lognormal": 1.028,
+          "high_p84": 0.9403,
+          "high_temperature_matched_rate": false,
+          "low_p16": 0.8901,
+          "median_p50": 0.9153
+        },
+        {
+          "T9": 0.06,
+          "factor_uncertainty_lognormal": 1.027,
+          "high_p84": 1.586,
+          "high_temperature_matched_rate": false,
+          "low_p16": 1.504,
+          "median_p50": 1.545
+        },
+        {
+          "T9": 0.07,
+          "factor_uncertainty_lognormal": 1.026,
+          "high_p84": 2.41,
+          "high_temperature_matched_rate": false,
+          "low_p16": 2.289,
+          "median_p50": 2.35
+        },
+        {
+          "T9": 0.08,
+          "factor_uncertainty_lognormal": 1.025,
+          "high_p84": 3.408,
+          "high_temperature_matched_rate": false,
+          "low_p16": 3.241,
+          "median_p50": 3.324
+        },
+        {
+          "T9": 0.09,
+          "factor_uncertainty_lognormal": 1.025,
+          "high_p84": 4.571,
+          "high_temperature_matched_rate": false,
+          "low_p16": 4.352,
+          "median_p50": 4.462
+        },
+        {
+          "T9": 0.1,
+          "factor_uncertainty_lognormal": 1.024,
+          "high_p84": 5.893,
+          "high_temperature_matched_rate": false,
+          "low_p16": 5.617,
+          "median_p50": 5.755
+        },
+        {
+          "T9": 0.11,
+          "factor_uncertainty_lognormal": 1.024,
+          "high_p84": 7.366,
+          "high_temperature_matched_rate": false,
+          "low_p16": 7.026,
+          "median_p50": 7.195
+        },
+        {
+          "T9": 0.12,
+          "factor_uncertainty_lognormal": 1.023,
+          "high_p84": 8.981,
+          "high_temperature_matched_rate": false,
+          "low_p16": 8.574,
+          "median_p50": 8.776
+        },
+        {
+          "T9": 0.13,
+          "factor_uncertainty_lognormal": 1.023,
+          "high_p84": 10.73,
+          "high_temperature_matched_rate": false,
+          "low_p16": 10.25,
+          "median_p50": 10.48
+        },
+        {
+          "T9": 0.14,
+          "factor_uncertainty_lognormal": 1.023,
+          "high_p84": 12.61,
+          "high_temperature_matched_rate": false,
+          "low_p16": 12.05,
+          "median_p50": 12.32
+        },
+        {
+          "T9": 0.15,
+          "factor_uncertainty_lognormal": 1.023,
+          "high_p84": 14.6,
+          "high_temperature_matched_rate": false,
+          "low_p16": 13.96,
+          "median_p50": 14.28
+        },
+        {
+          "T9": 0.16,
+          "factor_uncertainty_lognormal": 1.022,
+          "high_p84": 16.72,
+          "high_temperature_matched_rate": false,
+          "low_p16": 15.99,
+          "median_p50": 16.35
+        },
+        {
+          "T9": 0.18,
+          "factor_uncertainty_lognormal": 1.022,
+          "high_p84": 21.27,
+          "high_temperature_matched_rate": false,
+          "low_p16": 20.36,
+          "median_p50": 20.81
+        },
+        {
+          "T9": 0.2,
+          "factor_uncertainty_lognormal": 1.022,
+          "high_p84": 26.22,
+          "high_temperature_matched_rate": false,
+          "low_p16": 25.11,
+          "median_p50": 25.66
+        },
+        {
+          "T9": 0.25,
+          "factor_uncertainty_lognormal": 1.021,
+          "high_p84": 40.1,
+          "high_temperature_matched_rate": false,
+          "low_p16": 38.44,
+          "median_p50": 39.26
+        },
+        {
+          "T9": 0.3,
+          "factor_uncertainty_lognormal": 1.021,
+          "high_p84": 55.82,
+          "high_temperature_matched_rate": false,
+          "low_p16": 53.53,
+          "median_p50": 54.66
+        },
+        {
+          "T9": 0.35,
+          "factor_uncertainty_lognormal": 1.021,
+          "high_p84": 73.06,
+          "high_temperature_matched_rate": false,
+          "low_p16": 70.06,
+          "median_p50": 71.55
+        },
+        {
+          "T9": 0.4,
+          "factor_uncertainty_lognormal": 1.021,
+          "high_p84": 91.58,
+          "high_temperature_matched_rate": false,
+          "low_p16": 87.81,
+          "median_p50": 89.68
+        },
+        {
+          "T9": 0.45,
+          "factor_uncertainty_lognormal": 1.021,
+          "high_p84": 111.2,
+          "high_temperature_matched_rate": false,
+          "low_p16": 106.6,
+          "median_p50": 108.8
+        },
+        {
+          "T9": 0.5,
+          "factor_uncertainty_lognormal": 1.021,
+          "high_p84": 131.7,
+          "high_temperature_matched_rate": false,
+          "low_p16": 126.2,
+          "median_p50": 129.0
+        },
+        {
+          "T9": 0.6,
+          "factor_uncertainty_lognormal": 1.021,
+          "high_p84": 175.3,
+          "high_temperature_matched_rate": false,
+          "low_p16": 167.9,
+          "median_p50": 171.6
+        },
+        {
+          "T9": 0.7,
+          "factor_uncertainty_lognormal": 1.021,
+          "high_p84": 221.5,
+          "high_temperature_matched_rate": false,
+          "low_p16": 212.1,
+          "median_p50": 216.8
+        },
+        {
+          "T9": 0.8,
+          "factor_uncertainty_lognormal": 1.022,
+          "high_p84": 270.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 258.4,
+          "median_p50": 264.2
+        },
+        {
+          "T9": 0.9,
+          "factor_uncertainty_lognormal": 1.022,
+          "high_p84": 320.3,
+          "high_temperature_matched_rate": false,
+          "low_p16": 306.4,
+          "median_p50": 313.3
+        },
+        {
+          "T9": 1.0,
+          "factor_uncertainty_lognormal": 1.022,
+          "high_p84": 372.2,
+          "high_temperature_matched_rate": false,
+          "low_p16": 355.9,
+          "median_p50": 364.0
+        },
+        {
+          "T9": 1.25,
+          "factor_uncertainty_lognormal": 1.022,
+          "high_p84": 507.5,
+          "high_temperature_matched_rate": false,
+          "low_p16": 484.9,
+          "median_p50": 496.1
+        },
+        {
+          "T9": 1.5,
+          "factor_uncertainty_lognormal": 1.023,
+          "high_p84": 649.1,
+          "high_temperature_matched_rate": false,
+          "low_p16": 619.8,
+          "median_p50": 634.3
+        },
+        {
+          "T9": 1.75,
+          "factor_uncertainty_lognormal": 1.023,
+          "high_p84": 795.5,
+          "high_temperature_matched_rate": false,
+          "low_p16": 759.2,
+          "median_p50": 777.2
+        },
+        {
+          "T9": 2.0,
+          "factor_uncertainty_lognormal": 1.023,
+          "high_p84": 945.4,
+          "high_temperature_matched_rate": false,
+          "low_p16": 902.0,
+          "median_p50": 923.5
+        },
+        {
+          "T9": 2.5,
+          "factor_uncertainty_lognormal": 1.024,
+          "high_p84": 1250.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 1192.0,
+          "median_p50": 1221.0
+        },
+        {
+          "T9": 3.0,
+          "factor_uncertainty_lognormal": 1.024,
+          "high_p84": 1553.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 1479.0,
+          "median_p50": 1516.0
+        },
+        {
+          "T9": 3.5,
+          "factor_uncertainty_lognormal": 1.024,
+          "high_p84": 1839.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 1752.0,
+          "median_p50": 1795.0
+        },
+        {
+          "T9": 4.0,
+          "factor_uncertainty_lognormal": 1.024,
+          "high_p84": 2100.0,
+          "high_temperature_matched_rate": false,
+          "low_p16": 2000.0,
+          "median_p50": 2049.0
+        },
+        {
+          "T9": 5.0,
+          "factor_uncertainty_lognormal": 1.04,
+          "high_p84": 3021.0,
+          "high_temperature_matched_rate": true,
+          "low_p16": 2793.0,
+          "median_p50": 2905.0
+        },
+        {
+          "T9": 6.0,
+          "factor_uncertainty_lognormal": 1.042,
+          "high_p84": 3706.0,
+          "high_temperature_matched_rate": true,
+          "low_p16": 3414.0,
+          "median_p50": 3557.0
+        },
+        {
+          "T9": 7.0,
+          "factor_uncertainty_lognormal": 1.044,
+          "high_p84": 4378.0,
+          "high_temperature_matched_rate": true,
+          "low_p16": 4017.0,
+          "median_p50": 4194.0
+        },
+        {
+          "T9": 8.0,
+          "factor_uncertainty_lognormal": 1.046,
+          "high_p84": 5033.0,
+          "high_temperature_matched_rate": true,
+          "low_p16": 4600.0,
+          "median_p50": 4812.0
+        },
+        {
+          "T9": 9.0,
+          "factor_uncertainty_lognormal": 1.047,
+          "high_p84": 5664.0,
+          "high_temperature_matched_rate": true,
+          "low_p16": 5167.0,
+          "median_p50": 5410.0
+        },
+        {
+          "T9": 10.0,
+          "factor_uncertainty_lognormal": 1.049,
+          "high_p84": 6281.0,
+          "high_temperature_matched_rate": true,
+          "low_p16": 5708.0,
+          "median_p50": 5988.0
+        }
+      ],
+      "rows_sha256": "b7be9823b7dea46141bb88bac12210184e69865e8b96a7e25728a38b91b3d748",
+      "table_number": 6,
+      "units": "cm^3 mol^-1 s^-1"
+    }
+  },
+  "schema_version": 1,
+  "source_boundary": {
+    "R0_rate_type": "Bayesian_exception_not_RatesMC_50000_sample_rate",
+    "actual_percentiles_available": true,
+    "coherent_actual_temperature_draws_reconstructible": false,
+    "cross_reaction_covariance": "not_published_in_identified_release",
+    "cross_temperature_covariance": "not_published_in_identified_release",
+    "full_actual_density_or_posterior_samples_available": false,
+    "lognormal_factor_uncertainty_available": true,
+    "missing_covariance_is_independence_evidence": false,
+    "scalar_lognormal_coherent_approximation_available": true,
+    "scalar_lognormal_equation": "rate_j(T)=median_j(T)*factor_uncertainty_j(T)^p_j, p_j~Normal(0,1), one p_j fixed across T per network run"
+  },
+  "status": "official_percentile_tables_ingested_posterior_draws_not_in_identified_public_release"
+}

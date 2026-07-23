@@ -1,0 +1,165 @@
+schema_version: 1
+registry_id: ETR25-R0-INGEST-v1
+status: R0_percentile_tables_captured_rate_pdf_audit_pending
+task_id: UQ0-ETR25-R0-INGEST
+captured_at_utc: "2026-07-23"
+production_use: prohibited
+
+paper:
+  title: The 2025 Evaluation of Experimental Thermonuclear Reaction Rates
+  arxiv_id: 2601.20059v1
+  submitted_utc: "2026-01-27"
+  journal: Astrophysical Journal Supplement Series 283, 17 (2026)
+  doi: 10.3847/1538-4365/ae2bdc
+  license: CC-BY-4.0
+  source_tar_url: https://arxiv.org/e-print/2601.20059
+  source_tar_sha256: 33c1702537d44bf2ca253832dfecbb18a3ada4fd2078af81e28fd1effae50e5b
+  paper_tex_sha256: cc670aed6f80c25c9517b9098fae9255fe403ad78cd41b13d74b382daa9fe7b9
+
+derived_package:
+  path: artifacts/priors/ETR25-R0-TABLES-v1/package.json
+  sha256: f9f7436378fe8d0985d03ca5e5b48012820948c6a391081438939b63c58df7ba
+  builder: scripts/build_etr25_R0_ingest_package.py
+  attribution: >-
+    Tables 6-8 from Iliadis et al., The 2025 Evaluation of Experimental
+    Thermonuclear Reaction Rates, ApJS 283, 17 (2026),
+    doi:10.3847/1538-4365/ae2bdc, licensed CC BY 4.0. The build rearranges each
+    official IOP two-column ASCII table into one sorted T9 grid, preserves
+    high-temperature parentheses as an explicit flag, and requires an exact
+    independent numerical match to the pinned arXiv source.
+
+official_machine_readable_tables:
+  publisher: IOP Publishing
+  license: CC-BY-4.0
+  pinning_contract: full_URL_plus_byte_length_plus_SHA256
+  HTTP_metadata_note: no_Content-Type_ETag_or_Last-Modified_returned
+  tables:
+    dp_gamma_he3:
+      number: 6
+      filename: apjsae2bdct6_ascii.txt
+      URL: >-
+        https://iopscience.iop.org/0067-0049/283/1/17/suppdata/apjsae2bdct6_ascii.txt?doi=10.3847/1538-4365/ae2bdc
+      size_bytes: 3471
+      sha256: 9297c83ec659432998047023b7253ef91ba5ecaca159a90bc7feda5fbe1ebba4
+    dd_n_he3:
+      number: 7
+      filename: apjsae2bdct7_ascii.txt
+      URL: >-
+        https://iopscience.iop.org/0067-0049/283/1/17/suppdata/apjsae2bdct7_ascii.txt?doi=10.3847/1538-4365/ae2bdc
+      size_bytes: 3471
+      sha256: 30445d5e13518aeec0220b9b5e422ee1cb14d41310c0ac1c639294e8ed00b9bd
+    dd_p_t:
+      number: 8
+      filename: apjsae2bdct8_ascii.txt
+      URL: >-
+        https://iopscience.iop.org/0067-0049/283/1/17/suppdata/apjsae2bdct8_ascii.txt?doi=10.3847/1538-4365/ae2bdc
+      size_bytes: 3469
+      sha256: 87d0312c4b807cb2069d59dc8519d92014bb12303e9c7931e175801b16e73682
+
+official_release:
+  Zenodo:
+    record_id: 17610211
+    doi: 10.5281/zenodo.17610211
+    concept_doi: 10.5281/zenodo.17610210
+    version: vETR25
+    license: CC0-1.0
+    modified_utc: "2026-02-26T13:56:24.102804+00:00"
+    files:
+      RatesMC_Input_Files.zip:
+        size_bytes: 189139
+        md5: ac3b9fafb288839a7e90e2c1aaa3cfab
+        sha256: b629cdb6579a66e94bb7f60cbc9dd240cfb6ce14875cfcea4448aeec73a20146
+      RatesMC_Output_Files.zip:
+        size_bytes: 106875
+        md5: 9914cc2621e2bdd6d0a444421e00e214
+        sha256: fe15751352aa6fae65fbe19cbc9d5ffc2db108bf62309b23b80055ee36c3fcf6
+      TALYS_Input_Files.zip:
+        size_bytes: 47759
+        md5: ba905caa4cc91c5dc4dd5def1395c09a
+        sha256: c97f451deebaef2b59ff23ca73b98c66c067eebc6880c11d94d6d843e342755e
+    R0_Bayesian_inputs_or_outputs_present: false
+
+  RatesMC:
+    repository: https://github.com/rlongland/RatesMC
+    revision: 3649f24baa9be9e8d398d6fc5ca77e83a1107592
+    tag: v2.3
+    license: GPL-3.0
+    Zenodo_doi: 10.5281/zenodo.17516449
+    role_for_R0: method_reference_not_R0_draw_source
+
+  evaluation_inputs:
+    repository: >-
+      https://github.com/TUNL-Reaction-Rates-Group/2025-rates-evaluation
+    first_data_revision: 45e79da431767be5efac137755c645347172afc5
+    audited_current_revision: 3f6feda6e045056c0aa078311dcc0a2969c5565b
+    tag_vETR25_revision: 23763a0436495095c035ffa3b9b26407d3c03900
+    tag_vETR25_contains_data: false
+    repository_license: not_declared
+    Zenodo_archive_license: CC0-1.0
+    R0_Bayesian_inputs_present: false
+
+table_contract:
+  coordinate: T9
+  coordinate_definition: T / 1e9 K
+  coordinate_units: GK
+  grid_points: 60
+  grid_minimum: 0.001
+  grid_maximum: 10.0
+  rate_units: cm^3 mol^-1 s^-1
+  low_semantics: actual_probability_density_percentile_16
+  median_semantics: actual_probability_density_percentile_50_recommended_rate
+  high_semantics: actual_probability_density_percentile_84
+  factor_uncertainty_semantics: exp_sigma_of_lognormal_approximation
+  high_temperature_parentheses: matched_or_adopted_high_temperature_rate
+
+reactions:
+  dp_gamma_he3:
+    table_number: 6
+    equation: d(p,gamma)3He
+    classification: Bayesian_rate_adopted_from_Moscoso_2021
+    primary_rate_reference: arXiv:2109.00049
+    rows_sha256: b7be9823b7dea46141bb88bac12210184e69865e8b96a7e25728a38b91b3d748
+    source_ascii_sha256: 9297c83ec659432998047023b7253ef91ba5ecaca159a90bc7feda5fbe1ebba4
+    rows: 60
+  dd_n_he3:
+    table_number: 7
+    equation: d(d,n)3He
+    classification: modified_Bayesian_recalculation_relative_to_Gomez_Inesta_2017
+    primary_rate_reference: Gomez_Inesta_et_al_2017
+    rows_sha256: e2d090e971223e08ab18399e2851a37548eb72acfae4c8388c4841e8564081c6
+    source_ascii_sha256: 30445d5e13518aeec0220b9b5e422ee1cb14d41310c0ac1c639294e8ed00b9bd
+    rows: 60
+  dd_p_t:
+    table_number: 8
+    equation: d(d,p)t
+    classification: modified_Bayesian_recalculation_relative_to_Gomez_Inesta_2017
+    primary_rate_reference: Gomez_Inesta_et_al_2017
+    rows_sha256: 188532666bbae5e09a8345153abedc15717e21f5ddb3e6aa230733b946d81304
+    source_ascii_sha256: 87d0312c4b807cb2069d59dc8519d92014bb12303e9c7931e175801b16e73682
+    rows: 60
+
+availability_boundary:
+  actual_percentile_curves: captured
+  lognormal_factor_uncertainty: captured
+  original_R0_posterior_samples: not_in_identified_public_ETR25_release
+  original_R0_nuclear_input_files: not_in_identified_public_ETR25_release
+  coherent_random_curve_draws: not_reconstructible_from_percentiles_alone
+  cross_reaction_covariance: not_published_in_identified_release
+  missing_covariance_is_evidence_of_independence: false
+  author_contact_may_be_required_for:
+    - detailed_probability_density_information
+    - posterior_or_MCMC_samples
+    - cross_temperature_and_cross_reaction_dependence
+
+next_gate:
+  task_id: UQ0-RATE-PDF-AUDIT
+  allowed_now:
+    - quantify_low_median_high_log_asymmetry_at_60_knots
+    - compare_p16_p50_p84_to_p50_times_or_divided_by_factor_uncertainty
+    - identify_high_temperature_matched_rows
+    - compare_with_solver_legacy_envelopes
+  prohibited_without_additional_model:
+    - claim_full_actual_PDF_reconstruction
+    - sample_independent_temperature_bins
+    - claim_cross_reaction_independence
+    - generate_scientific_BBN_labels
