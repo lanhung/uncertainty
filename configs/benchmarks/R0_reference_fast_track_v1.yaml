@@ -1,0 +1,153 @@
+schema_version: 1
+protocol_id: R0-REFERENCE-FAST-TRACK-v1
+status: frozen_before_measurement
+decision_date_utc: "2026-07-23"
+governing_decision: docs/decisions/ADR-0008-self-contained-fast-track.md
+
+tasks:
+  adapter: UQ0-NUISANCE-ADAPTER
+  plusminus: UQ0-PLUSMINUS-REGRESSION
+  sigma_points: UQ1-SIGMA-POINT-9
+
+claim_boundary:
+  claim_level: C0_exploratory_reference_prior_execution
+  prior_label: conditional_on_NUCLEAR-R0-REFERENCE-v1
+  actual_ETR25_functional_posterior_reconstructed: false
+  cross_reaction_covariance_inferred: false
+  publication_prior_approved: false
+  production_authorized: false
+  final_cosmological_claim_allowed: false
+
+frozen_inputs:
+  reference_prior:
+    path: configs/physics/nuclear_prior_R0_reference_v1.yaml
+    sha256: 83762a1e2e4170a84a64328b99e44379e416e8bac34659ef0e5af355b77765c4
+  ETR25_tables:
+    path: artifacts/priors/ETR25-R0-TABLES-v1/package.json
+    sha256: f9f7436378fe8d0985d03ca5e5b48012820948c6a391081438939b63c58df7ba
+  coherent_comparators:
+    path: artifacts/priors/ETR25-R0-COHERENT-COMPARATORS-v1/package.json
+    sha256: 0634a74a1e1937b8d6b959282f10e21f505514e7449ccbd05b5e639083f2b5dd
+  LINX_mapping:
+    path: artifacts/priors/LINX-R0-MAPPING-REGRESSION-v1/regression.json
+    sha256: 6a958225feb3cc531753571c582376a0c5cf3404c1a4e6643482a0d8114e7418
+  PRyMordial_mapping:
+    path: artifacts/priors/PRYMORDIAL-R0-MAPPING-REGRESSION-v1/regression.json
+    sha256: be732146493ecdf40f6d216ce505f2314e199c820cc6f2fb8dda254334bd96fd
+  weak_prior:
+    path: configs/physics/weak_prior_WEAK-v1.yaml
+    sha256: b434add6ce833b7df339153b31ed4fb834b0c1ddb569caffc55fc30f8e96e287
+  neutron_lifetime:
+    path: configs/physics/neutron_lifetime_v1.yaml
+    sha256: 69dc13148000eb3eab23050dcc3f9ed877ef3d2e01b85cec463749014b7ae6b7
+  parameter_schema:
+    path: configs/physics/parameter_schema.yaml
+    sha256: 4dfbf65ee04e4ab6502e18bf6b69c78a447c9c8d8db660033f2c03b560e04d7a
+
+canonical_contract:
+  coordinate_order: [q_dp_gamma_he3, q_dd_n_he3, q_dd_p_t, q_tau_n]
+  reaction_order: [dp_gamma_he3, dd_n_he3, dd_p_t]
+  rate_coordinate: T9_GK
+  source_rate_unit: cm3_mol-1_s-1
+  LINX_numeric_rate_unit: cm3_s-1_g-1
+  numeric_conversion: identity_under_molar_mass_constant_convention
+  raw_outputs: [Neff, YPBBN, DoH, He3oH, Li7oH]
+  normalized_outputs:
+    YPBBN: dimensionless_helium4_mass_fraction
+    DoH: dimensionless_D_over_H_number_ratio
+    He3oH: dimensionless_He3_plus_T_over_H_number_ratio
+    Li7oH: dimensionless_Li7_plus_Be7_over_H_number_ratio
+
+representations:
+  R0_P0_ETR25_scalar_lognormal:
+    role: primary_reference
+    median_field: median_p50
+    exp_sigma_field: factor_uncertainty_lognormal
+    q_rule: one_scalar_per_reaction_over_full_temperature_curve
+  R0_P1_ETR25_asymmetric_quantile_rank1:
+    role: mandatory_shape_comparator
+    median_field: median_p50
+    negative_q_exp_sigma: exp_log_median_over_p16_divided_by_z84
+    nonnegative_q_exp_sigma: exp_log_p84_over_median_divided_by_z84
+    q_rule: one_scalar_per_reaction_over_full_temperature_curve
+  R0_P2_legacy_solver_envelope:
+    role: software_lineage_comparator
+    injection: none
+
+solver_paths:
+  LINX:
+    revision: ec2e9d2ca455e8204137e884da29f5dd13a638fa
+    network: key_recommended
+    R0_q_indices_zero_based: [1, 2, 3]
+    environment_lock: environments/linx-v0.1.2/uv.lock
+    environment_lock_sha256: 98c8f6de35dfdf7147857a3c28153b10f3ad7d424cb9faeea15de75cacd27556
+    interpolation: linear_T9
+    internal_out_of_grid_behavior: zero_as_frozen_upstream_linear_table
+    numerical:
+      rtol: 3.0e-9
+      atol: 3.0e-12
+      sampling_nTOp: 4800
+      max_steps: 32768
+  PRyMordial:
+    revision: 725d8a8db3ad5ea2630580d825c9d0d69ed76533
+    network: small_PRIMAT_like
+    R0_constructor_indices_zero_based: [1, 2, 3]
+    environment_lock: environments/solver-cpu/uv.lock
+    environment_lock_sha256: 45f60efbea16955ae3ca2740d6d55e9ae969fe9a5e33d5ef9d71d92d12f3c723
+    interpolation: linear_T9
+    internal_out_of_grid_behavior: frozen_upstream
+
+fiducial:
+  omega_b_h2: 0.02237
+  delta_neff: 0.0
+  tau_n_seconds: 878.3
+  tau_n_sigma_seconds: 0.5
+
+sigma_point_design:
+  dimension: 4
+  total_nodes: 9
+  nodes:
+    - {id: center, q: [0.0, 0.0, 0.0, 0.0]}
+    - {id: dp_gamma_he3_minus, q: [-1.0, 0.0, 0.0, 0.0]}
+    - {id: dp_gamma_he3_plus, q: [1.0, 0.0, 0.0, 0.0]}
+    - {id: dd_n_he3_minus, q: [0.0, -1.0, 0.0, 0.0]}
+    - {id: dd_n_he3_plus, q: [0.0, 1.0, 0.0, 0.0]}
+    - {id: dd_p_t_minus, q: [0.0, 0.0, -1.0, 0.0]}
+    - {id: dd_p_t_plus, q: [0.0, 0.0, 1.0, 0.0]}
+    - {id: tau_n_minus, q: [0.0, 0.0, 0.0, -1.0]}
+    - {id: tau_n_plus, q: [0.0, 0.0, 0.0, 1.0]}
+  repeated_nodes: [center, dp_gamma_he3_plus, tau_n_plus]
+
+plusminus_acceptance:
+  check_ids:
+    - dp_gamma_he3_curve_changes
+    - dd_n_he3_curve_changes
+    - dd_p_t_curve_changes
+    - dp_gamma_he3_reverse_same_draw
+    - dd_n_he3_reverse_same_draw
+    - dd_p_t_reverse_same_draw
+    - dp_gamma_he3_DH_response_negative
+    - dd_n_he3_DH_response_negative
+    - dd_p_t_DH_response_negative
+    - tau_n_YPBBN_response_positive
+    - canonical_units_and_output_mapping_valid
+    - zero_structured_failures_and_repeat_drift
+  maximum_repeat_relative_drift: 1.0e-12
+  maximum_failure_fraction: 0.01
+  reverse_relative_tolerance: 1.0e-10
+  non_negligible_DH_response_floor: 1.0e-10
+
+execution:
+  require_cpu_heavy_lease: true
+  require_exact_source_revision: true
+  require_clean_tracked_source: true
+  require_float64: true
+  require_complete_runtime_and_failure_accounting: true
+  LINX_sigma_nodes: all_9_batched
+  PRyMordial_sigma_nodes: all_9_sequential
+  output_files:
+    run_manifest: run_manifest.json
+    results: results.json
+    timings: timings.jsonl
+    failures: failures.jsonl
+    curve_manifest: curve_manifest.json
