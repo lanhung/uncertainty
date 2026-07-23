@@ -1,6 +1,6 @@
 # WHY-NOT existing solvers — final memo skeleton v1
 
-Status: **fail-closed skeleton; fast-path workload now defined; final UQ economics unmeasured**
+Status: **fail-closed skeleton; fast-path workload now defined; final UQ economics undetermined**
 
 Task: `P0-WHY-NOT-01` (`0/1`)
 
