@@ -1,0 +1,52 @@
+name: one-time-fast-track-debug
+
+on:
+  push:
+    branches: [science/self-contained-fast-track-v1]
+    paths:
+      - '.github/workflows/one-time-fast-track-debug.yml'
+      - 'configs/physics/nuclear_prior_R0_reference_v1.yaml'
+      - 'plan/plan.yaml'
+      - 'scripts/validate_R0_reference_prior_v1.py'
+      - 'tests/unit/test_R0_reference_prior_v1.py'
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/one-time-fast-track-debug.yml'
+      - 'configs/physics/nuclear_prior_R0_reference_v1.yaml'
+      - 'plan/plan.yaml'
+      - 'scripts/validate_R0_reference_prior_v1.py'
+      - 'tests/unit/test_R0_reference_prior_v1.py'
+
+permissions:
+  contents: read
+
+jobs:
+  concise-pytest:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v7
+        with:
+          version: '0.11.28'
+      - run: uv sync --locked
+      - name: Capture first test failure
+        id: tests
+        shell: bash
+        run: |
+          set +e
+          uv run python -m pytest -q -x --tb=short > pytest-output.txt 2>&1
+          status=$?
+          echo "status=$status" >> "$GITHUB_OUTPUT"
+          cat pytest-output.txt
+          exit 0
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fast-track-pytest-output
+          path: pytest-output.txt
+          if-no-files-found: error
+          retention-days: 2
+      - name: Enforce test result
+        if: steps.tests.outputs.status != '0'
+        run: exit 1
