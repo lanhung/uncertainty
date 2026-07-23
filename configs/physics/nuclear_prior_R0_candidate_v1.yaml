@@ -26,6 +26,21 @@ candidate_artifacts:
     sha256: cf665f1d1de758122d47b3cb5c0fb18a073f379aff8abacc440430e98158a6ae
     runner: scripts/run_primat_R0_reverse_regression.py
     validator: scripts/validate_primat_R0_reverse_regression.py
+  LINX_mapping_regression:
+    path: artifacts/priors/LINX-R0-MAPPING-REGRESSION-v1/regression.json
+    sha256: 6a958225feb3cc531753571c582376a0c5cf3404c1a4e6643482a0d8114e7418
+    runner: scripts/run_linx_R0_mapping_regression.py
+    validator: scripts/validate_linx_R0_mapping_regression.py
+  PRyMordial_mapping_regression:
+    path: artifacts/priors/PRYMORDIAL-R0-MAPPING-REGRESSION-v1/regression.json
+    sha256: be732146493ecdf40f6d216ce505f2314e199c820cc6f2fb8dda254334bd96fd
+    runner: scripts/run_prymordial_R0_mapping_regression.py
+    validator: scripts/validate_prymordial_R0_mapping_regression.py
+  correlation_sampler_audit:
+    path: artifacts/priors/R0-CORRELATION-SAMPLER-AUDIT-v1/audit.json
+    sha256: 6453319b60a257331a5edc44ad4e8bc48f6d18c3c8f9a55137257bf24f147d9c
+    runner: scripts/run_R0_correlation_sampler_audit.py
+    validator: scripts/validate_R0_correlation_sampler_audit.py
   candidate_contract:
     path: artifacts/priors/R0-PRIOR-CANDIDATE-CONTRACT-v1/package.json
     sha256: 13e923a28436d67e50dba86bbbe0fb62e25eca201d80b22bce4e0026aa7cd78a
@@ -104,6 +119,9 @@ completion_boundary:
   actual_posterior_or_original_nuclear_model_available: false
   PRIMAT_reverse_regression_passed: true
   PRIMAT_cache_guard_implemented: true
+  LINX_mapping_regression_passed: true
+  PRyMordial_mapping_regression_passed: true
+  correlation_sampler_audit_passed: true
   PRIMAT_solver_trajectory_cap_regression_passed: false
   PRIMAT_ETR25_curve_injection_regression_passed: false
   coherent_actual_draw_gate_closed: true

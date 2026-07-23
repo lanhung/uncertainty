@@ -1,0 +1,4051 @@
+{
+  "acceptance_thresholds": {
+    "Cholesky_max_abs": 1e-14,
+    "coherent_q_reconstruction_max_abs": 1e-12,
+    "empirical_correlation_max_abs": 0.012,
+    "empirical_mean_max_abs": 0.012,
+    "empirical_std_minus_one_max_abs": 0.012
+  },
+  "artifact_id": "R0-CORRELATION-SAMPLER-AUDIT-v1",
+  "claim_boundary": {
+    "A03_A00_A09_signoffs": "pending",
+    "actual_ETR25_cross_reaction_covariance_inferred": false,
+    "actual_posterior_reconstruction": false,
+    "identity_is_scientific_default": false,
+    "production_use": "prohibited",
+    "scientific_prior_reactions_accepted": 0,
+    "task_done_allowed": false
+  },
+  "environment": {
+    "byteorder": "little",
+    "numpy": "2.3.5",
+    "platform": "Linux-5.15.0-78-generic-x86_64-with-glibc2.35",
+    "python": "3.11.15"
+  },
+  "models": [
+    {
+      "acceptance": {
+        "coherent_temperature_curve_probe_passed": true,
+        "empirical_correlation_passed": true,
+        "empirical_mean_passed": true,
+        "empirical_std_passed": true,
+        "factorization_passed": true,
+        "fixed_seed_replay_passed": true
+      },
+      "coherent_temperature_curve_probe": {
+        "actual_posterior_reconstruction": false,
+        "all_rates_positive": true,
+        "draws": 16,
+        "evaluations": 2880,
+        "max_abs_reconstructed_q_error": 1.7708057242771247e-13,
+        "minimum_rate": 1.3828024778710636e-11,
+        "one_scalar_q_held_across_temperature_per_reaction": true,
+        "role": "mathematical_curve_coherence_stress_only",
+        "temperature_rows_per_reaction": 60
+      },
+      "computed_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "empirical_correlation": [
+        [
+          0.9999999999999998,
+          0.0007408910777744024,
+          -0.0008288343091532993
+        ],
+        [
+          0.0007408910777744024,
+          1.0,
+          -0.0014234148866807566
+        ],
+        [
+          -0.0008288343091532994,
+          -0.0014234148866807568,
+          1.0
+        ]
+      ],
+      "empirical_mean": [
+        0.002328032648241672,
+        0.0022711418530545844,
+        0.0047993312057599095
+      ],
+      "empirical_std_ddof1": [
+        1.000562523953492,
+        0.9981584564652553,
+        0.9988323376682486
+      ],
+      "family": "engineering_identity_comparator",
+      "matrix_sha256": "22268500b7f803effe69eba1ec4819dff2ed5600678ac44b9dc962da4c3ee626",
+      "max_abs_empirical_correlation_error": 0.0014234148866807568,
+      "max_abs_empirical_mean": 0.0047993312057599095,
+      "max_abs_empirical_std_minus_one": 0.0018415435347447495,
+      "max_abs_registered_vs_computed_Cholesky": 0.0,
+      "model_id": "I3",
+      "nearest_PSD_projection_used": false,
+      "ordered_matrix": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "registered_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "replay": {
+        "epsilon_little_endian_float64_sha256": "9526491de2cd6f6ed4707e5bfbc3118eb51065f4fd6e29c0676189d3984c925e",
+        "exact_array_equal": true,
+        "samples": 4096
+      },
+      "samples": 200000,
+      "seed": 4751399879771200441
+    },
+    {
+      "acceptance": {
+        "coherent_temperature_curve_probe_passed": true,
+        "empirical_correlation_passed": true,
+        "empirical_mean_passed": true,
+        "empirical_std_passed": true,
+        "factorization_passed": true,
+        "fixed_seed_replay_passed": true
+      },
+      "coherent_temperature_curve_probe": {
+        "actual_posterior_reconstruction": false,
+        "all_rates_positive": true,
+        "draws": 16,
+        "evaluations": 2880,
+        "max_abs_reconstructed_q_error": 1.7875978475245802e-13,
+        "minimum_rate": 1.3448268613603935e-11,
+        "one_scalar_q_held_across_temperature_per_reaction": true,
+        "role": "mathematical_curve_coherence_stress_only",
+        "temperature_rows_per_reaction": 60
+      },
+      "computed_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          -0.9,
+          0.4358898943540673
+        ]
+      ],
+      "empirical_correlation": [
+        [
+          0.9999999999999999,
+          0.0009272068951249949,
+          -0.0006200173836743711
+        ],
+        [
+          0.0009272068951249948,
+          1.0,
+          -0.8998787493421407
+        ],
+        [
+          -0.0006200173836743711,
+          -0.8998787493421407,
+          1.0
+        ]
+      ],
+      "empirical_mean": [
+        -0.003575758786356866,
+        -0.0026115212843055946,
+        0.0038665052632020384
+      ],
+      "empirical_std_ddof1": [
+        0.9976767791247888,
+        0.9987567311329473,
+        0.9990256111551622
+      ],
+      "family": "dd_pair_only",
+      "matrix_sha256": "2120dbcf910952490529c849f262688e6096b48c52ee7ccb27014923bef6942f",
+      "max_abs_empirical_correlation_error": 0.0009272068951249949,
+      "max_abs_empirical_mean": 0.0038665052632020384,
+      "max_abs_empirical_std_minus_one": 0.002323220875211196,
+      "max_abs_registered_vs_computed_Cholesky": 0.0,
+      "model_id": "DD_-0.90",
+      "nearest_PSD_projection_used": false,
+      "ordered_matrix": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          -0.9
+        ],
+        [
+          0.0,
+          -0.9,
+          1.0
+        ]
+      ],
+      "registered_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          -0.9,
+          0.4358898943540673
+        ]
+      ],
+      "replay": {
+        "epsilon_little_endian_float64_sha256": "a7bc9164c9347c5e69f5157dbcf6da7dc95841972f9bfe1a5b2da26000493c43",
+        "exact_array_equal": true,
+        "samples": 4096
+      },
+      "samples": 200000,
+      "seed": 4740832783883776269
+    },
+    {
+      "acceptance": {
+        "coherent_temperature_curve_probe_passed": true,
+        "empirical_correlation_passed": true,
+        "empirical_mean_passed": true,
+        "empirical_std_passed": true,
+        "factorization_passed": true,
+        "fixed_seed_replay_passed": true
+      },
+      "coherent_temperature_curve_probe": {
+        "actual_posterior_reconstruction": false,
+        "all_rates_positive": true,
+        "draws": 16,
+        "evaluations": 2880,
+        "max_abs_reconstructed_q_error": 1.794120407794253e-13,
+        "minimum_rate": 1.3553306688949502e-11,
+        "one_scalar_q_held_across_temperature_per_reaction": true,
+        "role": "mathematical_curve_coherence_stress_only",
+        "temperature_rows_per_reaction": 60
+      },
+      "computed_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          -0.5,
+          0.8660254037844386
+        ]
+      ],
+      "empirical_correlation": [
+        [
+          0.9999999999999998,
+          0.003708319928264638,
+          -0.0023058089564438277
+        ],
+        [
+          0.0037083199282646378,
+          0.9999999999999998,
+          -0.5011202626004178
+        ],
+        [
+          -0.002305808956443828,
+          -0.5011202626004178,
+          0.9999999999999998
+        ]
+      ],
+      "empirical_mean": [
+        0.00041063492981078875,
+        -0.0010552620407338394,
+        0.00034657977402128046
+      ],
+      "empirical_std_ddof1": [
+        1.0002787352768447,
+        1.002649376417206,
+        1.0019070996219137
+      ],
+      "family": "dd_pair_only",
+      "matrix_sha256": "737992e708c4f6c8a9cdd4fb21a397758fad321d032247d00fe7bc657b6f6596",
+      "max_abs_empirical_correlation_error": 0.003708319928264638,
+      "max_abs_empirical_mean": 0.0010552620407338394,
+      "max_abs_empirical_std_minus_one": 0.002649376417205973,
+      "max_abs_registered_vs_computed_Cholesky": 0.0,
+      "model_id": "DD_-0.50",
+      "nearest_PSD_projection_used": false,
+      "ordered_matrix": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          -0.5
+        ],
+        [
+          0.0,
+          -0.5,
+          1.0
+        ]
+      ],
+      "registered_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          -0.5,
+          0.8660254037844386
+        ]
+      ],
+      "replay": {
+        "epsilon_little_endian_float64_sha256": "ef133a7f0403bcee4a6838beac9d9b23400776a80dbd070e87b7efa3d41fb1fb",
+        "exact_array_equal": true,
+        "samples": 4096
+      },
+      "samples": 200000,
+      "seed": 11932134253794896005
+    },
+    {
+      "acceptance": {
+        "coherent_temperature_curve_probe_passed": true,
+        "empirical_correlation_passed": true,
+        "empirical_mean_passed": true,
+        "empirical_std_passed": true,
+        "factorization_passed": true,
+        "fixed_seed_replay_passed": true
+      },
+      "coherent_temperature_curve_probe": {
+        "actual_posterior_reconstruction": false,
+        "all_rates_positive": true,
+        "draws": 16,
+        "evaluations": 2880,
+        "max_abs_reconstructed_q_error": 1.695310558602614e-13,
+        "minimum_rate": 1.3819237463753782e-11,
+        "one_scalar_q_held_across_temperature_per_reaction": true,
+        "role": "mathematical_curve_coherence_stress_only",
+        "temperature_rows_per_reaction": 60
+      },
+      "computed_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.5,
+          0.8660254037844386
+        ]
+      ],
+      "empirical_correlation": [
+        [
+          1.0,
+          0.004533521770137426,
+          0.005144683446819753
+        ],
+        [
+          0.004533521770137426,
+          1.0,
+          0.49867301867265784
+        ],
+        [
+          0.005144683446819752,
+          0.4986730186726578,
+          1.0
+        ]
+      ],
+      "empirical_mean": [
+        -0.004406430249905466,
+        -0.0008727105720912512,
+        -0.0023953273769109456
+      ],
+      "empirical_std_ddof1": [
+        1.0040463906409465,
+        0.9986352700405924,
+        1.0020385198482156
+      ],
+      "family": "dd_pair_only",
+      "matrix_sha256": "08958aeb71f6cb6fdff11514d1f5bd13ad00c0266624367205715065bb96ef6d",
+      "max_abs_empirical_correlation_error": 0.005144683446819753,
+      "max_abs_empirical_mean": 0.004406430249905466,
+      "max_abs_empirical_std_minus_one": 0.004046390640946473,
+      "max_abs_registered_vs_computed_Cholesky": 0.0,
+      "model_id": "DD_+0.50",
+      "nearest_PSD_projection_used": false,
+      "ordered_matrix": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.5
+        ],
+        [
+          0.0,
+          0.5,
+          1.0
+        ]
+      ],
+      "registered_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.5,
+          0.8660254037844386
+        ]
+      ],
+      "replay": {
+        "epsilon_little_endian_float64_sha256": "2dc53612dccdb1bbbd5fa2626bf04b6da4196ced6ac985eaca337c630396aa40",
+        "exact_array_equal": true,
+        "samples": 4096
+      },
+      "samples": 200000,
+      "seed": 17914271137412392823
+    },
+    {
+      "acceptance": {
+        "coherent_temperature_curve_probe_passed": true,
+        "empirical_correlation_passed": true,
+        "empirical_mean_passed": true,
+        "empirical_std_passed": true,
+        "factorization_passed": true,
+        "fixed_seed_replay_passed": true
+      },
+      "coherent_temperature_curve_probe": {
+        "actual_posterior_reconstruction": false,
+        "all_rates_positive": true,
+        "draws": 16,
+        "evaluations": 2880,
+        "max_abs_reconstructed_q_error": 1.716404796070492e-13,
+        "minimum_rate": 1.3694453339416124e-11,
+        "one_scalar_q_held_across_temperature_per_reaction": true,
+        "role": "mathematical_curve_coherence_stress_only",
+        "temperature_rows_per_reaction": 60
+      },
+      "computed_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.9,
+          0.4358898943540673
+        ]
+      ],
+      "empirical_correlation": [
+        [
+          1.0,
+          -0.0010475503880591082,
+          -0.000739746122671435
+        ],
+        [
+          -0.0010475503880591082,
+          1.0,
+          0.9003962370211522
+        ],
+        [
+          -0.0007397461226714351,
+          0.9003962370211522,
+          1.0
+        ]
+      ],
+      "empirical_mean": [
+        -0.0018658039557542725,
+        -0.0036718683190936014,
+        -0.0044343723832814
+      ],
+      "empirical_std_ddof1": [
+        1.0007355103300877,
+        1.000634686912199,
+        1.000925280683874
+      ],
+      "family": "dd_pair_only",
+      "matrix_sha256": "112fc8ded992c6f2ec7801626fc90587d1913ab6f7dda8c44942cdde2e6cd4e7",
+      "max_abs_empirical_correlation_error": 0.0010475503880591082,
+      "max_abs_empirical_mean": 0.0044343723832814,
+      "max_abs_empirical_std_minus_one": 0.0009252806838739858,
+      "max_abs_registered_vs_computed_Cholesky": 0.0,
+      "model_id": "DD_+0.90",
+      "nearest_PSD_projection_used": false,
+      "ordered_matrix": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.9
+        ],
+        [
+          0.0,
+          0.9,
+          1.0
+        ]
+      ],
+      "registered_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.9,
+          0.4358898943540673
+        ]
+      ],
+      "replay": {
+        "epsilon_little_endian_float64_sha256": "864d1c71364ecb985448938ab3a78dd9e05e6379aba9c42f1805f3b152b55fde",
+        "exact_array_equal": true,
+        "samples": 4096
+      },
+      "samples": 200000,
+      "seed": 15174483900642085576
+    },
+    {
+      "acceptance": {
+        "coherent_temperature_curve_probe_passed": true,
+        "empirical_correlation_passed": true,
+        "empirical_mean_passed": true,
+        "empirical_std_passed": true,
+        "factorization_passed": true,
+        "fixed_seed_replay_passed": true
+      },
+      "coherent_temperature_curve_probe": {
+        "actual_posterior_reconstruction": false,
+        "all_rates_positive": true,
+        "draws": 16,
+        "evaluations": 2880,
+        "max_abs_reconstructed_q_error": 1.670330540548548e-13,
+        "minimum_rate": 1.3059200619930365e-11,
+        "one_scalar_q_held_across_temperature_per_reaction": true,
+        "role": "mathematical_curve_coherence_stress_only",
+        "temperature_rows_per_reaction": 60
+      },
+      "computed_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.25,
+          0.9682458365518543,
+          0.0
+        ],
+        [
+          0.25,
+          0.19364916731037082,
+          0.9486832980505138
+        ]
+      ],
+      "empirical_correlation": [
+        [
+          1.0,
+          0.25513292370095114,
+          0.24937767775224712
+        ],
+        [
+          0.25513292370095114,
+          1.0,
+          0.2513289028713453
+        ],
+        [
+          0.2493776777522471,
+          0.25132890287134535,
+          1.0
+        ]
+      ],
+      "empirical_mean": [
+        0.0005630378398255155,
+        0.0011649320555267998,
+        -0.0009258484816586417
+      ],
+      "empirical_std_ddof1": [
+        0.9973268916246311,
+        0.9971787817482664,
+        1.0009829387050313
+      ],
+      "family": "positive_equicorrelation",
+      "matrix_sha256": "fb7545fdd4f0f6a4aae6d372acadad890b4fc461aca871ef4323d1414cebf082",
+      "max_abs_empirical_correlation_error": 0.005132923700951142,
+      "max_abs_empirical_mean": 0.0011649320555267998,
+      "max_abs_empirical_std_minus_one": 0.002821218251733648,
+      "max_abs_registered_vs_computed_Cholesky": 2.7755575615628914e-17,
+      "model_id": "COMMON_+0.25",
+      "nearest_PSD_projection_used": false,
+      "ordered_matrix": [
+        [
+          1.0,
+          0.25,
+          0.25
+        ],
+        [
+          0.25,
+          1.0,
+          0.25
+        ],
+        [
+          0.25,
+          0.25,
+          1.0
+        ]
+      ],
+      "registered_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.25,
+          0.9682458365518543,
+          0.0
+        ],
+        [
+          0.25,
+          0.19364916731037085,
+          0.9486832980505138
+        ]
+      ],
+      "replay": {
+        "epsilon_little_endian_float64_sha256": "bb39c2df6ae5e21af83ea51ff79d8a95d7bfeb1596be52fcc1cceb4ebdc82ca5",
+        "exact_array_equal": true,
+        "samples": 4096
+      },
+      "samples": 200000,
+      "seed": 16312265812359587930
+    },
+    {
+      "acceptance": {
+        "coherent_temperature_curve_probe_passed": true,
+        "empirical_correlation_passed": true,
+        "empirical_mean_passed": true,
+        "empirical_std_passed": true,
+        "factorization_passed": true,
+        "fixed_seed_replay_passed": true
+      },
+      "coherent_temperature_curve_probe": {
+        "actual_posterior_reconstruction": false,
+        "all_rates_positive": true,
+        "draws": 16,
+        "evaluations": 2880,
+        "max_abs_reconstructed_q_error": 1.774969060619469e-13,
+        "minimum_rate": 1.3626215071316244e-11,
+        "one_scalar_q_held_across_temperature_per_reaction": true,
+        "role": "mathematical_curve_coherence_stress_only",
+        "temperature_rows_per_reaction": 60
+      },
+      "computed_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.5,
+          0.8660254037844386,
+          0.0
+        ],
+        [
+          0.5,
+          0.2886751345948129,
+          0.816496580927726
+        ]
+      ],
+      "empirical_correlation": [
+        [
+          1.0,
+          0.5005151826275771,
+          0.5016047571528687
+        ],
+        [
+          0.5005151826275771,
+          1.0,
+          0.5009655850482038
+        ],
+        [
+          0.5016047571528687,
+          0.5009655850482038,
+          0.9999999999999998
+        ]
+      ],
+      "empirical_mean": [
+        -0.002019266611756632,
+        -0.004644233842071264,
+        -0.003765525430147449
+      ],
+      "empirical_std_ddof1": [
+        0.9990019467234802,
+        1.0014695691841022,
+        1.000791314375865
+      ],
+      "family": "positive_equicorrelation",
+      "matrix_sha256": "a63cb235f8d9cc7dd6190563e4f9d895e146a5618c22284432fe3fa0399c4288",
+      "max_abs_empirical_correlation_error": 0.0016047571528686744,
+      "max_abs_empirical_mean": 0.004644233842071264,
+      "max_abs_empirical_std_minus_one": 0.0014695691841022374,
+      "max_abs_registered_vs_computed_Cholesky": 0.0,
+      "model_id": "COMMON_+0.50",
+      "nearest_PSD_projection_used": false,
+      "ordered_matrix": [
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          1.0,
+          0.5
+        ],
+        [
+          0.5,
+          0.5,
+          1.0
+        ]
+      ],
+      "registered_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.5,
+          0.8660254037844386,
+          0.0
+        ],
+        [
+          0.5,
+          0.2886751345948129,
+          0.816496580927726
+        ]
+      ],
+      "replay": {
+        "epsilon_little_endian_float64_sha256": "a7642bd38bd5b566946571eec30a4b75ebea89027decbdba4d40d54da1023e6f",
+        "exact_array_equal": true,
+        "samples": 4096
+      },
+      "samples": 200000,
+      "seed": 7307106923316854491
+    },
+    {
+      "acceptance": {
+        "coherent_temperature_curve_probe_passed": true,
+        "empirical_correlation_passed": true,
+        "empirical_mean_passed": true,
+        "empirical_std_passed": true,
+        "factorization_passed": true,
+        "fixed_seed_replay_passed": true
+      },
+      "coherent_temperature_curve_probe": {
+        "actual_posterior_reconstruction": false,
+        "all_rates_positive": true,
+        "draws": 16,
+        "evaluations": 2880,
+        "max_abs_reconstructed_q_error": 1.7064127888488656e-13,
+        "minimum_rate": 1.378937402637531e-11,
+        "one_scalar_q_held_across_temperature_per_reaction": true,
+        "role": "mathematical_curve_coherence_stress_only",
+        "temperature_rows_per_reaction": 60
+      },
+      "computed_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.9,
+          0.4358898943540673,
+          0.0
+        ],
+        [
+          0.9,
+          0.20647416048350556,
+          0.3838859479749573
+        ]
+      ],
+      "empirical_correlation": [
+        [
+          1.0,
+          0.9004160160861568,
+          0.9005903525268842
+        ],
+        [
+          0.9004160160861568,
+          1.0,
+          0.8999837923683801
+        ],
+        [
+          0.9005903525268842,
+          0.8999837923683802,
+          1.0
+        ]
+      ],
+      "empirical_mean": [
+        -0.002488770312000933,
+        -0.0022329790023811126,
+        -0.0009602665007466855
+      ],
+      "empirical_std_ddof1": [
+        1.0015531463569936,
+        1.00234034882571,
+        1.0013528928890094
+      ],
+      "family": "positive_equicorrelation",
+      "matrix_sha256": "659f105c03d53c6c34fa5f018d8f8eebcffc8b640027b9b795a7e222199401a4",
+      "max_abs_empirical_correlation_error": 0.0005903525268842191,
+      "max_abs_empirical_mean": 0.002488770312000933,
+      "max_abs_empirical_std_minus_one": 0.0023403488257101035,
+      "max_abs_registered_vs_computed_Cholesky": 0.0,
+      "model_id": "COMMON_+0.90",
+      "nearest_PSD_projection_used": false,
+      "ordered_matrix": [
+        [
+          1.0,
+          0.9,
+          0.9
+        ],
+        [
+          0.9,
+          1.0,
+          0.9
+        ],
+        [
+          0.9,
+          0.9,
+          1.0
+        ]
+      ],
+      "registered_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.9,
+          0.4358898943540673,
+          0.0
+        ],
+        [
+          0.9,
+          0.20647416048350556,
+          0.3838859479749573
+        ]
+      ],
+      "replay": {
+        "epsilon_little_endian_float64_sha256": "6e6ac63aca97693e8fbbbc0fbb593232476544aeb2bf44c9c3c666a2d2eb7f8e",
+        "exact_array_equal": true,
+        "samples": 4096
+      },
+      "samples": 200000,
+      "seed": 7151656384292727329
+    },
+    {
+      "acceptance": {
+        "coherent_temperature_curve_probe_passed": true,
+        "empirical_correlation_passed": true,
+        "empirical_mean_passed": true,
+        "empirical_std_passed": true,
+        "factorization_passed": true,
+        "fixed_seed_replay_passed": true
+      },
+      "coherent_temperature_curve_probe": {
+        "actual_posterior_reconstruction": false,
+        "all_rates_positive": true,
+        "draws": 16,
+        "evaluations": 2880,
+        "max_abs_reconstructed_q_error": 1.6922574452848949e-13,
+        "minimum_rate": 1.322237623368999e-11,
+        "one_scalar_q_held_across_temperature_per_reaction": true,
+        "role": "mathematical_curve_coherence_stress_only",
+        "temperature_rows_per_reaction": 60
+      },
+      "computed_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.75,
+          0.6614378277661477,
+          0.0
+        ],
+        [
+          -0.75,
+          -0.4960783708246107,
+          0.4375
+        ]
+      ],
+      "empirical_correlation": [
+        [
+          1.0,
+          -0.7511186161812002,
+          -0.7493236940711004
+        ],
+        [
+          -0.7511186161812002,
+          1.0,
+          0.2349821688819809
+        ],
+        [
+          -0.7493236940711004,
+          0.23498216888198092,
+          0.9999999999999999
+        ]
+      ],
+      "empirical_mean": [
+        0.0020102353691801357,
+        -5.3560525936251644e-05,
+        -0.0022284000070206837
+      ],
+      "empirical_std_ddof1": [
+        1.000437284604537,
+        1.0008544384775078,
+        0.9989445237152664
+      ],
+      "family": "symmetric_preregistered_partial_correlation_grid",
+      "matrix_sha256": "e2d673e839a353e6f38cd19f1c1797f895cb6840bda67ddc3eed107be337c30f",
+      "max_abs_empirical_correlation_error": 0.0011186161812002382,
+      "max_abs_empirical_mean": 0.0022284000070206837,
+      "max_abs_empirical_std_minus_one": 0.0010554762847335697,
+      "max_abs_registered_vs_computed_Cholesky": 0.0,
+      "model_id": "VINE_u-0.75_v-0.75_w-0.75",
+      "nearest_PSD_projection_used": false,
+      "ordered_matrix": [
+        [
+          1.0,
+          -0.75,
+          -0.75
+        ],
+        [
+          -0.75,
+          1.0,
+          0.234375
+        ],
+        [
+          -0.75,
+          0.234375,
+          1.0
+        ]
+      ],
+      "registered_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.75,
+          0.6614378277661477,
+          0.0
+        ],
+        [
+          -0.75,
+          -0.4960783708246107,
+          0.4375
+        ]
+      ],
+      "replay": {
+        "epsilon_little_endian_float64_sha256": "347cec326c7aef11f01b1de5738c832f2a556a55fca977c7ca0b6d5d6b5bbd01",
+        "exact_array_equal": true,
+        "samples": 4096
+      },
+      "samples": 200000,
+      "seed": 11911644400589973460
+    },
+    {
+      "acceptance": {
+        "coherent_temperature_curve_probe_passed": true,
+        "empirical_correlation_passed": true,
+        "empirical_mean_passed": true,
+        "empirical_std_passed": true,
+        "factorization_passed": true,
+        "fixed_seed_replay_passed": true
+      },
+      "coherent_temperature_curve_probe": {
+        "actual_posterior_reconstruction": false,
+        "all_rates_positive": true,
+        "draws": 16,
+        "evaluations": 2880,
+        "max_abs_reconstructed_q_error": 1.7630341631047486e-13,
+        "minimum_rate": 1.3433812193141593e-11,
+        "one_scalar_q_held_across_temperature_per_reaction": true,
+        "role": "mathematical_curve_coherence_stress_only",
+        "temperature_rows_per_reaction": 60
+      },
+      "computed_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.75,
+          0.6614378277661477,
+          0.0
+        ],
+        [
+          -0.75,
+          0.0,
+          0.6614378277661477
+        ]
+      ],
+      "empirical_correlation": [
+        [
+          1.0,
+          -0.7502805635857168,
+          -0.748856109137327
+        ],
+        [
+          -0.7502805635857168,
+          1.0,
+          0.562401826610788
+        ],
+        [
+          -0.7488561091373271,
+          0.562401826610788,
+          0.9999999999999999
+        ]
+      ],
+      "empirical_mean": [
+        0.0005363203212297271,
+        0.0008692929140466494,
+        -0.0005418472038934617
+      ],
+      "empirical_std_ddof1": [
+        0.9960575232691604,
+        0.9980781182084686,
+        0.9978882416778063
+      ],
+      "family": "symmetric_preregistered_partial_correlation_grid",
+      "matrix_sha256": "c5ac40855654940d128c3f75f9b575bc6e92ec6964800fca1ce651cab1e8fbfa",
+      "max_abs_empirical_correlation_error": 0.0011438908626729694,
+      "max_abs_empirical_mean": 0.0008692929140466494,
+      "max_abs_empirical_std_minus_one": 0.003942476730839584,
+      "max_abs_registered_vs_computed_Cholesky": 0.0,
+      "model_id": "VINE_u-0.75_v-0.75_w+0.00",
+      "nearest_PSD_projection_used": false,
+      "ordered_matrix": [
+        [
+          1.0,
+          -0.75,
+          -0.75
+        ],
+        [
+          -0.75,
+          1.0,
+          0.5625
+        ],
+        [
+          -0.75,
+          0.5625,
+          1.0
+        ]
+      ],
+      "registered_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.75,
+          0.6614378277661477,
+          0.0
+        ],
+        [
+          -0.75,
+          0.0,
+          0.6614378277661477
+        ]
+      ],
+      "replay": {
+        "epsilon_little_endian_float64_sha256": "959278b6cc3bd4b2bf4b3c565a395d94348b5bb8c6fe24353fdc3d5038686cee",
+        "exact_array_equal": true,
+        "samples": 4096
+      },
+      "samples": 200000,
+      "seed": 366135193870909307
+    },
+    {
+      "acceptance": {
+        "coherent_temperature_curve_probe_passed": true,
+        "empirical_correlation_passed": true,
+        "empirical_mean_passed": true,
+        "empirical_std_passed": true,
+        "factorization_passed": true,
+        "fixed_seed_replay_passed": true
+      },
+      "coherent_temperature_curve_probe": {
+        "actual_posterior_reconstruction": false,
+        "all_rates_positive": true,
+        "draws": 16,
+        "evaluations": 2880,
+        "max_abs_reconstructed_q_error": 1.78163039876722e-13,
+        "minimum_rate": 1.340181061690884e-11,
+        "one_scalar_q_held_across_temperature_per_reaction": true,
+        "role": "mathematical_curve_coherence_stress_only",
+        "temperature_rows_per_reaction": 60
+      },
+      "computed_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.75,
+          0.6614378277661477,
+          0.0
+        ],
+        [
+          -0.75,
+          0.4960783708246107,
+          0.4375
+        ]
+      ],
+      "empirical_correlation": [
+        [
+          0.9999999999999999,
+          -0.7492113920706637,
+          -0.7487441371244136
+        ],
+        [
+          -0.7492113920706636,
+          1.0,
+          0.8905696323742289
+        ],
+        [
+          -0.7487441371244136,
+          0.890569632374229,
+          0.9999999999999998
+        ]
+      ],
+      "empirical_mean": [
+        -0.0023850196599481776,
+        0.0018462185522586322,
+        0.0025633895110130692
+      ],
+      "empirical_std_ddof1": [
+        0.9984790306358486,
+        0.9994873833749525,
+        1.000278569413693
+      ],
+      "family": "symmetric_preregistered_partial_correlation_grid",
+      "matrix_sha256": "3bc2dca042a3e2cd44e8db8e0aefd997ce15070a7113f9a4c9f52667c7d84252",
+      "max_abs_empirical_correlation_error": 0.0012558628755864332,
+      "max_abs_empirical_mean": 0.0025633895110130692,
+      "max_abs_empirical_std_minus_one": 0.0015209693641513589,
+      "max_abs_registered_vs_computed_Cholesky": 0.0,
+      "model_id": "VINE_u-0.75_v-0.75_w+0.75",
+      "nearest_PSD_projection_used": false,
+      "ordered_matrix": [
+        [
+          1.0,
+          -0.75,
+          -0.75
+        ],
+        [
+          -0.75,
+          1.0,
+          0.890625
+        ],
+        [
+          -0.75,
+          0.890625,
+          1.0
+        ]
+      ],
+      "registered_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.75,
+          0.6614378277661477,
+          0.0
+        ],
+        [
+          -0.75,
+          0.4960783708246107,
+          0.4375
+        ]
+      ],
+      "replay": {
+        "epsilon_little_endian_float64_sha256": "0d14c42ac9ec12e69aabcf764dbbe7fbf349c95f9934caf1d6a611ac293adb18",
+        "exact_array_equal": true,
+        "samples": 4096
+      },
+      "samples": 200000,
+      "seed": 3083315097781457260
+    },
+    {
+      "acceptance": {
+        "coherent_temperature_curve_probe_passed": true,
+        "empirical_correlation_passed": true,
+        "empirical_mean_passed": true,
+        "empirical_std_passed": true,
+        "factorization_passed": true,
+        "fixed_seed_replay_passed": true
+      },
+      "coherent_temperature_curve_probe": {
+        "actual_posterior_reconstruction": false,
+        "all_rates_positive": true,
+        "draws": 16,
+        "evaluations": 2880,
+        "max_abs_reconstructed_q_error": 1.737568422477409e-13,
+        "minimum_rate": 1.393277729068628e-11,
+        "one_scalar_q_held_across_temperature_per_reaction": true,
+        "role": "mathematical_curve_coherence_stress_only",
+        "temperature_rows_per_reaction": 60
+      },
+      "computed_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.75,
+          0.6614378277661477,
+          0.0
+        ],
+        [
+          0.0,
+          -0.75,
+          0.6614378277661477
+        ]
+      ],
+      "empirical_correlation": [
+        [
+          1.0,
+          -0.7488891955460166,
+          -0.0018223411865707715
+        ],
+        [
+          -0.7488891955460166,
+          1.0,
+          -0.49593605991638295
+        ],
+        [
+          -0.0018223411865707715,
+          -0.4959360599163829,
+          1.0
+        ]
+      ],
+      "empirical_mean": [
+        -0.00023705635807691084,
+        -0.0007192566347852101,
+        -0.0018690502124203124
+      ],
+      "empirical_std_ddof1": [
+        0.9976195953138203,
+        0.9964802729364902,
+        0.998874232713698
+      ],
+      "family": "symmetric_preregistered_partial_correlation_grid",
+      "matrix_sha256": "0cde29bc92dfa1408db2b8372c19544b5da661bdc7086f66740755fffe4c6116",
+      "max_abs_empirical_correlation_error": 0.0018223411865707715,
+      "max_abs_empirical_mean": 0.0018690502124203124,
+      "max_abs_empirical_std_minus_one": 0.003519727063509781,
+      "max_abs_registered_vs_computed_Cholesky": 0.0,
+      "model_id": "VINE_u-0.75_v+0.00_w-0.75",
+      "nearest_PSD_projection_used": false,
+      "ordered_matrix": [
+        [
+          1.0,
+          -0.75,
+          0.0
+        ],
+        [
+          -0.75,
+          1.0,
+          -0.49607837082461076
+        ],
+        [
+          0.0,
+          -0.49607837082461076,
+          1.0
+        ]
+      ],
+      "registered_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.75,
+          0.6614378277661477,
+          0.0
+        ],
+        [
+          0.0,
+          -0.75,
+          0.6614378277661477
+        ]
+      ],
+      "replay": {
+        "epsilon_little_endian_float64_sha256": "412b95222d757646cef906f4b9102dbca2c9b0cb6a560c29eb9a7fc681d4ac6f",
+        "exact_array_equal": true,
+        "samples": 4096
+      },
+      "samples": 200000,
+      "seed": 9519363259528805342
+    },
+    {
+      "acceptance": {
+        "coherent_temperature_curve_probe_passed": true,
+        "empirical_correlation_passed": true,
+        "empirical_mean_passed": true,
+        "empirical_std_passed": true,
+        "factorization_passed": true,
+        "fixed_seed_replay_passed": true
+      },
+      "coherent_temperature_curve_probe": {
+        "actual_posterior_reconstruction": false,
+        "all_rates_positive": true,
+        "draws": 16,
+        "evaluations": 2880,
+        "max_abs_reconstructed_q_error": 1.745270594710746e-13,
+        "minimum_rate": 1.3833261399944094e-11,
+        "one_scalar_q_held_across_temperature_per_reaction": true,
+        "role": "mathematical_curve_coherence_stress_only",
+        "temperature_rows_per_reaction": 60
+      },
+      "computed_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.75,
+          0.6614378277661477,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "empirical_correlation": [
+        [
+          1.0,
+          -0.7493835057931681,
+          0.0014921818718919657
+        ],
+        [
+          -0.7493835057931681,
+          1.0,
+          -0.0021817395141585337
+        ],
+        [
+          0.0014921818718919657,
+          -0.002181739514158534,
+          1.0
+        ]
+      ],
+      "empirical_mean": [
+        0.0002977013216479921,
+        -0.0027874387932923243,
+        -0.0004602977520926655
+      ],
+      "empirical_std_ddof1": [
+        0.9991373882725597,
+        0.9996434471053585,
+        0.9995983091272287
+      ],
+      "family": "symmetric_preregistered_partial_correlation_grid",
+      "matrix_sha256": "1dc54a4a0eb4ffff40b88593766479e3179ad5ac7817df6658b92ffbff18c410",
+      "max_abs_empirical_correlation_error": 0.002181739514158534,
+      "max_abs_empirical_mean": 0.0027874387932923243,
+      "max_abs_empirical_std_minus_one": 0.0008626117274402878,
+      "max_abs_registered_vs_computed_Cholesky": 0.0,
+      "model_id": "VINE_u-0.75_v+0.00_w+0.00",
+      "nearest_PSD_projection_used": false,
+      "ordered_matrix": [
+        [
+          1.0,
+          -0.75,
+          0.0
+        ],
+        [
+          -0.75,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "registered_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.75,
+          0.6614378277661477,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "replay": {
+        "epsilon_little_endian_float64_sha256": "9dc6e0fdd6417af09715cad1091b11c255a0bfd43586aefa47bd89494636c240",
+        "exact_array_equal": true,
+        "samples": 4096
+      },
+      "samples": 200000,
+      "seed": 16238436191408683960
+    },
+    {
+      "acceptance": {
+        "coherent_temperature_curve_probe_passed": true,
+        "empirical_correlation_passed": true,
+        "empirical_mean_passed": true,
+        "empirical_std_passed": true,
+        "factorization_passed": true,
+        "fixed_seed_replay_passed": true
+      },
+      "coherent_temperature_curve_probe": {
+        "actual_posterior_reconstruction": false,
+        "all_rates_positive": true,
+        "draws": 16,
+        "evaluations": 2880,
+        "max_abs_reconstructed_q_error": 1.6786572132332367e-13,
+        "minimum_rate": 1.3656121906895683e-11,
+        "one_scalar_q_held_across_temperature_per_reaction": true,
+        "role": "mathematical_curve_coherence_stress_only",
+        "temperature_rows_per_reaction": 60
+      },
+      "computed_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.75,
+          0.6614378277661477,
+          0.0
+        ],
+        [
+          0.0,
+          0.75,
+          0.6614378277661477
+        ]
+      ],
+      "empirical_correlation": [
+        [
+          1.0,
+          -0.7493310979580624,
+          -0.0012952516780865714
+        ],
+        [
+          -0.7493310979580623,
+          1.0,
+          0.49829722425116196
+        ],
+        [
+          -0.0012952516780865714,
+          0.498297224251162,
+          0.9999999999999998
+        ]
+      ],
+      "empirical_mean": [
+        -0.0015461023749962389,
+        -0.0008011120125085454,
+        -0.002180299956153821
+      ],
+      "empirical_std_ddof1": [
+        0.9991649239689652,
+        0.9985125972997533,
+        1.000462635817106
+      ],
+      "family": "symmetric_preregistered_partial_correlation_grid",
+      "matrix_sha256": "b0a98127426ad47e66aaac07bc210aaab34dcb4438825dae65793df4a4452473",
+      "max_abs_empirical_correlation_error": 0.0022188534265512594,
+      "max_abs_empirical_mean": 0.002180299956153821,
+      "max_abs_empirical_std_minus_one": 0.0014874027002467205,
+      "max_abs_registered_vs_computed_Cholesky": 0.0,
+      "model_id": "VINE_u-0.75_v+0.00_w+0.75",
+      "nearest_PSD_projection_used": false,
+      "ordered_matrix": [
+        [
+          1.0,
+          -0.75,
+          0.0
+        ],
+        [
+          -0.75,
+          1.0,
+          0.49607837082461076
+        ],
+        [
+          0.0,
+          0.49607837082461076,
+          1.0
+        ]
+      ],
+      "registered_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.75,
+          0.6614378277661477,
+          0.0
+        ],
+        [
+          0.0,
+          0.75,
+          0.6614378277661477
+        ]
+      ],
+      "replay": {
+        "epsilon_little_endian_float64_sha256": "6645f301778ee806743404d70867f9c46e30c310fde340a5aa25e786909fe60d",
+        "exact_array_equal": true,
+        "samples": 4096
+      },
+      "samples": 200000,
+      "seed": 6630835052934418931
+    },
+    {
+      "acceptance": {
+        "coherent_temperature_curve_probe_passed": true,
+        "empirical_correlation_passed": true,
+        "empirical_mean_passed": true,
+        "empirical_std_passed": true,
+        "factorization_passed": true,
+        "fixed_seed_replay_passed": true
+      },
+      "coherent_temperature_curve_probe": {
+        "actual_posterior_reconstruction": false,
+        "all_rates_positive": true,
+        "draws": 16,
+        "evaluations": 2880,
+        "max_abs_reconstructed_q_error": 1.745270594710746e-13,
+        "minimum_rate": 1.343179284259446e-11,
+        "one_scalar_q_held_across_temperature_per_reaction": true,
+        "role": "mathematical_curve_coherence_stress_only",
+        "temperature_rows_per_reaction": 60
+      },
+      "computed_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.75,
+          0.6614378277661477,
+          0.0
+        ],
+        [
+          0.75,
+          -0.4960783708246107,
+          0.4375
+        ]
+      ],
+      "empirical_correlation": [
+        [
+          1.0,
+          -0.7508298542024752,
+          0.7495371547777331
+        ],
+        [
+          -0.7508298542024752,
+          0.9999999999999998,
+          -0.8908462550171354
+        ],
+        [
+          0.7495371547777331,
+          -0.8908462550171354,
+          1.0
+        ]
+      ],
+      "empirical_mean": [
+        -0.00030258100582171427,
+        0.0005947422137547292,
+        0.00045433329068030894
+      ],
+      "empirical_std_ddof1": [
+        1.0001632557485816,
+        1.0015249602245366,
+        1.0008959855892412
+      ],
+      "family": "symmetric_preregistered_partial_correlation_grid",
+      "matrix_sha256": "632fafdbd0e96d31e3db4becb88d3d808a2f42c18d4d2a6891e4793a6c0725da",
+      "max_abs_empirical_correlation_error": 0.0008298542024751665,
+      "max_abs_empirical_mean": 0.0005947422137547292,
+      "max_abs_empirical_std_minus_one": 0.0015249602245366312,
+      "max_abs_registered_vs_computed_Cholesky": 0.0,
+      "model_id": "VINE_u-0.75_v+0.75_w-0.75",
+      "nearest_PSD_projection_used": false,
+      "ordered_matrix": [
+        [
+          1.0,
+          -0.75,
+          0.75
+        ],
+        [
+          -0.75,
+          1.0,
+          -0.890625
+        ],
+        [
+          0.75,
+          -0.890625,
+          1.0
+        ]
+      ],
+      "registered_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.75,
+          0.6614378277661477,
+          0.0
+        ],
+        [
+          0.75,
+          -0.4960783708246107,
+          0.4375
+        ]
+      ],
+      "replay": {
+        "epsilon_little_endian_float64_sha256": "61f3b4d0f0bf7aaf922e65d2e46843586b58bbca8a4ad1bb120048e70650ac30",
+        "exact_array_equal": true,
+        "samples": 4096
+      },
+      "samples": 200000,
+      "seed": 12024182920225462398
+    },
+    {
+      "acceptance": {
+        "coherent_temperature_curve_probe_passed": true,
+        "empirical_correlation_passed": true,
+        "empirical_mean_passed": true,
+        "empirical_std_passed": true,
+        "factorization_passed": true,
+        "fixed_seed_replay_passed": true
+      },
+      "coherent_temperature_curve_probe": {
+        "actual_posterior_reconstruction": false,
+        "all_rates_positive": true,
+        "draws": 16,
+        "evaluations": 2880,
+        "max_abs_reconstructed_q_error": 1.6553425297161084e-13,
+        "minimum_rate": 1.341710790981676e-11,
+        "one_scalar_q_held_across_temperature_per_reaction": true,
+        "role": "mathematical_curve_coherence_stress_only",
+        "temperature_rows_per_reaction": 60
+      },
+      "computed_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.75,
+          0.6614378277661477,
+          0.0
+        ],
+        [
+          0.75,
+          0.0,
+          0.6614378277661477
+        ]
+      ],
+      "empirical_correlation": [
+        [
+          0.9999999999999999,
+          -0.7499456961302329,
+          0.7491886216177086
+        ],
+        [
+          -0.7499456961302329,
+          0.9999999999999999,
+          -0.5600623850435443
+        ],
+        [
+          0.7491886216177087,
+          -0.5600623850435443,
+          1.0
+        ]
+      ],
+      "empirical_mean": [
+        -0.0014455759634518623,
+        -0.0009411629876921347,
+        0.00020860287380312356
+      ],
+      "empirical_std_ddof1": [
+        0.9981859156936831,
+        0.9980306604661187,
+        0.9988605630629038
+      ],
+      "family": "symmetric_preregistered_partial_correlation_grid",
+      "matrix_sha256": "dea66962d5526142b5e23addf15be68221af7b2294a163dc7bc80b7c2980688f",
+      "max_abs_empirical_correlation_error": 0.0024376149564556693,
+      "max_abs_empirical_mean": 0.0014455759634518623,
+      "max_abs_empirical_std_minus_one": 0.0019693395338813424,
+      "max_abs_registered_vs_computed_Cholesky": 0.0,
+      "model_id": "VINE_u-0.75_v+0.75_w+0.00",
+      "nearest_PSD_projection_used": false,
+      "ordered_matrix": [
+        [
+          1.0,
+          -0.75,
+          0.75
+        ],
+        [
+          -0.75,
+          1.0,
+          -0.5625
+        ],
+        [
+          0.75,
+          -0.5625,
+          1.0
+        ]
+      ],
+      "registered_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.75,
+          0.6614378277661477,
+          0.0
+        ],
+        [
+          0.75,
+          0.0,
+          0.6614378277661477
+        ]
+      ],
+      "replay": {
+        "epsilon_little_endian_float64_sha256": "7e97ecad5cb1f8730c9a9c3debe67c6e826a342ccb69312d56983e83a285d724",
+        "exact_array_equal": true,
+        "samples": 4096
+      },
+      "samples": 200000,
+      "seed": 9032583179012684462
+    },
+    {
+      "acceptance": {
+        "coherent_temperature_curve_probe_passed": true,
+        "empirical_correlation_passed": true,
+        "empirical_mean_passed": true,
+        "empirical_std_passed": true,
+        "factorization_passed": true,
+        "fixed_seed_replay_passed": true
+      },
+      "coherent_temperature_curve_probe": {
+        "actual_posterior_reconstruction": false,
+        "all_rates_positive": true,
+        "draws": 16,
+        "evaluations": 2880,
+        "max_abs_reconstructed_q_error": 1.7003065622134272e-13,
+        "minimum_rate": 1.3380875840174758e-11,
+        "one_scalar_q_held_across_temperature_per_reaction": true,
+        "role": "mathematical_curve_coherence_stress_only",
+        "temperature_rows_per_reaction": 60
+      },
+      "computed_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.75,
+          0.6614378277661477,
+          0.0
+        ],
+        [
+          0.75,
+          0.4960783708246107,
+          0.4375
+        ]
+      ],
+      "empirical_correlation": [
+        [
+          0.9999999999999998,
+          -0.7506692407560551,
+          0.7507505567728494
+        ],
+        [
+          -0.7506692407560552,
+          1.0,
+          -0.2367012410691787
+        ],
+        [
+          0.7507505567728495,
+          -0.2367012410691787,
+          1.0
+        ]
+      ],
+      "empirical_mean": [
+        0.0015504450800480065,
+        -0.002046445726156917,
+        0.0008853953623871062
+      ],
+      "empirical_std_ddof1": [
+        1.000261926970096,
+        0.9991427358889784,
+        0.9996798956950572
+      ],
+      "family": "symmetric_preregistered_partial_correlation_grid",
+      "matrix_sha256": "4c672115dd202ef41a7fb9b76863c7f094f04b6619093191ca8a123691d4d733",
+      "max_abs_empirical_correlation_error": 0.0023262410691786972,
+      "max_abs_empirical_mean": 0.002046445726156917,
+      "max_abs_empirical_std_minus_one": 0.000857264111021605,
+      "max_abs_registered_vs_computed_Cholesky": 0.0,
+      "model_id": "VINE_u-0.75_v+0.75_w+0.75",
+      "nearest_PSD_projection_used": false,
+      "ordered_matrix": [
+        [
+          1.0,
+          -0.75,
+          0.75
+        ],
+        [
+          -0.75,
+          1.0,
+          -0.234375
+        ],
+        [
+          0.75,
+          -0.234375,
+          1.0
+        ]
+      ],
+      "registered_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.75,
+          0.6614378277661477,
+          0.0
+        ],
+        [
+          0.75,
+          0.4960783708246107,
+          0.4375
+        ]
+      ],
+      "replay": {
+        "epsilon_little_endian_float64_sha256": "f3f985391a1719f5d51e2f04af437d415bcd4036f34d879653b2c9071af4c220",
+        "exact_array_equal": true,
+        "samples": 4096
+      },
+      "samples": 200000,
+      "seed": 12547033830116034024
+    },
+    {
+      "acceptance": {
+        "coherent_temperature_curve_probe_passed": true,
+        "empirical_correlation_passed": true,
+        "empirical_mean_passed": true,
+        "empirical_std_passed": true,
+        "factorization_passed": true,
+        "fixed_seed_replay_passed": true
+      },
+      "coherent_temperature_curve_probe": {
+        "actual_posterior_reconstruction": false,
+        "all_rates_positive": true,
+        "draws": 16,
+        "evaluations": 2880,
+        "max_abs_reconstructed_q_error": 1.6708856520608606e-13,
+        "minimum_rate": 1.3456249037127342e-11,
+        "one_scalar_q_held_across_temperature_per_reaction": true,
+        "role": "mathematical_curve_coherence_stress_only",
+        "temperature_rows_per_reaction": 60
+      },
+      "computed_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          -0.75,
+          -0.49607837082461076,
+          0.4375
+        ]
+      ],
+      "empirical_correlation": [
+        [
+          1.0,
+          -0.0020051996570395083,
+          -0.7494302290029083
+        ],
+        [
+          -0.0020051996570395083,
+          1.0,
+          -0.49361743931072755
+        ],
+        [
+          -0.7494302290029083,
+          -0.4936174393107275,
+          1.0
+        ]
+      ],
+      "empirical_mean": [
+        -0.0014732348671853527,
+        -0.0017244098864129392,
+        0.0007484249916254064
+      ],
+      "empirical_std_ddof1": [
+        0.9994881865886759,
+        0.9986571761578417,
+        0.9979987983457689
+      ],
+      "family": "symmetric_preregistered_partial_correlation_grid",
+      "matrix_sha256": "73f2e632aba195093f097e39ef6c0248464603fb158d17c90de4ef86f84c2c23",
+      "max_abs_empirical_correlation_error": 0.002460931513883269,
+      "max_abs_empirical_mean": 0.0017244098864129392,
+      "max_abs_empirical_std_minus_one": 0.0020012016542311217,
+      "max_abs_registered_vs_computed_Cholesky": 0.0,
+      "model_id": "VINE_u+0.00_v-0.75_w-0.75",
+      "nearest_PSD_projection_used": false,
+      "ordered_matrix": [
+        [
+          1.0,
+          0.0,
+          -0.75
+        ],
+        [
+          0.0,
+          1.0,
+          -0.49607837082461076
+        ],
+        [
+          -0.75,
+          -0.49607837082461076,
+          1.0
+        ]
+      ],
+      "registered_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          -0.75,
+          -0.49607837082461076,
+          0.4375
+        ]
+      ],
+      "replay": {
+        "epsilon_little_endian_float64_sha256": "f9712ea4d0e9837c13e6f1c86bf185043ab26a299562054f34ef8d72175702b2",
+        "exact_array_equal": true,
+        "samples": 4096
+      },
+      "samples": 200000,
+      "seed": 2825223175361158864
+    },
+    {
+      "acceptance": {
+        "coherent_temperature_curve_probe_passed": true,
+        "empirical_correlation_passed": true,
+        "empirical_mean_passed": true,
+        "empirical_std_passed": true,
+        "factorization_passed": true,
+        "fixed_seed_replay_passed": true
+      },
+      "coherent_temperature_curve_probe": {
+        "actual_posterior_reconstruction": false,
+        "all_rates_positive": true,
+        "draws": 16,
+        "evaluations": 2880,
+        "max_abs_reconstructed_q_error": 1.716404796070492e-13,
+        "minimum_rate": 1.367110143387019e-11,
+        "one_scalar_q_held_across_temperature_per_reaction": true,
+        "role": "mathematical_curve_coherence_stress_only",
+        "temperature_rows_per_reaction": 60
+      },
+      "computed_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          -0.75,
+          0.0,
+          0.6614378277661477
+        ]
+      ],
+      "empirical_correlation": [
+        [
+          1.0,
+          -0.003502182237014614,
+          -0.7491922221162526
+        ],
+        [
+          -0.003502182237014614,
+          0.9999999999999999,
+          0.003159181027873348
+        ],
+        [
+          -0.7491922221162526,
+          0.003159181027873348,
+          1.0
+        ]
+      ],
+      "empirical_mean": [
+        -0.00018983194368983768,
+        0.0027049226330865123,
+        0.001109864249888108
+      ],
+      "empirical_std_ddof1": [
+        0.9978589927115802,
+        0.9987569016507053,
+        0.9993916721772874
+      ],
+      "family": "symmetric_preregistered_partial_correlation_grid",
+      "matrix_sha256": "9805560e7f619997f61e67c106380a5ecdf934d79d4195b2ab28f23ccaa245d6",
+      "max_abs_empirical_correlation_error": 0.003502182237014614,
+      "max_abs_empirical_mean": 0.0027049226330865123,
+      "max_abs_empirical_std_minus_one": 0.002141007288419816,
+      "max_abs_registered_vs_computed_Cholesky": 0.0,
+      "model_id": "VINE_u+0.00_v-0.75_w+0.00",
+      "nearest_PSD_projection_used": false,
+      "ordered_matrix": [
+        [
+          1.0,
+          0.0,
+          -0.75
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          -0.75,
+          0.0,
+          1.0
+        ]
+      ],
+      "registered_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          -0.75,
+          0.0,
+          0.6614378277661477
+        ]
+      ],
+      "replay": {
+        "epsilon_little_endian_float64_sha256": "8bfcae60ef60ec211a4c40f943deb069d43c19efbc91875cc212dbac3be504b5",
+        "exact_array_equal": true,
+        "samples": 4096
+      },
+      "samples": 200000,
+      "seed": 12001811254004104617
+    },
+    {
+      "acceptance": {
+        "coherent_temperature_curve_probe_passed": true,
+        "empirical_correlation_passed": true,
+        "empirical_mean_passed": true,
+        "empirical_std_passed": true,
+        "factorization_passed": true,
+        "fixed_seed_replay_passed": true
+      },
+      "coherent_temperature_curve_probe": {
+        "actual_posterior_reconstruction": false,
+        "all_rates_positive": true,
+        "draws": 16,
+        "evaluations": 2880,
+        "max_abs_reconstructed_q_error": 1.7108536809473662e-13,
+        "minimum_rate": 1.3450324182063853e-11,
+        "one_scalar_q_held_across_temperature_per_reaction": true,
+        "role": "mathematical_curve_coherence_stress_only",
+        "temperature_rows_per_reaction": 60
+      },
+      "computed_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          -0.75,
+          0.49607837082461076,
+          0.4375
+        ]
+      ],
+      "empirical_correlation": [
+        [
+          1.0,
+          -0.00232712998875967,
+          -0.7504058532622775
+        ],
+        [
+          -0.00232712998875967,
+          1.0,
+          0.49752032065030494
+        ],
+        [
+          -0.7504058532622775,
+          0.49752032065030494,
+          0.9999999999999999
+        ]
+      ],
+      "empirical_mean": [
+        0.0002318736738482102,
+        0.0008353178280267372,
+        -0.0015389560795040509
+      ],
+      "empirical_std_ddof1": [
+        0.9998997590058893,
+        0.9982166405837185,
+        0.9995267618264333
+      ],
+      "family": "symmetric_preregistered_partial_correlation_grid",
+      "matrix_sha256": "1e85ccc67263a25ee0ce5a1422a956e6feeae5e1cb7ae66dd34d7b6d82d62530",
+      "max_abs_empirical_correlation_error": 0.00232712998875967,
+      "max_abs_empirical_mean": 0.0015389560795040509,
+      "max_abs_empirical_std_minus_one": 0.0017833594162814936,
+      "max_abs_registered_vs_computed_Cholesky": 0.0,
+      "model_id": "VINE_u+0.00_v-0.75_w+0.75",
+      "nearest_PSD_projection_used": false,
+      "ordered_matrix": [
+        [
+          1.0,
+          0.0,
+          -0.75
+        ],
+        [
+          0.0,
+          1.0,
+          0.49607837082461076
+        ],
+        [
+          -0.75,
+          0.49607837082461076,
+          1.0
+        ]
+      ],
+      "registered_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          -0.75,
+          0.49607837082461076,
+          0.4375
+        ]
+      ],
+      "replay": {
+        "epsilon_little_endian_float64_sha256": "87b0bb803efe44f0e90f22067870b42bd7a6447865b0bfe97c1956c1b977957e",
+        "exact_array_equal": true,
+        "samples": 4096
+      },
+      "samples": 200000,
+      "seed": 17544587968914254239
+    },
+    {
+      "acceptance": {
+        "coherent_temperature_curve_probe_passed": true,
+        "empirical_correlation_passed": true,
+        "empirical_mean_passed": true,
+        "empirical_std_passed": true,
+        "factorization_passed": true,
+        "fixed_seed_replay_passed": true
+      },
+      "coherent_temperature_curve_probe": {
+        "actual_posterior_reconstruction": false,
+        "all_rates_positive": true,
+        "draws": 16,
+        "evaluations": 2880,
+        "max_abs_reconstructed_q_error": 1.700480034561025e-13,
+        "minimum_rate": 1.3580767807381324e-11,
+        "one_scalar_q_held_across_temperature_per_reaction": true,
+        "role": "mathematical_curve_coherence_stress_only",
+        "temperature_rows_per_reaction": 60
+      },
+      "computed_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          -0.75,
+          0.6614378277661477
+        ]
+      ],
+      "empirical_correlation": [
+        [
+          1.0,
+          0.0033253618567247833,
+          -0.002209371962407417
+        ],
+        [
+          0.0033253618567247833,
+          0.9999999999999999,
+          -0.7495542300349939
+        ],
+        [
+          -0.002209371962407417,
+          -0.7495542300349939,
+          1.0
+        ]
+      ],
+      "empirical_mean": [
+        0.001187072166753439,
+        -0.0020602049185105657,
+        0.004351367688206871
+      ],
+      "empirical_std_ddof1": [
+        1.0006271659321762,
+        0.9996335096198643,
+        1.0018593347245464
+      ],
+      "family": "symmetric_preregistered_partial_correlation_grid",
+      "matrix_sha256": "c26f55b205a50b1fced1e557cdbda77fb8d4121a8d37fea58a7a3cdaa6d088ed",
+      "max_abs_empirical_correlation_error": 0.0033253618567247833,
+      "max_abs_empirical_mean": 0.004351367688206871,
+      "max_abs_empirical_std_minus_one": 0.0018593347245463576,
+      "max_abs_registered_vs_computed_Cholesky": 0.0,
+      "model_id": "VINE_u+0.00_v+0.00_w-0.75",
+      "nearest_PSD_projection_used": false,
+      "ordered_matrix": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          -0.75
+        ],
+        [
+          0.0,
+          -0.75,
+          1.0
+        ]
+      ],
+      "registered_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          -0.75,
+          0.6614378277661477
+        ]
+      ],
+      "replay": {
+        "epsilon_little_endian_float64_sha256": "1f8fbe6150344c3b444cf154063011616dd76623d643ce537d15c45471015139",
+        "exact_array_equal": true,
+        "samples": 4096
+      },
+      "samples": 200000,
+      "seed": 12084855645760526813
+    },
+    {
+      "acceptance": {
+        "coherent_temperature_curve_probe_passed": true,
+        "empirical_correlation_passed": true,
+        "empirical_mean_passed": true,
+        "empirical_std_passed": true,
+        "factorization_passed": true,
+        "fixed_seed_replay_passed": true
+      },
+      "coherent_temperature_curve_probe": {
+        "actual_posterior_reconstruction": false,
+        "all_rates_positive": true,
+        "draws": 16,
+        "evaluations": 2880,
+        "max_abs_reconstructed_q_error": 1.7135251551003705e-13,
+        "minimum_rate": 1.3288081963348737e-11,
+        "one_scalar_q_held_across_temperature_per_reaction": true,
+        "role": "mathematical_curve_coherence_stress_only",
+        "temperature_rows_per_reaction": 60
+      },
+      "computed_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "empirical_correlation": [
+        [
+          1.0,
+          0.0036351401958347523,
+          -0.00040396607839507793
+        ],
+        [
+          0.0036351401958347523,
+          1.0,
+          0.004377853580571948
+        ],
+        [
+          -0.00040396607839507793,
+          0.004377853580571948,
+          0.9999999999999999
+        ]
+      ],
+      "empirical_mean": [
+        -0.0002643506497138874,
+        -0.0009865300543125274,
+        0.002146192349265682
+      ],
+      "empirical_std_ddof1": [
+        0.9991366506540542,
+        0.9984781726102517,
+        0.99896430898044
+      ],
+      "family": "symmetric_preregistered_partial_correlation_grid",
+      "matrix_sha256": "22268500b7f803effe69eba1ec4819dff2ed5600678ac44b9dc962da4c3ee626",
+      "max_abs_empirical_correlation_error": 0.004377853580571948,
+      "max_abs_empirical_mean": 0.002146192349265682,
+      "max_abs_empirical_std_minus_one": 0.0015218273897482648,
+      "max_abs_registered_vs_computed_Cholesky": 0.0,
+      "model_id": "VINE_u+0.00_v+0.00_w+0.00",
+      "nearest_PSD_projection_used": false,
+      "ordered_matrix": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "registered_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "replay": {
+        "epsilon_little_endian_float64_sha256": "b834c52db9880af77cc39e40e1ee86a181cfc16d0a4124d4de80bde231eeb042",
+        "exact_array_equal": true,
+        "samples": 4096
+      },
+      "samples": 200000,
+      "seed": 7845041907315971848
+    },
+    {
+      "acceptance": {
+        "coherent_temperature_curve_probe_passed": true,
+        "empirical_correlation_passed": true,
+        "empirical_mean_passed": true,
+        "empirical_std_passed": true,
+        "factorization_passed": true,
+        "fixed_seed_replay_passed": true
+      },
+      "coherent_temperature_curve_probe": {
+        "actual_posterior_reconstruction": false,
+        "all_rates_positive": true,
+        "draws": 16,
+        "evaluations": 2880,
+        "max_abs_reconstructed_q_error": 1.772436364344543e-13,
+        "minimum_rate": 1.2898277018824577e-11,
+        "one_scalar_q_held_across_temperature_per_reaction": true,
+        "role": "mathematical_curve_coherence_stress_only",
+        "temperature_rows_per_reaction": 60
+      },
+      "computed_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.75,
+          0.6614378277661477
+        ]
+      ],
+      "empirical_correlation": [
+        [
+          1.0,
+          0.0005372380173225995,
+          0.0013596004788736299
+        ],
+        [
+          0.0005372380173225994,
+          0.9999999999999999,
+          0.749606956958571
+        ],
+        [
+          0.0013596004788736299,
+          0.7496069569585712,
+          0.9999999999999998
+        ]
+      ],
+      "empirical_mean": [
+        0.00019464094251202025,
+        0.0019388377109566704,
+        0.00041924612087462185
+      ],
+      "empirical_std_ddof1": [
+        0.9999825381861691,
+        0.9996821150005644,
+        1.0017655393663276
+      ],
+      "family": "symmetric_preregistered_partial_correlation_grid",
+      "matrix_sha256": "fd6ee35fb3cebfc14e39a728db13a89ce3c6916c38a4cc83452eafe3d01713b2",
+      "max_abs_empirical_correlation_error": 0.0013596004788736299,
+      "max_abs_empirical_mean": 0.0019388377109566704,
+      "max_abs_empirical_std_minus_one": 0.0017655393663276175,
+      "max_abs_registered_vs_computed_Cholesky": 0.0,
+      "model_id": "VINE_u+0.00_v+0.00_w+0.75",
+      "nearest_PSD_projection_used": false,
+      "ordered_matrix": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.75
+        ],
+        [
+          0.0,
+          0.75,
+          1.0
+        ]
+      ],
+      "registered_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.75,
+          0.6614378277661477
+        ]
+      ],
+      "replay": {
+        "epsilon_little_endian_float64_sha256": "634f93918cef6757bdfcaa57517ec255ae621be4e11026b60da165f25f5a09d5",
+        "exact_array_equal": true,
+        "samples": 4096
+      },
+      "samples": 200000,
+      "seed": 12133704809470308485
+    },
+    {
+      "acceptance": {
+        "coherent_temperature_curve_probe_passed": true,
+        "empirical_correlation_passed": true,
+        "empirical_mean_passed": true,
+        "empirical_std_passed": true,
+        "factorization_passed": true,
+        "fixed_seed_replay_passed": true
+      },
+      "coherent_temperature_curve_probe": {
+        "actual_posterior_reconstruction": false,
+        "all_rates_positive": true,
+        "draws": 16,
+        "evaluations": 2880,
+        "max_abs_reconstructed_q_error": 1.7985612998927536e-13,
+        "minimum_rate": 1.3278472458934026e-11,
+        "one_scalar_q_held_across_temperature_per_reaction": true,
+        "role": "mathematical_curve_coherence_stress_only",
+        "temperature_rows_per_reaction": 60
+      },
+      "computed_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.75,
+          -0.49607837082461076,
+          0.4375
+        ]
+      ],
+      "empirical_correlation": [
+        [
+          0.9999999999999998,
+          0.0019456151569610001,
+          0.7490296543308325
+        ],
+        [
+          0.0019456151569610001,
+          0.9999999999999998,
+          -0.495468381495754
+        ],
+        [
+          0.7490296543308325,
+          -0.495468381495754,
+          1.0
+        ]
+      ],
+      "empirical_mean": [
+        -7.494466300777769e-05,
+        -0.000640970620206542,
+        -0.00012540671004018962
+      ],
+      "empirical_std_ddof1": [
+        1.002848812360233,
+        1.0011884427016071,
+        1.0014643880285787
+      ],
+      "family": "symmetric_preregistered_partial_correlation_grid",
+      "matrix_sha256": "d14317be9a8617e252ac0f11cb47b4132e041d52199c9fd77d1667c582da5d52",
+      "max_abs_empirical_correlation_error": 0.0019456151569610001,
+      "max_abs_empirical_mean": 0.000640970620206542,
+      "max_abs_empirical_std_minus_one": 0.002848812360233044,
+      "max_abs_registered_vs_computed_Cholesky": 0.0,
+      "model_id": "VINE_u+0.00_v+0.75_w-0.75",
+      "nearest_PSD_projection_used": false,
+      "ordered_matrix": [
+        [
+          1.0,
+          0.0,
+          0.75
+        ],
+        [
+          0.0,
+          1.0,
+          -0.49607837082461076
+        ],
+        [
+          0.75,
+          -0.49607837082461076,
+          1.0
+        ]
+      ],
+      "registered_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.75,
+          -0.49607837082461076,
+          0.4375
+        ]
+      ],
+      "replay": {
+        "epsilon_little_endian_float64_sha256": "ae8202df2e02b8ed2c025c240e2f7e936c686ef012ad78902784e2bc160398f7",
+        "exact_array_equal": true,
+        "samples": 4096
+      },
+      "samples": 200000,
+      "seed": 5860996204911746216
+    },
+    {
+      "acceptance": {
+        "coherent_temperature_curve_probe_passed": true,
+        "empirical_correlation_passed": true,
+        "empirical_mean_passed": true,
+        "empirical_std_passed": true,
+        "factorization_passed": true,
+        "fixed_seed_replay_passed": true
+      },
+      "coherent_temperature_curve_probe": {
+        "actual_posterior_reconstruction": false,
+        "all_rates_positive": true,
+        "draws": 16,
+        "evaluations": 2880,
+        "max_abs_reconstructed_q_error": 1.716404796070492e-13,
+        "minimum_rate": 1.4007265622723608e-11,
+        "one_scalar_q_held_across_temperature_per_reaction": true,
+        "role": "mathematical_curve_coherence_stress_only",
+        "temperature_rows_per_reaction": 60
+      },
+      "computed_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.75,
+          0.0,
+          0.6614378277661477
+        ]
+      ],
+      "empirical_correlation": [
+        [
+          1.0,
+          -0.0012042567022834553,
+          0.7515284671563344
+        ],
+        [
+          -0.001204256702283455,
+          1.0,
+          0.0025226555541772214
+        ],
+        [
+          0.7515284671563344,
+          0.002522655554177221,
+          1.0
+        ]
+      ],
+      "empirical_mean": [
+        0.0015319786051472932,
+        0.00034908750941035443,
+        0.002958842519005936
+      ],
+      "empirical_std_ddof1": [
+        1.002849657288022,
+        0.998779555138056,
+        1.0010715441998361
+      ],
+      "family": "symmetric_preregistered_partial_correlation_grid",
+      "matrix_sha256": "857aec4e93471e61ecc4a84093b7a032b5489ac8eeb5d65add29523571ab7d1e",
+      "max_abs_empirical_correlation_error": 0.0025226555541772214,
+      "max_abs_empirical_mean": 0.002958842519005936,
+      "max_abs_empirical_std_minus_one": 0.0028496572880218896,
+      "max_abs_registered_vs_computed_Cholesky": 0.0,
+      "model_id": "VINE_u+0.00_v+0.75_w+0.00",
+      "nearest_PSD_projection_used": false,
+      "ordered_matrix": [
+        [
+          1.0,
+          0.0,
+          0.75
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.75,
+          0.0,
+          1.0
+        ]
+      ],
+      "registered_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.75,
+          0.0,
+          0.6614378277661477
+        ]
+      ],
+      "replay": {
+        "epsilon_little_endian_float64_sha256": "facae55cd2f53f4d64bd8d0b39a93788b455dad884a9cf50632962788b567d77",
+        "exact_array_equal": true,
+        "samples": 4096
+      },
+      "samples": 200000,
+      "seed": 7604413659949985005
+    },
+    {
+      "acceptance": {
+        "coherent_temperature_curve_probe_passed": true,
+        "empirical_correlation_passed": true,
+        "empirical_mean_passed": true,
+        "empirical_std_passed": true,
+        "factorization_passed": true,
+        "fixed_seed_replay_passed": true
+      },
+      "coherent_temperature_curve_probe": {
+        "actual_posterior_reconstruction": false,
+        "all_rates_positive": true,
+        "draws": 16,
+        "evaluations": 2880,
+        "max_abs_reconstructed_q_error": 1.7319479184152442e-13,
+        "minimum_rate": 1.3655575854660407e-11,
+        "one_scalar_q_held_across_temperature_per_reaction": true,
+        "role": "mathematical_curve_coherence_stress_only",
+        "temperature_rows_per_reaction": 60
+      },
+      "computed_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.75,
+          0.49607837082461076,
+          0.4375
+        ]
+      ],
+      "empirical_correlation": [
+        [
+          1.0,
+          -0.0003080101663303766,
+          0.7497310765024832
+        ],
+        [
+          -0.0003080101663303766,
+          1.0,
+          0.49626899762335136
+        ],
+        [
+          0.749731076502483,
+          0.49626899762335136,
+          1.0
+        ]
+      ],
+      "empirical_mean": [
+        -0.002003087371187919,
+        0.0018963638792469592,
+        -0.001691982092322557
+      ],
+      "empirical_std_ddof1": [
+        1.0000114371190887,
+        0.9977334403757748,
+        0.9991341746833857
+      ],
+      "family": "symmetric_preregistered_partial_correlation_grid",
+      "matrix_sha256": "2134d842b20c9ed66e499779399d11532c0cb17dc012aee9b1e0687a0f15f024",
+      "max_abs_empirical_correlation_error": 0.0003080101663303766,
+      "max_abs_empirical_mean": 0.002003087371187919,
+      "max_abs_empirical_std_minus_one": 0.002266559624225173,
+      "max_abs_registered_vs_computed_Cholesky": 0.0,
+      "model_id": "VINE_u+0.00_v+0.75_w+0.75",
+      "nearest_PSD_projection_used": false,
+      "ordered_matrix": [
+        [
+          1.0,
+          0.0,
+          0.75
+        ],
+        [
+          0.0,
+          1.0,
+          0.49607837082461076
+        ],
+        [
+          0.75,
+          0.49607837082461076,
+          1.0
+        ]
+      ],
+      "registered_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.75,
+          0.49607837082461076,
+          0.4375
+        ]
+      ],
+      "replay": {
+        "epsilon_little_endian_float64_sha256": "97018e429bcb41413594b1ccf8a16be2fd1171387f04e7f5abd0feaa784053fc",
+        "exact_array_equal": true,
+        "samples": 4096
+      },
+      "samples": 200000,
+      "seed": 18241257096358303430
+    },
+    {
+      "acceptance": {
+        "coherent_temperature_curve_probe_passed": true,
+        "empirical_correlation_passed": true,
+        "empirical_mean_passed": true,
+        "empirical_std_passed": true,
+        "factorization_passed": true,
+        "fixed_seed_replay_passed": true
+      },
+      "coherent_temperature_curve_probe": {
+        "actual_posterior_reconstruction": false,
+        "all_rates_positive": true,
+        "draws": 16,
+        "evaluations": 2880,
+        "max_abs_reconstructed_q_error": 1.724176357242868e-13,
+        "minimum_rate": 1.3680426103240106e-11,
+        "one_scalar_q_held_across_temperature_per_reaction": true,
+        "role": "mathematical_curve_coherence_stress_only",
+        "temperature_rows_per_reaction": 60
+      },
+      "computed_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.75,
+          0.6614378277661477,
+          0.0
+        ],
+        [
+          -0.75,
+          -0.4960783708246107,
+          0.4375
+        ]
+      ],
+      "empirical_correlation": [
+        [
+          0.9999999999999998,
+          0.7494868206210334,
+          -0.7495228895225257
+        ],
+        [
+          0.7494868206210334,
+          1.0,
+          -0.8910600062998363
+        ],
+        [
+          -0.7495228895225257,
+          -0.8910600062998363,
+          0.9999999999999998
+        ]
+      ],
+      "empirical_mean": [
+        -0.0016690566878804123,
+        -0.0010065694143198203,
+        0.0017945610040858509
+      ],
+      "empirical_std_ddof1": [
+        1.0001305791952073,
+        1.0011612206687084,
+        1.0018899114023057
+      ],
+      "family": "symmetric_preregistered_partial_correlation_grid",
+      "matrix_sha256": "70b0a0891e4c58d2cecf1ff10ceaf25413a299a5fb4a9a15ae3a7214edacddc5",
+      "max_abs_empirical_correlation_error": 0.0005131793789665551,
+      "max_abs_empirical_mean": 0.0017945610040858509,
+      "max_abs_empirical_std_minus_one": 0.0018899114023056551,
+      "max_abs_registered_vs_computed_Cholesky": 0.0,
+      "model_id": "VINE_u+0.75_v-0.75_w-0.75",
+      "nearest_PSD_projection_used": false,
+      "ordered_matrix": [
+        [
+          1.0,
+          0.75,
+          -0.75
+        ],
+        [
+          0.75,
+          1.0,
+          -0.890625
+        ],
+        [
+          -0.75,
+          -0.890625,
+          1.0
+        ]
+      ],
+      "registered_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.75,
+          0.6614378277661477,
+          0.0
+        ],
+        [
+          -0.75,
+          -0.4960783708246107,
+          0.4375
+        ]
+      ],
+      "replay": {
+        "epsilon_little_endian_float64_sha256": "d8da667a67c9fd81bae9848addbb5d3cb6b55e170eb46c063c913ef26b22762a",
+        "exact_array_equal": true,
+        "samples": 4096
+      },
+      "samples": 200000,
+      "seed": 14451224473702531808
+    },
+    {
+      "acceptance": {
+        "coherent_temperature_curve_probe_passed": true,
+        "empirical_correlation_passed": true,
+        "empirical_mean_passed": true,
+        "empirical_std_passed": true,
+        "factorization_passed": true,
+        "fixed_seed_replay_passed": true
+      },
+      "coherent_temperature_curve_probe": {
+        "actual_posterior_reconstruction": false,
+        "all_rates_positive": true,
+        "draws": 16,
+        "evaluations": 2880,
+        "max_abs_reconstructed_q_error": 1.7053025658242404e-13,
+        "minimum_rate": 1.3304934561549204e-11,
+        "one_scalar_q_held_across_temperature_per_reaction": true,
+        "role": "mathematical_curve_coherence_stress_only",
+        "temperature_rows_per_reaction": 60
+      },
+      "computed_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.75,
+          0.6614378277661477,
+          0.0
+        ],
+        [
+          -0.75,
+          0.0,
+          0.6614378277661477
+        ]
+      ],
+      "empirical_correlation": [
+        [
+          1.0,
+          0.7490698278983124,
+          -0.7500208789826598
+        ],
+        [
+          0.7490698278983124,
+          0.9999999999999998,
+          -0.562288267421592
+        ],
+        [
+          -0.7500208789826597,
+          -0.5622882674215919,
+          1.0
+        ]
+      ],
+      "empirical_mean": [
+        -0.002633132826359785,
+        -0.0012406114666233864,
+        0.0022712017490519785
+      ],
+      "empirical_std_ddof1": [
+        0.9995846167524439,
+        1.0002492245001682,
+        0.9992351444853443
+      ],
+      "family": "symmetric_preregistered_partial_correlation_grid",
+      "matrix_sha256": "ba4604c908d8712db71adb757942b4e3626f84a991dc51d30c8303b9d82e09ad",
+      "max_abs_empirical_correlation_error": 0.0009301721016875542,
+      "max_abs_empirical_mean": 0.002633132826359785,
+      "max_abs_empirical_std_minus_one": 0.0007648555146556602,
+      "max_abs_registered_vs_computed_Cholesky": 0.0,
+      "model_id": "VINE_u+0.75_v-0.75_w+0.00",
+      "nearest_PSD_projection_used": false,
+      "ordered_matrix": [
+        [
+          1.0,
+          0.75,
+          -0.75
+        ],
+        [
+          0.75,
+          1.0,
+          -0.5625
+        ],
+        [
+          -0.75,
+          -0.5625,
+          1.0
+        ]
+      ],
+      "registered_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.75,
+          0.6614378277661477,
+          0.0
+        ],
+        [
+          -0.75,
+          0.0,
+          0.6614378277661477
+        ]
+      ],
+      "replay": {
+        "epsilon_little_endian_float64_sha256": "9a5247b87b5931e38f59f698c7cdc41e7977e0503d6a1f10a7e0375658f402b3",
+        "exact_array_equal": true,
+        "samples": 4096
+      },
+      "samples": 200000,
+      "seed": 2722564560589349743
+    },
+    {
+      "acceptance": {
+        "coherent_temperature_curve_probe_passed": true,
+        "empirical_correlation_passed": true,
+        "empirical_mean_passed": true,
+        "empirical_std_passed": true,
+        "factorization_passed": true,
+        "fixed_seed_replay_passed": true
+      },
+      "coherent_temperature_curve_probe": {
+        "actual_posterior_reconstruction": false,
+        "all_rates_positive": true,
+        "draws": 16,
+        "evaluations": 2880,
+        "max_abs_reconstructed_q_error": 1.7530421558831222e-13,
+        "minimum_rate": 1.3499352110285958e-11,
+        "one_scalar_q_held_across_temperature_per_reaction": true,
+        "role": "mathematical_curve_coherence_stress_only",
+        "temperature_rows_per_reaction": 60
+      },
+      "computed_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.75,
+          0.6614378277661477,
+          0.0
+        ],
+        [
+          -0.75,
+          0.4960783708246107,
+          0.4375
+        ]
+      ],
+      "empirical_correlation": [
+        [
+          1.0,
+          0.7496707272045342,
+          -0.7492650316423605
+        ],
+        [
+          0.7496707272045342,
+          0.9999999999999998,
+          -0.23309471493721987
+        ],
+        [
+          -0.7492650316423606,
+          -0.2330947149372199,
+          1.0
+        ]
+      ],
+      "empirical_mean": [
+        -0.0005035507947996291,
+        -0.0029379289468083767,
+        -0.002756429764230664
+      ],
+      "empirical_std_ddof1": [
+        1.0007401349919047,
+        1.0000098433486513,
+        0.9999221456286163
+      ],
+      "family": "symmetric_preregistered_partial_correlation_grid",
+      "matrix_sha256": "72089f7dc553ccc14b88308ed7b818c075833072d9dbbea1a03047c52534e4b0",
+      "max_abs_empirical_correlation_error": 0.0012802850627801343,
+      "max_abs_empirical_mean": 0.0029379289468083767,
+      "max_abs_empirical_std_minus_one": 0.0007401349919047284,
+      "max_abs_registered_vs_computed_Cholesky": 0.0,
+      "model_id": "VINE_u+0.75_v-0.75_w+0.75",
+      "nearest_PSD_projection_used": false,
+      "ordered_matrix": [
+        [
+          1.0,
+          0.75,
+          -0.75
+        ],
+        [
+          0.75,
+          1.0,
+          -0.234375
+        ],
+        [
+          -0.75,
+          -0.234375,
+          1.0
+        ]
+      ],
+      "registered_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.75,
+          0.6614378277661477,
+          0.0
+        ],
+        [
+          -0.75,
+          0.4960783708246107,
+          0.4375
+        ]
+      ],
+      "replay": {
+        "epsilon_little_endian_float64_sha256": "3790bfbe82abf782ee81cc054aef4eb81ad447b3e9a771e28e1aaa286592b052",
+        "exact_array_equal": true,
+        "samples": 4096
+      },
+      "samples": 200000,
+      "seed": 8485048511243036629
+    },
+    {
+      "acceptance": {
+        "coherent_temperature_curve_probe_passed": true,
+        "empirical_correlation_passed": true,
+        "empirical_mean_passed": true,
+        "empirical_std_passed": true,
+        "factorization_passed": true,
+        "fixed_seed_replay_passed": true
+      },
+      "coherent_temperature_curve_probe": {
+        "actual_posterior_reconstruction": false,
+        "all_rates_positive": true,
+        "draws": 16,
+        "evaluations": 2880,
+        "max_abs_reconstructed_q_error": 1.63202784619898e-13,
+        "minimum_rate": 1.4037793357777574e-11,
+        "one_scalar_q_held_across_temperature_per_reaction": true,
+        "role": "mathematical_curve_coherence_stress_only",
+        "temperature_rows_per_reaction": 60
+      },
+      "computed_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.75,
+          0.6614378277661477,
+          0.0
+        ],
+        [
+          0.0,
+          -0.75,
+          0.6614378277661477
+        ]
+      ],
+      "empirical_correlation": [
+        [
+          1.0,
+          0.7503827809889362,
+          -0.0012757318780285867
+        ],
+        [
+          0.7503827809889361,
+          1.0,
+          -0.4963467467797584
+        ],
+        [
+          -0.0012757318780285867,
+          -0.4963467467797584,
+          0.9999999999999999
+        ]
+      ],
+      "empirical_mean": [
+        -0.0018855476407019693,
+        -0.001224195135295408,
+        0.0008187661052326867
+      ],
+      "empirical_std_ddof1": [
+        0.9987108030037354,
+        0.9983967428623004,
+        0.9994067644726315
+      ],
+      "family": "symmetric_preregistered_partial_correlation_grid",
+      "matrix_sha256": "69d251fa526b56c1e88ef939166ddd33d32093f0f3ad6618fee330eb7cf6963f",
+      "max_abs_empirical_correlation_error": 0.0012757318780285867,
+      "max_abs_empirical_mean": 0.0018855476407019693,
+      "max_abs_empirical_std_minus_one": 0.0016032571376995985,
+      "max_abs_registered_vs_computed_Cholesky": 0.0,
+      "model_id": "VINE_u+0.75_v+0.00_w-0.75",
+      "nearest_PSD_projection_used": false,
+      "ordered_matrix": [
+        [
+          1.0,
+          0.75,
+          0.0
+        ],
+        [
+          0.75,
+          1.0,
+          -0.49607837082461076
+        ],
+        [
+          0.0,
+          -0.49607837082461076,
+          1.0
+        ]
+      ],
+      "registered_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.75,
+          0.6614378277661477,
+          0.0
+        ],
+        [
+          0.0,
+          -0.75,
+          0.6614378277661477
+        ]
+      ],
+      "replay": {
+        "epsilon_little_endian_float64_sha256": "5787d79753583122c700fbffbd74767b18d6a17b24af51970f0b4d959c68a758",
+        "exact_array_equal": true,
+        "samples": 4096
+      },
+      "samples": 200000,
+      "seed": 17212201188783393312
+    },
+    {
+      "acceptance": {
+        "coherent_temperature_curve_probe_passed": true,
+        "empirical_correlation_passed": true,
+        "empirical_mean_passed": true,
+        "empirical_std_passed": true,
+        "factorization_passed": true,
+        "fixed_seed_replay_passed": true
+      },
+      "coherent_temperature_curve_probe": {
+        "actual_posterior_reconstruction": false,
+        "all_rates_positive": true,
+        "draws": 16,
+        "evaluations": 2880,
+        "max_abs_reconstructed_q_error": 1.7630341631047486e-13,
+        "minimum_rate": 1.3770520837349864e-11,
+        "one_scalar_q_held_across_temperature_per_reaction": true,
+        "role": "mathematical_curve_coherence_stress_only",
+        "temperature_rows_per_reaction": 60
+      },
+      "computed_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.75,
+          0.6614378277661477,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "empirical_correlation": [
+        [
+          1.0,
+          0.7491163958017009,
+          -0.0010506473566237544
+        ],
+        [
+          0.7491163958017009,
+          0.9999999999999999,
+          -0.0002632901868320571
+        ],
+        [
+          -0.0010506473566237544,
+          -0.00026329018683205716,
+          1.0
+        ]
+      ],
+      "empirical_mean": [
+        0.0007821315736327251,
+        0.0009302507273784556,
+        0.003171279567466198
+      ],
+      "empirical_std_ddof1": [
+        0.9992549781565723,
+        0.9986403849933347,
+        0.9995529947052896
+      ],
+      "family": "symmetric_preregistered_partial_correlation_grid",
+      "matrix_sha256": "b4de98a4ead554b3cc9f2c3033b80bcd3d6843b1a3346a5359d62e3fea6e7388",
+      "max_abs_empirical_correlation_error": 0.0010506473566237544,
+      "max_abs_empirical_mean": 0.003171279567466198,
+      "max_abs_empirical_std_minus_one": 0.0013596150066652601,
+      "max_abs_registered_vs_computed_Cholesky": 0.0,
+      "model_id": "VINE_u+0.75_v+0.00_w+0.00",
+      "nearest_PSD_projection_used": false,
+      "ordered_matrix": [
+        [
+          1.0,
+          0.75,
+          0.0
+        ],
+        [
+          0.75,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "registered_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.75,
+          0.6614378277661477,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "replay": {
+        "epsilon_little_endian_float64_sha256": "87b2e0d4976ce5ca5a4f61e97440b1316f761324e27e42a51ebcb1903620af0f",
+        "exact_array_equal": true,
+        "samples": 4096
+      },
+      "samples": 200000,
+      "seed": 3801732100453534703
+    },
+    {
+      "acceptance": {
+        "coherent_temperature_curve_probe_passed": true,
+        "empirical_correlation_passed": true,
+        "empirical_mean_passed": true,
+        "empirical_std_passed": true,
+        "factorization_passed": true,
+        "fixed_seed_replay_passed": true
+      },
+      "coherent_temperature_curve_probe": {
+        "actual_posterior_reconstruction": false,
+        "all_rates_positive": true,
+        "draws": 16,
+        "evaluations": 2880,
+        "max_abs_reconstructed_q_error": 1.6986412276764895e-13,
+        "minimum_rate": 1.3668621909456714e-11,
+        "one_scalar_q_held_across_temperature_per_reaction": true,
+        "role": "mathematical_curve_coherence_stress_only",
+        "temperature_rows_per_reaction": 60
+      },
+      "computed_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.75,
+          0.6614378277661477,
+          0.0
+        ],
+        [
+          0.0,
+          0.75,
+          0.6614378277661477
+        ]
+      ],
+      "empirical_correlation": [
+        [
+          1.0,
+          0.7508325137186097,
+          -0.0003776772757205926
+        ],
+        [
+          0.7508325137186096,
+          1.0,
+          0.49368661786000484
+        ],
+        [
+          -0.0003776772757205926,
+          0.49368661786000484,
+          1.0
+        ]
+      ],
+      "empirical_mean": [
+        -0.003822675340205993,
+        -0.0011185413491796102,
+        -0.0011274124228120102
+      ],
+      "empirical_std_ddof1": [
+        1.0009964735218186,
+        1.000539546284958,
+        0.9985646066710263
+      ],
+      "family": "symmetric_preregistered_partial_correlation_grid",
+      "matrix_sha256": "6e17e067f35ad3195c063bdc79262a965672e368ac503330555ed8a4280e31ec",
+      "max_abs_empirical_correlation_error": 0.00239175296460592,
+      "max_abs_empirical_mean": 0.003822675340205993,
+      "max_abs_empirical_std_minus_one": 0.0014353933289736887,
+      "max_abs_registered_vs_computed_Cholesky": 0.0,
+      "model_id": "VINE_u+0.75_v+0.00_w+0.75",
+      "nearest_PSD_projection_used": false,
+      "ordered_matrix": [
+        [
+          1.0,
+          0.75,
+          0.0
+        ],
+        [
+          0.75,
+          1.0,
+          0.49607837082461076
+        ],
+        [
+          0.0,
+          0.49607837082461076,
+          1.0
+        ]
+      ],
+      "registered_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.75,
+          0.6614378277661477,
+          0.0
+        ],
+        [
+          0.0,
+          0.75,
+          0.6614378277661477
+        ]
+      ],
+      "replay": {
+        "epsilon_little_endian_float64_sha256": "9dab905ede48685133d1fd9b73dab55ca5816085b43b5d786cd6760ea9f6e1ba",
+        "exact_array_equal": true,
+        "samples": 4096
+      },
+      "samples": 200000,
+      "seed": 2721896573350163233
+    },
+    {
+      "acceptance": {
+        "coherent_temperature_curve_probe_passed": true,
+        "empirical_correlation_passed": true,
+        "empirical_mean_passed": true,
+        "empirical_std_passed": true,
+        "factorization_passed": true,
+        "fixed_seed_replay_passed": true
+      },
+      "coherent_temperature_curve_probe": {
+        "actual_posterior_reconstruction": false,
+        "all_rates_positive": true,
+        "draws": 16,
+        "evaluations": 2880,
+        "max_abs_reconstructed_q_error": 1.7030821197749901e-13,
+        "minimum_rate": 1.3868275547451033e-11,
+        "one_scalar_q_held_across_temperature_per_reaction": true,
+        "role": "mathematical_curve_coherence_stress_only",
+        "temperature_rows_per_reaction": 60
+      },
+      "computed_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.75,
+          0.6614378277661477,
+          0.0
+        ],
+        [
+          0.75,
+          -0.4960783708246107,
+          0.4375
+        ]
+      ],
+      "empirical_correlation": [
+        [
+          1.0,
+          0.7483695502906531,
+          0.7500754453736947
+        ],
+        [
+          0.748369550290653,
+          1.0,
+          0.23255976002171522
+        ],
+        [
+          0.7500754453736947,
+          0.23255976002171522,
+          1.0
+        ]
+      ],
+      "empirical_mean": [
+        0.002502786033396388,
+        0.0015628221906241046,
+        0.0024658494276108304
+      ],
+      "empirical_std_ddof1": [
+        0.9970461172368279,
+        0.9955561685317978,
+        0.9992187740189116
+      ],
+      "family": "symmetric_preregistered_partial_correlation_grid",
+      "matrix_sha256": "96810ee6f530c2786e3dffd1f2d6736273ef56bf8226b8c4fa9b1a706624899e",
+      "max_abs_empirical_correlation_error": 0.0018152399782847828,
+      "max_abs_empirical_mean": 0.002502786033396388,
+      "max_abs_empirical_std_minus_one": 0.004443831468202153,
+      "max_abs_registered_vs_computed_Cholesky": 0.0,
+      "model_id": "VINE_u+0.75_v+0.75_w-0.75",
+      "nearest_PSD_projection_used": false,
+      "ordered_matrix": [
+        [
+          1.0,
+          0.75,
+          0.75
+        ],
+        [
+          0.75,
+          1.0,
+          0.234375
+        ],
+        [
+          0.75,
+          0.234375,
+          1.0
+        ]
+      ],
+      "registered_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.75,
+          0.6614378277661477,
+          0.0
+        ],
+        [
+          0.75,
+          -0.4960783708246107,
+          0.4375
+        ]
+      ],
+      "replay": {
+        "epsilon_little_endian_float64_sha256": "b7b526902037457bfe5784c5f506466727423f33a75733e9bda783032d5dcd1a",
+        "exact_array_equal": true,
+        "samples": 4096
+      },
+      "samples": 200000,
+      "seed": 13798189957594284929
+    },
+    {
+      "acceptance": {
+        "coherent_temperature_curve_probe_passed": true,
+        "empirical_correlation_passed": true,
+        "empirical_mean_passed": true,
+        "empirical_std_passed": true,
+        "factorization_passed": true,
+        "fixed_seed_replay_passed": true
+      },
+      "coherent_temperature_curve_probe": {
+        "actual_posterior_reconstruction": false,
+        "all_rates_positive": true,
+        "draws": 16,
+        "evaluations": 2880,
+        "max_abs_reconstructed_q_error": 1.7158496845581794e-13,
+        "minimum_rate": 1.4038781443733456e-11,
+        "one_scalar_q_held_across_temperature_per_reaction": true,
+        "role": "mathematical_curve_coherence_stress_only",
+        "temperature_rows_per_reaction": 60
+      },
+      "computed_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.75,
+          0.6614378277661477,
+          0.0
+        ],
+        [
+          0.75,
+          0.0,
+          0.6614378277661477
+        ]
+      ],
+      "empirical_correlation": [
+        [
+          1.0,
+          0.7518039094959054,
+          0.7502708632865872
+        ],
+        [
+          0.7518039094959053,
+          1.0,
+          0.5645157404398173
+        ],
+        [
+          0.7502708632865871,
+          0.5645157404398173,
+          0.9999999999999998
+        ]
+      ],
+      "empirical_mean": [
+        0.004876950305625897,
+        0.0051732864043190045,
+        0.002968992945423402
+      ],
+      "empirical_std_ddof1": [
+        1.0027249233929358,
+        1.0019474909302393,
+        1.002106184824074
+      ],
+      "family": "symmetric_preregistered_partial_correlation_grid",
+      "matrix_sha256": "0aa0b20cabb362f0c14268e1eb4f426124a8018bb41f5bcd3056523394e73e22",
+      "max_abs_empirical_correlation_error": 0.0020157404398173373,
+      "max_abs_empirical_mean": 0.0051732864043190045,
+      "max_abs_empirical_std_minus_one": 0.0027249233929358407,
+      "max_abs_registered_vs_computed_Cholesky": 0.0,
+      "model_id": "VINE_u+0.75_v+0.75_w+0.00",
+      "nearest_PSD_projection_used": false,
+      "ordered_matrix": [
+        [
+          1.0,
+          0.75,
+          0.75
+        ],
+        [
+          0.75,
+          1.0,
+          0.5625
+        ],
+        [
+          0.75,
+          0.5625,
+          1.0
+        ]
+      ],
+      "registered_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.75,
+          0.6614378277661477,
+          0.0
+        ],
+        [
+          0.75,
+          0.0,
+          0.6614378277661477
+        ]
+      ],
+      "replay": {
+        "epsilon_little_endian_float64_sha256": "82e44ad1582a4ed53c8cd165d2986d385849ce4be08fdee5029d1ed0de7e069a",
+        "exact_array_equal": true,
+        "samples": 4096
+      },
+      "samples": 200000,
+      "seed": 2847147748492455633
+    },
+    {
+      "acceptance": {
+        "coherent_temperature_curve_probe_passed": true,
+        "empirical_correlation_passed": true,
+        "empirical_mean_passed": true,
+        "empirical_std_passed": true,
+        "factorization_passed": true,
+        "fixed_seed_replay_passed": true
+      },
+      "coherent_temperature_curve_probe": {
+        "actual_posterior_reconstruction": false,
+        "all_rates_positive": true,
+        "draws": 16,
+        "evaluations": 2880,
+        "max_abs_reconstructed_q_error": 1.6986412276764895e-13,
+        "minimum_rate": 1.4223207024533667e-11,
+        "one_scalar_q_held_across_temperature_per_reaction": true,
+        "role": "mathematical_curve_coherence_stress_only",
+        "temperature_rows_per_reaction": 60
+      },
+      "computed_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.75,
+          0.6614378277661477,
+          0.0
+        ],
+        [
+          0.75,
+          0.4960783708246107,
+          0.4375
+        ]
+      ],
+      "empirical_correlation": [
+        [
+          1.0,
+          0.751971377135095,
+          0.7503167326452436
+        ],
+        [
+          0.751971377135095,
+          1.0,
+          0.8908396023475059
+        ],
+        [
+          0.7503167326452436,
+          0.8908396023475058,
+          1.0
+        ]
+      ],
+      "empirical_mean": [
+        0.004214369181598107,
+        0.004119481593811816,
+        0.004772636463168264
+      ],
+      "empirical_std_ddof1": [
+        0.999963865621354,
+        1.00035775022849,
+        1.0014781770989145
+      ],
+      "family": "symmetric_preregistered_partial_correlation_grid",
+      "matrix_sha256": "f8d3ddbd853458df204dd34bad2be2b4955e770957d55a29b4c21d2a5917d594",
+      "max_abs_empirical_correlation_error": 0.001971377135094987,
+      "max_abs_empirical_mean": 0.004772636463168264,
+      "max_abs_empirical_std_minus_one": 0.0014781770989145127,
+      "max_abs_registered_vs_computed_Cholesky": 0.0,
+      "model_id": "VINE_u+0.75_v+0.75_w+0.75",
+      "nearest_PSD_projection_used": false,
+      "ordered_matrix": [
+        [
+          1.0,
+          0.75,
+          0.75
+        ],
+        [
+          0.75,
+          1.0,
+          0.890625
+        ],
+        [
+          0.75,
+          0.890625,
+          1.0
+        ]
+      ],
+      "registered_Cholesky_lower": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.75,
+          0.6614378277661477,
+          0.0
+        ],
+        [
+          0.75,
+          0.4960783708246107,
+          0.4375
+        ]
+      ],
+      "replay": {
+        "epsilon_little_endian_float64_sha256": "a74c49aec790b2bf7ecccb969e3ee9884c510758fb4ae42c9106871a7662df6a",
+        "exact_array_equal": true,
+        "samples": 4096
+      },
+      "samples": 200000,
+      "seed": 3567788208380034725
+    }
+  ],
+  "payload_sha256_without_self_hash": "7ee7abd265a559d844e870a7a21cbc0a2edc1b0442fd95155c855d52f3d721ec",
+  "sampler": {
+    "algorithm": "numpy_Generator_PCG64DXSM_standard_normal_then_registered_Cholesky",
+    "base_seed": 2026072301,
+    "float_dtype": "float64",
+    "model_seed_derivation": "big_endian_uint64(first_8_bytes(SHA256(base_seed:model_id)))",
+    "reaction_order": [
+      "dp_gamma_he3",
+      "dd_n_he3",
+      "dd_p_t"
+    ],
+    "replay_samples": 4096,
+    "samples_per_model": 200000
+  },
+  "schema_version": 1,
+  "source": {
+    "candidate_contract": "artifacts/priors/R0-PRIOR-CANDIDATE-CONTRACT-v1/package.json",
+    "candidate_contract_sha256": "13e923a28436d67e50dba86bbbe0fb62e25eca201d80b22bce4e0026aa7cd78a",
+    "coherent_comparators": "artifacts/priors/ETR25-R0-COHERENT-COMPARATORS-v1/package.json",
+    "coherent_comparators_sha256": "0634a74a1e1937b8d6b959282f10e21f505514e7449ccbd05b5e639083f2b5dd"
+  },
+  "status": "preregistered_correlation_stress_sampler_numerically_validated_scientific_covariance_not_inferred",
+  "summary": {
+    "all_model_checks_passed": true,
+    "fixed_seed_replay_passed_models": 35,
+    "max_abs_coherent_q_reconstruction_error": 1.7985612998927536e-13,
+    "max_abs_empirical_correlation_error": 0.005144683446819753,
+    "max_abs_empirical_mean": 0.0051732864043190045,
+    "max_abs_empirical_std_minus_one": 0.004443831468202153,
+    "model_records": 35,
+    "nearest_PSD_projection_used_models": 0,
+    "unique_matrix_sha256": 34
+  },
+  "task_id": "UQ0-R0-RATE-PRIOR"
+}
