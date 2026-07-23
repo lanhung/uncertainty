@@ -1,0 +1,847 @@
+{
+  "acceptance": {
+    "absolute_tolerance": 1e-300,
+    "duplicate_shift_guard_passed": true,
+    "forward_transform_passed": true,
+    "mapping_uniqueness_passed": true,
+    "relative_tolerance": 5e-13,
+    "reverse_log_shift_passed": true,
+    "reverse_same_draw_passed": true,
+    "sequential_draw_isolation_passed": true,
+    "temperature_unit_bounds_contract_passed": true
+  },
+  "artifact_id": "PRYMORDIAL-R0-MAPPING-REGRESSION-v1",
+  "configuration": {
+    "NP_nuclear_flag": false,
+    "all_NP_delta": 0.0,
+    "floating_point": "numpy_float64",
+    "interpolation": "scipy_interp1d_linear",
+    "project_out_of_grid_behavior": "structured_rejection",
+    "q_values": [
+      -3.0,
+      -1.0,
+      0.0,
+      1.0,
+      3.0
+    ],
+    "upstream_out_of_grid_behavior": "extrapolate"
+  },
+  "duplicate_shift_guard": {
+    "accepted_contract": "NP_nuclear_flag=False and every NP_delta_* exactly zero",
+    "guard_cases": [
+      {
+        "accepted": true,
+        "case": "accepted_external_q_only"
+      },
+      {
+        "accepted": false,
+        "case": "reject_flag_even_zero_delta",
+        "code": "duplicate_nuclear_shift_representation",
+        "details": {
+          "nonzero_native_deltas": {},
+          "np_nuclear_flag": true,
+          "required": "NP_nuclear_flag_false_and_all_NP_delta_zero"
+        }
+      },
+      {
+        "accepted": false,
+        "case": "reject_latent_nonzero_delta",
+        "code": "duplicate_nuclear_shift_representation",
+        "details": {
+          "nonzero_native_deltas": {
+            "NP_delta_dpHe3g": 0.25
+          },
+          "np_nuclear_flag": false,
+          "required": "NP_nuclear_flag_false_and_all_NP_delta_zero"
+        }
+      },
+      {
+        "accepted": false,
+        "case": "reject_simultaneous_q_and_delta",
+        "code": "duplicate_nuclear_shift_representation",
+        "details": {
+          "nonzero_native_deltas": {
+            "NP_delta_dpHe3g": 0.25
+          },
+          "np_nuclear_flag": true,
+          "required": "NP_nuclear_flag_false_and_all_NP_delta_zero"
+        }
+      }
+    ],
+    "upstream_simultaneous_mechanisms_observation": {
+      "NP_delta": 0.25,
+      "accepted_for_project_draws": false,
+      "max_relative_error_against_native_equation": 2.220446049250313e-15,
+      "native_equation": "median*exp(q*log(exp_sigma))+NP_delta*median",
+      "q": 1.0,
+      "reaction": "dpHe3g"
+    }
+  },
+  "environment": {
+    "numpy": "2.3.5",
+    "platform": "Linux-5.15.0-78-generic-x86_64-with-glibc2.35",
+    "python": "3.11.15",
+    "scipy": "1.16.3"
+  },
+  "evidence_sha256": "1eef88bd3cde4d628fddcc8852121f9af6cc08415aabdd69331260d86d442c73",
+  "mapping_uniqueness": {
+    "all_three_mappings_unique": true,
+    "cases": [
+      {
+        "constructor_index_zero_based": 1,
+        "max_off_target_relative_change": 0.0,
+        "response_max_relative_change": {
+          "ddHe3n": 0.0,
+          "ddtp": 0.0,
+          "dpHe3g": 0.038999999999999924
+        },
+        "target_changed": true,
+        "target_parameter": "p_dpHe3g",
+        "unique": true
+      },
+      {
+        "constructor_index_zero_based": 2,
+        "max_off_target_relative_change": 0.0,
+        "response_max_relative_change": {
+          "ddHe3n": 0.01808077538482844,
+          "ddtp": 0.0,
+          "dpHe3g": 0.0
+        },
+        "target_changed": true,
+        "target_parameter": "p_ddHe3n",
+        "unique": true
+      },
+      {
+        "constructor_index_zero_based": 3,
+        "max_off_target_relative_change": 0.0,
+        "response_max_relative_change": {
+          "ddHe3n": 0.0,
+          "ddtp": 0.018999999999999906,
+          "dpHe3g": 0.0
+        },
+        "target_changed": true,
+        "target_parameter": "p_ddtp",
+        "unique": true
+      }
+    ]
+  },
+  "reactions": [
+    {
+      "canonical_id": "d(p,gamma)3He",
+      "constructor_index_zero_based": 1,
+      "constructor_parameter": "p_dpHe3g",
+      "detailed_balance": {
+        "alpha": 16335000000.0,
+        "beta": 1.5,
+        "equation": "reverse=alpha*T9**beta*exp(gamma/T9)*same_forward_spline",
+        "gamma": -63.7491
+      },
+      "native_id": "dpHe3g",
+      "probe_grid": {
+        "construction": "all_native_knots_plus_geometric_midpoints",
+        "count": 999,
+        "sha256": "9734ba01853654103b783e25e1ac42f3a19712c0ddd98f4f58dd799c3b995015"
+      },
+      "q_results": [
+        {
+          "forward_rows": 999,
+          "forward_transform_max_relative_error": 2.220446049250313e-15,
+          "log_reverse_shift_minus_log_forward_shift_max_abs": 9.725553695716371e-14,
+          "log_reverse_shift_minus_log_forward_shift_rows_defined": 514,
+          "log_shift_rows_excluded_zero_or_subnormal": 485,
+          "q": -3.0,
+          "reverse_over_K_forward_max_relative_error": 1.1435297153639112e-13,
+          "reverse_rows_defined": 514,
+          "reverse_rows_excluded_zero_or_subnormal": 485
+        },
+        {
+          "forward_rows": 999,
+          "forward_transform_max_relative_error": 2.220446049250313e-15,
+          "log_reverse_shift_minus_log_forward_shift_max_abs": 1.0258460747536446e-13,
+          "log_reverse_shift_minus_log_forward_shift_rows_defined": 514,
+          "log_shift_rows_excluded_zero_or_subnormal": 485,
+          "q": -1.0,
+          "reverse_over_K_forward_max_relative_error": 1.141309269314661e-13,
+          "reverse_rows_defined": 514,
+          "reverse_rows_excluded_zero_or_subnormal": 485
+        },
+        {
+          "forward_rows": 999,
+          "forward_transform_max_relative_error": 2.220446049250313e-15,
+          "log_reverse_shift_minus_log_forward_shift_max_abs": 0.0,
+          "log_reverse_shift_minus_log_forward_shift_rows_defined": 0,
+          "log_shift_rows_excluded_zero_or_subnormal": 0,
+          "q": 0.0,
+          "reverse_over_K_forward_max_relative_error": 1.141309269314661e-13,
+          "reverse_rows_defined": 514,
+          "reverse_rows_excluded_zero_or_subnormal": 485
+        },
+        {
+          "forward_rows": 999,
+          "forward_transform_max_relative_error": 2.220446049250313e-15,
+          "log_reverse_shift_minus_log_forward_shift_max_abs": 1.0524914273446484e-13,
+          "log_reverse_shift_minus_log_forward_shift_rows_defined": 514,
+          "log_shift_rows_excluded_zero_or_subnormal": 485,
+          "q": 1.0,
+          "reverse_over_K_forward_max_relative_error": 1.141309269314661e-13,
+          "reverse_rows_defined": 514,
+          "reverse_rows_excluded_zero_or_subnormal": 485
+        },
+        {
+          "forward_rows": 999,
+          "forward_transform_max_relative_error": 2.220446049250313e-15,
+          "log_reverse_shift_minus_log_forward_shift_max_abs": 9.880984919163893e-14,
+          "log_reverse_shift_minus_log_forward_shift_rows_defined": 514,
+          "log_shift_rows_excluded_zero_or_subnormal": 485,
+          "q": 3.0,
+          "reverse_over_K_forward_max_relative_error": 1.141309269314661e-13,
+          "reverse_rows_defined": 514,
+          "reverse_rows_excluded_zero_or_subnormal": 485
+        }
+      ],
+      "table": {
+        "columns": [
+          "T9",
+          "median_forward_rate",
+          "exp_sigma"
+        ],
+        "grid_sha256": "c52c3a340fad83fa852d598dc8f8f7c3a6102b47af6cfeebc4b652d5c549aa20",
+        "knot_count": 500,
+        "maximum_T9": 10.0,
+        "minimum_T9": 0.001,
+        "relative_path": "PRyMrates/nuclear/key_primat_rates/dpHe3g.txt",
+        "sha256": "286148ae9b9605e41083937dcc91c2395033b8fb6c9221abcf2f25f860eef347",
+        "two_body_forward_rate_unit": "cm^3 mol^-1 s^-1"
+      },
+      "trace_sha256": "6167449fe44ca2624c0dfb2947569115bd228c4fe697ba355e946e271a6f3e4a"
+    },
+    {
+      "canonical_id": "d(d,n)3He",
+      "constructor_index_zero_based": 2,
+      "constructor_parameter": "p_ddHe3n",
+      "detailed_balance": {
+        "alpha": 1.73183,
+        "beta": 0.0,
+        "equation": "reverse=alpha*T9**beta*exp(gamma/T9)*same_forward_spline",
+        "gamma": -37.9341
+      },
+      "native_id": "ddHe3n",
+      "probe_grid": {
+        "construction": "all_native_knots_plus_geometric_midpoints",
+        "count": 999,
+        "sha256": "9734ba01853654103b783e25e1ac42f3a19712c0ddd98f4f58dd799c3b995015"
+      },
+      "q_results": [
+        {
+          "forward_rows": 999,
+          "forward_transform_max_relative_error": 2.6645352591003757e-15,
+          "log_reverse_shift_minus_log_forward_shift_max_abs": 7.993605777301127e-14,
+          "log_reverse_shift_minus_log_forward_shift_rows_defined": 569,
+          "log_shift_rows_excluded_zero_or_subnormal": 430,
+          "q": -3.0,
+          "reverse_over_K_forward_max_relative_error": 1.1390888232654106e-13,
+          "reverse_rows_defined": 569,
+          "reverse_rows_excluded_zero_or_subnormal": 430
+        },
+        {
+          "forward_rows": 999,
+          "forward_transform_max_relative_error": 2.6645352591003757e-15,
+          "log_reverse_shift_minus_log_forward_shift_max_abs": 6.572520305780927e-14,
+          "log_reverse_shift_minus_log_forward_shift_rows_defined": 569,
+          "log_shift_rows_excluded_zero_or_subnormal": 430,
+          "q": -1.0,
+          "reverse_over_K_forward_max_relative_error": 1.1390888232654106e-13,
+          "reverse_rows_defined": 569,
+          "reverse_rows_excluded_zero_or_subnormal": 430
+        },
+        {
+          "forward_rows": 999,
+          "forward_transform_max_relative_error": 2.6645352591003757e-15,
+          "log_reverse_shift_minus_log_forward_shift_max_abs": 0.0,
+          "log_reverse_shift_minus_log_forward_shift_rows_defined": 0,
+          "log_shift_rows_excluded_zero_or_subnormal": 0,
+          "q": 0.0,
+          "reverse_over_K_forward_max_relative_error": 1.1390888232654106e-13,
+          "reverse_rows_defined": 569,
+          "reverse_rows_excluded_zero_or_subnormal": 430
+        },
+        {
+          "forward_rows": 999,
+          "forward_transform_max_relative_error": 2.6645352591003757e-15,
+          "log_reverse_shift_minus_log_forward_shift_max_abs": 6.572520305780927e-14,
+          "log_reverse_shift_minus_log_forward_shift_rows_defined": 569,
+          "log_shift_rows_excluded_zero_or_subnormal": 430,
+          "q": 1.0,
+          "reverse_over_K_forward_max_relative_error": 1.1390888232654106e-13,
+          "reverse_rows_defined": 569,
+          "reverse_rows_excluded_zero_or_subnormal": 430
+        },
+        {
+          "forward_rows": 999,
+          "forward_transform_max_relative_error": 2.6645352591003757e-15,
+          "log_reverse_shift_minus_log_forward_shift_max_abs": 7.993605777301127e-14,
+          "log_reverse_shift_minus_log_forward_shift_rows_defined": 569,
+          "log_shift_rows_excluded_zero_or_subnormal": 430,
+          "q": 3.0,
+          "reverse_over_K_forward_max_relative_error": 1.141309269314661e-13,
+          "reverse_rows_defined": 569,
+          "reverse_rows_excluded_zero_or_subnormal": 430
+        }
+      ],
+      "table": {
+        "columns": [
+          "T9",
+          "median_forward_rate",
+          "exp_sigma"
+        ],
+        "grid_sha256": "c52c3a340fad83fa852d598dc8f8f7c3a6102b47af6cfeebc4b652d5c549aa20",
+        "knot_count": 500,
+        "maximum_T9": 10.0,
+        "minimum_T9": 0.001,
+        "relative_path": "PRyMrates/nuclear/key_primat_rates/ddHe3n.txt",
+        "sha256": "4804d937668dfb8d9e5eedb8dfd46f39f48306771487625a77ebd26e6d30fbf4",
+        "two_body_forward_rate_unit": "cm^3 mol^-1 s^-1"
+      },
+      "trace_sha256": "ea66791c663a621d9ab69fe47c42c53587d3edd7ff65a577fb9565ce81ea6d92"
+    },
+    {
+      "canonical_id": "d(d,p)t",
+      "constructor_index_zero_based": 3,
+      "constructor_parameter": "p_ddtp",
+      "detailed_balance": {
+        "alpha": 1.73492,
+        "beta": 0.0,
+        "equation": "reverse=alpha*T9**beta*exp(gamma/T9)*same_forward_spline",
+        "gamma": -46.7971
+      },
+      "native_id": "ddtp",
+      "probe_grid": {
+        "construction": "all_native_knots_plus_geometric_midpoints",
+        "count": 999,
+        "sha256": "9734ba01853654103b783e25e1ac42f3a19712c0ddd98f4f58dd799c3b995015"
+      },
+      "q_results": [
+        {
+          "forward_rows": 999,
+          "forward_transform_max_relative_error": 2.6645352591003757e-15,
+          "log_reverse_shift_minus_log_forward_shift_max_abs": 7.993605777301127e-14,
+          "log_reverse_shift_minus_log_forward_shift_rows_defined": 546,
+          "log_shift_rows_excluded_zero_or_subnormal": 453,
+          "q": -3.0,
+          "reverse_over_K_forward_max_relative_error": 2.275957200481571e-13,
+          "reverse_rows_defined": 546,
+          "reverse_rows_excluded_zero_or_subnormal": 453
+        },
+        {
+          "forward_rows": 999,
+          "forward_transform_max_relative_error": 2.6645352591003757e-15,
+          "log_reverse_shift_minus_log_forward_shift_max_abs": 6.394884621840902e-14,
+          "log_reverse_shift_minus_log_forward_shift_rows_defined": 546,
+          "log_shift_rows_excluded_zero_or_subnormal": 453,
+          "q": -1.0,
+          "reverse_over_K_forward_max_relative_error": 2.275957200481571e-13,
+          "reverse_rows_defined": 546,
+          "reverse_rows_excluded_zero_or_subnormal": 453
+        },
+        {
+          "forward_rows": 999,
+          "forward_transform_max_relative_error": 2.6645352591003757e-15,
+          "log_reverse_shift_minus_log_forward_shift_max_abs": 0.0,
+          "log_reverse_shift_minus_log_forward_shift_rows_defined": 0,
+          "log_shift_rows_excluded_zero_or_subnormal": 0,
+          "q": 0.0,
+          "reverse_over_K_forward_max_relative_error": 2.275957200481571e-13,
+          "reverse_rows_defined": 546,
+          "reverse_rows_excluded_zero_or_subnormal": 453
+        },
+        {
+          "forward_rows": 999,
+          "forward_transform_max_relative_error": 2.6645352591003757e-15,
+          "log_reverse_shift_minus_log_forward_shift_max_abs": 6.572520305780927e-14,
+          "log_reverse_shift_minus_log_forward_shift_rows_defined": 546,
+          "log_shift_rows_excluded_zero_or_subnormal": 453,
+          "q": 1.0,
+          "reverse_over_K_forward_max_relative_error": 2.2737367544323206e-13,
+          "reverse_rows_defined": 546,
+          "reverse_rows_excluded_zero_or_subnormal": 453
+        },
+        {
+          "forward_rows": 999,
+          "forward_transform_max_relative_error": 2.6645352591003757e-15,
+          "log_reverse_shift_minus_log_forward_shift_max_abs": 7.993605777301127e-14,
+          "log_reverse_shift_minus_log_forward_shift_rows_defined": 546,
+          "log_shift_rows_excluded_zero_or_subnormal": 453,
+          "q": 3.0,
+          "reverse_over_K_forward_max_relative_error": 2.2737367544323206e-13,
+          "reverse_rows_defined": 546,
+          "reverse_rows_excluded_zero_or_subnormal": 453
+        }
+      ],
+      "table": {
+        "columns": [
+          "T9",
+          "median_forward_rate",
+          "exp_sigma"
+        ],
+        "grid_sha256": "c52c3a340fad83fa852d598dc8f8f7c3a6102b47af6cfeebc4b652d5c549aa20",
+        "knot_count": 500,
+        "maximum_T9": 10.0,
+        "minimum_T9": 0.001,
+        "relative_path": "PRyMrates/nuclear/key_primat_rates/ddtp.txt",
+        "sha256": "516038fc7fb4e0b526c7a239efd20437bbeb2f3c5daf734d5d0478320d568790",
+        "two_body_forward_rate_unit": "cm^3 mol^-1 s^-1"
+      },
+      "trace_sha256": "17008bd224af7da3c8a123bed608de39569d5f534b71e31db6d61baa98180b2b"
+    }
+  ],
+  "schema_version": 1,
+  "scientific_scope": {
+    "abundance_level_UQ_run": false,
+    "accepted_scientific_prior": false,
+    "claims": "C0 numerical mapping regression only",
+    "production_authorized": false,
+    "signoff_provided": false
+  },
+  "sequential_draw_isolation": {
+    "cases": [
+      {
+        "draw_index": 0,
+        "max_relative_error_against_fresh_reference": 0.0,
+        "q": -3.0,
+        "reaction": "dpHe3g"
+      },
+      {
+        "draw_index": 1,
+        "max_relative_error_against_fresh_reference": 0.0,
+        "q": 3.0,
+        "reaction": "dpHe3g"
+      },
+      {
+        "draw_index": 2,
+        "max_relative_error_against_fresh_reference": 0.0,
+        "q": -1.0,
+        "reaction": "dpHe3g"
+      },
+      {
+        "draw_index": 3,
+        "max_relative_error_against_fresh_reference": 0.0,
+        "q": 1.0,
+        "reaction": "dpHe3g"
+      },
+      {
+        "draw_index": 4,
+        "max_relative_error_against_fresh_reference": 0.0,
+        "q": 0.0,
+        "reaction": "dpHe3g"
+      },
+      {
+        "draw_index": 5,
+        "max_relative_error_against_fresh_reference": 0.0,
+        "q": -3.0,
+        "reaction": "dpHe3g"
+      },
+      {
+        "draw_index": 6,
+        "max_relative_error_against_fresh_reference": 0.0,
+        "q": 0.0,
+        "reaction": "dpHe3g"
+      },
+      {
+        "draw_index": 7,
+        "max_relative_error_against_fresh_reference": 0.0,
+        "q": 3.0,
+        "reaction": "dpHe3g"
+      },
+      {
+        "draw_index": 0,
+        "max_relative_error_against_fresh_reference": 0.0,
+        "q": -3.0,
+        "reaction": "ddHe3n"
+      },
+      {
+        "draw_index": 1,
+        "max_relative_error_against_fresh_reference": 0.0,
+        "q": 3.0,
+        "reaction": "ddHe3n"
+      },
+      {
+        "draw_index": 2,
+        "max_relative_error_against_fresh_reference": 0.0,
+        "q": -1.0,
+        "reaction": "ddHe3n"
+      },
+      {
+        "draw_index": 3,
+        "max_relative_error_against_fresh_reference": 0.0,
+        "q": 1.0,
+        "reaction": "ddHe3n"
+      },
+      {
+        "draw_index": 4,
+        "max_relative_error_against_fresh_reference": 0.0,
+        "q": 0.0,
+        "reaction": "ddHe3n"
+      },
+      {
+        "draw_index": 5,
+        "max_relative_error_against_fresh_reference": 0.0,
+        "q": -3.0,
+        "reaction": "ddHe3n"
+      },
+      {
+        "draw_index": 6,
+        "max_relative_error_against_fresh_reference": 0.0,
+        "q": 0.0,
+        "reaction": "ddHe3n"
+      },
+      {
+        "draw_index": 7,
+        "max_relative_error_against_fresh_reference": 0.0,
+        "q": 3.0,
+        "reaction": "ddHe3n"
+      },
+      {
+        "draw_index": 0,
+        "max_relative_error_against_fresh_reference": 0.0,
+        "q": -3.0,
+        "reaction": "ddtp"
+      },
+      {
+        "draw_index": 1,
+        "max_relative_error_against_fresh_reference": 0.0,
+        "q": 3.0,
+        "reaction": "ddtp"
+      },
+      {
+        "draw_index": 2,
+        "max_relative_error_against_fresh_reference": 0.0,
+        "q": -1.0,
+        "reaction": "ddtp"
+      },
+      {
+        "draw_index": 3,
+        "max_relative_error_against_fresh_reference": 0.0,
+        "q": 1.0,
+        "reaction": "ddtp"
+      },
+      {
+        "draw_index": 4,
+        "max_relative_error_against_fresh_reference": 0.0,
+        "q": 0.0,
+        "reaction": "ddtp"
+      },
+      {
+        "draw_index": 5,
+        "max_relative_error_against_fresh_reference": 0.0,
+        "q": -3.0,
+        "reaction": "ddtp"
+      },
+      {
+        "draw_index": 6,
+        "max_relative_error_against_fresh_reference": 0.0,
+        "q": 0.0,
+        "reaction": "ddtp"
+      },
+      {
+        "draw_index": 7,
+        "max_relative_error_against_fresh_reference": 0.0,
+        "q": 3.0,
+        "reaction": "ddtp"
+      }
+    ],
+    "consecutive_draw_contamination_observed": false,
+    "max_relative_error_against_fresh_reference": 0.0,
+    "object_lifecycle": "fresh_UpdateNuclearRates_instance_per_draw",
+    "sequence": [
+      -3.0,
+      3.0,
+      -1.0,
+      1.0,
+      0.0,
+      -3.0,
+      0.0,
+      3.0
+    ]
+  },
+  "source": {
+    "network": "small_net12",
+    "rate_collection": "key_primat_rates",
+    "repository": "https://github.com/vallima/PRyMordial",
+    "revision": "725d8a8db3ad5ea2630580d825c9d0d69ed76533",
+    "source_sha256": {
+      "PRyM/PRyM_init.py": "7b52cdd4cf7a7c39082d6cdf4a2e4f3b67458dc20d6ff9f07c2b488ef1819e2f",
+      "PRyM/PRyM_nuclear_net12.py": "85ffa209d50cf60d1cc5ddad8288ba0237ac39f435c387780a58973327f060d1"
+    },
+    "tracked_worktree_matches_HEAD": true
+  },
+  "status": "non_production_mapping_reverse_numerical_evidence",
+  "summary": {
+    "all_three_mappings_unique": true,
+    "duplicate_shift_guard_passed": true,
+    "forward_rows": 14985,
+    "forward_transform_max_relative_error": 2.6645352591003757e-15,
+    "log_reverse_shift_minus_log_forward_shift_max_abs": 1.0524914273446484e-13,
+    "log_shift_rows_excluded_zero_or_subnormal": 5472,
+    "q_count": 5,
+    "reaction_count": 3,
+    "reverse_over_K_forward_max_relative_error": 2.275957200481571e-13,
+    "reverse_rows_defined": 8145,
+    "reverse_rows_excluded_zero_or_subnormal": 6840,
+    "sequential_draw_contamination_observed": false,
+    "underflow_policy": "only zero or subnormal reverse values are excluded from ratio/log identities and every exclusion is counted"
+  },
+  "task_id": "UQ0-R0-RATE-PRIOR",
+  "temperature_unit_bounds_contract": {
+    "cases": [
+      {
+        "accepted": true,
+        "case": "lower_boundary",
+        "converted_kelvin": 1000000.0,
+        "input_unit": "T9",
+        "input_value": 0.001,
+        "reaction": "dpHe3g"
+      },
+      {
+        "accepted": true,
+        "case": "upper_boundary",
+        "converted_kelvin": 10000000000.0,
+        "input_unit": "T9",
+        "input_value": 10.0,
+        "reaction": "dpHe3g"
+      },
+      {
+        "accepted": false,
+        "case": "below_lower_boundary",
+        "code": "temperature_out_of_bounds",
+        "details": {
+          "maximum_t9": 10.0,
+          "minimum_t9": 0.001,
+          "reaction": "dpHe3g",
+          "supplied_value": 0.0009999999999999998,
+          "unit": "T9"
+        },
+        "input_unit": "T9",
+        "input_value": 0.0009999999999999998,
+        "reaction": "dpHe3g"
+      },
+      {
+        "accepted": false,
+        "case": "above_upper_boundary",
+        "code": "temperature_out_of_bounds",
+        "details": {
+          "maximum_t9": 10.0,
+          "minimum_t9": 0.001,
+          "reaction": "dpHe3g",
+          "supplied_value": 10.000000000000002,
+          "unit": "T9"
+        },
+        "input_unit": "T9",
+        "input_value": 10.000000000000002,
+        "reaction": "dpHe3g"
+      },
+      {
+        "accepted": false,
+        "case": "nonfinite_nan",
+        "code": "nonfinite_temperature",
+        "details": {
+          "reaction": "dpHe3g",
+          "supplied_value": "nan",
+          "unit": "T9"
+        },
+        "input_unit": "T9",
+        "input_value": "nan",
+        "reaction": "dpHe3g"
+      },
+      {
+        "accepted": false,
+        "case": "wrong_unit_kelvin",
+        "code": "unsupported_temperature_unit",
+        "details": {
+          "reaction": "dpHe3g",
+          "required_unit": "T9",
+          "supplied_unit": "K"
+        },
+        "input_unit": "K",
+        "input_value": 1000000.0,
+        "reaction": "dpHe3g"
+      },
+      {
+        "accepted": false,
+        "case": "upstream_direct_out_of_grid_observation",
+        "finite_above": true,
+        "finite_below": true,
+        "project_rejection_code": "temperature_out_of_bounds",
+        "reaction": "dpHe3g",
+        "upstream_behavior": "linear_extrapolation_without_exception"
+      },
+      {
+        "accepted": true,
+        "case": "lower_boundary",
+        "converted_kelvin": 1000000.0,
+        "input_unit": "T9",
+        "input_value": 0.001,
+        "reaction": "ddHe3n"
+      },
+      {
+        "accepted": true,
+        "case": "upper_boundary",
+        "converted_kelvin": 10000000000.0,
+        "input_unit": "T9",
+        "input_value": 10.0,
+        "reaction": "ddHe3n"
+      },
+      {
+        "accepted": false,
+        "case": "below_lower_boundary",
+        "code": "temperature_out_of_bounds",
+        "details": {
+          "maximum_t9": 10.0,
+          "minimum_t9": 0.001,
+          "reaction": "ddHe3n",
+          "supplied_value": 0.0009999999999999998,
+          "unit": "T9"
+        },
+        "input_unit": "T9",
+        "input_value": 0.0009999999999999998,
+        "reaction": "ddHe3n"
+      },
+      {
+        "accepted": false,
+        "case": "above_upper_boundary",
+        "code": "temperature_out_of_bounds",
+        "details": {
+          "maximum_t9": 10.0,
+          "minimum_t9": 0.001,
+          "reaction": "ddHe3n",
+          "supplied_value": 10.000000000000002,
+          "unit": "T9"
+        },
+        "input_unit": "T9",
+        "input_value": 10.000000000000002,
+        "reaction": "ddHe3n"
+      },
+      {
+        "accepted": false,
+        "case": "nonfinite_nan",
+        "code": "nonfinite_temperature",
+        "details": {
+          "reaction": "ddHe3n",
+          "supplied_value": "nan",
+          "unit": "T9"
+        },
+        "input_unit": "T9",
+        "input_value": "nan",
+        "reaction": "ddHe3n"
+      },
+      {
+        "accepted": false,
+        "case": "wrong_unit_kelvin",
+        "code": "unsupported_temperature_unit",
+        "details": {
+          "reaction": "ddHe3n",
+          "required_unit": "T9",
+          "supplied_unit": "K"
+        },
+        "input_unit": "K",
+        "input_value": 1000000.0,
+        "reaction": "ddHe3n"
+      },
+      {
+        "accepted": false,
+        "case": "upstream_direct_out_of_grid_observation",
+        "finite_above": true,
+        "finite_below": true,
+        "project_rejection_code": "temperature_out_of_bounds",
+        "reaction": "ddHe3n",
+        "upstream_behavior": "linear_extrapolation_without_exception"
+      },
+      {
+        "accepted": true,
+        "case": "lower_boundary",
+        "converted_kelvin": 1000000.0,
+        "input_unit": "T9",
+        "input_value": 0.001,
+        "reaction": "ddtp"
+      },
+      {
+        "accepted": true,
+        "case": "upper_boundary",
+        "converted_kelvin": 10000000000.0,
+        "input_unit": "T9",
+        "input_value": 10.0,
+        "reaction": "ddtp"
+      },
+      {
+        "accepted": false,
+        "case": "below_lower_boundary",
+        "code": "temperature_out_of_bounds",
+        "details": {
+          "maximum_t9": 10.0,
+          "minimum_t9": 0.001,
+          "reaction": "ddtp",
+          "supplied_value": 0.0009999999999999998,
+          "unit": "T9"
+        },
+        "input_unit": "T9",
+        "input_value": 0.0009999999999999998,
+        "reaction": "ddtp"
+      },
+      {
+        "accepted": false,
+        "case": "above_upper_boundary",
+        "code": "temperature_out_of_bounds",
+        "details": {
+          "maximum_t9": 10.0,
+          "minimum_t9": 0.001,
+          "reaction": "ddtp",
+          "supplied_value": 10.000000000000002,
+          "unit": "T9"
+        },
+        "input_unit": "T9",
+        "input_value": 10.000000000000002,
+        "reaction": "ddtp"
+      },
+      {
+        "accepted": false,
+        "case": "nonfinite_nan",
+        "code": "nonfinite_temperature",
+        "details": {
+          "reaction": "ddtp",
+          "supplied_value": "nan",
+          "unit": "T9"
+        },
+        "input_unit": "T9",
+        "input_value": "nan",
+        "reaction": "ddtp"
+      },
+      {
+        "accepted": false,
+        "case": "wrong_unit_kelvin",
+        "code": "unsupported_temperature_unit",
+        "details": {
+          "reaction": "ddtp",
+          "required_unit": "T9",
+          "supplied_unit": "K"
+        },
+        "input_unit": "K",
+        "input_value": 1000000.0,
+        "reaction": "ddtp"
+      },
+      {
+        "accepted": false,
+        "case": "upstream_direct_out_of_grid_observation",
+        "finite_above": true,
+        "finite_below": true,
+        "project_rejection_code": "temperature_out_of_bounds",
+        "reaction": "ddtp",
+        "upstream_behavior": "linear_extrapolation_without_exception"
+      }
+    ],
+    "conversion": "kelvin=T9*1e9",
+    "native_rate_method_input_unit": "kelvin",
+    "project_policy": "structured_rejection_before_solver_call",
+    "public_adapter_input_unit": "T9",
+    "upstream_bounds_error": false,
+    "upstream_fill_value": "extrapolate"
+  }
+}

@@ -16,6 +16,9 @@ STAGE = ROOT / "configs/physics/nuclear_stage0_R0_v1.yaml"
 ENGINEERING = ROOT / "configs/physics/nuclear_prior_R0_engineering_v1.yaml"
 COMPARATORS = ROOT / "artifacts/priors/ETR25-R0-COHERENT-COMPARATORS-v1/package.json"
 CONTRACT = ROOT / "artifacts/priors/R0-PRIOR-CANDIDATE-CONTRACT-v1/package.json"
+LINX = ROOT / "artifacts/priors/LINX-R0-MAPPING-REGRESSION-v1/regression.json"
+PRYMORDIAL = ROOT / "artifacts/priors/PRYMORDIAL-R0-MAPPING-REGRESSION-v1/regression.json"
+CORRELATION = ROOT / "artifacts/priors/R0-CORRELATION-SAMPLER-AUDIT-v1/audit.json"
 
 
 def test_R0_candidate_validates_without_scientific_acceptance() -> None:
@@ -24,6 +27,8 @@ def test_R0_candidate_validates_without_scientific_acceptance() -> None:
         "comparator_rows": 180,
         "correlation_models": 35,
         "unique_correlation_matrices": 34,
+        "numerical_mapping_regressions_passed": 3,
+        "correlation_sampler_models_passed": 35,
         "accepted_scientific_prior_reactions": 0,
         "production_enabled_reactions": 0,
     }
@@ -32,6 +37,10 @@ def test_R0_candidate_validates_without_scientific_acceptance() -> None:
 def test_candidate_artifacts_are_hash_pinned() -> None:
     registry = yaml.safe_load(REGISTRY.read_text(encoding="utf-8"))
 
+    for record in registry["inputs"].values():
+        path = ROOT / record["path"]
+        assert hashlib.sha256(path.read_bytes()).hexdigest() == record["sha256"]
+
     assert (
         hashlib.sha256(COMPARATORS.read_bytes()).hexdigest()
         == registry["candidate_artifacts"]["coherent_comparators"]["sha256"]
@@ -39,6 +48,18 @@ def test_candidate_artifacts_are_hash_pinned() -> None:
     assert (
         hashlib.sha256(CONTRACT.read_bytes()).hexdigest()
         == registry["candidate_artifacts"]["candidate_contract"]["sha256"]
+    )
+    assert (
+        hashlib.sha256(LINX.read_bytes()).hexdigest()
+        == registry["candidate_artifacts"]["LINX_mapping_regression"]["sha256"]
+    )
+    assert (
+        hashlib.sha256(PRYMORDIAL.read_bytes()).hexdigest()
+        == registry["candidate_artifacts"]["PRyMordial_mapping_regression"]["sha256"]
+    )
+    assert (
+        hashlib.sha256(CORRELATION.read_bytes()).hexdigest()
+        == registry["candidate_artifacts"]["correlation_sampler_audit"]["sha256"]
     )
 
 
@@ -98,4 +119,43 @@ def test_validator_rejects_hidden_PRIMAT_cap(tmp_path: Path) -> None:
     )
 
     with pytest.raises(ValueError, match="reverse cap"):
+        validate(bad_registry, STAGE, ENGINEERING, ROOT)
+
+
+def test_validator_rejects_candidate_input_drift(tmp_path: Path) -> None:
+    registry = yaml.safe_load(REGISTRY.read_text(encoding="utf-8"))
+    input_record = registry["inputs"]["ETR25_rate_pdf_audit"]
+    original = ROOT / input_record["path"]
+    bad_input = tmp_path / "rate-pdf-audit.json"
+    bad_input.write_bytes(original.read_bytes() + b" ")
+    input_record["path"] = str(bad_input)
+    bad_registry = tmp_path / "registry.yaml"
+    bad_registry.write_text(yaml.safe_dump(registry, sort_keys=False), encoding="utf-8")
+
+    with pytest.raises(ValueError, match="input registry schema"):
+        validate(bad_registry, STAGE, ENGINEERING, ROOT)
+
+
+@pytest.mark.parametrize(
+    "replacement",
+    [
+        {},
+        {
+            "substitute": {
+                "path": "pyproject.toml",
+                "sha256": hashlib.sha256((ROOT / "pyproject.toml").read_bytes()).hexdigest(),
+            }
+        },
+    ],
+)
+def test_validator_rejects_missing_or_replaced_candidate_inputs(
+    tmp_path: Path,
+    replacement: dict[str, object],
+) -> None:
+    registry = yaml.safe_load(REGISTRY.read_text(encoding="utf-8"))
+    registry["inputs"] = replacement
+    bad_registry = tmp_path / "registry.yaml"
+    bad_registry.write_text(yaml.safe_dump(registry, sort_keys=False), encoding="utf-8")
+
+    with pytest.raises(ValueError, match="input registry schema"):
         validate(bad_registry, STAGE, ENGINEERING, ROOT)

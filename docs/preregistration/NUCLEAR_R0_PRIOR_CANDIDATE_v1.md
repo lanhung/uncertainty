@@ -114,6 +114,41 @@ Native inverse coefficients are not byte-identical across the three solvers.
 Native reproduction is consequently a pipeline comparison. A matched-engine
 claim requires one canonical coefficient source injected into every path.
 
+## Frozen LINX and PRyMordial mapping regressions
+
+The source-level reverse-rate audit is now backed by frozen executable
+rate-only regressions on both public paths. These are C0 mapping and numerical
+contract checks; neither ran an abundance network or selected a scientific
+prior.
+
+For LINX revision `ec2e9d2ca455e8204137e884da29f5dd13a638fa` with
+`key_recommended`, the three R0 reactions map uniquely to
+`nuclear_rates_q[1:4]`. Across 4,485 native-knot/midpoint rate rows:
+
+- the maximum perturb-then-interpolate relative residual was `3.94e-13`;
+- the maximum defined same-draw reverse residual was `2.21e-13`;
+- 2,055 reverse zero/subnormal rows were excluded explicitly;
+- all 30 upstream out-of-grid observations were zero, while the project
+  adapter policy remains fail-closed before the solver call;
+- 96 sequential-draw rows showed no mutable-cache contamination.
+
+For PRyMordial revision `725d8a8db3ad5ea2630580d825c9d0d69ed76533`
+with `small_net12` and `key_primat_rates`, 14,985 forward rows gave:
+
+- maximum forward-transform relative residual `2.67e-15`;
+- maximum defined same-draw reverse residual `2.28e-13`;
+- maximum forward/reverse log-shift residual `1.05e-13`;
+- 6,840 reverse zero/subnormal exclusions and 5,472 log-shift exclusions,
+  all counted explicitly;
+- unique one-hot mappings, a guard against simultaneous external `q` and
+  native `NP_delta` shifts, structured temperature rejection, and zero
+  contamination across 24 sequential-draw cases.
+
+Both artifacts pin revisions, source/table hashes, units, temperature bounds
+and rejection behavior. They validate each solver's native representation.
+They do not establish matched-engine equality, ETR25 posterior fidelity,
+abundance-level UQ or any scientific sign-off.
+
 ## Missing-correlation stress suite
 
 The order is frozen as:
@@ -151,14 +186,31 @@ missing ETR25 covariance. Identity is not the scientific default. Every run
 must record the matrix ID/hash, factorization, seed, latent epsilon, realized
 `z` and rate representation.
 
+The registered sampler was executed for all 35 models with 200,000 draws per
+model, or 7,000,000 three-reaction `q` vectors in total. All 35 fixed-seed
+replays passed, no nearest-PSD projection was used, and the largest empirical
+correlation, mean and standard-deviation residuals were respectively
+`0.005145`, `0.005173` and `0.004444`, below the frozen `0.012`
+engineering acceptance threshold. At 200,000 samples, `0.012` is approximately
+`5.37/sqrt(N)` and is a deliberately conservative implementation tolerance,
+not a statistical inference or scientific-calibration criterion. A separate
+coherent-curve probe held one scalar `q` fixed across temperature for each
+reaction and reconstructed it to `1.80e-13`.
+
+This validates the sampler implementation and registered stress matrices
+only. It does not infer the missing cross-reaction covariance, reconstruct
+the nuclear posterior, make identity a default, or unlock production.
+
 ## Remaining blockers
 
 The scientific prior cannot be frozen until all of the following are resolved:
 
 1. an actual/original nuclear posterior or an explicitly approved surrogate
    policy is available;
-2. the PRIMAT reverse-cap and cache regressions pass;
-3. solver-specific representation injection and reverse-rate tests pass;
+2. the PRIMAT emitted-trajectory cap and ETR25 curve-injection regressions
+   pass;
+3. a production adapter is tested against the finally selected prior
+   representation;
 4. A03 nuclear-data, A00 scientific and A09 independent-validation reviews are
    signed by their real reviewers.
 
