@@ -74,9 +74,7 @@ def test_why_not_protocol_does_not_fabricate_results() -> None:
 
 def test_postmeasurement_status_is_separate_from_hash_frozen_protocol() -> None:
     status = yaml.safe_load(
-        (ROOT / "configs/benchmarks/why_not_evidence_status_v1.yaml").read_text(
-            encoding="utf-8"
-        )
+        (ROOT / "configs/benchmarks/why_not_evidence_status_v1.yaml").read_text(encoding="utf-8")
     )
 
     assert status["frozen_protocol_mutated"] is False

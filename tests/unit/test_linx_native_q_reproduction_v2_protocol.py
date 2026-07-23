@@ -33,12 +33,10 @@ def test_v2_tightens_numerics_without_relaxing_acceptance() -> None:
 
 
 def test_v2_wrappers_pin_artifact_and_config_identity() -> None:
-    runner = (
-        ROOT / "scripts/run_linx_native_q_reproduction_v2.py"
-    ).read_text(encoding="utf-8")
-    validator = (
-        ROOT / "scripts/validate_linx_native_q_reproduction_v2.py"
-    ).read_text(encoding="utf-8")
+    runner = (ROOT / "scripts/run_linx_native_q_reproduction_v2.py").read_text(encoding="utf-8")
+    validator = (ROOT / "scripts/validate_linx_native_q_reproduction_v2.py").read_text(
+        encoding="utf-8"
+    )
     digest = "f8415100950cecaedecc7baed30a5d3f903833a1247922911c5de5c0748e93e3"
 
     assert "LINX-NATIVE-Q-REPRODUCTION-v2" in runner

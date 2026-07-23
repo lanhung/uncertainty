@@ -144,9 +144,9 @@ def test_validator_rejects_tampered_file_or_duplicate_group(
     for mutation in ("file", "duplicates"):
         payload = copy.deepcopy(original)
         if mutation == "file":
-            payload["repositories"]["LINX"]["collections"]["key_recommended"][0][
-                "sha256"
-            ] = "0" * 64
+            payload["repositories"]["LINX"]["collections"]["key_recommended"][0]["sha256"] = (
+                "0" * 64
+            )
         else:
             payload["duplicate_content_groups"] = []
         path = tmp_path / f"{mutation}.json"

@@ -6,11 +6,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[2]
-RUN = (
-    ROOT
-    / "artifacts/benchmarks/LINX-NATIVE-Q-REPRODUCTION-v2"
-    / "run-20260723T102602Z"
-)
+RUN = ROOT / "artifacts/benchmarks/LINX-NATIVE-Q-REPRODUCTION-v2" / "run-20260723T102602Z"
 VALIDATOR = ROOT / "scripts/validate_linx_native_q_reproduction_v2.py"
 OUTBOX = ROOT / "artifacts/benchmarks/UQ0-NATIVE-UQ-REPRO-OFFLINE-HEARTBEATS-v2"
 
@@ -35,21 +31,21 @@ def test_v2_artifact_passes_independent_frozen_validator() -> None:
     assert result["scalar_rows"] == 42
     assert result["batch_rows"] == 28
     assert all(decision["checks"].values())
-    assert decision["plateaus"]["tolerance"][
-        "maximum_difference_observation_sigma"
-    ] == 0.0006193677328284428
-    assert decision["plateaus"]["weak_rate_sampling"][
-        "maximum_difference_observation_sigma"
-    ] == 0.00022808196589943274
+    assert (
+        decision["plateaus"]["tolerance"]["maximum_difference_observation_sigma"]
+        == 0.0006193677328284428
+    )
+    assert (
+        decision["plateaus"]["weak_rate_sampling"]["maximum_difference_observation_sigma"]
+        == 0.00022808196589943274
+    )
 
 
 def test_offline_parent_progress_events_are_fail_closed_from_replay() -> None:
     files = sorted(OUTBOX.glob("*.ndjson"))
     assert len(files) == 2
     events = [
-        json.loads(line)
-        for path in files
-        for line in path.read_text(encoding="utf-8").splitlines()
+        json.loads(line) for path in files for line in path.read_text(encoding="utf-8").splitlines()
     ]
     assert any(
         event.get("current", 0) > event.get("total", 5)
