@@ -207,6 +207,12 @@ nuisance_contract:
   actual_pdf_model:
     status: pointwise_percentiles_ingested_coherent_actual_posterior_unavailable
     comparison_to_scalar_required: true
+  numerical_candidate:
+    registry: configs/physics/nuclear_prior_R0_candidate_v1.yaml
+    status: comparator_models_ready_scientific_prior_not_selected
+    quantile_matched_surrogate: >-
+      mathematically_coherent_rank_one_comparator_not_actual_posterior
+    production_use: prohibited
   independence_assumed: false
   missing_covariance_policy: >-
     Record missing correlations explicitly and run a preregistered correlation
@@ -214,6 +220,24 @@ nuisance_contract:
   legacy_solver_envelope_mapping_contract: >-
     configs/physics/nuclear_prior_R0_engineering_v1.yaml
   legacy_contract_role: native_uncertainty_reproduction_and_interface_calibration_only
+
+reverse_rate_candidate:
+  contract: artifacts/priors/R0-PRIOR-CANDIDATE-CONTRACT-v1/package.json
+  LINX: same_perturbed_forward_source_verified
+  PRyMordial: same_perturbed_forward_source_verified
+  PRIMAT: >-
+    same_perturbed_forward_before_cap_only; median-derived reverse cap is not
+    recomputed by apply_variations in v0.3.2
+  production_status: >-
+    blocked_pending_PRIMAT_per_draw_cap_fix_or_disable_and_ratio_cache_regressions
+
+cross_reaction_candidate:
+  covariance_status: not_published_not_independence
+  stress_contract: artifacts/priors/R0-PRIOR-CANDIDATE-CONTRACT-v1/package.json
+  registered_model_records: 35
+  unique_matrices: 34
+  scientific_default_selected: false
+  production_use: prohibited
 
 mandatory_direct_reproduction:
   baselines:
@@ -234,7 +258,7 @@ rate_pdf_audit:
     - source_lognormal_factor_uncertainty
     - asymmetry_of_low_median_high
     - temperature_dependence_of_approximation_error
-    - coherent_curve_draw_validation
+    - scalar_proxy_coherence_and_actual_coherence_boundary
     - BBN_window_summary
   full_table_scope_T9: [0.001, 10.0]
   common_solver_evaluated_scope_T9: [0.06, 10.0]
