@@ -182,6 +182,57 @@ Stop production scaling when any of the following holds:
 Do not respond to a null result by changing the primary data, broadening priors, adding reactions,
 activating non-standard cosmology or switching architecture solely to obtain significance.
 
+## Q1 — What is the minimum delta from the public frontier?
+
+The minimum candidate delta is a calibrated map of when the
+parameter-dependent joint abundance distribution cannot be represented by a
+fixed post-hoc `C_th`, using coherent current nuclear-rate probability
+information. Native Monte Carlo, scalar nuisance coordinates and a fast
+central-rate emulator are calibration baselines, not this delta.
+
+## Q2 — Which known results are regression-only?
+
+The following are used only as regression tests: neural emulation of BBN abundances,
+scalar nuclear-rate marginalization, standard-BBN sensitivity rankings, and
+direct stiff-era constraints from LVK O1–O4a. Reproducing any of them cannot clear novelty.
+
+## Q3 — What physics result could matter without AI?
+
+A solver-grounded validity or failure map for fixed theoretical covariance,
+including joint abundance tails and cross-element correlations, remains a
+physics/statistics result even if every calculation uses direct solvers.
+
+## Q4 — What method result could matter without BBN?
+
+Only a calibrated nuisance-marginalization method that passes direct posterior
+recovery, local and global coverage, multiple seeds, OOD/fallback tests and a
+second simulator could support a transferable method claim. A BBN-only model
+or a new architecture name cannot.
+
+## Q5 — What are the three leading rejection risks?
+
+The leading risks remain `R1` duplication, `R2` unnecessary machine learning,
+and `R3` invalid nuclear priors. These short IDs correspond to
+`R1-DUPLICATION`, `R2-UNNECESSARY-ML` and `R3-INVALID-PRIOR` above.
+
+## Q6 — Which experiments answer those risks?
+
+`R1` is answered by the ETR25/native-UQ comparison and the registered
+`FISH-01` response gate. `R2` is answered by direct-workload economics and
+`WHY-01`. `R3` is answered by coherent nuclear draws, source/covariance review
+and the matched-factor contract in `SOL-01`. Every row in the risk table has a
+Failure action; failure narrows or stops the claim rather than changing the
+question.
+
+## Q7 — What prevents post-hoc search expansion?
+
+Pilot-10k remains unauthorized before the signed gate. A null result cannot be
+rescued by changing the primary observation compilation, widening priors or adding endpoints after seeing the result, activating conditional
+non-standard-cosmology tasks, or architecture shopping. If the direct stack
+finishes the registered workload within budget, speed alone also stops the new-emulator route.
+
+Clearance status: **CLAIMS NOT CLEARED; TRACK B NOT FROZEN**.
+
 ## 12. Current clearance
 
 - Fixed-point MC and Schramm bands: **authorized as reproduction/calibration**.
@@ -199,8 +250,9 @@ Review prepared from primary-source searches and public artifacts; absence from 
 proof of nonexistence.
 
 - A00 scientific lead: **pending**;
-- A11 literature/competition: **pending**;
+- A11 literature and competition: **pending**;
 - A03 nuclear-data review: **pending**;
-- A09 independent validation: **pending**.
+- A09 independent validation and red team: **pending**.
 
 Nature-tier Gate remains **CLOSED**.
+Track B remains **NOT FROZEN**.
