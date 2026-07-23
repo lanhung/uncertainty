@@ -79,18 +79,28 @@ claims:
       registered W0 through W3 measurements and full workload projection.
     current_status: incomplete
     allowed_scope:
-      - W0_and_W2_standard_point_runtime_observations
+      - W0_through_W3_standard_fiducial_runtime_observations
+      - PRIMAT_and_PRyMordial_native_UQ_reproductions
       - completed_run_costs_in_cost_ledger
     evidence:
       - docs/inventory/WHY_NOT_LINX_RUNTIME_v1.md
+      - docs/inventory/WHY_NOT_PRYMORDIAL_RUNTIME_v1.md
       - docs/inventory/WHY_NOT_PRIMAT_RUNTIME_v1.md
+      - docs/inventory/WHY_NOT_ABCMB_RUNTIME_v1.md
       - docs/inventory/LINX_GRADIENT_STABILITY_v1.md
       - docs/inventory/ABCMB_FULL_COMPONENT_AUDIT_v1.md
+      - artifacts/benchmarks/PRIMAT-NATIVE-UQ-REPRODUCTION-v1/artifact.json
+      - artifacts/benchmarks/PRYMORDIAL-NATIVE-UQ-REPRODUCTION-v1/summary.json
+      - artifacts/benchmarks/LINX-NATIVE-Q-REPRODUCTION-v1/reproduction.json
+      - artifacts/benchmarks/SENSITIVITY-ATLAS-R0-SLICE-v1/artifact.json
+      - artifacts/benchmarks/GP-DEUTERIUM-PRIOR-STRUCTURE-v1/structure.json
+      - artifacts/benchmarks/WHY-NOT-UQ-INTERIM-ECONOMICS-v1/package.json
+      - docs/inventory/WHY_NOT_EXISTING_SOLVERS_v1.md
       - docs/compute/cost_ledger.csv
     missing_evidence:
-      - W1_final_validated_artifact
-      - W3_component_and_full_joint_stack_measurements
-      - W0_replacement_or_repaired_finite_gradient_and_posterior_recovery
+      - accepted_R0_project_prior_and_direct_UQ_workload
+      - W3_full_joint_CMB_BBN_stack_measurement
+      - W0_finite_gradient_or_gradient_free_posterior_recovery
       - W1_rate_marginalization_and_posterior_recovery
       - W2_posterior_region_and_adversarial_points
       - full_robustness_and_SBC_workload_projection

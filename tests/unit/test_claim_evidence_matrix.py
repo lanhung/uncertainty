@@ -51,8 +51,10 @@ def test_existing_c0_c1_evidence_is_scope_limited() -> None:
 
     cost = claims["C1-DIRECT-SOLVER-COST-01"]
     assert cost["current_status"] == "incomplete"
-    assert "W1_final_validated_artifact" in cost["missing_evidence"]
-    assert "W3_component_and_full_joint_stack_measurements" in cost["missing_evidence"]
+    assert "accepted_R0_project_prior_and_direct_UQ_workload" in cost["missing_evidence"]
+    assert "W3_full_joint_CMB_BBN_stack_measurement" in cost["missing_evidence"]
+    assert "docs/inventory/WHY_NOT_PRYMORDIAL_RUNTIME_v1.md" in cost["evidence"]
+    assert "docs/inventory/WHY_NOT_ABCMB_RUNTIME_v1.md" in cost["evidence"]
 
 
 def test_document_keeps_claim_and_nature_gates_closed() -> None:

@@ -1,0 +1,28 @@
+schema_version: 1
+status_id: WHY-NOT-EVIDENCE-STATUS-v1
+captured_at_utc: "2026-07-23"
+task_id: P0-WHY-NOT-01
+protocol: configs/benchmarks/why_not_existing_solvers_v1.yaml
+frozen_protocol_mutated: false
+
+measured_standard_fiducial_runtime_slices: 4
+complete_registered_baselines: 0
+
+native_uq_reproductions:
+  accepted: 2
+  total: 5
+  accepted_baselines: [PRIMAT, PRyMordial]
+  not_accepted_baselines: [LINX, sensitivity_atlas]
+  blocked_baselines: [GP_deuterium]
+
+decision:
+  direct_solver_sufficient: undetermined
+  emulator_necessity: undetermined
+  direct_first_672_worker_hour_rule_evaluable: false
+  task_progress: 0/1
+
+boundary: >-
+  This post-measurement status is deliberately separate from the hash-frozen
+  WHY-NOT protocol. Four runtime slices do not constitute four complete
+  baselines, and executed negative or blocked native-UQ reproductions do not
+  receive acceptance credit.
