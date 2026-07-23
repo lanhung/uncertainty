@@ -1,0 +1,230 @@
+schema_version: 1
+prior_id: NUCLEAR-R0-ENGINEERING-v1
+status: legacy_solver_envelope_mapping_frozen_ETR25_primary_pending
+decision_date_utc: "2026-07-23"
+production_use: prohibited_pending_ETR25_pdf_audit_regression_and_signoff
+task_scope:
+  - UQ0-NATIVE-UQ-REPRO
+  - UQ0-R0-RATE-PRIOR
+
+purpose: >-
+  Freeze the executable legacy scalar-envelope coordinates distributed by three
+  public solvers for native-UQ reproduction and interface calibration. This
+  artifact does not select the scientific R0 prior, replace the ETR25
+  actual-PDF audit, unlock the common production adapter, or establish
+  independent nuclear-data evidence across solver paths.
+
+canonical_coordinate:
+  order:
+    - z_dp_gamma_he3
+    - z_dd_n_he3
+    - z_dd_p_t
+  distribution: multivariate_normal
+  mean: [0.0, 0.0, 0.0]
+  engineering_covariance:
+    - [1.0, 0.0, 0.0]
+    - [0.0, 1.0, 0.0]
+    - [0.0, 0.0, 1.0]
+  covariance_status: missing_not_evidence_of_independence
+  covariance_use: engineering_baseline_only
+  required_before_scientific_production:
+    - freeze_shared_normalization_and_cross_reaction_covariance
+    - run_preregistered_nonzero_correlation_stress
+    - obtain_A03_nuclear_data_review
+
+legacy_solver_envelope_package:
+  package_id: NUCLEAR-STAGE0-R0-LINX-KEY-RECOMMENDED-v1
+  path: artifacts/priors/NUCLEAR-STAGE0-R0-LINX-KEY-RECOMMENDED-v1/package.json
+  sha256: aacca2ad92c2132a67995801d091d9b642f3616cf7cf70b2a54a6e1d4348c745
+  source_repository: https://github.com/cgiovanetti/LINX
+  source_revision: ec2e9d2ca455e8204137e884da29f5dd13a638fa
+  source_collection: key_recommended
+  source_tree: dfb6290f5dc91079a147ed3e60944cc7bab50e14
+  source_software_license: MIT
+  derived_table_redistribution_review: pending
+  primary_citation: arXiv:2604.16600
+  curve_semantics: p_equals_zero_curve_mean_vs_median_unresolved
+  functional_rate_posterior_included: false
+  selection_role: >-
+    Exact LINX legacy-envelope source for implementing and reproducing the
+    canonical scalar transform. ETR25 remains the registered primary candidate;
+    scientific source selection requires the actual-PDF audit and independent
+    nuclear-data review.
+
+scalar_transform:
+  at_registered_table_knots: >-
+    r_i(T9_j,z_i)=rbar_i(T9_j)*exp(z_i*sigma_log_i(T9_j))
+  z_zero: central_table_curve
+  z_plus_one: central_times_exp_sigma
+  z_minus_one: central_divided_by_exp_sigma
+  within_reaction_temperature_covariance: rank_one_single_z_shared_over_temperature
+  forward_reverse_rule: same_z_for_forward_and_reverse
+  reverse_must_not_receive_independent_draw: true
+  interpolation:
+    coordinate: T9
+    method: linear_in_perturbed_rate
+    order: perturb_knots_then_interpolate
+    project_out_of_grid_policy: reject_before_solver_call
+
+reactions:
+  dp_gamma_he3:
+    equation: d(p,gamma)3He
+    canonical_parameter: z_dp_gamma_he3
+    package_reaction_id: dp_gamma_he3
+    source_table_sha256: b5c410b91daaef1d4fe4b3c349f615fa9fa0a7a013a98b28b2e295574c0b4906
+  dd_n_he3:
+    equation: d(d,n)3He
+    canonical_parameter: z_dd_n_he3
+    package_reaction_id: dd_n_he3
+    source_table_sha256: 3c7aed50f298501e60279782ae638e6799c4247d265e43075a2ad2fd46225d7d
+  dd_p_t:
+    equation: d(d,p)t
+    canonical_parameter: z_dd_p_t
+    package_reaction_id: dd_p_t
+    source_table_sha256: bd9acc42dcccb9de167cc78b19e8d91c51b0f8ee5bbc2c0e155d2bd69344cc45
+
+solver_mappings:
+  LINX_S6:
+    repository: https://github.com/cgiovanetti/LINX
+    revision: ec2e9d2ca455e8204137e884da29f5dd13a638fa
+    network: key_recommended
+    rate_library_relation: exact_legacy_solver_envelope_package
+    interpolation: linear_in_perturbed_rate_over_T9
+    upstream_out_of_grid_behavior: zero
+    project_out_of_grid_policy: reject_before_solver_call
+    native_sampling: prohibited_use_external_manifest
+    all_non_R0_rate_parameters: zero
+    reaction_parameters:
+      z_dp_gamma_he3:
+        internal_rate_id: dpHe3g
+        nuclear_rates_q_index: 1
+        transform: q_1_equals_z_dp_gamma_he3
+      z_dd_n_he3:
+        internal_rate_id: ddHe3n
+        nuclear_rates_q_index: 2
+        transform: q_2_equals_z_dd_n_he3
+      z_dd_p_t:
+        internal_rate_id: ddtp
+        nuclear_rates_q_index: 3
+        transform: q_3_equals_z_dd_p_t
+
+  PRyMordial_S4:
+    repository: https://github.com/vallima/PRyMordial
+    revision: 725d8a8db3ad5ea2630580d825c9d0d69ed76533
+    network: net12
+    default_collection: key_primat_rates
+    alternative_collection: key_nacreii_rates
+    rate_library_relation: native_alternative_not_matched_to_legacy_package
+    table_columns: [T9, median_forward_rate, exp_sigma]
+    table_unit_evidence: companion_paper_arXiv_2307.07061_equation_2_17
+    two_body_forward_rate_units: cm^3_mol^-1_s^-1
+    interpolation: scipy_linear_in_perturbed_rate_over_T9
+    upstream_out_of_grid_behavior: extrapolate
+    project_out_of_grid_policy: reject_before_solver_call
+    native_sampling: prohibited_use_external_manifest
+    new_physics_nuclear_shift_flag: false
+    all_non_R0_rate_parameters: zero
+    reverse_uses_same_perturbed_forward_spline: true
+    reaction_parameters:
+      z_dp_gamma_he3:
+        internal_rate_id: dpHe3g
+        internal_parameter: p_dpHe3g
+        positional_index_zero_based: 1
+        transform: p_dpHe3g_equals_z_dp_gamma_he3
+      z_dd_n_he3:
+        internal_rate_id: ddHe3n
+        internal_parameter: p_ddHe3n
+        positional_index_zero_based: 2
+        transform: p_ddHe3n_equals_z_dd_n_he3
+      z_dd_p_t:
+        internal_rate_id: ddtp
+        internal_parameter: p_ddtp
+        positional_index_zero_based: 3
+        transform: p_ddtp_equals_z_dd_p_t
+    default_table_sha256:
+      dp_gamma_he3: 286148ae9b9605e41083937dcc91c2395033b8fb6c9221abcf2f25f860eef347
+      dd_n_he3: 4804d937668dfb8d9e5eedb8dfd46f39f48306771487625a77ebd26e6d30fbf4
+      dd_p_t: 516038fc7fb4e0b526c7a239efd20437bbeb2f3c5daf734d5d0478320d568790
+    alternative_table_sha256:
+      dp_gamma_he3: 106257cf5031591f61089e431e669aa819a89d5ba56a61e75f89cb3e493ab059
+      dd_n_he3: f3117c23328272515fef93dfcf3a7918881e1cf2ce9584151f31676e18fb72ee
+      dd_p_t: 39c2ed86b6b0c3c9003111bce39df31e332f93d6d337a1221fc7ac3b72535184
+
+  PRIMAT_S8:
+    repository: https://github.com/lesgourg/PRIMAT
+    revision: 21ff8f39fa18e3937e9fdf386cfa982361bfdfce
+    version: v0.3.2
+    network: small
+    default_collection: primat
+    alternative_network: small_parthenope
+    alternative_collection: parthenope3_0
+    rate_library_relation: native_alternative_not_matched_to_legacy_package
+    table_columns: [T9, raw_median_forward_rate, exp_sigma]
+    two_body_forward_rate_units: cm^3_mol^-1_s^-1
+    interpolation: linear_in_active_forward_rate_over_T9
+    upstream_out_of_grid_behavior: extrapolate_from_clipped_interval
+    project_out_of_grid_policy: reject_before_solver_call
+    default_nuclear_qed_corrections: true
+    effective_central_rule: >-
+      Use the post-QED internal forward median for radiative captures before
+      applying z; raw table column two is not the default effective dp-gamma
+      central curve.
+    native_sampling: prohibited_use_external_manifest
+    standard_tau_n_sigma: zero
+    all_non_R0_rate_parameters: zero
+    all_additive_delta_parameters: zero
+    reverse_uses_same_perturbed_forward_rate: true
+    reaction_parameters:
+      z_dp_gamma_he3:
+        internal_rate_id: d_p__He3_g
+        internal_parameter: p_d_p__He3_g
+        transform: p_d_p__He3_g_equals_z_dp_gamma_he3
+      z_dd_n_he3:
+        internal_rate_id: d_d__He3_n
+        internal_parameter: p_d_d__He3_n
+        transform: p_d_d__He3_n_equals_z_dd_n_he3
+      z_dd_p_t:
+        internal_rate_id: d_d__t_p
+        internal_parameter: p_d_d__t_p
+        transform: p_d_d__t_p_equals_z_dd_p_t
+    default_raw_table_sha256:
+      dp_gamma_he3: 90e2ca25dd9b4f801432678203aad21a02a3d09b6746096639becf04ab2cad55
+      dd_n_he3: bef7f3a63fc39b4a89d24c71a0d60b18bbf7321a6b19f4f5e010d97590b93ebb
+      dd_p_t: 2c532f0018f51ba124313107eb25fdf35a088ef7a2b81c6c892b775a250c18d4
+    alternative_raw_table_sha256:
+      dp_gamma_he3: 44a6c1722eece235c410d6469611b262ee54b4d957023cfe2379ceb4f16d657e
+      dd_n_he3: f99110cc1a46bd8f51c4f2aef277a318ae2a1cf3f6ed35a7e02a2033c49d0195
+      dd_p_t: b96ce119f7f30ca003dafbd51e5b46a00687e427654fb92012e027bafd837d94
+    detailed_balance_source: primat/data/csv/detailed_balance.csv
+    detailed_balance:
+      dp_gamma_he3: {alpha: 1.6335106e10, beta: 1.5, gamma: -63.749131}
+      dd_n_he3: {alpha: 1.7318296, beta: 0.0, gamma: -37.934112}
+      dd_p_t: {alpha: 1.7349209, beta: 0.0, gamma: -46.79712}
+
+factorial_interpretation:
+  common_z_interface_across_three_solvers: true
+  matched_rate_library_across_three_solvers: false
+  engine_discrepancy_claim_allowed: false
+  allowed_current_label: pipeline_paths_with_native_registered_rate_compilations
+  requirement_for_engine_discrepancy: inject_and_validate_identical_forward_tables_and_weak_physics
+
+regression_gate:
+  task: UQ0-PLUSMINUS-REGRESSION
+  status: pending
+  required_checks_per_path:
+    - central_z_zero
+    - z_plus_one
+    - z_minus_one
+  symmetric_definition: log_rate_plus_minus_is_symmetric_at_registered_table_knots
+  no_scientific_labels_before_pass: true
+
+upstream_scientific_gates:
+  UQ0_ETR25_R0_INGEST: pending
+  UQ0_RATE_PDF_AUDIT: pending
+  coherent_ETR25_or_approved_posterior_prior: pending
+  common_production_adapter_unlocked: false
+
+signoffs:
+  A03_nuclear_data_review: pending
+  A00_scientific_signoff: pending
+  A09_independent_validation: pending

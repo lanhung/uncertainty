@@ -78,6 +78,19 @@ reactions:
       - LINX_network_tables
     source_revision: pending
     source_checksum: pending
+    legacy_solver_envelope:
+      role: scalar_interface_calibration_not_primary_prior
+      package: artifacts/priors/NUCLEAR-STAGE0-R0-LINX-KEY-RECOMMENDED-v1/package.json
+      package_reaction_id: dp_gamma_he3
+      semantics: p_equals_zero_curve_mean_vs_median_unresolved
+      temperature_grid: package_coordinate_T9_150_points_0p001_to_10
+      units: cm^3_s^-1_g^-1
+      uncertainty_model: scalar_lognormal_envelope_rank_one_over_temperature
+      covariance_status: cross_reaction_covariance_missing_engineering_identity_only
+      detailed_balance: reverse_uses_same_z_see_package
+      solver_mappings: configs/physics/nuclear_prior_R0_engineering_v1.yaml
+      source_revision: ec2e9d2ca455e8204137e884da29f5dd13a638fa
+      source_checksum: b5c410b91daaef1d4fe4b3c349f615fa9fa0a7a013a98b28b2e295574c0b4906
     production_enabled: false
 
   - reaction_id: dd_n_he3
@@ -106,6 +119,19 @@ reactions:
       - LINX_network_tables
     source_revision: pending
     source_checksum: pending
+    legacy_solver_envelope:
+      role: scalar_interface_calibration_not_primary_prior
+      package: artifacts/priors/NUCLEAR-STAGE0-R0-LINX-KEY-RECOMMENDED-v1/package.json
+      package_reaction_id: dd_n_he3
+      semantics: p_equals_zero_curve_mean_vs_median_unresolved
+      temperature_grid: package_coordinate_T9_150_points_0p001_to_10
+      units: cm^3_s^-1_g^-1
+      uncertainty_model: scalar_lognormal_envelope_rank_one_over_temperature
+      covariance_status: cross_reaction_covariance_missing_engineering_identity_only
+      detailed_balance: reverse_uses_same_z_see_package
+      solver_mappings: configs/physics/nuclear_prior_R0_engineering_v1.yaml
+      source_revision: ec2e9d2ca455e8204137e884da29f5dd13a638fa
+      source_checksum: 3c7aed50f298501e60279782ae638e6799c4247d265e43075a2ad2fd46225d7d
     production_enabled: false
 
   - reaction_id: dd_p_t
@@ -134,6 +160,19 @@ reactions:
       - LINX_network_tables
     source_revision: pending
     source_checksum: pending
+    legacy_solver_envelope:
+      role: scalar_interface_calibration_not_primary_prior
+      package: artifacts/priors/NUCLEAR-STAGE0-R0-LINX-KEY-RECOMMENDED-v1/package.json
+      package_reaction_id: dd_p_t
+      semantics: p_equals_zero_curve_mean_vs_median_unresolved
+      temperature_grid: package_coordinate_T9_150_points_0p001_to_10
+      units: cm^3_s^-1_g^-1
+      uncertainty_model: scalar_lognormal_envelope_rank_one_over_temperature
+      covariance_status: cross_reaction_covariance_missing_engineering_identity_only
+      detailed_balance: reverse_uses_same_z_see_package
+      solver_mappings: configs/physics/nuclear_prior_R0_engineering_v1.yaml
+      source_revision: ec2e9d2ca455e8204137e884da29f5dd13a638fa
+      source_checksum: bd9acc42dcccb9de167cc78b19e8d91c51b0f8ee5bbc2c0e155d2bd69344cc45
     production_enabled: false
 
 weak_physics:
@@ -156,6 +195,9 @@ nuisance_contract:
   missing_covariance_policy: >-
     Record missing correlations explicitly and run a preregistered correlation
     stress test; absence of covariance is not evidence of independence.
+  legacy_solver_envelope_mapping_contract: >-
+    configs/physics/nuclear_prior_R0_engineering_v1.yaml
+  legacy_contract_role: native_uncertainty_reproduction_and_interface_calibration_only
 
 mandatory_direct_reproduction:
   baselines:
