@@ -1,0 +1,175 @@
+schema_version: 1
+prior_id: NUCLEAR-R0-REFERENCE-v1
+status: frozen_for_exploratory_direct_execution
+registered_at_utc: "2026-07-23"
+governing_decision: docs/decisions/ADR-0008-self-contained-fast-track.md
+scientific_scope: docs/science/UNCERTAINTY_SCOPE_v1.md
+task_role: self_contained_reference_prior_not_unique_nuclear_posterior
+
+claim_boundary:
+  actual_ETR25_functional_posterior_reconstructed: false
+  cross_reaction_covariance_inferred: false
+  publication_prior_approved: false
+  exploratory_direct_calculation_allowed: true
+  final_cosmological_claim_allowed: false
+  required_label: conditional_on_NUCLEAR-R0-REFERENCE-v1
+
+source_artifacts:
+  ETR25_tables:
+    path: artifacts/priors/ETR25-R0-TABLES-v1/package.json
+    sha256: f9f7436378fe8d0985d03ca5e5b48012820948c6a391081438939b63c58df7ba
+  rate_pdf_audit:
+    path: artifacts/priors/ETR25-R0-RATE-PDF-AUDIT-v1/audit.json
+    sha256: 33adba011bc0eddeee6f31b8b43a873cdae30f15c6d1e92aa50fdeafeea9af20
+  coherent_comparators:
+    path: artifacts/priors/ETR25-R0-COHERENT-COMPARATORS-v1/package.json
+    sha256: 0634a74a1e1937b8d6b959282f10e21f505514e7449ccbd05b5e639083f2b5dd
+  candidate_contract:
+    path: artifacts/priors/R0-PRIOR-CANDIDATE-CONTRACT-v1/package.json
+    sha256: 13e923a28436d67e50dba86bbbe0fb62e25eca201d80b22bce4e0026aa7cd78a
+  native_baselines:
+    PRIMAT: artifacts/benchmarks/PRIMAT-NATIVE-UQ-REPRODUCTION-v1/artifact.json
+    PRyMordial: artifacts/benchmarks/PRYMORDIAL-NATIVE-UQ-REPRODUCTION-v1/summary.json
+    LINX: artifacts/benchmarks/LINX-NATIVE-Q-REPRODUCTION-v2/run-20260723T102602Z/reproduction.json
+  external_reproduction_audit:
+    path: artifacts/benchmarks/NATIVE-UQ-EXTERNAL-BLOCKERS-v1/audit.json
+    role: non_blocking_negative_or_blocked_evidence
+
+reaction_order:
+  - dp_gamma_he3
+  - dd_n_he3
+  - dd_p_t
+
+representations:
+  R0_P0_ETR25_scalar_lognormal:
+    role: primary_reference
+    equation: ln_r_i_T_equals_ln_median_i_T_plus_q_i_times_ln_factor_uncertainty_i_T
+    q_distribution: standard_multivariate_normal
+    temperature_coherence: one_q_per_reaction_held_over_full_curve
+    central_curve: ETR25_p50
+    uncertainty: ETR25_factor_uncertainty
+    actual_posterior_reconstruction: false
+    production_truth_claim: prohibited
+
+  R0_P1_ETR25_asymmetric_quantile_rank1:
+    role: mandatory_PDF_shape_comparator
+    registry: configs/physics/nuclear_prior_R0_candidate_v1.yaml#quantile_surrogate
+    equation: piecewise_loglinear_q_map_matching_public_p16_p50_p84
+    temperature_copula: imposed_comonotonic_rank_one
+    actual_posterior_reconstruction: false
+    tails: Gaussian_extrapolation_outside_p16_p84
+    production_truth_claim: prohibited
+
+  R0_P2_legacy_solver_envelope:
+    role: mandatory_software_lineage_comparator
+    registry: configs/physics/nuclear_prior_R0_engineering_v1.yaml
+    actual_posterior_reconstruction: false
+    production_truth_claim: prohibited
+
+correlation_models:
+  baseline:
+    id: C0_identity_engineering_anchor
+    matrix:
+      - [1.0, 0.0, 0.0]
+      - [0.0, 1.0, 0.0]
+      - [0.0, 0.0, 1.0]
+    scientific_independence_claim: false
+  mandatory_stress_family:
+    registry: configs/physics/nuclear_prior_R0_candidate_v1.yaml#correlation_stress
+    model_count: 35
+    unique_matrix_count: 34
+    reporting_rule: report_envelope_and_named_scenarios_not_best_case
+  missing_covariance_interpretation: unmodeled_not_zero
+
+weak_nuisance:
+  neutron_lifetime:
+    registry: configs/physics/neutron_lifetime_v1.yaml
+    scenario: N0
+    mean_seconds: 878.3
+    sigma_seconds: 0.5
+    standard_coordinate: q_tau_n
+  weak_rate_normalization:
+    active: false
+    reason: avoid_double_counting_with_tau_n_in_R0_reference
+
+solver_policy:
+  primary_fast_path:
+    solver: LINX
+    role: batched_reference_prior_propagation
+    accepted_native_evidence: artifacts/benchmarks/LINX-NATIVE-Q-REPRODUCTION-v2/run-20260723T102602Z/reproduction.json
+  independent_check:
+    solver: PRyMordial
+    role: selected_nodes_and_distribution_spot_checks
+    accepted_native_evidence: artifacts/benchmarks/PRYMORDIAL-NATIVE-UQ-REPRODUCTION-v1/summary.json
+  precision_native_reference:
+    solver: PRIMAT
+    role: native_MC_and_central_value_reference
+    accepted_native_evidence: artifacts/benchmarks/PRIMAT-NATIVE-UQ-REPRODUCTION-v1/artifact.json
+    project_ETR25_curve_injection_required_for_fast_path: false
+    matched_injection_required_before_solver_independent_publication_claim: true
+
+standard_bbn_fiducial:
+  parameter_schema: configs/physics/parameter_schema.yaml#standard_bbn_fiducial
+  omega_b_h2: 0.02237
+  delta_neff: 0.0
+  tau_n_seconds: 878.3
+
+fast_designs:
+  sigma_point_9:
+    dimension: 4
+    coordinates: [q_dp_gamma_he3, q_dd_n_he3, q_dd_p_t, q_tau_n]
+    rule: center_plus_symmetric_axis_points
+    purpose: sign_linearity_failure_smoke
+    publication_quantiles_allowed: false
+
+  gauss_hermite_81:
+    dimension: 4
+    nodes_per_dimension: 3
+    total_nodes: 81
+    standard_normal_transform: q_equals_sqrt_2_times_physicists_Hermite_node
+    normalized_weight: tensor_product_weight_divided_by_pi_power_d_over_2
+    purpose: deterministic_mean_covariance_and_likelihood_reference
+
+  gauss_hermite_refinement:
+    dimension: 4
+    nodes_per_dimension: 5
+    total_nodes: 625
+    activation_rule: only_if_81_node_moments_or_direct_likelihood_fail_convergence
+
+  qmc_tail_check:
+    sequence: scrambled_Sobol
+    cumulative_sizes: [128, 256, 512, 1024]
+    activation_rule: only_if_tail_skew_or_quantile_error_is_decision_relevant
+    common_random_numbers_across_theta: true
+
+omega_b_h2_fast_grid:
+  source_mean: 0.02237
+  source_sigma: 0.00015
+  standardized_offsets: [-2.0, -1.0, 0.0, 1.0, 2.0]
+  values: [0.02207, 0.02222, 0.02237, 0.02252, 0.02267]
+  role: first_covariance_drift_and_direct_posterior_smoke
+
+acceptance_and_stop_rules:
+  structured_failure_fraction_max: 0.01
+  sigma_point_vs_GH81_moment_difference_in_units_of_theory_sigma_max: 0.02
+  GH81_vs_GH625_moment_difference_in_units_of_theory_sigma_max: 0.01
+  covariance_drift_null_fraction: 0.05
+  posterior_shift_null_sigma: 0.10
+  fast_stop_posterior_shift_sigma: 0.05
+  credible_interval_ratio_null: [0.95, 1.05]
+  topology_change_allowed_under_null: false
+  scale_to_1000_draws_when:
+    - GH81_or_GH625_does_not_converge
+    - non_Gaussian_tail_is_visible_and_decision_relevant
+    - correlation_stress_changes_a_registered_endpoint
+    - publication_grade_MC_crosscheck_is_required
+
+publication_upgrade:
+  required_before_unqualified_nuclear_posterior_claim:
+    - original_or_reproducible_nuclear_input_posterior_or_explicit_prior_family_scope
+    - A03_nuclear_data_review
+    - A00_scientific_lead_review
+    - A09_independent_validation
+    - matched_second_solver_for_claimed_effect
+  external_atlas_or_GP_exact_rerun_required: false
+  external_atlas_or_GP_status_must_be_disclosed: true

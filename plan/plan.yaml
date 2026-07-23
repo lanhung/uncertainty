@@ -1,8 +1,9 @@
 # Declarative desired state for the BBN nuclear-rate uncertainty program.
 # Runtime progress, metrics and artifacts are preserved across reconciliation.
 # Manuscript/SGWB/lithium-no-go tasks are intentionally outside this project.
+# External atlas/GP exact reproductions are retained as non-blocking evidence.
 # Learned-model, full-network and Nature-tier tasks are absent until UQ2-GATE-REPORT.
-plan_version: 5
+plan_version: 6
 project: uncertainty
 updated_at: 2026-07-23
 
@@ -38,8 +39,16 @@ tasks:
     unit: workers
     total: 1
 
+  - id: UQ0-NATIVE-UQ-REPRO
+    title: "Retain three accepted native UQ baselines and two external paper-reproduction audits"
+    phase: EXEC
+    weight: 1
+    unit: baselines
+    total: 5
+    depends_on: [UQ0-PUBLIC-SOLVER-BASELINES, UQ0-RATE-PDF-AUDIT]
+
   # ----------------------------------------------------------------------
-  # P0 — retained foundations, literature frontier and direct-first evidence
+  # P0 — foundations, literature frontier and direct-first evidence
   # ----------------------------------------------------------------------
   - id: P0-control-plane
     title: "Deploy the project-isolated research-ops control instance"
@@ -93,14 +102,6 @@ tasks:
     total: 1
     depends_on: [P0-LIT-01]
 
-  - id: P0-WHY-NOT-01
-    title: "Complete direct-solver necessity and emulator-economics memo for the UQ workload"
-    phase: P0
-    weight: 2
-    unit: memos
-    total: 1
-    depends_on: [P0-FRONTIER-2026-07]
-
   - id: P0-OBS-01
     title: "Freeze the cosmological inference observation registry OBS-v1"
     phase: P0
@@ -115,8 +116,16 @@ tasks:
     unit: decisions
     total: 1
 
+  - id: P0-WHY-NOT-01
+    title: "Complete direct-solver necessity and emulator-economics memo after the fast posterior grid"
+    phase: P0
+    weight: 2
+    unit: memos
+    total: 1
+    depends_on: [P0-FRONTIER-2026-07, UQ1-POSTERIOR-GRID]
+
   # ----------------------------------------------------------------------
-  # UQ0 — current nuclear PDFs, direct baselines and nuisance interface
+  # UQ0 — self-contained public-information prior and solver interface
   # ----------------------------------------------------------------------
   - id: UQ0-SCOPE-FREEZE
     title: "Freeze the BBN nuclear-rate uncertainty question and model ladder"
@@ -143,31 +152,23 @@ tasks:
     depends_on: [UQ0-SCOPE-FREEZE, P0-FRONTIER-2026-07]
 
   - id: UQ0-RATE-PDF-AUDIT
-    title: "Audit actual or posterior R0 rate distributions against log-normal approximations"
+    title: "Audit public R0 rate percentiles against log-normal approximations"
     phase: UQ0
     weight: 4
     unit: reactions
     total: 3
     depends_on: [UQ0-ETR25-R0-INGEST]
 
-  - id: UQ0-NATIVE-UQ-REPRO
-    title: "Reproduce PRIMAT MC, PRyMordial marginalization, LINX q-runs, atlas and GP baselines"
+  - id: UQ0-R0-RATE-PRIOR
+    title: "Freeze the self-contained R0 public-information reference-prior family"
     phase: UQ0
     weight: 4
-    unit: baselines
-    total: 5
+    unit: prior_families
+    total: 1
     depends_on: [UQ0-PUBLIC-SOLVER-BASELINES, UQ0-RATE-PDF-AUDIT]
 
-  - id: UQ0-R0-RATE-PRIOR
-    title: "Freeze coherent numerical priors and solver mappings for the three R0 rates"
-    phase: UQ0
-    weight: 4
-    unit: reactions
-    total: 3
-    depends_on: [UQ0-PUBLIC-SOLVER-BASELINES, UQ0-RATE-PDF-AUDIT, UQ0-NATIVE-UQ-REPRO]
-
   - id: UQ0-WEAK-PRIOR
-    title: "Register neutron-lifetime and weak-rate nuisance handling without double counting"
+    title: "Register neutron-lifetime nuisance handling without weak double counting"
     phase: UQ0
     weight: 2
     unit: contracts
@@ -175,15 +176,15 @@ tasks:
     depends_on: [UQ0-SCOPE-FREEZE, P0-NEUTRON-01]
 
   - id: UQ0-NUISANCE-ADAPTER
-    title: "Implement simulate(theta,rate_draw,tau_n,solver,network,precision) for three direct paths"
+    title: "Implement reference-prior simulate(theta,rate_draw,tau_n,solver,network,precision)"
     phase: UQ0
     weight: 5
     unit: paths
-    total: 3
+    total: 2
     depends_on: [UQ0-PUBLIC-SOLVER-BASELINES, UQ0-R0-RATE-PRIOR, UQ0-WEAK-PRIOR]
 
   - id: UQ0-PLUSMINUS-REGRESSION
-    title: "Validate central and symmetric scalar perturbations, coherent curves and structured failures"
+    title: "Validate central, symmetric, coherent-curve, unit and structured-failure behavior"
     phase: UQ0
     weight: 3
     unit: checks
@@ -191,61 +192,93 @@ tasks:
     depends_on: [UQ0-NUISANCE-ADAPTER]
 
   # ----------------------------------------------------------------------
-  # UQ1 — direct Monte Carlo abundance distributions and theory bands
+  # UQ1 — low-cost direct milestones before Monte Carlo scaling
   # ----------------------------------------------------------------------
-  - id: UQ1-FIDUCIAL-MC-1K
-    title: "Generate 1,000 direct coherent-rate draws at the frozen standard-BBN point"
-    phase: UQ1
-    weight: 5
-    unit: draws
-    total: 1000
-    depends_on: [UQ0-PLUSMINUS-REGRESSION, UQ0-NATIVE-UQ-REPRO]
-
-  - id: UQ1-MC-CONVERGENCE
-    title: "Evaluate abundance-distribution convergence at cumulative nuisance sample counts"
+  - id: UQ1-SIGMA-POINT-9
+    title: "Run the nine-point R0 rate-plus-neutron response smoke"
     phase: UQ1
     weight: 3
-    unit: checkpoints
-    total: 5
-    depends_on: [UQ1-FIDUCIAL-MC-1K]
+    unit: nodes
+    total: 9
+    depends_on: [UQ0-PLUSMINUS-REGRESSION]
 
-  - id: UQ1-RATE-PDF-PROPAGATION
-    title: "Compare actual/posterior, scalar-lognormal and solver-legacy rate representations"
+  - id: UQ1-GH81-DISTRIBUTION
+    title: "Compute the fiducial joint abundance distribution with 81 Gauss-Hermite nodes"
+    phase: UQ1
+    weight: 5
+    unit: nodes
+    total: 81
+    depends_on: [UQ1-SIGMA-POINT-9]
+
+  - id: UQ1-RATE-REPRESENTATION-COMPARE
+    title: "Compare scalar-lognormal, asymmetric-quantile and legacy-envelope propagation"
     phase: UQ1
     weight: 4
     unit: representations
     total: 3
-    depends_on: [UQ1-FIDUCIAL-MC-1K, UQ1-MC-CONVERGENCE]
+    depends_on: [UQ1-GH81-DISTRIBUTION]
+
+  - id: UQ1-OMEGAB-DRIFT-5
+    title: "Measure joint covariance and quantile drift at five frozen omega_b_h2 points"
+    phase: UQ1
+    weight: 4
+    unit: points
+    total: 5
+    depends_on: [UQ1-GH81-DISTRIBUTION, UQ1-RATE-REPRESENTATION-COMPARE]
+
+  - id: UQ1-POSTERIOR-GRID
+    title: "Compare U-M0, U-M1 and U-M2 on a direct one-dimensional omega_b_h2 posterior grid"
+    phase: UQ1
+    weight: 5
+    unit: treatments
+    total: 3
+    depends_on: [UQ1-OMEGAB-DRIFT-5, P0-OBS-01]
+
+  - id: UQ1-FAST-GATE
+    title: "Decide whether tails, 1,000 draws, 16 points or learned models are required"
+    phase: UQ1
+    weight: 2
+    unit: decisions
+    total: 1
+    depends_on: [UQ1-POSTERIOR-GRID]
+
+  - id: UQ1-TAIL-REFINEMENT
+    title: "Conditionally run GH625 or scrambled Sobol/QMC tail and correlation refinement"
+    phase: UQ1
+    weight: 2
+    unit: refinements
+    total: 1
+    depends_on: [UQ1-FAST-GATE]
 
   - id: UQ1-SCHRAMM-BANDS
     title: "Produce solver-grounded central, 68% and 95% theoretical abundance bands"
     phase: UQ1
-    weight: 4
+    weight: 3
     unit: outputs
     total: 4
-    depends_on: [UQ1-MC-CONVERGENCE, UQ1-RATE-PDF-PROPAGATION]
+    depends_on: [UQ1-GH81-DISTRIBUTION, UQ1-RATE-REPRESENTATION-COMPARE]
 
   - id: UQ1-POSTHOC-SIGMA-AUDIT
-    title: "Compare direct joint abundance distributions with constant post-hoc theoretical covariance"
+    title: "Document the validity or failure of constant post-hoc theoretical covariance"
     phase: UQ1
-    weight: 3
+    weight: 4
     unit: diagnostics
     total: 5
-    depends_on: [UQ1-SCHRAMM-BANDS]
+    depends_on: [UQ1-POSTERIOR-GRID, UQ1-SCHRAMM-BANDS]
 
   # ----------------------------------------------------------------------
-  # UQ2 — theta dependence, novelty and production gate
+  # UQ2 — conditional publication-grade expansion and method gate
   # ----------------------------------------------------------------------
   - id: UQ2-COVARIANCE-SMOKE-16
-    title: "Measure covariance, quantile, correlation, tail and rate-PDF drift at 16 points"
+    title: "Conditionally measure covariance, quantile, correlation and tail drift at 16 points"
     phase: UQ2
     weight: 4
     unit: points
     total: 16
-    depends_on: [UQ1-SCHRAMM-BANDS, UQ1-POSTHOC-SIGMA-AUDIT, P0-OBS-01]
+    depends_on: [UQ1-FAST-GATE, UQ1-POSTHOC-SIGMA-AUDIT]
 
   - id: UQ2-POINT-MANIFEST-64
-    title: "Freeze the 64-point standard/posterior/boundary response manifest before execution"
+    title: "Freeze the 64-point standard/posterior/boundary response manifest"
     phase: UQ2
     weight: 2
     unit: manifests
@@ -253,7 +286,7 @@ tasks:
     depends_on: [UQ2-COVARIANCE-SMOKE-16]
 
   - id: UQ2-FISHER64
-    title: "Execute the 64-point nuclear/weak/solver response and Fisher analysis"
+    title: "Execute the conditional 64-point nuclear/weak/solver response analysis"
     phase: UQ2
     weight: 5
     unit: points
@@ -261,12 +294,12 @@ tasks:
     depends_on: [UQ2-POINT-MANIFEST-64]
 
   - id: UQ2-DIRECT-ECONOMICS
-    title: "Measure PRIMAT/PRyMordial/LINX marginalization and 1,000-SBC workload costs"
+    title: "Measure direct quadrature, QMC, repeated posterior and 1,000-SBC workload costs"
     phase: UQ2
     weight: 3
     unit: workloads
     total: 5
-    depends_on: [UQ1-FIDUCIAL-MC-1K, UQ0-NATIVE-UQ-REPRO, P0-WHY-NOT-01]
+    depends_on: [UQ1-POSTERIOR-GRID, P0-WHY-NOT-01]
 
   - id: UQ2-METHOD-BASELINE-MANIFEST
     title: "Freeze post-Gate MLP, Gaussian, mixture, TMNRE/AMNRE and calibration baselines"
@@ -276,16 +309,24 @@ tasks:
     total: 1
     depends_on: [UQ2-COVARIANCE-SMOKE-16, UQ2-DIRECT-ECONOMICS]
 
+  - id: UQ2-PUBLICATION-PRIOR-UPGRADE
+    title: "Obtain publication-prior scope, nuclear-data review and independent scientific sign-offs"
+    phase: UQ2
+    weight: 2
+    unit: signoffs
+    total: 3
+    depends_on: [UQ1-POSTERIOR-GRID]
+
   - id: UQ2-GATE-REPORT
     title: "Issue G0/G1/G2/G3 for physics novelty and learned-model necessity"
     phase: UQ2
     weight: 3
     unit: signoffs
     total: 4
-    depends_on: [UQ2-FISHER64, UQ2-DIRECT-ECONOMICS, UQ2-METHOD-BASELINE-MANIFEST]
+    depends_on: [UQ2-FISHER64, UQ2-DIRECT-ECONOMICS, UQ2-METHOD-BASELINE-MANIFEST, UQ2-PUBLICATION-PRIOR-UPGRADE]
 
   - id: UQ2-NEXT-PLAN
-    title: "Add conditional learned-model, broader-rate or application tasks only after the signed Gate"
+    title: "Add learned-model, broader-rate or application tasks only after the signed Gate"
     phase: UQ2
     weight: 1
     unit: plans

@@ -15,7 +15,7 @@
 7. [`PUBLICATION.md`](PUBLICATION.md)：潜在论文路线与发布检查；
 8. [`/AGENTS-ops.md`](../../AGENTS-ops.md)：任务 ledger、heartbeat、checkpoint、detached 运行、资源 lease、状态快照和密钥安全。
 
-发生冲突时，以根级 `AGENTS.md`、`ADR-0006` 和 `ADR-0007` 为准。任何分卷都不得自行把 JCAP 稿件、SGWB、lithium no-go 或未经 Gate 授权的通用 ML benchmark 放回本项目关键路径，也不得把已经存在的 BBN Monte Carlo、scalar rate marginalization、standard sensitivity ranking 或 deuterium GP 包装为首创。
+发生冲突时，以根级 `AGENTS.md`、`ADR-0006`、`ADR-0007` 和 `ADR-0008` 为准。任何分卷都不得自行把 JCAP 稿件、SGWB、lithium no-go 或未经 Gate 授权的通用 ML benchmark 放回本项目关键路径，也不得把已经存在的 BBN Monte Carlo、scalar rate marginalization、standard sensitivity ranking 或 deuterium GP 包装为首创。
 
 ## 当前执行优先级
 
@@ -23,23 +23,35 @@
 
 - [`ADR-0006-uncertainty-core-refocus.md`](../decisions/ADR-0006-uncertainty-core-refocus.md)：纠正 manuscript-first 偏移并冻结 UQ-only 主线；
 - [`ADR-0007-frontier-literature-2026-07.md`](../decisions/ADR-0007-frontier-literature-2026-07.md)：根据 ETR25、PRIMAT native MC、PRyMordial/LINX、2026 sensitivity/GP 和 nuisance-SBI 前沿重排任务；
+- [`ADR-0008-self-contained-fast-track.md`](../decisions/ADR-0008-self-contained-fast-track.md)：将 atlas/GP 精确复现从生产依赖链拆出，冻结自包含 reference-prior 与低成本里程碑；
 - [`UNCERTAINTY_SCOPE_v1.md`](../science/UNCERTAINTY_SCOPE_v1.md)：定义生成模型、核 PDF、反应率分层、推断模型和验证阈值；
-- [`SCIENCE_CRITICAL_PATH_v3.md`](../ops/SCIENCE_CRITICAL_PATH_v3.md)：从 ETR25/PDF audit、native direct baselines、Monte Carlo 理论带到 16 点 smoke 与 64 点正式 Gate 的执行顺序；
-- [`plan/plan.yaml`](../../plan/plan.yaml)：当前唯一 desired state。
+- [`SCIENCE_CRITICAL_PATH_v4.md`](../ops/SCIENCE_CRITICAL_PATH_v4.md)：当前自包含科学关键路径；
+- [`FAST_TRACK_MILESTONES_v1.md`](../ops/FAST_TRACK_MILESTONES_v1.md)：9 点、81 点、5 点漂移和一维 posterior 的事件式执行规范；
+- [`plan/plan.yaml`](../../plan/plan.yaml)：当前唯一 desired state，版本 6。
 
 当前顺序为：
 
 ```text
-frontier/source freeze
--> ETR25 R0 ingestion and actual-PDF audit
--> PRIMAT/PRyMordial/LINX direct reproduction
--> common nuisance adapter
--> fixed-point direct Monte Carlo bands
--> actual-PDF vs scalar-lognormal vs fixed-C_th comparison
--> 16-point covariance/quantile/tail drift
--> 64-point novelty and method-necessity Gate
--> conditional emulator and posterior campaign
+ETR25/public-information reference prior
+-> LINX primary + PRyMordial spot-check adapter
+-> 9-point response smoke
+-> 81-node direct joint abundance distribution
+-> five-point omega_b_h2 covariance drift
+-> U-M0/U-M1/U-M2 direct posterior grid
+-> fast stop/scale decision
+-> conditional 16/64-point, broader rates or learned model
 ```
+
+## 外部复现与生产依赖边界
+
+以下两项保留为冻结的外部论文审计，但不再阻塞项目自有计算：
+
+- 2026 sensitivity-atlas exact slice reproduction；
+- 2026 GP deuterium exact abundance-distribution reproduction。
+
+其失败或阻塞证据不得被改写成通过，也不得通过放宽原阈值获得 credit。原因是公开材料缺少 generator/configuration 或 code/hyperparameters/data/draws/seed。项目允许使用新项目 ID 做 clean-room alternative，但不得称为 exact reproduction。
+
+当前 fast path 使用 `configs/physics/nuclear_prior_R0_reference_v1.yaml`。它是公开信息条件下的 reference-prior family，不是完整实验核后验。出版级无条件主张仍需要核数据审查、科学负责人和独立验证签字。
 
 ## 明确的非依赖项与非首创项
 
@@ -65,12 +77,13 @@ frontier/source freeze
 - 普通 deterministic BBN emulator；
 - generic flow/TMNRE/AMNRE nuisance marginalization。
 
-历史 `ADR-0005` 和 `SCIENCE_CRITICAL_PATH_v2` 仅用于记录已被纠正的短期决策，不得作为当前执行入口。
+历史 `ADR-0005`、`SCIENCE_CRITICAL_PATH_v2` 和 `SCIENCE_CRITICAL_PATH_v3` 仅用于记录已被纠正的短期决策，不得作为当前执行入口。
 
 ## 数据和资产边界
 
-- `configs/data/abundance_OBS-v1.yaml`：未来 cosmological UQ inference 的预注册 observation registry；
-- `configs/physics/nuclear_stage0_R0_v1.yaml`：当前 R0 核反应率 actual/posterior 与 scalar-lognormal nuisance contract；
+- `configs/data/abundance_OBS-v1.yaml`：cosmological UQ inference 的预注册 observation registry；
+- `configs/physics/nuclear_stage0_R0_v1.yaml`：R0 核反应率 actual/posterior 与 scalar-lognormal nuisance contract；
+- `configs/physics/nuclear_prior_R0_reference_v1.yaml`：当前可执行的自包含 reference-prior family；
 - `configs/literature/frontier_sources_2026-07.yaml`：当前前沿 source registry；
 - ETR25、RatesMC、solver、rate table、posterior sample、dataset 和 chain 均须记录 revision、license、hash、schema 与生成来源；
 - 同一 nuclear-input draw 必须产生 coherent temperature-dependent rate curve；
@@ -85,7 +98,7 @@ frontier/source freeze
 
 1. 新建或更新 `docs/decisions/ADR-*.md`；
 2. 明确受影响的任务、数据冻结、统计阈值、资源上限和停止条件；
-3. 更新根级 `AGENTS.md` 与相应分卷；
+3. 更新根级 `AGENTS.md` 或在不冲突时登记新的优先级 ADR；
 4. 更新 `plan/plan.yaml` 并运行 plan validation 与 `taskctl reconcile`；
 5. 在 PR 中说明科学原因和验证方式；
 6. 解盲后的变化进入 deviation log；
@@ -99,5 +112,6 @@ frontier/source freeze
 - [`ADR-0005-manuscript-baseline-self-contained-pivot.md`](../decisions/ADR-0005-manuscript-baseline-self-contained-pivot.md)：**Superseded for active priority**；
 - [`ADR-0006-uncertainty-core-refocus.md`](../decisions/ADR-0006-uncertainty-core-refocus.md)：UQ-only 科学优先级；
 - [`ADR-0007-frontier-literature-2026-07.md`](../decisions/ADR-0007-frontier-literature-2026-07.md)：当前前沿、核 PDF 与强制 baseline 决策；
+- [`ADR-0008-self-contained-fast-track.md`](../decisions/ADR-0008-self-contained-fast-track.md)：自包含 reference-prior、外部复现解耦和快速里程碑；
 - [`../ops/CLUSTER_RUNBOOK.md`](../ops/CLUSTER_RUNBOOK.md)：集群部署与恢复；
-- [`../ops/SCIENCE_CRITICAL_PATH_v3.md`](../ops/SCIENCE_CRITICAL_PATH_v3.md)：当前科学关键路径。
+- [`../ops/SCIENCE_CRITICAL_PATH_v4.md`](../ops/SCIENCE_CRITICAL_PATH_v4.md)：当前科学关键路径。
