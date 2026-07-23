@@ -1,6 +1,6 @@
 schema_version: 1
 registry_id: ETR25-R0-INGEST-v1
-status: R0_percentile_tables_captured_rate_pdf_audit_pending
+status: R0_percentile_tables_captured_rate_pdf_audit_complete
 task_id: UQ0-ETR25-R0-INGEST
 captured_at_utc: "2026-07-23"
 production_use: prohibited
@@ -153,6 +153,9 @@ availability_boundary:
 
 next_gate:
   task_id: UQ0-RATE-PDF-AUDIT
+  status: complete_descriptive_comparator_only
+  registry: configs/physics/etr25_R0_rate_pdf_audit_v1.yaml
+  artifact: artifacts/priors/ETR25-R0-RATE-PDF-AUDIT-v1/audit.json
   allowed_now:
     - quantify_low_median_high_log_asymmetry_at_60_knots
     - compare_p16_p50_p84_to_p50_times_or_divided_by_factor_uncertainty

@@ -49,7 +49,10 @@ def test_legacy_mapping_does_not_unlock_ETR25_production_adapter() -> None:
     assert (
         prior["upstream_scientific_gates"]["UQ0_ETR25_R0_INGEST"] == "complete_public_products_only"
     )
-    assert prior["upstream_scientific_gates"]["UQ0_RATE_PDF_AUDIT"] == "pending"
+    assert (
+        prior["upstream_scientific_gates"]["UQ0_RATE_PDF_AUDIT"]
+        == "complete_descriptive_comparator_only"
+    )
     assert prior["upstream_scientific_gates"]["common_production_adapter_unlocked"] is False
 
 

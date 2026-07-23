@@ -1,0 +1,133 @@
+schema_version: 1
+audit_id: ETR25-R0-RATE-PDF-AUDIT-v1
+task_id: UQ0-RATE-PDF-AUDIT
+status: descriptive_rate_pdf_audit_complete_production_prohibited
+audited_at_utc: "2026-07-23"
+production_use: prohibited
+
+input:
+  path: artifacts/priors/ETR25-R0-TABLES-v1/package.json
+  sha256: f9f7436378fe8d0985d03ca5e5b48012820948c6a391081438939b63c58df7ba
+  semantics: >-
+    Low, Median and High are actual pointwise p16, p50 and p84 values. Factor
+    uncertainty is a separate scalar lognormal approximation.
+
+output:
+  path: artifacts/priors/ETR25-R0-RATE-PDF-AUDIT-v1/audit.json
+  sha256: 33adba011bc0eddeee6f31b8b43a873cdae30f15c6d1e92aa50fdeafeea9af20
+  builder: scripts/build_etr25_R0_rate_pdf_audit.py
+  validator: scripts/validate_etr25_R0_rate_pdf_audit_v1.py
+
+metric_contract:
+  definitions:
+    L: actual_p16
+    M: actual_p50
+    H: actual_p84
+    F: factor_uncertainty
+    lower_log_width: ln_M_over_L
+    upper_log_width: ln_H_over_M
+    sigma_lognormal: ln_F
+    log_asymmetry: upper_log_width_minus_lower_log_width
+    scale_mismatch: >-
+      one_half_times_lower_plus_upper_log_width_minus_sigma_lognormal
+  endpoint_convention: >-
+    Compare L and H to the ETR25 68-percent scalar proxy endpoints M/F and M*F.
+    These q=+/-1 endpoints are not the exact Normal p16/p84 z scores.
+  lower_residual_sign: ln_of_M_over_F_divided_by_L
+  upper_residual_sign: ln_of_M_times_F_divided_by_H
+  rounding:
+    assumption: round_to_nearest_at_four_significant_digits
+    method: propagate_each_printed_value_plus_or_minus_half_last_decimal_unit
+    interpretation: >-
+      An interval containing zero means only that the endpoint identity is not
+      distinguishable at the public table precision. It does not validate a
+      joint or full lognormal PDF.
+
+temperature_scopes:
+  full_table_scope:
+    T9: [0.001, 10.0]
+    knots: 60
+    role: publisher_product_integrity_and_descriptive_audit
+  common_solver_evaluated_scope:
+    T9: [0.06, 10.0]
+    knots: 38
+    role: intersection_of_three_accepted_solver_network_domains
+  primary_all_R0_unmatched_scope:
+    T9: [0.06, 2.0]
+    knots: 28
+    role: >-
+      Primary descriptive audit intersection of the three accepted solver
+      domains and all-three unmatched ETR25 table segments.
+    physical_sensitivity_window: false
+  shared_high_temperature_tail:
+    T9: [2.5, 10.0]
+    knots: 10
+    role: >-
+      Separate source-lineage stratum. Both d+d rates are matched/adopted from
+      2.5 GK; d(p,gamma)3He is matched/adopted from 5 GK.
+  impact_sensitivity_window:
+    status: not_yet_measured
+    required_experiment: >-
+      Preregister coherent localized log-rate perturbation bins, recompute
+      reverse rates by detailed balance, measure centered D/H and Y_p
+      responses, freeze a cumulative-response threshold before results, and
+      replicate boundary bins in a second accepted solver.
+
+solver_domain_evidence:
+  LINX:
+    revision: ec2e9d2ca455e8204137e884da29f5dd13a638fa
+    network_domain_T9: [0.06, 100.0]
+  PRyMordial:
+    revision: 725d8a8db3ad5ea2630580d825c9d0d69ed76533
+    network_domain_T9: [0.0116045, 11.6045]
+  PRIMAT:
+    revision: 21ff8f39fa18e3937e9fdf386cfa982361bfdfce
+    network_domain_T9: [0.0116045, 11.6045]
+
+primary_scope_results:
+  dd_n_he3:
+    knots: 28
+    max_abs_endpoint_relative_error: 0.0009939094023598827
+    rounding_resolved_lower_endpoint_rows: 0
+    rounding_resolved_upper_endpoint_rows: 12
+    rounding_resolved_any_endpoint_rows: 12
+    max_abs_log_asymmetry: 0.0019382408120844127
+    max_relative_log_width_asymmetry: 0.1775034995874497
+  dd_p_t:
+    knots: 28
+    max_abs_endpoint_relative_error: 0.0017840046701694812
+    rounding_resolved_lower_endpoint_rows: 0
+    rounding_resolved_upper_endpoint_rows: 25
+    rounding_resolved_any_endpoint_rows: 25
+    max_abs_log_asymmetry: 0.0025739087922899383
+    max_relative_log_width_asymmetry: 0.19374180501792454
+  dp_gamma_he3:
+    knots: 28
+    max_abs_endpoint_relative_error: 0.0011625903568641682
+    rounding_resolved_lower_endpoint_rows: 4
+    rounding_resolved_upper_endpoint_rows: 2
+    rounding_resolved_any_endpoint_rows: 4
+    max_abs_log_asymmetry: 0.0013912247045416645
+    max_relative_log_width_asymmetry: 0.06586166983500401
+
+full_scope_rounding_regression:
+  dd_n_he3: {lower: 0, upper: 22, any: 22, knots: 60}
+  dd_p_t: {lower: 1, upper: 48, any: 48, knots: 60}
+  dp_gamma_he3: {lower: 9, upper: 18, any: 22, knots: 60}
+
+coherence_boundary:
+  scalar_proxy_curve: coherent_by_construction_with_one_fixed_q_per_reaction
+  q_probe_values: [-3.0, -1.0, 0.0, 1.0, 3.0]
+  maximum_reconstructed_q_error: 1.5987211554602254e-14
+  actual_posterior_coherence: not_evaluable_from_public_pointwise_quantiles
+  independent_temperature_noise: prohibited
+
+decision:
+  scalar_lognormal_status: accepted_as_explicit_coherent_comparator_only
+  actual_pointwise_percentile_status: captured_and_quantitatively_compared
+  actual_functional_posterior_status: unavailable_in_identified_public_release
+  equivalence_claim_allowed: false
+  cross_reaction_independence_claim_allowed: false
+  scientific_label_generation_allowed: false
+  common_production_adapter_unlocked: false
+  production_use: prohibited_pending_coherent_prior_and_downstream_gates

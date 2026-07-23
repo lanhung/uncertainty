@@ -1,6 +1,6 @@
 schema_version: 2
 registry_id: NUCLEAR-STAGE0-R0-v1
-status: public_table_capture_complete_rate_pdf_audit_pending
+status: public_table_and_rate_pdf_audit_complete_coherent_prior_pending
 registered_at_utc: "2026-07-23"
 frontier_review: docs/literature/FRONTIER_REVIEW_2026-07.md
 source_registry: configs/literature/frontier_sources_2026-07.yaml
@@ -68,8 +68,11 @@ reactions:
     actual_pdf_or_samples: actual_percentiles_only_full_samples_not_in_public_release
     actual_percentiles: p16_p50_p84_captured
     lognormal_factor_uncertainty: captured_separately_from_actual_percentiles
-    lognormal_adequacy_audit: required
-    coherent_temperature_draws: required
+    lognormal_adequacy_audit: complete_comparator_only_not_full_pdf_validation
+    rate_pdf_audit: configs/physics/etr25_R0_rate_pdf_audit_v1.yaml
+    coherent_temperature_draws:
+      scalar_proxy: coherent_by_construction
+      actual_posterior: not_evaluable_from_public_pointwise_quantiles
     covariance_status: not_published_missing_is_not_independence
     detailed_balance: pending
     solver_mappings: pending
@@ -111,8 +114,11 @@ reactions:
     actual_pdf_or_samples: actual_percentiles_only_full_samples_not_in_public_release
     actual_percentiles: p16_p50_p84_captured
     lognormal_factor_uncertainty: captured_separately_from_actual_percentiles
-    lognormal_adequacy_audit: required
-    coherent_temperature_draws: required
+    lognormal_adequacy_audit: complete_comparator_only_not_full_pdf_validation
+    rate_pdf_audit: configs/physics/etr25_R0_rate_pdf_audit_v1.yaml
+    coherent_temperature_draws:
+      scalar_proxy: coherent_by_construction
+      actual_posterior: not_evaluable_from_public_pointwise_quantiles
     covariance_status: not_published_missing_is_not_independence
     detailed_balance: pending
     solver_mappings: pending
@@ -153,8 +159,11 @@ reactions:
     actual_pdf_or_samples: actual_percentiles_only_full_samples_not_in_public_release
     actual_percentiles: p16_p50_p84_captured
     lognormal_factor_uncertainty: captured_separately_from_actual_percentiles
-    lognormal_adequacy_audit: required
-    coherent_temperature_draws: required
+    lognormal_adequacy_audit: complete_comparator_only_not_full_pdf_validation
+    rate_pdf_audit: configs/physics/etr25_R0_rate_pdf_audit_v1.yaml
+    coherent_temperature_draws:
+      scalar_proxy: coherent_by_construction
+      actual_posterior: not_evaluable_from_public_pointwise_quantiles
     covariance_status: not_published_missing_is_not_independence
     detailed_balance: pending
     solver_mappings: pending
@@ -217,6 +226,9 @@ mandatory_direct_reproduction:
 
 rate_pdf_audit:
   task_id: UQ0-RATE-PDF-AUDIT
+  status: complete_descriptive_comparator_only
+  registry: configs/physics/etr25_R0_rate_pdf_audit_v1.yaml
+  artifact: artifacts/priors/ETR25-R0-RATE-PDF-AUDIT-v1/audit.json
   per_reaction_outputs:
     - source_actual_percentiles
     - source_lognormal_factor_uncertainty
@@ -224,11 +236,15 @@ rate_pdf_audit:
     - temperature_dependence_of_approximation_error
     - coherent_curve_draw_validation
     - BBN_window_summary
-  BBN_temperature_window: preregister_after_solver_and_rate_grid_audit
+  full_table_scope_T9: [0.001, 10.0]
+  common_solver_evaluated_scope_T9: [0.06, 10.0]
+  primary_all_R0_unmatched_scope_T9: [0.06, 2.0]
+  primary_scope_role: descriptive_audit_not_physical_sensitivity_window
+  physical_sensitivity_window: pending_localized_response_experiment
   pass_rule: >-
-    The scalar baseline may enter production only after the difference from the
-    actual or posterior-derived representation is quantified and either shown to
-    satisfy the frozen null budget or retained as an explicit model comparison.
+    The difference from the public actual pointwise percentiles is quantified.
+    The scalar baseline is retained as an explicit coherent comparator, not as
+    an equivalent full-PDF reconstruction or production truth.
 
 monte_carlo_protocol:
   frozen_fiducial_manifest: pending
