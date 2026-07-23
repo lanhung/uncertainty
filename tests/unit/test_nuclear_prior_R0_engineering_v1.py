@@ -46,7 +46,9 @@ def test_unmatched_native_libraries_cannot_be_called_engine_discrepancy() -> Non
 def test_legacy_mapping_does_not_unlock_ETR25_production_adapter() -> None:
     prior = yaml.safe_load(PRIOR.read_text(encoding="utf-8"))
 
-    assert prior["upstream_scientific_gates"]["UQ0_ETR25_R0_INGEST"] == "pending"
+    assert (
+        prior["upstream_scientific_gates"]["UQ0_ETR25_R0_INGEST"] == "complete_public_products_only"
+    )
     assert prior["upstream_scientific_gates"]["UQ0_RATE_PDF_AUDIT"] == "pending"
     assert prior["upstream_scientific_gates"]["common_production_adapter_unlocked"] is False
 

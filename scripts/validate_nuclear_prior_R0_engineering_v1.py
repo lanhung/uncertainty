@@ -107,7 +107,7 @@ def validate(prior_path: Path, stage_path: Path, repository_root: Path) -> dict[
     stage_reactions = {item["reaction_id"]: item for item in stage["reactions"]}
     if set(stage_reactions) != REACTIONS:
         raise ValueError("Stage-R0 registry reaction set differs from the engineering prior")
-    if stage.get("status") != "scope_and_source_policy_frozen_numerical_capture_pending":
+    if stage.get("status") != "public_table_capture_complete_rate_pdf_audit_pending":
         raise ValueError("Stage-R0 registry has an unsafe status")
     if any(item.get("production_enabled") is not False for item in stage_reactions.values()):
         raise ValueError("Stage-R0 production must remain disabled")
