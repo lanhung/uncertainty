@@ -82,5 +82,6 @@ alone cannot substitute for those measurements.
 - A09 independent validation: pending publication-grade claims
 - A00 scientific lead: pending publication-grade claims
 
-Nature-tier Gate remains **CLOSED**. The exploratory fast path may proceed
-without impersonating the missing human signatures.
+Track B remains **NOT FROZEN**. Nature-tier Gate remains **CLOSED**. The
+exploratory fast path may proceed without impersonating the missing human
+signatures.
