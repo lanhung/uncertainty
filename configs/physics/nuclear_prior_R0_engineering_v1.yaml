@@ -151,7 +151,7 @@ solver_mappings:
       dd_p_t: 39c2ed86b6b0c3c9003111bce39df31e332f93d6d337a1221fc7ac3b72535184
 
   PRIMAT_S8:
-    repository: https://github.com/lesgourg/PRIMAT
+    repository: https://github.com/CyrilPitrou/primat
     revision: 21ff8f39fa18e3937e9fdf386cfa982361bfdfce
     version: v0.3.2
     network: small
@@ -173,7 +173,20 @@ solver_mappings:
     standard_tau_n_sigma: zero
     all_non_R0_rate_parameters: zero
     all_additive_delta_parameters: zero
-    reverse_uses_same_perturbed_forward_rate: true
+    reverse_uses_same_perturbed_forward_rate: >-
+      true_before_reverse_cap_or_where_cap_is_inactive
+    native_reverse_cap:
+      construction: load_time_median_and_QED_corrected_forward
+      recomputed_by_apply_variations: false
+      consequence: >-
+        LT perturbed reverse may be clipped by a median-derived cap, so native
+        v0.3.2 does not unconditionally preserve same-draw detailed balance.
+      production_policy: >-
+        Recompute the cap for every draw or disable it on the registered domain,
+        then pass reverse-ratio and consecutive-draw cache regressions.
+    fill_buffer_cache_after_variation:
+      invalidation_explicit_in_upstream: false
+      required_regression: consecutive_draw_same_temperature
     reaction_parameters:
       z_dp_gamma_he3:
         internal_rate_id: d_p__He3_g
