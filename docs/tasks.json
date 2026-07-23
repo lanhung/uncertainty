@@ -1,10 +1,10 @@
 {
   "project": "uncertainty",
-  "generated_at": "2026-07-23T03:27:36+00:00",
-  "revision": 486,
-  "overall_progress": 0.22988505747126436,
+  "generated_at": "2026-07-23T03:27:47+00:00",
+  "revision": 496,
+  "overall_progress": 0.25287356321839083,
   "overall_kind": "effort-weighted scientific program gate completion",
-  "science_gate_progress": 0.22988505747126436,
+  "science_gate_progress": 0.25287356321839083,
   "execution_progress": 0.75,
   "execution_kind": "effort-weighted current execution milestone completion",
   "phases": {
@@ -12,7 +12,7 @@
       "progress": 0.75
     },
     "P0": {
-      "progress": 0.75
+      "progress": 0.875
     },
     "UQ0": {
       "progress": 0.25
@@ -25,9 +25,9 @@
     }
   },
   "status_counts": {
-    "done": 14,
+    "done": 15,
     "cancelled": 27,
-    "pending": 20,
+    "pending": 19,
     "stale": 1
   },
   "tasks": [
@@ -58,7 +58,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 48517.86477804184,
+      "heartbeat_age_s": 48528.35466313362,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -100,7 +100,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 22699.864869594574,
+      "heartbeat_age_s": 22710.354736804962,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -148,7 +148,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 25925.86492419243,
+      "heartbeat_age_s": 25936.3547873497,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -194,7 +194,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 22699.864964962006,
+      "heartbeat_age_s": 22710.35482597351,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -267,7 +267,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 23187.86505317688,
+      "heartbeat_age_s": 23198.35490012169,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -307,7 +307,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 50860.865107774734,
+      "heartbeat_age_s": 50871.35495305061,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -337,32 +337,49 @@
       "id": "P0-FRONTIER-2026-07",
       "title": "Freeze the July 2026 BBN-rate-UQ and nuisance-SBI frontier review",
       "phase": "P0",
-      "status": "pending",
+      "status": "done",
       "weight": 2.0,
       "unit": "reviews",
-      "current": 0.0,
+      "current": 1.0,
       "total": 1.0,
       "owner": null,
       "depends_on": [
         "P0-LIT-01"
       ],
       "started_at": null,
-      "updated_at": null,
-      "finished_at": null,
+      "updated_at": "2026-07-23T03:27:46+00:00",
+      "finished_at": "2026-07-23T03:27:46+00:00",
       "declared_eta": null,
-      "message": "",
-      "artifacts": [],
+      "message": "July 2026 frontier review frozen at main f9bcb90 with primary-source registry and ADR-0007. It makes ETR25 actual-PDF ingestion/native-UQ reproduction mandatory, preserves regression-only baselines, and keeps Track B/Nature gates closed.",
+      "artifacts": [
+        "docs/literature/FRONTIER_REVIEW_2026-07.md",
+        "docs/decisions/ADR-0007-frontier-literature-2026-07.md",
+        "configs/literature/frontier_sources_2026-07.yaml"
+      ],
       "metrics": {},
       "attempt": 0,
       "run_id": null,
-      "progress": 0.0,
+      "progress": 1.0,
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": null,
-      "ready": true,
+      "heartbeat_age_s": 1.3550138473510742,
+      "ready": false,
       "blocked_by": [],
-      "artifact_links": []
+      "artifact_links": [
+        {
+          "label": "docs/literature/FRONTIER_REVIEW_2026-07.md",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/docs/literature/FRONTIER_REVIEW_2026-07.md"
+        },
+        {
+          "label": "docs/decisions/ADR-0007-frontier-literature-2026-07.md",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/docs/decisions/ADR-0007-frontier-literature-2026-07.md"
+        },
+        {
+          "label": "configs/literature/frontier_sources_2026-07.yaml",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/configs/literature/frontier_sources_2026-07.yaml"
+        }
+      ]
     },
     {
       "id": "P0-LIT-01",
@@ -394,7 +411,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 67679.86523914337,
+      "heartbeat_age_s": 67690.3550555706,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -447,7 +464,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 98949.86528921127,
+      "heartbeat_age_s": 98960.35516262054,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -489,7 +506,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 98950.86533713341,
+      "heartbeat_age_s": 98961.35520362854,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -593,11 +610,9 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 22698.865416526794,
+      "heartbeat_age_s": 22709.35528945923,
       "ready": false,
-      "blocked_by": [
-        "P0-FRONTIER-2026-07"
-      ],
+      "blocked_by": [],
       "artifact_links": [
         {
           "label": "docs/decisions/ADR-WHY-NOT-001.md",
@@ -863,7 +878,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 23187.86549472809,
+      "heartbeat_age_s": 23198.3553481102,
       "ready": false,
       "blocked_by": [
         "P0-solvers-build"
@@ -900,7 +915,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 90006.86553931236,
+      "heartbeat_age_s": 90017.35539317131,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -950,7 +965,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 121166.86558389664,
+      "heartbeat_age_s": 121177.35543036461,
       "ready": false,
       "blocked_by": [],
       "artifact_links": []
@@ -991,7 +1006,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 80357.86563754082,
+      "heartbeat_age_s": 80368.35547041893,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -1061,7 +1076,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 48364.865688323975,
+      "heartbeat_age_s": 48375.35550713539,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -1102,7 +1117,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 90826.86574053764,
+      "heartbeat_age_s": 90837.35554337502,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -1156,7 +1171,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 23187.86581802368,
+      "heartbeat_age_s": 23198.35558629036,
       "ready": false,
       "blocked_by": [
         "P0-solvers-build"
@@ -1211,7 +1226,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 23187.865875720978,
+      "heartbeat_age_s": 23198.355662822723,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -1257,7 +1272,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 23187.865914583206,
+      "heartbeat_age_s": 23198.355708360672,
       "ready": false,
       "blocked_by": [],
       "artifact_links": []
@@ -1291,7 +1306,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 23187.865949630737,
+      "heartbeat_age_s": 23198.355777025223,
       "ready": false,
       "blocked_by": [
         "P0-tailnet"
@@ -1329,7 +1344,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 23187.86598420143,
+      "heartbeat_age_s": 23198.35581302643,
       "ready": false,
       "blocked_by": [
         "P1-mcmc-refactor"
@@ -1362,7 +1377,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 23187.866018295288,
+      "heartbeat_age_s": 23198.355847358704,
       "ready": false,
       "blocked_by": [
         "P1-mcmc-refactor"
@@ -1395,7 +1410,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 23187.866050958633,
+      "heartbeat_age_s": 23198.355902194977,
       "ready": false,
       "blocked_by": [
         "P0-reproduce-bbnet"
@@ -1428,7 +1443,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 23187.86608529091,
+      "heartbeat_age_s": 23198.35595560074,
       "ready": false,
       "blocked_by": [
         "P1-kappa-identifiability"
@@ -1462,7 +1477,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 23187.866119146347,
+      "heartbeat_age_s": 23198.355993032455,
       "ready": false,
       "blocked_by": [
         "P1-hardsoft-posterior",
@@ -1498,7 +1513,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 23187.866153478622,
+      "heartbeat_age_s": 23198.356027841568,
       "ready": false,
       "blocked_by": [
         "P2-unified-adapter"
@@ -1538,7 +1553,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 23187.866187095642,
+      "heartbeat_age_s": 23198.356074810028,
       "ready": false,
       "blocked_by": [
         "P2-rate-registry"
@@ -1581,7 +1596,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 23187.866248607635,
+      "heartbeat_age_s": 23198.356119155884,
       "ready": false,
       "blocked_by": [
         "P2-solver-matrix"
@@ -1633,7 +1648,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 23187.86629128456,
+      "heartbeat_age_s": 23198.356153011322,
       "ready": false,
       "blocked_by": [
         "P0-solvers-build"
@@ -1672,7 +1687,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 23187.86632514,
+      "heartbeat_age_s": 23198.356186389923,
       "ready": false,
       "blocked_by": [
         "P2-solver-matrix",
@@ -1707,7 +1722,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 23187.866358995438,
+      "heartbeat_age_s": 23198.35621905327,
       "ready": false,
       "blocked_by": [
         "P2.5-jacobians",
@@ -1749,7 +1764,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 23187.86639547348,
+      "heartbeat_age_s": 23198.3562541008,
       "ready": false,
       "blocked_by": [
         "P2.5-fisher-propagation",
@@ -1812,7 +1827,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 23187.86643052101,
+      "heartbeat_age_s": 23198.356287002563,
       "ready": false,
       "blocked_by": [
         "P2-unified-adapter"
@@ -1850,7 +1865,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 23187.866525650024,
+      "heartbeat_age_s": 23198.35631942749,
       "ready": false,
       "blocked_by": [
         "P3-pilot-10k"
@@ -1883,7 +1898,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 23187.866571187973,
+      "heartbeat_age_s": 23198.356361865997,
       "ready": false,
       "blocked_by": [
         "P3-standard-atlas-regression"
@@ -1917,7 +1932,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 23187.866606473923,
+      "heartbeat_age_s": 23198.35639977455,
       "ready": false,
       "blocked_by": [
         "P3-nonstandard-reordering",
@@ -1951,7 +1966,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 23187.866695404053,
+      "heartbeat_age_s": 23198.356433153152,
       "ready": false,
       "blocked_by": [
         "P3-pilot-1k"
@@ -1984,7 +1999,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 23187.866765737534,
+      "heartbeat_age_s": 23198.356466770172,
       "ready": false,
       "blocked_by": [
         "P2.5-gate-report"
@@ -2017,7 +2032,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 23187.86681175232,
+      "heartbeat_age_s": 23198.356528282166,
       "ready": false,
       "blocked_by": [
         "P3-pilot-10k"
@@ -2052,10 +2067,8 @@
       "eta": null,
       "eta_kind": "none",
       "heartbeat_age_s": null,
-      "ready": false,
-      "blocked_by": [
-        "P0-FRONTIER-2026-07"
-      ],
+      "ready": true,
+      "blocked_by": [],
       "artifact_links": []
     },
     {
@@ -2073,11 +2086,13 @@
         "UQ0-R0-RATE-PRIOR"
       ],
       "started_at": null,
-      "updated_at": null,
+      "updated_at": "2026-07-23T03:27:47+00:00",
       "finished_at": null,
       "declared_eta": null,
-      "message": "",
-      "artifacts": [],
+      "message": "Legacy native parameter transforms are source-audited at main f9bcb90, but no abundance-level native-UQ baseline is complete. PRIMAT native MC, PRyMordial marginalization, LINX q-runs, atlas slice and GP-prior structure remain 0/5 until executed under the new plan.",
+      "artifacts": [
+        "configs/physics/nuclear_prior_R0_engineering_v1.yaml"
+      ],
       "metrics": {},
       "attempt": 0,
       "run_id": null,
@@ -2085,12 +2100,17 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": null,
+      "heartbeat_age_s": 0.35663700103759766,
       "ready": false,
       "blocked_by": [
         "UQ0-R0-RATE-PRIOR"
       ],
-      "artifact_links": []
+      "artifact_links": [
+        {
+          "label": "configs/physics/nuclear_prior_R0_engineering_v1.yaml",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/configs/physics/nuclear_prior_R0_engineering_v1.yaml"
+        }
+      ]
     },
     {
       "id": "UQ0-NUISANCE-ADAPTER",
@@ -2190,7 +2210,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 21439.867057561874,
+      "heartbeat_age_s": 21450.356777668,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
@@ -2219,13 +2239,16 @@
         "UQ0-RATE-PDF-AUDIT"
       ],
       "started_at": null,
-      "updated_at": "2026-07-22T21:30:18+00:00",
+      "updated_at": "2026-07-23T03:27:46+00:00",
       "finished_at": null,
       "declared_eta": null,
-      "message": "Provenance preparation at main ad98345 binds 7 collections/21 files/18 unique payloads and identifies copied lineage, but awards zero numerical-prior credit. All 3 reactions remain pending source semantics, covariance/detailed-balance policy, validated mappings and +/-1 regressions.",
+      "message": "Main f9bcb90 freezes exact legacy scalar-envelope mappings for LINX/PRyMordial/PRIMAT calibration only. Zero reaction completion credit: ETR25 ingest, actual-PDF audit, coherent scientific prior, covariance stress, +/-1 regression and A03/A00/A09 remain pending.",
       "artifacts": [
         "configs/physics/nuclear_stage0_R0_source_candidates_v1.yaml",
-        "docs/inventory/NUCLEAR_STAGE0_R0_SOURCE_SELECTION_AUDIT_v1.md"
+        "docs/inventory/NUCLEAR_STAGE0_R0_SOURCE_SELECTION_AUDIT_v1.md",
+        "artifacts/priors/NUCLEAR-STAGE0-R0-LINX-KEY-RECOMMENDED-v1/package.json",
+        "configs/physics/nuclear_prior_R0_engineering_v1.yaml",
+        "docs/preregistration/NUCLEAR_STAGE0_R0_ENGINEERING_PRIOR_v1.md"
       ],
       "metrics": {},
       "attempt": 0,
@@ -2234,7 +2257,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 21438.867101430893,
+      "heartbeat_age_s": 1.356844425201416,
       "ready": false,
       "blocked_by": [
         "UQ0-RATE-PDF-AUDIT"
@@ -2247,6 +2270,18 @@
         {
           "label": "docs/inventory/NUCLEAR_STAGE0_R0_SOURCE_SELECTION_AUDIT_v1.md",
           "url": "https://github.com/lanhung/uncertainty/blob/main/docs/inventory/NUCLEAR_STAGE0_R0_SOURCE_SELECTION_AUDIT_v1.md"
+        },
+        {
+          "label": "artifacts/priors/NUCLEAR-STAGE0-R0-LINX-KEY-RECOMMENDED-v1/package.json",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/artifacts/priors/NUCLEAR-STAGE0-R0-LINX-KEY-RECOMMENDED-v1/package.json"
+        },
+        {
+          "label": "configs/physics/nuclear_prior_R0_engineering_v1.yaml",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/configs/physics/nuclear_prior_R0_engineering_v1.yaml"
+        },
+        {
+          "label": "docs/preregistration/NUCLEAR_STAGE0_R0_ENGINEERING_PRIOR_v1.md",
+          "url": "https://github.com/lanhung/uncertainty/blob/main/docs/preregistration/NUCLEAR_STAGE0_R0_ENGINEERING_PRIOR_v1.md"
         }
       ]
     },
@@ -2313,11 +2348,9 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 23126.867199659348,
+      "heartbeat_age_s": 23137.356914520264,
       "ready": false,
-      "blocked_by": [
-        "P0-FRONTIER-2026-07"
-      ],
+      "blocked_by": [],
       "artifact_links": [
         {
           "label": "docs/decisions/ADR-0006-uncertainty-core-refocus.md",
@@ -2363,7 +2396,7 @@
       "rate": null,
       "eta": null,
       "eta_kind": "none",
-      "heartbeat_age_s": 21438.867267608643,
+      "heartbeat_age_s": 21449.35698199272,
       "ready": false,
       "blocked_by": [],
       "artifact_links": [
